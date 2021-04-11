@@ -25,5 +25,7 @@ shape = SubResource( 1 )
 
 [node name="Center" type="Node2D" parent="."]
 
-[node name="Weapon" parent="Center" instance=ExtResource( 3 )]
+[node name="WeapPos" type="Position2D" parent="Center"]
 position = Vector2( -45, 0 )
+
+[node name="Weapon" parent="Center/WeapPos" instance=ExtResource( 3 )]

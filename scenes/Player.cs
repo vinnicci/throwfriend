@@ -10,6 +10,7 @@ public class Player : KinematicBody2D
     [Export] public int throwStrength = 2000;
 
     private Node2D center;
+    private Position2D weapPos;
 
     public Vector2 Velocity {get; set;}
     public Weapon weapon;
@@ -29,8 +30,9 @@ public class Player : KinematicBody2D
     public override void _Ready()
     {
         center = (Node2D)GetNode("Center");
-        weapon = (Weapon)center.GetNode("Weapon");
+        weapon = (Weapon)center.GetNode("WeapPos/Weapon");
         weapon.Connect("PickedUp", this, "PickUpWeapon");
+        weapPos = (Position2D)center.GetNode("WeapPos");
     }
 
 
@@ -40,18 +42,12 @@ public class Player : KinematicBody2D
     // }
 
 
-    private bool processInit = false;
-    private Vector2 WEAP_POS_VECTOR = new Vector2(-45, 0);
-
-
     public override void _PhysicsProcess(float delta)
     {
         GetInput();
         MoveAndSlide(Velocity);
-        center.LookAt(GetGlobalMousePosition());
-        if(processInit == false) {
-            weapon.Position = WEAP_POS_VECTOR;
-            processInit = true;
+        if(center.HasNode("WeapPos/Weapon")) {
+            center.LookAt(GetGlobalMousePosition());
         }
     }
 
@@ -71,16 +67,17 @@ public class Player : KinematicBody2D
             velocity.x += 1;
         }
         Velocity = velocity.Clamped(1) * speed;
-        if(Input.IsActionJustReleased("throw_weap") && center.HasNode("Weapon") == true) {
-            weapon.Throw(throwStrength, GlobalPosition, center.GlobalRotation);
+        if(Input.IsActionJustReleased("throw_weap") && center.HasNode("WeapPos/Weapon") == true) {
+            weapon.Throw(throwStrength, new Vector2(GlobalPosition), center.GlobalRotation);
         }
     }
 
 
     private void PickUpWeapon() {
-        center.AddChild(weapon);
-        weapon.Position = WEAP_POS_VECTOR;
-        GD.Print("weapon picked up");
+        weapPos.AddChild(weapon);
+        weapon.Mode = RigidBody2D.ModeEnum.Static;
+        weapon.Position = Vector2.Zero;
+        weapon.GlobalRotation = center.GlobalRotation;
     }
 
 

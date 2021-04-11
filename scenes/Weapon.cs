@@ -25,20 +25,27 @@ public class Weapon : RigidBody2D
     // }
 
 
+    const int WEAP_MIN_LIN_VEL_LEN = 300;
+    const short BIT_MASK_CHAR = 0;
+    const short BIT_MASK_LVL = 1;
+    const short BIT_MASK_PLAYER = 2;
+
+
     public override void _PhysicsProcess(float delta)
     {
         stateLabel.Text = IsTakable.ToString();
-        if(IsTakable == false && LinearVelocity.Length() <= 250) {
-            SetCollisionMaskBit(0, false);
-            SetCollisionMaskBit(2, true);
+        if(IsTakable == false && LinearVelocity.Length() <= WEAP_MIN_LIN_VEL_LEN) {
+            SetCollisionMaskBit(BIT_MASK_CHAR, false);
+            SetCollisionMaskBit(BIT_MASK_PLAYER, true);
             IsTakable = true;
         }
     }
 
 
     public void Throw(int throwStrength, Vector2 pos, float rotation) {
-        SetCollisionMaskBit(0, true);
-        SetCollisionMaskBit(1, true);
+        Mode = RigidBody2D.ModeEnum.Rigid;
+        SetCollisionMaskBit(BIT_MASK_CHAR, true);
+        SetCollisionMaskBit(BIT_MASK_LVL, true);
         GetParent().RemoveChild(this);
         LevelNode.AddChild(this);
         GlobalPosition = pos;
@@ -54,18 +61,15 @@ public class Weapon : RigidBody2D
 
     private void OnWeaponBodyEntered(Godot.Object body) {
         if(body is Player && IsTakable == true) {
-            SetCollisionMaskBit(1, false);
-            SetCollisionMaskBit(2, false);
-            GetParent().RemoveChild(this);
-            Sleeping = true;
-            LinearVelocity = Vector2.Zero;
-            AngularVelocity = 0;
+            SetCollisionMaskBit(BIT_MASK_LVL, false);
+            SetCollisionMaskBit(BIT_MASK_PLAYER, false);
             CallDeferred("PickUpDeferred");
         }
     }
 
 
     private void PickUpDeferred() {
+        GetParent().RemoveChild(this);
         EmitSignal("PickedUp");
     }
 
