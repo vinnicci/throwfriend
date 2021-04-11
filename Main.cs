@@ -14,8 +14,6 @@ public class Main : Node2D
     {
         playerNode = (Player)GetNode("Player");
         playerNode.LevelNode = this;
-        GD.Print("successful injection to player");
-        GD.Print("lvl ready");
     }
 
 

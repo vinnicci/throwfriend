@@ -13,7 +13,6 @@ public class Weapon : RigidBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GD.Print("weap ready");
     }
 
 
@@ -25,8 +24,9 @@ public class Weapon : RigidBody2D
         SetCollisionMaskBit(0, true);
         SetCollisionMaskBit(1, true);
         GetParent().RemoveChild(this);
-        GlobalPosition = pos;
         LevelNode.AddChild(this);
+        GlobalPosition = pos;
+        GlobalRotation = rotation;
         Vector2 throwVector = new Vector2(throwStrength, 0);
         ApplyCentralImpulse(throwVector.Rotated(rotation));
     }

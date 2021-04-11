@@ -8,9 +8,8 @@ public class Player : KinematicBody2D
     // private string b = "text";
     [Export] public int speed = 100;
     [Export] public int throwStrength = 2000;
-    
-    private Position2D center;
-    private Position2D weapPos;
+
+    private Node2D center;
 
     public Vector2 Velocity {get; set;}
     public Weapon weapon;
@@ -22,7 +21,6 @@ public class Player : KinematicBody2D
         set {
             levelNode = value;
             weapon.LevelNode = LevelNode;
-            GD.Print("success injection to weapon");
         }
     }
 
@@ -30,14 +28,12 @@ public class Player : KinematicBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        center = (Position2D)GetNode("Center");
-        weapPos = (Position2D)center.GetNode("WeapPos");
-        weapon = (Weapon)weapPos.GetNode("Weapon");
-        GD.Print("player ready");
+        center = (Node2D)GetNode("Center");
+        weapon = (Weapon)center.GetNode("Weapon");
+        weapon.Position = new Vector2(-45,0);
+        center.LookAt(GetGlobalMousePosition());
     }
 
-
-    private bool procInit = false;
 
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,10 +45,6 @@ public class Player : KinematicBody2D
     public override void _PhysicsProcess(float delta)
     {
         center.LookAt(GetGlobalMousePosition());
-        if(procInit == false) {
-            weapPos.Position = new Vector2(45, 0);
-            procInit = true;
-        }
         GetInput();
         MoveAndSlide(Velocity);
     }
@@ -74,7 +66,7 @@ public class Player : KinematicBody2D
         }
         Velocity = velocity.Clamped(1) * speed;
         if(Input.IsActionJustReleased("throw_weap")) {
-            weapon.OnThrow(throwStrength, weapPos.GlobalPosition, center.GlobalRotation);
+            weapon.OnThrow(throwStrength, GlobalPosition, center.GlobalRotation);
         }
     }
 
