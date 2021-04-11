@@ -1,0 +1,8 @@
+D:\dev\Projects\Project ThrowFriend\.mono\temp\bin\Debug\Project ThrowFriend.dll
+D:\dev\Projects\Project ThrowFriend\.mono\temp\bin\Debug\Project ThrowFriend.pdb
+D:\dev\Projects\Project ThrowFriend\.mono\temp\obj\Debug\Project ThrowFriend.csprojAssemblyReference.cache
+D:\dev\Projects\Project ThrowFriend\.mono\temp\obj\Debug\Project ThrowFriend.csproj.CoreCompileInputs.cache
+D:\dev\Projects\Project ThrowFriend\.mono\temp\obj\Debug\Project ThrowFriend.AssemblyInfoInputs.cache
+D:\dev\Projects\Project ThrowFriend\.mono\temp\obj\Debug\Project ThrowFriend.AssemblyInfo.cs
+D:\dev\Projects\Project ThrowFriend\.mono\temp\obj\Debug\Project ThrowFriend.dll
+D:\dev\Projects\Project ThrowFriend\.mono\temp\obj\Debug\Project ThrowFriend.pdb

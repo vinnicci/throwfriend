@@ -1,0 +1,52 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\dev\\Projects\\Project ThrowFriend\\Project ThrowFriend.csproj": {}
+  },
+  "projects": {
+    "D:\\dev\\Projects\\Project ThrowFriend\\Project ThrowFriend.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\dev\\Projects\\Project ThrowFriend\\Project ThrowFriend.csproj",
+        "projectName": "Project ThrowFriend",
+        "projectPath": "D:\\dev\\Projects\\Project ThrowFriend\\Project ThrowFriend.csproj",
+        "packagesPath": "C:\\Users\\ZE\\.nuget\\packages\\",
+        "outputPath": "D:\\dev\\Projects\\Project ThrowFriend\\.mono\\temp\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ZE\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "target": "Package",
+              "version": "[1.0.0, )",
+              "autoReferenced": true
+            }
+          }
+        }
+      }
+    }
+  }
+}
