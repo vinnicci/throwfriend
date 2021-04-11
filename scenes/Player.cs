@@ -30,10 +30,8 @@ public class Player : KinematicBody2D
     {
         center = (Node2D)GetNode("Center");
         weapon = (Weapon)center.GetNode("Weapon");
-        weapon.Position = new Vector2(-45,0);
-        center.LookAt(GetGlobalMousePosition());
+        weapon.Connect("PickedUp", this, "PickUpWeapon");
     }
-
 
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,11 +40,19 @@ public class Player : KinematicBody2D
     // }
 
 
+    private bool processInit = false;
+    private Vector2 WEAP_POS_VECTOR = new Vector2(-45, 0);
+
+
     public override void _PhysicsProcess(float delta)
     {
-        center.LookAt(GetGlobalMousePosition());
         GetInput();
         MoveAndSlide(Velocity);
+        center.LookAt(GetGlobalMousePosition());
+        if(processInit == false) {
+            weapon.Position = WEAP_POS_VECTOR;
+            processInit = true;
+        }
     }
 
 
@@ -65,12 +71,17 @@ public class Player : KinematicBody2D
             velocity.x += 1;
         }
         Velocity = velocity.Clamped(1) * speed;
-        if(Input.IsActionJustReleased("throw_weap")) {
-            weapon.OnThrow(throwStrength, GlobalPosition, center.GlobalRotation);
+        if(Input.IsActionJustReleased("throw_weap") && center.HasNode("Weapon") == true) {
+            weapon.Throw(throwStrength, GlobalPosition, center.GlobalRotation);
         }
     }
 
 
+    private void PickUpWeapon() {
+        center.AddChild(weapon);
+        weapon.Position = WEAP_POS_VECTOR;
+        GD.Print("weapon picked up");
+    }
 
 
 
