@@ -3,16 +3,13 @@ using System;
 
 public class Player : Entity
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
     [Export] public int throwStrength = 2000;
 
     private Node2D center;
     private Position2D weapPos;
     private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
 
-    public Weapon weapon;
+    public Weapon Weapon {get; set;}
     private Level levelNode;
     public Level LevelNode {
         get {
@@ -20,25 +17,35 @@ public class Player : Entity
         }
         set {
             levelNode = value;
-            weapon.LevelNode = LevelNode;
+            Weapon.LevelNode = LevelNode;
         }
     }
+    public PlayerItem ItemSlot1 {get; set;}
+    public PlayerItem ItemSlot2 {get; set;}
 
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         base._Ready();
         center = (Node2D)GetNode("Center");
         center.LookAt(GetGlobalMousePosition());
-        weapon = (Weapon)center.GetNode("WeapPos/Weapon");
-        weapon.Connect("PickedUp", this, "PickUpWeapon");
+        Weapon = (Weapon)center.GetNode("WeapPos/Weapon");
+        Weapon.Connect("PickedUp", this, "PickUpWeapon");
         weapPos = (Position2D)center.GetNode("WeapPos");
         center.LookAt(GetGlobalMousePosition());
+        
+        // PackedScene itemPack = (PackedScene)ResourceLoader.Load("res://scenes/player items/AutoRetrieve.tscn");
+        // ItemSlot1 = (PlayerItem)itemPack.Instance();
+        
+        if(ItemSlot1 != null) {
+            ItemSlot1.PlayerNode = this;
+        }
+        if(ItemSlot2 != null) {
+            ItemSlot2.PlayerNode = this;
+        }
     }
 
 
-    //Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
         if(center.HasNode("WeapPos/Weapon")) {
@@ -55,7 +62,7 @@ public class Player : Entity
 
     public void GetInput() {
         if(Input.IsActionJustReleased("throw_weap") && center.HasNode("WeapPos/Weapon") == true) {
-            weapon.Throw(throwStrength, new Vector2(GlobalPosition), center.GlobalRotation);
+            Weapon.Throw(throwStrength, new Vector2(GlobalPosition), center.GlobalRotation);
             Speed += EXTRA_SPEED_WITHOUT_WEAPON;
         }
         Vector2 velocity = Vector2.Zero;
@@ -76,10 +83,10 @@ public class Player : Entity
 
 
     private void PickUpWeapon() {
-        weapPos.AddChild(weapon);
-        weapon.Mode = RigidBody2D.ModeEnum.Static;
-        weapon.Position = Vector2.Zero;
-        weapon.GlobalRotation = center.GlobalRotation;
+        weapPos.AddChild(Weapon);
+        Weapon.Mode = RigidBody2D.ModeEnum.Static;
+        Weapon.Position = Vector2.Zero;
+        Weapon.GlobalRotation = center.GlobalRotation;
         Speed -= EXTRA_SPEED_WITHOUT_WEAPON;
     }
 

@@ -4,7 +4,6 @@
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
-bounce = 0.8
 
 [node name="Entity" type="RigidBody2D"]
 mode = 2
