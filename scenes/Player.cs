@@ -10,6 +10,7 @@ public class Player : Entity
 
     private Node2D center;
     private Position2D weapPos;
+    private const int SPEED_WITHOUT_WEAPON = 1000;
 
     public Weapon weapon;
     private Level levelNode;
@@ -32,6 +33,7 @@ public class Player : Entity
         weapon = (Weapon)center.GetNode("WeapPos/Weapon");
         weapon.Connect("PickedUp", this, "PickUpWeapon");
         weapPos = (Position2D)center.GetNode("WeapPos");
+        center.LookAt(GetGlobalMousePosition());
     }
 
 
@@ -53,6 +55,7 @@ public class Player : Entity
     public void GetInput() {
         if(Input.IsActionJustReleased("throw_weap") && center.HasNode("WeapPos/Weapon") == true) {
             weapon.Throw(throwStrength, new Vector2(GlobalPosition), center.GlobalRotation);
+            speed += SPEED_WITHOUT_WEAPON;
         }
         Vector2 velocity = Vector2.Zero;
         if(Input.IsActionPressed("up")) {
@@ -76,6 +79,7 @@ public class Player : Entity
         weapon.Mode = RigidBody2D.ModeEnum.Static;
         weapon.Position = Vector2.Zero;
         weapon.GlobalRotation = center.GlobalRotation;
+        speed -= SPEED_WITHOUT_WEAPON;
     }
 
 

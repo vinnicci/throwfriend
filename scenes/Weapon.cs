@@ -23,10 +23,10 @@ public class Weapon : RigidBody2D
     // }
 
 
-    const int WEAP_MIN_LIN_VEL_LEN = 300;
-    const short BIT_MASK_CHAR = 0;
-    const short BIT_MASK_LVL = 1;
-    const short BIT_MASK_PLAYER = 2;
+    private const int WEAP_MIN_LIN_VEL_LEN = 300;
+    private const short BIT_MASK_CHAR = 0;
+    private const short BIT_MASK_LVL = 1;
+    private const short BIT_MASK_PLAYER = 2;
 
 
     public override void _PhysicsProcess(float delta)
