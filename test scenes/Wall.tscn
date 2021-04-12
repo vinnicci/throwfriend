@@ -3,14 +3,14 @@
 [ext_resource path="res://icon.png" type="Texture" id=1]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
+points = PoolVector2Array( 128, 64, 0, 64, 0, 0, 128, 0 )
 
 [sub_resource type="TileSet" id=2]
 0/name = "icon.png 0"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 64, 64 )
+0/region = Rect2( -32, 0, 128, 64 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
@@ -33,3 +33,4 @@ tile_set = SubResource( 2 )
 collision_layer = 2
 collision_mask = 5
 format = 1
+tile_data = PoolIntArray( 65533, 0, 0, 65534, 0, 0, 65535, 0, 0 )
