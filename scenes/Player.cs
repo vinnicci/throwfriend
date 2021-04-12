@@ -1,21 +1,19 @@
 using Godot;
 using System;
 
-public class Player : KinematicBody2D
+public class Player : Entity
 {
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
-    [Export] public int speed = 100;
     [Export] public int throwStrength = 2000;
 
     private Node2D center;
     private Position2D weapPos;
 
-    public Vector2 Velocity {get; set;}
     public Weapon weapon;
-    private Main levelNode;
-    public Main LevelNode {
+    private Level levelNode;
+    public Level LevelNode {
         get {
             return levelNode;
         }
@@ -30,30 +28,33 @@ public class Player : KinematicBody2D
     public override void _Ready()
     {
         center = (Node2D)GetNode("Center");
+        center.LookAt(GetGlobalMousePosition());
         weapon = (Weapon)center.GetNode("WeapPos/Weapon");
         weapon.Connect("PickedUp", this, "PickUpWeapon");
         weapPos = (Position2D)center.GetNode("WeapPos");
     }
 
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    // public override void _Process(float delta)
-    // {
-    // }
-
-
-    public override void _PhysicsProcess(float delta)
+    //Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(float delta)
     {
-        GetInput();
-        MoveAndSlide(Velocity);
         if(center.HasNode("WeapPos/Weapon")) {
             center.LookAt(GetGlobalMousePosition());
         }
     }
 
 
+    public override void _PhysicsProcess(float delta)
+    {
+        GetInput();
+    }
+
+
     public void GetInput() {
-        Vector2 velocity = new Vector2();
+        if(Input.IsActionJustReleased("throw_weap") && center.HasNode("WeapPos/Weapon") == true) {
+            weapon.Throw(throwStrength, new Vector2(GlobalPosition), center.GlobalRotation);
+        }
+        Vector2 velocity = Vector2.Zero;
         if(Input.IsActionPressed("up")) {
             velocity.y -= 1;
         }
@@ -66,10 +67,7 @@ public class Player : KinematicBody2D
         if(Input.IsActionPressed("right")) {
             velocity.x += 1;
         }
-        Velocity = velocity.Clamped(1) * speed;
-        if(Input.IsActionJustReleased("throw_weap") && center.HasNode("WeapPos/Weapon") == true) {
-            weapon.Throw(throwStrength, new Vector2(GlobalPosition), center.GlobalRotation);
-        }
+        Velocity = velocity;
     }
 
 

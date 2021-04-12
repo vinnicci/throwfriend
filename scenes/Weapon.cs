@@ -6,15 +6,13 @@ public class Weapon : RigidBody2D
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
-    public Main LevelNode {get; set;}
+    public Level LevelNode {get; set;}
     public bool IsTakable {get; private set;}
 
 
-    private Label stateLabel;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        stateLabel = (Label)GetNode("Label");
         IsTakable = true;
     }
 
@@ -33,7 +31,6 @@ public class Weapon : RigidBody2D
 
     public override void _PhysicsProcess(float delta)
     {
-        stateLabel.Text = IsTakable.ToString();
         if(IsTakable == false && LinearVelocity.Length() <= WEAP_MIN_LIN_VEL_LEN) {
             SetCollisionMaskBit(BIT_MASK_CHAR, false);
             SetCollisionMaskBit(BIT_MASK_PLAYER, true);
@@ -64,6 +61,10 @@ public class Weapon : RigidBody2D
             SetCollisionMaskBit(BIT_MASK_LVL, false);
             SetCollisionMaskBit(BIT_MASK_PLAYER, false);
             CallDeferred("PickUpDeferred");
+        }
+        else if(body is Enemy && IsTakable == false) {
+            Enemy enemy = (Enemy)body;
+            enemy.Hit(LinearVelocity * 2);
         }
     }
 
