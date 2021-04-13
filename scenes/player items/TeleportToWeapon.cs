@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Swap : PlayerItem
+public class TeleportToWeapon : PlayerItem
 {
     public Weapon Weapon {get; set;}
 
@@ -9,6 +9,11 @@ public class Swap : PlayerItem
     public override void _Ready()
     {
     }
+
+
+//  public override void _Process(float delta)
+//  {
+//  }
 
 
     public override void _PhysicsProcess(float delta)
@@ -31,9 +36,7 @@ public class Swap : PlayerItem
             return;
         }
         base.ApplyEffect();
-        var playerPos = PlayerNode.GlobalPosition;
         PlayerNode.Teleport(Weapon.GlobalPosition);
-        Weapon.Teleport(playerPos);
     }
 
 

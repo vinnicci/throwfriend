@@ -1,0 +1,42 @@
+using Godot;
+using System;
+
+public class Dash : PlayerItem
+{
+    public override void _Ready()
+    {
+    }
+
+
+//  public override void _Process(float delta)
+//  {
+//  }
+
+
+    public override void _PhysicsProcess(float delta)
+    {
+        if(Input.IsActionJustReleased("right_click")) {
+            ApplyEffect();
+        }
+    }
+
+
+    public override void InitEffect()
+    {
+        base.InitEffect();
+    }
+
+
+    private const int DASH_STRENGTH = 500;
+
+
+    public override void ApplyEffect()
+    {
+        base.ApplyEffect();
+        Vector2 mousePos = new Vector2(GetGlobalMousePosition());
+        Vector2 vec = (mousePos - PlayerNode.GlobalPosition).Clamped(1) * DASH_STRENGTH;
+        PlayerNode.ApplyCentralImpulse(vec);
+    }
+
+
+}

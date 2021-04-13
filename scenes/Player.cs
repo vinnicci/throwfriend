@@ -3,8 +3,8 @@ using System;
 
 public class Player : Entity
 {
-    [Export] public int throwStrength = 2000;
-
+    [Export] protected int throwStrength = 2000;
+    public int ThrowStrength {get; set;}
     private Node2D center;
     private Position2D weapPos;
     private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
@@ -28,6 +28,7 @@ public class Player : Entity
     public override void _Ready()
     {
         base._Ready();
+        ThrowStrength = throwStrength;
         center = (Node2D)GetNode("Center");
         center.LookAt(GetGlobalMousePosition());
         Weapon = (Weapon)center.GetNode("WeapPos/Weapon");
@@ -68,7 +69,7 @@ public class Player : Entity
 
     public void GetInput() {
         if(Input.IsActionJustReleased("throw_weap") && center.HasNode("WeapPos/Weapon") == true) {
-            Weapon.Throw(throwStrength, new Vector2(GlobalPosition), center.GlobalRotation);
+            Weapon.Throw(ThrowStrength, new Vector2(GlobalPosition), center.GlobalRotation);
             Speed += EXTRA_SPEED_WITHOUT_WEAPON;
         }
         Vector2 velocity = Vector2.Zero;
@@ -95,8 +96,6 @@ public class Player : Entity
         Weapon.GlobalRotation = center.GlobalRotation;
         Speed -= EXTRA_SPEED_WITHOUT_WEAPON;
     }
-
-
 
 
 }

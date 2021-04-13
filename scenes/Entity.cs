@@ -4,10 +4,9 @@ using System;
 public class Entity : RigidBody2D
 {
     [Export] protected int speed = 500;
+    public int Speed {get; set;}
     [Export] protected int health = 1;
-
-    public int Speed {get; protected set;}
-    public int Health {get; protected set;}
+    public int Health {get; set;}
     public Vector2 Velocity {get; protected set;}
     protected Timer deathTimer;
 
