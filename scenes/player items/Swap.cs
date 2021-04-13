@@ -4,10 +4,12 @@ using System;
 public class Swap : PlayerItem
 {
     public Weapon Weapon {get; set;}
+    private Timer cooldown;
 
 
     public override void _Ready()
     {
+        cooldown = (Timer)GetNode("Cooldown");
     }
 
 
@@ -27,7 +29,7 @@ public class Swap : PlayerItem
 
     public override void ApplyEffect()
     {
-        if(Weapon.Mode != RigidBody2D.ModeEnum.Rigid) {
+        if(Weapon.Mode != RigidBody2D.ModeEnum.Rigid || cooldown.IsStopped() == false) {
             return;
         }
         base.ApplyEffect();
