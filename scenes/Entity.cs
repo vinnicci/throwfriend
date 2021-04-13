@@ -48,6 +48,7 @@ public class Entity : RigidBody2D
         //velocity
         AppliedForce = Vector2.Zero;
         state.AddCentralForce(Velocity.Clamped(1) * Speed);
+        Velocity = Vector2.Zero;
     }
 
 

@@ -1,11 +1,14 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+
 
 public class Weapon : RigidBody2D
 {
     public Level LevelNode {get; set;}
-    public bool IsTakable {get; private set;}
+    public bool IsTakable {get; set;}
     public int Damage {get; set;}
+    public Vector2 Velocity {get; set;}
     private Node2D itemSlot1Node;
     public WeaponItem Item1 {get; set;}
     private Node2D itemSlot2Node;
@@ -49,11 +52,16 @@ public class Weapon : RigidBody2D
 
     public override void _IntegrateForces(Physics2DDirectBodyState state)
     {
+        //teleport
         if(teleportPos != Vector2.Zero) {
             Transform2D trans = new Transform2D(Rotation, teleportPos);
             state.Transform = trans;
             teleportPos = Vector2.Zero;
         }
+        //velocity
+        AppliedForce = Vector2.Zero;
+        state.AddCentralForce(Velocity);
+        Velocity = Vector2.Zero;
     }
 
 
@@ -86,7 +94,6 @@ public class Weapon : RigidBody2D
 
 
     [Signal] public delegate void PickedUp();
-    private Godot.Collections.Array hitList = new Godot.Collections.Array();
     private const int KNOCKBACK = 250;
 
 
@@ -96,10 +103,11 @@ public class Weapon : RigidBody2D
             SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
             CallDeferred("PickUpDeferred");
         }
-        else if(body is Enemy && IsTakable == false && hitList.Contains(body) == false) {
+        else if(body is Enemy) {
             Enemy enemy = (Enemy)body;
-            enemy.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), Damage);
-            hitList.Add(enemy);
+            if(IsTakable == false) {
+                enemy.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), Damage);
+            }
         }
         int i = 1;
         if(GD.RandRange(0, 1.0) <= 0.5) {
