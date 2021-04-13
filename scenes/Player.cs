@@ -8,7 +8,6 @@ public class Player : Entity
     private Node2D center;
     private Position2D weapPos;
     private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
-
     public Weapon Weapon {get; set;}
     private Level levelNode;
     public Level LevelNode {
@@ -20,8 +19,10 @@ public class Player : Entity
             Weapon.LevelNode = LevelNode;
         }
     }
-    public PlayerItem ItemSlot1 {get; set;}
-    public PlayerItem ItemSlot2 {get; set;}
+    private Node2D itemSlot1Node;
+    public PlayerItem Item1 {get; set;}
+    private Node2D itemSlot2Node;
+    public PlayerItem Item2 {get; set;}
 
 
     public override void _Ready()
@@ -33,15 +34,20 @@ public class Player : Entity
         Weapon.Connect("PickedUp", this, "PickUpWeapon");
         weapPos = (Position2D)center.GetNode("WeapPos");
         center.LookAt(GetGlobalMousePosition());
-        
-        // PackedScene itemPack = (PackedScene)ResourceLoader.Load("res://scenes/player items/AutoRetrieve.tscn");
-        // ItemSlot1 = (PlayerItem)itemPack.Instance();
-        
-        if(ItemSlot1 != null) {
-            ItemSlot1.PlayerNode = this;
+        RefreshItems();
+    }
+
+
+    public void RefreshItems() {
+        itemSlot1Node = (Node2D)GetNode("ItemSlot1");
+        if(itemSlot1Node.GetChildCount() != 0) {
+            Item1 = (PlayerItem)itemSlot1Node.GetChild(0);
+            Item1.PlayerNode = this;
         }
-        if(ItemSlot2 != null) {
-            ItemSlot2.PlayerNode = this;
+        itemSlot2Node = (Node2D)GetNode("ItemSlot2");
+        if(itemSlot2Node.GetChildCount() != 0) {
+            Item2 = (PlayerItem)itemSlot2Node.GetChild(0);
+            Item2.PlayerNode = this;
         }
     }
 

@@ -30,8 +30,23 @@ public class Entity : RigidBody2D
     // }
 
 
+    private Vector2 teleportPos;
+
+
+    public void Teleport(Vector2 global_pos) {
+        teleportPos = global_pos;
+    }
+
+
     public override void _IntegrateForces(Physics2DDirectBodyState state)
     {
+        //teleport
+        if(teleportPos != Vector2.Zero) {
+            Transform2D trans = new Transform2D(Rotation, teleportPos);
+            state.Transform = trans;
+		    teleportPos = Vector2.Zero;
+        }
+        //velocity
         AppliedForce = Vector2.Zero;
         state.AddCentralForce(Velocity.Clamped(1) * Speed);
     }

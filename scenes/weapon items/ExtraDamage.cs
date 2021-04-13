@@ -8,14 +8,11 @@ public class ExtraDamage : WeaponItem
     }
 
 
-    //  public override void _Process(float delta)
-    //  {
-    //  }
-
-
     public override void InitEffect()
     {
         base.InitEffect();
         WeaponNode.Damage += 1;
     }
+
+
 }

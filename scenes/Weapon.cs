@@ -6,22 +6,30 @@ public class Weapon : RigidBody2D
     public Level LevelNode {get; set;}
     public bool IsTakable {get; private set;}
     public int Damage {get; set;}
-    public WeaponItem ItemSlot1 {get; set;}
-    public WeaponItem ItemSlot2 {get; set;}
+    private Node2D itemSlot1Node;
+    public WeaponItem Item1 {get; set;}
+    private Node2D itemSlot2Node;
+    public WeaponItem Item2 {get; set;}
 
 
     public override void _Ready()
     {
-        // PackedScene itemPack = (PackedScene)ResourceLoader.Load("res://scenes/weapon items/ExtraDamage.tscn");
-        // ItemSlot1 = (WeaponItem)itemPack.Instance();
-
         IsTakable = true;
         Damage = 1;
-        if(ItemSlot1 != null) {
-            ItemSlot1.WeaponNode = this;
+        RefreshItems();
+    }
+
+
+    public void RefreshItems() {
+        itemSlot1Node = (Node2D)GetNode("ItemSlot1");
+        if(itemSlot1Node.GetChildCount() != 0) {
+            Item1 = (WeaponItem)itemSlot1Node.GetChild(0);
+            Item1.WeaponNode = this;
         }
-        if(ItemSlot2 != null) {
-            ItemSlot2.WeaponNode = this;
+        itemSlot2Node = (Node2D)GetNode("ItemSlot2");
+        if(itemSlot2Node.GetChildCount() != 0) {
+            Item2 = (WeaponItem)itemSlot2Node.GetChild(0);
+            Item2.WeaponNode = this;
         }
     }
 
@@ -31,10 +39,25 @@ public class Weapon : RigidBody2D
     // }
 
 
-    private const int WEAP_MIN_LIN_VEL_LEN = 350;
-    // private const short BIT_MASK_CHAR = 0;
-    // private const short BIT_MASK_LVL = 1;
-    // private const short BIT_MASK_PLAYER = 2;
+    private Vector2 teleportPos;
+
+
+    public void Teleport(Vector2 global_pos) {
+        teleportPos = global_pos;
+    }
+
+
+    public override void _IntegrateForces(Physics2DDirectBodyState state)
+    {
+        if(teleportPos != Vector2.Zero) {
+            Transform2D trans = new Transform2D(Rotation, teleportPos);
+            state.Transform = trans;
+            teleportPos = Vector2.Zero;
+        }
+    }
+
+
+    private const int WEAP_MIN_LIN_VEL_LEN = 200;
 
 
     public override void _PhysicsProcess(float delta)
@@ -47,23 +70,24 @@ public class Weapon : RigidBody2D
     }
 
 
-    public void Throw(int throwStrength, Vector2 pos, float rotation) {
+    public void Throw(int throwStrength, Vector2 globalPos, float globalRot) {
         Mode = RigidBody2D.ModeEnum.Rigid;
         SetCollisionMaskBit(Global.BIT_MASK_CHAR, true);
+        SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
         SetCollisionMaskBit(Global.BIT_MASK_LVL, true);
         GetParent().RemoveChild(this);
         LevelNode.AddChild(this);
-        GlobalPosition = pos;
-        GlobalRotation = rotation;
+        GlobalPosition = globalPos;
+        GlobalRotation = globalRot;
         Vector2 throwVector = new Vector2(throwStrength, 0);
-        ApplyCentralImpulse(throwVector.Rotated(rotation));
+        ApplyCentralImpulse(throwVector.Rotated(globalRot));
         IsTakable = false;
     }
 
 
     [Signal] public delegate void PickedUp();
     private Godot.Collections.Array hitList = new Godot.Collections.Array();
-    private const int KNOCKBACK = 150;
+    private const int KNOCKBACK = 250;
 
 
     private void OnWeaponBodyEntered(Godot.Object body) {
@@ -82,6 +106,7 @@ public class Weapon : RigidBody2D
             i *= -1;
         }
         AngularVelocity = i * 50;
+        GD.Print("Weap damage: " + Damage);
     }
 
 
