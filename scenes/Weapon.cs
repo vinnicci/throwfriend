@@ -6,7 +6,16 @@ using System.Collections.Generic;
 public class Weapon : RigidBody2D
 {
     public Player PlayerNode {get; set;}
-    public Level LevelNode {get; set;}
+    private Level levelNode;
+    public Level LevelNode {
+        get {
+            return levelNode;
+        }
+        set {
+            levelNode = value;
+            RefreshItems();
+        }
+    }
     public int Damage {get; set;}
     public Vector2 Velocity {get; set;}
     public Node2D ItemSlot1Node {get; private set;}
@@ -17,6 +26,7 @@ public class Weapon : RigidBody2D
         HELD, ACTIVE, INACTIVE
     }
     public States CurrentState {get; private set;}
+    public bool IsClone {get; set;}
 
 
     public override void _Ready()
@@ -41,11 +51,6 @@ public class Weapon : RigidBody2D
             Item2.WeaponNode = this;
         }
     }
-
-
-    // public override void _Process(float delta)
-    // {
-    // }
 
 
     private Vector2 teleportPos;
@@ -76,12 +81,9 @@ public class Weapon : RigidBody2D
 
     public override void _PhysicsProcess(float delta)
     {
-        base._PhysicsProcess(delta);
         if(CurrentState == States.ACTIVE && LinearVelocity.LengthSquared() <= WEAP_MIN_LIN_VEL_LEN) {
             SetCollisionMaskBit(Global.BIT_MASK_CHAR, false);
-            if(PlayerNode.WeaponNode == this) {
-                SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
-            }
+            SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
             CurrentState = States.INACTIVE;
         }
     }
@@ -105,12 +107,17 @@ public class Weapon : RigidBody2D
 
 
     [Signal] public delegate void PickedUp();
-    private const int KNOCKBACK = 250;
+    private const int KNOCKBACK = 200;
 
 
     private void OnWeaponBodyEntered(Godot.Object body) {
         if(body is Player && CurrentState == States.INACTIVE) {
-            PickUp();   
+            if(PlayerNode.WeaponNode == this) {
+                PickUp();
+            }
+            else {
+                SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
+            }
         }
         else if(body is Enemy) {
             Enemy enemy = (Enemy)body;

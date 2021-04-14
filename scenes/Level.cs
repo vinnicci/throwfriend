@@ -15,9 +15,5 @@ public class Level : Node2D
         }
     }
 
-//  public override void _Process(float delta)
-//  {
-//  }
-
 
 }

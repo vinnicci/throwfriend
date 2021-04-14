@@ -19,7 +19,6 @@ public class Player : Entity
             RefreshItems();
             WeaponNode.PlayerNode = this;
             WeaponNode.LevelNode = LevelNode;
-            WeaponNode.RefreshItems();
         }
     }
     private Node2D itemSlot1Node;
@@ -45,11 +44,15 @@ public class Player : Entity
         itemSlot1Node = (Node2D)GetNode("ItemSlot1");
         if(itemSlot1Node.GetChildCount() != 0) {
             Item1 = (PlayerItem)itemSlot1Node.GetChild(0);
-            Item1.PlayerNode = this;
         }
         itemSlot2Node = (Node2D)GetNode("ItemSlot2");
         if(itemSlot2Node.GetChildCount() != 0) {
             Item2 = (PlayerItem)itemSlot2Node.GetChild(0);
+        }
+        if(IsInstanceValid(Item1) == true) {
+            Item1.PlayerNode = this;
+        }
+        if(IsInstanceValid(Item2) == true) {
             Item2.PlayerNode = this;
         }
     }
@@ -93,7 +96,8 @@ public class Player : Entity
 
     private void PickUpWeapon() {
         weapPos.AddChild(WeaponNode);
-        WeaponNode.GlobalRotation = Center.GlobalRotation;
+        float rot = Center.GlobalRotation;
+        WeaponNode.GlobalRotation = rot;
         Speed -= EXTRA_SPEED_WITHOUT_WEAPON;
     }
 

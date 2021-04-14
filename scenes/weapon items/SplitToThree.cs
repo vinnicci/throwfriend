@@ -4,6 +4,7 @@ using System;
 public class SplitToThree : WeaponItem
 {
     private Weapon[] weaps = new Weapon[2];
+    public Player Player {get; set;}
 
 
     public override void _Ready()
@@ -29,15 +30,18 @@ public class SplitToThree : WeaponItem
     public override void InitEffect()
     {
         base.InitEffect();
+        Player = WeaponNode.PlayerNode;
         PackedScene res = (PackedScene)ResourceLoader.Load(WeaponNode.Filename);
         weaps[0] = (Weapon)res.Instance();
         weaps[1] = (Weapon)res.Instance();
         weaps[0].RefreshItems();
         weaps[1].RefreshItems();
-        weaps[0].PlayerNode = WeaponNode.PlayerNode;
+        weaps[0].PlayerNode = Player;
         weaps[0].LevelNode = WeaponNode.LevelNode;
-        weaps[1].PlayerNode = WeaponNode.PlayerNode;
+        weaps[0].IsClone = true;
+        weaps[1].PlayerNode = Player;
         weaps[1].LevelNode = WeaponNode.LevelNode;
+        weaps[1].IsClone = true;
         if(IsInstanceValid(WeaponNode.Item1) == true && WeaponNode.Item1 is SplitToThree == false) {
             weaps[0].ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
         }
@@ -58,9 +62,9 @@ public class SplitToThree : WeaponItem
     public override void ApplyEffect()
     {
         base.ApplyEffect();
-        Player player = WeaponNode.PlayerNode;
-        weaps[0].Throw(player.ThrowStrength, WeaponNode.GlobalPosition, Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees + 15));
-        weaps[1].Throw(player.ThrowStrength, WeaponNode.GlobalPosition, Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees - 15));
+        int strength = Player.ThrowStrength;
+        weaps[0].Throw(strength, WeaponNode.GlobalPosition, Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees + 15));
+        weaps[1].Throw(strength, WeaponNode.GlobalPosition, Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees - 15));
     }
 
 

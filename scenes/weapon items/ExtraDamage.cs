@@ -8,16 +8,20 @@ public class ExtraDamage : WeaponItem
     }
 
 
+    private const int DMG_MULT = 2;
+
+
     public override void InitEffect()
     {
         base.InitEffect();
-        WeaponNode.Damage += 1;
+        WeaponNode.Damage *= DMG_MULT;
     }
 
 
     public override void RemoveEffect()
     {
         base.RemoveEffect();
+        WeaponNode.Damage /= DMG_MULT;
     }
 
 

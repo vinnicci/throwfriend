@@ -36,6 +36,7 @@ public class Swap : PlayerItem
         var playerPos = PlayerNode.GlobalPosition;
         PlayerNode.Teleport(Weapon.GlobalPosition);
         Weapon.Teleport(playerPos);
+        cooldown.Start();
     }
 
 
