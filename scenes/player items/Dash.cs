@@ -12,11 +12,6 @@ public class Dash : PlayerItem
     }
 
 
-//  public override void _Process(float delta)
-//  {
-//  }
-
-
     public override void _PhysicsProcess(float delta)
     {
         if(Input.IsActionJustReleased("right_click")) {

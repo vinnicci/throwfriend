@@ -26,7 +26,7 @@ public class TeleportToWeapon : PlayerItem
 
     public override void InitEffect() {
         base.InitEffect();
-        Weapon = PlayerNode.Weapon;
+        Weapon = PlayerNode.WeaponNode;
     }
 
 

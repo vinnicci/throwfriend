@@ -20,9 +20,4 @@ public class WeaponItem : Item
     }
 
 
-//  public override void _Process(float delta)
-//  {
-//  }
-
-
 }

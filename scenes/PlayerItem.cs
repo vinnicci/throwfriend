@@ -20,9 +20,4 @@ public class PlayerItem : Item
     }
 
 
-//  public override void _Process(float delta)
-//  {
-//  }
-
-
 }

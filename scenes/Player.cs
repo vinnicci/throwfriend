@@ -5,10 +5,10 @@ public class Player : Entity
 {
     [Export] protected int throwStrength = 2000;
     public int ThrowStrength {get; set;}
-    private Node2D center;
+    public Node2D Center {get; set;}
     private Position2D weapPos;
     private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
-    public Weapon Weapon {get; set;}
+    public Weapon WeaponNode {get; set;}
     private Level levelNode;
     public Level LevelNode {
         get {
@@ -16,7 +16,10 @@ public class Player : Entity
         }
         set {
             levelNode = value;
-            Weapon.LevelNode = LevelNode;
+            RefreshItems();
+            WeaponNode.PlayerNode = this;
+            WeaponNode.LevelNode = LevelNode;
+            WeaponNode.RefreshItems();
         }
     }
     private Node2D itemSlot1Node;
@@ -29,13 +32,12 @@ public class Player : Entity
     {
         base._Ready();
         ThrowStrength = throwStrength;
-        center = (Node2D)GetNode("Center");
-        center.LookAt(GetGlobalMousePosition());
-        Weapon = (Weapon)center.GetNode("WeapPos/Weapon");
-        Weapon.Connect("PickedUp", this, "PickUpWeapon");
-        weapPos = (Position2D)center.GetNode("WeapPos");
-        center.LookAt(GetGlobalMousePosition());
-        RefreshItems();
+        Center = (Node2D)GetNode("Center");
+        Center.LookAt(GetGlobalMousePosition());
+        WeaponNode = (Weapon)Center.GetNode("WeapPos/Weapon");
+        WeaponNode.Connect("PickedUp", this, "PickUpWeapon");
+        weapPos = (Position2D)Center.GetNode("WeapPos");
+        Center.LookAt(GetGlobalMousePosition());
     }
 
 
@@ -55,8 +57,8 @@ public class Player : Entity
 
     public override void _Process(float delta)
     {
-        if(center.HasNode("WeapPos/Weapon")) {
-            center.LookAt(GetGlobalMousePosition());
+        if(Center.HasNode("WeapPos/Weapon")) {
+            Center.LookAt(GetGlobalMousePosition());
         }
     }
 
@@ -68,8 +70,8 @@ public class Player : Entity
 
 
     public void GetInput() {
-        if(Input.IsActionJustReleased("throw_weap") && center.HasNode("WeapPos/Weapon") == true) {
-            Weapon.Throw(ThrowStrength, new Vector2(GlobalPosition), center.GlobalRotation);
+        if(Input.IsActionJustReleased("throw_weap") && Center.HasNode("WeapPos/Weapon") == true) {
+            WeaponNode.Throw(ThrowStrength, GlobalPosition, Center.GlobalRotation);
             Speed += EXTRA_SPEED_WITHOUT_WEAPON;
         }
         Vector2 velocity = Vector2.Zero;
@@ -90,10 +92,8 @@ public class Player : Entity
 
 
     private void PickUpWeapon() {
-        weapPos.AddChild(Weapon);
-        Weapon.Mode = RigidBody2D.ModeEnum.Static;
-        Weapon.Position = Vector2.Zero;
-        Weapon.GlobalRotation = center.GlobalRotation;
+        weapPos.AddChild(WeaponNode);
+        WeaponNode.GlobalRotation = Center.GlobalRotation;
         Speed -= EXTRA_SPEED_WITHOUT_WEAPON;
     }
 

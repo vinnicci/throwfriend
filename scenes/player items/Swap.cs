@@ -23,13 +23,13 @@ public class Swap : PlayerItem
 
     public override void InitEffect() {
         base.InitEffect();
-        Weapon = PlayerNode.Weapon;
+        Weapon = PlayerNode.WeaponNode;
     }
 
 
     public override void ApplyEffect()
     {
-        if(Weapon.Mode != RigidBody2D.ModeEnum.Rigid || cooldown.IsStopped() == false) {
+        if(Weapon.CurrentState == Weapon.States.HELD || cooldown.IsStopped() == false) {
             return;
         }
         base.ApplyEffect();

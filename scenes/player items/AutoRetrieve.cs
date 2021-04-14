@@ -16,7 +16,7 @@ public class AutoRetrieve : PlayerItem
     public override void _PhysicsProcess(float delta)
     {
         if(weapIsReturning == true) {
-            if(Weapon.Mode == RigidBody2D.ModeEnum.Rigid && Weapon.IsTakable == true) {
+            if(Weapon.CurrentState == Weapon.States.INACTIVE) {
                 Vector2 vec = (PlayerNode.GlobalPosition - Weapon.GlobalPosition).Clamped(1) * speed;
                 Weapon.Velocity = vec;
             }
@@ -25,7 +25,7 @@ public class AutoRetrieve : PlayerItem
                 Weapon.AppliedForce = Vector2.Zero;
             }
         }
-        else if(weapIsReturning == false && Weapon.Mode == RigidBody2D.ModeEnum.Rigid && Weapon.IsTakable == true) {
+        else if(weapIsReturning == false && Weapon.CurrentState == Weapon.States.INACTIVE) {
             weapIsReturning = true;
         }
     }
@@ -34,7 +34,7 @@ public class AutoRetrieve : PlayerItem
     public override void InitEffect()
     {
         base.InitEffect();
-        Weapon = PlayerNode.Weapon;
+        Weapon = PlayerNode.WeaponNode;
     }
 
 

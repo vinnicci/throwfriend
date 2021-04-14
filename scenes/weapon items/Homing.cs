@@ -12,6 +12,7 @@ public class Homing : WeaponItem
 
     public override void _Ready()
     {
+        incompatibilityList.Add("res://scenes/weapon items/Homing.cs");
         range = (Area2D)GetNode("DetectionRange");
         ray = (RayCast2D)GetNode("DetectionRay");
         tick = (Timer)GetNode("Tick");
@@ -24,17 +25,14 @@ public class Homing : WeaponItem
 
     public override void _PhysicsProcess(float delta)
     {
-        if(Godot.Object.IsInstanceValid(target) == false) {
-            return;
-        }
-        if(WeaponNode.IsTakable == true) {
-            if(enemies.Count > 0) {
+        if(WeaponNode.CurrentState != Weapon.States.ACTIVE) {
+            if(enemies.Count > 0 || IsInstanceValid(target) == true) {
                 enemies.Clear();
                 target = null;
             }
         }
-        else if(WeaponNode.IsTakable == false) {
-            if(WeaponNode.Mode == RigidBody2D.ModeEnum.Rigid) {
+        else if(WeaponNode.CurrentState == Weapon.States.ACTIVE) {
+            if(IsInstanceValid(target) == true) {
                 Vector2 vec = (target.Position - WeaponNode.Position).Clamped(1) * HOME_MAGNITUDE;
                 WeaponNode.Velocity += vec;
             }
@@ -60,7 +58,7 @@ public class Homing : WeaponItem
             return;
         }
         Enemy enemy = enemies.Dequeue();
-        if(Godot.Object.IsInstanceValid(target) == true || Godot.Object.IsInstanceValid(enemy) == false) {
+        if(IsInstanceValid(target) == true || IsInstanceValid(enemy) == false) {
             return;
         }
         ray.LookAt(enemy.GlobalPosition);

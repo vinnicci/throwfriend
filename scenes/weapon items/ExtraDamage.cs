@@ -15,4 +15,10 @@ public class ExtraDamage : WeaponItem
     }
 
 
+    public override void RemoveEffect()
+    {
+        base.RemoveEffect();
+    }
+
+
 }
