@@ -6,12 +6,8 @@ public class Guided : WeaponItem
     public override void _Ready()
     {
         incompatibilityList.Add("res://scenes/weapon items/Homing.cs");
+        incompatibilityList.Add("res://scenes/weapon items/Guided.cs");
     }
-
-
-//  public override void _Process(float delta)
-//  {
-//  }
 
 
     private const int HOME_MAGNITUDE = 250;

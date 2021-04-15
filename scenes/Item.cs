@@ -30,9 +30,4 @@ public class Item : Node2D
     public virtual void RemoveEffect() {}
 
 
-//  public override void _Process(float delta)
-//  {
-//  }
-
-
 }

@@ -44,15 +44,19 @@ public class SplitToThree : WeaponItem
         weaps[1].IsClone = true;
         if(IsInstanceValid(WeaponNode.Item1) == true && WeaponNode.Item1 is SplitToThree == false) {
             weaps[0].ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
-        }
-        if(IsInstanceValid(WeaponNode.Item1) == true && WeaponNode.Item1 is SplitToThree == false) {
             weaps[1].ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
+            weaps[0].RefreshItems();
+            weaps[1].RefreshItems();
+            weaps[0].ActivateItem(1);
+            weaps[1].ActivateItem(1);
         }
         if(IsInstanceValid(WeaponNode.Item2) == true && WeaponNode.Item2 is SplitToThree == false) {
             weaps[0].ItemSlot2Node.AddChild(WeaponNode.Item2.Duplicate());
-        }
-        if(IsInstanceValid(WeaponNode.Item2) == true && WeaponNode.Item2 is SplitToThree == false) {
             weaps[1].ItemSlot2Node.AddChild(WeaponNode.Item2.Duplicate());
+            weaps[0].RefreshItems();
+            weaps[1].RefreshItems();
+            weaps[0].ActivateItem(2);
+            weaps[1].ActivateItem(2);
         }
         weaps[0].RefreshItems();
         weaps[1].RefreshItems();
@@ -63,14 +67,18 @@ public class SplitToThree : WeaponItem
     {
         base.ApplyEffect();
         int strength = Player.ThrowStrength;
-        weaps[0].Throw(strength, WeaponNode.GlobalPosition, Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees + 15));
-        weaps[1].Throw(strength, WeaponNode.GlobalPosition, Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees - 15));
+        weaps[0].Throw(strength, WeaponNode.GlobalPosition, Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees +
+        (float)GD.RandRange(0,30)));
+        weaps[1].Throw(strength, WeaponNode.GlobalPosition, Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees -
+        (float)GD.RandRange(0,30)));
     }
 
 
     public override void RemoveEffect()
     {
         base.RemoveEffect();
+        weaps[0].GetParent().RemoveChild(weaps[0]);
+        weaps[1].GetParent().RemoveChild(weaps[1]);
         weaps[0].QueueFree();
         weaps[1].QueueFree();
     }

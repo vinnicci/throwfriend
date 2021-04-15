@@ -14,6 +14,8 @@ public class Weapon : RigidBody2D
         set {
             levelNode = value;
             RefreshItems();
+            ActivateItem(1);
+            ActivateItem(2);
         }
     }
     public int Damage {get; set;}
@@ -44,10 +46,14 @@ public class Weapon : RigidBody2D
         if(ItemSlot2Node.GetChildCount() != 0) {
             Item2 = (WeaponItem)ItemSlot2Node.GetChild(0);
         }
-        if(IsInstanceValid(Item1) == true) {
+    }
+
+
+    public void ActivateItem(int slotNum) {
+        if(slotNum == 1 && IsInstanceValid(Item1) == true) {
             Item1.WeaponNode = this;
         }
-        if(IsInstanceValid(Item2) == true) {
+        else if(slotNum == 2 && IsInstanceValid(Item2) == true) {
             Item2.WeaponNode = this;
         }
     }

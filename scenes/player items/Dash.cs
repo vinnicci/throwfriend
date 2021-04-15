@@ -18,13 +18,7 @@ public class Dash : PlayerItem
             ApplyEffect();
         }
     }
-
-
-    public override void InitEffect()
-    {
-        base.InitEffect();
-    }
-
+    
 
     private const int DASH_STRENGTH = 500;
 

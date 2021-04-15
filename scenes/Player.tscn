@@ -33,7 +33,5 @@ position = Vector2( -45, 0 )
 [node name="Weapon" parent="Center/WeapPos" index="0" instance=ExtResource( 3 )]
 
 [node name="ItemSlot1" type="Node2D" parent="." index="5"]
-visible = false
 
 [node name="ItemSlot2" type="Node2D" parent="." index="6"]
-visible = false

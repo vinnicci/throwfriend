@@ -17,6 +17,8 @@ public class Player : Entity
         set {
             levelNode = value;
             RefreshItems();
+            ActivateItem(1);
+            ActivateItem(2);
             WeaponNode.PlayerNode = this;
             WeaponNode.LevelNode = LevelNode;
         }
@@ -49,10 +51,14 @@ public class Player : Entity
         if(itemSlot2Node.GetChildCount() != 0) {
             Item2 = (PlayerItem)itemSlot2Node.GetChild(0);
         }
-        if(IsInstanceValid(Item1) == true) {
+    }
+
+
+    public void ActivateItem(int slotNum) {
+        if(slotNum == 1 && IsInstanceValid(Item1) == true) {
             Item1.PlayerNode = this;
         }
-        if(IsInstanceValid(Item2) == true) {
+        else if(slotNum == 2 && IsInstanceValid(Item2) == true) {
             Item2.PlayerNode = this;
         }
     }

@@ -10,6 +10,8 @@ public class AutoRetrieve : PlayerItem
 
     public override void _Ready()
     {
+        incompatibilityList.Add("res://scenes/player items/AutoRetrieve.cs");
+        incompatibilityList.Add("res://scenes/weapon items/Guided.cs");
     }
 
 
