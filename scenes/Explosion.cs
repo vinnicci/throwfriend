@@ -7,6 +7,7 @@ public class Explosion : Area2D
     public int ExplosionRadius {get; set;}
     public Node2D ParentNode {get; set;}
     public int Damage {get; set;}
+    
     private Polygon2D poly;
     private CollisionShape2D collision;
     private RayCast2D ray;

@@ -4,6 +4,7 @@ using System;
 public class AutoRetrieve : PlayerItem
 {
     public Weapon Weapon {get; set;}
+    
     private bool weapIsReturning = false;
     private const int speed = 100;
     

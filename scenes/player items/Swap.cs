@@ -4,6 +4,7 @@ using System;
 public class Swap : PlayerItem
 {
     public Weapon Weapon {get; set;}
+    
     private Timer cooldown;
 
 

@@ -6,8 +6,6 @@ public class Player : Entity
     [Export] protected int throwStrength = 2000;
     public int ThrowStrength {get; set;}
     public Node2D Center {get; set;}
-    private Position2D weapPos;
-    private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
     public Weapon WeaponNode {get; set;}
     private Level levelNode;
     public Level LevelNode {
@@ -28,6 +26,10 @@ public class Player : Entity
     private Node2D itemSlot2Node;
     public PlayerItem Item2 {get; set;}
 
+    private Position2D weapPos;
+    private PlayerCam camera;
+    private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
+
 
     public override void _Ready()
     {
@@ -35,6 +37,8 @@ public class Player : Entity
         ThrowStrength = throwStrength;
         Center = (Node2D)GetNode("Center");
         Center.LookAt(GetGlobalMousePosition());
+        camera = (PlayerCam)GetNode("PlayerCam");
+        camera.ParentNode = this;
         WeaponNode = (Weapon)Center.GetNode("WeapPos/Weapon");
         WeaponNode.Connect("PickedUp", this, "PickUpWeapon");
         weapPos = (Position2D)Center.GetNode("WeapPos");
@@ -74,6 +78,7 @@ public class Player : Entity
 
     public override void _PhysicsProcess(float delta)
     {
+        base._PhysicsProcess(delta);
         GetInput();
     }
 

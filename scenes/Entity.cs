@@ -16,17 +16,18 @@ public class Entity : RigidBody2D
         deathTimer = (Timer)GetNode("DeathTimer");
         Speed = speed;
         Health = health;
+    } 
+
+
+    public override void _PhysicsProcess(float delta)
+    {
+        if(ContinuousCd == RigidBody2D.CCDMode.Disabled && LinearVelocity.LengthSquared() > Global.CCD_MAX) {
+            ContinuousCd = RigidBody2D.CCDMode.CastRay;
+        }
+        else if(ContinuousCd == RigidBody2D.CCDMode.CastRay && LinearVelocity.LengthSquared() <= Global.CCD_MAX) {
+            ContinuousCd = RigidBody2D.CCDMode.Disabled;
+        }
     }
-
-
-    //  public override void _Process(float delta)
-    //  {
-    //  }
-
-
-    // public override void _PhysicsProcess(float delta)
-    // {
-    // }
 
 
     private Vector2 teleportPos;

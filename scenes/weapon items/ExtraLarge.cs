@@ -3,9 +3,10 @@ using System;
 
 public class ExtraLarge : WeaponItem
 {
+    public Player Player {get; set;}
+
     private Weapon largeWeap;
     private Weapon tempWeap;
-    public Player Player {get; set;}
 
 
     public override void _Ready()

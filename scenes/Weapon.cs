@@ -87,6 +87,12 @@ public class Weapon : RigidBody2D
 
     public override void _PhysicsProcess(float delta)
     {
+        if(ContinuousCd == RigidBody2D.CCDMode.Disabled && LinearVelocity.LengthSquared() > Global.CCD_MAX) {
+            ContinuousCd = RigidBody2D.CCDMode.CastRay;
+        }
+        else if(ContinuousCd == RigidBody2D.CCDMode.CastRay && LinearVelocity.LengthSquared() <= Global.CCD_MAX) {
+            ContinuousCd = RigidBody2D.CCDMode.Disabled;
+        }
         if(CurrentState == States.ACTIVE && LinearVelocity.LengthSquared() <= WEAP_MIN_LIN_VEL_LEN) {
             SetCollisionMaskBit(Global.BIT_MASK_CHAR, false);
             SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
