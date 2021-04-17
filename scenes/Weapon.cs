@@ -16,6 +16,7 @@ public class Weapon : RigidBody2D
             RefreshItems();
             ActivateItem(1);
             ActivateItem(2);
+            RefreshItems();
         }
     }
     public int Damage {get; set;}

@@ -1,0 +1,232 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/btree/script/btree.gd" type="Script" id=1]
+[ext_resource path="res://test scenes/TestAI.gd" type="Script" id=2]
+
+[node name="AI" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="BTREE" type="Node" parent="."]
+script = ExtResource( 1 )
+tree = {
+"connection": [ {
+"from": "sequence",
+"from_port": 0,
+"to": "task2",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 1,
+"to": "task",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 2,
+"to": "task3",
+"to_port": 0
+}, {
+"from": "root",
+"from_port": 0,
+"to": "sequence",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_idle",
+"offset": Vector2( 300, -200 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_enemy_valid",
+"offset": Vector2( 300, -100 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek_enemy",
+"offset": Vector2( 300, 0 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 100, -100 ),
+"size": Vector2( 103, 109.75 )
+},
+"name": "sequence",
+"type": 2
+} ],
+"data": {
+"offset": Vector2( 0, -100 ),
+"size": Vector2( 65, 60 )
+},
+"name": "root",
+"type": 0
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_enemy_valid",
+"offset": Vector2( 300, -100 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek_enemy",
+"offset": Vector2( 300, 0 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_idle",
+"offset": Vector2( 300, -200 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_enemy_valid",
+"offset": Vector2( 300, -100 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek_enemy",
+"offset": Vector2( 300, 0 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 100, -100 ),
+"size": Vector2( 103, 109.75 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_idle",
+"offset": Vector2( 300, -200 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"root": {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_idle",
+"offset": Vector2( 300, -200 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_enemy_valid",
+"offset": Vector2( 300, -100 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek_enemy",
+"offset": Vector2( 300, 0 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 100, -100 ),
+"size": Vector2( 103, 109.75 )
+},
+"name": "sequence",
+"type": 2
+} ],
+"data": {
+"offset": Vector2( 0, -100 ),
+"size": Vector2( 65, 60 )
+},
+"name": "root",
+"type": 0
+}
+}
+_tree_id = "628382311215533367"
+
+[node name="Tick" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+collision_mask = 6
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+cast_to = Vector2( 200, 0 )
+collision_mask = 6
+
+[connection signal="timeout" from="Tick" to="." method="_on_Tick_timeout"]
+[connection signal="body_entered" from="DetectionRange" to="." method="_on_DetectionRange_body_entered"]
+[connection signal="body_exited" from="DetectionRange" to="." method="_on_DetectionRange_body_exited"]
