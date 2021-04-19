@@ -641,6 +641,11 @@
             <para>Edits the given <see cref="T:Godot.Resource"/>.</para>
             </summary>
         </member>
+        <member name="M:Godot.EditorInterface.EditNode(Godot.Node)">
+            <summary>
+            <para>Edits the given <see cref="T:Godot.Node"/>. The node will be also selected if it's inside the scene tree.</para>
+            </summary>
+        </member>
         <member name="M:Godot.EditorInterface.OpenSceneFromPath(System.String)">
             <summary>
             <para>Opens the scene at the given path.</para>
@@ -810,7 +815,7 @@
             <para><code>
             func forward_canvas_draw_over_viewport(overlay):
                 # Draw a circle at cursor position.
-                overlay.draw_circle(overlay.get_local_mouse_position(), 64)
+                overlay.draw_circle(overlay.get_local_mouse_position(), 64, Color.white)
             
             func forward_canvas_gui_input(event):
                 if event is InputEventMouseMotion:
@@ -1321,6 +1326,7 @@
         <member name="M:Godot.EditorSelection.AddNode(Godot.Node)">
             <summary>
             <para>Adds a node to the selection.</para>
+            <para>Note: The newly selected node will not be automatically edited in the inspector. If you want to edit a node, use <see cref="M:Godot.EditorInterface.EditNode(Godot.Node)"/>.</para>
             </summary>
         </member>
         <member name="M:Godot.EditorSelection.RemoveNode(Godot.Node)">

@@ -24,8 +24,8 @@ public class Level : Node2D
 
 
     public Vector2[] GetPath(Vector2 to, Vector2 from) {
-        // Vector2[] vec;
-        // vec = nav.GetSimplePath(to, from);
+        Vector2[] vec;
+        vec = nav.GetSimplePath(to, from);
         // Line2D line = new Line2D();
         // Tween tween = new Tween();
         // line.Points = vec;
@@ -37,7 +37,7 @@ public class Level : Node2D
         // line.AddChild(tween);
         // lines.Enqueue(line);
         // tween.Start();
-        return nav.GetSimplePath(to, from);
+        return vec;
     }
 
 

@@ -1,10 +1,11 @@
 extends Node2D
 
 
-export var master_seek_dist: int = 300
 export var detection_range: int = 600
-export var enemy_seek_dist: int = 250
-export var enemy_too_far_dist: int = 600
+export var enemy_seek_dist: int = 300
+export var enemy_too_far_dist: int = 500
+export var enemy_too_close_dist: int = 150
+export var master_seek_dist: int = 300
 
 var level_node: Node2D
 var player_node: RigidBody2D
@@ -15,7 +16,10 @@ var master_ent: RigidBody2D
 onready var ray: RayCast2D = $RayCast2D
 onready var detection_area: Area2D = $DetectionRange
 onready var tick: Timer = $Tick
-onready var look: RayCast2D = $RayCast2D2
+onready var flee_tick: Timer = $FleeTick
+onready var flee_rays_parent: Node2D = $FleeRays
+var flee_rays_dict: Dictionary
+var dist_dict: Dictionary
 
 enum States {STOP, ENEMY_SEEK, MASTER_SEEK, FLEE}
 var move_state: int = States.STOP
@@ -26,6 +30,14 @@ func _ready() -> void:
 	var circle: CircleShape2D = CircleShape2D.new()
 	circle.radius = detection_range
 	detection_area.get_node("CollisionShape2D").shape = circle
+	for i in range(8):
+		var flee_ray: RayCast2D = flee_rays_parent.get_node("FleeRay" + i as String)
+		flee_ray.rotation_degrees = i * 45
+		flee_rays_dict[flee_ray] = flee_ray.get_node("Pos")
+	dist_dict["enemy_seek"] = enemy_seek_dist
+	dist_dict["enemy_too_far"] = enemy_too_far_dist
+	dist_dict["enemy_too_close"] = enemy_too_close_dist
+	dist_dict["master_seek"] = master_seek_dist
 
 
 func init_properties(new_lvl: Node2D, new_parent: RigidBody2D):
@@ -37,6 +49,14 @@ func init_properties(new_lvl: Node2D, new_parent: RigidBody2D):
 func _physics_process(_delta: float) -> void:
 	if is_instance_valid(parent_node) == false:
 		return
+	if move_state == States.FLEE && flee_rays_dict.keys()[0].enabled == false:
+		print("flee on")
+		for flee_ray in flee_rays_dict.keys():
+			flee_ray.enabled = true
+	elif move_state != States.FLEE && flee_rays_dict.keys()[0].enabled == true:
+		print("flee off")
+		for flee_ray in flee_rays_dict.keys():
+			flee_ray.enabled = false
 	match move_state:
 		States.STOP:
 			parent_node.Velocity = Vector2(0,0)
@@ -65,11 +85,13 @@ func _seek(target_ent: RigidBody2D):
 		next_point = null
 		path_points = level_node.call("GetPath", target_ent.global_position, parent_node.global_position)
 	next_point = path_points.back()
-	look.look_at(next_point)
+
+
+var next_flee_point = null
 
 
 func _flee():
-	pass
+	parent_node.Velocity = (next_flee_point - parent_node.global_position).clamped(1)
 
 
 func _on_DetectionRange_body_entered(body: Node):
@@ -88,18 +110,24 @@ func _on_Tick_timeout():
 		ray.force_raycast_update()
 		if ray.get_collider() == player_node:
 			enemy_ent = player_node
+			enemy_ent_dist = level_node.call("GetDist", enemy_ent.global_position, parent_node.global_position)
 	else:
-		# _calc_enemy_dist(level_node.call("GetPath", enemy_ent.global_position, parent_node.global_position))
 		enemy_ent_dist = level_node.call("GetDist", enemy_ent.global_position, parent_node.global_position)
 
 
-# func _calc_enemy_dist(arr: Array) -> void:
-# 	if arr.size() == 0:
-# 		return
-# 	var dist: int = arr.pop_back().distance_to(arr.back())
-# 	while arr.size() > 1:
-# 		dist += arr.pop_back().distance_to(arr.back()) as int
-# 	enemy_ent_dist = dist
+func _on_FleeTick_timeout():
+	var flee_routes: Dictionary = {}
+	for flee_ray in flee_rays_dict:
+		#skip ray that is colliding with walls or a physics object
+		if is_instance_valid(flee_ray.get_collider()) == true:
+			continue
+		var pos = flee_rays_dict[flee_ray].global_position
+		var flee_points: int = enemy_ent.global_position.distance_squared_to(pos) as int
+		flee_routes[flee_points] = pos
+	if flee_routes.keys().size() != 0:
+		next_flee_point = flee_routes[flee_routes.keys().max()]
+	else:
+		next_flee_point = -enemy_ent.global_position
 
 
 #btree tasks
@@ -117,17 +145,28 @@ func task_is_enemy_valid(task):
 		task.succeed()
 	else:
 		task.failed()
-	return
+
+
+func task_is_enemy_close(task):
+	if enemy_ent_dist == -1:
+		enemy_ent_dist = level_node.call("GetDist", enemy_ent.global_position, parent_node.global_position)
+	if enemy_ent_dist <= dist_dict[task.get_param(0)]:
+		task.succeed()
+	else:
+		task.failed()
 
 
 func task_seek_enemy(task):
-	if enemy_ent_dist > enemy_seek_dist:
-		move_state = States.ENEMY_SEEK
-	else:
-		move_state = States.STOP
-		task.succeed()
+	move_state = States.ENEMY_SEEK
+	task.succeed()
 
 
+func task_flee(task):
+	if flee_tick.is_stopped() == true:
+		flee_tick.start()
+		_on_FleeTick_timeout()
+	move_state = States.FLEE
+	task.succeed()
 
 
 	

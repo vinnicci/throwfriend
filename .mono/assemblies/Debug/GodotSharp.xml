@@ -14877,7 +14877,8 @@
         </member>
         <member name="P:Godot.CapsuleMesh.MidHeight">
             <summary>
-            <para>Height of the capsule mesh from the center point.</para>
+            <para>Height of the middle cylindrical part of the capsule (without the hemispherical ends).</para>
+            <para>Note: The capsule's total height is equal to <see cref="P:Godot.CapsuleMesh.MidHeight"/> + 2 * <see cref="P:Godot.CapsuleMesh.Radius"/>.</para>
             </summary>
         </member>
         <member name="P:Godot.CapsuleMesh.RadialSegments">
@@ -30931,7 +30932,7 @@
             <summary>
             <para>Contains global variables accessible from everywhere. Use <see cref="M:Godot.ProjectSettings.GetSetting(System.String)"/>, <see cref="M:Godot.ProjectSettings.SetSetting(System.String,System.Object)"/> or <see cref="M:Godot.ProjectSettings.HasSetting(System.String)"/> to access them. Variables stored in <c>project.godot</c> are also loaded into ProjectSettings, making this object very useful for reading custom game configuration options.</para>
             <para>When naming a Project Settings property, use the full path to the setting including the category. For example, <c>"application/config/name"</c> for the project name. Category and property names can be viewed in the Project Settings dialog.</para>
-            <para>Overriding: Any project setting can be overridden by creating a file named <c>override.cfg</c> in the project's root directory. This can also be used in exported projects by placing this file in the same directory as the project binary.</para>
+            <para>Overriding: Any project setting can be overridden by creating a file named <c>override.cfg</c> in the project's root directory. This can also be used in exported projects by placing this file in the same directory as the project binary. Overriding will still take the base project settings' <a href="https://docs.godotengine.org/en/latest/tutorials/export/feature_tags.html">feature tags</a> in account. Therefore, make sure to also override the setting with the desired feature tags if you want them to override base project settings on all platforms and configurations.</para>
             </summary>
         </member>
         <member name="M:Godot.ProjectSettings.HasSetting(System.String)">
@@ -36021,8 +36022,8 @@
         </member>
         <member name="M:Godot.StreamPeerTCP.SetNoDelay(System.Boolean)">
             <summary>
-            <para>Disables Nagle's algorithm to improve latency for small packets.</para>
-            <para>Note: For applications that send large packets or need to transfer a lot of data, this can decrease the total available bandwidth.</para>
+            <para>If <c>enabled</c> is <c>true</c>, packets will be sent immediately. If <c>enabled</c> is <c>false</c> (the default), packet transfers will be delayed and combined using <a href="https://en.wikipedia.org/wiki/Nagle%27s_algorithm">Nagle's algorithm</a>.</para>
+            <para>Note: It's recommended to leave this disabled for applications that send large packets or need to transfer a lot of data, as enabling this can decrease the total available bandwidth.</para>
             </summary>
         </member>
         <member name="T:Godot.StreamTexture">
@@ -47103,6 +47104,7 @@
             <para>If <c>true</c> is passed as <c>gd_mp_api</c>, the client will behave like a network peer for the <see cref="T:Godot.MultiplayerAPI"/>, connections to non-Godot servers will not work, and <c>data_received</c> will not be emitted.</para>
             <para>If <c>false</c> is passed instead (default), you must call <see cref="T:Godot.PacketPeer"/> functions (<c>put_packet</c>, <c>get_packet</c>, etc.) on the <see cref="T:Godot.WebSocketPeer"/> returned via <c>get_peer(1)</c> and not on this object directly (e.g. <c>get_peer(1).put_packet(data)</c>).</para>
             <para>You can optionally pass a list of <c>custom_headers</c> to be added to the handshake HTTP request.</para>
+            <para>Note: To avoid mixed content warnings or errors in HTML5, you may have to use a <c>url</c> that starts with <c>wss://</c> (secure) instead of <c>ws://</c>. When doing so, make sure to use the fully qualified domain name that matches the one defined in the server's SSL certificate. Do not connect directly via the IP address for <c>wss://</c> connections, as it won't match with the SSL certificate.</para>
             <para>Note: Specifying <c>custom_headers</c> is not supported in HTML5 exports due to browsers restrictions.</para>
             </summary>
             <param name="protocols">If the parameter is null, then the default value is new string[] {}</param>
@@ -47740,7 +47742,7 @@
         <member name="M:Godot.ClassDB.ClassGetMethodList(System.String,System.Boolean)">
             <summary>
             <para>Returns an array with all the methods of <c>class</c> or its ancestry if <c>no_inheritance</c> is <c>false</c>. Every element of the array is a <see cref="T:Godot.Collections.Dictionary"/> with the following keys: <c>args</c>, <c>default_args</c>, <c>flags</c>, <c>id</c>, <c>name</c>, <c>return: (class_name, hint, hint_string, name, type, usage)</c>.</para>
-            <para>Note:[/code] In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.</para>
+            <para>Note: In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.</para>
             </summary>
         </member>
         <member name="M:Godot.ClassDB.ClassGetIntegerConstantList(System.String,System.Boolean)">
