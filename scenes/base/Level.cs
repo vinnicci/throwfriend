@@ -54,9 +54,9 @@ public class Level : Node2D
     }
 
 
-    private void OnTweenCompleted() {
-        lines.Dequeue().QueueFree();
-    }
+    // private void OnTweenCompleted() {
+    //     lines.Dequeue().QueueFree();
+    // }
 
 
 }

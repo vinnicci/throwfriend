@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/ui/ItemSlot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/ui/Loadout.cs" type="Script" id=2]
+
+[node name="Loadout" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1005.0
+margin_bottom = -380.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerPanel" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0.686275 )
+margin_right = 450.0
+margin_bottom = 175.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadoutName" type="Label" parent="PlayerPanel"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 86.0
+margin_bottom = 19.0
+text = "Player Items"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemSlot" parent="PlayerPanel" instance=ExtResource( 1 )]
+margin_left = 150.0
+margin_top = 15.0
+margin_right = 250.0
+margin_bottom = 115.0
+
+[node name="ItemSlot2" parent="PlayerPanel" instance=ExtResource( 1 )]
+margin_left = 300.0
+margin_top = 15.0
+margin_right = 400.0
+margin_bottom = 115.0
+
+[node name="Button" parent="PlayerPanel/ItemSlot2" index="2"]
+text = "2"
+
+[node name="WeaponPanel" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0.686275 )
+margin_top = 200.0
+margin_right = 450.0
+margin_bottom = 375.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadoutName" type="Label" parent="WeaponPanel"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 99.0
+margin_bottom = 19.0
+text = "Weapon Items"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemSlot" parent="WeaponPanel" instance=ExtResource( 1 )]
+margin_left = 150.0
+margin_top = 15.0
+margin_right = 250.0
+margin_bottom = 115.0
+
+[node name="Button" parent="WeaponPanel/ItemSlot" index="2"]
+text = "3"
+
+[node name="ItemSlot2" parent="WeaponPanel" instance=ExtResource( 1 )]
+margin_left = 300.0
+margin_top = 15.0
+margin_right = 400.0
+margin_bottom = 115.0
+
+[node name="Button" parent="WeaponPanel/ItemSlot2" index="2"]
+text = "4"
+
+[editable path="PlayerPanel/ItemSlot"]
+[editable path="PlayerPanel/ItemSlot2"]
+[editable path="WeaponPanel/ItemSlot"]
+[editable path="WeaponPanel/ItemSlot2"]

@@ -1,0 +1,31 @@
+[gd_scene format=2]
+
+[node name="ItemSlot" type="TextureButton"]
+margin_right = 100.0
+margin_bottom = 100.0
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 100.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_top = 107.0
+margin_right = 100.0
+margin_bottom = 121.0
+text = "Hotkey"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_top = 122.0
+margin_right = 100.0
+margin_bottom = 142.0
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}

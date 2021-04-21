@@ -118,7 +118,6 @@ func _on_Tick_timeout():
 func _on_FleeTick_timeout():
 	var flee_routes: Dictionary = {}
 	for flee_ray in flee_rays_dict:
-		#skip ray that is colliding with walls or a physics object
 		if is_instance_valid(flee_ray.get_collider()) == true:
 			continue
 		var pos = flee_rays_dict[flee_ray].global_position
