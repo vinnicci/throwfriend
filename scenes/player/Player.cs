@@ -28,6 +28,11 @@ public class Player : Entity
 
     private Position2D weapPos;
     private PlayerCam camera;
+    private Sprite head;
+    private Sprite arms;
+    private AnimatedSprite legs;
+    private AnimationPlayer anim;
+    
     private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
 
 
@@ -43,6 +48,10 @@ public class Player : Entity
         WeaponNode.Connect("PickedUp", this, "PickUpWeapon");
         weapPos = (Position2D)Center.GetNode("WeapPos");
         Center.LookAt(GetGlobalMousePosition());
+        head = (Sprite)GetNode("Sprite/Head");
+        arms = (Sprite)GetNode("Center/Arms");
+        legs = (AnimatedSprite)GetNode("Sprite/Legs");
+        anim = (AnimationPlayer)GetNode("Anim");
     }
 
 
@@ -68,10 +77,29 @@ public class Player : Entity
     }
 
 
+    private Vector2 WEAP_POS_VEC = new Vector2(-35, -22);
+    private Vector2 WEAP_POS_VEC_FLIP = new Vector2(-35, 22); 
+
+
     public override void _Process(float delta)
     {
-        if(Center.HasNode("WeapPos/Weapon")) {
-            Center.LookAt(GetGlobalMousePosition());
+        Vector2 look = new Vector2(GetGlobalMousePosition());
+        Center.LookAt(look);
+        // if(Center.HasNode("WeapPos/Weapon")) {
+        //     Center.LookAt(look);
+        // }
+        float dotProd = new Vector2(1,0).Dot(new Vector2(1,0).Rotated(Center.Rotation));
+        if(dotProd <= 0 && head.FlipH == false) {
+            head.FlipH = true;
+            arms.FlipH = true;
+            legs.FlipH = true;
+            weapPos.Position = WEAP_POS_VEC_FLIP;
+        }
+        else if(dotProd > 0 && head.FlipH == true) {
+            head.FlipH = false;
+            arms.FlipH = false;
+            legs.FlipH = false;
+            weapPos.Position = WEAP_POS_VEC;
         }
     }
 
@@ -86,6 +114,12 @@ public class Player : Entity
     public void GetInput() {
         if(Input.IsActionJustReleased("throw_weap") && Center.HasNode("WeapPos/Weapon") == true) {
             WeaponNode.Throw(ThrowStrength, GlobalPosition, Center.GlobalRotation);
+            if(arms.FlipH == false) {
+                anim.Play("throw");
+            }
+            else {
+                anim.PlayBackwards("throw");
+            }
             Speed += EXTRA_SPEED_WITHOUT_WEAPON;
         }
         Vector2 velocity = Vector2.Zero;
@@ -97,9 +131,21 @@ public class Player : Entity
         }
         if(Input.IsActionPressed("left")) {
             velocity.x -= 1;
+            if(legs.FlipH == false) {
+                legs.FlipH = true;
+            }
         }
         if(Input.IsActionPressed("right")) {
             velocity.x += 1;
+            if(legs.FlipH == true) {
+                legs.FlipH = false;
+            }
+        }
+        if(velocity == Vector2.Zero) {
+            legs.Play("idle");
+        }
+        else {
+            legs.Play("run");
         }
         Velocity = velocity;
     }

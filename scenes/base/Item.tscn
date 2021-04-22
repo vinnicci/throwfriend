@@ -6,6 +6,7 @@
 script = ExtResource( 1 )
 
 [node name="Icon" type="Sprite" parent="."]
+visible = false
 scale = Vector2( 2, 2 )
 
 [node name="Cooldown" type="Timer" parent="."]
