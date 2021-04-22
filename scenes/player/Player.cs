@@ -32,6 +32,7 @@ public class Player : Entity
     private Sprite arms;
     private AnimatedSprite legs;
     private AnimationPlayer anim;
+    private Sprite weapSprite;
     
     private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
 
@@ -52,6 +53,7 @@ public class Player : Entity
         arms = (Sprite)GetNode("Center/Arms");
         legs = (AnimatedSprite)GetNode("Sprite/Legs");
         anim = (AnimationPlayer)GetNode("Anim");
+        weapSprite = (Sprite)WeaponNode.GetNode("Sprite");
     }
 
 
@@ -94,12 +96,14 @@ public class Player : Entity
             arms.FlipH = true;
             legs.FlipH = true;
             weapPos.Position = WEAP_POS_VEC_FLIP;
+            weapSprite.FlipV = true;
         }
         else if(dotProd > 0 && head.FlipH == true) {
             head.FlipH = false;
             arms.FlipH = false;
             legs.FlipH = false;
             weapPos.Position = WEAP_POS_VEC;
+            weapSprite.FlipV = false;
         }
     }
 

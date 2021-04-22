@@ -1,2 +1,2 @@
-﻿12251
-d:/dev/Godot/Godot_v3.3-rc8_mono_win64/Godot_v3.3-rc9_mono_win64.exe
+﻿11103
+d:/dev/Godot/Godot_v3.3-stable_mono_win64/Godot_v3.3-stable_mono_win64.exe

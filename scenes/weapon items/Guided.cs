@@ -5,8 +5,8 @@ public class Guided : WeaponItem
 {
     public override void _Ready()
     {
-        incompatibilityList.Add("res://scenes/weapon items/Homing.cs");
-        incompatibilityList.Add("res://scenes/weapon items/Guided.cs");
+        incompatibilityList.Add("Homing");
+        incompatibilityList.Add("Guided");
     }
 
 

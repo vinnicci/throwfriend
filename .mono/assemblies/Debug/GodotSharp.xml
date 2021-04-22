@@ -1570,6 +1570,7 @@
         <member name="M:Godot.Node.QueueFree">
             <summary>
             <para>Queues a node for deletion at the end of the current frame. When deleted, all of its child nodes will be deleted as well. This method ensures it's safe to delete the node, contrary to <see cref="M:Godot.Object.Free"/>. Use <see cref="M:Godot.Object.IsQueuedForDeletion"/> to check whether a node will be deleted at the end of the frame.</para>
+            <para>Important: If you have a variable pointing to a node, it will not be assigned to <c>null</c> once the node is freed. Instead, it will point to a previously freed instance and you should validate it with <c>@GDScript.is_instance_valid</c> before attempting to call its methods or access its properties.</para>
             </summary>
         </member>
         <member name="M:Godot.Node.RequestReady">
@@ -1754,7 +1755,8 @@
         </member>
         <member name="M:Godot.Object.Free">
             <summary>
-            <para>Deletes the object from memory. Any pre-existing reference to the freed object will become invalid, e.g. <c>is_instance_valid(object)</c> will return <c>false</c>.</para>
+            <para>Deletes the object from memory immediately. For <see cref="T:Godot.Node"/>s, you may want to use <see cref="M:Godot.Node.QueueFree"/> to queue the node for safe deletion at the end of the current frame.</para>
+            <para>Important: If you have a variable pointing to an object, it will not be assigned to <c>null</c> once the object is freed. Instead, it will point to a previously freed instance and you should validate it with <c>@GDScript.is_instance_valid</c> before attempting to call its methods or access its properties.</para>
             </summary>
         </member>
         <member name="M:Godot.Object.GetClass">
@@ -7663,6 +7665,7 @@
         <member name="M:Godot.AStar.GetPointPath(System.Int32,System.Int32)">
             <summary>
             <para>Returns an array with the points that are in the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path.</para>
+            <para>Note: This method is not thread-safe. If called from a <see cref="T:Godot.Thread"/>, it will return an empty <see cref="T:Godot.Vector3"/> and will print an error message.</para>
             </summary>
         </member>
         <member name="M:Godot.AStar.GetIdPath(System.Int32,System.Int32)">
@@ -7843,6 +7846,7 @@
         <member name="M:Godot.AStar2D.GetPointPath(System.Int32,System.Int32)">
             <summary>
             <para>Returns an array with the points that are in the path found by AStar2D between the given points. The array is ordered from the starting point to the ending point of the path.</para>
+            <para>Note: This method is not thread-safe. If called from a <see cref="T:Godot.Thread"/>, it will return an empty <see cref="T:Godot.Vector2"/> and will print an error message.</para>
             </summary>
         </member>
         <member name="M:Godot.AStar2D.GetIdPath(System.Int32,System.Int32)">
@@ -9171,7 +9175,18 @@
         </member>
         <member name="T:Godot.AnimationNodeTimeSeek">
             <summary>
-            <para>This node can be used to cause a seek command to happen to any sub-children of the graph. After setting the time, this value returns to -1.</para>
+            <para>This node can be used to cause a seek command to happen to any sub-children of the animation graph. Use this node type to play an <see cref="T:Godot.Animation"/> from the start or a certain playback position inside the <see cref="T:Godot.AnimationNodeBlendTree"/>. After setting the time and changing the animation playback, the seek node automatically goes into sleep mode on the next process frame by setting its <c>seek_position</c> value to <c>-1.0</c>.</para>
+            <para><code>
+            # Play child animation from the start.
+            animation_tree.set("parameters/Seek/seek_position", 0.0)
+            # Alternative syntax (same result as above).
+            animation_tree["parameters/Seek/seek_position"] = 0.0
+            
+            # Play child animation from 12 second timestamp.
+            animation_tree.set("parameters/Seek/seek_position", 12.0)
+            # Alternative syntax (same result as above).
+            animation_tree["parameters/Seek/seek_position"] = 12.0
+            </code></para>
             </summary>
         </member>
         <member name="T:Godot.AnimationNodeTransition">
@@ -37525,7 +37540,19 @@
         </member>
         <member name="T:Godot.TextureArray">
             <summary>
-            <para><see cref="T:Godot.TextureArray"/>s store an array of images in a single <see cref="T:Godot.Texture"/> primitive. Each layer of the texture array has its own mipmap chain. This makes it is a good alternative to texture atlases.</para>
+            <para><see cref="T:Godot.TextureArray"/>s store an array of <see cref="T:Godot.Image"/>s in a single <see cref="T:Godot.Texture"/> primitive. Each layer of the texture array has its own mipmap chain. This makes it is a good alternative to texture atlases.</para>
+            <para><see cref="T:Godot.TextureArray"/>s must be displayed using shaders. After importing your file as a <see cref="T:Godot.TextureArray"/> and setting the appropriate Horizontal and Vertical Slices, display it by setting it as a uniform to a shader, for example:</para>
+            <para><code>
+            shader_type canvas_item;
+            
+            uniform sampler2DArray tex;
+            uniform int index;
+            
+            void fragment() {
+                COLOR = texture(tex, vec3(UV.x, UV.y, float(index)));
+            }
+            </code></para>
+            <para>Set the integer uniform "index" to show a particular part of the texture as defined by the Horizontal and Vertical Slices in the importer.</para>
             </summary>
         </member>
         <member name="T:Godot.TextureButton">
@@ -40499,6 +40526,7 @@
         <member name="P:Godot.VideoPlayer.StreamPosition">
             <summary>
             <para>The current position of the stream, in seconds.</para>
+            <para>Note: Changing this value won't have any effect as seeking is not implemented yet, except in video formats implemented by a GDNative add-on.</para>
             </summary>
         </member>
         <member name="P:Godot.VideoPlayer.Bus">
@@ -47900,7 +47928,15 @@
         </member>
         <member name="P:Godot.Engine.EditorHint">
             <summary>
-            <para>If <c>true</c>, it is running inside the editor. Useful for tool scripts.</para>
+            <para>If <c>true</c>, the script is currently running inside the editor. This is useful for <c>tool</c> scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:</para>
+            <para><code>
+            if Engine.editor_hint:
+                draw_gizmos()
+            else:
+                simulate_physics()
+            </code></para>
+            <para>See <a href="https://docs.godotengine.org/en/stable/tutorials/misc/running_code_in_the_editor.html">Running code in the editor</a> in the documentation for more information.</para>
+            <para>Note: To detect whether the script is run from an editor build (e.g. when pressing <c>F5</c>), use <see cref="M:Godot.OS.HasFeature(System.String)"/> with the <c>"editor"</c> argument instead. <c>OS.has_feature("editor")</c> will evaluate to <c>true</c> both when the code is running in the editor and when running the project from the editor, but it will evaluate to <c>false</c> when the code is run from an exported project.</para>
             </summary>
         </member>
         <member name="P:Godot.Engine.IterationsPerSecond">
@@ -48552,7 +48588,7 @@
         <member name="M:Godot.Geometry.MergePolygons2d(Godot.Vector2[],Godot.Vector2[])">
             <summary>
             <para>Merges (combines) <c>polygon_a</c> and <c>polygon_b</c> and returns an array of merged polygons. This performs  between polygons.</para>
-            <para>The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling <see cref="M:Godot.Geometry.IsPolygonClockwise(Godot.Vector2[])"/>.</para>
+            <para>The operation may result in an outer polygon (boundary) and multiple inner polygons (holes) produced which could be distinguished by calling <see cref="M:Godot.Geometry.IsPolygonClockwise(Godot.Vector2[])"/>.</para>
             </summary>
         </member>
         <member name="M:Godot.Geometry.ClipPolygons2d(Godot.Vector2[],Godot.Vector2[])">

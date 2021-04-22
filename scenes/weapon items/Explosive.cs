@@ -8,7 +8,7 @@ public class Explosive : WeaponItem
 
     public override void _Ready()
     {
-        incompatibilityList.Add("res://scenes/weapon items/Explosive.cs");
+        incompatibilityList.Add("Explosive");
     }
 
 

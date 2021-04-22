@@ -11,16 +11,18 @@ public class ExtraLarge : WeaponItem
 
     public override void _Ready()
     {
-        incompatibilityList.Add("res://scenes/weapon items/ExtraLarge.cs");
+        incompatibilityList.Add("ExtraLarge");
     }
+
+
+    [Export] PackedScene weapLarge;
 
 
     public override void InitEffect()
     {
         base.InitEffect();
         Player = WeaponNode.PlayerNode;
-        PackedScene res = (PackedScene)ResourceLoader.Load("res://scenes/WeaponLarge.tscn");
-        largeWeap = (Weapon)res.Instance();
+        largeWeap = (Weapon)weapLarge.Instance();
         if(WeaponNode.IsClone == false && Player.WeaponNode != largeWeap) {
             tempWeap = Player.WeaponNode;
             Position2D weapSlot = (Position2D)tempWeap.GetParent();

@@ -50,11 +50,9 @@ func _physics_process(_delta: float) -> void:
 	if is_instance_valid(parent_node) == false:
 		return
 	if move_state == States.FLEE && flee_rays_dict.keys()[0].enabled == false:
-		print("flee on")
 		for flee_ray in flee_rays_dict.keys():
 			flee_ray.enabled = true
 	elif move_state != States.FLEE && flee_rays_dict.keys()[0].enabled == true:
-		print("flee off")
 		for flee_ray in flee_rays_dict.keys():
 			flee_ray.enabled = false
 	match move_state:

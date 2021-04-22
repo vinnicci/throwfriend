@@ -137,6 +137,9 @@ public class Weapon : RigidBody2D
             if(CurrentState == States.ACTIVE) {
                 enemy.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), Damage);
             }
+            else if(CurrentState == States.INACTIVE && (PlayerNode.Item1 is AutoRetrieve|| PlayerNode.Item2 is AutoRetrieve)) {
+                enemy.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), Damage);
+            }
         }
         int i = 1;
         if(GD.RandRange(0, 1.0) <= 0.5) {

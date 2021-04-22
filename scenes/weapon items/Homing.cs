@@ -12,8 +12,8 @@ public class Homing : WeaponItem
 
     public override void _Ready()
     {
-        incompatibilityList.Add("res://scenes/weapon items/Homing.cs");
-        incompatibilityList.Add("res://scenes/weapon items/Guided.cs");
+        incompatibilityList.Add("Homing");
+        incompatibilityList.Add("Guided");
         range = (Area2D)GetNode("DetectionRange");
         ray = (RayCast2D)GetNode("DetectionRay");
         tick = (Timer)GetNode("Tick");
