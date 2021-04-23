@@ -8,12 +8,14 @@ public class Boost : WeaponItem
 
     public override void _Ready()
     {
+        base._Ready();
         cooldown = (Timer)GetNode("Cooldown");
     }
 
 
     public override void _PhysicsProcess(float delta)
     {
+        base._PhysicsProcess(delta);
         if(Input.IsActionJustReleased("right_click")) {
             ApplyEffect();
         }

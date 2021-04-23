@@ -34,15 +34,19 @@ public class ExtraLarge : WeaponItem
         largeWeap.RefreshItems();
         largeWeap.PlayerNode = Player;
         largeWeap.LevelNode = WeaponNode.LevelNode;
-        if(IsInstanceValid(WeaponNode.Item1) == true && WeaponNode.Item1 is ExtraLarge == false) {
+        if(IsInstanceValid(WeaponNode.Item1) == true) {
             largeWeap.ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
             largeWeap.RefreshItems();
-            largeWeap.ActivateItem(1);
+            if(WeaponNode.Item1 is ExtraLarge == false) {
+                largeWeap.ActivateItem(1);
+            }
         }
-        if(IsInstanceValid(WeaponNode.Item2) == true && WeaponNode.Item2 is ExtraLarge == false) {
+        if(IsInstanceValid(WeaponNode.Item2) == true) {
             largeWeap.ItemSlot2Node.AddChild(WeaponNode.Item2.Duplicate());
             largeWeap.RefreshItems();
-            largeWeap.ActivateItem(2);
+            if(WeaponNode.Item2 is ExtraLarge == false) {
+                largeWeap.ActivateItem(2);
+            }
         }
         largeWeap.RefreshItems();
     }

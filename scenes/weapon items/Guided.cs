@@ -5,6 +5,7 @@ public class Guided : WeaponItem
 {
     public override void _Ready()
     {
+        base._Ready();
         incompatibilityList.Add("Homing");
         incompatibilityList.Add("Guided");
     }
@@ -15,6 +16,7 @@ public class Guided : WeaponItem
 
     public override void _PhysicsProcess(float delta)
     {
+        base._PhysicsProcess(delta);
         if(WeaponNode.Mode != RigidBody2D.ModeEnum.Rigid) {
             return;
         }

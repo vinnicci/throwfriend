@@ -3,11 +3,6 @@ using System;
 
 public class SuperThrow : PlayerItem
 {
-    public override void _Ready()
-    {
-    }
-
-
     private const int EXTRA_STRENGTH = 200;
 
 

@@ -1,0 +1,256 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/btree/script/btree.gd" type="Script" id=1]
+
+[node name="BTREE" type="Node"]
+script = ExtResource( 1 )
+tree = {
+"connection": [ {
+"from": "selector",
+"from_port": 0,
+"to": "task",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 1,
+"to": "task3",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 2,
+"to": "task4",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 3,
+"to": "task2",
+"to_port": 0
+}, {
+"from": "root",
+"from_port": 0,
+"to": "selector",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_enemy_valid",
+"offset": Vector2( 300, -200 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek_enemy",
+"offset": Vector2( 300, -100 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_flee",
+"offset": Vector2( 300, 0 ),
+"params": [  ],
+"size": Vector2( 205, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_idle",
+"offset": Vector2( 300, 100 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 100, -100 ),
+"size": Vector2( 95, 131.75 )
+},
+"name": "selector",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( 0, -100 ),
+"size": Vector2( 65, 60 )
+},
+"name": "root",
+"type": 0
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_enemy_valid",
+"offset": Vector2( 300, -200 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek_enemy",
+"offset": Vector2( 300, -100 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_flee",
+"offset": Vector2( 300, 0 ),
+"params": [  ],
+"size": Vector2( 205, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_idle",
+"offset": Vector2( 300, 100 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 100, -100 ),
+"size": Vector2( 95, 131.75 )
+},
+"name": "selector",
+"type": 3
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_enemy_valid",
+"offset": Vector2( 300, -200 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek_enemy",
+"offset": Vector2( 300, -100 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_flee",
+"offset": Vector2( 300, 0 ),
+"params": [  ],
+"size": Vector2( 205, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_idle",
+"offset": Vector2( 300, 100 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"root": {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_enemy_valid",
+"offset": Vector2( 300, -200 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek_enemy",
+"offset": Vector2( 300, -100 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_flee",
+"offset": Vector2( 300, 0 ),
+"params": [  ],
+"size": Vector2( 205, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_idle",
+"offset": Vector2( 300, 100 ),
+"params": [  ],
+"size": Vector2( 264, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 100, -100 ),
+"size": Vector2( 95, 131.75 )
+},
+"name": "selector",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( 0, -100 ),
+"size": Vector2( 65, 60 )
+},
+"name": "root",
+"type": 0
+}
+}
+_tree_id = "965246151215533367"

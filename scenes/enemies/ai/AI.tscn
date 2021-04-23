@@ -5,6 +5,9 @@
 [node name="AI" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="Resume" type="Timer" parent="."]
+one_shot = true
+
 [node name="Tick" type="Timer" parent="."]
 wait_time = 0.25
 
@@ -79,6 +82,7 @@ collision_mask = 6
 [node name="Pos" type="Position2D" parent="FleeRays/FleeRay7"]
 position = Vector2( 150, 0 )
 
+[connection signal="timeout" from="Resume" to="." method="_on_Resume_timeout"]
 [connection signal="timeout" from="Tick" to="." method="_on_Tick_timeout"]
 [connection signal="timeout" from="FleeTick" to="." method="_on_FleeTick_timeout"]
 [connection signal="body_entered" from="DetectionRange" to="." method="_on_DetectionRange_body_entered"]

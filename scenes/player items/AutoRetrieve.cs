@@ -11,6 +11,7 @@ public class AutoRetrieve : PlayerItem
 
     public override void _Ready()
     {
+        base._Ready();
         incompatibilityList.Add("AutoRetrieve");
         incompatibilityList.Add("Guided");
     }
@@ -18,6 +19,7 @@ public class AutoRetrieve : PlayerItem
 
     public override void _PhysicsProcess(float delta)
     {
+        base._PhysicsProcess(delta);
         if(weapIsReturning == true) {
             if(Weapon.CurrentState == Weapon.States.INACTIVE) {
                 Vector2 vec = (PlayerNode.GlobalPosition - Weapon.GlobalPosition).Clamped(1) * RETRIEVE_SPEED;

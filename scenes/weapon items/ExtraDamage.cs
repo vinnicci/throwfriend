@@ -3,25 +3,20 @@ using System;
 
 public class ExtraDamage : WeaponItem
 {
-    public override void _Ready()
-    {
-    }
-
-
-    private const int DMG_MULT = 2;
+    private const int EXTRA_DMG = 2;
 
 
     public override void InitEffect()
     {
         base.InitEffect();
-        WeaponNode.Damage *= DMG_MULT;
+        WeaponNode.Damage += EXTRA_DMG;
     }
 
 
     public override void RemoveEffect()
     {
         base.RemoveEffect();
-        WeaponNode.Damage /= DMG_MULT;
+        WeaponNode.Damage -= EXTRA_DMG;
     }
 
 

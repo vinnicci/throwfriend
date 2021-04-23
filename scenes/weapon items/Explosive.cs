@@ -8,6 +8,7 @@ public class Explosive : WeaponItem
 
     public override void _Ready()
     {
+        base._Ready();
         incompatibilityList.Add("Explosive");
     }
 

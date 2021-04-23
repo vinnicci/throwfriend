@@ -15,9 +15,4 @@ public class PlayerItem : Item
     }
 
 
-    public override void _Ready()
-    {
-    }
-
-
 }

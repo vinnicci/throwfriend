@@ -6,11 +6,6 @@ public class TeleportToWeapon : PlayerItem
     public Weapon Weapon {get; set;}
 
 
-    public override void _Ready()
-    {
-    }
-
-
     public override void _PhysicsProcess(float delta)
     {
         if(Input.IsActionJustReleased("right_click")) {

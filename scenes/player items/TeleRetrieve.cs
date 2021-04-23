@@ -5,11 +5,6 @@ public class TeleRetrieve : PlayerItem
 {
     public Weapon Weapon {get; set;}
 
-    
-    public override void _Ready()
-    {
-    }
-
 
     public override void _PhysicsProcess(float delta)
     {

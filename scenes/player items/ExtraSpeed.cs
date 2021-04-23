@@ -3,11 +3,6 @@ using System;
 
 public class ExtraSpeed : PlayerItem
 {
-    public override void _Ready()
-    {
-    }
-
-
     const int EXTRA_SPEED = 300;
 
 

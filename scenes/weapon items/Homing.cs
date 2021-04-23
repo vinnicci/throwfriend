@@ -12,6 +12,7 @@ public class Homing : WeaponItem
 
     public override void _Ready()
     {
+        base._Ready();
         incompatibilityList.Add("Homing");
         incompatibilityList.Add("Guided");
         range = (Area2D)GetNode("DetectionRange");
@@ -26,6 +27,7 @@ public class Homing : WeaponItem
 
     public override void _PhysicsProcess(float delta)
     {
+        base._PhysicsProcess(delta);
         if(WeaponNode.CurrentState != Weapon.States.ACTIVE) {
             if(enemies.Count > 0 || IsInstanceValid(target) == true) {
                 enemies.Clear();

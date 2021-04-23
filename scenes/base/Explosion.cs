@@ -59,12 +59,4 @@ public class Explosion : Area2D
     }
 
 
-//  public override void _Process(float delta)
-//  {
-//  }
-
-
-
-
-
 }

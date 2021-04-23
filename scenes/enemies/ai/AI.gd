@@ -18,6 +18,7 @@ onready var detection_area: Area2D = $DetectionRange
 onready var tick: Timer = $Tick
 onready var flee_tick: Timer = $FleeTick
 onready var flee_rays_parent: Node2D = $FleeRays
+onready var btree_node: Node = $BTREE
 var flee_rays_dict: Dictionary
 var dist_dict: Dictionary
 
@@ -47,7 +48,7 @@ func init_properties(new_lvl: Node2D, new_parent: RigidBody2D):
 
 
 func _physics_process(_delta: float) -> void:
-	if is_instance_valid(parent_node) == false:
+	if is_ent_valid(parent_node) == false:
 		return
 	if move_state == States.FLEE && flee_rays_dict.keys()[0].enabled == false:
 		for flee_ray in flee_rays_dict.keys():
@@ -72,8 +73,12 @@ var master_ent_dist: int
 var enemy_ent_dist: int
 
 
+func is_ent_valid(ent: RigidBody2D):
+	return is_instance_valid(ent) == true && ent.get("IsDead") == false
+
+
 func _seek(target_ent: RigidBody2D):
-	if is_instance_valid(target_ent) == false:
+	if is_ent_valid(target_ent) == false:
 		return
 	if next_point != null && parent_node.global_position.distance_squared_to(next_point) > 5625:
 		parent_node.Velocity = next_point - parent_node.global_position
@@ -103,17 +108,19 @@ func _on_DetectionRange_body_exited(body: Node):
 
 
 func _on_Tick_timeout():
-	if is_instance_valid(enemy_ent) == false:
+	if is_ent_valid(enemy_ent) == false && is_ent_valid(player_node) == true:
 		ray.look_at(player_node.global_position)
 		ray.force_raycast_update()
 		if ray.get_collider() == player_node:
 			enemy_ent = player_node
 			enemy_ent_dist = level_node.call("GetDist", enemy_ent.global_position, parent_node.global_position)
-	else:
+	elif is_ent_valid(enemy_ent) == true:
 		enemy_ent_dist = level_node.call("GetDist", enemy_ent.global_position, parent_node.global_position)
 
 
 func _on_FleeTick_timeout():
+	if is_ent_valid(enemy_ent) == false:
+		return
 	var flee_routes: Dictionary = {}
 	for flee_ray in flee_rays_dict:
 		if is_instance_valid(flee_ray.get_collider()) == true:
@@ -130,6 +137,27 @@ func _on_FleeTick_timeout():
 #btree tasks
 
 
+onready var timer_resume: Timer = $Resume
+var paused: bool = false
+signal resume
+
+
+#time based wait task using coroutine
+func task_act_timed_idle(task):
+	if paused == true:
+		return
+	elif paused == false && timer_resume.is_stopped() == true:
+		paused = true;
+		timer_resume.start(task.get_param(0))
+	yield(self, "resume")
+	task.succeed()
+
+
+func _on_Resume_timeout():
+	paused = false
+	emit_signal("resume")
+
+
 func task_idle(task):
 	move_state = States.STOP
 	path_points = []
@@ -138,7 +166,7 @@ func task_idle(task):
 
 
 func task_is_enemy_valid(task):
-	if is_instance_valid(enemy_ent) == true:
+	if is_ent_valid(enemy_ent) == true:
 		task.succeed()
 	else:
 		task.failed()
@@ -166,4 +194,8 @@ func task_flee(task):
 	task.succeed()
 
 
-	
+func task_act(task):
+	parent_node.call("DoAction")
+	task.succeed()
+
+

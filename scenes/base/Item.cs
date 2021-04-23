@@ -7,11 +7,6 @@ public class Item : Node2D
     protected List<String> incompatibilityList = new List<string>();
 
 
-    public override void _Ready()
-    {
-    }
-
-    
     /// <summary>
     /// Apply effects during intialization
     /// </summary>

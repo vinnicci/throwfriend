@@ -11,6 +11,7 @@ public class Level : Node2D
 
     public override void _Ready()
     {
+        base._Ready();
         PlayerNode = (Player)GetNode("Player");
         PlayerNode.LevelNode = this;
         foreach(Enemy enemy in GetNode("Enemies").GetChildren()) {

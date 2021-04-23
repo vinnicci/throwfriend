@@ -15,9 +15,4 @@ public class WeaponItem : Item
     }
 
 
-    public override void _Ready()
-    {
-    }
-
-
 }

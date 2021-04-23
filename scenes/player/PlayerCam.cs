@@ -5,18 +5,20 @@ public class PlayerCam : Camera2D
 {
     public Node2D ParentNode {get; set;}
     public bool IsShaking {get; private set;}
-
     private const float VDIST = 0.5f;
 
 
     public override void _Ready()
     {
+        base._Ready();
+        IsShaking = false;
     }
 
 
     public override void _PhysicsProcess(float delta)
     {
-        if(ParentNode is Player == false || IsShaking == true) {
+        base._PhysicsProcess(delta);
+        if(ParentNode is Player == false) {
             return;
         }
         float mousePos = (GetGlobalMousePosition().y - GlobalPosition.y) * VDIST;

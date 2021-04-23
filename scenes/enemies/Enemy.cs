@@ -6,12 +6,14 @@ public class Enemy : Entity
 {
     private Node2D aINode;
     private Level levelNode;
+    public Player PlayerNode;
     public Level LevelNode {
         get {
             return levelNode;
     }
         set{
             levelNode = value;
+            PlayerNode = levelNode.PlayerNode;
             if(HasNode("AI") == true) {
                 aINode = (Node2D)GetNode("AI");
                 aINode.Call("init_properties", LevelNode, this);
@@ -20,14 +22,15 @@ public class Enemy : Entity
     }
 
 
-    public override void _Ready()
-    {
-        base._Ready();
+    public virtual void OnEnemyBodyEntered(Godot.Object body) {
     }
 
 
-    public override void _PhysicsProcess(float delta) {
-        base._PhysicsProcess(delta);
+    public virtual void DoAction() {
+        if(IsDead == true) {
+            return;
+        }
     }
+
 
 }

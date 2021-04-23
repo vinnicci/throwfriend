@@ -34,6 +34,7 @@ public class Weapon : RigidBody2D
 
     public override void _Ready()
     {
+        base._Ready();
         Damage = 1;
     }
 
@@ -70,6 +71,7 @@ public class Weapon : RigidBody2D
 
     public override void _IntegrateForces(Physics2DDirectBodyState state)
     {
+        base._IntegrateForces(state);
         //teleport
         if(teleportPos != Vector2.Zero) {
             Transform2D trans = new Transform2D(Rotation, teleportPos);
@@ -88,6 +90,7 @@ public class Weapon : RigidBody2D
 
     public override void _PhysicsProcess(float delta)
     {
+        base._PhysicsProcess(delta);
         if(ContinuousCd == RigidBody2D.CCDMode.Disabled && LinearVelocity.LengthSquared() > Global.CCD_MAX) {
             ContinuousCd = RigidBody2D.CCDMode.CastRay;
         }

@@ -19,20 +19,24 @@ public class Player : Entity
             ActivateItem(2);
             WeaponNode.PlayerNode = this;
             WeaponNode.LevelNode = LevelNode;
+            inGameUI.PlayerNode = this;
+            inGameUI.WeaponNode = WeaponNode;
+            weapSprite = (Sprite)WeaponNode.GetNode("Sprite");
         }
     }
     private Node2D itemSlot1Node;
     public PlayerItem Item1 {get; set;}
     private Node2D itemSlot2Node;
     public PlayerItem Item2 {get; set;}
-
+    
     private Position2D weapPos;
     private PlayerCam camera;
     private Sprite head;
     private Sprite arms;
     private AnimatedSprite legs;
-    private AnimationPlayer anim;
     private Sprite weapSprite;
+    private InGame inGameUI;
+    private Loadout loadout;
     
     private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
 
@@ -52,8 +56,8 @@ public class Player : Entity
         head = (Sprite)GetNode("Sprite/Head");
         arms = (Sprite)GetNode("Center/Arms");
         legs = (AnimatedSprite)GetNode("Sprite/Legs");
-        anim = (AnimationPlayer)GetNode("Anim");
-        weapSprite = (Sprite)WeaponNode.GetNode("Sprite");
+        inGameUI = (InGame)GetNode("CanvasLayer/InGame");
+        loadout = (Loadout)inGameUI.GetNode("Loadout");
     }
 
 
@@ -85,11 +89,12 @@ public class Player : Entity
 
     public override void _Process(float delta)
     {
+        base._Process(delta);
+        if(IsDead == true) {
+            return;
+        }
         Vector2 look = new Vector2(GetGlobalMousePosition());
         Center.LookAt(look);
-        // if(Center.HasNode("WeapPos/Weapon")) {
-        //     Center.LookAt(look);
-        // }
         float dotProd = new Vector2(1,0).Dot(new Vector2(1,0).Rotated(Center.Rotation));
         if(dotProd <= 0 && head.FlipH == false) {
             head.FlipH = true;
@@ -116,16 +121,20 @@ public class Player : Entity
 
 
     public void GetInput() {
-        if(Input.IsActionJustReleased("throw_weap") && Center.HasNode("WeapPos/Weapon") == true) {
-            WeaponNode.Throw(ThrowStrength, GlobalPosition, Center.GlobalRotation);
-            if(arms.FlipH == false) {
-                anim.Play("throw");
-            }
-            else {
-                anim.PlayBackwards("throw");
-            }
-            Speed += EXTRA_SPEED_WITHOUT_WEAPON;
+        if(IsDead == true) {
+            return;
         }
+        bool hasWeap = Center.HasNode("WeapPos/Weapon");
+        //in game ui
+        if(Input.IsActionJustPressed("in_game_ui") && hasWeap == true) {
+            if(inGameUI.Visible == false) {
+                inGameUI.Visible = true;
+            }
+            else if(inGameUI.Visible == true) {
+                inGameUI.Visible = false;
+            }
+        }
+        //velocity
         Vector2 velocity = Vector2.Zero;
         if(Input.IsActionPressed("up")) {
             velocity.y -= 1;
@@ -152,6 +161,20 @@ public class Player : Entity
             legs.Play("run");
         }
         Velocity = velocity;
+        if(inGameUI.Visible == true) {
+            return;
+        }
+        //throw
+        if(Input.IsActionJustReleased("throw_weap") && hasWeap == true) {
+            WeaponNode.Throw(ThrowStrength, GlobalPosition, Center.GlobalRotation);
+            if(arms.FlipH == false) {
+                anim.Play("throw");
+            }
+            else {
+                anim.PlayBackwards("throw");
+            }
+            Speed += EXTRA_SPEED_WITHOUT_WEAPON;
+        }
     }
 
 
@@ -160,6 +183,30 @@ public class Player : Entity
         float rot = Center.GlobalRotation;
         WeaponNode.GlobalRotation = rot;
         Speed -= EXTRA_SPEED_WITHOUT_WEAPON;
+    }
+
+
+    public override void OnDeathTimerTimeout() {
+        camera.GetParent().RemoveChild(camera);
+        LevelNode.AddChild(camera);
+        camera.ParentNode = LevelNode;
+        camera.GlobalPosition = GlobalPosition;
+        base.OnDeathTimerTimeout();
+    }
+
+
+    public override void Hit(Vector2 linearV, int damage)
+    {
+        if(hitCooldown.IsStopped() == false) {
+            return;
+        }
+        base.Hit(linearV, damage);
+        if(Health <= 0) {
+            legs.Animation = "idle";
+        }
+        else if(Health > 0) {
+            hitCooldown.Start();
+        }
     }
 
 

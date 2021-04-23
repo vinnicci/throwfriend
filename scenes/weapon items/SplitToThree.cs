@@ -7,13 +7,9 @@ public class SplitToThree : WeaponItem
     public Player Player {get; set;}
 
 
-    public override void _Ready()
-    {
-    }
-
-
     public override void _PhysicsProcess(float delta)
     {
+        base._PhysicsProcess(delta);
         if(WeaponNode.CurrentState == Weapon.States.ACTIVE && weaps[0].CurrentState == Weapon.States.HELD &&
         weaps[1].CurrentState == Weapon.States.HELD) {
             ApplyEffect();
