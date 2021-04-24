@@ -15,6 +15,9 @@ public class PlayerCam : Camera2D
     }
 
 
+    const float LERP_RETURN = 0.03f;
+
+
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
@@ -23,8 +26,8 @@ public class PlayerCam : Camera2D
         }
         float mousePos = (GetGlobalMousePosition().y - GlobalPosition.y) * VDIST;
         Vector2 newOffset = new Vector2();
-        newOffset.x = Godot.Mathf.Lerp(Offset.x, 0, 0.02f);
-        newOffset.y = Godot.Mathf.Lerp(Offset.y, mousePos, 0.02f);
+        newOffset.x = Godot.Mathf.Lerp(Offset.x, 0, LERP_RETURN);
+        newOffset.y = Godot.Mathf.Lerp(Offset.y, mousePos, LERP_RETURN);
         newOffset.y = Godot.Mathf.Clamp(newOffset.y, -500, 500);
         Offset = newOffset;
     }

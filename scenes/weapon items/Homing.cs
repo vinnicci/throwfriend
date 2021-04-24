@@ -21,7 +21,7 @@ public class Homing : WeaponItem
     }
 
 
-    private const int HOME_MAGNITUDE = 250;
+    private const int HOME_MAGNITUDE = 500;
     private Queue<Enemy> enemies = new Queue<Enemy>();
 
 

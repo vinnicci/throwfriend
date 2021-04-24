@@ -11,6 +11,7 @@ public class ExtraLarge : WeaponItem
 
     public override void _Ready()
     {
+        base._Ready();
         incompatibilityList.Add("ExtraLarge");
     }
 

@@ -4,6 +4,7 @@ using System;
 public class ItemSlot : TextureButton
 {
     private Position2D iconPos;
+    public Item Item {get; set;}
 
 
     public override void _Ready()
@@ -14,11 +15,12 @@ public class ItemSlot : TextureButton
 
 
     public void UpdateIcon(Item item) {
-        if(iconPos.GetChildren().Count != 0) {
+        if(IsInstanceValid(Item) == true) {
             iconPos.GetChild(0).QueueFree();
         }
-        if(IsInstanceValid(item) == true) {
-            Sprite icon = (Sprite)item.GetNode("Icon").Duplicate();
+        Item = item;
+        if(IsInstanceValid(Item) == true) {
+            Sprite icon = (Sprite)Item.GetNode("Icon").Duplicate();
             iconPos.AddChild(icon);
             icon.Visible = true;
         }

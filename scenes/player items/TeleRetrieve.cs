@@ -8,6 +8,7 @@ public class TeleRetrieve : PlayerItem
 
     public override void _PhysicsProcess(float delta)
     {
+        base._PhysicsProcess(delta);
         if(Input.IsActionJustReleased("right_click")) {
             ApplyEffect();
         }

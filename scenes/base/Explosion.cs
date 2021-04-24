@@ -16,6 +16,7 @@ public class Explosion : Area2D
     
     public override void _Ready()
     {
+        base._Ready();
         poly = (Polygon2D)GetNode("Polygon2D");
         collision = (CollisionShape2D)GetNode("CollisionShape2D");
         ray = (RayCast2D)GetNode("RayCast2D");
