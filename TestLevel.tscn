@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://test scenes/TestEnemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/weapon items/Homing.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/player items/Dash.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/player items/ExtraSpeed.tscn" type="PackedScene" id=6]
 
 [node name="Level" instance=ExtResource( 1 )]
 
@@ -43,7 +43,9 @@ position = Vector2( -242, 634 )
 
 [node name="Homing" parent="Player/Center/WeapPos/Weapon/ItemSlot1" index="0" instance=ExtResource( 5 )]
 
-[node name="Dash" parent="Player/ItemSlot1" index="0" instance=ExtResource( 6 )]
+[node name="ExtraSpeed" parent="Player/ItemSlot1" index="0" instance=ExtResource( 6 )]
+
+[node name="ExtraSpeed" parent="Player/ItemSlot2" index="0" instance=ExtResource( 6 )]
 
 [editable path="Player"]
 [editable path="Player/Center/WeapPos/Weapon"]

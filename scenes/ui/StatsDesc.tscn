@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/ui/StatsDesc.cs" type="Script" id=1]
+
+[node name="StatsDesc" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -830.0
+margin_bottom = -345.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatsPanel" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0.686275 )
+margin_right = 450.0
+margin_bottom = 185.0
+
+[node name="DescPanel" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0.686275 )
+margin_top = 190.0
+margin_right = 450.0
+margin_bottom = 375.0
+
+[node name="Description" type="Label" parent="DescPanel"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 45.0
+margin_bottom = 19.0

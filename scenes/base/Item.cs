@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Item : Node2D
 {
     protected List<String> incompatibilityList = new List<string>();
+    [Export] public String itemDescription;
 
 
     /// <summary>

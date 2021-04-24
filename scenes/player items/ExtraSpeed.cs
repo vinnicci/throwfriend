@@ -3,7 +3,7 @@ using System;
 
 public class ExtraSpeed : PlayerItem
 {
-    const int EXTRA_SPEED = 300;
+    const int EXTRA_SPEED = 350;
 
 
     public override void InitEffect()

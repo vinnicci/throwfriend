@@ -7,6 +7,7 @@
 
 [node name="ExtraLarge" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+itemDescription = "Bigger and more chaotic especially in small spaces."
 weapLarge = ExtResource( 4 )
 
 [node name="Icon" parent="." index="0"]

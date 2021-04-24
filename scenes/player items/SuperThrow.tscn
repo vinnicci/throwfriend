@@ -6,6 +6,7 @@
 
 [node name="SuperThrow" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+itemDescription = "Extra initial velocity for your weapon when thrown."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

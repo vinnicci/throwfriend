@@ -4,6 +4,7 @@ using System;
 public class InGame : Control
 {
     public Loadout LoadoutNode {get; set;}
+    public StatsDesc StatsDescNode {get; set;}
     private Player playerNode;
     public Player PlayerNode {
         get {
@@ -34,6 +35,11 @@ public class InGame : Control
     {
         base._Ready();
         LoadoutNode = (Loadout)GetNode("Loadout");
+        StatsDescNode = (StatsDesc)GetNode("StatsDesc");
+        for(int i = 1; i <= 4; i++) {
+            ItemSlot slot = (ItemSlot)LoadoutNode.Get("Slot" + i.ToString());
+            slot.DescriptionLabel = StatsDescNode.DescriptionLabel;
+        }
     }
 
 

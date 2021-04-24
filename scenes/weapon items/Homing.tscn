@@ -9,6 +9,7 @@ radius = 300.0
 
 [node name="Homing" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+itemDescription = "Homes in towards enemies that it finds first."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

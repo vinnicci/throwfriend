@@ -6,6 +6,7 @@
 
 [node name="AutoRetrieve" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+itemDescription = "Weapon comes back to you while damages enemies along the way."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

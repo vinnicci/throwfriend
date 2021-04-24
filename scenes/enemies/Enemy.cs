@@ -20,6 +20,7 @@ public class Enemy : Entity
             }
         }
     }
+    public bool IsDoingAction {get; protected set;}
 
 
     public virtual void OnEnemyBodyEntered(Godot.Object body) {
