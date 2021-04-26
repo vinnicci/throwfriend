@@ -11,9 +11,6 @@ one_shot = true
 [node name="Tick" type="Timer" parent="."]
 wait_time = 0.25
 
-[node name="FleeTick" type="Timer" parent="."]
-wait_time = 0.25
-
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
@@ -27,6 +24,7 @@ collision_mask = 6
 [node name="FleeRays" type="Node2D" parent="."]
 
 [node name="FleeRay0" type="RayCast2D" parent="FleeRays"]
+enabled = true
 cast_to = Vector2( 150, 0 )
 collision_mask = 6
 
@@ -34,6 +32,7 @@ collision_mask = 6
 position = Vector2( 150, 0 )
 
 [node name="FleeRay1" type="RayCast2D" parent="FleeRays"]
+enabled = true
 cast_to = Vector2( 150, 0 )
 collision_mask = 6
 
@@ -41,6 +40,7 @@ collision_mask = 6
 position = Vector2( 150, 0 )
 
 [node name="FleeRay2" type="RayCast2D" parent="FleeRays"]
+enabled = true
 cast_to = Vector2( 150, 0 )
 collision_mask = 6
 
@@ -48,6 +48,7 @@ collision_mask = 6
 position = Vector2( 150, 0 )
 
 [node name="FleeRay3" type="RayCast2D" parent="FleeRays"]
+enabled = true
 cast_to = Vector2( 150, 0 )
 collision_mask = 6
 
@@ -55,6 +56,7 @@ collision_mask = 6
 position = Vector2( 150, 0 )
 
 [node name="FleeRay4" type="RayCast2D" parent="FleeRays"]
+enabled = true
 cast_to = Vector2( 150, 0 )
 collision_mask = 6
 
@@ -62,6 +64,7 @@ collision_mask = 6
 position = Vector2( 150, 0 )
 
 [node name="FleeRay5" type="RayCast2D" parent="FleeRays"]
+enabled = true
 cast_to = Vector2( 150, 0 )
 collision_mask = 6
 
@@ -69,6 +72,7 @@ collision_mask = 6
 position = Vector2( 150, 0 )
 
 [node name="FleeRay6" type="RayCast2D" parent="FleeRays"]
+enabled = true
 cast_to = Vector2( 150, 0 )
 collision_mask = 6
 
@@ -76,6 +80,7 @@ collision_mask = 6
 position = Vector2( 150, 0 )
 
 [node name="FleeRay7" type="RayCast2D" parent="FleeRays"]
+enabled = true
 cast_to = Vector2( 150, 0 )
 collision_mask = 6
 
@@ -84,6 +89,5 @@ position = Vector2( 150, 0 )
 
 [connection signal="timeout" from="Resume" to="." method="_on_Resume_timeout"]
 [connection signal="timeout" from="Tick" to="." method="_on_Tick_timeout"]
-[connection signal="timeout" from="FleeTick" to="." method="_on_FleeTick_timeout"]
 [connection signal="body_entered" from="DetectionRange" to="." method="_on_DetectionRange_body_entered"]
 [connection signal="body_exited" from="DetectionRange" to="." method="_on_DetectionRange_body_exited"]
