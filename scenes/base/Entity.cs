@@ -13,6 +13,9 @@ public class Entity : RigidBody2D
     protected AnimationPlayer anim;
     public bool IsDead {get; set;}
 
+    protected AnimatedSprite legs;
+    protected Sprite sprite;
+
 
     public override void _Ready()
     {
@@ -20,6 +23,8 @@ public class Entity : RigidBody2D
         deathTimer = (Timer)GetNode("DeathTimer");
         hitCooldown = (Timer)GetNode("HitCooldown");
         anim = (AnimationPlayer)GetNode("Anim");
+        legs = (AnimatedSprite)GetNode("Sprite/Legs");
+        sprite = (Sprite)GetNode("Sprite");
         Speed = speed;
         Health = health;
         IsDead = false;
@@ -62,7 +67,37 @@ public class Entity : RigidBody2D
         //velocity
         AppliedForce = Vector2.Zero;
         state.AddCentralForce(Velocity.Clamped(1) * Speed);
+        AnimateSprites();
         Velocity = Vector2.Zero;
+    }
+
+
+    private void AnimateSprites() {
+        //running
+        if(Velocity == Vector2.Zero) {
+            legs.Play("idle");
+        }
+        else {
+            legs.Play("run");
+        }
+        //left
+        if(Velocity.x < 0) {
+            if(sprite.FlipH == false) {
+                sprite.FlipH = true;
+            }
+            if(legs.FlipH == false) {
+                legs.FlipH = true;
+            }
+        }
+        //right
+        else if(Velocity.x > 0) {
+            if(sprite.FlipH == true) {
+                sprite.FlipH = false;
+            }
+            if(legs.FlipH == true) {
+                legs.FlipH = false;
+            }
+        }
     }
 
 
@@ -73,9 +108,10 @@ public class Entity : RigidBody2D
         ApplyCentralImpulse(linearV);
         Health -= damage;
         if(Health <= 0) {
-            deathTimer.Start();
-            anim.Play("die");
             IsDead = true;
+            deathTimer.Start();
+            legs.Animation = "idle";
+            anim.Play("die");
         }
     }
 

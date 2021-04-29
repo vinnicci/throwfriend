@@ -33,7 +33,6 @@ public class Player : Entity
     private PlayerCam camera;
     private Sprite head;
     private Sprite arms;
-    private AnimatedSprite legs;
     private Sprite weapSprite;
     private InGame inGameUI;
     private Loadout loadout;
@@ -53,9 +52,8 @@ public class Player : Entity
         WeaponNode.Connect("PickedUp", this, "PickUpWeapon");
         weapPos = (Position2D)Center.GetNode("WeapPos");
         Center.LookAt(GetGlobalMousePosition());
-        head = (Sprite)GetNode("Sprite/Head");
+        head = (Sprite)sprite.GetNode("Head");
         arms = (Sprite)GetNode("Center/Arms");
-        legs = (AnimatedSprite)GetNode("Sprite/Legs");
         inGameUI = (InGame)GetNode("CanvasLayer/InGame");
         loadout = (Loadout)inGameUI.GetNode("Loadout");
     }
@@ -144,21 +142,9 @@ public class Player : Entity
         }
         if(Input.IsActionPressed("left")) {
             velocity.x -= 1;
-            if(legs.FlipH == false) {
-                legs.FlipH = true;
-            }
         }
         if(Input.IsActionPressed("right")) {
             velocity.x += 1;
-            if(legs.FlipH == true) {
-                legs.FlipH = false;
-            }
-        }
-        if(velocity == Vector2.Zero) {
-            legs.Play("idle");
-        }
-        else {
-            legs.Play("run");
         }
         Velocity = velocity;
         if(inGameUI.Visible == true) {
@@ -201,10 +187,7 @@ public class Player : Entity
             return;
         }
         base.Hit(linearV, damage);
-        if(Health <= 0) {
-            legs.Animation = "idle";
-        }
-        else if(Health > 0) {
+        if(Health > 0) {
             hitCooldown.Start();
         }
     }

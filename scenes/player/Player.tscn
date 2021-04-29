@@ -90,11 +90,9 @@ texture = ExtResource( 8 )
 position = Vector2( -0.491074, -11.5665 )
 texture = ExtResource( 7 )
 
-[node name="Legs" type="AnimatedSprite" parent="Sprite" index="1"]
-position = Vector2( -0.640308, 14.5129 )
+[node name="Legs" parent="Sprite" index="1"]
+position = Vector2( -0.5, 14.5 )
 frames = SubResource( 1 )
-animation = "idle"
-playing = true
 
 [node name="CollisionShape2D" parent="." index="2"]
 visible = true

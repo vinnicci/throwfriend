@@ -20,17 +20,26 @@ public class Enemy : Entity
             }
         }
     }
-    public bool IsDoingAction {get; protected set;}
+
+    protected Timer actionTimer;
+
+
+    public override void _Ready()
+    {
+        base._Ready();
+        actionTimer = (Timer)GetNode("ActionTimer");
+    }
 
 
     public virtual void OnEnemyBodyEntered(Godot.Object body) {
     }
 
 
-    public virtual void DoAction() {
-        if(IsDead == true) {
+    public virtual void DoAction(String actionName) {
+        if(IsDead == true || actionTimer.IsStopped() == false) {
             return;
         }
+        actionTimer.Start();
     }
 
 

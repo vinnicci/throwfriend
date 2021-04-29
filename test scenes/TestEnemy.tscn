@@ -12,4 +12,3 @@ physics_material_override = SubResource( 1 )
 script = ExtResource( 3 )
 
 [node name="AI" parent="." index="3" instance=ExtResource( 2 )]
-enemy_seek_dist = 250

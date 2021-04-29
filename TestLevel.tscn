@@ -14,6 +14,75 @@ tile_data = PoolIntArray( 131060, 1, 0, 131061, 0, 0, 131062, 0, 0, 131063, 0, 0
 
 [node name="TestEnemy" parent="Enemies" index="0" instance=ExtResource( 4 )]
 position = Vector2( 350, 489 )
+mode = 2
+mass = 0.1
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 15.0
+
+[node name="TestEnemy2" parent="Enemies" index="1" instance=ExtResource( 4 )]
+position = Vector2( 247, 556 )
+mode = 2
+mass = 0.1
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 15.0
+
+[node name="TestEnemy3" parent="Enemies" index="2" instance=ExtResource( 4 )]
+position = Vector2( 725, 643 )
+mode = 2
+mass = 0.1
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 15.0
+
+[node name="TestEnemy4" parent="Enemies" index="3" instance=ExtResource( 4 )]
+position = Vector2( 572, 700 )
+mode = 2
+mass = 0.1
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 15.0
+
+[node name="TestEnemy5" parent="Enemies" index="4" instance=ExtResource( 4 )]
+position = Vector2( -436, 1308 )
+mode = 2
+mass = 0.1
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 15.0
+
+[node name="TestEnemy6" parent="Enemies" index="5" instance=ExtResource( 4 )]
+position = Vector2( 370, 1274 )
+mode = 2
+mass = 0.1
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 15.0
+
+[node name="TestEnemy7" parent="Enemies" index="6" instance=ExtResource( 4 )]
+position = Vector2( -636, 360 )
+mode = 2
+mass = 0.1
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 15.0
+
+[node name="TestEnemy8" parent="Enemies" index="7" instance=ExtResource( 4 )]
+position = Vector2( -570, 258 )
+mode = 2
+mass = 0.1
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 15.0
 
 [node name="Player" parent="." index="2" instance=ExtResource( 3 )]
 position = Vector2( -242, 634 )

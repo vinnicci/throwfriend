@@ -16,12 +16,17 @@ public class TestEnemy : Enemy
     }
 
 
-    public override void DoAction() {
+    public override void DoAction(String actionName) {
         //charge player
-        base.DoAction();
-        ApplyCentralImpulse((PlayerNode.GlobalPosition - GlobalPosition).Clamped(1) * 500);
-        charging = true;
-        SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true); 
+        base.DoAction(actionName);
+        if(actionName == "charge") {
+            ApplyCentralImpulse((PlayerNode.GlobalPosition - GlobalPosition).Clamped(1) * 500);
+            charging = true;
+            SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
+        }
+        else {
+            GD.PrintErr("\"" + actionName + "\" action doesn't exist");
+        } 
     }
 
 
