@@ -14,7 +14,7 @@ public class Entity : RigidBody2D
     public bool IsDead {get; set;}
 
     protected AnimatedSprite legs;
-    protected Sprite sprite;
+    protected AnimatedSprite sprite;
 
 
     public override void _Ready()
@@ -24,7 +24,7 @@ public class Entity : RigidBody2D
         hitCooldown = (Timer)GetNode("HitCooldown");
         anim = (AnimationPlayer)GetNode("Anim");
         legs = (AnimatedSprite)GetNode("Sprite/Legs");
-        sprite = (Sprite)GetNode("Sprite");
+        sprite = (AnimatedSprite)GetNode("Sprite");
         Speed = speed;
         Health = health;
         IsDead = false;

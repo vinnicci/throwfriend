@@ -51,7 +51,6 @@ func _physics_process(_delta: float) -> void:
 	if is_ent_valid(parent_node) == false:
 		is_moving = false
 		btree.enable = false
-		print("ayy dead")
 		return
 	if is_moving == true:
 		_go_to()
@@ -85,6 +84,7 @@ func _get_new_path(target):
 	path_points.clear()
 	path_points = level_node.call("GetPath", target.global_position, parent_node.global_position)
 	path_points.pop_back()
+	bb["target"] = path_points.back()
 
 
 func _get_flee_point():
@@ -176,7 +176,7 @@ func task_is_target_close(task):
 
 
 const ORIGIN_DIST: = 62500
-const TARGET_DIST: = 2500
+const TARGET_DIST: = 10000
 
 
 #param 0: seek or flee
