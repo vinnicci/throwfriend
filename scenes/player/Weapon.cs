@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 public class Weapon : RigidBody2D
 {
+    [Export] private Texture texture;
+    [Export] private Texture activeTexture;
+
+    private Sprite sprite;
     public Player PlayerNode {get; set;}
     private Level levelNode;
     public Level LevelNode {
@@ -35,6 +39,8 @@ public class Weapon : RigidBody2D
     public override void _Ready()
     {
         base._Ready();
+        sprite = (Sprite)GetNode("Sprite");
+        sprite.Texture = texture;
         Damage = 1;
     }
 
@@ -97,10 +103,24 @@ public class Weapon : RigidBody2D
         else if(ContinuousCd == RigidBody2D.CCDMode.CastRay && LinearVelocity.LengthSquared() <= Global.CCD_MAX) {
             ContinuousCd = RigidBody2D.CCDMode.Disabled;
         }
-        if(CurrentState == States.ACTIVE && LinearVelocity.LengthSquared() <= WEAP_MIN_LIN_VEL_LEN) {
-            SetCollisionMaskBit(Global.BIT_MASK_CHAR, false);
-            SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
-            CurrentState = States.INACTIVE;
+        if(CurrentState == States.ACTIVE) {
+            if(LinearVelocity.LengthSquared() <= WEAP_MIN_LIN_VEL_LEN) {
+                SetCollisionMaskBit(Global.BIT_MASK_CHAR, false);
+                SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
+                CurrentState = States.INACTIVE;
+            }
+        }
+    }
+
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+        if(GetCollisionMaskBit(Global.BIT_MASK_CHAR) == true && sprite.Texture == texture) {
+            sprite.Texture = activeTexture;
+        }
+        else if(GetCollisionMaskBit(Global.BIT_MASK_CHAR) == false && sprite.Texture == activeTexture) {
+            sprite.Texture = texture;
         }
     }
 

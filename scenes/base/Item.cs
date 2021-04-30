@@ -6,6 +6,17 @@ public class Item : Node2D
 {
     protected List<String> incompatibilityList = new List<string>();
     [Export] public String itemDescription;
+    public Timer Cooldown {get; protected set;}
+
+
+    public override void _Ready()
+    {
+        base._Ready();
+        Cooldown = (Timer)GetNode("Cooldown");
+    }
+
+
+    [Signal] public delegate void Activated();
 
 
     /// <summary>

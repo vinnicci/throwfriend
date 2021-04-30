@@ -11,6 +11,11 @@ animations = [ {
 "loop": true,
 "name": "idle",
 "speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "die",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -26,7 +31,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
 [node name="Entity" type="RigidBody2D"]
 mode = 2
@@ -58,6 +63,6 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-anims/die = SubResource( 4 )
+anims/die = SubResource( 5 )
 
 [connection signal="timeout" from="DeathTimer" to="." method="OnDeathTimerTimeout"]

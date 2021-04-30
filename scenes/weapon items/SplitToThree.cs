@@ -12,7 +12,7 @@ public class SplitToThree : WeaponItem
         base._PhysicsProcess(delta);
         if(WeaponNode.CurrentState == Weapon.States.ACTIVE && weaps[0].CurrentState == Weapon.States.HELD &&
         weaps[1].CurrentState == Weapon.States.HELD) {
-            ApplyEffect();
+            Split();
         }
         if(weaps[0].CurrentState != Weapon.States.HELD && WeaponNode.CurrentState == Weapon.States.HELD) {
             weaps[0].PickUp();
@@ -59,9 +59,7 @@ public class SplitToThree : WeaponItem
     }
 
 
-    public override void ApplyEffect()
-    {
-        base.ApplyEffect();
+    private void Split() {
         int strength = Player.ThrowStrength;
         weaps[0].Throw(strength, WeaponNode.GlobalPosition, Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees +
         (float)GD.RandRange(0,30)));

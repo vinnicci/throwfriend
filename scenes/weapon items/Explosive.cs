@@ -25,13 +25,6 @@ public class Explosive : WeaponItem
         if(body is Player || WeaponNode.CurrentState != Weapon.States.ACTIVE) {
             return;
         }
-        ApplyEffect();
-    }
-
-
-    public override void ApplyEffect()
-    {
-        base.ApplyEffect();
         explosionNode.Damage = WeaponNode.Damage;
         explosionNode.Explode();
     }

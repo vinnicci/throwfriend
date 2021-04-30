@@ -21,6 +21,8 @@ public class Player : Entity
             WeaponNode.LevelNode = LevelNode;
             inGameUI.PlayerNode = this;
             inGameUI.WeaponNode = WeaponNode;
+            hotkeyHUD.PlayerNode = this;
+            hotkeyHUD.WeaponNode = WeaponNode;
             weapSprite = (Sprite)WeaponNode.GetNode("Sprite");
         }
     }
@@ -35,7 +37,9 @@ public class Player : Entity
     private Sprite arms;
     private Sprite weapSprite;
     private InGame inGameUI;
+    private AnimationPlayer inGameUIAnim;
     private Loadout loadout;
+    private HotkeyHUD hotkeyHUD;
     
     private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
 
@@ -55,7 +59,9 @@ public class Player : Entity
         head = (Sprite)sprite.GetNode("Head");
         arms = (Sprite)GetNode("Center/Arms");
         inGameUI = (InGame)GetNode("CanvasLayer/InGame");
+        inGameUIAnim = (AnimationPlayer)inGameUI.GetNode("Anim");
         loadout = (Loadout)inGameUI.GetNode("Loadout");
+        hotkeyHUD = (HotkeyHUD)GetNode("CanvasLayer/HotkeyHUD");
     }
 
 
@@ -125,11 +131,13 @@ public class Player : Entity
         bool hasWeap = Center.HasNode("WeapPos/Weapon");
         //in game ui
         if(Input.IsActionJustPressed("in_game_ui") && hasWeap == true) {
-            if(inGameUI.Visible == false) {
-                inGameUI.Visible = true;
-            }
-            else if(inGameUI.Visible == true) {
-                inGameUI.Visible = false;
+            if(inGameUIAnim.IsPlaying() == false) {
+                if(inGameUI.Visible == false) {
+                    inGameUIAnim.Play("enter");
+                }
+                else if(inGameUI.Visible == true) {
+                    inGameUIAnim.Play("exit");
+                }
             }
         }
         //velocity
@@ -137,13 +145,13 @@ public class Player : Entity
         if(Input.IsActionPressed("up")) {
             velocity.y -= 1;
         }
-        if(Input.IsActionPressed("down")) {
+        else if(Input.IsActionPressed("down")) {
             velocity.y += 1;
         }
         if(Input.IsActionPressed("left")) {
             velocity.x -= 1;
         }
-        if(Input.IsActionPressed("right")) {
+        else if(Input.IsActionPressed("right")) {
             velocity.x += 1;
         }
         Velocity = velocity;
@@ -160,6 +168,18 @@ public class Player : Entity
                 anim.PlayBackwards("throw");
             }
             Speed += EXTRA_SPEED_WITHOUT_WEAPON;
+        }
+        if(IsInstanceValid(Item1) == true && Input.IsActionJustPressed("hotkey_1")) {
+            Item1.ApplyEffect();
+        }
+        if(IsInstanceValid(Item2) == true && Input.IsActionJustPressed("hotkey_2")) {
+            Item2.ApplyEffect();
+        }
+        if(IsInstanceValid(WeaponNode.Item1) == true && Input.IsActionJustPressed("hotkey_3")) {
+            WeaponNode.Item1.ApplyEffect();
+        }
+        if(IsInstanceValid(WeaponNode.Item2) == true && Input.IsActionJustPressed("hotkey_4")) {
+            WeaponNode.Item2.ApplyEffect();
         }
     }
 

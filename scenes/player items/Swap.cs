@@ -4,24 +4,6 @@ using System;
 public class Swap : PlayerItem
 {
     public Weapon Weapon {get; set;}
-    
-    private Timer cooldown;
-
-
-    public override void _Ready()
-    {
-        base._Ready();
-        cooldown = (Timer)GetNode("Cooldown");
-    }
-
-
-    public override void _PhysicsProcess(float delta)
-    {
-        base._PhysicsProcess(delta);
-        if(Input.IsActionJustReleased("right_click")) {
-            ApplyEffect();
-        }
-    }
 
 
     public override void InitEffect() {
@@ -32,14 +14,15 @@ public class Swap : PlayerItem
 
     public override void ApplyEffect()
     {
-        if(Weapon.CurrentState == Weapon.States.HELD || cooldown.IsStopped() == false) {
+        if(Weapon.CurrentState == Weapon.States.HELD || Cooldown.IsStopped() == false) {
             return;
         }
         base.ApplyEffect();
         var playerPos = PlayerNode.GlobalPosition;
         PlayerNode.Teleport(Weapon.GlobalPosition);
         Weapon.Teleport(playerPos);
-        cooldown.Start();
+        EmitSignal("Activated");
+        Cooldown.Start();
     }
 
 

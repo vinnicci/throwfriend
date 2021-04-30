@@ -3,9 +3,10 @@ using System;
 
 public class ItemSlot : Control
 {
-    private Position2D iconPos;
     public Item Item {get; set;}
     public Label DescriptionLabel {get; set;}
+
+    private Position2D iconPos;
 
 
     public override void _Ready()

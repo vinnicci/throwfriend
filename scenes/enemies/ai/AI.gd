@@ -156,14 +156,15 @@ func task_is_ent_valid(task):
 		task.failed()
 
 
-#param 0: flee or seek
-#param 1: if seek -> target to track
-func task_get_target_point(task):
-	if task.get_param(0) == "flee":
-		_get_flee_point()
-	elif task.get_param(0) == "seek":
-		_get_seek_point(bb[task.get_param(1)])
-	task.succeed() 
+#param 0: target
+func task_get_seek_point(task):
+	_get_seek_point(bb[task.get_param(0)])
+	task.succeed()
+
+
+func task_get_flee_point(task):
+	_get_flee_point()
+	task.succeed()
 
 
 #param 0: target distance(must exist in blackboard)
@@ -179,27 +180,28 @@ const ORIGIN_DIST: = 62500
 const TARGET_DIST: = 10000
 
 
-#param 0: seek or flee
-#param 1: if seek -> target to track
-func task_go_to_target(task):
+#param 0: target
+func task_seek(task):
 	is_moving = true
-	if task.get_param(0) == "seek":
-		if parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
-			_get_seek_point(bb[task.get_param(1)])
-		if bb[task.get_param(1)].global_position.distance_squared_to(path_points.front()) > ORIGIN_DIST:
-			_get_new_path(bb[task.get_param(1)])
-		if bb[task.get_param(1) + "_dist"] <= bb["seek_dist"] || is_ent_valid(bb["enemy"]) == false:
-			is_moving = false
-			path_points.clear()
-			task.succeed()
-			return
-	elif task.get_param(0) == "flee":
-		if parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
-			_get_flee_point()
-		if bb["enemy_dist"] > bb["enemy_too_far_dist"] || is_ent_valid(bb["enemy"]) == false:
-			is_moving = false
-			task.succeed()
-			return
+	if parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
+		_get_seek_point(bb[task.get_param(0)])
+	if bb[task.get_param(0)].global_position.distance_squared_to(path_points.front()) > ORIGIN_DIST:
+		_get_new_path(bb[task.get_param(0)])
+	if bb[task.get_param(0) + "_dist"] <= bb["seek_dist"] || is_ent_valid(bb["enemy"]) == false:
+		is_moving = false
+		path_points.clear()
+		task.succeed()
+		return
+
+
+func task_flee(task):
+	is_moving = true
+	if parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
+		_get_flee_point()
+	if bb["enemy_dist"] > bb["enemy_too_far_dist"] || is_ent_valid(bb["enemy"]) == false:
+		is_moving = false
+		task.succeed()
+		return
 
 
 #param 0: enemy action name

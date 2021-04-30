@@ -31,6 +31,9 @@ public class AutoRetrieve : PlayerItem
             else if(Weapon.GlobalPosition.DistanceSquaredTo(PlayerNode.GlobalPosition) <= 10000) {
                 weapIsReturning = false;
                 Weapon.AppliedForce = Vector2.Zero;
+                if(Weapon.GetCollisionMaskBit(Global.BIT_MASK_CHAR) == true) {
+                    Weapon.SetCollisionMaskBit(Global.BIT_MASK_CHAR, false);
+                }
             }
         }
         else if(weapIsReturning == false && Weapon.CurrentState == Weapon.States.INACTIVE) {
