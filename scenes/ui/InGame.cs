@@ -3,8 +3,11 @@ using System;
 
 public class InGame : Control
 {
-    public Loadout LoadoutNode {get; set;}
-    public StatsDesc StatsDescNode {get; set;}
+    private Loadout loadoutNode;
+    private StatsDesc statsDescNode;
+    private Settings settingsNode;
+    private AnimationPlayer inGameUIAnim;
+
     private Player playerNode;
     public Player PlayerNode {
         get {
@@ -12,9 +15,9 @@ public class InGame : Control
         }
         set {
             playerNode = value;
-            LoadoutNode.PlayerNode = PlayerNode;
-            LoadoutNode.UpdateSlotIcon(1);
-            LoadoutNode.UpdateSlotIcon(2);
+            loadoutNode.PlayerNode = PlayerNode;
+            loadoutNode.UpdateSlotIcon(1);
+            loadoutNode.UpdateSlotIcon(2);
         }
     }
     private Weapon weaponNode;
@@ -24,9 +27,9 @@ public class InGame : Control
         }
         set {
             weaponNode = value;
-            LoadoutNode.WeaponNode = WeaponNode;
-            LoadoutNode.UpdateSlotIcon(3);
-            LoadoutNode.UpdateSlotIcon(4);
+            loadoutNode.WeaponNode = WeaponNode;
+            loadoutNode.UpdateSlotIcon(3);
+            loadoutNode.UpdateSlotIcon(4);
         }
     }
 
@@ -34,12 +37,17 @@ public class InGame : Control
     public override void _Ready()
     {
         base._Ready();
-        LoadoutNode = (Loadout)GetNode("Loadout");
-        StatsDescNode = (StatsDesc)GetNode("StatsDesc");
+        loadoutNode = (Loadout)GetNode("Loadout");
+        statsDescNode = (StatsDesc)GetNode("StatsDesc");
+        settingsNode = (Settings)GetNode("Settings");
+        inGameUIAnim = (AnimationPlayer)GetNode("Anim");
         for(int i = 1; i <= 4; i++) {
-            ItemSlot slot = (ItemSlot)LoadoutNode.Get("Slot" + i.ToString());
-            slot.DescriptionLabel = StatsDescNode.DescriptionLabel;
+            ItemSlot slot = (ItemSlot)loadoutNode.Get("Slot" + i.ToString());
+            slot.DescriptionLabel = statsDescNode.DescriptionLabel;
         }
+        statsDescNode.InGameUIAnim = inGameUIAnim;
+        statsDescNode.SettingsNode = settingsNode;
+        settingsNode.InGameUIAnim = inGameUIAnim;
     }
 
 

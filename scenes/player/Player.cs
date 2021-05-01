@@ -39,7 +39,9 @@ public class Player : Entity
     private InGame inGameUI;
     private AnimationPlayer inGameUIAnim;
     private Loadout loadout;
+    private Settings settings;
     private HotkeyHUD hotkeyHUD;
+    private AnimationPlayer lifeHUDAnim;
     
     private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
 
@@ -61,7 +63,9 @@ public class Player : Entity
         inGameUI = (InGame)GetNode("CanvasLayer/InGame");
         inGameUIAnim = (AnimationPlayer)inGameUI.GetNode("Anim");
         loadout = (Loadout)inGameUI.GetNode("Loadout");
+        settings = (Settings)inGameUI.GetNode("Settings");
         hotkeyHUD = (HotkeyHUD)GetNode("CanvasLayer/HotkeyHUD");
+        lifeHUDAnim = (AnimationPlayer)GetNode("LifeHUD/Anim");
     }
 
 
@@ -130,7 +134,7 @@ public class Player : Entity
         }
         bool hasWeap = Center.HasNode("WeapPos/Weapon");
         //in game ui
-        if(Input.IsActionJustPressed("in_game_ui") && hasWeap == true) {
+        if(Input.IsActionJustPressed("in_game_ui") && hasWeap == true && settings.Visible == false) {
             if(inGameUIAnim.IsPlaying() == false) {
                 if(inGameUI.Visible == false) {
                     inGameUIAnim.Play("enter");
@@ -141,6 +145,9 @@ public class Player : Entity
             }
         }
         //velocity
+        if(settings.Visible == true) {
+            return;
+        }
         Vector2 velocity = Vector2.Zero;
         if(Input.IsActionPressed("up")) {
             velocity.y -= 1;
@@ -207,6 +214,7 @@ public class Player : Entity
             return;
         }
         base.Hit(linearV, damage);
+        lifeHUDAnim.Play(Health.ToString());
         if(Health > 0) {
             hitCooldown.Start();
         }
