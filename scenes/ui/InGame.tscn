@@ -204,6 +204,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Settings" parent="." instance=ExtResource( 5 )]
+visible = false
+margin_left = 320.0
+margin_top = -400.0
+margin_right = -320.0
+margin_bottom = -760.0
+
 [node name="Loadout" parent="." instance=ExtResource( 1 )]
 margin_left = -560.0
 margin_top = 150.0
@@ -215,13 +222,6 @@ margin_left = 1390.0
 margin_top = 150.0
 margin_right = 560.0
 margin_bottom = -195.0
-
-[node name="Settings" parent="." instance=ExtResource( 5 )]
-visible = false
-margin_left = 320.0
-margin_top = -400.0
-margin_right = -320.0
-margin_bottom = -760.0
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/enter = SubResource( 1 )

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/ui/ItemSlot.cs" type="Script" id=1]
+[ext_resource path="res://scenes/ui/KeyRebindButton.tscn" type="PackedScene" id=2]
 
 [node name="ItemSlot" type="Panel"]
 margin_right = 100.0
@@ -27,14 +28,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" parent="." instance=ExtResource( 2 )]
 margin_top = 122.0
-margin_right = 100.0
 margin_bottom = 142.0
-text = "1"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="IconSlot" type="Position2D" parent="."]
 position = Vector2( 50, 50 )

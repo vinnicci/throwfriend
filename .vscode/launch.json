@@ -5,18 +5,35 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "GDScript Launch",
+            "name": "GDScript",
             "type": "godot",
             "request": "launch",
-            "project": "D:\\dev\\Projects\\Project ThrowFriend\\",
+            "project": "",
             "port": 6007,
             "address": "127.0.0.1",
-            "launch_game_instance": false,
+            "launch_game_instance": true,
             "launch_scene": false
         },
         {
-            "name": "Attach",
-            "type": "mono",
+            "name": "Play in Editor",
+            "type": "godot-mono",
+            "mode": "playInEditor",
+            "request": "launch"
+        },
+        {
+            "name": "Godot C# Launch",
+            "type": "godot-mono",
+            "request": "launch",
+            "mode": "executable",
+            "executable": "D:\\dev\\Godot\\Godot_v3.3-stable_mono_win64\\Godot_v3.3-stable_mono_win64.exe",
+            "executableArguments": [
+                "--path",
+                "${workspaceRoot}"
+            ]
+        },
+        {
+            "name": "Godot C# Attach",
+            "type": "godot-mono",
             "request": "attach",
             "address": "localhost",
             "port": 23685

@@ -59,6 +59,9 @@ margin_top = 15.0
 margin_right = 250.0
 margin_bottom = 115.0
 
+[node name="Button" parent="PlayerPanel/ItemSlot" index="2"]
+text = "1"
+
 [node name="ItemSlot2" parent="PlayerPanel" instance=ExtResource( 1 )]
 margin_left = 300.0
 margin_top = 15.0
