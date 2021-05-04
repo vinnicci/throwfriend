@@ -114,6 +114,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="hide" from="." to="." method="OnWeaponItemSelectionHide"]
+
 [editable path="GridContainer/Boost"]
 [editable path="GridContainer/Homing"]
 [editable path="GridContainer/Explosive"]

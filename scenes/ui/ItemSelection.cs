@@ -36,4 +36,14 @@ public class ItemSelection : Panel
     }
 
 
+    private void OnWeaponItemSelectionHide() {
+        Visible = false;
+    }
+
+
+    private void OnPlayerItemSelectionHide() {
+        Visible = false;
+    }
+
+
 }

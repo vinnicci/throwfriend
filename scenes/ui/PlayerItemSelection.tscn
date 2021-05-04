@@ -111,6 +111,8 @@ align = 1
 valign = 1
 autowrap = true
 
+[connection signal="hide" from="." to="." method="OnPlayerItemSelectionHide"]
+
 [editable path="GridContainer/AutoRetrieve"]
 [editable path="GridContainer/Dash"]
 [editable path="GridContainer/Swap"]

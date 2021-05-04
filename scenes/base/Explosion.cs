@@ -22,16 +22,6 @@ public class Explosion : Area2D
         ray = (RayCast2D)GetNode("RayCast2D");
         anim = (AnimationPlayer)GetNode("Anim");
         ExplosionRadius = explosionRadius;
-        SetExplosionShape();
-    }
-
-
-    private void SetExplosionShape() {
-        CallDeferred("SetExplosionShapeDeferred");
-    }
-
-
-    private void SetExplosionShapeDeferred() {
         CircleShape2D circle = new CircleShape2D();
         circle.Radius = ExplosionRadius;
         collision.Shape = circle;
@@ -52,7 +42,9 @@ public class Explosion : Area2D
             return;
         }
         if(explosionRadius != ExplosionRadius) {
-            SetExplosionShape();
+            float scale = ExplosionRadius/explosionRadius;
+            collision.Scale = new Vector2(scale, scale);
+            poly.Scale = new Vector2(scale, scale);
         }
         anim.Play("explode");
         Godot.Collections.Array bodies = GetOverlappingBodies();

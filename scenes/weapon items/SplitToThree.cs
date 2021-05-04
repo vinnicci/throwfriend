@@ -63,8 +63,10 @@ public class SplitToThree : WeaponItem
     private void ApplyEffectsToClones(int num) {
         WeaponItem weap0Item = (WeaponItem)weaps[0].Get("Item" + num);
         WeaponItem weap1Item = (WeaponItem)weaps[1].Get("Item" + num);
-        weap0Item.ApplyEffect();
-        weap1Item.ApplyEffect();
+        if((IsInstanceValid(weap0Item) && IsInstanceValid(weap1Item)) == true) {
+            weap0Item.ApplyEffect();
+            weap1Item.ApplyEffect();
+        }
     }
 
 

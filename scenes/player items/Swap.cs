@@ -8,15 +8,18 @@ public class Swap : PlayerItem
 
     public override void ApplyEffect()
     {
+        if(PlayerNode.WeaponNode != Weapon) {
+            Weapon = PlayerNode.WeaponNode;
+        }
         if(Weapon.CurrentState == Weapon.States.HELD || Cooldown.IsStopped() == false) {
             return;
         }
         base.ApplyEffect();
+        var playerPos = PlayerNode.GlobalPosition;
+        PlayerNode.Teleport(Weapon.GlobalPosition);
         if(PlayerNode.WeaponNode != Weapon) {
             Weapon = PlayerNode.WeaponNode;
         }
-        var playerPos = PlayerNode.GlobalPosition;
-        PlayerNode.Teleport(Weapon.GlobalPosition);
         Weapon.Teleport(playerPos);
         EmitSignal("Activated");
         Cooldown.Start();
