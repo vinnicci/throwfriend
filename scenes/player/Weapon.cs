@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 
 
 public class Weapon : RigidBody2D
@@ -8,7 +7,6 @@ public class Weapon : RigidBody2D
     [Export] private Texture texture;
     [Export] private Texture activeTexture;
 
-    private Sprite sprite;
     public Player PlayerNode {get; set;}
     private Level levelNode;
     public Level LevelNode {
@@ -20,7 +18,6 @@ public class Weapon : RigidBody2D
             RefreshItems();
             ActivateItem(1);
             ActivateItem(2);
-            RefreshItems();
         }
     }
     public int Damage {get; set;}
@@ -35,13 +32,23 @@ public class Weapon : RigidBody2D
     public States CurrentState {get; private set;}
     public bool IsClone {get; set;}
 
+    private Sprite sprite;
+
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+        if(what == NotificationInstanced) {
+            Damage = 1;
+        }
+    }
+
 
     public override void _Ready()
     {
         base._Ready();
         sprite = (Sprite)GetNode("Sprite");
         sprite.Texture = texture;
-        Damage = 1;
     }
 
 
@@ -64,6 +71,7 @@ public class Weapon : RigidBody2D
         else if(slotNum == 2 && IsInstanceValid(Item2) == true) {
             Item2.WeaponNode = this;
         }
+        RefreshItems();
     }
 
 

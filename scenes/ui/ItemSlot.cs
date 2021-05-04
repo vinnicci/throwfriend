@@ -5,14 +5,17 @@ public class ItemSlot : Control
 {
     public Item Item {get; set;}
     public Label DescriptionLabel {get; set;}
+    public Loadout LoadoutNode {get; set;}
 
     private Position2D iconPos;
+    private Label upgradeLabel;
 
 
     public override void _Ready()
     {
         base._Ready();
         iconPos = (Position2D)GetNode("IconSlot");
+        upgradeLabel = (Label)GetNode("UpgradeLabel");
     }
 
 
@@ -30,21 +33,21 @@ public class ItemSlot : Control
 
 
     private void OnTextureButtonPressed() {
-        GD.Print("pressed");
+        if(upgradeLabel.Visible == true) {
+            LoadoutNode.ShowItemSelection(GetParent().Name, Name, upgradeLabel);
+        }
     }
 
 
     private void OnTextureButtonMouseEntered() {
-        GD.Print("hover");
         if(IsInstanceValid(Item) == false) {
             return;
         }
-        DescriptionLabel.Text = Item.Name + "\n" + Item.itemDescription;
+        DescriptionLabel.Text = Item.itemDescription;
     }
 
 
     private void OnTextureButtonMouseExited() {
-        GD.Print("hover exit");
         if(IsInstanceValid(Item) == false) {
             return;
         }

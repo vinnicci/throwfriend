@@ -106,13 +106,22 @@ public class Entity : RigidBody2D
             return;
         }
         ApplyCentralImpulse(linearV);
-        Health -= damage;
+        ModifyHealth(-damage);
         if(Health <= 0) {
             IsDead = true;
             deathTimer.Start();
             legs.Animation = "idle";
             anim.Play("die");
         }
+    }
+
+
+    private void ModifyHealth(int val) {
+        if(val < 0) {
+            anim.Play("damaged");
+        }
+        Health += val;
+        Health = Godot.Mathf.Clamp(Health, 0, 3);
     }
 
 

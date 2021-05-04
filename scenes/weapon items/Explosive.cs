@@ -17,7 +17,9 @@ public class Explosive : WeaponItem
     {
         base.InitEffect();
         explosionNode = (Explosion)GetNode("Explosion");
-        WeaponNode.Connect("body_entered", this, "Explode");
+        if(WeaponNode.IsConnected("body_entered", this, "Explode") == false) {
+            WeaponNode.Connect("body_entered", this, "Explode");
+        }
     }
 
 
@@ -26,13 +28,10 @@ public class Explosive : WeaponItem
             return;
         }
         explosionNode.Damage = WeaponNode.Damage;
+        if(WeaponNode.Filename == "res://scenes/player/WeaponLarge.tscn") {
+            explosionNode.ExplosionRadius = explosionNode.explosionRadius * 2;
+        }
         explosionNode.Explode();
-    }
-
-
-    public override void RemoveEffect()
-    {
-        base.RemoveEffect();
     }
 
 

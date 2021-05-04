@@ -5,12 +5,6 @@ public class TeleportToWeapon : PlayerItem
 {
     public Weapon Weapon {get; set;}
 
-    
-    public override void InitEffect() {
-        base.InitEffect();
-        Weapon = PlayerNode.WeaponNode;
-    }
-
 
     public override void ApplyEffect()
     {
@@ -18,6 +12,9 @@ public class TeleportToWeapon : PlayerItem
             return;
         }
         base.ApplyEffect();
+        if(PlayerNode.WeaponNode != Weapon) {
+            Weapon = PlayerNode.WeaponNode;
+        }
         PlayerNode.Teleport(Weapon.GlobalPosition);
         EmitSignal("Activated");
         Cooldown.Start();

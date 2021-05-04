@@ -3,7 +3,7 @@ using System;
 
 public class Explosion : Area2D
 {
-    [Export] protected int explosionRadius = 150;
+    [Export] public int explosionRadius = 150;
     public int ExplosionRadius {get; set;}
     public Node2D ParentNode {get; set;}
     public int Damage {get; set;}
@@ -22,12 +22,22 @@ public class Explosion : Area2D
         ray = (RayCast2D)GetNode("RayCast2D");
         anim = (AnimationPlayer)GetNode("Anim");
         ExplosionRadius = explosionRadius;
+        SetExplosionShape();
+    }
+
+
+    private void SetExplosionShape() {
+        CallDeferred("SetExplosionShapeDeferred");
+    }
+
+
+    private void SetExplosionShapeDeferred() {
         CircleShape2D circle = new CircleShape2D();
         circle.Radius = ExplosionRadius;
         collision.Shape = circle;
-        Godot.Vector2[] circArr = new Vector2[24];
-        for(int i = 0; i<=23; i++) {
-            Vector2 vec = new Vector2(ExplosionRadius,0).Rotated(Godot.Mathf.Deg2Rad(i*15));
+        Godot.Vector2[] circArr = new Vector2[12];
+        for(int i = 0; i <= 11; i++) {
+            Vector2 vec = new Vector2(ExplosionRadius,0).Rotated(Godot.Mathf.Deg2Rad(i*30));
             circArr[i] = vec;
         }
         poly.Polygon = circArr;
@@ -40,6 +50,9 @@ public class Explosion : Area2D
     public void Explode() {
         if(anim.IsPlaying() == true) {
             return;
+        }
+        if(explosionRadius != ExplosionRadius) {
+            SetExplosionShape();
         }
         anim.Play("explode");
         Godot.Collections.Array bodies = GetOverlappingBodies();

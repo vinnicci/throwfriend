@@ -6,7 +6,7 @@
 
 [node name="TeleportToWeapon" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Teleport to your thrown weapon's position."
+itemDescription = "You can now teleport to Snark's position."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

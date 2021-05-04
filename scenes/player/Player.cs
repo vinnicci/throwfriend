@@ -21,28 +21,24 @@ public class Player : Entity
             WeaponNode.LevelNode = LevelNode;
             inGameUI.PlayerNode = this;
             inGameUI.WeaponNode = WeaponNode;
-            hotkeyHUD.PlayerNode = this;
-            hotkeyHUD.WeaponNode = WeaponNode;
-            weapSprite = (Sprite)WeaponNode.GetNode("Sprite");
         }
     }
-    private Node2D itemSlot1Node;
+    public Node2D ItemSlot1Node {get; private set;}
     public PlayerItem Item1 {get; set;}
-    private Node2D itemSlot2Node;
+    public Node2D ItemSlot2Node {get; private set;}
     public PlayerItem Item2 {get; set;}
+    public int AvailableUpgrade {get; set;}
     
     private Position2D weapPos;
     private PlayerCam camera;
     private Sprite head;
     private Sprite arms;
-    private Sprite weapSprite;
     private InGame inGameUI;
     private AnimationPlayer inGameUIAnim;
     private Loadout loadout;
     private Settings settings;
     private HotkeyHUD hotkeyHUD;
     private AnimationPlayer lifeHUDAnim;
-    
     private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
 
 
@@ -50,6 +46,7 @@ public class Player : Entity
     {
         base._Ready();
         ThrowStrength = throwStrength;
+        AvailableUpgrade = 0;
         Center = (Node2D)GetNode("Center");
         Center.LookAt(GetGlobalMousePosition());
         camera = (PlayerCam)GetNode("PlayerCam");
@@ -65,18 +62,19 @@ public class Player : Entity
         loadout = (Loadout)inGameUI.GetNode("Loadout");
         settings = (Settings)inGameUI.GetNode("Settings");
         hotkeyHUD = (HotkeyHUD)GetNode("CanvasLayer/HotkeyHUD");
+        loadout.HotkeyHUDNode = hotkeyHUD;
         lifeHUDAnim = (AnimationPlayer)GetNode("LifeHUD/Anim");
     }
 
 
     public void RefreshItems() {
-        itemSlot1Node = (Node2D)GetNode("ItemSlot1");
-        if(itemSlot1Node.GetChildCount() != 0) {
-            Item1 = (PlayerItem)itemSlot1Node.GetChild(0);
+        ItemSlot1Node = (Node2D)GetNode("ItemSlot1");
+        if(ItemSlot1Node.GetChildCount() != 0) {
+            Item1 = (PlayerItem)ItemSlot1Node.GetChild(0);
         }
-        itemSlot2Node = (Node2D)GetNode("ItemSlot2");
-        if(itemSlot2Node.GetChildCount() != 0) {
-            Item2 = (PlayerItem)itemSlot2Node.GetChild(0);
+        ItemSlot2Node = (Node2D)GetNode("ItemSlot2");
+        if(ItemSlot2Node.GetChildCount() != 0) {
+            Item2 = (PlayerItem)ItemSlot2Node.GetChild(0);
         }
     }
 
@@ -88,6 +86,7 @@ public class Player : Entity
         else if(slotNum == 2 && IsInstanceValid(Item2) == true) {
             Item2.PlayerNode = this;
         }
+        RefreshItems();
     }
 
 
@@ -109,14 +108,15 @@ public class Player : Entity
             arms.FlipH = true;
             legs.FlipH = true;
             weapPos.Position = WEAP_POS_VEC_FLIP;
-            weapSprite.FlipV = true;
         }
         else if(dotProd > 0 && head.FlipH == true) {
             head.FlipH = false;
             arms.FlipH = false;
             legs.FlipH = false;
             weapPos.Position = WEAP_POS_VEC;
-            weapSprite.FlipV = false;
+        }
+        if(WeaponNode != inGameUI.WeaponNode) {
+            inGameUI.WeaponNode = WeaponNode;
         }
     }
 
@@ -126,6 +126,9 @@ public class Player : Entity
         base._PhysicsProcess(delta);
         GetInput();
     }
+
+
+    [Signal] public delegate void ActivatedWeaponItem();
 
 
     public void GetInput() {
@@ -184,9 +187,11 @@ public class Player : Entity
         }
         if(IsInstanceValid(WeaponNode.Item1) == true && Input.IsActionJustPressed("hotkey_3")) {
             WeaponNode.Item1.ApplyEffect();
+            EmitSignal("ActivatedWeaponItem", 1);
         }
         if(IsInstanceValid(WeaponNode.Item2) == true && Input.IsActionJustPressed("hotkey_4")) {
             WeaponNode.Item2.ApplyEffect();
+            EmitSignal("ActivatedWeaponItem", 2);
         }
     }
 
@@ -214,10 +219,17 @@ public class Player : Entity
             return;
         }
         base.Hit(linearV, damage);
-        lifeHUDAnim.Play(Health.ToString());
+        if(Health <= 2) {
+            lifeHUDAnim.Play(Health.ToString());
+        }
         if(Health > 0) {
             hitCooldown.Start();
         }
+    }
+
+
+    public void UpdateUpgrade() {
+        loadout.UpdateUpgrade();
     }
 
 

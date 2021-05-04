@@ -13,11 +13,4 @@ public class SuperThrow : PlayerItem
     }
 
 
-    public override void RemoveEffect()
-    {
-        base.RemoveEffect();
-        PlayerNode.ThrowStrength -= EXTRA_STRENGTH;
-    }
-
-
 }

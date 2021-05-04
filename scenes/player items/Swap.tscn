@@ -6,7 +6,7 @@
 
 [node name="Swap" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Swap the position with your thrown weapon."
+itemDescription = "You can now swap positions with Snark."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

@@ -4,19 +4,17 @@ using System;
 public class ExtraDamage : WeaponItem
 {
     private const int EXTRA_DMG = 2;
+    private bool done = false;
 
 
     public override void InitEffect()
     {
         base.InitEffect();
+        if(done == true) {
+            return;
+        }
         WeaponNode.Damage += EXTRA_DMG;
-    }
-
-
-    public override void RemoveEffect()
-    {
-        base.RemoveEffect();
-        WeaponNode.Damage -= EXTRA_DMG;
+        done = true;
     }
 
 

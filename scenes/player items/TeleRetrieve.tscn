@@ -6,7 +6,7 @@
 
 [node name="TeleRetrieve" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Immediately retrieve your weapon by teleporting."
+itemDescription = "Picking up Snark everytime gets old really fast. You can teleport him back now."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

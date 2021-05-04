@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Item : Node2D
 {
-    protected List<String> incompatibilityList = new List<string>();
+    public List<String> incompatibilityList = new List<string>();
     [Export] public String itemDescription;
     public Timer Cooldown {get; protected set;}
 
@@ -29,12 +29,6 @@ public class Item : Node2D
     /// Use this to apply effect anytime
     /// </summary>
     public virtual void ApplyEffect() {}
-
-
-    /// <summary>
-    /// Remove applied effects upon removal of item
-    /// </summary>
-    public virtual void RemoveEffect() {}
 
 
 }

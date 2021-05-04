@@ -13,11 +13,4 @@ public class ExtraSpeed : PlayerItem
     }
 
 
-    public override void RemoveEffect()
-    {
-        base.RemoveEffect();
-        PlayerNode.Speed -= EXTRA_SPEED;
-    }
-
-
 }

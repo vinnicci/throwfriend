@@ -11,6 +11,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="UpgradeLabel" type="Label" parent="."]
+visible = false
+margin_left = 9.0
+margin_top = 26.0
+margin_right = 92.0
+margin_bottom = 74.0
+text = "CLICK TO
+UNLOCK
+NEW ABILITY"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TextureButton" type="TextureButton" parent="."]
 margin_right = 100.0
 margin_bottom = 100.0

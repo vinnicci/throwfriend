@@ -20,6 +20,9 @@ public class AutoRetrieve : PlayerItem
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
+        if(PlayerNode.WeaponNode != Weapon) {
+            Weapon = PlayerNode.WeaponNode;
+        }
         if(weapIsReturning == true) {
             if(Weapon.CurrentState == Weapon.States.INACTIVE) {
                 Vector2 vec = (PlayerNode.GlobalPosition - Weapon.GlobalPosition).Clamped(1) * RETRIEVE_SPEED;
@@ -39,13 +42,6 @@ public class AutoRetrieve : PlayerItem
         else if(weapIsReturning == false && Weapon.CurrentState == Weapon.States.INACTIVE) {
             weapIsReturning = true;
         }
-    }
-
-
-    public override void InitEffect()
-    {
-        base.InitEffect();
-        Weapon = PlayerNode.WeaponNode;
     }
 
 

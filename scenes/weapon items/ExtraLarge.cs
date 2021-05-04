@@ -49,27 +49,6 @@ public class ExtraLarge : WeaponItem
                 largeWeap.ActivateItem(2);
             }
         }
-        largeWeap.RefreshItems();
-    }
-
-
-    public override void RemoveEffect()
-    {
-        base.RemoveEffect();
-        Position2D weapSlot = (Position2D)largeWeap.GetParent();
-        if(IsInstanceValid(largeWeap.Item1) == true) {
-            largeWeap.Item1.GetParent().RemoveChild(largeWeap.Item1);
-            tempWeap.ItemSlot1Node.AddChild(largeWeap.Item1);
-        }
-        if(IsInstanceValid(largeWeap.Item2) == true) {
-            largeWeap.Item2.GetParent().RemoveChild(largeWeap.Item2);
-            tempWeap.ItemSlot2Node.AddChild(largeWeap.Item2);
-        }
-        weapSlot.RemoveChild(largeWeap);
-        weapSlot.AddChild(tempWeap);
-        Player.WeaponNode = tempWeap;
-        tempWeap.RefreshItems();
-        largeWeap.QueueFree();
     }
 
 

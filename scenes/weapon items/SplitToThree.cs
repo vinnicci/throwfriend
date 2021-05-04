@@ -27,6 +27,9 @@ public class SplitToThree : WeaponItem
     {
         base.InitEffect();
         Player = WeaponNode.PlayerNode;
+        if(Player.IsConnected("ActivatedWeaponItem", this, "ApplyEffectsToClones") == false) {
+            Player.Connect("ActivatedWeaponItem", this, "ApplyEffectsToClones");
+        }
         PackedScene res = (PackedScene)ResourceLoader.Load(WeaponNode.Filename);
         weaps[0] = (Weapon)res.Instance();
         weaps[1] = (Weapon)res.Instance();
@@ -54,8 +57,14 @@ public class SplitToThree : WeaponItem
             weaps[0].ActivateItem(2);
             weaps[1].ActivateItem(2);
         }
-        weaps[0].RefreshItems();
-        weaps[1].RefreshItems();
+    }
+
+
+    private void ApplyEffectsToClones(int num) {
+        WeaponItem weap0Item = (WeaponItem)weaps[0].Get("Item" + num);
+        WeaponItem weap1Item = (WeaponItem)weaps[1].Get("Item" + num);
+        weap0Item.ApplyEffect();
+        weap1Item.ApplyEffect();
     }
 
 
@@ -65,16 +74,6 @@ public class SplitToThree : WeaponItem
         (float)GD.RandRange(0,30)));
         weaps[1].Throw(strength, WeaponNode.GlobalPosition, Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees -
         (float)GD.RandRange(0,30)));
-    }
-
-
-    public override void RemoveEffect()
-    {
-        base.RemoveEffect();
-        weaps[0].GetParent().RemoveChild(weaps[0]);
-        weaps[1].GetParent().RemoveChild(weaps[1]);
-        weaps[0].QueueFree();
-        weaps[1].QueueFree();
     }
 
 

@@ -9,12 +9,15 @@ public class Loadout : Control
     public ItemSlot Slot2 {get; private set;}
     public ItemSlot Slot3 {get; private set;}
     public ItemSlot Slot4 {get; private set;}
+    public HotkeyHUD HotkeyHUDNode {get; set;}
     public ConfigFile ConfigFile {get; private set;}
 
     private Button slot1KeyBind;
     private Button slot2KeyBind;
     private Button slot3KeyBind;
     private Button slot4KeyBind;
+    private ItemSelection playerItemSel;
+    private ItemSelection weaponItemSel;
     const String CONFIG = "user://config/config.ini";
 
 
@@ -22,13 +25,30 @@ public class Loadout : Control
     {
         base._Ready();
         ConfigFile = new ConfigFile();
-        Slot1 = (ItemSlot)GetNode("PlayerPanel/ItemSlot");
-        Slot2 = (ItemSlot)GetNode("PlayerPanel/ItemSlot2");
-        Slot3 = (ItemSlot)GetNode("WeaponPanel/ItemSlot");
-        Slot4 = (ItemSlot)GetNode("WeaponPanel/ItemSlot2");
+        playerItemSel = (ItemSelection)GetNode("PlayerPanel/PlayerItemSelection");
+        playerItemSel.LoadoutNode = this;
+        weaponItemSel = (ItemSelection)GetNode("WeaponPanel/WeaponItemSelection");
+        weaponItemSel.LoadoutNode = this;
+        ConnectSlots();
         ConnectButtons();
         InitKeybinds();
         LoadConfig();
+    }
+
+
+    private void ConnectSlots() {
+        for(int i = 1; i <= 4; i++) {
+            String slot = "Slot" + i;
+            switch(i) {
+                case 1: Set(slot, GetNode("PlayerPanel/ItemSlot1")); break;
+                case 2: Set(slot, GetNode("PlayerPanel/ItemSlot2")); break;
+                case 3: Set(slot, GetNode("WeaponPanel/ItemSlot1")); break;
+                case 4: Set(slot, GetNode("WeaponPanel/ItemSlot2")); break;
+                default: GD.PrintErr("Slot node doesn't exist in Loadout node."); break;
+            }
+            ItemSlot itemSlot = (ItemSlot)Get(slot);
+            itemSlot.LoadoutNode = this;
+        }
     }
 
 
@@ -138,10 +158,26 @@ public class Loadout : Control
     
     public void UpdateSlotIcon(int slotNum) {
         switch(slotNum) {
-            case 1: Slot1.UpdateIcon(PlayerNode.Item1); break;
-            case 2: Slot2.UpdateIcon(PlayerNode.Item2); break;
-            case 3: Slot3.UpdateIcon(WeaponNode.Item1); break;
-            case 4: Slot4.UpdateIcon(WeaponNode.Item2); break;
+            case 1: {
+                Slot1.UpdateIcon(PlayerNode.Item1);
+                HotkeyHUDNode.UpdateSlotIcon(slotNum, PlayerNode.Item1);
+            }
+            break;
+            case 2: {
+                Slot2.UpdateIcon(PlayerNode.Item2);
+                HotkeyHUDNode.UpdateSlotIcon(slotNum, PlayerNode.Item2);
+            }
+            break;
+            case 3: {
+                Slot3.UpdateIcon(WeaponNode.Item1);
+                HotkeyHUDNode.UpdateSlotIcon(slotNum, WeaponNode.Item1);
+            }
+            break;
+            case 4: {
+                Slot4.UpdateIcon(WeaponNode.Item2);
+                HotkeyHUDNode.UpdateSlotIcon(slotNum, WeaponNode.Item2);
+            }
+            break;
             default: GD.PrintErr("Slot doesn't exist."); break;
         }
     }
@@ -150,6 +186,94 @@ public class Loadout : Control
     private void OnKeyBindPressed(KeyRebindButton button) {
         button.Text = "PRESS A KEY...";
         button.Pressed = true;
+    }
+
+
+    public void UpdateUpgrade() {
+        for(int i = 1; i <= 4; i++) {
+            ItemSlot itemSlot = (ItemSlot)Get("Slot" + i);
+            Label upgradeLabel = (Label)itemSlot.GetNode("UpgradeLabel");
+            if(IsInstanceValid((Item)itemSlot.Item) == true) {
+                continue;
+            }
+            if(PlayerNode.AvailableUpgrade > 0) {
+                upgradeLabel.Visible = true;
+            }
+            else {
+                upgradeLabel.Visible = false;
+            }
+        }
+    }
+
+
+    private struct SelectRef {
+        public String Panel {get;}
+        public String Slot {get;}
+        public Label UpgradeLabel {get;}
+        public SelectRef(String panel, String slot, Label upgradeLabel)
+        {
+            Panel = panel;
+            Slot = slot;
+            UpgradeLabel = upgradeLabel;
+        }
+    }
+    private SelectRef selectRef;
+
+
+    public void ShowItemSelection(String panel, String slot, Label upgradeLabel) {
+        selectRef = new SelectRef(panel, slot, upgradeLabel);
+        if(panel == "PlayerPanel") { 
+            playerItemSel.Visible = true;
+            weaponItemSel.Visible = false;
+        }
+        else if(panel == "WeaponPanel") {
+            weaponItemSel.Visible = true;
+            playerItemSel.Visible = false;
+        }
+    }
+
+
+    public void SelectItem(Item item) {
+        if(selectRef.Panel == "PlayerPanel") {
+            if(selectRef.Slot == "ItemSlot1") {
+                PlayerNode.ItemSlot1Node.AddChild(item);
+                PlayerNode.RefreshItems();
+                PlayerNode.ActivateItem(1);
+                UpdateSlotIcon(1);
+            }
+            else if(selectRef.Slot == "ItemSlot2") {
+                PlayerNode.ItemSlot2Node.AddChild(item);
+                PlayerNode.RefreshItems();
+                PlayerNode.ActivateItem(2);
+                UpdateSlotIcon(2);
+            }
+            PlayerNode.RefreshItems();
+            playerItemSel.Visible = false;
+        }
+        else if(selectRef.Panel == "WeaponPanel") {
+            if(selectRef.Slot == "ItemSlot1") {
+                WeaponNode.ItemSlot1Node.AddChild(item);
+                WeaponNode.RefreshItems();
+                WeaponNode.ActivateItem(1);
+                WeaponNode.ActivateItem(2);
+                UpdateSlotIcon(3);
+            }
+            else if(selectRef.Slot == "ItemSlot2") {
+                WeaponNode.ItemSlot2Node.AddChild(item);
+                WeaponNode.RefreshItems();
+                WeaponNode.ActivateItem(1);
+                WeaponNode.ActivateItem(2);
+                UpdateSlotIcon(4);
+            }
+            WeaponNode.RefreshItems();
+            weaponItemSel.Visible = false;
+        }
+        playerItemSel.SetIncompatibleItems(item.incompatibilityList);
+        weaponItemSel.SetIncompatibleItems(item.incompatibilityList);
+        selectRef.UpgradeLabel.Visible = false;
+        selectRef = new SelectRef("", "", null);
+        PlayerNode.AvailableUpgrade -= 1;
+        UpdateUpgrade();
     }
 
 

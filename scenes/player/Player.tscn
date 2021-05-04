@@ -124,9 +124,9 @@ scale = Vector2( 1.5, 1.5 )
 [node name="InGame" parent="CanvasLayer" index="0" instance=ExtResource( 12 )]
 
 [node name="HotkeyHUD" parent="CanvasLayer" index="1" instance=ExtResource( 13 )]
-margin_left = 460.0
-margin_top = 600.0
-margin_right = -460.0
+margin_left = 465.0
+margin_top = 610.0
+margin_right = -465.0
 margin_bottom = -15.0
 theme = ExtResource( 14 )
 

@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/ui/ItemSelect.cs" type="Script" id=1]
+
+[node name="ItemSelect" type="Control"]
+margin_right = 50.0
+margin_bottom = 50.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 0.282353, 0.521569, 0.282353, 1 )
+margin_right = 50.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="hide" from="TextureButton" to="." method="OnTextureButtonHide"]
+[connection signal="mouse_entered" from="TextureButton" to="." method="OnTextureButtonMouseEntered"]
+[connection signal="mouse_exited" from="TextureButton" to="." method="OnTextureButtonMouseExited"]
+[connection signal="pressed" from="TextureButton" to="." method="OnTextureButtonPressed"]

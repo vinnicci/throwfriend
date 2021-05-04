@@ -212,15 +212,15 @@ margin_right = -320.0
 margin_bottom = -760.0
 
 [node name="Loadout" parent="." instance=ExtResource( 1 )]
-margin_left = -560.0
+margin_left = 140.0
 margin_top = 150.0
-margin_right = -1390.0
+margin_right = -690.0
 margin_bottom = -195.0
 
 [node name="StatsDesc" parent="." instance=ExtResource( 4 )]
-margin_left = 1390.0
+margin_left = 690.0
 margin_top = 150.0
-margin_right = 560.0
+margin_right = -140.0
 margin_bottom = -195.0
 
 [node name="Anim" type="AnimationPlayer" parent="."]

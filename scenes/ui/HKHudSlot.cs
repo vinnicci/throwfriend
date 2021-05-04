@@ -26,7 +26,9 @@ public class HKHudSlot : ColorRect
             Sprite icon = (Sprite)Item.GetNode("Icon").Duplicate();
             iconPos.AddChild(icon);
             icon.Visible = true;
-            Item.Connect("Activated", this, "AnimateCooldown");
+            if(Item.IsConnected("Activated", this, "AnimateCooldown") == false) {
+                Item.Connect("Activated", this, "AnimateCooldown");
+            }
         }
     }
 
