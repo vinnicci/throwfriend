@@ -14,7 +14,8 @@ public class Entity : RigidBody2D
     public bool IsDead {get; set;}
 
     protected AnimatedSprite legs;
-    protected AnimatedSprite sprite;
+    protected Node2D spriteNode;
+    protected Godot.Collections.Array spriteChildren = new Godot.Collections.Array();
 
 
     public override void _Ready()
@@ -23,8 +24,13 @@ public class Entity : RigidBody2D
         deathTimer = (Timer)GetNode("DeathTimer");
         hitCooldown = (Timer)GetNode("HitCooldown");
         anim = (AnimationPlayer)GetNode("Anim");
-        legs = (AnimatedSprite)GetNode("Sprite/Legs");
-        sprite = (AnimatedSprite)GetNode("Sprite");
+        spriteNode = (Node2D)GetNode("Sprite");
+        foreach(Godot.Object spriteCh in spriteNode.GetChildren()) {
+            if(spriteCh is Sprite) {
+                spriteChildren.Add(spriteCh);
+            }
+        }
+        legs = (AnimatedSprite)spriteNode.GetNode("Legs");
         Speed = speed;
         Health = health;
         IsDead = false;
@@ -81,9 +87,12 @@ public class Entity : RigidBody2D
             legs.Play("run");
         }
         //left
+        Sprite sprite = (Sprite)spriteChildren[0];
         if(Velocity.x < 0) {
             if(sprite.FlipH == false) {
-                sprite.FlipH = true;
+                foreach(Sprite spChild in spriteChildren) {
+                    spChild.FlipH = true;
+                }
             }
             if(legs.FlipH == false) {
                 legs.FlipH = true;
@@ -92,7 +101,9 @@ public class Entity : RigidBody2D
         //right
         else if(Velocity.x > 0) {
             if(sprite.FlipH == true) {
-                sprite.FlipH = false;
+                foreach(Sprite spChild in spriteChildren) {
+                    spChild.FlipH = false;
+                }
             }
             if(legs.FlipH == true) {
                 legs.FlipH = false;
@@ -111,7 +122,11 @@ public class Entity : RigidBody2D
             IsDead = true;
             deathTimer.Start();
             legs.Animation = "idle";
+            anim.Stop();
             anim.Play("die");
+        }
+        else if(Health > 0) {
+            hitCooldown.Start();
         }
     }
 

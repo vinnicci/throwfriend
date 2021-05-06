@@ -17,6 +17,16 @@ self_modulate = Color( 1, 1, 1, 0.686275 )
 margin_right = 450.0
 margin_bottom = 185.0
 
+[node name="Exit" type="Button" parent="StatsPanel"]
+margin_left = 425.0
+margin_top = 5.0
+margin_right = 445.0
+margin_bottom = 25.0
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DescPanel" type="Panel" parent="."]
 self_modulate = Color( 1, 1, 1, 0.686275 )
 margin_top = 190.0
@@ -43,4 +53,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="StatsPanel/Exit" to="." method="OnExitPressed"]
 [connection signal="pressed" from="DescPanel/SettingsButton" to="." method="OnSettingsButtonPressed"]

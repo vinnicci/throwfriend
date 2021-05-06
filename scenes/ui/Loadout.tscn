@@ -97,9 +97,9 @@ texture = ExtResource( 7 )
 [node name="LoadoutName" type="Label" parent="WeaponPanel"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 57.0
+margin_right = 39.0
 margin_bottom = 19.0
-text = "Weapon"
+text = "Snark"
 __meta__ = {
 "_edit_use_anchors_": false
 }

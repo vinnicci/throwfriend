@@ -24,5 +24,11 @@ public class StatsDesc : Control
         }
     }
 
+    private void OnExitPressed() {
+        if(InGameUIAnim.IsPlaying() == false) {
+            InGameUIAnim.Play("exit");
+        }
+    }
+
 
 }

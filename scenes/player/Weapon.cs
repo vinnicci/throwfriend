@@ -7,7 +7,15 @@ public class Weapon : RigidBody2D
     [Export] private Texture texture;
     [Export] private Texture activeTexture;
 
-    public Player PlayerNode {get; set;}
+    private Player playerNode;
+    public Player PlayerNode {
+        get {
+            return playerNode;
+        }
+        set {
+            playerNode = value;
+        }
+    }
     private Level levelNode;
     public Level LevelNode {
         get {

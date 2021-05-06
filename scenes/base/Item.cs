@@ -6,6 +6,30 @@ public class Item : Node2D
 {
     public List<String> incompatibilityList = new List<string>();
     [Export] public String itemDescription;
+    protected Player playerNode;
+    public Player PlayerNode {
+        get {
+            return playerNode;
+        }
+        set {
+            playerNode = value;
+            if(this is PlayerItem) {
+                InitEffect();
+            }
+        }
+    }
+    protected Weapon weaponNode;
+    public Weapon WeaponNode {
+        get {
+            return weaponNode;
+        }
+        set{
+            weaponNode = value;
+            if(this is WeaponItem) {
+                InitEffect();
+            }
+        }
+    }
     public Timer Cooldown {get; protected set;}
 
 

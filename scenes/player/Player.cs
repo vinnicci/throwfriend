@@ -55,7 +55,7 @@ public class Player : Entity
         WeaponNode.Connect("PickedUp", this, "PickUpWeapon");
         weapPos = (Position2D)Center.GetNode("WeapPos");
         Center.LookAt(GetGlobalMousePosition());
-        head = (Sprite)sprite.GetNode("Head");
+        head = (Sprite)spriteNode.GetNode("Head");
         arms = (Sprite)GetNode("Center/Arms");
         inGameUI = (InGame)GetNode("CanvasLayer/InGame");
         inGameUIAnim = (AnimationPlayer)inGameUI.GetNode("Anim");
@@ -100,8 +100,7 @@ public class Player : Entity
         if(IsDead == true) {
             return;
         }
-        Vector2 look = new Vector2(GetGlobalMousePosition());
-        Center.LookAt(look);
+        Center.LookAt(GetGlobalMousePosition());
         float dotProd = new Vector2(1,0).Dot(new Vector2(1,0).Rotated(Center.Rotation));
         if(dotProd <= 0 && head.FlipH == false) {
             head.FlipH = true;
@@ -137,14 +136,13 @@ public class Player : Entity
         }
         bool hasWeap = Center.HasNode("WeapPos/Weapon");
         //in game ui
-        if(Input.IsActionJustPressed("in_game_ui") && hasWeap == true && settings.Visible == false) {
-            if(inGameUIAnim.IsPlaying() == false) {
-                if(inGameUI.Visible == false) {
-                    inGameUIAnim.Play("enter");
-                }
-                else if(inGameUI.Visible == true) {
-                    inGameUIAnim.Play("exit");
-                }
+        if(Input.IsActionJustPressed("in_game_ui") && hasWeap == true && settings.Visible == false &&
+        inGameUIAnim.IsPlaying() == false) {
+            if(inGameUI.Visible == false) {
+                inGameUIAnim.Play("enter");
+            }
+            else if(inGameUI.Visible == true) {
+                inGameUIAnim.Play("exit");
             }
         }
         //velocity
@@ -221,9 +219,6 @@ public class Player : Entity
         base.Hit(linearV, damage);
         if(Health <= 2) {
             lifeHUDAnim.Play(Health.ToString());
-        }
-        if(Health > 0) {
-            hitCooldown.Start();
         }
     }
 
