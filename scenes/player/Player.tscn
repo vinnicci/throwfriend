@@ -31,7 +31,7 @@ animations = [ {
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 13.0
-height = 38.0
+height = 32.0
 
 [sub_resource type="Animation" id=7]
 resource_name = "damaged"
@@ -44,7 +44,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -90,6 +90,7 @@ health = 3
 throwStrength = 200
 
 [node name="Center" type="Node2D" parent="." index="0"]
+position = Vector2( 0, -19 )
 
 [node name="Arms" type="Sprite" parent="Center" index="0"]
 scale = Vector2( 2, 2 )
@@ -101,6 +102,7 @@ position = Vector2( -35.4756, -22.6205 )
 [node name="Weapon" parent="Center/WeapPos" index="0" instance=ExtResource( 3 )]
 
 [node name="Sprite" parent="." index="1"]
+position = Vector2( 0, -19 )
 scale = Vector2( 2, 2 )
 
 [node name="Torso" type="Sprite" parent="Sprite" index="0"]

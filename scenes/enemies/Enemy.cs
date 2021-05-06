@@ -2,11 +2,10 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class Enemy : Entity
+public abstract class Enemy : Entity
 {
-    private Node2D aINode;
-    private Level levelNode;
     public Player PlayerNode;
+    private Level levelNode;
     public Level LevelNode {
         get {
             return levelNode;
@@ -20,26 +19,37 @@ public class Enemy : Entity
             }
         }
     }
+    public Timer ActionCooldown {get; private set;}
 
-    protected Timer actionTimer;
+    private Node2D aINode;
+    protected bool IsActing {get; set;}
 
 
     public override void _Ready()
     {
         base._Ready();
-        actionTimer = (Timer)GetNode("ActionTimer");
+        ActionCooldown = (Timer)GetNode("ActionCooldown");
+        IsActing = false;
     }
 
 
-    public virtual void OnEnemyBodyEntered(Godot.Object body) {
+    public abstract void OnEnemyBodyEntered(Godot.Object body);
+
+
+    public virtual void FinishAction() {
+        IsActing = false;
+        ActionCooldown.Start();
+        anim.Play("idle");
     }
 
 
-    public virtual void DoAction(String actionName) {
-        if(IsDead == true || actionTimer.IsStopped() == false) {
-            return;
+    public virtual bool DoAction(String actionName) {
+        if(IsDead == true || IsActing == true || ActionCooldown.IsStopped() == false) {
+            return false;
         }
-        actionTimer.Start();
+        anim.Play(actionName);
+        IsActing = true;
+        return true;
     }
 
 

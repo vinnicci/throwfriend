@@ -16,28 +16,29 @@ public class TestEnemy : Enemy
     }
 
 
-    public override void DoAction(String actionName) {
-        //charge player
-        base.DoAction(actionName);
-        if(actionName == "charge") {
-            ApplyCentralImpulse((PlayerNode.GlobalPosition - GlobalPosition).Clamped(1) * 500);
-            charging = true;
-            SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
-        }
-        else {
-            GD.PrintErr("\"" + actionName + "\" action doesn't exist");
-        } 
-    }
+    const int CHARGE_KNOCKBACK = 100;
+    const int CHARGE_STRENGTH = 550;
 
 
     public override void OnEnemyBodyEntered(Godot.Object body) {
-        base.OnEnemyBodyEntered(body);
         if(charging == false) {
             return;
         }
         if(body == PlayerNode) {
-            PlayerNode.Hit((PlayerNode.GlobalPosition - GlobalPosition).Clamped(1) * 50, 1);
+            PlayerNode.Hit((PlayerNode.GlobalPosition - GlobalPosition).Clamped(1) * CHARGE_KNOCKBACK, 1);
         }
+    }
+
+
+    public void Charge() {
+        ApplyCentralImpulse((PlayerNode.GlobalPosition - GlobalPosition).Clamped(1) * CHARGE_STRENGTH);
+        charging = true;
+        SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
+    }
+
+
+    public override void FinishAction() {
+        base.FinishAction();
     }
 
     

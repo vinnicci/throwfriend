@@ -91,6 +91,7 @@ public class Entity : RigidBody2D
         if(Velocity.x < 0) {
             if(sprite.FlipH == false) {
                 foreach(Sprite spChild in spriteChildren) {
+                    spChild.Offset *= new Vector2(-1,1);
                     spChild.FlipH = true;
                 }
             }
@@ -102,6 +103,7 @@ public class Entity : RigidBody2D
         else if(Velocity.x > 0) {
             if(sprite.FlipH == true) {
                 foreach(Sprite spChild in spriteChildren) {
+                    spChild.Offset *= new Vector2(-1,1);
                     spChild.FlipH = false;
                 }
             }
@@ -113,7 +115,7 @@ public class Entity : RigidBody2D
 
 
     public virtual void Hit(Vector2 linearV, int damage) {
-        if(IsDead == true) {
+        if(IsDead == true || hitCooldown.IsStopped() == false) {
             return;
         }
         ApplyCentralImpulse(linearV);
@@ -136,7 +138,6 @@ public class Entity : RigidBody2D
             anim.Play("damaged");
         }
         Health += val;
-        Health = Godot.Mathf.Clamp(Health, 0, 3);
     }
 
 

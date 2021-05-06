@@ -27,7 +27,7 @@ shape = SubResource( 1 )
 anims/damaged = SubResource( 2 )
 anims/die = SubResource( 3 )
 
-[node name="ActionTimer" type="Timer" parent="." index="5"]
+[node name="ActionCooldown" type="Timer" parent="." index="5"]
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="OnEnemyBodyEntered"]

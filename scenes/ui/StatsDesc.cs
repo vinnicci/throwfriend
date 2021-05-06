@@ -23,6 +23,7 @@ public class StatsDesc : Control
             InGameUIAnim.Play("settings_enter");
         }
     }
+    
 
     private void OnExitPressed() {
         if(InGameUIAnim.IsPlaying() == false) {

@@ -2,7 +2,7 @@ extends Node2D
 
 
 export var detection_range: int = 600
-export var seek_dist: int = 300
+export var seek_dist: int = 250
 export var enemy_too_far_dist: int = 500
 export var enemy_too_close_dist: int = 150
 
@@ -10,9 +10,9 @@ onready var ray: RayCast2D = $RayCast2D
 onready var detection_area: Area2D = $DetectionRange
 onready var tick: Timer = $Tick
 onready var flee_rays_parent: Node2D = $FleeRays
-var action_timer: Timer
 var flee_rays_dict: Dictionary
 var btree: Node
+var action_cooldown: Timer
 
 var is_moving: bool = false
 var bb: Dictionary #blackboard
@@ -44,7 +44,7 @@ func init_properties(new_lvl: Node2D, new_parent: RigidBody2D):
 	level_node = new_lvl
 	player_node = level_node.PlayerNode
 	parent_node = new_parent
-	action_timer = parent_node.get_node("ActionTimer")
+	action_cooldown = parent_node.ActionCooldown
 
 
 func _physics_process(_delta: float) -> void:
@@ -60,7 +60,7 @@ func _physics_process(_delta: float) -> void:
 
 func is_ent_valid(ent: Node2D):
 	var output: bool = is_instance_valid(ent) == true
-	if output == true && ent.get("IsDead") != null:
+	if output == true && ent.IsDead != null:
 		output = output && ent.IsDead == false
 	return output
 
@@ -207,11 +207,12 @@ func task_flee(task):
 #param 0: enemy action name
 func task_act(task):
 	parent_node.call("DoAction", task.get_param(0))
-	task.succeed()
+	if parent_node.IsActing == false:
+		task.succeed();
 
 
 func task_is_act_ready(task):
-	if action_timer.is_stopped() == true:
+	if parent_node.IsActing == false && action_cooldown.is_stopped() == true:
 		task.succeed()
 	else:
 		task.failed()
