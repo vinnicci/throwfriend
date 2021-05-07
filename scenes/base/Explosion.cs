@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Explosion : Area2D
+public abstract class Explosion : Area2D
 {
     [Export] public int explosionRadius = 150;
     public int ExplosionRadius {get; set;}
@@ -43,8 +43,8 @@ public class Explosion : Area2D
         }
         if(explosionRadius != ExplosionRadius) {
             float scale = ExplosionRadius/explosionRadius;
-            collision.Scale = new Vector2(scale, scale);
-            poly.Scale = new Vector2(scale, scale);
+            collision.Scale *= scale;
+            poly.Scale *= scale;
         }
         anim.Play("explode");
         Godot.Collections.Array bodies = GetOverlappingBodies();

@@ -1,6 +1,6 @@
 using Godot;
 using System;
 
-public class PlayerItem : Item
+public abstract class PlayerItem : Item
 {
 }

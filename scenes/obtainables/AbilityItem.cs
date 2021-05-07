@@ -7,7 +7,7 @@ public class AbilityItem : Pickable
     {
         base.OnPickableItemBodyEntered(body);
         if(body is Player) {
-            animation.Play("pickedup");
+            animation.Play("pickup");
             Player player = (Player)body;
             player.AvailableUpgrade += 1;
             player.UpdateUpgrade();

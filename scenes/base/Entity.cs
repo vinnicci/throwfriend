@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-public class Entity : RigidBody2D
+public abstract class Entity : RigidBody2D
 {
     [Export] protected int speed = 500;
     public int Speed {get; set;}
     [Export] protected int health = 1;
-    public int Health {get; set;}
+    public int Health {get; protected set;}
     public Vector2 Velocity {get; protected set;}
     protected Timer deathTimer;
     protected Timer hitCooldown;
@@ -25,16 +25,25 @@ public class Entity : RigidBody2D
         hitCooldown = (Timer)GetNode("HitCooldown");
         anim = (AnimationPlayer)GetNode("Anim");
         spriteNode = (Node2D)GetNode("Sprite");
-        foreach(Godot.Object spriteCh in spriteNode.GetChildren()) {
-            if(spriteCh is Sprite) {
-                spriteChildren.Add(spriteCh);
-            }
-        }
+        InitSpriteChildren(spriteNode);
         legs = (AnimatedSprite)spriteNode.GetNode("Legs");
         Speed = speed;
         Health = health;
         IsDead = false;
-    } 
+    }
+
+
+    private void InitSpriteChildren(Node2D node) {
+        foreach(Godot.Object spriteCh in node.GetChildren()) {
+            if(spriteCh is Sprite) {
+                spriteChildren.Add(spriteCh);
+                Node2D sNode = (Node2D)spriteCh;
+                if(sNode.GetChildren().Count != 0) {
+                    InitSpriteChildren(sNode);
+                }
+            }
+        }
+    }
 
 
     public override void _PhysicsProcess(float delta)
@@ -119,7 +128,7 @@ public class Entity : RigidBody2D
             return;
         }
         ApplyCentralImpulse(linearV);
-        ModifyHealth(-damage);
+        Health -= damage;
         if(Health <= 0) {
             IsDead = true;
             deathTimer.Start();
@@ -128,21 +137,15 @@ public class Entity : RigidBody2D
             anim.Play("die");
         }
         else if(Health > 0) {
+            anim.Play("damaged");
             hitCooldown.Start();
         }
-    }
-
-
-    private void ModifyHealth(int val) {
-        if(val < 0) {
-            anim.Play("damaged");
-        }
-        Health += val;
+        Health = Godot.Mathf.Clamp(Health, 0, health);
     }
 
 
     public virtual void OnDeathTimerTimeout() {
-        QueueFree();
+        anim.Play("die");
     }
 
 

@@ -13,6 +13,11 @@ public abstract class Enemy : Entity
         set{
             levelNode = value;
             PlayerNode = levelNode.PlayerNode;
+            if(HasNode("EnemyWeapon") == true) {
+                WeaponNode = (EnemyWeapon)GetNode("EnemyWeapon");
+                WeaponNode.ParentNode = this;
+                WeaponNode.LevelNode = LevelNode;
+            }
             if(HasNode("AI") == true) {
                 aINode = (Node2D)GetNode("AI");
                 aINode.Call("init_properties", LevelNode, this);
@@ -21,6 +26,7 @@ public abstract class Enemy : Entity
     }
     public Timer ActionCooldown {get; private set;}
 
+    public EnemyWeapon WeaponNode {get; protected set;}
     private Node2D aINode;
     protected bool IsActing {get; set;}
 

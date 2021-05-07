@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class TestEnemy : Enemy
+public class Charger : Enemy
 {
     private bool charging = false;
 

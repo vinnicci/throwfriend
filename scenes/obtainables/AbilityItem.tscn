@@ -8,7 +8,7 @@
 extents = Vector2( 16, 16 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "pickedup"
+resource_name = "pickup"
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -58,6 +58,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [ 0.0, 180.0, 360.0, 540.0, 720.0 ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [node name="AbilityItem" instance=ExtResource( 2 )]
 collision_mask = 4
@@ -70,4 +84,4 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Anim" parent="." index="2"]
-anims/pickedup = SubResource( 2 )
+anims/pickup = SubResource( 2 )

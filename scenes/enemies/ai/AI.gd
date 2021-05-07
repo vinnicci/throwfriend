@@ -37,6 +37,7 @@ func _ready() -> void:
 
 var level_node: Node2D
 var parent_node: RigidBody2D
+var weapon_node: Node2D
 var player_node: RigidBody2D
 
 
@@ -44,6 +45,8 @@ func init_properties(new_lvl: Node2D, new_parent: RigidBody2D):
 	level_node = new_lvl
 	player_node = level_node.PlayerNode
 	parent_node = new_parent
+	if is_instance_valid(parent_node.WeaponNode) == true:
+		weapon_node = parent_node.WeaponNode
 	action_cooldown = parent_node.ActionCooldown
 
 
@@ -66,6 +69,8 @@ func is_ent_valid(ent: Node2D):
 
 
 func _go_to():
+	if is_instance_valid(weapon_node) == true:
+		weapon_node.look_at(bb["target"])
 	parent_node.Velocity = (bb["target"] - parent_node.global_position).clamped(1)
 
 
@@ -202,6 +207,12 @@ func task_flee(task):
 		is_moving = false
 		task.succeed()
 		return
+
+
+#param 0: target
+func task_aim_weapon(task):
+	weapon_node.look_at(bb[task.get_param(0)].global_position)
+	task.succeed()
 
 
 #param 0: enemy action name

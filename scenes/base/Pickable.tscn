@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/base/Pickable.cs" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "pickup"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [node name="Pickable" type="Area2D"]
 collision_layer = 0
@@ -14,6 +31,6 @@ scale = Vector2( 0.5, 0.5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Anim" type="AnimationPlayer" parent="."]
+anims/pickup = SubResource( 1 )
 
 [connection signal="body_entered" from="." to="." method="OnPickableItemBodyEntered"]
-[connection signal="animation_finished" from="Anim" to="." method="OnAnimAnimationFinished"]

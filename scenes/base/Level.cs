@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class Level : YSort
+public abstract class Level : YSort
 {
     public Player PlayerNode {get; private set;}
 

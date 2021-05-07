@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/base/Level.cs" type="Script" id=1]
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://test scenes/TestEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/enemies/charger/Charger.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/enemies/shooter/Shooter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/obtainables/AbilityItem.tscn" type="PackedScene" id=6]
 
 [node name="Level" type="YSort"]
@@ -23,50 +24,32 @@ tile_data = PoolIntArray( 262134, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0
 
 [node name="Enemies" type="YSort" parent="."]
 
-[node name="TestEnemy" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 542, 1329 )
-mode = 2
-mass = 0.1
-gravity_scale = 0.0
-contacts_reported = 1
-contact_monitor = true
-linear_damp = 15.0
+[node name="Shooter" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( 206, 844 )
 
-[node name="TestEnemy2" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 607, 637 )
-mode = 2
-mass = 0.1
-gravity_scale = 0.0
-contacts_reported = 1
-contact_monitor = true
-linear_damp = 15.0
+[node name="Shooter2" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( 178, 706 )
 
-[node name="TestEnemy3" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 698, 473 )
-mode = 2
-mass = 0.1
-gravity_scale = 0.0
-contacts_reported = 1
-contact_monitor = true
-linear_damp = 15.0
+[node name="Shooter3" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( 326, 724 )
 
-[node name="TestEnemy4" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 240, 574 )
-mode = 2
-mass = 0.1
-gravity_scale = 0.0
-contacts_reported = 1
-contact_monitor = true
-linear_damp = 15.0
+[node name="Shooter4" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( 686, 860 )
 
-[node name="TestEnemy5" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 351, 683 )
-mode = 2
-mass = 0.1
-gravity_scale = 0.0
-contacts_reported = 1
-contact_monitor = true
-linear_damp = 15.0
+[node name="Shooter5" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( 658, 722 )
+
+[node name="Shooter6" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( 578, 802 )
+
+[node name="Charger" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 638, 532 )
+
+[node name="Charger2" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 338, 472 )
+
+[node name="Charger3" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 210, 564 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -258, 685 )

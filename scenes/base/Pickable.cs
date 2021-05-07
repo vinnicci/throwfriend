@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Pickable : Area2D
+public abstract class Pickable : Area2D
 {
     protected AnimationPlayer animation;
 
@@ -18,7 +18,4 @@ public class Pickable : Area2D
     }
 
 
-    private void OnAnimAnimationFinished(String animName) {
-        QueueFree();
-    }
 }

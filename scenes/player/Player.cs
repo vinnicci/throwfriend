@@ -214,7 +214,6 @@ public class Player : Entity
     public override void Hit(Vector2 linearV, int damage)
     {
         base.Hit(linearV, damage);
-        Health = Godot.Mathf.Clamp(Health, 0, 3);
         if(Health <= 2) {
             lifeHUDAnim.Play(Health.ToString());
         }

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class Item : Node2D
+public abstract class Item : Node2D
 {
     public List<String> incompatibilityList = new List<string>();
     [Export] public String itemDescription;
