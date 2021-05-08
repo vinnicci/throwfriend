@@ -13,9 +13,7 @@ public abstract class Pickable : Area2D
     }
 
 
-    public virtual void OnPickableItemBodyEntered(Godot.Object body) {
-        SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
-    }
+    public abstract void OnPickableItemBodyEntered(Godot.Object body);
 
 
 }

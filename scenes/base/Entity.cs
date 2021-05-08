@@ -137,8 +137,10 @@ public abstract class Entity : RigidBody2D
             anim.Play("die");
         }
         else if(Health > 0) {
-            anim.Play("damaged");
-            hitCooldown.Start();
+            if(damage > 0) {
+                anim.Play("damaged");
+                hitCooldown.Start();
+            }
         }
         Health = Godot.Mathf.Clamp(Health, 0, health);
     }

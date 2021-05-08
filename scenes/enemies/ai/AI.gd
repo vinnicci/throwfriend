@@ -56,7 +56,7 @@ func _physics_process(_delta: float) -> void:
 		btree.enable = false
 		return
 	if is_moving == true:
-		_go_to()
+		go_to()
 	elif is_moving == false:
 		parent_node.Velocity = Vector2.ZERO
 
@@ -68,22 +68,22 @@ func is_ent_valid(ent: Node2D):
 	return output
 
 
-func _go_to():
+func go_to():
 	if is_instance_valid(weapon_node) == true:
 		weapon_node.look_at(bb["target"])
 	parent_node.Velocity = (bb["target"] - parent_node.global_position).clamped(1)
 
 
-func _get_seek_point(target):
+func get_seek_point(target):
 	if is_ent_valid(target) == false:
 		return
 	path_points.pop_back()
 	if path_points.size() == 0:
-		_get_new_path(target)
+		get_new_path(target)
 	bb["target"] = path_points.back()
 
 
-func _get_new_path(target):
+func get_new_path(target):
 	if is_ent_valid(target) == false:
 		return
 	path_points.clear()
@@ -92,7 +92,7 @@ func _get_new_path(target):
 	bb["target"] = path_points.back()
 
 
-func _get_flee_point():
+func get_flee_point():
 	if is_ent_valid(bb["enemy"]) == false:
 		return
 	var flee_routes: Dictionary = {}
@@ -163,22 +163,28 @@ func task_is_ent_valid(task):
 
 #param 0: target
 func task_get_seek_point(task):
-	_get_seek_point(bb[task.get_param(0)])
+	get_seek_point(bb[task.get_param(0)])
 	task.succeed()
 
 
 func task_get_flee_point(task):
-	_get_flee_point()
+	get_flee_point()
 	task.succeed()
 
 
-#param 0: target distance(must exist in blackboard)
+#param 0: target
 #param 1: distance required
 func task_is_target_close(task):
-	if bb[task.get_param(0)] <= bb[task.get_param(1)]:
+	if get_target_dist(task.get_param(0)) <= bb[task.get_param(1)]:
 		task.succeed()
 	else:
 		task.failed()
+
+
+func get_target_dist(target_bb_name: String) -> int: 
+	if bb.keys().has(target_bb_name + "_dist") == true:
+		return bb[target_bb_name + "_dist"]
+	return -1
 
 
 const ORIGIN_DIST: = 62500
@@ -189,9 +195,9 @@ const TARGET_DIST: = 10000
 func task_seek(task):
 	is_moving = true
 	if parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
-		_get_seek_point(bb[task.get_param(0)])
+		get_seek_point(bb[task.get_param(0)])
 	if bb[task.get_param(0)].global_position.distance_squared_to(path_points.front()) > ORIGIN_DIST:
-		_get_new_path(bb[task.get_param(0)])
+		get_new_path(bb[task.get_param(0)])
 	if bb[task.get_param(0) + "_dist"] <= bb["seek_dist"] || is_ent_valid(bb["enemy"]) == false:
 		is_moving = false
 		path_points.clear()
@@ -202,7 +208,7 @@ func task_seek(task):
 func task_flee(task):
 	is_moving = true
 	if parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
-		_get_flee_point()
+		get_flee_point()
 	if bb["enemy_dist"] > bb["enemy_too_far_dist"] || is_ent_valid(bb["enemy"]) == false:
 		is_moving = false
 		task.succeed()

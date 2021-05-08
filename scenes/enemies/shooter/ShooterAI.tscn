@@ -136,9 +136,9 @@ tree = {
 "data": {
 "fn": "task_is_target_close",
 "offset": Vector2( 600, -80 ),
-"params": [ [ "enemy_dist", 1 ], [ "seek_dist", 1 ] ],
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
-"values": [ "enemy_dist", "seek_dist" ]
+"values": [ "enemy", "seek_dist" ]
 },
 "name": "task3",
 "type": 1
@@ -229,9 +229,9 @@ tree = {
 "data": {
 "fn": "task_is_target_close",
 "offset": Vector2( 800, 640 ),
-"params": [ [ "enemy_dist", 1 ], [ "seek_dist", 1 ] ],
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
-"values": [ "enemy_dist", "seek_dist" ]
+"values": [ "enemy", "seek_dist" ]
 },
 "name": "task9",
 "type": 1
@@ -375,9 +375,9 @@ tree = {
 "data": {
 "fn": "task_is_target_close",
 "offset": Vector2( 600, -80 ),
-"params": [ [ "enemy_dist", 1 ], [ "seek_dist", 1 ] ],
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
-"values": [ "enemy_dist", "seek_dist" ]
+"values": [ "enemy", "seek_dist" ]
 },
 "name": "task3",
 "type": 1
@@ -438,9 +438,9 @@ tree = {
 "data": {
 "fn": "task_is_target_close",
 "offset": Vector2( 600, -80 ),
-"params": [ [ "enemy_dist", 1 ], [ "seek_dist", 1 ] ],
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
-"values": [ "enemy_dist", "seek_dist" ]
+"values": [ "enemy", "seek_dist" ]
 },
 "name": "task3",
 "type": 1
@@ -492,9 +492,9 @@ tree = {
 "data": {
 "fn": "task_is_target_close",
 "offset": Vector2( 600, -80 ),
-"params": [ [ "enemy_dist", 1 ], [ "seek_dist", 1 ] ],
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
-"values": [ "enemy_dist", "seek_dist" ]
+"values": [ "enemy", "seek_dist" ]
 },
 "name": "task3",
 "type": 1
@@ -585,9 +585,9 @@ tree = {
 "data": {
 "fn": "task_is_target_close",
 "offset": Vector2( 800, 640 ),
-"params": [ [ "enemy_dist", 1 ], [ "seek_dist", 1 ] ],
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
-"values": [ "enemy_dist", "seek_dist" ]
+"values": [ "enemy", "seek_dist" ]
 },
 "name": "task9",
 "type": 1
@@ -653,9 +653,9 @@ tree = {
 "data": {
 "fn": "task_is_target_close",
 "offset": Vector2( 800, 640 ),
-"params": [ [ "enemy_dist", 1 ], [ "seek_dist", 1 ] ],
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
-"values": [ "enemy_dist", "seek_dist" ]
+"values": [ "enemy", "seek_dist" ]
 },
 "name": "task9",
 "type": 1
@@ -732,9 +732,9 @@ tree = {
 "data": {
 "fn": "task_is_target_close",
 "offset": Vector2( 800, 640 ),
-"params": [ [ "enemy_dist", 1 ], [ "seek_dist", 1 ] ],
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
-"values": [ "enemy_dist", "seek_dist" ]
+"values": [ "enemy", "seek_dist" ]
 },
 "name": "task9",
 "type": 1
@@ -745,9 +745,9 @@ tree = {
 "data": {
 "fn": "task_is_target_close",
 "offset": Vector2( 800, 640 ),
-"params": [ [ "enemy_dist", 1 ], [ "seek_dist", 1 ] ],
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
-"values": [ "enemy_dist", "seek_dist" ]
+"values": [ "enemy", "seek_dist" ]
 },
 "name": "task9",
 "type": 1
@@ -838,9 +838,9 @@ tree = {
 "data": {
 "fn": "task_is_target_close",
 "offset": Vector2( 600, -80 ),
-"params": [ [ "enemy_dist", 1 ], [ "seek_dist", 1 ] ],
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
-"values": [ "enemy_dist", "seek_dist" ]
+"values": [ "enemy", "seek_dist" ]
 },
 "name": "task3",
 "type": 1
@@ -931,9 +931,9 @@ tree = {
 "data": {
 "fn": "task_is_target_close",
 "offset": Vector2( 800, 640 ),
-"params": [ [ "enemy_dist", 1 ], [ "seek_dist", 1 ] ],
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
-"values": [ "enemy_dist", "seek_dist" ]
+"values": [ "enemy", "seek_dist" ]
 },
 "name": "task9",
 "type": 1

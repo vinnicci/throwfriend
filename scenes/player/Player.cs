@@ -217,6 +217,9 @@ public class Player : Entity
         if(Health <= 2) {
             lifeHUDAnim.Play(Health.ToString());
         }
+        if(damage < 0) {
+            lifeHUDAnim.PlayBackwards((Health - 1).ToString());
+        }
     }
 
 
