@@ -1,0 +1,719 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/btree/script/btree.gd" type="Script" id=1]
+
+[node name="BTREE" type="Node"]
+script = ExtResource( 1 )
+tree = {
+"connection": [ {
+"from": "sequence",
+"from_port": 0,
+"to": "task",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 1,
+"to": "task2",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 2,
+"to": "task3",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 0,
+"to": "sequence",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 1,
+"to": "sequence2",
+"to_port": 0
+}, {
+"from": "root",
+"from_port": 0,
+"to": "selector",
+"to_port": 0
+}, {
+"from": "inverter",
+"from_port": 0,
+"to": "task6",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 0,
+"to": "inverter",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 1,
+"to": "task4",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 2,
+"to": "task5",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 0,
+"to": "task7",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 1,
+"to": "task8",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 2,
+"to": "sequence3",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 600, -320 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 600, -200 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 600, -60 ),
+"params": [ [ "explode", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "explode" ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 400, -200 ),
+"size": Vector2( 103, 109.75 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 800, 60 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task6",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 600, 60 ),
+"size": Vector2( 96, 43.75 )
+},
+"name": "inverter",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_get_patrol_point",
+"offset": Vector2( 600, 180 ),
+"params": [  ],
+"size": Vector2( 273, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_patrol",
+"offset": Vector2( 600, 300 ),
+"params": [  ],
+"size": Vector2( 244, 85 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 400, 180 ),
+"size": Vector2( 109, 109.75 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_get_seek_point",
+"offset": Vector2( 600, 420 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 264, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek",
+"offset": Vector2( 600, 540 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 209, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, 420 ),
+"size": Vector2( 109, 87.75 )
+},
+"name": "sequence3",
+"type": 2
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 200, 180 ),
+"size": Vector2( 95, 109.75 )
+},
+"name": "selector",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( 0, 180 ),
+"size": Vector2( 65, 60 )
+},
+"name": "root",
+"type": 0
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 600, -320 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 600, -200 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 600, -60 ),
+"params": [ [ "explode", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "explode" ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 400, -200 ),
+"size": Vector2( 103, 109.75 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 600, -200 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 600, -60 ),
+"params": [ [ "explode", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "explode" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 600, -320 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_patrol",
+"offset": Vector2( 600, 300 ),
+"params": [  ],
+"size": Vector2( 244, 85 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 800, 60 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task6",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 600, 60 ),
+"size": Vector2( 96, 43.75 )
+},
+"name": "inverter",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 800, 60 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_get_patrol_point",
+"offset": Vector2( 600, 180 ),
+"params": [  ],
+"size": Vector2( 273, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 800, 60 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task6",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 600, 60 ),
+"size": Vector2( 96, 43.75 )
+},
+"name": "inverter",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_get_patrol_point",
+"offset": Vector2( 600, 180 ),
+"params": [  ],
+"size": Vector2( 273, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_patrol",
+"offset": Vector2( 600, 300 ),
+"params": [  ],
+"size": Vector2( 244, 85 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 400, 180 ),
+"size": Vector2( 109, 109.75 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_get_seek_point",
+"offset": Vector2( 600, 420 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 264, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek",
+"offset": Vector2( 600, 540 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 209, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_get_seek_point",
+"offset": Vector2( 600, 420 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 264, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek",
+"offset": Vector2( 600, 540 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 209, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, 420 ),
+"size": Vector2( 109, 87.75 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 600, -320 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 600, -200 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 600, -60 ),
+"params": [ [ "explode", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "explode" ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 400, -200 ),
+"size": Vector2( 103, 109.75 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 800, 60 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task6",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 600, 60 ),
+"size": Vector2( 96, 43.75 )
+},
+"name": "inverter",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_get_patrol_point",
+"offset": Vector2( 600, 180 ),
+"params": [  ],
+"size": Vector2( 273, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_patrol",
+"offset": Vector2( 600, 300 ),
+"params": [  ],
+"size": Vector2( 244, 85 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 400, 180 ),
+"size": Vector2( 109, 109.75 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_get_seek_point",
+"offset": Vector2( 600, 420 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 264, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek",
+"offset": Vector2( 600, 540 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 209, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, 420 ),
+"size": Vector2( 109, 87.75 )
+},
+"name": "sequence3",
+"type": 2
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 200, 180 ),
+"size": Vector2( 95, 109.75 )
+},
+"name": "selector",
+"type": 3
+} ],
+"root": {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 600, -320 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 600, -200 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 600, -60 ),
+"params": [ [ "explode", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "explode" ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 400, -200 ),
+"size": Vector2( 103, 109.75 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 800, 60 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task6",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 600, 60 ),
+"size": Vector2( 96, 43.75 )
+},
+"name": "inverter",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_get_patrol_point",
+"offset": Vector2( 600, 180 ),
+"params": [  ],
+"size": Vector2( 273, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_patrol",
+"offset": Vector2( 600, 300 ),
+"params": [  ],
+"size": Vector2( 244, 85 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 400, 180 ),
+"size": Vector2( 109, 109.75 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_get_seek_point",
+"offset": Vector2( 600, 420 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 264, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek",
+"offset": Vector2( 600, 540 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 209, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, 420 ),
+"size": Vector2( 109, 87.75 )
+},
+"name": "sequence3",
+"type": 2
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 200, 180 ),
+"size": Vector2( 95, 109.75 )
+},
+"name": "selector",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( 0, 180 ),
+"size": Vector2( 65, 60 )
+},
+"name": "root",
+"type": 0
+}
+}
+_tree_id = "1609660390215533367"

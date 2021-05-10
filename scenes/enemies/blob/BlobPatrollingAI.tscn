@@ -1,0 +1,447 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/enemies/blob/BlobPatrollingBTREE.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/enemies/ai/AI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/blob/BlobPatrollingAI.gd" type="Script" id=3]
+
+[node name="AI" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+seek_dist = 150
+
+[node name="BTREE" parent="." index="5" instance=ExtResource( 1 )]
+tree = {
+"connection": [ {
+"from": "sequence2",
+"from_port": 0,
+"to": "task",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 1,
+"to": "task2",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 0,
+"to": "task4",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 1,
+"to": "task5",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 2,
+"to": "task3",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 0,
+"to": "sequence",
+"to_port": 0
+}, {
+"from": "root",
+"from_port": 0,
+"to": "selector",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 1,
+"to": "sequence2",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [  ],
+"data": {
+"fn": "task_patrol",
+"offset": Vector2( 400, -160 ),
+"params": [  ],
+"size": Vector2( 218, 65.75 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 400, -660 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 400, -540 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 400, -400 ),
+"params": [ [ "explode", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "explode" ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 200, -540 ),
+"size": Vector2( 103, 109.75 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_get_patrol_point",
+"offset": Vector2( 400, -280 ),
+"params": [  ],
+"size": Vector2( 273, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_patrol",
+"offset": Vector2( 400, -160 ),
+"params": [  ],
+"size": Vector2( 218, 65.75 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 200, -280 ),
+"size": Vector2( 109, 87.75 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 0, -400 ),
+"size": Vector2( 95, 87.75 )
+},
+"name": "selector",
+"type": 3
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 400, -660 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 400, -540 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 400, -400 ),
+"params": [ [ "explode", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "explode" ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 200, -540 ),
+"size": Vector2( 103, 109.75 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 400, -540 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 400, -660 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 400, -400 ),
+"params": [ [ "explode", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "explode" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_get_patrol_point",
+"offset": Vector2( 400, -280 ),
+"params": [  ],
+"size": Vector2( 273, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_get_patrol_point",
+"offset": Vector2( 400, -280 ),
+"params": [  ],
+"size": Vector2( 273, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_patrol",
+"offset": Vector2( 400, -160 ),
+"params": [  ],
+"size": Vector2( 218, 65.75 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 200, -280 ),
+"size": Vector2( 109, 87.75 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 400, -660 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 400, -540 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 400, -400 ),
+"params": [ [ "explode", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "explode" ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 200, -540 ),
+"size": Vector2( 103, 109.75 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_get_patrol_point",
+"offset": Vector2( 400, -280 ),
+"params": [  ],
+"size": Vector2( 273, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_patrol",
+"offset": Vector2( 400, -160 ),
+"params": [  ],
+"size": Vector2( 218, 65.75 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 200, -280 ),
+"size": Vector2( 109, 87.75 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 0, -400 ),
+"size": Vector2( 95, 87.75 )
+},
+"name": "selector",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( -200, -400 ),
+"size": Vector2( 65, 60 )
+},
+"name": "root",
+"type": 0
+} ],
+"root": {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_ent_valid",
+"offset": Vector2( 400, -660 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 246, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 400, -540 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 400, -400 ),
+"params": [ [ "explode", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "explode" ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 200, -540 ),
+"size": Vector2( 103, 109.75 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_get_patrol_point",
+"offset": Vector2( 400, -280 ),
+"params": [  ],
+"size": Vector2( 273, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_patrol",
+"offset": Vector2( 400, -160 ),
+"params": [  ],
+"size": Vector2( 218, 65.75 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 200, -280 ),
+"size": Vector2( 109, 87.75 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 0, -400 ),
+"size": Vector2( 95, 87.75 )
+},
+"name": "selector",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( -200, -400 ),
+"size": Vector2( 65, 60 )
+},
+"name": "root",
+"type": 0
+}
+}
+_tree_id = "4262266893177619"

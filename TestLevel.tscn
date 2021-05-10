@@ -1,12 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/base/Level.cs" type="Script" id=1]
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/enemies/charger/Charger.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/enemies/shooter/Shooter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/enemies/charger/ChargerPatrollingAI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/obtainables/AbilityItem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/shooter/ShooterPatrollingAI.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/shooter/Shooter.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemies/shooter/ShooterIdleAI.tscn" type="PackedScene" id=10]
 
 [node name="Level" type="YSort"]
 script = ExtResource( 1 )
@@ -25,47 +28,53 @@ tile_data = PoolIntArray( 262134, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0
 
 [node name="Enemies" type="YSort" parent="."]
 
-[node name="Shooter" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 206, 844 )
-
-[node name="Shooter2" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 178, 706 )
-
-[node name="Shooter3" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 326, 724 )
-
-[node name="Shooter4" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 686, 860 )
-
-[node name="Shooter5" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 658, 722 )
-
-[node name="Shooter6" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 578, 802 )
-
 [node name="Charger" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 638, 532 )
+position = Vector2( 656, 667 )
 
-[node name="Charger2" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 338, 472 )
+[node name="AI" parent="Enemies/Charger" instance=ExtResource( 5 )]
 
-[node name="Charger3" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 210, 564 )
+[node name="Shooter" parent="Enemies" instance=ExtResource( 9 )]
+position = Vector2( -622, 348 )
+
+[node name="AI" parent="Enemies/Shooter" instance=ExtResource( 8 )]
+seek_dist = 400
+
+[node name="Shooter2" parent="Enemies" instance=ExtResource( 9 )]
+position = Vector2( 205, 698 )
+
+[node name="AI" parent="Enemies/Shooter2" instance=ExtResource( 10 )]
+
+[node name="PatrolPoints" type="Node2D" parent="."]
+
+[node name="0" type="Position2D" parent="PatrolPoints"]
+position = Vector2( -83, 295 )
+
+[node name="1" type="Position2D" parent="PatrolPoints"]
+position = Vector2( -150, 1114 )
+
+[node name="2" type="Position2D" parent="PatrolPoints"]
+position = Vector2( 349, 656 )
+
+[node name="3" type="Position2D" parent="PatrolPoints"]
+position = Vector2( 684, 222 )
+
+[node name="4" type="Position2D" parent="PatrolPoints"]
+position = Vector2( 686, 994 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -258, 685 )
+position = Vector2( -206, 676 )
 
 [node name="AbilityItem" parent="." instance=ExtResource( 6 )]
-position = Vector2( -61, 623 )
+position = Vector2( -378, 523 )
 
 [node name="AbilityItem2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -61, 472 )
+position = Vector2( -378, 372 )
 
 [node name="HealthPickup" parent="." instance=ExtResource( 7 )]
-position = Vector2( -65, 766 )
+position = Vector2( -382, 666 )
 
 [node name="HealthPickup2" parent="." instance=ExtResource( 7 )]
-position = Vector2( -65, 892 )
+position = Vector2( -382, 792 )
 
 [node name="HealthPickup3" parent="." instance=ExtResource( 7 )]
-position = Vector2( -61, 1008 )
+position = Vector2( -378, 908 )

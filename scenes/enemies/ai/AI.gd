@@ -33,6 +33,7 @@ func _ready() -> void:
 	bb["enemy_too_far_dist"] = enemy_too_far_dist
 	bb["enemy_too_close_dist"] = enemy_too_close_dist
 	bb["enemy"] = null
+	bb["patrol_point"] = null
 
 
 var level_node: Node2D
@@ -48,6 +49,12 @@ func init_properties(new_lvl: Node2D, new_parent: RigidBody2D):
 	if is_instance_valid(parent_node.WeaponNode) == true:
 		weapon_node = parent_node.WeaponNode
 	action_cooldown = parent_node.ActionCooldown
+	bb["patrol_points"] = []
+	for patrol_node in level_node.get_node("PatrolPoints").get_children():
+		bb["patrol_points"].append(patrol_node)
+	for _i in range(randi() % bb["patrol_points"].size() + 1):
+		var pt = bb["patrol_points"].pop_back()
+		bb["patrol_points"].push_front(pt)
 
 
 func _physics_process(_delta: float) -> void:
@@ -63,8 +70,8 @@ func _physics_process(_delta: float) -> void:
 
 func is_ent_valid(ent: Node2D):
 	var output: bool = is_instance_valid(ent) == true
-	if output == true && ent.IsDead != null:
-		output = output && ent.IsDead == false
+	if output == true && ent.get("IsDead") != null:
+		return output && ent.IsDead == false
 	return output
 
 
@@ -74,15 +81,6 @@ func go_to():
 	parent_node.Velocity = (bb["target"] - parent_node.global_position).clamped(1)
 
 
-func get_seek_point(target):
-	if is_ent_valid(target) == false:
-		return
-	path_points.pop_back()
-	if path_points.size() == 0:
-		get_new_path(target)
-	bb["target"] = path_points.back()
-
-
 func get_new_path(target):
 	if is_ent_valid(target) == false:
 		return
@@ -90,22 +88,6 @@ func get_new_path(target):
 	path_points = level_node.call("GetPath", target.global_position, parent_node.global_position)
 	path_points.pop_back()
 	bb["target"] = path_points.back()
-
-
-func get_flee_point():
-	if is_ent_valid(bb["enemy"]) == false:
-		return
-	var flee_routes: Dictionary = {}
-	for flee_ray in flee_rays_dict:
-		if is_instance_valid(flee_ray.get_collider()) == true:
-			continue
-		var pos = flee_rays_dict[flee_ray].global_position
-		var flee_points: int = bb["enemy"].global_position.distance_squared_to(pos) as int
-		flee_routes[flee_points] = pos
-	if flee_routes.keys().size() != 0:
-		bb["target"] = flee_routes[flee_routes.keys().max()]
-	else:
-		bb["target"] = -bb["enemy"].global_position
 
 
 func _on_DetectionRange_body_entered(body: Node):
@@ -154,11 +136,18 @@ func _on_Resume_timeout():
 	emit_signal("resume")
 
 
+#check if dead
+
+
+#param 0: bb name
 func task_is_ent_valid(task):
 	if is_ent_valid(bb[task.get_param(0)]) == true:
 		task.succeed()
 	else:
 		task.failed()
+
+
+#get points
 
 
 #param 0: target
@@ -167,9 +156,49 @@ func task_get_seek_point(task):
 	task.succeed()
 
 
+func get_seek_point(target):
+	if is_ent_valid(target) == false:
+		return
+	path_points.pop_back()
+	if path_points.size() == 0:
+		get_new_path(target)
+	bb["target"] = path_points.back()
+
+
 func task_get_flee_point(task):
 	get_flee_point()
 	task.succeed()
+
+
+func get_flee_point():
+	if is_ent_valid(bb["enemy"]) == false:
+		return
+	var flee_routes: Dictionary = {}
+	for flee_ray in flee_rays_dict:
+		if is_instance_valid(flee_ray.get_collider()) == true:
+			continue
+		var pos = flee_rays_dict[flee_ray].global_position
+		var flee_points: int = bb["enemy"].global_position.distance_squared_to(pos) as int
+		flee_routes[flee_points] = pos
+	if flee_routes.keys().size() != 0:
+		bb["target"] = flee_routes[flee_routes.keys().max()]
+	else:
+		bb["target"] = -bb["enemy"].global_position
+
+
+func task_get_patrol_point(task):
+	get_patrol_point()
+	task.succeed()
+
+
+func get_patrol_point():
+	var next_target = bb["patrol_points"].pop_back()
+	bb["patrol_point"] = next_target
+	get_new_path(next_target)
+	bb["patrol_points"].push_front(next_target)
+
+
+#dist check
 
 
 #param 0: target
@@ -181,14 +210,17 @@ func task_is_target_close(task):
 		task.failed()
 
 
-func get_target_dist(target_bb_name: String) -> int: 
+func get_target_dist(target_bb_name: String) -> int:
 	if bb.keys().has(target_bb_name + "_dist") == true:
 		return bb[target_bb_name + "_dist"]
 	return -1
 
 
+#move actions
+
+
 const ORIGIN_DIST: = 62500
-const TARGET_DIST: = 10000
+const TARGET_DIST: = 2500
 
 
 #param 0: target
@@ -202,7 +234,6 @@ func task_seek(task):
 		is_moving = false
 		path_points.clear()
 		task.succeed()
-		return
 
 
 func task_flee(task):
@@ -212,7 +243,27 @@ func task_flee(task):
 	if bb["enemy_dist"] > bb["enemy_too_far_dist"] || is_ent_valid(bb["enemy"]) == false:
 		is_moving = false
 		task.succeed()
-		return
+
+
+#try_interrupt overridable func
+func task_patrol(task):
+	is_moving = true
+	if parent_node.global_position.distance_squared_to(bb["patrol_point"].global_position) <= TARGET_DIST:
+		is_moving = false
+		bb["patrol_point"] = null
+		task.succeed()
+	elif parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
+		get_seek_point(bb["patrol_point"])
+	if _try_interrupt() == true:
+		is_moving = false
+		task.succeed()
+
+
+func _try_interrupt() -> bool:
+	return false
+
+
+#ai actions
 
 
 #param 0: target

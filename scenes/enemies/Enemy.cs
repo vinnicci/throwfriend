@@ -25,8 +25,8 @@ public abstract class Enemy : Entity
         }
     }
     public Timer ActionCooldown {get; private set;}
-
     public EnemyWeapon WeaponNode {get; protected set;}
+    protected Explosion ExplosionNode {get; private set;}
     private Node2D aINode;
     protected bool IsActing {get; set;}
 
@@ -35,18 +35,14 @@ public abstract class Enemy : Entity
     {
         base._Ready();
         ActionCooldown = (Timer)GetNode("ActionCooldown");
+        if(HasNode("Explosion") == true) {
+            ExplosionNode = (Explosion)GetNode("Explosion");
+        }
         IsActing = false;
     }
 
 
     public abstract void OnEnemyBodyEntered(Godot.Object body);
-
-
-    public virtual void FinishAction() {
-        IsActing = false;
-        ActionCooldown.Start();
-        anim.Play("idle");
-    }
 
 
     public virtual bool DoAction(String actionName) {
@@ -56,6 +52,14 @@ public abstract class Enemy : Entity
         anim.Play(actionName);
         IsActing = true;
         return true;
+    }
+
+
+    //can't be accessed by animation player unless overridden
+    public virtual void FinishAction() {
+        IsActing = false;
+        ActionCooldown.Start();
+        anim.Play("idle");
     }
 
 

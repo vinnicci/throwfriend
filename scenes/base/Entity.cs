@@ -135,6 +135,8 @@ public abstract class Entity : RigidBody2D
             legs.Animation = "idle";
             anim.Stop();
             anim.Play("die");
+            SetCollisionLayerBit(Global.BIT_MASK_CHAR, false);
+            SetCollisionLayerBit(Global.BIT_MASK_PLAYER, false);
         }
         else if(Health > 0) {
             if(damage > 0) {

@@ -12,6 +12,7 @@ public abstract class Level : YSort
     public override void _Ready()
     {
         base._Ready();
+        GD.Randomize();
         PlayerNode = (Player)GetNode("Player");
         PlayerNode.LevelNode = this;
         foreach(Enemy enemy in GetNode("Enemies").GetChildren()) {

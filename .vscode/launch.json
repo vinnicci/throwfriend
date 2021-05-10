@@ -8,10 +8,10 @@
             "name": "GDScript",
             "type": "godot",
             "request": "launch",
-            "project": "",
+            "project": "D:\\dev\\Projects\\Project ThrowFriend",
             "port": 6007,
             "address": "127.0.0.1",
-            "launch_game_instance": true,
+            "launch_game_instance": false,
             "launch_scene": false
         },
         {

@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/enemies/charger/ChargerAI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/enemies/charger/Charger.cs" type="Script" id=3]
 [ext_resource path="res://assets/enemies/charger/tex_en_charger_lowerbody.png" type="Texture" id=4]
 [ext_resource path="res://assets/enemies/charger/tex_en_charger_upperbody.png" type="Texture" id=5]
@@ -14,7 +13,7 @@ radius = 38.0132
 
 [sub_resource type="Animation" id=3]
 resource_name = "charge"
-length = 0.55
+length = 0.75
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
@@ -23,10 +22,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 2, 2 ), Vector2( 2, 3 ) ]
+"values": [ Vector2( 2, 2 ), Vector2( 2, 3 ), Vector2( 2, 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:position")
@@ -35,10 +34,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 7 ), Vector2( 0, -13 ) ]
+"values": [ Vector2( 0, 7 ), Vector2( 0, -13 ), Vector2( 0, 7 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite/Upper:position")
@@ -59,7 +58,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.5, 0.55 ),
+"times": PoolRealArray( 0.5, 0.75 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -70,12 +69,12 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "damaged"
 length = 0.5
 step = 0.05
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -89,6 +88,18 @@ tracks/0/keys = {
 "args": [  ],
 "method": "queue_free"
 } ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -136,14 +147,13 @@ physics_material_override = SubResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 0, 6 )
-scale = Vector2( 2.3, 2 )
+position = Vector2( 0, 7 )
 
 [node name="Lower" type="Sprite" parent="Sprite" index="0"]
 texture = ExtResource( 4 )
 
 [node name="Upper" type="Sprite" parent="Sprite" index="1"]
-position = Vector2( 0, -10 )
+position = Vector2( 0, -8.83333 )
 texture = ExtResource( 5 )
 offset = Vector2( -6, 0 )
 
@@ -151,11 +161,9 @@ offset = Vector2( -6, 0 )
 position = Vector2( -3, 6 )
 shape = SubResource( 2 )
 
-[node name="AI" parent="." index="3" instance=ExtResource( 2 )]
-
-[node name="Anim" parent="." index="5"]
+[node name="Anim" parent="." index="4"]
 autoplay = "idle"
 anims/charge = SubResource( 3 )
-anims/damaged = SubResource( 7 )
-anims/die = SubResource( 8 )
+anims/damaged = SubResource( 4 )
+anims/die = SubResource( 5 )
 anims/idle = SubResource( 6 )

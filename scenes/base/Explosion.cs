@@ -3,9 +3,9 @@ using System;
 
 public abstract class Explosion : Area2D
 {
+    [Export] public int damage = 1; 
     [Export] public int explosionRadius = 150;
     public int ExplosionRadius {get; set;}
-    public Node2D ParentNode {get; set;}
     public int Damage {get; set;}
     
     private Polygon2D poly;
@@ -21,6 +21,7 @@ public abstract class Explosion : Area2D
         collision = (CollisionShape2D)GetNode("CollisionShape2D");
         ray = (RayCast2D)GetNode("RayCast2D");
         anim = (AnimationPlayer)GetNode("Anim");
+        Damage = damage;
         ExplosionRadius = explosionRadius;
         CircleShape2D circle = new CircleShape2D();
         circle.Radius = ExplosionRadius;
@@ -49,19 +50,20 @@ public abstract class Explosion : Area2D
         anim.Play("explode");
         Godot.Collections.Array bodies = GetOverlappingBodies();
         foreach(Godot.Object body in bodies) {
+            if(body == GetParent()) {
+                continue;
+            }
             if(body is Entity) {
                 Entity entity = (Entity)body;
-                ray.LookAt(entity.GlobalPosition);
-                int dmg;
-                if(entity is Player) {
-                    dmg = 0;
-                }
-                else {
-                    dmg = Damage;
-                }
-                entity.Hit(new Vector2(KNOCKBACK, 0).Rotated(ray.GlobalRotation), dmg);
+                ApplyDamage(entity);
             }
         }
+    }
+
+
+    public virtual void ApplyDamage(Entity en) {
+        ray.LookAt(en.GlobalPosition);
+        en.Hit(new Vector2(KNOCKBACK, 0).Rotated(ray.GlobalRotation), Damage);
     }
 
 
