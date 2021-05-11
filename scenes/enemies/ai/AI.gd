@@ -55,6 +55,7 @@ func init_properties(new_lvl: Node2D, new_parent: RigidBody2D):
 	for _i in range(randi() % bb["patrol_points"].size() + 1):
 		var pt = bb["patrol_points"].pop_back()
 		bb["patrol_points"].push_front(pt)
+	bb["allies"] = []
 
 
 func _physics_process(_delta: float) -> void:
@@ -63,9 +64,17 @@ func _physics_process(_delta: float) -> void:
 		btree.enable = false
 		return
 	if is_moving == true:
-		go_to()
+		if is_instance_valid(weapon_node) == true:
+			weapon_node.look_at(bb["target"])
+		parent_node.Velocity = (separate_from_allies(bb["target"] - parent_node.global_position)).clamped(1)
 	elif is_moving == false:
-		parent_node.Velocity = Vector2.ZERO
+		parent_node.Velocity = (separate_from_allies()).clamped(1)
+
+
+func separate_from_allies(velocity: Vector2 = Vector2.ZERO) -> Vector2:
+	for ally in bb["allies"]:
+		velocity += parent_node.global_position - ally.global_position
+	return velocity
 
 
 func is_ent_valid(ent: Node2D):
@@ -75,12 +84,6 @@ func is_ent_valid(ent: Node2D):
 	return output
 
 
-func go_to():
-	if is_instance_valid(weapon_node) == true:
-		weapon_node.look_at(bb["target"])
-	parent_node.Velocity = (bb["target"] - parent_node.global_position).clamped(1)
-
-
 func get_new_path(target):
 	if is_ent_valid(target) == false:
 		return
@@ -88,6 +91,16 @@ func get_new_path(target):
 	path_points = level_node.call("GetPath", target.global_position, parent_node.global_position)
 	path_points.pop_back()
 	bb["target"] = path_points.back()
+
+
+func _on_FriendlyRange_body_entered(body: Node):
+	if body is RigidBody2D && body.has_node("AI") == true:
+		bb["allies"].append(body)
+
+
+func _on_FriendlyRange_body_exited(body: Node):
+	if body is RigidBody2D && bb["allies"].has(body) == true:
+		bb["allies"].erase(body)
 
 
 func _on_DetectionRange_body_entered(body: Node):
@@ -245,7 +258,7 @@ func task_flee(task):
 		task.succeed()
 
 
-#try_interrupt overridable func
+#_try_interrupt overridable func - different enemies has different conditions to stop patrolling
 func task_patrol(task):
 	is_moving = true
 	if parent_node.global_position.distance_squared_to(bb["patrol_point"].global_position) <= TARGET_DIST:

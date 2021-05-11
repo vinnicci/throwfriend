@@ -1,0 +1,142 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/player/tex_run_1.png" type="Texture" id=1]
+[ext_resource path="res://assets/player/tex_player_torso.png" type="Texture" id=2]
+[ext_resource path="res://assets/player/tex_run_2.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/tex_run_3.png" type="Texture" id=4]
+[ext_resource path="res://assets/player/tex_run_4.png" type="Texture" id=5]
+[ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/enemies/melee/tex_en_melee.png" type="Texture" id=7]
+[ext_resource path="res://scenes/enemies/melee/Sword.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/melee/Melee.cs" type="Script" id=9]
+[ext_resource path="res://scenes/enemies/melee/Sword.cs" type="Script" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 19.0
+height = 68.0
+
+[sub_resource type="Animation" id=7]
+resource_name = "attack"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "Attack"
+}, {
+"args": [  ],
+"method": "ApplyCentralImpulseAct"
+}, {
+"args": [  ],
+"method": "FinishAction"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.5
+step = 0.05
+
+[sub_resource type="Animation" id=8]
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Head:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1.25 ), Vector2( 1.25, 1 ), Vector2( 1, 1.25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -13 ), Vector2( 0, -11 ), Vector2( 0, -13 ) ]
+}
+
+[node name="Melee" instance=ExtResource( 6 )]
+script = ExtResource( 9 )
+
+[node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 8 )]
+rotation = 0.00174533
+script = ExtResource( 10 )
+
+[node name="Torso" type="Sprite" parent="Sprite" index="0"]
+z_index = -1
+texture = ExtResource( 2 )
+
+[node name="Head" type="Sprite" parent="Sprite" index="1"]
+position = Vector2( 0, -13 )
+scale = Vector2( 1, 1.25 )
+texture = ExtResource( 7 )
+
+[node name="Legs" parent="Sprite" index="2"]
+position = Vector2( -0.5, 14 )
+z_index = -1
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 0, -6 )
+shape = SubResource( 2 )
+
+[node name="Anim" parent="." index="5"]
+anims/attack = SubResource( 7 )
+anims/damaged = SubResource( 4 )
+anims/die = SubResource( 8 )
+anims/idle = SubResource( 6 )

@@ -4,12 +4,12 @@
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/enemies/charger/Charger.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/enemies/charger/ChargerPatrollingAI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/enemies/melee/MeleeIdleAI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/obtainables/AbilityItem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/enemies/shooter/ShooterPatrollingAI.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/melee/MeleePatrollingAI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/shooter/Shooter.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/enemies/shooter/ShooterIdleAI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/enemies/melee/Melee.tscn" type="PackedScene" id=11]
 
 [node name="Level" type="YSort"]
 script = ExtResource( 1 )
@@ -31,18 +31,34 @@ tile_data = PoolIntArray( 262134, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0
 [node name="Charger" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 656, 667 )
 
-[node name="AI" parent="Enemies/Charger" instance=ExtResource( 5 )]
+[node name="Charger2" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 370, 1312 )
 
 [node name="Shooter" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( -622, 348 )
 
-[node name="AI" parent="Enemies/Shooter" instance=ExtResource( 8 )]
-seek_dist = 400
-
 [node name="Shooter2" parent="Enemies" instance=ExtResource( 9 )]
-position = Vector2( 205, 698 )
+position = Vector2( -606, 1027 )
 
-[node name="AI" parent="Enemies/Shooter2" instance=ExtResource( 10 )]
+[node name="Melee" parent="Enemies" instance=ExtResource( 11 )]
+position = Vector2( 222, 335 )
+
+[node name="AI" parent="Enemies/Melee" instance=ExtResource( 5 )]
+
+[node name="Melee2" parent="Enemies" instance=ExtResource( 11 )]
+position = Vector2( 379, 674 )
+
+[node name="AI" parent="Enemies/Melee2" instance=ExtResource( 5 )]
+
+[node name="Melee3" parent="Enemies" instance=ExtResource( 11 )]
+position = Vector2( 165, 1296 )
+
+[node name="AI" parent="Enemies/Melee3" instance=ExtResource( 8 )]
+
+[node name="Melee5" parent="Enemies" instance=ExtResource( 11 )]
+position = Vector2( 65, 1314 )
+
+[node name="AI" parent="Enemies/Melee5" instance=ExtResource( 8 )]
 
 [node name="PatrolPoints" type="Node2D" parent="."]
 
@@ -62,7 +78,7 @@ position = Vector2( 684, 222 )
 position = Vector2( 686, 994 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -206, 676 )
+position = Vector2( -78, 486 )
 
 [node name="AbilityItem" parent="." instance=ExtResource( 6 )]
 position = Vector2( -378, 523 )

@@ -4,6 +4,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
+loop = true
 
 [sub_resource type="Animation" id=2]
 resource_name = "shoot"

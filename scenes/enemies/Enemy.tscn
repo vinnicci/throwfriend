@@ -1,10 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/base/Entity.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/enemies/Enemy.cs" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
-resource_name = "damaged"
 length = 0.5
 step = 0.05
 
@@ -36,6 +35,10 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+loop = true
+
 [node name="Enemy" instance=ExtResource( 2 )]
 collision_mask = 2
 script = ExtResource( 3 )
@@ -47,8 +50,10 @@ scale = Vector2( 2, 2 )
 visible = true
 
 [node name="Anim" parent="." index="4"]
+autoplay = "idle"
 anims/damaged = SubResource( 1 )
 anims/die = SubResource( 2 )
+anims/idle = SubResource( 3 )
 
 [node name="ActionCooldown" type="Timer" parent="." index="5"]
 one_shot = true
