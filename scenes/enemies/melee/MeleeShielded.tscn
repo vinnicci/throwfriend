@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/player/tex_run_4.png" type="Texture" id=5]
 [ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/enemies/melee/tex_en_melee.png" type="Texture" id=7]
-[ext_resource path="res://scenes/enemies/melee/Sword.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/melee/SwordAndShield.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/melee/Melee.cs" type="Script" id=9]
 [ext_resource path="res://assets/enemies/melee/tex_possessed_head_scared.png" type="Texture" id=11]
 [ext_resource path="res://assets/player/tex_player_arms.png" type="Texture" id=12]
@@ -158,15 +158,11 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -13 ), Vector2( 0, -11 ), Vector2( 0, -13 ) ]
 }
 
-[node name="Melee" instance=ExtResource( 6 )]
+[node name="MeleeShielded" instance=ExtResource( 6 )]
 script = ExtResource( 9 )
-speed = 750
+speed = 300
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 8 )]
-rotation = 0.00174533
-
-[node name="Sprite" parent="." index="1"]
-rotation = -0.0151415
 
 [node name="Arms" type="Sprite" parent="Sprite" index="0"]
 visible = false

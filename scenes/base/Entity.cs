@@ -16,6 +16,8 @@ public abstract class Entity : RigidBody2D
     protected AnimatedSprite legs;
     protected Node2D spriteNode;
     protected Godot.Collections.Array spriteChildren = new Godot.Collections.Array();
+    private Node2D hud;
+    private HealthHUD healthHUD;
 
 
     public override void _Ready()
@@ -30,6 +32,9 @@ public abstract class Entity : RigidBody2D
         Speed = speed;
         Health = health;
         IsDead = false;
+        hud = (Node2D)GetNode("HUD");
+        healthHUD = (HealthHUD)hud.GetNode("Health");
+        healthHUD.ParentNode = this;
     }
 
 
@@ -43,6 +48,13 @@ public abstract class Entity : RigidBody2D
                 }
             }
         }
+    }
+
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+        hud.GlobalRotation = 0;
     }
 
 
@@ -80,9 +92,9 @@ public abstract class Entity : RigidBody2D
 		    teleportPos = Vector2.Zero;
         }
         //velocity
+        AnimateSprites();
         AppliedForce = Vector2.Zero;
         state.AddCentralForce(Velocity.Clamped(1) * Speed);
-        AnimateSprites();
         Velocity = Vector2.Zero;
     }
 
@@ -105,6 +117,7 @@ public abstract class Entity : RigidBody2D
                 }
             }
             if(legs.FlipH == false) {
+                legs.Offset *= new Vector2(-1,1);
                 legs.FlipH = true;
             }
         }
@@ -117,6 +130,7 @@ public abstract class Entity : RigidBody2D
                 }
             }
             if(legs.FlipH == true) {
+                legs.Offset *= new Vector2(-1,1);
                 legs.FlipH = false;
             }
         }
@@ -140,11 +154,14 @@ public abstract class Entity : RigidBody2D
         }
         else if(Health > 0) {
             if(damage > 0) {
-                anim.Play("damaged");
+                if(this is Enemy == false) {
+                    anim.Play("damaged");
+                }
                 hitCooldown.Start();
             }
         }
         Health = Godot.Mathf.Clamp(Health, 0, health);
+        healthHUD.UpdateHealth();
     }
 
 

@@ -7,6 +7,8 @@ public abstract class EnemyProj : Area2D
     [Export] protected int speed = 20;
 
     public Vector2 Velocity {get; private set;}
+    public int Range {get; private set;}
+    public int Speed {get; private set;}
 
     private Sprite sprite;
     private Timer rangeTimer;
@@ -20,6 +22,9 @@ public abstract class EnemyProj : Area2D
         sprite = (Sprite)GetNode("Sprite");
         rangeTimer = (Timer)GetNode("RangeTimer");
         anim = (AnimationPlayer)GetNode("Anim");
+        Range = range;
+        Speed = speed;
+        rangeTimer.WaitTime = (float)Range/(float)Speed;
     }
 
 
@@ -34,12 +39,12 @@ public abstract class EnemyProj : Area2D
 
 
     public void Spawn(Vector2 globalPos, float globalRotDeg, Level lvl) {
-        lvl.AddChild(this);
         Velocity = new Vector2(speed, 0);
         Velocity = Velocity.Rotated(Godot.Mathf.Deg2Rad(globalRotDeg));
         GlobalPosition = globalPos;
         GlobalRotation = globalRotDeg;
-        rangeTimer.Start(range/speed);
+        lvl.AddChild(this);
+        rangeTimer.Start();
     }
 
 
@@ -50,6 +55,7 @@ public abstract class EnemyProj : Area2D
         }
         Velocity = Vector2.Zero;
         anim.Play("hit");
+        rangeTimer.Stop();
     }
 
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/enemies/blob/BlobPatrollingBTREE.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/enemies/ai/AI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/AI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/enemies/blob/BlobPatrollingAI.gd" type="Script" id=3]
 
 [node name="AI" instance=ExtResource( 2 )]

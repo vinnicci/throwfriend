@@ -114,6 +114,7 @@ hotkey_4={
 2d_physics/layer_1="Char"
 2d_physics/layer_2="Level"
 2d_physics/layer_3="Player"
+2d_physics/layer_4="Snark"
 
 [network]
 

@@ -38,7 +38,8 @@ public class Player : Entity
     private Loadout loadout;
     private Settings settings;
     private HotkeyHUD hotkeyHUD;
-    private AnimationPlayer lifeHUDAnim;
+    private WarningText uiWarning;
+    private AnimationPlayer armsAnim;
     private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
 
 
@@ -63,7 +64,8 @@ public class Player : Entity
         settings = (Settings)inGameUI.GetNode("Settings");
         hotkeyHUD = (HotkeyHUD)GetNode("CanvasLayer/HotkeyHUD");
         loadout.HotkeyHUDNode = hotkeyHUD;
-        lifeHUDAnim = (AnimationPlayer)GetNode("LifeHUD/Anim");
+        uiWarning = (WarningText)GetNode("CanvasLayer/UIWarning");
+        armsAnim = (AnimationPlayer)GetNode("Center/Arms/Anim");
     }
 
 
@@ -136,9 +138,12 @@ public class Player : Entity
         }
         bool hasWeap = Center.HasNode("WeapPos/Weapon");
         //in game ui
-        if(Input.IsActionJustPressed("in_game_ui") && hasWeap == true && settings.Visible == false &&
+        if(Input.IsActionJustPressed("in_game_ui") && settings.Visible == false &&
         inGameUIAnim.IsPlaying() == false) {
-            if(inGameUI.Visible == false) {
+            if(hasWeap == false) {
+                uiWarning.ShowWarning();
+            }
+            else if(inGameUI.Visible == false) {
                 inGameUIAnim.Play("enter");
             }
             else if(inGameUI.Visible == true) {
@@ -170,10 +175,10 @@ public class Player : Entity
         if(Input.IsActionJustReleased("throw_weap") && hasWeap == true) {
             WeaponNode.Throw(ThrowStrength, GlobalPosition, Center.GlobalRotation);
             if(arms.FlipH == false) {
-                anim.Play("throw");
+                armsAnim.Play("throw");
             }
             else {
-                anim.PlayBackwards("throw");
+                armsAnim.PlayBackwards("throw");
             }
             Speed += EXTRA_SPEED_WITHOUT_WEAPON;
         }
@@ -215,10 +220,8 @@ public class Player : Entity
     {
         base.Hit(linearV, damage);
         if(Health <= 2) {
-            lifeHUDAnim.Play(Health.ToString());
         }
         if(damage < 0) {
-            lifeHUDAnim.PlayBackwards((Health - 1).ToString());
         }
     }
 

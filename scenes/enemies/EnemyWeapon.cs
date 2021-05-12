@@ -9,13 +9,13 @@ public class EnemyWeapon : Node2D
     public Level LevelNode {get; set;}
 
     private Position2D spawnPoint;
-    private AnimationPlayer anim;
+    protected AnimationPlayer anim;
 
 
     public override void _Ready()
     {
         base._Ready();
-        spawnPoint = (Position2D)GetNode("ProjSpawn");
+        spawnPoint = (Position2D)GetNode("Sprites/ProjSpawn");
         anim = (AnimationPlayer)GetNode("Anim");
     }
 
@@ -27,7 +27,7 @@ public class EnemyWeapon : Node2D
 
     public virtual void SpawnProj() {
         EnemyProj proj = (EnemyProj)projectile.Instance();
-        proj.Spawn(spawnPoint.GlobalPosition, GlobalRotationDegrees, LevelNode);
+        proj.Spawn(spawnPoint.GlobalPosition, spawnPoint.GlobalRotationDegrees, LevelNode);
     }
 
 

@@ -1,7 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/base/Entity.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/enemies/Enemy.cs" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=4]
+resource_local_to_scene = true
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
 
 [sub_resource type="Animation" id=1]
 length = 0.5
@@ -36,7 +50,6 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "idle"
 loop = true
 
 [node name="Enemy" instance=ExtResource( 2 )]
@@ -45,6 +58,9 @@ script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
 scale = Vector2( 2, 2 )
+
+[node name="Legs" parent="Sprite" index="0"]
+frames = SubResource( 4 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 visible = true

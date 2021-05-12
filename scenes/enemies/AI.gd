@@ -61,11 +61,14 @@ func init_properties(new_lvl: Node2D, new_parent: RigidBody2D):
 func _physics_process(_delta: float) -> void:
 	if is_ent_valid(parent_node) == false:
 		is_moving = false
-		btree.enable = false
+		queue_free()
 		return
 	if is_moving == true:
 		if is_instance_valid(weapon_node) == true:
-			weapon_node.look_at(bb["target"])
+			if is_ent_valid(bb["enemy"]) == true:
+				weapon_node.look_at(bb["enemy"].global_position)
+			else:
+				weapon_node.look_at(bb["target"])
 		parent_node.Velocity = (separate_from_allies(bb["target"] - parent_node.global_position)).clamped(1)
 	elif is_moving == false:
 		parent_node.Velocity = (separate_from_allies()).clamped(1)

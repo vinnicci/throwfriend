@@ -160,6 +160,7 @@ public class Weapon : RigidBody2D
 
     [Signal] public delegate void PickedUp();
     private const int KNOCKBACK = 200;
+    private const int BOUNCE_ROTATION = 30;
 
 
     private void OnWeaponBodyEntered(Godot.Object body) {
@@ -184,7 +185,7 @@ public class Weapon : RigidBody2D
         if(GD.RandRange(0, 1.0) <= 0.5) {
             i *= -1;
         }
-        AngularVelocity = i * 50;
+        AngularVelocity = i * BOUNCE_ROTATION;
     }
 
 
