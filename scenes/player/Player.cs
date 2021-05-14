@@ -3,7 +3,7 @@ using System;
 
 public class Player : Entity
 {
-    [Export] protected int throwStrength = 2000;
+    [Export] protected int throwStrength = 250;
     public int ThrowStrength {get; set;}
     public Node2D Center {get; set;}
     public Weapon WeaponNode {get; set;}
@@ -213,16 +213,6 @@ public class Player : Entity
         camera.ParentNode = LevelNode;
         camera.GlobalPosition = GlobalPosition;
         base.OnDeathTimerTimeout();
-    }
-
-
-    public override void Hit(Vector2 linearV, int damage)
-    {
-        base.Hit(linearV, damage);
-        if(Health <= 2) {
-        }
-        if(damage < 0) {
-        }
     }
 
 

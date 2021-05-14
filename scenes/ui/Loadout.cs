@@ -223,12 +223,12 @@ public class Loadout : Control
     public void ShowItemSelection(String panel, String slot, Label upgradeLabel) {
         selectRef = new SelectRef(panel, slot, upgradeLabel);
         if(panel == "PlayerPanel") { 
-            playerItemSel.Visible = true;
-            weaponItemSel.Visible = false;
+            playerItemSel.ShowItemSelection(true);
+            weaponItemSel.ShowItemSelection(false);
         }
         else if(panel == "WeaponPanel") {
-            weaponItemSel.Visible = true;
-            playerItemSel.Visible = false;
+            weaponItemSel.ShowItemSelection(true);
+            playerItemSel.ShowItemSelection(false);
         }
     }
 
@@ -248,7 +248,7 @@ public class Loadout : Control
                 UpdateSlotIcon(2);
             }
             PlayerNode.RefreshItems();
-            playerItemSel.Visible = false;
+            playerItemSel.ShowItemSelection(false);
         }
         else if(selectRef.Panel == "WeaponPanel") {
             if(selectRef.Slot == "ItemSlot1") {
@@ -266,7 +266,7 @@ public class Loadout : Control
                 UpdateSlotIcon(4);
             }
             WeaponNode.RefreshItems();
-            weaponItemSel.Visible = false;
+            weaponItemSel.ShowItemSelection(false);
         }
         playerItemSel.SetIncompatibleItems(item.incompatibilityList);
         weaponItemSel.SetIncompatibleItems(item.incompatibilityList);

@@ -7,15 +7,19 @@ public abstract class Level : YSort
     public Player PlayerNode {get; private set;}
 
     private Navigation2D nav;
+    private YSort enemies;
 
 
     public override void _Ready()
     {
         base._Ready();
         GD.Randomize();
-        PlayerNode = (Player)GetNode("Player");
-        PlayerNode.LevelNode = this;
-        foreach(Enemy enemy in GetNode("Enemies").GetChildren()) {
+        if(HasNode("Player") == true) {
+            PlayerNode = (Player)GetNode("Player");
+            PlayerNode.LevelNode = this;
+        }
+        enemies = (YSort)GetNode("Enemies");
+        foreach(Enemy enemy in enemies.GetChildren()) {
             enemy.LevelNode = this;
         }
         nav = (Navigation2D)GetNode("Nav");
@@ -23,6 +27,12 @@ public abstract class Level : YSort
 
 
     Queue<Line2D> lines = new Queue<Line2D>();
+
+
+    public void SpawnEnemy(Enemy enemy, Vector2 pos) {
+        enemies.AddChild(enemy);
+        enemy.GlobalPosition = pos;
+    }
 
 
     public Vector2[] GetPath(Vector2 to, Vector2 from) {

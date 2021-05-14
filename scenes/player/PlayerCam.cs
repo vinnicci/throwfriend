@@ -5,7 +5,6 @@ public class PlayerCam : Camera2D
 {
     public Node2D ParentNode {get; set;}
     public bool IsShaking {get; private set;}
-    private const float VDIST = 0.5f;
 
 
     public override void _Ready()
@@ -15,7 +14,8 @@ public class PlayerCam : Camera2D
     }
 
 
-    const float LERP_RETURN = 0.03f;
+    private const float LERP_RETURN = 0.03f;
+    private const float VDIST = 0.5f;
 
 
     public override void _PhysicsProcess(float delta)

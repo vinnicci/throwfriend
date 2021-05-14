@@ -8,7 +8,7 @@ public class EnemyWeapon : Node2D
     public Enemy ParentNode {get; set;}
     public Level LevelNode {get; set;}
 
-    private Position2D spawnPoint;
+    protected Position2D spawnPoint;
     protected AnimationPlayer anim;
 
 

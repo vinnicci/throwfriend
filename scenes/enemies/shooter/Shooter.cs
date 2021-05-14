@@ -3,7 +3,10 @@ using System;
 
 public class Shooter : Enemy
 {
-    public override void OnEnemyBodyEntered(Godot.Object body) {
+    public override void _Ready()
+    {
+        base._Ready();
+        InitAct("shoot", (float)actCooldown[0]);
     }
 
 
@@ -12,9 +15,9 @@ public class Shooter : Enemy
     }
 
 
-    public override void FinishAction()
+    public override void FinishAction(String actionName)
     {
-        base.FinishAction();
+        base.FinishAction(actionName);
     }
 
 

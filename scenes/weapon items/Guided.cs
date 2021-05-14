@@ -12,13 +12,13 @@ public class Guided : WeaponItem
     }
 
 
-    private const int HOME_MAGNITUDE = 250;
+    private const int HOME_MAGNITUDE = 500;
 
 
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
-        if(WeaponNode.Mode != RigidBody2D.ModeEnum.Rigid) {
+        if(WeaponNode.Mode != RigidBody2D.ModeEnum.Rigid || IsInstanceValid(WeaponNode.PlayerNode) == false) {
             return;
         }
         Vector2 vec = (GetGlobalMousePosition() - WeaponNode.GlobalPosition).Clamped(1) * HOME_MAGNITUDE;

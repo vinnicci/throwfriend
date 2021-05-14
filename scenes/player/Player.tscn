@@ -13,11 +13,11 @@
 [ext_resource path="res://assets/player/tex_run_4.png" type="Texture" id=11]
 [ext_resource path="res://scenes/ui/InGame.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/ui/HotkeyHUD.tscn" type="PackedScene" id=13]
-[ext_resource path="res://test scenes/Theme.tres" type="Theme" id=14]
+[ext_resource path="res://scenes/ui/Theme.tres" type="Theme" id=14]
 [ext_resource path="res://scenes/ui/WarningText.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/enemies/melee/tex_possessed_head_scared.png" type="Texture" id=17]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=1]
 resource_name = "throw"
 length = 0.2
 step = 0.05
@@ -34,7 +34,7 @@ tracks/0/keys = {
 "values": [ 0.0, 90.0, 180.0 ]
 }
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
@@ -47,12 +47,11 @@ animations = [ {
 "speed": 15.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=3]
 radius = 13.0
 height = 32.0
 
-[sub_resource type="Animation" id=3]
-resource_name = "damaged"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
 tracks/0/interp = 1
@@ -66,7 +65,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:rotation_degrees")
 tracks/0/interp = 1
@@ -135,7 +134,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 
 [node name="Anim" type="AnimationPlayer" parent="Center/Arms" index="0"]
-anims/throw = SubResource( 5 )
+anims/throw = SubResource( 1 )
 
 [node name="WeapPos" type="Position2D" parent="Center" index="1"]
 position = Vector2( -35.4756, -22.6205 )
@@ -155,11 +154,11 @@ texture = ExtResource( 7 )
 
 [node name="Legs" parent="Sprite" index="2"]
 position = Vector2( -0.5, 14.5 )
-frames = SubResource( 1 )
+frames = SubResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="2"]
 visible = true
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="PlayerCam" parent="." index="4" instance=ExtResource( 5 )]
 
@@ -191,8 +190,8 @@ text = "PICKUP SNARK BEFORE OPENING THE MENU"
 wait_time = 1.0
 
 [node name="Anim" parent="." index="9"]
-anims/damaged = SubResource( 3 )
-anims/die = SubResource( 4 )
+anims/damaged = SubResource( 4 )
+anims/die = SubResource( 5 )
 
 [node name="Health" parent="HUD" index="0"]
 margin_top = -84.0

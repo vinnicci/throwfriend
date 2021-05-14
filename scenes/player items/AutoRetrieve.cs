@@ -6,7 +6,7 @@ public class AutoRetrieve : PlayerItem
     public Weapon Weapon {get; set;}
     
     private bool weapIsReturning = false;
-    private const int RETRIEVE_SPEED = 200;
+    private const int RETRIEVE_SPEED = 250;
     
 
     public override void _Ready()
@@ -15,6 +15,9 @@ public class AutoRetrieve : PlayerItem
         incompatibilityList.Add("AutoRetrieve");
         incompatibilityList.Add("Guided");
     }
+
+
+    private const int STOP_RETURN_DIST = 10000;
 
 
     public override void _PhysicsProcess(float delta)
@@ -31,7 +34,7 @@ public class AutoRetrieve : PlayerItem
                     Weapon.SetCollisionMaskBit(Global.BIT_MASK_CHAR, true);
                 }
             }
-            else if(Weapon.GlobalPosition.DistanceSquaredTo(PlayerNode.GlobalPosition) <= 10000) {
+            else if(Weapon.GlobalPosition.DistanceSquaredTo(PlayerNode.GlobalPosition) <= STOP_RETURN_DIST) {
                 weapIsReturning = false;
                 Weapon.AppliedForce = Vector2.Zero;
                 if(Weapon.GetCollisionMaskBit(Global.BIT_MASK_CHAR) == true) {

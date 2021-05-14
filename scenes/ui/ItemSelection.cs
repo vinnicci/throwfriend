@@ -19,9 +19,28 @@ public class ItemSelection : Panel
         }
     }
 
-
+    private AnimationPlayer anim;
     private Label description;
     private Color RED = new Color(0.6f, 0.3f, 0.3f);
+
+
+    public override void _Ready()
+    {
+        base._Ready();
+        anim = (AnimationPlayer)GetNode("Anim");
+    }
+
+
+    public void ShowItemSelection(bool visibility) {
+        if(anim.IsPlaying() == false) {
+            if(visibility == true && Visible == false) {
+                anim.Play("show");
+            }
+            else if(visibility == false && Visible == true) {
+                anim.Play("hide");
+            }
+        }
+    }
 
 
     public void SetIncompatibleItems(List<String> incompatibilityList) {

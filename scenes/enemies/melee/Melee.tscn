@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/player/tex_run_4.png" type="Texture" id=5]
 [ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/enemies/melee/tex_en_melee.png" type="Texture" id=7]
-[ext_resource path="res://scenes/enemies/melee/Sword.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/melee/weapons/Sword.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/melee/Melee.cs" type="Script" id=9]
 [ext_resource path="res://assets/enemies/melee/tex_possessed_head_scared.png" type="Texture" id=11]
 [ext_resource path="res://assets/player/tex_player_arms.png" type="Texture" id=12]
@@ -25,9 +25,8 @@ animations = [ {
 "speed": 15.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 19.0
-height = 68.0
+[sub_resource type="CircleShape2D" id=2]
+radius = 45.0
 
 [sub_resource type="Animation" id=3]
 resource_name = "attack"
@@ -45,9 +44,9 @@ tracks/0/keys = {
 "method": "Attack"
 }, {
 "args": [  ],
-"method": "ApplyCentralImpulseAct"
+"method": "AttackImpulse"
 }, {
-"args": [  ],
+"args": [ "attack" ],
 "method": "FinishAction"
 } ]
 }
@@ -187,7 +186,6 @@ z_index = -1
 frames = SubResource( 1 )
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2( 0, -6 )
 shape = SubResource( 2 )
 
 [node name="Anim" parent="." index="5"]

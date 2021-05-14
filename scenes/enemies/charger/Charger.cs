@@ -3,6 +3,13 @@ using System;
 
 public class Charger : Enemy
 {
+    public override void _Ready()
+    {
+        base._Ready();
+        InitAct("charge", (float)actCooldown[0]);
+    }
+
+
     private bool charging = false;
 
 
@@ -16,11 +23,12 @@ public class Charger : Enemy
     }
 
 
-    const int CHARGE_KNOCKBACK = 100;
-    const int CHARGE_STRENGTH = 550;
+    private const int CHARGE_KNOCKBACK = 100;
+    private const int CHARGE_STRENGTH = 500;
 
 
     public override void OnEnemyBodyEntered(Godot.Object body) {
+        base.OnEnemyBodyEntered(body);
         if(charging == false) {
             return;
         }
@@ -37,8 +45,8 @@ public class Charger : Enemy
     }
 
 
-    public override void FinishAction() {
-        base.FinishAction();
+    public override void FinishAction(String actionName) {
+        base.FinishAction(actionName);
     }
 
     

@@ -3,12 +3,10 @@ using System;
 
 public class Blob : Enemy
 {
-    public override void OnEnemyBodyEntered(Godot.Object body) {
-    }
-
-
-    public override void FinishAction() {
-        base.FinishAction();
+    public override void _Ready()
+    {
+        base._Ready();
+        InitAct("explode", (float)actCooldown[0]);
     }
 
 

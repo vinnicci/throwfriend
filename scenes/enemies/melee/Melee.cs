@@ -3,8 +3,10 @@ using System;
 
 public class Melee : Enemy
 {
-    public override void OnEnemyBodyEntered(Godot.Object body)
+    public override void _Ready()
     {
+        base._Ready();
+        InitAct("attack", (float)actCooldown[0]);
     }
 
 
@@ -16,13 +18,13 @@ public class Melee : Enemy
     }
 
 
-    public void ApplyCentralImpulseAct() {
+    public void AttackImpulse() {
         ApplyCentralImpulse(new Vector2(1,0).Rotated(WeaponNode.GlobalRotation) * FORWARD_IMPULSE);
     }
 
 
-    public override void FinishAction() {
-        base.FinishAction();
+    public override void FinishAction(String actionName) {
+        base.FinishAction(actionName);
     }
 
 

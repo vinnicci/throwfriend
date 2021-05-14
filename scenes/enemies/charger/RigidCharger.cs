@@ -3,9 +3,14 @@ using System;
 
 public class RigidCharger : Enemy
 {
+    public override void _Ready()
+    {
+        base._Ready();
+        InitAct("charge", (float)actCooldown[0]);
+    }
+
+
     private bool charging = false;
-    private const int DEFAULT_DAMP = 15;
-    private const int MODIFIED_DAMP = 0;
 
 
     public override void _PhysicsProcess(float delta)
@@ -18,16 +23,18 @@ public class RigidCharger : Enemy
     }
 
 
-    const int CHARGE_KNOCKBACK = 100;
-    const int CHARGE_STRENGTH = 250;
-    const int CHARGE_ROTATION = 100;
+    private const int CHARGE_KNOCKBACK = 100;
+    private const int CHARGE_STRENGTH = 250;
+    private const int CHARGE_ROTATION = 100;
+    private const int DEFAULT_DAMP = 15;
+    private const int MODIFIED_DAMP = 0;
 
 
     public override void OnEnemyBodyEntered(Godot.Object body) {
+        base.OnEnemyBodyEntered(body);
         if(charging == false) {
             return;
         }
-        
         if(body == PlayerNode) {
             PlayerNode.Hit((PlayerNode.GlobalPosition - GlobalPosition).Clamped(1) * CHARGE_KNOCKBACK, 1);
         }
@@ -51,11 +58,11 @@ public class RigidCharger : Enemy
     }
 
 
-    public override void FinishAction() {
+    public override void FinishAction(String actionName) {
         Mode = ModeEnum.Character;
         LinearDamp = DEFAULT_DAMP;
         Rotation = 0;
-        base.FinishAction();
+        base.FinishAction(actionName);
     }
 
 

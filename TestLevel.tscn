@@ -1,17 +1,25 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/base/Level.cs" type="Script" id=1]
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/enemies/charger/RigidCharger.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/enemies/melee/MeleeIdleAI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/enemies/melee/ais/MeleeIdleAI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/obtainables/AbilityItem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/melee/MeleeShielded.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/enemies/charger/ChargerIdleAI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemies/charger/ais/ChargerIdleAI.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/enemies/shooter/ScatterShooter.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/enemies/shooter/Shooter.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/enemies/shooter/ShooterIdleAI.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/enemies/shooter/LongRangeShooter.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/shooter/ais/ShooterIdleAI.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/enemies/melee/BlobnadierShielded.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/enemies/melee/ais/BlobnadierShieldedIdleAI.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/enemies/melee/MeleeBlobnadier.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/enemies/melee/ais/MeleeBlobnadierIdleAI.tscn" type="PackedScene" id=17]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 1.0
 
 [node name="Level" type="YSort"]
 script = ExtResource( 1 )
@@ -21,7 +29,6 @@ script = ExtResource( 1 )
 [node name="Wall" parent="Nav" instance=ExtResource( 2 )]
 modulate = Color( 0.47451, 0.517647, 0.517647, 1 )
 centered_textures = true
-collision_friction = 0.0
 tile_data = PoolIntArray( 131060, 1, 0, 131061, 0, 0, 131062, 0, 0, 131063, 0, 0, 131064, -1073741823, 0, 131065, 1610612736, 0, 131066, 1610612736, 0, 131067, 1610612736, 0, 131068, 1610612736, 0, 131069, 1610612736, 0, 131070, 1610612736, 0, 131071, 1610612736, 0, 65536, 1610612736, 0, 65537, 1610612736, 0, 65538, 1610612736, 0, 65539, 1610612736, 0, 65540, 1610612736, 0, 65541, 1610612736, 0, 65542, 1610612736, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 1, 0, 196596, -1610612736, 0, 196600, -1610612736, 0, 131084, -1610612736, 0, 262132, -1610612736, 0, 262136, -1610612736, 0, 196620, -1610612736, 0, 327668, -1610612736, 0, 327672, -1610612736, 0, 262156, -1610612736, 0, 393204, -1610612736, 0, 393208, -1610612736, 0, 327680, 1, 0, 327681, 1, 0, 327687, 1, 0, 327692, -1610612736, 0, 458740, -1610612736, 0, 458744, -1610612736, 0, 393216, -1610612736, 0, 393217, -1610612736, 0, 393223, -1073741824, 0, 393228, -1610612736, 0, 524276, -1610612736, 0, 524280, -1610612736, 0, 458752, -1610612736, 0, 458753, -1610612736, 0, 458759, -1073741824, 0, 458764, -1610612736, 0, 589812, -1610612736, 0, 589816, -1610612736, 0, 524288, -1610612736, 0, 524289, -1610612736, 0, 524295, -1073741824, 0, 524300, -1610612736, 0, 655348, -1610612736, 0, 655352, -1610612736, 0, 589824, -1610612736, 0, 589825, -1610612736, 0, 589831, -1073741824, 0, 589836, -1610612736, 0, 720884, -1610612736, 0, 720888, -1610612736, 0, 655360, -1610612736, 0, 655361, -1610612736, 0, 655367, -1073741824, 0, 655372, -1610612736, 0, 786420, -1610612736, 0, 786424, -1610612736, 0, 720896, -1610612736, 0, 720897, -1610612736, 0, 720903, -1073741824, 0, 720908, -1610612736, 0, 851956, -1610612736, 0, 851960, -1610612736, 0, 786432, -1610612736, 0, 786433, -1610612736, 0, 786439, -1073741824, 0, 786444, -1610612736, 0, 917492, -1610612736, 0, 917496, -1610612736, 0, 851968, -1610612736, 0, 851969, -1610612736, 0, 851975, -1073741824, 0, 851980, -1610612736, 0, 983028, -1610612736, 0, 983032, -1610612736, 0, 917504, -1610612736, 0, 917505, -1610612736, 0, 917511, -1073741824, 0, 917516, -1610612736, 0, 1048564, -1610612736, 0, 1048568, -1610612736, 0, 983040, -1073741823, 0, 983041, -1073741823, 0, 983042, 0, 0, 983043, 1, 0, 983047, -1073741824, 0, 983052, -1610612736, 0, 1114100, -1610612736, 0, 1114104, -1610612736, 0, 1048583, -1073741824, 0, 1048588, -1610612736, 0, 1179636, -1610612736, 0, 1179640, -1073741824, 0, 1114119, -1073741824, 0, 1114124, -1610612736, 0, 1245172, -1610612736, 0, 1245176, -1073741823, 0, 1245177, 0, 0, 1245178, 0, 0, 1245179, 0, 0, 1245180, 0, 0, 1245181, 0, 0, 1245182, 0, 0, 1245183, 0, 0, 1179648, 0, 0, 1179649, 0, 0, 1179650, 0, 0, 1179651, 0, 0, 1179652, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179655, -1073741823, 0, 1179660, -1610612736, 0, 1310708, -1610612736, 0, 1245196, -1610612736, 0, 1376244, -1610612736, 0, 1310732, -1610612736, 0, 1441780, -1610612736, 0, 1376268, -1610612736, 0, 1507316, 1, 0, 1507317, 0, 0, 1507318, 1610612736, 0, 1507319, 1610612736, 0, 1507320, 1610612736, 0, 1507321, 1610612736, 0, 1507322, 1610612736, 0, 1507323, 1610612736, 0, 1507324, 1610612736, 0, 1507325, 1610612736, 0, 1507326, 1610612736, 0, 1507327, 1610612736, 0, 1441792, 1610612736, 0, 1441793, 1610612736, 0, 1441794, 1610612736, 0, 1441795, 1610612736, 0, 1441796, 1610612736, 0, 1441797, 1610612736, 0, 1441798, 1610612736, 0, 1441799, 1610612736, 0, 1441800, 1610612736, 0, 1441801, 1610612736, 0, 1441802, 1610612736, 0, 1441803, 1610612736, 0, 1441804, 1, 0 )
 
 [node name="Nav" parent="Nav" instance=ExtResource( 2 )]
@@ -32,61 +39,85 @@ tile_data = PoolIntArray( 262134, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0
 [node name="Enemies" type="YSort" parent="."]
 
 [node name="RigidCharger" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 671, 948 )
+position = Vector2( -339, 1294 )
+physics_material_override = SubResource( 1 )
 health = 3
 
 [node name="AI" parent="Enemies/RigidCharger" instance=ExtResource( 9 )]
 seek_dist = 400
 
-[node name="MeleeShielded" parent="Enemies" instance=ExtResource( 8 )]
-position = Vector2( 661, 736 )
-health = 3
-
-[node name="AI" parent="Enemies/MeleeShielded" instance=ExtResource( 5 )]
-
 [node name="MeleeShielded2" parent="Enemies" instance=ExtResource( 8 )]
-position = Vector2( 653, 1244 )
+position = Vector2( 296, 693 )
+physics_material_override = SubResource( 1 )
 health = 3
 
 [node name="AI" parent="Enemies/MeleeShielded2" instance=ExtResource( 5 )]
+position = Vector2( 0, -2 )
 
-[node name="Shooter" parent="Enemies" instance=ExtResource( 11 )]
-position = Vector2( 679, 383 )
+[node name="MeleeShielded3" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 345, 790 )
+physics_material_override = SubResource( 1 )
 health = 3
 
-[node name="AI" parent="Enemies/Shooter" instance=ExtResource( 12 )]
+[node name="AI" parent="Enemies/MeleeShielded3" instance=ExtResource( 5 )]
+position = Vector2( 0, -2 )
 
 [node name="ScatterShooter" parent="Enemies" instance=ExtResource( 10 )]
-position = Vector2( 363, 761 )
+position = Vector2( -57, 1327 )
+physics_material_override = SubResource( 1 )
 health = 3
 
 [node name="AI" parent="Enemies/ScatterShooter" instance=ExtResource( 12 )]
+position = Vector2( 0, -7 )
+seek_dist = 500
+
+[node name="LongRangeShooter" parent="Enemies" instance=ExtResource( 11 )]
+position = Vector2( 66, 1328 )
+physics_material_override = SubResource( 1 )
+health = 3
+
+[node name="AI" parent="Enemies/LongRangeShooter" instance=ExtResource( 12 )]
+position = Vector2( -2, -7 )
+detection_range = 900
+seek_dist = 850
+
+[node name="MeleeBlobnadier" parent="Enemies" instance=ExtResource( 16 )]
+position = Vector2( 250, 1312 )
+health = 3
+
+[node name="AI" parent="Enemies/MeleeBlobnadier" instance=ExtResource( 17 )]
+
+[node name="BlobnadierShielded" parent="Enemies" instance=ExtResource( 13 )]
+position = Vector2( 339, 593 )
+health = 3
+
+[node name="AI" parent="Enemies/BlobnadierShielded" instance=ExtResource( 14 )]
+
+[node name="BlobnadierShielded2" parent="Enemies" instance=ExtResource( 13 )]
+position = Vector2( 319, 503 )
+health = 3
+
+[node name="AI" parent="Enemies/BlobnadierShielded2" instance=ExtResource( 14 )]
 
 [node name="PatrolPoints" type="Node2D" parent="."]
 
-[node name="0" type="Position2D" parent="PatrolPoints"]
-position = Vector2( -83, 295 )
+[node name="Position2D" type="Position2D" parent="PatrolPoints"]
+position = Vector2( -240, 310 )
 
-[node name="1" type="Position2D" parent="PatrolPoints"]
-position = Vector2( -150, 1114 )
+[node name="Position2D2" type="Position2D" parent="PatrolPoints"]
+position = Vector2( -280, 1005 )
 
-[node name="2" type="Position2D" parent="PatrolPoints"]
-position = Vector2( 349, 656 )
+[node name="Position2D3" type="Position2D" parent="PatrolPoints"]
+position = Vector2( 359, 849 )
 
-[node name="3" type="Position2D" parent="PatrolPoints"]
-position = Vector2( 684, 222 )
-
-[node name="4" type="Position2D" parent="PatrolPoints"]
-position = Vector2( 686, 994 )
-
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -78, 486 )
+[node name="Position2D4" type="Position2D" parent="PatrolPoints"]
+position = Vector2( 644, 256 )
 
 [node name="AbilityItem" parent="." instance=ExtResource( 6 )]
 position = Vector2( -396, 526 )
 
 [node name="AbilityItem2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -570, 415 )
+position = Vector2( -402, 649 )
 
 [node name="HealthPickup" parent="." instance=ExtResource( 7 )]
 position = Vector2( -574, 709 )
@@ -96,3 +127,6 @@ position = Vector2( -574, 835 )
 
 [node name="HealthPickup3" parent="." instance=ExtResource( 7 )]
 position = Vector2( -570, 951 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( -195, 606 )

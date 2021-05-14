@@ -3,8 +3,8 @@ extends Node2D
 
 export var detection_range: int = 600
 export var seek_dist: int = 250
-export var enemy_too_far_dist: int = 500
-export var enemy_too_close_dist: int = 150
+export var too_far_dist: int = 500
+export var too_close_dist: int = 150
 
 onready var ray: RayCast2D = $RayCast2D
 onready var detection_area: Area2D = $DetectionRange
@@ -12,7 +12,6 @@ onready var tick: Timer = $Tick
 onready var flee_rays_parent: Node2D = $FleeRays
 var flee_rays_dict: Dictionary
 var btree: Node
-var action_cooldown: Timer
 
 var is_moving: bool = false
 var bb: Dictionary #blackboard
@@ -30,8 +29,8 @@ func _ready() -> void:
 		flee_rays_dict[flee_ray] = flee_ray.get_node("Pos")
 	btree = get_node("BTREE")
 	bb["seek_dist"] = seek_dist
-	bb["enemy_too_far_dist"] = enemy_too_far_dist
-	bb["enemy_too_close_dist"] = enemy_too_close_dist
+	bb["too_far_dist"] = too_far_dist
+	bb["too_close_dist"] = too_close_dist
 	bb["enemy"] = null
 	bb["patrol_point"] = null
 
@@ -48,7 +47,6 @@ func init_properties(new_lvl: Node2D, new_parent: RigidBody2D):
 	parent_node = new_parent
 	if is_instance_valid(parent_node.WeaponNode) == true:
 		weapon_node = parent_node.WeaponNode
-	action_cooldown = parent_node.ActionCooldown
 	bb["patrol_points"] = []
 	for patrol_node in level_node.get_node("PatrolPoints").get_children():
 		bb["patrol_points"].append(patrol_node)
@@ -114,6 +112,14 @@ func _on_DetectionRange_body_entered(body: Node):
 func _on_DetectionRange_body_exited(body: Node):
 	if body is RigidBody2D && body == player_node && bb["enemy"] != player_node:
 		tick.stop()
+
+
+func engage_enemy(enemy: RigidBody2D):
+	if is_ent_valid(enemy) == false:
+		return;
+	bb["enemy"] = enemy
+	_on_Tick_timeout()
+	tick.start()
 
 
 #periodic distance calculator for enemy/master
@@ -208,6 +214,8 @@ func task_get_patrol_point(task):
 
 
 func get_patrol_point():
+	if bb["patrol_points"].size() == 0:
+		return
 	var next_target = bb["patrol_points"].pop_back()
 	bb["patrol_point"] = next_target
 	get_new_path(next_target)
@@ -240,29 +248,34 @@ const TARGET_DIST: = 2500
 
 
 #param 0: target
+#param 1: distance needed
 func task_seek(task):
 	is_moving = true
 	if parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
 		get_seek_point(bb[task.get_param(0)])
 	if bb[task.get_param(0)].global_position.distance_squared_to(path_points.front()) > ORIGIN_DIST:
 		get_new_path(bb[task.get_param(0)])
-	if bb[task.get_param(0) + "_dist"] <= bb["seek_dist"] || is_ent_valid(bb["enemy"]) == false:
+	if bb[task.get_param(0) + "_dist"] <= bb[task.get_param(1)] || is_ent_valid(bb["enemy"]) == false:
 		is_moving = false
 		path_points.clear()
 		task.succeed()
 
 
+#param 0: distance needed
 func task_flee(task):
 	is_moving = true
 	if parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
 		get_flee_point()
-	if bb["enemy_dist"] > bb["enemy_too_far_dist"] || is_ent_valid(bb["enemy"]) == false:
+	if bb["enemy_dist"] > bb[task.get_param(0)] || is_ent_valid(bb["enemy"]) == false:
 		is_moving = false
 		task.succeed()
 
 
 #_try_interrupt overridable func - different enemies has different conditions to stop patrolling
 func task_patrol(task):
+	if bb["patrol_points"].size() == 0:
+		task.succeed()
+		return
 	is_moving = true
 	if parent_node.global_position.distance_squared_to(bb["patrol_point"].global_position) <= TARGET_DIST:
 		is_moving = false
@@ -284,19 +297,26 @@ func _try_interrupt() -> bool:
 
 #param 0: target
 func task_aim_weapon(task):
-	weapon_node.look_at(bb[task.get_param(0)].global_position)
-	task.succeed()
+	var target_pos: Vector2 = bb[task.get_param(0)].global_position
+	ray.look_at(target_pos)
+	ray.force_raycast_update()
+	if ray.get_collider() == bb[task.get_param(0)]:
+		weapon_node.look_at(bb[task.get_param(0)].global_position)
+		task.succeed()
+	else:
+		task.failed()
 
 
 #param 0: enemy action name
 func task_act(task):
 	parent_node.call("DoAction", task.get_param(0))
-	if parent_node.IsActing == false:
+	if parent_node.IsActActive(task.get_param(0)) == false:
 		task.succeed();
 
 
 func task_is_act_ready(task):
-	if parent_node.IsActing == false && action_cooldown.is_stopped() == true:
+	if (parent_node.IsActActive(task.get_param(0)) == false &&
+	parent_node.IsActCoolingDown(task.get_param(0)) == false):
 		task.succeed()
 	else:
 		task.failed()

@@ -76,9 +76,9 @@ text = "2"
 [node name="PlayerItemSelection" parent="PlayerPanel" instance=ExtResource( 3 )]
 visible = false
 margin_left = 10.0
-margin_top = 22.0
+margin_top = 10.0
 margin_right = -10.0
-margin_bottom = -23.0
+margin_bottom = -35.0
 
 [node name="WeaponPanel" type="Panel" parent="."]
 self_modulate = Color( 1, 1, 1, 0.686275 )
@@ -125,9 +125,9 @@ text = "4"
 [node name="WeaponItemSelection" parent="WeaponPanel" instance=ExtResource( 9 )]
 visible = false
 margin_left = 10.0
-margin_top = 22.0
+margin_top = 10.0
 margin_right = -10.0
-margin_bottom = -23.0
+margin_bottom = -35.0
 
 [editable path="PlayerPanel/ItemSlot1"]
 [editable path="PlayerPanel/ItemSlot2"]

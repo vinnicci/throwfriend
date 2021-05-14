@@ -46,7 +46,7 @@ public class Homing : WeaponItem
     private void OnDetectionRangeBodyEntered(Godot.Object body) {
         if(body is Enemy) {
             Enemy enemy = (Enemy)body;
-            if(enemies.Contains(enemy) == false) {
+            if(enemies.Contains(enemy) == false && enemy.HasNode("AI") == true) {
                 enemies.Enqueue(enemy);
                 if(tick.IsStopped() == true) {
                     tick.Start();
