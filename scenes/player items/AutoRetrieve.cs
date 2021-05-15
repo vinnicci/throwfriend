@@ -30,15 +30,15 @@ public class AutoRetrieve : PlayerItem
             if(Weapon.CurrentState == Weapon.States.INACTIVE) {
                 Vector2 vec = (PlayerNode.GlobalPosition - Weapon.GlobalPosition).Clamped(1) * RETRIEVE_SPEED;
                 Weapon.Velocity = vec;
-                if(Weapon.GetCollisionMaskBit(Global.BIT_MASK_CHAR) == false) {
-                    Weapon.SetCollisionMaskBit(Global.BIT_MASK_CHAR, true);
+                if(Weapon.GetCollisionMaskBit(Global.BIT_MASK_ENEMY) == false) {
+                    Weapon.SetCollisionMaskBit(Global.BIT_MASK_ENEMY, true);
                 }
             }
             else if(Weapon.GlobalPosition.DistanceSquaredTo(PlayerNode.GlobalPosition) <= STOP_RETURN_DIST) {
                 weapIsReturning = false;
                 Weapon.AppliedForce = Vector2.Zero;
-                if(Weapon.GetCollisionMaskBit(Global.BIT_MASK_CHAR) == true) {
-                    Weapon.SetCollisionMaskBit(Global.BIT_MASK_CHAR, false);
+                if(Weapon.GetCollisionMaskBit(Global.BIT_MASK_ENEMY) == true) {
+                    Weapon.SetCollisionMaskBit(Global.BIT_MASK_ENEMY, false);
                 }
             }
         }

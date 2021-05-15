@@ -121,7 +121,7 @@ public class Weapon : RigidBody2D
             ContinuousCd = RigidBody2D.CCDMode.Disabled;
         }
         if(CurrentState == States.ACTIVE && lv <= WEAP_MIN_LIN_VEL_LEN) {
-            SetCollisionMaskBit(Global.BIT_MASK_CHAR, false);
+            SetCollisionMaskBit(Global.BIT_MASK_ENEMY, false);
             SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
             CurrentState = States.INACTIVE;
         }
@@ -131,10 +131,10 @@ public class Weapon : RigidBody2D
     public override void _Process(float delta)
     {
         base._Process(delta);
-        if(GetCollisionMaskBit(Global.BIT_MASK_CHAR) == true && sprite.Texture == texture) {
+        if(GetCollisionMaskBit(Global.BIT_MASK_ENEMY) == true && sprite.Texture == texture) {
             sprite.Texture = activeTexture;
         }
-        else if(GetCollisionMaskBit(Global.BIT_MASK_CHAR) == false && sprite.Texture == activeTexture) {
+        else if(GetCollisionMaskBit(Global.BIT_MASK_ENEMY) == false && sprite.Texture == activeTexture) {
             sprite.Texture = texture;
         }
     }
@@ -143,7 +143,7 @@ public class Weapon : RigidBody2D
     public void Throw(int throwStrength, Vector2 globalPos, float globalRot) {
         CurrentState = States.ACTIVE;
         Mode = RigidBody2D.ModeEnum.Rigid;
-        SetCollisionMaskBit(Global.BIT_MASK_CHAR, true);
+        SetCollisionMaskBit(Global.BIT_MASK_ENEMY, true);
         SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
         SetCollisionMaskBit(Global.BIT_MASK_LVL, true);
         if(IsInstanceValid(GetParent()) == true) {

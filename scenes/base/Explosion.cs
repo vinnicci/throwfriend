@@ -26,9 +26,10 @@ public abstract class Explosion : Area2D
         CircleShape2D circle = new CircleShape2D();
         circle.Radius = ExplosionRadius;
         collision.Shape = circle;
-        Godot.Vector2[] circArr = new Vector2[12];
-        for(int i = 0; i <= 11; i++) {
-            Vector2 vec = new Vector2(ExplosionRadius,0).Rotated(Godot.Mathf.Deg2Rad(i*30));
+        int circleCountPtCount = 24;
+        Godot.Vector2[] circArr = new Vector2[circleCountPtCount];
+        for(int i = 0; i <= circleCountPtCount - 1; i++) {
+            Vector2 vec = new Vector2(ExplosionRadius,0).Rotated(Godot.Mathf.Deg2Rad(i*(360/circleCountPtCount)));
             circArr[i] = vec;
         }
         poly.Polygon = circArr;
@@ -56,6 +57,11 @@ public abstract class Explosion : Area2D
             if(body is Entity) {
                 Entity entity = (Entity)body;
                 ApplyDamage(entity);
+            }
+            else if(body is Weapon) {
+                Weapon weap = (Weapon)body;
+                ray.LookAt(weap.GlobalPosition);
+                weap.ApplyCentralImpulse(new Vector2(KNOCKBACK, 0).Rotated(ray.GlobalRotation));
             }
         }
     }

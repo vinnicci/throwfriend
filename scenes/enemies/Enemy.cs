@@ -1,12 +1,11 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 
 public abstract class Enemy : Entity
 {
-    [Export] protected Godot.Collections.Array<float> actCooldown;
+    [Export] protected Godot.Collections.Dictionary<String, float> acts;
+    [Export] protected Godot.Collections.Array<int> patrolPoints;
 
-    public Player PlayerNode;
     private Level levelNode;
     public Level LevelNode {
         get {
@@ -14,7 +13,6 @@ public abstract class Enemy : Entity
     }
         set{
             levelNode = value;
-            PlayerNode = levelNode.PlayerNode;
             if(HasNode("EnemyWeapon") == true) {
                 WeaponNode = (EnemyWeapon)GetNode("EnemyWeapon");
                 WeaponNode.ParentNode = this;
@@ -22,7 +20,7 @@ public abstract class Enemy : Entity
             }
             if(HasNode("AI") == true) {
                 aINode = (Node2D)GetNode("AI");
-                aINode.Call("init_properties", LevelNode, this);
+                aINode.Call("init_properties", LevelNode, this, patrolPoints);
             }
         }
     }
@@ -39,6 +37,9 @@ public abstract class Enemy : Entity
             ExplosionNode = (Explosion)GetNode("Explosion");
         }
         ActDict = new Godot.Collections.Dictionary();
+        foreach(String act in acts.Keys) {
+            InitAct(act, acts[act]);
+        }
     }
 
 
@@ -51,12 +52,19 @@ public abstract class Enemy : Entity
     }
 
 
+    public bool HasAct(String actionName) {
+        Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
+        if(keys.Contains(actionName) == false) {
+            return false;
+        }
+        return true;
+    }
+
+
     public bool IsActActive(String actionName) {
         Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
         if(keys.Contains(actionName) == false) {
-            String err = "Action " + actionName + " does not exist.";
-            GD.PrintErr(err);
-            throw new Exception(err);
+            return false;
         }
         Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
         return (bool)action["IsActive"];
@@ -66,9 +74,7 @@ public abstract class Enemy : Entity
     public bool IsActCoolingDown(String actionName) {
         Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
         if(keys.Contains(actionName) == false) {
-            String err = "Action " + actionName + " does not exist.";
-            GD.PrintErr(err);
-            throw new Exception(err);
+            return false;
         }
         Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
         return (float)action["TimeRemain"] > 0;
@@ -91,7 +97,8 @@ public abstract class Enemy : Entity
 
     public virtual void OnEnemyBodyEntered(Godot.Object body) {
         if(body is Weapon && IsInstanceValid(aINode) == true) {
-            aINode.Call("engage_enemy", LevelNode.PlayerNode);
+            Weapon weap = (Weapon)body;
+            aINode.Call("engage_enemy", weap.PlayerNode);
         }
     }
 
@@ -107,7 +114,7 @@ public abstract class Enemy : Entity
     }
 
 
-    //can't be accessed by animation player unless overridden
+    //override and use this func to end action anims
     public virtual void FinishAction(String actionName) {
         Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
         action["IsActive"] = false;

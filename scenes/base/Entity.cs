@@ -93,14 +93,14 @@ public abstract class Entity : RigidBody2D
 		    teleportPos = Vector2.Zero;
         }
         //velocity
-        AnimateSprites();
+        AdjustSprites();
         AppliedForce = Vector2.Zero;
         state.AddCentralForce(Velocity.Clamped(1) * Speed);
         Velocity = Vector2.Zero;
     }
 
 
-    private void AnimateSprites() {
+    private void AdjustSprites() {
         //running
         if(Velocity == Vector2.Zero) {
             legs.Play("idle");
@@ -150,7 +150,7 @@ public abstract class Entity : RigidBody2D
             legs.Animation = "idle";
             anim.Stop();
             anim.Play("die");
-            SetCollisionLayerBit(Global.BIT_MASK_CHAR, false);
+            SetCollisionLayerBit(Global.BIT_MASK_ENEMY, false);
             SetCollisionLayerBit(Global.BIT_MASK_PLAYER, false);
         }
         else if(Health > 0) {

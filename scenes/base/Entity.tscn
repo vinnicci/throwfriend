@@ -7,7 +7,7 @@
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=2]
 resource_local_to_scene = true
 animations = [ {
 "frames": [  ],
@@ -21,12 +21,12 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "damaged"
 length = 0.5
 step = 0.05
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -63,11 +63,12 @@ contacts_reported = 1
 contact_monitor = true
 linear_damp = 15.0
 script = ExtResource( 1 )
+health = 3
 
 [node name="Sprite" type="Node2D" parent="."]
 
 [node name="Legs" type="AnimatedSprite" parent="Sprite"]
-frames = SubResource( 4 )
+frames = SubResource( 2 )
 animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -81,8 +82,8 @@ wait_time = 0.05
 one_shot = true
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-anims/damaged = SubResource( 5 )
-anims/die = SubResource( 3 )
+anims/damaged = SubResource( 3 )
+anims/die = SubResource( 4 )
 
 [node name="HUD" type="Node2D" parent="."]
 

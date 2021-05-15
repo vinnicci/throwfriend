@@ -1,25 +1,13 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/base/Level.cs" type="Script" id=1]
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/enemies/charger/RigidCharger.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/enemies/melee/ais/MeleeIdleAI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/enemies/shooter/Shooter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/enemies/shooter/LongRangeShooter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/obtainables/AbilityItem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/enemies/melee/MeleeShielded.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/enemies/charger/ais/ChargerIdleAI.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/enemies/shooter/ScatterShooter.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/enemies/shooter/LongRangeShooter.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/enemies/shooter/ais/ShooterIdleAI.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/enemies/melee/BlobnadierShielded.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/enemies/melee/ais/BlobnadierShieldedIdleAI.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/enemies/melee/MeleeBlobnadier.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/enemies/melee/ais/MeleeBlobnadierIdleAI.tscn" type="PackedScene" id=17]
-
-[sub_resource type="PhysicsMaterial" id=1]
-friction = 0.0
-bounce = 1.0
+[ext_resource path="res://scenes/enemies/shooter/ScatterShooter.tscn" type="PackedScene" id=8]
 
 [node name="Level" type="YSort"]
 script = ExtResource( 1 )
@@ -38,80 +26,34 @@ tile_data = PoolIntArray( 262134, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0
 
 [node name="Enemies" type="YSort" parent="."]
 
-[node name="RigidCharger" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( -339, 1294 )
-physics_material_override = SubResource( 1 )
-health = 3
+[node name="Shooter" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 305, 614 )
+acts = {
+"shoot": 0.2
+}
 
-[node name="AI" parent="Enemies/RigidCharger" instance=ExtResource( 9 )]
-seek_dist = 400
+[node name="ScatterShooter" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 648, 758 )
+acts = {
+"shoot": 1.0
+}
 
-[node name="MeleeShielded2" parent="Enemies" instance=ExtResource( 8 )]
-position = Vector2( 296, 693 )
-physics_material_override = SubResource( 1 )
-health = 3
-
-[node name="AI" parent="Enemies/MeleeShielded2" instance=ExtResource( 5 )]
-position = Vector2( 0, -2 )
-
-[node name="MeleeShielded3" parent="Enemies" instance=ExtResource( 8 )]
-position = Vector2( 345, 790 )
-physics_material_override = SubResource( 1 )
-health = 3
-
-[node name="AI" parent="Enemies/MeleeShielded3" instance=ExtResource( 5 )]
-position = Vector2( 0, -2 )
-
-[node name="ScatterShooter" parent="Enemies" instance=ExtResource( 10 )]
-position = Vector2( -57, 1327 )
-physics_material_override = SubResource( 1 )
-health = 3
-
-[node name="AI" parent="Enemies/ScatterShooter" instance=ExtResource( 12 )]
-position = Vector2( 0, -7 )
-seek_dist = 500
-
-[node name="LongRangeShooter" parent="Enemies" instance=ExtResource( 11 )]
-position = Vector2( 66, 1328 )
-physics_material_override = SubResource( 1 )
-health = 3
-
-[node name="AI" parent="Enemies/LongRangeShooter" instance=ExtResource( 12 )]
-position = Vector2( -2, -7 )
-detection_range = 900
-seek_dist = 850
-
-[node name="MeleeBlobnadier" parent="Enemies" instance=ExtResource( 16 )]
-position = Vector2( 250, 1312 )
-health = 3
-
-[node name="AI" parent="Enemies/MeleeBlobnadier" instance=ExtResource( 17 )]
-
-[node name="BlobnadierShielded" parent="Enemies" instance=ExtResource( 13 )]
-position = Vector2( 339, 593 )
-health = 3
-
-[node name="AI" parent="Enemies/BlobnadierShielded" instance=ExtResource( 14 )]
-
-[node name="BlobnadierShielded2" parent="Enemies" instance=ExtResource( 13 )]
-position = Vector2( 319, 503 )
-health = 3
-
-[node name="AI" parent="Enemies/BlobnadierShielded2" instance=ExtResource( 14 )]
+[node name="LongRangeShooter" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( 178, 1330 )
+acts = {
+"shoot": 1.0
+}
 
 [node name="PatrolPoints" type="Node2D" parent="."]
 
-[node name="Position2D" type="Position2D" parent="PatrolPoints"]
-position = Vector2( -240, 310 )
+[node name="0" type="Position2D" parent="PatrolPoints"]
+position = Vector2( 651, 232 )
 
-[node name="Position2D2" type="Position2D" parent="PatrolPoints"]
-position = Vector2( -280, 1005 )
+[node name="1" type="Position2D" parent="PatrolPoints"]
+position = Vector2( 635, 1308 )
 
-[node name="Position2D3" type="Position2D" parent="PatrolPoints"]
-position = Vector2( 359, 849 )
-
-[node name="Position2D4" type="Position2D" parent="PatrolPoints"]
-position = Vector2( 644, 256 )
+[node name="2" type="Position2D" parent="PatrolPoints"]
+position = Vector2( -599, 1309 )
 
 [node name="AbilityItem" parent="." instance=ExtResource( 6 )]
 position = Vector2( -396, 526 )

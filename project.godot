@@ -111,15 +111,10 @@ hotkey_4={
 
 [layer_names]
 
-2d_physics/layer_1="Char"
+2d_physics/layer_1="Enemy"
 2d_physics/layer_2="Level"
 2d_physics/layer_3="Player"
-2d_physics/layer_4="Snark"
-
-[network]
-
-limits/websocket_server/max_in_buffer_kb=4096
-limits/websocket_server/max_out_buffer_kb=4096
+2d_physics/layer_4="Weapon"
 
 [physics]
 

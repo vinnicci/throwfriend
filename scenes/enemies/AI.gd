@@ -41,18 +41,16 @@ var weapon_node: Node2D
 var player_node: RigidBody2D
 
 
-func init_properties(new_lvl: Node2D, new_parent: RigidBody2D):
+func init_properties(new_lvl: Node2D, new_parent: RigidBody2D, patrol_pts: Array = []):
 	level_node = new_lvl
-	player_node = level_node.PlayerNode
+	player_node = level_node.get_node("Player")
 	parent_node = new_parent
 	if is_instance_valid(parent_node.WeaponNode) == true:
 		weapon_node = parent_node.WeaponNode
 	bb["patrol_points"] = []
-	for patrol_node in level_node.get_node("PatrolPoints").get_children():
-		bb["patrol_points"].append(patrol_node)
-	for _i in range(randi() % bb["patrol_points"].size() + 1):
-		var pt = bb["patrol_points"].pop_back()
-		bb["patrol_points"].push_front(pt)
+	var lvl_patrol_pts: Node2D = level_node.get_node("PatrolPoints")
+	for patrol_pt in patrol_pts:
+		bb["patrol_points"].append(lvl_patrol_pts.get_child(patrol_pt))
 	bb["allies"] = []
 
 
@@ -74,7 +72,10 @@ func _physics_process(_delta: float) -> void:
 
 func separate_from_allies(velocity: Vector2 = Vector2.ZERO) -> Vector2:
 	for ally in bb["allies"]:
-		velocity += parent_node.global_position - ally.global_position
+		if parent_node.global_position == ally.global_position:
+			velocity += Vector2(1,0).rotated(deg2rad(rand_range(0,360)))
+		else:
+			velocity += parent_node.global_position - ally.global_position
 	return velocity
 
 
@@ -95,6 +96,8 @@ func get_new_path(target):
 
 
 func _on_FriendlyRange_body_entered(body: Node):
+	if body == parent_node:
+		return
 	if body is RigidBody2D && body.has_node("AI") == true:
 		bb["allies"].append(body)
 
@@ -261,34 +264,38 @@ func task_seek(task):
 		task.succeed()
 
 
+#_try_interrupt overridable func - use custom conditions to stop fleeing
 #param 0: distance needed
 func task_flee(task):
 	is_moving = true
 	if parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
 		get_flee_point()
-	if bb["enemy_dist"] > bb[task.get_param(0)] || is_ent_valid(bb["enemy"]) == false:
+	if (bb["enemy_dist"] > bb[task.get_param(0)] || is_ent_valid(bb["enemy"]) == false
+	|| _try_interrupt_flee() == true):
 		is_moving = false
 		task.succeed()
 
 
-#_try_interrupt overridable func - different enemies has different conditions to stop patrolling
+func _try_interrupt_flee() -> bool:
+	return false
+
+
+#_try_interrupt overridable func - use custom conditions to stop patrolling
 func task_patrol(task):
 	if bb["patrol_points"].size() == 0:
 		task.succeed()
 		return
 	is_moving = true
-	if parent_node.global_position.distance_squared_to(bb["patrol_point"].global_position) <= TARGET_DIST:
+	if (parent_node.global_position.distance_squared_to(bb["patrol_point"].global_position) <= TARGET_DIST ||
+	_try_interrupt_patrol() == true):
 		is_moving = false
 		bb["patrol_point"] = null
 		task.succeed()
 	elif parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
 		get_seek_point(bb["patrol_point"])
-	if _try_interrupt() == true:
-		is_moving = false
-		task.succeed()
 
 
-func _try_interrupt() -> bool:
+func _try_interrupt_patrol() -> bool:
 	return false
 
 
@@ -314,10 +321,17 @@ func task_act(task):
 		task.succeed();
 
 
+#param 0: enemy action name
 func task_is_act_ready(task):
-	if (parent_node.IsActActive(task.get_param(0)) == false &&
-	parent_node.IsActCoolingDown(task.get_param(0)) == false):
+	if is_act_ready(task.get_param(0)) == true:
 		task.succeed()
 	else:
 		task.failed()
 
+
+func is_act_ready(act_name: String):
+	return (parent_node.HasAct(act_name) == true &&
+	parent_node.IsActActive(act_name) == false &&
+	parent_node.IsActCoolingDown(act_name) == false)
+
+	

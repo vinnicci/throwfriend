@@ -20,11 +20,19 @@ public class EnemyWeapon : Node2D
     }
 
 
+    //ranged
     public virtual void Shoot() {
         anim.Play("shoot");
     }
 
 
+    //melee
+    public virtual void MeleeAttack() {
+        anim.Play("melee_attack");
+    }
+
+
+    //used by range attack anim to create projectiles
     public virtual void SpawnProj() {
         EnemyProj proj = (EnemyProj)projectile.Instance();
         proj.Spawn(spawnPoint.GlobalPosition, spawnPoint.GlobalRotationDegrees, LevelNode);

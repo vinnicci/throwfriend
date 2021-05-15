@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 public abstract class Level : YSort
 {
-    public Player PlayerNode {get; private set;}
-
+    private Player playerNode;
     private Navigation2D nav;
     private YSort enemies;
 
@@ -15,8 +14,8 @@ public abstract class Level : YSort
         base._Ready();
         GD.Randomize();
         if(HasNode("Player") == true) {
-            PlayerNode = (Player)GetNode("Player");
-            PlayerNode.LevelNode = this;
+            playerNode = (Player)GetNode("Player");
+            playerNode.LevelNode = this;
         }
         enemies = (YSort)GetNode("Enemies");
         foreach(Enemy enemy in enemies.GetChildren()) {
@@ -26,13 +25,24 @@ public abstract class Level : YSort
     }
 
 
-    Queue<Line2D> lines = new Queue<Line2D>();
-
-
     public void SpawnEnemy(Enemy enemy, Vector2 pos) {
         enemies.AddChild(enemy);
         enemy.GlobalPosition = pos;
     }
+
+
+    public Vector2 GetPlayerPos() {
+        if(playerNode.IsDead == true || IsInstanceValid(playerNode) == false) {
+            return Vector2.Zero;
+        }
+        return playerNode.GlobalPosition;
+    }
+
+
+    Queue<Line2D> lines = new Queue<Line2D>();
+
+
+    
 
 
     public Vector2[] GetPath(Vector2 to, Vector2 from) {

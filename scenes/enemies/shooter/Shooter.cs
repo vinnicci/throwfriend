@@ -3,13 +3,6 @@ using System;
 
 public class Shooter : Enemy
 {
-    public override void _Ready()
-    {
-        base._Ready();
-        InitAct("shoot", (float)actCooldown[0]);
-    }
-
-
     public void Shoot() {
         WeaponNode.Shoot();
     }
