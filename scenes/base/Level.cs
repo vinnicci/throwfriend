@@ -8,6 +8,8 @@ public abstract class Level : YSort
     private Navigation2D nav;
     private YSort enemies;
 
+    public int Health {get; set;}
+
 
     public override void _Ready()
     {
@@ -25,9 +27,15 @@ public abstract class Level : YSort
     }
 
 
-    public void SpawnEnemy(Enemy enemy, Vector2 pos) {
-        enemies.AddChild(enemy);
-        enemy.GlobalPosition = pos;
+    public void Spawn(ISpawnable body, Vector2 pos, float rot = 0) {
+        if(body is Enemy) {
+            enemies.AddChild((Node2D)body);
+        }
+        else {
+            AddChild((Node2D)body);
+        }
+        ((Node2D)body).GlobalPosition = pos;
+        ((Node2D)body).GlobalRotation = rot;
     }
 
 
@@ -40,9 +48,6 @@ public abstract class Level : YSort
 
 
     Queue<Line2D> lines = new Queue<Line2D>();
-
-
-    
 
 
     public Vector2[] GetPath(Vector2 to, Vector2 from) {

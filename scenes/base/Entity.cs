@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-public abstract class Entity : RigidBody2D
+public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, ISpawnable
 {
     [Export] protected int speed = 500;
     public int Speed {get; set;}
     [Export] protected int health = 1;
-    public int Health {get; protected set;}
+    public int Health {get; set;}
     public Vector2 Velocity {get; protected set;}
     protected Timer deathTimer;
     protected Timer hitCooldown;
@@ -138,11 +138,11 @@ public abstract class Entity : RigidBody2D
     }
 
 
-    public virtual void Hit(Vector2 linearV, int damage) {
+    public virtual void Hit(Vector2 knockback, int damage) {
         if(IsDead == true || hitCooldown.IsStopped() == false) {
             return;
         }
-        ApplyCentralImpulse(linearV);
+        ApplyCentralImpulse(knockback);
         Health -= damage;
         if(Health <= 0) {
             IsDead = true;
@@ -163,6 +163,11 @@ public abstract class Entity : RigidBody2D
         }
         Health = Godot.Mathf.Clamp(Health, 0, health);
         healthHUD.UpdateHealth();
+    }
+
+
+    public void Spawn(Level lvl, Vector2 globalPos, float globalRot = 0) {
+        lvl.Spawn(this, globalPos, globalRot);
     }
 
 

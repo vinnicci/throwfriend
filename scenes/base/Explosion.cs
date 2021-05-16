@@ -45,8 +45,8 @@ public abstract class Explosion : Area2D
         }
         if(explosionRadius != ExplosionRadius) {
             float scale = ExplosionRadius/explosionRadius;
-            collision.Scale *= scale;
-            poly.Scale *= scale;
+            collision.Scale = new Vector2(1,1)*scale;
+            poly.Scale = new Vector2(1,1)*scale;
         }
         anim.Play("explode");
         Godot.Collections.Array bodies = GetOverlappingBodies();

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract class EnemyProj : Area2D
+public abstract class EnemyProj : Area2D, ISpawnable
 {
     [Export] public int range = 500;
     [Export] public int speed = 20;
@@ -41,22 +41,18 @@ public abstract class EnemyProj : Area2D
     }
 
 
-    public void Spawn(Vector2 globalPos, float globalRotDeg, Level lvl) {
+    public void Spawn(Level lvl, Vector2 globalPos, float globalRotDeg = 0) {
         Range = range;
         Speed = speed;
         currentRange = Range;
         Velocity = new Vector2(Speed, 0).Rotated(Godot.Mathf.Deg2Rad(globalRotDeg));
-        GlobalPosition = globalPos;
-        GlobalRotation = globalRotDeg;
-        lvl.AddChild(this);
+        lvl.Spawn(this, globalPos, Godot.Mathf.Deg2Rad(globalRotDeg));
     }
 
 
     private void OnEnemyProjBodyEntered(Godot.Object body) {
-        if(body is Player) {
-            Player player = (Player)body;
-            player.Hit((player.GlobalPosition - GlobalPosition).Clamped(1) * KNOCKBACK, 1);
-        }
+        IHealthModifiable hitBody = (IHealthModifiable)body;
+        hitBody.Hit((((Node2D)body).GlobalPosition - GlobalPosition).Clamped(1) * KNOCKBACK, 1);
         StopProjectile();
     }
 

@@ -22,25 +22,18 @@ public class BlobSpawnerCharger : BaseCharger
     }
 
 
-    public void SpawnBlobsOnDeath() {
-        InstanceBlob();
-        InstanceBlob();
-        InstanceBlob();
-        InstanceBlob();
-        InstanceBlob();
-    }
-
-
     private const int BLOB_SPAWN_FORCE = 2000;
 
 
-    public void InstanceBlob() {
-        Blob blobInstance = (Blob)blob.Instance();
-        Node2D ai = (Node2D)aiNode.Instance();
-        blobInstance.AddChild(ai);
-        ai.Call("init_properties", LevelNode, blobInstance);
-        LevelNode.SpawnEnemy(blobInstance, GlobalPosition);
-        blobInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
+    public void InstanceBlob(int count) {
+        for(int i = 1; i <= count; i++) {
+            Blob blobInstance = (Blob)blob.Instance();
+            Node2D ai = (Node2D)aiNode.Instance();
+            blobInstance.AddChild(ai);
+            ai.Call("init_properties", LevelNode, blobInstance);
+            blobInstance.Spawn(LevelNode, GlobalPosition);
+            blobInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
+        }
     }
 
 

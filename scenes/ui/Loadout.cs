@@ -235,6 +235,7 @@ public class Loadout : Control
 
     public void SelectItem(Item item) {
         if(selectRef.Panel == "PlayerPanel") {
+            PlayerNode.RefreshItems();
             if(selectRef.Slot == "ItemSlot1") {
                 PlayerNode.ItemSlot1Node.AddChild(item);
                 PlayerNode.RefreshItems();
@@ -247,10 +248,12 @@ public class Loadout : Control
                 PlayerNode.ActivateItem(2);
                 UpdateSlotIcon(2);
             }
-            PlayerNode.RefreshItems();
+            //PlayerNode.RefreshItems();
             playerItemSel.ShowItemSelection(false);
+            playerItemSel.SetIncompatibleItems(item.incompatibilityList);
         }
         else if(selectRef.Panel == "WeaponPanel") {
+            WeaponNode.RefreshItems();
             if(selectRef.Slot == "ItemSlot1") {
                 WeaponNode.ItemSlot1Node.AddChild(item);
                 WeaponNode.RefreshItems();
@@ -265,11 +268,10 @@ public class Loadout : Control
                 WeaponNode.ActivateItem(2);
                 UpdateSlotIcon(4);
             }
-            WeaponNode.RefreshItems();
+            //WeaponNode.RefreshItems();
             weaponItemSel.ShowItemSelection(false);
+            weaponItemSel.SetIncompatibleItems(item.incompatibilityList);
         }
-        playerItemSel.SetIncompatibleItems(item.incompatibilityList);
-        weaponItemSel.SetIncompatibleItems(item.incompatibilityList);
         selectRef.UpgradeLabel.Visible = false;
         selectRef = new SelectRef("", "", null);
         PlayerNode.AvailableUpgrade -= 1;

@@ -100,8 +100,8 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [  ],
-"method": "SpawnBlobsOnDeath"
+"args": [ 5 ],
+"method": "InstanceBlob"
 }, {
 "args": [  ],
 "method": "queue_free"
@@ -209,7 +209,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0.5, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [  ],
+"args": [ 3 ],
 "method": "InstanceBlob"
 }, {
 "args": [ "spawn_blob" ],
@@ -229,7 +229,6 @@ aiNode = ExtResource( 6 )
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 0, 6 )
-scale = Vector2( 2.3, 2 )
 
 [node name="Lower" type="Sprite" parent="Sprite" index="0"]
 texture = ExtResource( 4 )

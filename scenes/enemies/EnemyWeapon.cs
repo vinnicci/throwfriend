@@ -6,7 +6,7 @@ public class EnemyWeapon : Node2D
     [Export] protected PackedScene projectile;
     
     public Enemy ParentNode {get; set;}
-    public Level LevelNode {get; set;}
+    //public Level LevelNode {get; set;}
 
     protected Position2D spawnPoint;
     protected AnimationPlayer anim;
@@ -35,7 +35,7 @@ public class EnemyWeapon : Node2D
     //used by range attack anim to create projectiles
     public virtual void SpawnProj() {
         EnemyProj proj = (EnemyProj)projectile.Instance();
-        proj.Spawn(spawnPoint.GlobalPosition, spawnPoint.GlobalRotationDegrees, LevelNode);
+        proj.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition, spawnPoint.GlobalRotationDegrees);
     }
 
 

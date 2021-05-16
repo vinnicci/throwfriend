@@ -16,7 +16,7 @@ public abstract class Enemy : Entity
             if(HasNode("EnemyWeapon") == true) {
                 WeaponNode = (EnemyWeapon)GetNode("EnemyWeapon");
                 WeaponNode.ParentNode = this;
-                WeaponNode.LevelNode = LevelNode;
+                //WeaponNode.LevelNode = LevelNode;
             }
             if(HasNode("AI") == true) {
                 aINode = (Node2D)GetNode("AI");

@@ -18,7 +18,6 @@ public class Player : Entity
             ActivateItem(1);
             ActivateItem(2);
             WeaponNode.PlayerNode = this;
-            WeaponNode.LevelNode = LevelNode;
             inGameUI.PlayerNode = this;
             inGameUI.WeaponNode = WeaponNode;
         }

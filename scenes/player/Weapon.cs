@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 
-public class Weapon : RigidBody2D
+public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 {
     [Export] private Texture texture;
     [Export] private Texture activeTexture;
@@ -14,15 +14,6 @@ public class Weapon : RigidBody2D
         }
         set {
             playerNode = value;
-        }
-    }
-    private Level levelNode;
-    public Level LevelNode {
-        get {
-            return levelNode;
-        }
-        set {
-            levelNode = value;
             RefreshItems();
             ActivateItem(1);
             ActivateItem(2);
@@ -149,11 +140,16 @@ public class Weapon : RigidBody2D
         if(IsInstanceValid(GetParent()) == true) {
             GetParent().RemoveChild(this);
         }
-        LevelNode.AddChild(this);
+        Spawn(PlayerNode.LevelNode, globalPos, globalRot);
+        Vector2 throwVector = new Vector2(throwStrength, 0);
+        ApplyCentralImpulse(throwVector.Rotated(GlobalRotation));
+    }
+
+
+    public void Spawn(Level lvl, Vector2 globalPos, float globalRot = 0) {
+        lvl.AddChild(this);
         GlobalPosition = globalPos;
         GlobalRotation = globalRot;
-        Vector2 throwVector = new Vector2(throwStrength, 0);
-        ApplyCentralImpulse(throwVector.Rotated(globalRot));
     }
 
 
@@ -171,13 +167,14 @@ public class Weapon : RigidBody2D
                 SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
             }
         }
-        else if(body is Enemy) {
-            Enemy enemy = (Enemy)body;
+        else if(body is IHealthModifiable) {
+            IHealthModifiable hitBody = (IHealthModifiable)body;
             if(CurrentState == States.ACTIVE) {
-                enemy.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), Damage);
+                hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), Damage);
             }
-            else if(CurrentState == States.INACTIVE && (PlayerNode.Item1 is AutoRetrieve|| PlayerNode.Item2 is AutoRetrieve)) {
-                enemy.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), Damage);
+            else if(CurrentState == States.INACTIVE &&
+            (PlayerNode.Item1 is AutoRetrieve || PlayerNode.Item2 is AutoRetrieve)) {
+                hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), Damage);
             }
         }
         int i = 1;
