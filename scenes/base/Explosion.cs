@@ -3,7 +3,7 @@ using System;
 
 public abstract class Explosion : Area2D
 {
-    [Export] public int damage = 1; 
+    [Export] protected int damage = 1; 
     [Export] public int explosionRadius = 150;
     public int ExplosionRadius {get; set;}
     public int Damage {get; set;}

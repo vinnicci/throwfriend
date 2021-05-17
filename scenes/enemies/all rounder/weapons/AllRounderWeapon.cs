@@ -3,7 +3,7 @@ using Godot;
 
 public abstract class AllRounderWeapon: EnemyWeapon
 {
-    [Export] private PackedScene aiNode; //used by blobnades
+    [Export] protected PackedScene aiNode; //used by blobnades
 
 
     public override void _Process(float delta)
@@ -34,7 +34,7 @@ public abstract class AllRounderWeapon: EnemyWeapon
     }
 
 
-    public void SpawnBlob() {
+    public virtual void SpawnBlob() {
         Blob blob = (Blob)projectile.Instance();
         Node2D ai = (Node2D)aiNode.Instance();
         blob.AddChild(ai);

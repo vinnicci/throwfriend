@@ -238,3 +238,4 @@ margin_top = -93.0
 margin_bottom = -87.0
 
 [node name="AI" parent="." index="7" instance=ExtResource( 10 )]
+seek_dist = 400

@@ -35,6 +35,7 @@ public class EnemyWeapon : Node2D
     //used by range attack anim to create projectiles
     public virtual void SpawnProj() {
         EnemyProj proj = (EnemyProj)projectile.Instance();
+        proj.AddHitException(ParentNode);
         proj.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition, spawnPoint.GlobalRotationDegrees);
     }
 

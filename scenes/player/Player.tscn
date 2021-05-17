@@ -48,7 +48,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 30.0167
+radius = 24.0208
 
 [sub_resource type="Animation" id=4]
 tracks/0/type = "value"
@@ -156,6 +156,7 @@ frames = SubResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="2"]
 visible = true
+position = Vector2( 0, -3 )
 shape = SubResource( 3 )
 
 [node name="PlayerCam" parent="." index="4" instance=ExtResource( 5 )]
