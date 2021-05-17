@@ -1,16 +1,16 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/base/Level.cs" type="Script" id=1]
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/enemies/shooter/Shooter.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/enemies/shooter/LongRangeShooter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/enemies/all rounder/MeleeShooter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/obtainables/AbilityItem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/enemies/shooter/ScatterShooter.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/enemies/charger/BlobSpawnerCharger.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/enemies/all rounder/BlobnadierShielded.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemies/all rounder/MeleeShielded.tscn" type="PackedScene" id=11]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 1.0
 
 [node name="Level" type="YSort"]
 script = ExtResource( 1 )
@@ -29,60 +29,18 @@ tile_data = PoolIntArray( 262134, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0
 
 [node name="Enemies" type="YSort" parent="."]
 
-[node name="Shooter" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 305, 614 )
+[node name="MeleeShooter" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( 326, 577 )
 acts = {
-"shoot": 0.2
-}
-patrolPoints = [ 0, 1 ]
-
-[node name="ScatterShooter" parent="Enemies" instance=ExtResource( 8 )]
-position = Vector2( 648, 758 )
-acts = {
-"shoot": 1.0
-}
-
-[node name="LongRangeShooter" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 178, 1330 )
-acts = {
-"shoot": 1.0
-}
-
-[node name="BlobSpawnerCharger" parent="Enemies" instance=ExtResource( 9 )]
-position = Vector2( 725, 858 )
-acts = {
-"charge": 0.5,
-"spawn_blob": 3.0
-}
-patrolPoints = [ 0, 2 ]
-
-[node name="BlobSpawnerCharger2" parent="Enemies" instance=ExtResource( 9 )]
-position = Vector2( 250, 693 )
-acts = {
-"charge": 0.5,
-"spawn_blob": 3.0
-}
-patrolPoints = [ 1, 2 ]
-
-[node name="BlobSpawnerCharger3" parent="Enemies" instance=ExtResource( 9 )]
-position = Vector2( 341, 714 )
-acts = {
-"charge": 0.5,
-"spawn_blob": 3.0
+"melee_attack": 1.0,
+"shoot": 2.0
 }
 
 [node name="MeleeShielded" parent="Enemies" instance=ExtResource( 11 )]
-position = Vector2( 262, 1268 )
+position = Vector2( 614, 551 )
 acts = {
 "melee_attack": 1.0
 }
-
-[node name="BlobnadierShielded" parent="Enemies" instance=ExtResource( 10 )]
-position = Vector2( 384, 1334 )
-acts = {
-"throw_blob": 3.0
-}
-patrolPoints = [ 1, 2 ]
 
 [node name="PatrolPoints" type="Node2D" parent="."]
 
@@ -112,3 +70,4 @@ position = Vector2( -570, 951 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -195, 606 )
+physics_material_override = SubResource( 1 )

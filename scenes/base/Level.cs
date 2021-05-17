@@ -8,8 +8,6 @@ public abstract class Level : YSort
     private Navigation2D nav;
     private YSort enemies;
 
-    public int Health {get; set;}
-
 
     public override void _Ready()
     {

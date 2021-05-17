@@ -15,7 +15,7 @@
 [ext_resource path="res://scenes/ui/HotkeyHUD.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/ui/Theme.tres" type="Theme" id=14]
 [ext_resource path="res://scenes/ui/WarningText.tscn" type="PackedScene" id=16]
-[ext_resource path="res://assets/enemies/melee/tex_possessed_head_scared.png" type="Texture" id=17]
+[ext_resource path="res://assets/enemies/all rounder/tex_possessed_head_scared.png" type="Texture" id=17]
 
 [sub_resource type="Animation" id=1]
 resource_name = "throw"
@@ -47,9 +47,8 @@ animations = [ {
 "speed": 15.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 13.0
-height = 32.0
+[sub_resource type="CircleShape2D" id=3]
+radius = 30.0167
 
 [sub_resource type="Animation" id=4]
 tracks/0/type = "value"
@@ -122,7 +121,6 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource( 4 )
 speed = 250
-health = 3
 throwStrength = 200
 
 [node name="Center" type="Node2D" parent="." index="0"]

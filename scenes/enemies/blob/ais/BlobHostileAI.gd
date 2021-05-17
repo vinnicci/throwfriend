@@ -1,7 +1,6 @@
 extends "res://scenes/enemies/AI.gd"
 
 
-func _try_interrupt() -> bool:
-	if is_ent_valid(bb["enemy"]) == true:
-		return true
-	return false
+func _try_interrupt_patrol(_task) -> bool:
+	var output = _try_interrupt_patrol(_task)
+	return output || is_ent_valid(bb["enemy"])

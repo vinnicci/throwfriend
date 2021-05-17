@@ -1,18 +1,66 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/enemies/EnemyWeapon.cs" type="Script" id=1]
+[sub_resource type="CSharpScript" id=1]
+script/source = "using Godot;
+using System;
 
-[sub_resource type="Animation" id=1]
+public class EnemyWeapon : Node2D
+{
+    [Export] protected PackedScene projectile;
+    
+    public Enemy ParentNode {get; set;}
+    //public Level LevelNode {get; set;}
+
+    protected Position2D spawnPoint;
+    protected AnimationPlayer anim;
+
+
+    public override void _Ready()
+    {
+        base._Ready();
+        spawnPoint = (Position2D)GetNode(\"Sprites/ProjSpawn\");
+        anim = (AnimationPlayer)GetNode(\"Anim\");
+    }
+
+
+    //ranged
+    public virtual void Shoot() {
+        anim.Play(\"shoot\");
+    }
+
+
+    //melee
+    public virtual void MeleeAttack() {
+        anim.Play(\"melee_attack\");
+    }
+
+
+    //used by range attack anim to create projectiles
+    public virtual void SpawnProj() {
+        EnemyProj proj = (EnemyProj)projectile.Instance();
+        proj.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition, spawnPoint.GlobalRotationDegrees);
+    }
+
+
+    public virtual void FinishShooting() {
+        anim.Play(\"idle\");
+    }
+
+
+}
+"
+
+[sub_resource type="Animation" id=2]
 resource_name = "idle"
 loop = true
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 resource_name = "melee_attack"
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 
 [node name="EnemyWeapon" type="Node2D"]
-script = ExtResource( 1 )
+script = SubResource( 1 )
 
 [node name="Sprites" type="Node2D" parent="."]
 scale = Vector2( 2, 2 )
@@ -21,6 +69,6 @@ scale = Vector2( 2, 2 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 1 )
-anims/melee_attack = SubResource( 2 )
-anims/shoot = SubResource( 3 )
+anims/idle = SubResource( 2 )
+anims/melee_attack = SubResource( 3 )
+anims/shoot = SubResource( 4 )

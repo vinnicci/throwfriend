@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/player/tex_run_1.png" type="Texture" id=1]
 [ext_resource path="res://assets/player/tex_player_torso.png" type="Texture" id=2]
@@ -7,13 +7,17 @@
 [ext_resource path="res://assets/player/tex_run_4.png" type="Texture" id=5]
 [ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder.png" type="Texture" id=7]
-[ext_resource path="res://scenes/enemies/all rounder/weapons/SwordAndShield.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/SwordAndBlaster.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/AllRounder.cs" type="Script" id=9]
 [ext_resource path="res://scenes/enemies/all rounder/ais/AllRounderAI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/enemies/all rounder/tex_possessed_head_scared.png" type="Texture" id=11]
 [ext_resource path="res://assets/player/tex_player_arms.png" type="Texture" id=12]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="PhysicsMaterial" id=9]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
@@ -27,7 +31,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 45.0111
+radius = 45.0
 
 [sub_resource type="Animation" id=3]
 length = 0.5
@@ -108,7 +112,7 @@ tracks/5/keys = {
 "values": [ Vector2( 0, -11 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Sprite/Torso:z_index")
+tracks/6/path = NodePath("Sprite/Arms:z_index")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -120,7 +124,7 @@ tracks/6/keys = {
 "values": [ -1, 0 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Sprite/Arms:z_index")
+tracks/7/path = NodePath("Sprite/Torso:z_index")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -193,14 +197,43 @@ tracks/0/keys = {
 } ]
 }
 
-[node name="MeleeShielded" instance=ExtResource( 6 )]
+[sub_resource type="Animation" id=7]
+resource_name = "shoot"
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "Shoot"
+}, {
+"args": [  ],
+"method": "Recoil"
+}, {
+"args": [ "shoot" ],
+"method": "FinishAction"
+} ]
+}
+
+[node name="MeleeShooter" instance=ExtResource( 6 )]
+physics_material_override = SubResource( 9 )
 script = ExtResource( 9 )
-speed = 300
+speed = 750
 acts = {
-"melee_attack": 1.0
+"melee_attack": 1.0,
+"shoot": 2.0
 }
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 8 )]
+
+[node name="Sprite" parent="." index="1"]
+rotation = -0.0127287
 
 [node name="Arms" type="Sprite" parent="Sprite" index="0"]
 visible = false
@@ -218,7 +251,7 @@ texture = ExtResource( 7 )
 [node name="Legs" parent="Sprite" index="3"]
 position = Vector2( -0.5, 14 )
 z_index = -1
-frames = SubResource( 1 )
+frames = SubResource( 8 )
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( 2 )
@@ -228,9 +261,11 @@ anims/damaged = SubResource( 3 )
 anims/die = SubResource( 4 )
 anims/idle = SubResource( 5 )
 anims/melee_attack = SubResource( 6 )
+anims/shoot = SubResource( 7 )
 
 [node name="Health" parent="HUD" index="0"]
 margin_top = -93.0
 margin_bottom = -87.0
 
 [node name="AI" parent="." index="7" instance=ExtResource( 10 )]
+seek_dist = 400

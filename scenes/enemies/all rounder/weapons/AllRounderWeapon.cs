@@ -47,6 +47,15 @@ public abstract class AllRounderWeapon: EnemyWeapon
     //ranged
     public override void SpawnProj()
     {
+        GlobalRotationDegrees -= 30;
+        base.SpawnProj();
+        GlobalRotationDegrees += 15;
+        base.SpawnProj();
+        GlobalRotationDegrees += 15;
+        base.SpawnProj();
+        GlobalRotationDegrees += 15;
+        base.SpawnProj();
+        GlobalRotationDegrees += 15;
         base.SpawnProj();
     }
 

@@ -250,6 +250,7 @@ const ORIGIN_DIST: = 62500
 const TARGET_DIST: = 2500
 
 
+#_try_interrupt overridable func - use custom conditions to stop seeking
 #param 0: target
 #param 1: distance needed
 func task_seek(task):
@@ -258,10 +259,14 @@ func task_seek(task):
 		get_seek_point(bb[task.get_param(0)])
 	if bb[task.get_param(0)].global_position.distance_squared_to(path_points.front()) > ORIGIN_DIST:
 		get_new_path(bb[task.get_param(0)])
-	if bb[task.get_param(0) + "_dist"] <= bb[task.get_param(1)] || is_ent_valid(bb["enemy"]) == false:
+	if _try_interrupt_seek(task):
 		is_moving = false
 		path_points.clear()
 		task.succeed()
+
+
+func _try_interrupt_seek(task) -> bool:
+	return bb[task.get_param(0) + "_dist"] <= bb[task.get_param(1)] || is_ent_valid(bb["enemy"]) == false
 
 
 #_try_interrupt overridable func - use custom conditions to stop fleeing
@@ -270,14 +275,13 @@ func task_flee(task):
 	is_moving = true
 	if parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
 		get_flee_point()
-	if (bb["enemy_dist"] > bb[task.get_param(0)] || is_ent_valid(bb["enemy"]) == false
-	|| _try_interrupt_flee() == true):
+	if _try_interrupt_flee(task):
 		is_moving = false
 		task.succeed()
 
 
-func _try_interrupt_flee() -> bool:
-	return false
+func _try_interrupt_flee(task) -> bool:
+	return bb["enemy_dist"] > bb[task.get_param(0)] || is_ent_valid(bb["enemy"]) == false
 
 
 #_try_interrupt overridable func - use custom conditions to stop patrolling
@@ -286,8 +290,7 @@ func task_patrol(task):
 		task.succeed()
 		return
 	is_moving = true
-	if (parent_node.global_position.distance_squared_to(bb["patrol_point"].global_position) <= TARGET_DIST ||
-	_try_interrupt_patrol() == true):
+	if _try_interrupt_patrol(task):
 		is_moving = false
 		bb["patrol_point"] = null
 		task.succeed()
@@ -295,8 +298,8 @@ func task_patrol(task):
 		get_seek_point(bb["patrol_point"])
 
 
-func _try_interrupt_patrol() -> bool:
-	return false
+func _try_interrupt_patrol(_task) -> bool:
+	return parent_node.global_position.distance_squared_to(bb["patrol_point"].global_position) <= TARGET_DIST
 
 
 #ai actions

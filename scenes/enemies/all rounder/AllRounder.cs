@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public abstract class BaseAllRounder: Enemy
+public class AllRounder: Enemy
 {
     //melee
     protected const int FORWARD_IMPULSE = 500;
@@ -12,14 +12,22 @@ public abstract class BaseAllRounder: Enemy
     }
 
 
+    public virtual void AttackImpulse() {
+        ApplyCentralImpulse(new Vector2(1,0).Rotated(WeaponNode.GlobalRotation) * FORWARD_IMPULSE);
+    }
+
+
     //ranged
+    protected const int BLASTER_RECOIL = 250;
+
+
     public virtual void Shoot() {
         WeaponNode.Shoot();
     }
 
 
-    public virtual void AttackImpulse() {
-        ApplyCentralImpulse(new Vector2(1,0).Rotated(WeaponNode.GlobalRotation) * FORWARD_IMPULSE);
+    public virtual void Recoil() {
+        ApplyCentralImpulse(new Vector2(-1,0).Rotated(WeaponNode.GlobalRotation) * BLASTER_RECOIL);
     }
 
 
@@ -33,8 +41,6 @@ public abstract class BaseAllRounder: Enemy
     public override void FinishAction(String actionName) {
         base.FinishAction(actionName);
     }
-
-
 
     
 }

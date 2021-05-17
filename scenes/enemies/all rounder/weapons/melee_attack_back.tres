@@ -1,0 +1,43 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "melee_attack"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Hand:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.55, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -20.0, -80.0, 270.0, 280.0, -20.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Hand/Weapon/Hitbox:collision_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4, 0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "FinishShooting"
+} ]
+}
