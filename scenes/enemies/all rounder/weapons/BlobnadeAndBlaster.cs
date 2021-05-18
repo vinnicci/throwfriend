@@ -16,5 +16,15 @@ public class BlobnadeAndBlaster : AllRounderWeapon
         blob.ApplyCentralImpulse(new Vector2(2000, 0).Rotated(spawnPoint.GlobalRotation));
     }
 
+
+    public override void SpawnProj() {
+        base.SpawnProj();
+    }
+
+
+    public override void FinishShooting() {
+        base.FinishShooting();
+    }
+
     
 }

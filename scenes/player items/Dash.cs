@@ -15,6 +15,7 @@ public class Dash : PlayerItem
         Vector2 mousePos = new Vector2(GetGlobalMousePosition());
         Vector2 vec = (mousePos - PlayerNode.GlobalPosition).Clamped(1) * DASH_STRENGTH;
         PlayerNode.ApplyCentralImpulse(vec);
+        PlayerNode.HitCooldown.Start(0.3f);
         EmitSignal("Activated");
         Cooldown.Start();
     }

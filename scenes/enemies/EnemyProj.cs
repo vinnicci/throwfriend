@@ -70,12 +70,9 @@ public abstract class EnemyProj : Area2D, ISpawnable
         if(hitExceptions.Contains(body) == true) {
             return;
         }
-        if(body is IHealthModifiable) {
-            IHealthModifiable hitBody = (IHealthModifiable)body;
-            hitBody.Hit((((Node2D)body).GlobalPosition - GlobalPosition).Clamped(1) * KNOCKBACK, Damage);
-            StopProjectile();
-        }
-        else {
+        if(body is IHealthModifiable && ((IHealthModifiable)body).HitCooldown.IsStopped() == true) {
+            ((IHealthModifiable)body).Hit((((Node2D)body).GlobalPosition - GlobalPosition).Clamped(1) *
+            KNOCKBACK, Damage);
             StopProjectile();
         }
     }

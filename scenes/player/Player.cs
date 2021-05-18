@@ -206,6 +206,22 @@ public class Player : Entity
     }
 
 
+    const float PLAYER_HIT_COOLDOWN = 1f;
+
+
+    public override bool Hit(Vector2 knockback, int damage)
+    {
+        if(base.Hit(knockback, damage) == true) {
+            if(Health > 0 && damage > 0 && IsDead == false) {
+                anim.Play("damaged");
+                HitCooldown.Start(1f);
+            }
+            return true;
+        }
+        return false;
+    }
+
+
     public override void OnDeathTimerTimeout() {
         camera.GetParent().RemoveChild(camera);
         LevelNode.AddChild(camera);

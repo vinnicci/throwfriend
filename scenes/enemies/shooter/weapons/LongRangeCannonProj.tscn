@@ -47,7 +47,7 @@ tracks/2/keys = {
 }
 
 [node name="LongRangeCannonProj" instance=ExtResource( 2 )]
-collision_mask = 13
+collision_mask = 5
 range = 1000
 speed = 15
 

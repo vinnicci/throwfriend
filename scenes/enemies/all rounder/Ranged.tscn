@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/player/tex_run_4.png" type="Texture" id=5]
 [ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder.png" type="Texture" id=7]
-[ext_resource path="res://scenes/enemies/all rounder/weapons/BlobnadeAndShield.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/Blaster.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/AllRounder.cs" type="Script" id=9]
 [ext_resource path="res://scenes/enemies/all rounder/ais/AllRounderAI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/enemies/all rounder/tex_possessed_head_scared.png" type="Texture" id=11]
@@ -171,9 +171,8 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -13 ), Vector2( 0, -11 ), Vector2( 0, -13 ) ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "throw_blob"
-length = 1.5
+[sub_resource type="Animation" id=6]
+resource_name = "shoot"
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -181,22 +180,25 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "ThrowBlob"
+"method": "Shoot"
 }, {
-"args": [ "throw_blob" ],
+"args": [  ],
+"method": "Recoil"
+}, {
+"args": [ "shoot" ],
 "method": "FinishAction"
 } ]
 }
 
-[node name="BlobnadierShielded" instance=ExtResource( 6 )]
+[node name="Ranged" instance=ExtResource( 6 )]
 script = ExtResource( 9 )
-speed = 300
+speed = 750
 acts = {
-"throw_blob": 3.0
+"shoot": 2.0
 }
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 8 )]
@@ -226,7 +228,7 @@ shape = SubResource( 2 )
 anims/damaged = SubResource( 3 )
 anims/die = SubResource( 4 )
 anims/idle = SubResource( 5 )
-anims/throw_blob = SubResource( 7 )
+anims/shoot = SubResource( 6 )
 
 [node name="Health" parent="HUD" index="0"]
 margin_top = -93.0

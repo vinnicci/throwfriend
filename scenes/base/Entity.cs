@@ -8,11 +8,19 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     [Export] protected int health = 1;
     public int Health {get; set;}
     public Vector2 Velocity {get; protected set;}
-    protected Timer deathTimer;
-    protected Timer hitCooldown;
-    protected AnimationPlayer anim;
     public bool IsDead {get; set;}
+    protected Timer hitCooldown;
+    public Timer HitCooldown {
+        get {
+            return hitCooldown;
+        }
+        set {
+            return;
+        }
+    }
 
+    protected Timer deathTimer;
+    protected AnimationPlayer anim;
     protected AnimatedSprite legs;
     protected Node2D spriteNode;
     protected Godot.Collections.Array spriteChildren = new Godot.Collections.Array();
@@ -138,9 +146,9 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
 
 
-    public virtual void Hit(Vector2 knockback, int damage) {
-        if(IsDead == true || hitCooldown.IsStopped() == false) {
-            return;
+    public virtual bool Hit(Vector2 knockback, int damage) {
+        if(IsDead == true) {
+            return false;
         }
         ApplyCentralImpulse(knockback);
         Health -= damage;
@@ -153,16 +161,9 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
             SetCollisionLayerBit(Global.BIT_MASK_ENEMY, false);
             SetCollisionLayerBit(Global.BIT_MASK_PLAYER, false);
         }
-        else if(Health > 0) {
-            if(damage > 0) {
-                if(this is Enemy == false && IsDead == false) {
-                    anim.Play("damaged");
-                }
-                hitCooldown.Start();
-            }
-        }
         Health = Godot.Mathf.Clamp(Health, 0, health);
         healthHUD.UpdateHealth();
+        return true;
     }
 
 

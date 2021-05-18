@@ -7,6 +7,14 @@ public class Wall : TileMap, IHealthModifiable
     [Export] protected bool destructible = false;
 
     public int Health {get; set;}
+    public Timer HitCooldown {
+        get {
+            GD.PrintErr("No hitcooldown timer for Level nodes.");
+            return null;
+        } set {
+            GD.PrintErr("No hitcooldown timer for Level nodes.");
+        }
+    }
 
 
     public override void _Ready()
@@ -16,11 +24,12 @@ public class Wall : TileMap, IHealthModifiable
     }
 
 
-    public void Hit(Vector2 knockback, int damage) {
+    public bool Hit(Vector2 knockback, int damage) {
     if(destructible == false) {
-        return;
+        return false;
     }
     //add destroyed wall effect
+    return true;
     }
 
     
