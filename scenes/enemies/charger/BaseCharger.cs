@@ -4,7 +4,7 @@ using System;
 public abstract class BaseCharger : Enemy
 {
     protected bool charging = false;
-    protected const int CHARGE_MIN_V = 5625;
+    protected const int CHARGE_MIN_V = 3000;
 
 
     public override void _PhysicsProcess(float delta)
@@ -17,8 +17,8 @@ public abstract class BaseCharger : Enemy
     }
 
 
-    protected const int CHARGE_KNOCKBACK = 100;
-    protected const int CHARGE_STRENGTH = 500;
+    protected const int CHARGE_KNOCKBACK = 250;
+    protected const int CHARGE_STRENGTH = 250;
 
 
     public override void OnEnemyBodyEntered(Godot.Object body) {

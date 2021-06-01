@@ -34,7 +34,6 @@ public class ExtraLarge : WeaponItem
         }
         largeWeap.RefreshItems();
         largeWeap.PlayerNode = Player;
-        //largeWeap.LevelNode = WeaponNode.LevelNode;
         if(IsInstanceValid(WeaponNode.Item1) == true) {
             largeWeap.ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
             largeWeap.RefreshItems();

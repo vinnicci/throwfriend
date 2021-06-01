@@ -3,7 +3,7 @@ using System;
 
 public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, ISpawnable
 {
-    [Export] protected int speed = 500;
+    [Export] protected int speed = 250;
     public int Speed {get; set;}
     [Export] protected int health = 1;
     public int Health {get; set;}
@@ -19,11 +19,8 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         }
     }
 
-    protected Timer deathTimer;
     protected AnimationPlayer anim;
-    protected AnimatedSprite legs;
     protected Node2D spriteNode;
-    protected Godot.Collections.Array spriteChildren = new Godot.Collections.Array();
     private Node2D hud;
     private HealthHUD healthHUD;
 
@@ -31,31 +28,15 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     public override void _Ready()
     {
         base._Ready();
-        deathTimer = (Timer)GetNode("DeathTimer");
         hitCooldown = (Timer)GetNode("HitCooldown");
-        anim = (AnimationPlayer)GetNode("Anim");
         spriteNode = (Node2D)GetNode("Sprite");
-        InitSpriteChildren(spriteNode);
-        legs = (AnimatedSprite)spriteNode.GetNode("Legs");
         Speed = speed;
         Health = health;
         IsDead = false;
         hud = (Node2D)GetNode("HUD");
         healthHUD = (HealthHUD)hud.GetNode("Health");
         healthHUD.ParentNode = this;
-    }
-
-
-    private void InitSpriteChildren(Node2D node) {
-        foreach(Godot.Object spriteCh in node.GetChildren()) {
-            if(spriteCh is Sprite) {
-                spriteChildren.Add(spriteCh);
-                Node2D sNode = (Node2D)spriteCh;
-                if(sNode.GetChildren().Count != 0) {
-                    InitSpriteChildren(sNode);
-                }
-            }
-        }
+        anim = (AnimationPlayer)GetNode("Anim");
     }
 
 
@@ -108,54 +89,32 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
 
 
-    private void AdjustSprites() {
+    public virtual void AdjustSprites() {
         //running
+        if(anim.CurrentAnimation != "run" && anim.CurrentAnimation != "idle") {
+            return;
+        }
         if(Velocity == Vector2.Zero) {
-            legs.Play("idle");
+            anim.Play("idle");
         }
         else {
-            legs.Play("run");
+            anim.Play("run");
         }
-        //left
-        Sprite sprite = (Sprite)spriteChildren[0];
-        if(Velocity.x < 0) {
-            if(sprite.FlipH == false) {
-                foreach(Sprite spChild in spriteChildren) {
-                    spChild.Offset *= new Vector2(-1,1);
-                    spChild.FlipH = true;
-                }
-            }
-            if(legs.FlipH == false) {
-                legs.Offset *= new Vector2(-1,1);
-                legs.FlipH = true;
-            }
-        }
-        //right
-        else if(Velocity.x > 0) {
-            if(sprite.FlipH == true) {
-                foreach(Sprite spChild in spriteChildren) {
-                    spChild.Offset *= new Vector2(-1,1);
-                    spChild.FlipH = false;
-                }
-            }
-            if(legs.FlipH == true) {
-                legs.Offset *= new Vector2(-1,1);
-                legs.FlipH = false;
-            }
+        if((Velocity.x < 0 && spriteNode.Scale.x > 0) || (Velocity.x > 0 && spriteNode.Scale.x < 0)) {
+            Vector2 scale = new Vector2(-1,1);
+            spriteNode.Scale *= scale;
         }
     }
 
 
     public virtual bool Hit(Vector2 knockback, int damage) {
-        if(IsDead == true) {
+        if(IsDead == true || HitCooldown.IsStopped() == false) {
             return false;
         }
         ApplyCentralImpulse(knockback);
         Health -= damage;
         if(Health <= 0) {
             IsDead = true;
-            deathTimer.Start();
-            legs.Animation = "idle";
             anim.Stop();
             anim.Play("die");
             SetCollisionLayerBit(Global.BIT_MASK_ENEMY, false);
@@ -169,11 +128,6 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
 
     public void Spawn(Level lvl, Vector2 globalPos, float globalRot = 0) {
         lvl.Spawn(this, globalPos, globalRot);
-    }
-
-
-    public virtual void OnDeathTimerTimeout() {
-        anim.Play("die");
     }
 
 

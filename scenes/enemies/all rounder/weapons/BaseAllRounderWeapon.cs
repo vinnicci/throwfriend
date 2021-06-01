@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public abstract class AllRounderWeapon: EnemyWeapon
+public abstract class BaseAllRounderWeapon: EnemyWeapon
 {
     [Export] protected PackedScene aiNode; //used by blobnades
 
@@ -17,7 +17,7 @@ public abstract class AllRounderWeapon: EnemyWeapon
 
 
     //melee
-    protected const int KNOCKBACK = 500;
+    protected const int KNOCKBACK = 250;
 
 
     public virtual void OnHitboxBodyEntered(Godot.Object body) {
@@ -28,10 +28,24 @@ public abstract class AllRounderWeapon: EnemyWeapon
     }
 
 
+    public void MeleeAttackBack() {
+        anim.Play("melee_attack_back");
+    }
+
+
+    //shoot
+    public void ShootBack() {
+        anim.Play("shoot_back");
+    }
+
+
     //blobnade
     public void ThrowBlob() {
         anim.Play("throw_blob");
     }
+
+
+    const int BLOBNADE_THROW_STRENGTH = 1000;
 
 
     public virtual void SpawnBlob() {
@@ -40,7 +54,7 @@ public abstract class AllRounderWeapon: EnemyWeapon
         blob.AddChild(ai);
         ai.Call("init_properties", ParentNode.LevelNode, blob);
         blob.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition);
-        blob.ApplyCentralImpulse(new Vector2(2000, 0).Rotated(spawnPoint.GlobalRotation));
+        blob.ApplyCentralImpulse(new Vector2(BLOBNADE_THROW_STRENGTH, 0).Rotated(spawnPoint.GlobalRotation));
     }
 
 

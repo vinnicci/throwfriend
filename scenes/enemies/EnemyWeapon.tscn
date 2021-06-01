@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=2 format=2]
 
 [sub_resource type="CSharpScript" id=1]
 script/source = "using Godot;
@@ -50,25 +50,10 @@ public class EnemyWeapon : Node2D
 }
 "
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
-loop = true
-
-[sub_resource type="Animation" id=3]
-resource_name = "melee_attack"
-
-[sub_resource type="Animation" id=4]
-
 [node name="EnemyWeapon" type="Node2D"]
 script = SubResource( 1 )
 
 [node name="Sprites" type="Node2D" parent="."]
-scale = Vector2( 2, 2 )
 
 [node name="ProjSpawn" type="Position2D" parent="Sprites"]
 scale = Vector2( 0.5, 0.5 )
-
-[node name="Anim" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 2 )
-anims/melee_attack = SubResource( 3 )
-anims/shoot = SubResource( 4 )

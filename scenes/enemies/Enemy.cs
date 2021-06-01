@@ -108,6 +108,7 @@ public abstract class Enemy : Entity
             return false;
         }
         action["IsActive"] = true;
+        anim.Stop();
         anim.Play(actionName);
         return true;
     }

@@ -1,0 +1,317 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Skirt/Skeleton2D/Spine1/Front:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 16 ), Vector2( -7.19048, 16.5 ), Vector2( 9, 15.5 ), Vector2( 0, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Skirt/Skeleton2D/Spine1/Spine2:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -11.872, 0.739408, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Skirt/Skeleton2D/Spine1/Spine2/Spine3:rotation_degrees")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -16.0833, 25.1565, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Skirt/Skeleton2D/Spine1/Spine2/Spine3/Spine4:rotation_degrees")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -90.2643, -58.866, -127.488, -90.2643 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/Skirt/Hair/Skeleton2D/Hair/HairFront:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -11, -12 ), Vector2( -7.19073, -17.4998 ), Vector2( -10.9999, -9.49985 ), Vector2( -11, -12 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite/Skirt/Hair/Skeleton2D/Hair/HairL2:rotation_degrees")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -11.7905, -13.4511, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite/Skirt/Hair/Skeleton2D/Hair/HairL2/HairL3:rotation_degrees")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -3.76328, -4.06904, 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sprite/Skirt/Hair/Skeleton2D/Hair/HairL2/HairL3/HairL4:rotation_degrees")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 13.1813, 12.6935, 0.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Sprite/Skirt/Hair/Skeleton2D/Hair/HairL2/HairL3/HairL4/HairL5:rotation_degrees")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 98.5562, 101.354, 104.173, 98.5562 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Sprite/Skirt/Hair/Skeleton2D/Hair/HairR2:rotation_degrees")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.99664, -22.9127, 0.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Sprite/Skirt/Hair/Skeleton2D/Hair/HairR2/HairR3:rotation_degrees")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -3.4661, -3.21091, 0.0 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Sprite/Skirt/Hair/Skeleton2D/Hair/HairR2/HairR3/HairR4:rotation_degrees")
+tracks/11/interp = 2
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 85.7196, 87.8396, 112.575, 85.7196 ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2:rotation_degrees")
+tracks/12/interp = 2
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 14.873, 0.132175, 0.0 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3:rotation_degrees")
+tracks/13/interp = 2
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.61902, -21.912, 0.0 ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3/Spine4:rotation_degrees")
+tracks/14/interp = 2
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -92.4456, -109.667, -72.0015, -92.4456 ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Sprite/Skirt/Torso/Skeleton2D/Spine/Front:position")
+tracks/15/interp = 2
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 1, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 13 ), Vector2( -10.0714, 13 ), Vector2( 0, 13 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Sprite/Skirt/Torso:position")
+tracks/16/interp = 2
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 37.5, -24.5 ), Vector2( 30.8333, -24.5 ), Vector2( 42.6786, -24.5 ), Vector2( 37.5, -24.5 ) ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Sprite/Skirt/Torso/Head/HairTop:position")
+tracks/17/interp = 2
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -21, -35 ), Vector2( -20.0476, -35 ), Vector2( -21, -35 ) ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Sprite/Skirt/Torso/Head:position")
+tracks/18/interp = 2
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 15.75, -9.5 ), Vector2( 15.9881, -10.625 ), Vector2( 11.9405, -8.5 ), Vector2( 15.75, -9.5 ) ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Sprite/Skirt/Torso/Head/Face:position")
+tracks/19/interp = 2
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 1.5 ), Vector2( -0.452381, 1.5 ), Vector2( 1.5119, 1.5 ), Vector2( 0.5, 1.5 ) ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Sprite/Skirt/Torso:rotation_degrees")
+tracks/20/interp = 2
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 1, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("Sprite/Skirt/Torso/Head:rotation_degrees")
+tracks/21/interp = 2
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 1, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Sprite/Skirt/Hair:position")
+tracks/22/interp = 2
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0, 1, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 13, -55 ), Vector2( 8, -55 ), Vector2( 13, -55 ) ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3/EnemyWeapon:position")
+tracks/23/interp = 2
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0, 1, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5.2932, -13.1061 ), Vector2( -0.291595, -16.4561 ), Vector2( 7.68946, -11.1174 ), Vector2( 5.2932, -13.1061 ) ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3/EnemyWeapon2:position")
+tracks/24/interp = 2
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 1, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -13.5519, -9.55145 ), Vector2( -7.23, -17.6014 ) ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3/EnemyWeapon:rotation_degrees")
+tracks/25/interp = 2
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 47.9655, 71.6979, 47.9655 ]
+}

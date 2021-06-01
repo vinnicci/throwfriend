@@ -14,13 +14,6 @@ public class RigidCharger : BaseCharger
 
 
     public override void Charge() {
-        Sprite sprite = (Sprite)spriteChildren[0];
-        if(sprite.FlipH == true) {
-            foreach(Sprite spChild in spriteChildren) {
-                spChild.Offset *= new Vector2(-1,1);
-                spChild.FlipH = false;
-            }
-        }
         Mode = ModeEnum.Rigid;
         AngularVelocity = CHARGE_ROTATION;
         LinearDamp = MODIFIED_DAMP;

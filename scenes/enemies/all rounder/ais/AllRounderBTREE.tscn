@@ -17,22 +17,22 @@ tree = {
 "to_port": 0
 }, {
 "from": "selector",
-"from_port": 1,
-"to": "minim_node3",
-"to_port": 0
-}, {
-"from": "selector",
-"from_port": 3,
-"to": "minim_node2",
-"to_port": 0
-}, {
-"from": "selector",
 "from_port": 5,
 "to": "minim_node6",
 "to_port": 0
 }, {
 "from": "selector",
+"from_port": 1,
+"to": "minim_node3",
+"to_port": 0
+}, {
+"from": "selector",
 "from_port": 2,
+"to": "minim_node2",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 3,
 "to": "minim_node4",
 "to_port": 0
 }, {
@@ -206,7 +206,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 400, -260 ),
+"offset": Vector2( 400, 0 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -215,7 +215,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 600, -380 ),
+"offset": Vector2( 600, -120 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -226,7 +226,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 600, -260 ),
+"offset": Vector2( 600, 0 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -237,7 +237,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 600, -120 ),
+"offset": Vector2( 600, 140 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -248,7 +248,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 600, 0 ),
+"offset": Vector2( 600, 260 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "throw_blob" ]
@@ -261,7 +261,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 600, -380 ),
+"offset": Vector2( 600, -120 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -272,7 +272,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 600, -260 ),
+"offset": Vector2( 600, 0 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -283,7 +283,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 600, -120 ),
+"offset": Vector2( 600, 140 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -294,7 +294,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 600, 0 ),
+"offset": Vector2( 600, 260 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "throw_blob" ]
@@ -304,7 +304,7 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 400, -260 ),
+"offset": Vector2( 400, 0 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -329,7 +329,7 @@ tree = {
 }, {
 "from": "selector2",
 "from_port": 1,
-"to": "sequence2",
+"to": "sequence3",
 "to_port": 0
 }, {
 "from": "sequence",
@@ -352,22 +352,22 @@ tree = {
 "to": "task23",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 0,
 "to": "task24",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 1,
 "to": "task25",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 2,
 "to": "task26",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 3,
 "to": "task27",
 "to_port": 0
@@ -376,7 +376,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 2,
-"offset": Vector2( 1000, 200 ),
+"offset": Vector2( 400, 120 ),
 "size": Vector2( 101, 87.75 )
 },
 "name": "selector2",
@@ -385,7 +385,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, -120 ),
+"offset": Vector2( 600, -200 ),
 "size": Vector2( 120, 140 )
 },
 "name": "sequence",
@@ -394,7 +394,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, -240 ),
+"offset": Vector2( 800, -320 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -405,7 +405,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, -120 ),
+"offset": Vector2( 800, -200 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -416,7 +416,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 20 ),
+"offset": Vector2( 800, -60 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -427,7 +427,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 140 ),
+"offset": Vector2( 800, 60 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "shoot" ]
@@ -438,19 +438,19 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, 380 ),
+"offset": Vector2( 600, 300 ),
 "size": Vector2( 120, 140 )
 },
-"name": "sequence2",
+"name": "sequence3",
 "type": 2
 }, {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, 260 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 180 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task24",
 "type": 1
@@ -458,7 +458,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, 380 ),
+"offset": Vector2( 800, 300 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -469,7 +469,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 520 ),
+"offset": Vector2( 800, 440 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -480,10 +480,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 640 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 560 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 201, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task27",
 "type": 1
@@ -494,7 +494,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, -240 ),
+"offset": Vector2( 800, -320 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -505,7 +505,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, -120 ),
+"offset": Vector2( 800, -200 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -516,7 +516,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 20 ),
+"offset": Vector2( 800, -60 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -527,7 +527,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 140 ),
+"offset": Vector2( 800, 60 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "shoot" ]
@@ -537,7 +537,7 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, -120 ),
+"offset": Vector2( 600, -200 ),
 "size": Vector2( 120, 140 )
 },
 "name": "sequence",
@@ -547,10 +547,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, 260 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 180 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task24",
 "type": 1
@@ -558,7 +558,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, 380 ),
+"offset": Vector2( 800, 300 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -569,7 +569,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 520 ),
+"offset": Vector2( 800, 440 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -580,25 +580,25 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 640 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 560 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 201, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task27",
 "type": 1
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, 380 ),
+"offset": Vector2( 600, 300 ),
 "size": Vector2( 120, 140 )
 },
-"name": "sequence2",
+"name": "sequence3",
 "type": 2
 } ],
 "data": {
 "count": 2,
-"offset": Vector2( 1000, 200 ),
+"offset": Vector2( 400, 120 ),
 "size": Vector2( 101, 87.75 )
 },
 "name": "selector2",
@@ -609,13 +609,23 @@ tree = {
 "offset": Vector2( 400, 120 ),
 "size": Vector2( 236, 80 )
 },
-"name": "minim_node4",
+"name": "minim_node2",
 "type": 99
 }, {
 "child": [  ],
 "data": {
 "data": {
 "connection": [ {
+"from": "selector2",
+"from_port": 0,
+"to": "sequence2",
+"to_port": 0
+}, {
+"from": "selector2",
+"from_port": 1,
+"to": "sequence3",
+"to_port": 0
+}, {
 "from": "sequence2",
 "from_port": 0,
 "to": "task5",
@@ -635,12 +645,41 @@ tree = {
 "from_port": 2,
 "to": "task2",
 "to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 0,
+"to": "task8",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 1,
+"to": "task9",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 3,
+"to": "task10",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 2,
+"to": "task3",
+"to_port": 0
 } ],
 "nodes": [ {
 "child": [  ],
 "data": {
+"count": 2,
+"offset": Vector2( 1200, 300 ),
+"size": Vector2( 101, 87.75 )
+},
+"name": "selector2",
+"type": 3
+}, {
+"child": [  ],
+"data": {
 "count": 4,
-"offset": Vector2( 400, -780 ),
+"offset": Vector2( 1400, 0 ),
 "size": Vector2( 109, 131.75 )
 },
 "name": "sequence2",
@@ -649,7 +688,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 600, -900 ),
+"offset": Vector2( 1600, -180 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -660,7 +699,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 600, -780 ),
+"offset": Vector2( 1600, -60 ),
 "params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "too_close_dist" ]
@@ -671,7 +710,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 600, -640 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -682,20 +721,74 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 600, -520 ),
+"offset": Vector2( 1600, 200 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "melee_attack" ]
 },
 "name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"count": 4,
+"offset": Vector2( 1400, 520 ),
+"size": Vector2( 109, 131.75 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 340 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1600, 460 ),
+"params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "too_close_dist" ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_aim_weapon",
+"offset": Vector2( 1600, 600 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 252, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 1600, 720 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 240, 100 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task10",
 "type": 1
 } ],
 "root": {
 "child": [ {
+"child": [ {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 600, -900 ),
+"offset": Vector2( 1600, -180 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -706,7 +799,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 600, -780 ),
+"offset": Vector2( 1600, -60 ),
 "params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "too_close_dist" ]
@@ -717,7 +810,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 600, -640 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -728,7 +821,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 600, -520 ),
+"offset": Vector2( 1600, 200 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "melee_attack" ]
@@ -738,18 +831,79 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 400, -780 ),
+"offset": Vector2( 1400, 0 ),
 "size": Vector2( 109, 131.75 )
 },
 "name": "sequence2",
 "type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 340 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1600, 460 ),
+"params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "too_close_dist" ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_aim_weapon",
+"offset": Vector2( 1600, 600 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 252, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 1600, 720 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 240, 100 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task10",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 1400, 520 ),
+"size": Vector2( 109, 131.75 )
+},
+"name": "sequence3",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1200, 300 ),
+"size": Vector2( 101, 87.75 )
+},
+"name": "selector2",
+"type": 3
 }
 },
 "label": "melee_attack",
 "offset": Vector2( 400, 240 ),
 "size": Vector2( 236, 80 )
 },
-"name": "minim_node2",
+"name": "minim_node4",
 "type": 99
 }, {
 "child": [  ],
@@ -787,6 +941,11 @@ tree = {
 "to_port": 0
 }, {
 "from": "sequence",
+"from_port": 4,
+"to": "inverter5",
+"to_port": 0
+}, {
+"from": "sequence",
 "from_port": 3,
 "to": "inverter3",
 "to_port": 0
@@ -810,12 +969,17 @@ tree = {
 "from_port": 0,
 "to": "task9",
 "to_port": 0
+}, {
+"from": "inverter5",
+"from_port": 0,
+"to": "task3",
+"to_port": 0
 } ],
 "nodes": [ {
 "child": [  ],
 "data": {
 "count": 3,
-"offset": Vector2( 740, 380 ),
+"offset": Vector2( 1000, 400 ),
 "size": Vector2( 120, 120 )
 },
 "name": "sequence3",
@@ -823,16 +987,16 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"count": 4,
-"offset": Vector2( 960, 260 ),
-"size": Vector2( 103, 131.75 )
+"count": 5,
+"offset": Vector2( 1200, 80 ),
+"size": Vector2( 103, 153.75 )
 },
 "name": "sequence",
 "type": 2
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 140 ),
+"offset": Vector2( 1400, -40 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter2",
@@ -841,7 +1005,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 140 ),
+"offset": Vector2( 1600, -40 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -851,7 +1015,7 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 260 ),
+"offset": Vector2( 1400, 80 ),
 "size": Vector2( 96, 43.75 )
 },
 "name": "inverter",
@@ -860,7 +1024,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 260 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -870,7 +1034,7 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 380 ),
+"offset": Vector2( 1400, 200 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter4",
@@ -879,17 +1043,17 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 380 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 1600, 200 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task",
 "type": 1
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 500 ),
+"offset": Vector2( 1400, 320 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter3",
@@ -898,7 +1062,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 500 ),
+"offset": Vector2( 1600, 320 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -908,8 +1072,27 @@ tree = {
 }, {
 "child": [  ],
 "data": {
+"offset": Vector2( 1400, 440 ),
+"size": Vector2( 102, 43.75 )
+},
+"name": "inverter5",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 440 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
 "fn": "task_get_flee_point",
-"offset": Vector2( 940, 620 ),
+"offset": Vector2( 1180, 520 ),
 "params": [  ],
 "size": Vector2( 260, 84.9999 ),
 "values": [  ]
@@ -920,7 +1103,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_flee",
-"offset": Vector2( 940, 740 ),
+"offset": Vector2( 1180, 640 ),
 "params": [ [ "too_far_dist", 1 ] ],
 "size": Vector2( 220, 99.9999 ),
 "values": [ "too_far_dist" ]
@@ -935,7 +1118,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 140 ),
+"offset": Vector2( 1600, -40 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -944,7 +1127,7 @@ tree = {
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 140 ),
+"offset": Vector2( 1400, -40 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter2",
@@ -954,7 +1137,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 260 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -963,7 +1146,7 @@ tree = {
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 260 ),
+"offset": Vector2( 1400, 80 ),
 "size": Vector2( 96, 43.75 )
 },
 "name": "inverter",
@@ -973,16 +1156,16 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 380 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 1600, 200 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task",
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 380 ),
+"offset": Vector2( 1400, 200 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter4",
@@ -992,7 +1175,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 500 ),
+"offset": Vector2( 1600, 320 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -1001,16 +1184,35 @@ tree = {
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 500 ),
+"offset": Vector2( 1400, 320 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter3",
 "type": 14
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 440 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task3",
+"type": 1
 } ],
 "data": {
-"count": 4,
-"offset": Vector2( 960, 260 ),
-"size": Vector2( 103, 131.75 )
+"offset": Vector2( 1400, 440 ),
+"size": Vector2( 102, 43.75 )
+},
+"name": "inverter5",
+"type": 14
+} ],
+"data": {
+"count": 5,
+"offset": Vector2( 1200, 80 ),
+"size": Vector2( 103, 153.75 )
 },
 "name": "sequence",
 "type": 2
@@ -1018,7 +1220,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_get_flee_point",
-"offset": Vector2( 940, 620 ),
+"offset": Vector2( 1180, 520 ),
 "params": [  ],
 "size": Vector2( 260, 84.9999 ),
 "values": [  ]
@@ -1029,7 +1231,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_flee",
-"offset": Vector2( 940, 740 ),
+"offset": Vector2( 1180, 640 ),
 "params": [ [ "too_far_dist", 1 ] ],
 "size": Vector2( 220, 99.9999 ),
 "values": [ "too_far_dist" ]
@@ -1039,7 +1241,7 @@ tree = {
 } ],
 "data": {
 "count": 3,
-"offset": Vector2( 740, 380 ),
+"offset": Vector2( 1000, 400 ),
 "size": Vector2( 120, 120 )
 },
 "name": "sequence3",
@@ -1292,286 +1494,6 @@ tree = {
 "data": {
 "data": {
 "connection": [ {
-"from": "sequence",
-"from_port": 0,
-"to": "task3",
-"to_port": 0
-}, {
-"from": "sequence",
-"from_port": 1,
-"to": "task4",
-"to_port": 0
-}, {
-"from": "sequence",
-"from_port": 2,
-"to": "task14",
-"to_port": 0
-}, {
-"from": "sequence",
-"from_port": 3,
-"to": "task15",
-"to_port": 0
-} ],
-"nodes": [ {
-"child": [  ],
-"data": {
-"count": 4,
-"offset": Vector2( 400, -260 ),
-"size": Vector2( 103, 131.75 )
-},
-"name": "sequence",
-"type": 2
-}, {
-"child": [  ],
-"data": {
-"fn": "task_is_act_ready",
-"offset": Vector2( 600, -380 ),
-"params": [ [ "throw_blob", 1 ] ],
-"size": Vector2( 249, 87.75 ),
-"values": [ "throw_blob" ]
-},
-"name": "task3",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_is_target_close",
-"offset": Vector2( 600, -260 ),
-"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
-"size": Vector2( 262, 112.75 ),
-"values": [ "enemy", "seek_dist" ]
-},
-"name": "task4",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_aim_weapon",
-"offset": Vector2( 600, -120 ),
-"params": [ [ "enemy", 1 ] ],
-"size": Vector2( 252, 87.75 ),
-"values": [ "enemy" ]
-},
-"name": "task14",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_act",
-"offset": Vector2( 600, 0 ),
-"params": [ [ "throw_blob", 1 ] ],
-"size": Vector2( 201, 87.75 ),
-"values": [ "throw_blob" ]
-},
-"name": "task15",
-"type": 1
-} ],
-"root": {
-"child": [ {
-"child": [  ],
-"data": {
-"fn": "task_is_act_ready",
-"offset": Vector2( 600, -380 ),
-"params": [ [ "throw_blob", 1 ] ],
-"size": Vector2( 249, 87.75 ),
-"values": [ "throw_blob" ]
-},
-"name": "task3",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_is_target_close",
-"offset": Vector2( 600, -260 ),
-"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
-"size": Vector2( 262, 112.75 ),
-"values": [ "enemy", "seek_dist" ]
-},
-"name": "task4",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_aim_weapon",
-"offset": Vector2( 600, -120 ),
-"params": [ [ "enemy", 1 ] ],
-"size": Vector2( 252, 87.75 ),
-"values": [ "enemy" ]
-},
-"name": "task14",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_act",
-"offset": Vector2( 600, 0 ),
-"params": [ [ "throw_blob", 1 ] ],
-"size": Vector2( 201, 87.75 ),
-"values": [ "throw_blob" ]
-},
-"name": "task15",
-"type": 1
-} ],
-"data": {
-"count": 4,
-"offset": Vector2( 400, -260 ),
-"size": Vector2( 103, 131.75 )
-},
-"name": "sequence",
-"type": 2
-}
-},
-"label": "throw_blob",
-"offset": Vector2( 400, 0 ),
-"size": Vector2( 236, 80 )
-},
-"name": "minim_node3",
-"type": 99
-}, {
-"child": [  ],
-"data": {
-"data": {
-"connection": [ {
-"from": "sequence2",
-"from_port": 0,
-"to": "task5",
-"to_port": 0
-}, {
-"from": "sequence2",
-"from_port": 1,
-"to": "task6",
-"to_port": 0
-}, {
-"from": "sequence2",
-"from_port": 3,
-"to": "task7",
-"to_port": 0
-}, {
-"from": "sequence2",
-"from_port": 2,
-"to": "task2",
-"to_port": 0
-} ],
-"nodes": [ {
-"child": [  ],
-"data": {
-"count": 4,
-"offset": Vector2( 400, -780 ),
-"size": Vector2( 109, 131.75 )
-},
-"name": "sequence2",
-"type": 2
-}, {
-"child": [  ],
-"data": {
-"fn": "task_is_act_ready",
-"offset": Vector2( 600, -900 ),
-"params": [ [ "melee_attack", 1 ] ],
-"size": Vector2( 249, 87.75 ),
-"values": [ "melee_attack" ]
-},
-"name": "task5",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_is_target_close",
-"offset": Vector2( 600, -780 ),
-"params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
-"size": Vector2( 262, 112.75 ),
-"values": [ "enemy", "too_close_dist" ]
-},
-"name": "task6",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_aim_weapon",
-"offset": Vector2( 600, -640 ),
-"params": [ [ "enemy", 1 ] ],
-"size": Vector2( 252, 87.75 ),
-"values": [ "enemy" ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_act",
-"offset": Vector2( 600, -520 ),
-"params": [ [ "melee_attack", 1 ] ],
-"size": Vector2( 240, 100 ),
-"values": [ "melee_attack" ]
-},
-"name": "task7",
-"type": 1
-} ],
-"root": {
-"child": [ {
-"child": [  ],
-"data": {
-"fn": "task_is_act_ready",
-"offset": Vector2( 600, -900 ),
-"params": [ [ "melee_attack", 1 ] ],
-"size": Vector2( 249, 87.75 ),
-"values": [ "melee_attack" ]
-},
-"name": "task5",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_is_target_close",
-"offset": Vector2( 600, -780 ),
-"params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
-"size": Vector2( 262, 112.75 ),
-"values": [ "enemy", "too_close_dist" ]
-},
-"name": "task6",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_aim_weapon",
-"offset": Vector2( 600, -640 ),
-"params": [ [ "enemy", 1 ] ],
-"size": Vector2( 252, 87.75 ),
-"values": [ "enemy" ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_act",
-"offset": Vector2( 600, -520 ),
-"params": [ [ "melee_attack", 1 ] ],
-"size": Vector2( 240, 100 ),
-"values": [ "melee_attack" ]
-},
-"name": "task7",
-"type": 1
-} ],
-"data": {
-"count": 4,
-"offset": Vector2( 400, -780 ),
-"size": Vector2( 109, 131.75 )
-},
-"name": "sequence2",
-"type": 2
-}
-},
-"label": "melee_attack",
-"offset": Vector2( 400, 240 ),
-"size": Vector2( 236, 80 )
-},
-"name": "minim_node2",
-"type": 99
-}, {
-"child": [  ],
-"data": {
-"data": {
-"connection": [ {
 "from": "sequence7",
 "from_port": 0,
 "to": "task27",
@@ -1817,7 +1739,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 400, -260 ),
+"offset": Vector2( 400, 0 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -1826,7 +1748,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 600, -380 ),
+"offset": Vector2( 600, -120 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -1837,7 +1759,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 600, -260 ),
+"offset": Vector2( 600, 0 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -1848,7 +1770,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 600, -120 ),
+"offset": Vector2( 600, 140 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -1859,7 +1781,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 600, 0 ),
+"offset": Vector2( 600, 260 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "throw_blob" ]
@@ -1872,7 +1794,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 600, -380 ),
+"offset": Vector2( 600, -120 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -1883,7 +1805,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 600, -260 ),
+"offset": Vector2( 600, 0 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -1894,7 +1816,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 600, -120 ),
+"offset": Vector2( 600, 140 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -1905,7 +1827,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 600, 0 ),
+"offset": Vector2( 600, 260 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "throw_blob" ]
@@ -1915,7 +1837,7 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 400, -260 ),
+"offset": Vector2( 400, 0 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -1940,7 +1862,7 @@ tree = {
 }, {
 "from": "selector2",
 "from_port": 1,
-"to": "sequence2",
+"to": "sequence3",
 "to_port": 0
 }, {
 "from": "sequence",
@@ -1963,22 +1885,22 @@ tree = {
 "to": "task23",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 0,
 "to": "task24",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 1,
 "to": "task25",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 2,
 "to": "task26",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 3,
 "to": "task27",
 "to_port": 0
@@ -1987,7 +1909,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 2,
-"offset": Vector2( 1000, 200 ),
+"offset": Vector2( 400, 120 ),
 "size": Vector2( 101, 87.75 )
 },
 "name": "selector2",
@@ -1996,7 +1918,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, -120 ),
+"offset": Vector2( 600, -200 ),
 "size": Vector2( 120, 140 )
 },
 "name": "sequence",
@@ -2005,7 +1927,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, -240 ),
+"offset": Vector2( 800, -320 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -2016,7 +1938,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, -120 ),
+"offset": Vector2( 800, -200 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -2027,7 +1949,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 20 ),
+"offset": Vector2( 800, -60 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -2038,7 +1960,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 140 ),
+"offset": Vector2( 800, 60 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "shoot" ]
@@ -2049,19 +1971,19 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, 380 ),
+"offset": Vector2( 600, 300 ),
 "size": Vector2( 120, 140 )
 },
-"name": "sequence2",
+"name": "sequence3",
 "type": 2
 }, {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, 260 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 180 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task24",
 "type": 1
@@ -2069,7 +1991,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, 380 ),
+"offset": Vector2( 800, 300 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -2080,7 +2002,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 520 ),
+"offset": Vector2( 800, 440 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -2091,10 +2013,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 640 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 560 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 201, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task27",
 "type": 1
@@ -2105,7 +2027,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, -240 ),
+"offset": Vector2( 800, -320 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -2116,7 +2038,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, -120 ),
+"offset": Vector2( 800, -200 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -2127,7 +2049,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 20 ),
+"offset": Vector2( 800, -60 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -2138,7 +2060,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 140 ),
+"offset": Vector2( 800, 60 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "shoot" ]
@@ -2148,7 +2070,7 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, -120 ),
+"offset": Vector2( 600, -200 ),
 "size": Vector2( 120, 140 )
 },
 "name": "sequence",
@@ -2158,10 +2080,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, 260 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 180 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task24",
 "type": 1
@@ -2169,7 +2091,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, 380 ),
+"offset": Vector2( 800, 300 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -2180,7 +2102,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 520 ),
+"offset": Vector2( 800, 440 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -2191,25 +2113,25 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 640 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 560 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 201, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task27",
 "type": 1
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, 380 ),
+"offset": Vector2( 600, 300 ),
 "size": Vector2( 120, 140 )
 },
-"name": "sequence2",
+"name": "sequence3",
 "type": 2
 } ],
 "data": {
 "count": 2,
-"offset": Vector2( 1000, 200 ),
+"offset": Vector2( 400, 120 ),
 "size": Vector2( 101, 87.75 )
 },
 "name": "selector2",
@@ -2220,13 +2142,23 @@ tree = {
 "offset": Vector2( 400, 120 ),
 "size": Vector2( 236, 80 )
 },
-"name": "minim_node4",
+"name": "minim_node2",
 "type": 99
 }, {
 "child": [  ],
 "data": {
 "data": {
 "connection": [ {
+"from": "selector2",
+"from_port": 0,
+"to": "sequence2",
+"to_port": 0
+}, {
+"from": "selector2",
+"from_port": 1,
+"to": "sequence3",
+"to_port": 0
+}, {
 "from": "sequence2",
 "from_port": 0,
 "to": "task5",
@@ -2246,12 +2178,41 @@ tree = {
 "from_port": 2,
 "to": "task2",
 "to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 0,
+"to": "task8",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 1,
+"to": "task9",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 3,
+"to": "task10",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 2,
+"to": "task3",
+"to_port": 0
 } ],
 "nodes": [ {
 "child": [  ],
 "data": {
+"count": 2,
+"offset": Vector2( 1200, 300 ),
+"size": Vector2( 101, 87.75 )
+},
+"name": "selector2",
+"type": 3
+}, {
+"child": [  ],
+"data": {
 "count": 4,
-"offset": Vector2( 400, -780 ),
+"offset": Vector2( 1400, 0 ),
 "size": Vector2( 109, 131.75 )
 },
 "name": "sequence2",
@@ -2260,7 +2221,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 600, -900 ),
+"offset": Vector2( 1600, -180 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -2271,7 +2232,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 600, -780 ),
+"offset": Vector2( 1600, -60 ),
 "params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "too_close_dist" ]
@@ -2282,7 +2243,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 600, -640 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -2293,20 +2254,74 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 600, -520 ),
+"offset": Vector2( 1600, 200 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "melee_attack" ]
 },
 "name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"count": 4,
+"offset": Vector2( 1400, 520 ),
+"size": Vector2( 109, 131.75 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 340 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1600, 460 ),
+"params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "too_close_dist" ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_aim_weapon",
+"offset": Vector2( 1600, 600 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 252, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 1600, 720 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 240, 100 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task10",
 "type": 1
 } ],
 "root": {
 "child": [ {
+"child": [ {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 600, -900 ),
+"offset": Vector2( 1600, -180 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -2317,7 +2332,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 600, -780 ),
+"offset": Vector2( 1600, -60 ),
 "params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "too_close_dist" ]
@@ -2328,7 +2343,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 600, -640 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -2339,7 +2354,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 600, -520 ),
+"offset": Vector2( 1600, 200 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "melee_attack" ]
@@ -2349,18 +2364,79 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 400, -780 ),
+"offset": Vector2( 1400, 0 ),
 "size": Vector2( 109, 131.75 )
 },
 "name": "sequence2",
 "type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 340 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1600, 460 ),
+"params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "too_close_dist" ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_aim_weapon",
+"offset": Vector2( 1600, 600 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 252, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 1600, 720 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 240, 100 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task10",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 1400, 520 ),
+"size": Vector2( 109, 131.75 )
+},
+"name": "sequence3",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1200, 300 ),
+"size": Vector2( 101, 87.75 )
+},
+"name": "selector2",
+"type": 3
 }
 },
 "label": "melee_attack",
 "offset": Vector2( 400, 240 ),
 "size": Vector2( 236, 80 )
 },
-"name": "minim_node2",
+"name": "minim_node4",
 "type": 99
 }, {
 "child": [  ],
@@ -2398,6 +2474,11 @@ tree = {
 "to_port": 0
 }, {
 "from": "sequence",
+"from_port": 4,
+"to": "inverter5",
+"to_port": 0
+}, {
+"from": "sequence",
 "from_port": 3,
 "to": "inverter3",
 "to_port": 0
@@ -2421,12 +2502,17 @@ tree = {
 "from_port": 0,
 "to": "task9",
 "to_port": 0
+}, {
+"from": "inverter5",
+"from_port": 0,
+"to": "task3",
+"to_port": 0
 } ],
 "nodes": [ {
 "child": [  ],
 "data": {
 "count": 3,
-"offset": Vector2( 740, 380 ),
+"offset": Vector2( 1000, 400 ),
 "size": Vector2( 120, 120 )
 },
 "name": "sequence3",
@@ -2434,16 +2520,16 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"count": 4,
-"offset": Vector2( 960, 260 ),
-"size": Vector2( 103, 131.75 )
+"count": 5,
+"offset": Vector2( 1200, 80 ),
+"size": Vector2( 103, 153.75 )
 },
 "name": "sequence",
 "type": 2
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 140 ),
+"offset": Vector2( 1400, -40 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter2",
@@ -2452,7 +2538,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 140 ),
+"offset": Vector2( 1600, -40 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -2462,7 +2548,7 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 260 ),
+"offset": Vector2( 1400, 80 ),
 "size": Vector2( 96, 43.75 )
 },
 "name": "inverter",
@@ -2471,7 +2557,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 260 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -2481,7 +2567,7 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 380 ),
+"offset": Vector2( 1400, 200 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter4",
@@ -2490,17 +2576,17 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 380 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 1600, 200 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task",
 "type": 1
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 500 ),
+"offset": Vector2( 1400, 320 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter3",
@@ -2509,7 +2595,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 500 ),
+"offset": Vector2( 1600, 320 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -2519,8 +2605,27 @@ tree = {
 }, {
 "child": [  ],
 "data": {
+"offset": Vector2( 1400, 440 ),
+"size": Vector2( 102, 43.75 )
+},
+"name": "inverter5",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 440 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
 "fn": "task_get_flee_point",
-"offset": Vector2( 940, 620 ),
+"offset": Vector2( 1180, 520 ),
 "params": [  ],
 "size": Vector2( 260, 84.9999 ),
 "values": [  ]
@@ -2531,7 +2636,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_flee",
-"offset": Vector2( 940, 740 ),
+"offset": Vector2( 1180, 640 ),
 "params": [ [ "too_far_dist", 1 ] ],
 "size": Vector2( 220, 99.9999 ),
 "values": [ "too_far_dist" ]
@@ -2546,7 +2651,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 140 ),
+"offset": Vector2( 1600, -40 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -2555,7 +2660,7 @@ tree = {
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 140 ),
+"offset": Vector2( 1400, -40 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter2",
@@ -2565,7 +2670,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 260 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -2574,7 +2679,7 @@ tree = {
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 260 ),
+"offset": Vector2( 1400, 80 ),
 "size": Vector2( 96, 43.75 )
 },
 "name": "inverter",
@@ -2584,16 +2689,16 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 380 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 1600, 200 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task",
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 380 ),
+"offset": Vector2( 1400, 200 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter4",
@@ -2603,7 +2708,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 500 ),
+"offset": Vector2( 1600, 320 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -2612,16 +2717,35 @@ tree = {
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 500 ),
+"offset": Vector2( 1400, 320 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter3",
 "type": 14
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 440 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task3",
+"type": 1
 } ],
 "data": {
-"count": 4,
-"offset": Vector2( 960, 260 ),
-"size": Vector2( 103, 131.75 )
+"offset": Vector2( 1400, 440 ),
+"size": Vector2( 102, 43.75 )
+},
+"name": "inverter5",
+"type": 14
+} ],
+"data": {
+"count": 5,
+"offset": Vector2( 1200, 80 ),
+"size": Vector2( 103, 153.75 )
 },
 "name": "sequence",
 "type": 2
@@ -2629,7 +2753,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_get_flee_point",
-"offset": Vector2( 940, 620 ),
+"offset": Vector2( 1180, 520 ),
 "params": [  ],
 "size": Vector2( 260, 84.9999 ),
 "values": [  ]
@@ -2640,7 +2764,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_flee",
-"offset": Vector2( 940, 740 ),
+"offset": Vector2( 1180, 640 ),
 "params": [ [ "too_far_dist", 1 ] ],
 "size": Vector2( 220, 99.9999 ),
 "values": [ "too_far_dist" ]
@@ -2650,7 +2774,7 @@ tree = {
 } ],
 "data": {
 "count": 3,
-"offset": Vector2( 740, 380 ),
+"offset": Vector2( 1000, 400 ),
 "size": Vector2( 120, 120 )
 },
 "name": "sequence3",
@@ -2762,6 +2886,146 @@ tree = {
 "data": {
 "data": {
 "connection": [ {
+"from": "sequence",
+"from_port": 0,
+"to": "task3",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 1,
+"to": "task4",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 2,
+"to": "task14",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 3,
+"to": "task15",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [  ],
+"data": {
+"count": 4,
+"offset": Vector2( 400, 0 ),
+"size": Vector2( 103, 131.75 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 600, -120 ),
+"params": [ [ "throw_blob", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "throw_blob" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 600, 0 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_aim_weapon",
+"offset": Vector2( 600, 140 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 252, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task14",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 600, 260 ),
+"params": [ [ "throw_blob", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "throw_blob" ]
+},
+"name": "task15",
+"type": 1
+} ],
+"root": {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 600, -120 ),
+"params": [ [ "throw_blob", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "throw_blob" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 600, 0 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_aim_weapon",
+"offset": Vector2( 600, 140 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 252, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task14",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 600, 260 ),
+"params": [ [ "throw_blob", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "throw_blob" ]
+},
+"name": "task15",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 400, 0 ),
+"size": Vector2( 103, 131.75 )
+},
+"name": "sequence",
+"type": 2
+}
+},
+"label": "throw_blob",
+"offset": Vector2( 400, 0 ),
+"size": Vector2( 236, 80 )
+},
+"name": "minim_node3",
+"type": 99
+}, {
+"child": [  ],
+"data": {
+"data": {
+"connection": [ {
 "from": "selector2",
 "from_port": 0,
 "to": "sequence",
@@ -2769,7 +3033,7 @@ tree = {
 }, {
 "from": "selector2",
 "from_port": 1,
-"to": "sequence2",
+"to": "sequence3",
 "to_port": 0
 }, {
 "from": "sequence",
@@ -2792,22 +3056,22 @@ tree = {
 "to": "task23",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 0,
 "to": "task24",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 1,
 "to": "task25",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 2,
 "to": "task26",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 3,
 "to": "task27",
 "to_port": 0
@@ -2816,7 +3080,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 2,
-"offset": Vector2( 1000, 200 ),
+"offset": Vector2( 400, 120 ),
 "size": Vector2( 101, 87.75 )
 },
 "name": "selector2",
@@ -2825,7 +3089,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, -120 ),
+"offset": Vector2( 600, -200 ),
 "size": Vector2( 120, 140 )
 },
 "name": "sequence",
@@ -2834,7 +3098,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, -240 ),
+"offset": Vector2( 800, -320 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -2845,7 +3109,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, -120 ),
+"offset": Vector2( 800, -200 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -2856,7 +3120,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 20 ),
+"offset": Vector2( 800, -60 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -2867,7 +3131,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 140 ),
+"offset": Vector2( 800, 60 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "shoot" ]
@@ -2878,19 +3142,19 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, 380 ),
+"offset": Vector2( 600, 300 ),
 "size": Vector2( 120, 140 )
 },
-"name": "sequence2",
+"name": "sequence3",
 "type": 2
 }, {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, 260 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 180 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task24",
 "type": 1
@@ -2898,7 +3162,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, 380 ),
+"offset": Vector2( 800, 300 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -2909,7 +3173,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 520 ),
+"offset": Vector2( 800, 440 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -2920,10 +3184,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 640 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 560 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 201, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task27",
 "type": 1
@@ -2934,7 +3198,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, -240 ),
+"offset": Vector2( 800, -320 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -2945,7 +3209,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, -120 ),
+"offset": Vector2( 800, -200 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -2956,7 +3220,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 20 ),
+"offset": Vector2( 800, -60 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -2967,7 +3231,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 140 ),
+"offset": Vector2( 800, 60 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "shoot" ]
@@ -2977,7 +3241,7 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, -120 ),
+"offset": Vector2( 600, -200 ),
 "size": Vector2( 120, 140 )
 },
 "name": "sequence",
@@ -2987,10 +3251,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, 260 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 180 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task24",
 "type": 1
@@ -2998,7 +3262,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, 380 ),
+"offset": Vector2( 800, 300 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -3009,7 +3273,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 520 ),
+"offset": Vector2( 800, 440 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -3020,25 +3284,25 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 640 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 560 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 201, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task27",
 "type": 1
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, 380 ),
+"offset": Vector2( 600, 300 ),
 "size": Vector2( 120, 140 )
 },
-"name": "sequence2",
+"name": "sequence3",
 "type": 2
 } ],
 "data": {
 "count": 2,
-"offset": Vector2( 1000, 200 ),
+"offset": Vector2( 400, 120 ),
 "size": Vector2( 101, 87.75 )
 },
 "name": "selector2",
@@ -3047,6 +3311,300 @@ tree = {
 },
 "label": "shoot",
 "offset": Vector2( 400, 120 ),
+"size": Vector2( 236, 80 )
+},
+"name": "minim_node2",
+"type": 99
+}, {
+"child": [  ],
+"data": {
+"data": {
+"connection": [ {
+"from": "selector2",
+"from_port": 0,
+"to": "sequence2",
+"to_port": 0
+}, {
+"from": "selector2",
+"from_port": 1,
+"to": "sequence3",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 0,
+"to": "task5",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 1,
+"to": "task6",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 3,
+"to": "task7",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 2,
+"to": "task2",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 0,
+"to": "task8",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 1,
+"to": "task9",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 3,
+"to": "task10",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 2,
+"to": "task3",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [  ],
+"data": {
+"count": 2,
+"offset": Vector2( 1200, 300 ),
+"size": Vector2( 101, 87.75 )
+},
+"name": "selector2",
+"type": 3
+}, {
+"child": [  ],
+"data": {
+"count": 4,
+"offset": Vector2( 1400, 0 ),
+"size": Vector2( 109, 131.75 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, -180 ),
+"params": [ [ "melee_attack", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack" ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1600, -60 ),
+"params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "too_close_dist" ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_aim_weapon",
+"offset": Vector2( 1600, 80 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 252, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 1600, 200 ),
+"params": [ [ "melee_attack", 1 ] ],
+"size": Vector2( 240, 100 ),
+"values": [ "melee_attack" ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"count": 4,
+"offset": Vector2( 1400, 520 ),
+"size": Vector2( 109, 131.75 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 340 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1600, 460 ),
+"params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "too_close_dist" ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_aim_weapon",
+"offset": Vector2( 1600, 600 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 252, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 1600, 720 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 240, 100 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task10",
+"type": 1
+} ],
+"root": {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, -180 ),
+"params": [ [ "melee_attack", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack" ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1600, -60 ),
+"params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "too_close_dist" ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_aim_weapon",
+"offset": Vector2( 1600, 80 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 252, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 1600, 200 ),
+"params": [ [ "melee_attack", 1 ] ],
+"size": Vector2( 240, 100 ),
+"values": [ "melee_attack" ]
+},
+"name": "task7",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 1400, 0 ),
+"size": Vector2( 109, 131.75 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 340 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1600, 460 ),
+"params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "too_close_dist" ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_aim_weapon",
+"offset": Vector2( 1600, 600 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 252, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 1600, 720 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 240, 100 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task10",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 1400, 520 ),
+"size": Vector2( 109, 131.75 )
+},
+"name": "sequence3",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1200, 300 ),
+"size": Vector2( 101, 87.75 )
+},
+"name": "selector2",
+"type": 3
+}
+},
+"label": "melee_attack",
+"offset": Vector2( 400, 240 ),
 "size": Vector2( 236, 80 )
 },
 "name": "minim_node4",
@@ -3087,6 +3645,11 @@ tree = {
 "to_port": 0
 }, {
 "from": "sequence",
+"from_port": 4,
+"to": "inverter5",
+"to_port": 0
+}, {
+"from": "sequence",
 "from_port": 3,
 "to": "inverter3",
 "to_port": 0
@@ -3110,12 +3673,17 @@ tree = {
 "from_port": 0,
 "to": "task9",
 "to_port": 0
+}, {
+"from": "inverter5",
+"from_port": 0,
+"to": "task3",
+"to_port": 0
 } ],
 "nodes": [ {
 "child": [  ],
 "data": {
 "count": 3,
-"offset": Vector2( 740, 380 ),
+"offset": Vector2( 1000, 400 ),
 "size": Vector2( 120, 120 )
 },
 "name": "sequence3",
@@ -3123,16 +3691,16 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"count": 4,
-"offset": Vector2( 960, 260 ),
-"size": Vector2( 103, 131.75 )
+"count": 5,
+"offset": Vector2( 1200, 80 ),
+"size": Vector2( 103, 153.75 )
 },
 "name": "sequence",
 "type": 2
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 140 ),
+"offset": Vector2( 1400, -40 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter2",
@@ -3141,7 +3709,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 140 ),
+"offset": Vector2( 1600, -40 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -3151,7 +3719,7 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 260 ),
+"offset": Vector2( 1400, 80 ),
 "size": Vector2( 96, 43.75 )
 },
 "name": "inverter",
@@ -3160,7 +3728,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 260 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -3170,7 +3738,7 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 380 ),
+"offset": Vector2( 1400, 200 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter4",
@@ -3179,17 +3747,17 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 380 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 1600, 200 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task",
 "type": 1
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 500 ),
+"offset": Vector2( 1400, 320 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter3",
@@ -3198,7 +3766,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 500 ),
+"offset": Vector2( 1600, 320 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -3208,8 +3776,27 @@ tree = {
 }, {
 "child": [  ],
 "data": {
+"offset": Vector2( 1400, 440 ),
+"size": Vector2( 102, 43.75 )
+},
+"name": "inverter5",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 440 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
 "fn": "task_get_flee_point",
-"offset": Vector2( 940, 620 ),
+"offset": Vector2( 1180, 520 ),
 "params": [  ],
 "size": Vector2( 260, 84.9999 ),
 "values": [  ]
@@ -3220,7 +3807,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_flee",
-"offset": Vector2( 940, 740 ),
+"offset": Vector2( 1180, 640 ),
 "params": [ [ "too_far_dist", 1 ] ],
 "size": Vector2( 220, 99.9999 ),
 "values": [ "too_far_dist" ]
@@ -3235,7 +3822,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 140 ),
+"offset": Vector2( 1600, -40 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -3244,7 +3831,7 @@ tree = {
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 140 ),
+"offset": Vector2( 1400, -40 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter2",
@@ -3254,7 +3841,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 260 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -3263,7 +3850,7 @@ tree = {
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 260 ),
+"offset": Vector2( 1400, 80 ),
 "size": Vector2( 96, 43.75 )
 },
 "name": "inverter",
@@ -3273,16 +3860,16 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 380 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 1600, 200 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task",
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 380 ),
+"offset": Vector2( 1400, 200 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter4",
@@ -3292,7 +3879,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 500 ),
+"offset": Vector2( 1600, 320 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -3301,16 +3888,35 @@ tree = {
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 500 ),
+"offset": Vector2( 1400, 320 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter3",
 "type": 14
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 440 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task3",
+"type": 1
 } ],
 "data": {
-"count": 4,
-"offset": Vector2( 960, 260 ),
-"size": Vector2( 103, 131.75 )
+"offset": Vector2( 1400, 440 ),
+"size": Vector2( 102, 43.75 )
+},
+"name": "inverter5",
+"type": 14
+} ],
+"data": {
+"count": 5,
+"offset": Vector2( 1200, 80 ),
+"size": Vector2( 103, 153.75 )
 },
 "name": "sequence",
 "type": 2
@@ -3318,7 +3924,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_get_flee_point",
-"offset": Vector2( 940, 620 ),
+"offset": Vector2( 1180, 520 ),
 "params": [  ],
 "size": Vector2( 260, 84.9999 ),
 "values": [  ]
@@ -3329,7 +3935,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_flee",
-"offset": Vector2( 940, 740 ),
+"offset": Vector2( 1180, 640 ),
 "params": [ [ "too_far_dist", 1 ] ],
 "size": Vector2( 220, 99.9999 ),
 "values": [ "too_far_dist" ]
@@ -3339,7 +3945,7 @@ tree = {
 } ],
 "data": {
 "count": 3,
-"offset": Vector2( 740, 380 ),
+"offset": Vector2( 1000, 400 ),
 "size": Vector2( 120, 120 )
 },
 "name": "sequence3",
@@ -3518,7 +4124,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 400, -260 ),
+"offset": Vector2( 400, 0 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -3527,7 +4133,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 600, -380 ),
+"offset": Vector2( 600, -120 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -3538,7 +4144,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 600, -260 ),
+"offset": Vector2( 600, 0 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -3549,7 +4155,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 600, -120 ),
+"offset": Vector2( 600, 140 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -3560,7 +4166,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 600, 0 ),
+"offset": Vector2( 600, 260 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "throw_blob" ]
@@ -3573,7 +4179,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 600, -380 ),
+"offset": Vector2( 600, -120 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -3584,7 +4190,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 600, -260 ),
+"offset": Vector2( 600, 0 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -3595,7 +4201,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 600, -120 ),
+"offset": Vector2( 600, 140 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -3606,7 +4212,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 600, 0 ),
+"offset": Vector2( 600, 260 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "throw_blob" ]
@@ -3616,7 +4222,7 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 400, -260 ),
+"offset": Vector2( 400, 0 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -3641,7 +4247,7 @@ tree = {
 }, {
 "from": "selector2",
 "from_port": 1,
-"to": "sequence2",
+"to": "sequence3",
 "to_port": 0
 }, {
 "from": "sequence",
@@ -3664,22 +4270,22 @@ tree = {
 "to": "task23",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 0,
 "to": "task24",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 1,
 "to": "task25",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 2,
 "to": "task26",
 "to_port": 0
 }, {
-"from": "sequence2",
+"from": "sequence3",
 "from_port": 3,
 "to": "task27",
 "to_port": 0
@@ -3688,7 +4294,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 2,
-"offset": Vector2( 1000, 200 ),
+"offset": Vector2( 400, 120 ),
 "size": Vector2( 101, 87.75 )
 },
 "name": "selector2",
@@ -3697,7 +4303,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, -120 ),
+"offset": Vector2( 600, -200 ),
 "size": Vector2( 120, 140 )
 },
 "name": "sequence",
@@ -3706,7 +4312,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, -240 ),
+"offset": Vector2( 800, -320 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -3717,7 +4323,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, -120 ),
+"offset": Vector2( 800, -200 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -3728,7 +4334,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 20 ),
+"offset": Vector2( 800, -60 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -3739,7 +4345,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 140 ),
+"offset": Vector2( 800, 60 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "shoot" ]
@@ -3750,19 +4356,19 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, 380 ),
+"offset": Vector2( 600, 300 ),
 "size": Vector2( 120, 140 )
 },
-"name": "sequence2",
+"name": "sequence3",
 "type": 2
 }, {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, 260 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 180 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task24",
 "type": 1
@@ -3770,7 +4376,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, 380 ),
+"offset": Vector2( 800, 300 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -3781,7 +4387,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 520 ),
+"offset": Vector2( 800, 440 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -3792,10 +4398,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 640 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 560 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 201, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task27",
 "type": 1
@@ -3806,7 +4412,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, -240 ),
+"offset": Vector2( 800, -320 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -3817,7 +4423,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, -120 ),
+"offset": Vector2( 800, -200 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -3828,7 +4434,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 20 ),
+"offset": Vector2( 800, -60 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -3839,7 +4445,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 140 ),
+"offset": Vector2( 800, 60 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "shoot" ]
@@ -3849,7 +4455,7 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, -120 ),
+"offset": Vector2( 600, -200 ),
 "size": Vector2( 120, 140 )
 },
 "name": "sequence",
@@ -3859,10 +4465,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1400, 260 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 180 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task24",
 "type": 1
@@ -3870,7 +4476,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 1400, 380 ),
+"offset": Vector2( 800, 300 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -3881,7 +4487,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 1400, 520 ),
+"offset": Vector2( 800, 440 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -3892,25 +4498,25 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 1400, 640 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 800, 560 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 201, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task27",
 "type": 1
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 1200, 380 ),
+"offset": Vector2( 600, 300 ),
 "size": Vector2( 120, 140 )
 },
-"name": "sequence2",
+"name": "sequence3",
 "type": 2
 } ],
 "data": {
 "count": 2,
-"offset": Vector2( 1000, 200 ),
+"offset": Vector2( 400, 120 ),
 "size": Vector2( 101, 87.75 )
 },
 "name": "selector2",
@@ -3921,13 +4527,23 @@ tree = {
 "offset": Vector2( 400, 120 ),
 "size": Vector2( 236, 80 )
 },
-"name": "minim_node4",
+"name": "minim_node2",
 "type": 99
 }, {
 "child": [  ],
 "data": {
 "data": {
 "connection": [ {
+"from": "selector2",
+"from_port": 0,
+"to": "sequence2",
+"to_port": 0
+}, {
+"from": "selector2",
+"from_port": 1,
+"to": "sequence3",
+"to_port": 0
+}, {
 "from": "sequence2",
 "from_port": 0,
 "to": "task5",
@@ -3947,12 +4563,41 @@ tree = {
 "from_port": 2,
 "to": "task2",
 "to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 0,
+"to": "task8",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 1,
+"to": "task9",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 3,
+"to": "task10",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 2,
+"to": "task3",
+"to_port": 0
 } ],
 "nodes": [ {
 "child": [  ],
 "data": {
+"count": 2,
+"offset": Vector2( 1200, 300 ),
+"size": Vector2( 101, 87.75 )
+},
+"name": "selector2",
+"type": 3
+}, {
+"child": [  ],
+"data": {
 "count": 4,
-"offset": Vector2( 400, -780 ),
+"offset": Vector2( 1400, 0 ),
 "size": Vector2( 109, 131.75 )
 },
 "name": "sequence2",
@@ -3961,7 +4606,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 600, -900 ),
+"offset": Vector2( 1600, -180 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -3972,7 +4617,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 600, -780 ),
+"offset": Vector2( 1600, -60 ),
 "params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "too_close_dist" ]
@@ -3983,7 +4628,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 600, -640 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -3994,20 +4639,74 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 600, -520 ),
+"offset": Vector2( 1600, 200 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "melee_attack" ]
 },
 "name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"count": 4,
+"offset": Vector2( 1400, 520 ),
+"size": Vector2( 109, 131.75 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 340 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1600, 460 ),
+"params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "too_close_dist" ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_aim_weapon",
+"offset": Vector2( 1600, 600 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 252, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 1600, 720 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 240, 100 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task10",
 "type": 1
 } ],
 "root": {
 "child": [ {
+"child": [ {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 600, -900 ),
+"offset": Vector2( 1600, -180 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -4018,7 +4717,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 600, -780 ),
+"offset": Vector2( 1600, -60 ),
 "params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "too_close_dist" ]
@@ -4029,7 +4728,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_aim_weapon",
-"offset": Vector2( 600, -640 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 252, 87.75 ),
 "values": [ "enemy" ]
@@ -4040,7 +4739,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 600, -520 ),
+"offset": Vector2( 1600, 200 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "melee_attack" ]
@@ -4050,18 +4749,79 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 400, -780 ),
+"offset": Vector2( 1400, 0 ),
 "size": Vector2( 109, 131.75 )
 },
 "name": "sequence2",
 "type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 340 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1600, 460 ),
+"params": [ [ "enemy", 1 ], [ "too_close_dist", 1 ] ],
+"size": Vector2( 262, 112.75 ),
+"values": [ "enemy", "too_close_dist" ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_aim_weapon",
+"offset": Vector2( 1600, 600 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 252, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 1600, 720 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 240, 100 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task10",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 1400, 520 ),
+"size": Vector2( 109, 131.75 )
+},
+"name": "sequence3",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1200, 300 ),
+"size": Vector2( 101, 87.75 )
+},
+"name": "selector2",
+"type": 3
 }
 },
 "label": "melee_attack",
 "offset": Vector2( 400, 240 ),
 "size": Vector2( 236, 80 )
 },
-"name": "minim_node2",
+"name": "minim_node4",
 "type": 99
 }, {
 "child": [  ],
@@ -4099,6 +4859,11 @@ tree = {
 "to_port": 0
 }, {
 "from": "sequence",
+"from_port": 4,
+"to": "inverter5",
+"to_port": 0
+}, {
+"from": "sequence",
 "from_port": 3,
 "to": "inverter3",
 "to_port": 0
@@ -4122,12 +4887,17 @@ tree = {
 "from_port": 0,
 "to": "task9",
 "to_port": 0
+}, {
+"from": "inverter5",
+"from_port": 0,
+"to": "task3",
+"to_port": 0
 } ],
 "nodes": [ {
 "child": [  ],
 "data": {
 "count": 3,
-"offset": Vector2( 740, 380 ),
+"offset": Vector2( 1000, 400 ),
 "size": Vector2( 120, 120 )
 },
 "name": "sequence3",
@@ -4135,16 +4905,16 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"count": 4,
-"offset": Vector2( 960, 260 ),
-"size": Vector2( 103, 131.75 )
+"count": 5,
+"offset": Vector2( 1200, 80 ),
+"size": Vector2( 103, 153.75 )
 },
 "name": "sequence",
 "type": 2
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 140 ),
+"offset": Vector2( 1400, -40 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter2",
@@ -4153,7 +4923,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 140 ),
+"offset": Vector2( 1600, -40 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -4163,7 +4933,7 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 260 ),
+"offset": Vector2( 1400, 80 ),
 "size": Vector2( 96, 43.75 )
 },
 "name": "inverter",
@@ -4172,7 +4942,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 260 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -4182,7 +4952,7 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 380 ),
+"offset": Vector2( 1400, 200 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter4",
@@ -4191,17 +4961,17 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 380 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 1600, 200 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task",
 "type": 1
 }, {
 "child": [  ],
 "data": {
-"offset": Vector2( 1160, 500 ),
+"offset": Vector2( 1400, 320 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter3",
@@ -4210,7 +4980,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 500 ),
+"offset": Vector2( 1600, 320 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -4220,8 +4990,27 @@ tree = {
 }, {
 "child": [  ],
 "data": {
+"offset": Vector2( 1400, 440 ),
+"size": Vector2( 102, 43.75 )
+},
+"name": "inverter5",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 440 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
 "fn": "task_get_flee_point",
-"offset": Vector2( 940, 620 ),
+"offset": Vector2( 1180, 520 ),
 "params": [  ],
 "size": Vector2( 260, 84.9999 ),
 "values": [  ]
@@ -4232,7 +5021,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_flee",
-"offset": Vector2( 940, 740 ),
+"offset": Vector2( 1180, 640 ),
 "params": [ [ "too_far_dist", 1 ] ],
 "size": Vector2( 220, 99.9999 ),
 "values": [ "too_far_dist" ]
@@ -4247,7 +5036,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 140 ),
+"offset": Vector2( 1600, -40 ),
 "params": [ [ "throw_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "throw_blob" ]
@@ -4256,7 +5045,7 @@ tree = {
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 140 ),
+"offset": Vector2( 1400, -40 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter2",
@@ -4266,7 +5055,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 260 ),
+"offset": Vector2( 1600, 80 ),
 "params": [ [ "shoot", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "shoot" ]
@@ -4275,7 +5064,7 @@ tree = {
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 260 ),
+"offset": Vector2( 1400, 80 ),
 "size": Vector2( 96, 43.75 )
 },
 "name": "inverter",
@@ -4285,16 +5074,16 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 380 ),
-"params": [ [ "shoot_2", 1 ] ],
+"offset": Vector2( 1600, 200 ),
+"params": [ [ "shoot_back", 1 ] ],
 "size": Vector2( 249, 87.75 ),
-"values": [ "shoot_2" ]
+"values": [ "shoot_back" ]
 },
 "name": "task",
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 380 ),
+"offset": Vector2( 1400, 200 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter4",
@@ -4304,7 +5093,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 1360, 500 ),
+"offset": Vector2( 1600, 320 ),
 "params": [ [ "melee_attack", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "melee_attack" ]
@@ -4313,16 +5102,35 @@ tree = {
 "type": 1
 } ],
 "data": {
-"offset": Vector2( 1160, 500 ),
+"offset": Vector2( 1400, 320 ),
 "size": Vector2( 102, 43.75 )
 },
 "name": "inverter3",
 "type": 14
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 1600, 440 ),
+"params": [ [ "melee_attack_back", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "melee_attack_back" ]
+},
+"name": "task3",
+"type": 1
 } ],
 "data": {
-"count": 4,
-"offset": Vector2( 960, 260 ),
-"size": Vector2( 103, 131.75 )
+"offset": Vector2( 1400, 440 ),
+"size": Vector2( 102, 43.75 )
+},
+"name": "inverter5",
+"type": 14
+} ],
+"data": {
+"count": 5,
+"offset": Vector2( 1200, 80 ),
+"size": Vector2( 103, 153.75 )
 },
 "name": "sequence",
 "type": 2
@@ -4330,7 +5138,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_get_flee_point",
-"offset": Vector2( 940, 620 ),
+"offset": Vector2( 1180, 520 ),
 "params": [  ],
 "size": Vector2( 260, 84.9999 ),
 "values": [  ]
@@ -4341,7 +5149,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_flee",
-"offset": Vector2( 940, 740 ),
+"offset": Vector2( 1180, 640 ),
 "params": [ [ "too_far_dist", 1 ] ],
 "size": Vector2( 220, 99.9999 ),
 "values": [ "too_far_dist" ]
@@ -4351,7 +5159,7 @@ tree = {
 } ],
 "data": {
 "count": 3,
-"offset": Vector2( 740, 380 ),
+"offset": Vector2( 1000, 400 ),
 "size": Vector2( 120, 120 )
 },
 "name": "sequence3",

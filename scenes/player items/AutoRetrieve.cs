@@ -6,7 +6,7 @@ public class AutoRetrieve : PlayerItem
     public Weapon Weapon {get; set;}
     
     private bool weapIsReturning = false;
-    private const int RETRIEVE_SPEED = 250;
+    private const int RETRIEVE_SPEED = 130;
     
 
     public override void _Ready()

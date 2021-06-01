@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/enemies/bosses/ranger/tex_boss_ranger_thorn_r.png" type="Texture" id=1]
+[ext_resource path="res://assets/enemies/bosses/ranger/tex_boss_ranger_torso.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemies/bosses/ranger/tex_boss_ranger_thorn_L.png" type="Texture" id=3]
+
+[node name="Torso" type="Polygon2D"]
+texture = ExtResource( 2 )
+skeleton = NodePath("Skeleton2D")
+polygon = PoolVector2Array( -0.285986, 3.24118, 9.72355, -1.3346, 22.307, -1.42993, 36.8923, 11.1535, 38.3362, 16.295, 38.3222, 21.6397, 37.7502, 27.0734, 37.0829, 31.9352, 35.2487, 42.2813, 6.17496, 42.8816, 4.71698, 32.4185, 3.51629, 27.187, 2.48713, 22.1269, 1.20069, 15.8662, -0.085762, 10.2058, 16.3136, 0.741525, 19.9375, 9.5625, 23.9407, 23.6229, 23.9407, 36.7585, 24.3125, 40.375, 14.6875, 40.3125, 8.375, 36.125, 11.5972, 30.4861, 10.4861, 28.2639, 8.40278, 30.4167, 7.70833, 22.9861, 3.40278, 14.4444, 1.38889, 4.58333, 6.66667, 3.95833, 9.93056, 1.11111, 21.3194, 1.45833, 26.875, 5.27778, 28.8889, 8.33333, 35.0625, 12.875, 37.1875, 18.9375, 33.3125, 29.0625, 33.875, 19.0625, 31.625, 20.8125, 30.625, 31.625, 33.1875, 35, 33.625, 38.625, 12.8125, 9.5, 16.5972, 18.9583, 25.625, 9.0625, 26.25, 15.1389, 16.625, 29.625, 27.375, 28.75, 12.4375, 8.3125, 19.75, 8.5625, 25.4375, 8.0625 )
+uv = PoolVector2Array( -0.285986, 3.24118, 9.72355, -1.3346, 22.307, -1.42993, 36.8923, 11.1535, 38.3362, 16.295, 38.3222, 21.6397, 37.7502, 27.0734, 37.0829, 31.9352, 35.2487, 42.2813, 6.17496, 42.8816, 4.71698, 32.4185, 3.51629, 27.187, 2.48713, 22.1269, 1.20069, 15.8662, -0.085762, 10.2058, 16.3136, 0.741525, 20, 8.88889, 23.9407, 23.6229, 23.9407, 36.7585, 24.3125, 40.375, 14.6875, 40.3125, 8.375, 36.125, 11.5972, 30.4861, 10.4861, 28.2639, 8.40278, 30.4167, 7.70833, 22.9861, 3.40278, 14.4444, 1.38889, 4.58333, 6.66667, 3.95833, 9.93056, 1.11111, 21.3194, 1.45833, 26.875, 5.27778, 28.8889, 8.33333, 35.0625, 12.875, 37.1875, 18.9375, 33.3125, 29.0625, 33.875, 19.0625, 31.625, 20.8125, 30.625, 31.625, 33.1875, 35, 33.625, 38.625, 13.0556, 8.88889, 16.5972, 18.9583, 25.4167, 8.26389, 26.25, 15.1389, 16.625, 29.625, 27.375, 28.75, 12.3125, 7.6875, 20, 7.5, 25.25, 7.5 )
+polygons = [ PoolIntArray( 12, 13, 14 ), PoolIntArray( 2, 1, 15 ), PoolIntArray( 9, 8, 19 ), PoolIntArray( 9, 19, 20 ), PoolIntArray( 19, 18, 20 ), PoolIntArray( 10, 9, 21 ), PoolIntArray( 9, 20, 21 ), PoolIntArray( 21, 20, 22 ), PoolIntArray( 10, 21, 24 ), PoolIntArray( 21, 22, 24 ), PoolIntArray( 11, 10, 24 ), PoolIntArray( 22, 23, 24 ), PoolIntArray( 12, 11, 25 ), PoolIntArray( 14, 13, 26 ), PoolIntArray( 13, 12, 26 ), PoolIntArray( 12, 25, 26 ), PoolIntArray( 0, 14, 27 ), PoolIntArray( 1, 0, 28 ), PoolIntArray( 0, 27, 28 ), PoolIntArray( 15, 1, 29 ), PoolIntArray( 1, 28, 29 ), PoolIntArray( 2, 15, 30 ), PoolIntArray( 3, 2, 31 ), PoolIntArray( 2, 30, 31 ), PoolIntArray( 3, 31, 32 ), PoolIntArray( 3, 32, 33 ), PoolIntArray( 5, 4, 34 ), PoolIntArray( 4, 3, 34 ), PoolIntArray( 3, 33, 34 ), PoolIntArray( 7, 6, 35 ), PoolIntArray( 34, 33, 36 ), PoolIntArray( 8, 7, 39 ), PoolIntArray( 7, 35, 39 ), PoolIntArray( 35, 38, 39 ), PoolIntArray( 18, 19, 40 ), PoolIntArray( 19, 8, 40 ), PoolIntArray( 8, 39, 40 ), PoolIntArray( 38, 18, 40 ), PoolIntArray( 39, 38, 40 ), PoolIntArray( 26, 25, 41 ), PoolIntArray( 28, 26, 41 ), PoolIntArray( 25, 23, 42 ), PoolIntArray( 17, 16, 42 ), PoolIntArray( 16, 41, 42 ), PoolIntArray( 41, 25, 42 ), PoolIntArray( 32, 31, 43 ), PoolIntArray( 33, 32, 43 ), PoolIntArray( 16, 17, 44 ), PoolIntArray( 43, 16, 44 ), PoolIntArray( 36, 33, 44 ), PoolIntArray( 33, 43, 44 ), PoolIntArray( 17, 37, 44 ), PoolIntArray( 37, 36, 44 ), PoolIntArray( 20, 18, 45 ), PoolIntArray( 22, 20, 45 ), PoolIntArray( 17, 42, 45 ), PoolIntArray( 23, 22, 45 ), PoolIntArray( 42, 23, 45 ), PoolIntArray( 37, 17, 46 ), PoolIntArray( 18, 38, 46 ), PoolIntArray( 17, 45, 46 ), PoolIntArray( 45, 18, 46 ), PoolIntArray( 25, 24, 23 ), PoolIntArray( 25, 11, 24 ), PoolIntArray( 27, 26, 14 ), PoolIntArray( 27, 28, 26 ), PoolIntArray( 34, 35, 37, 36 ), PoolIntArray( 34, 5, 6, 35 ), PoolIntArray( 37, 38, 35 ), PoolIntArray( 37, 46, 38 ), PoolIntArray( 28, 47, 41 ), PoolIntArray( 47, 48, 49, 43, 16, 41 ), PoolIntArray( 49, 31, 43 ), PoolIntArray( 31, 30, 15, 29, 28, 47, 48, 49 ) ]
+bones = [ NodePath("Spine"), PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), NodePath("Spine/Spine2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0.49, 1, 0, 0, 1, 0.49, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0.49, 0.49, 0.49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.49, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0.49, 0.49, 0, 0, 0 ), NodePath("Spine/Spine2/Spine3"), PoolRealArray( 0, 0, 0, 0.45, 0.57, 1, 0.5, 0, 0, 0, 0, 0.5, 1, 0.45, 0, 0, 0, 1, 0, 0, 0, 0, 0.5, 0.5, 0.5, 1, 0.45, 0, 0, 0, 0, 0, 0, 0.45, 1, 0.5, 1, 1, 0, 0, 0, 0, 1, 0, 0.57, 0.5, 0.5, 0, 0, 0 ), NodePath("Spine/Spine2/Spine3/Spine4"), PoolRealArray( 1, 1, 1, 0.54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.54, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.54, 1, 1, 1, 1, 1, 1, 0.54, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0.68, 0, 0, 1, 1, 1 ), NodePath("Spine/Front"), PoolRealArray( 0, 0, 0, 0.31, 0.31, 0.31, 0.31, 0, 0, 0, 0, 0, 0, 0, 0, 0.38, 0.77, 0.77, 0.64, 0.46, 0.36, 0.21, 0.43, 0.43, 0.52, 0.52, 0.21, 0, 0.38, 0.38, 0.38, 0.21, 0.19, 0.39, 0.39, 0.39, 0.46, 0.64, 0.46, 0.21, 0.21, 0.77, 0.77, 0.77, 0.77, 0.64, 0.64, 0.38, 0.38, 0.38 ) ]
+internal_vertex_count = 35
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+show_behind_parent = true
+
+[node name="Spine" type="Bone2D" parent="Skeleton2D"]
+show_behind_parent = true
+position = Vector2( 7, 40 )
+rest = Transform2D( 1, 0, 0, 1, 7, 40 )
+
+[node name="Spine2" type="Bone2D" parent="Skeleton2D/Spine"]
+show_behind_parent = true
+position = Vector2( 16, 0 )
+rest = Transform2D( 1, 0, 0, 1, 16, 0 )
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
+
+[node name="Spine3" type="Bone2D" parent="Skeleton2D/Spine/Spine2"]
+show_behind_parent = true
+position = Vector2( -2, -13 )
+rest = Transform2D( 1, 0, 0, 1, -2, -13 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="Spine4" type="Bone2D" parent="Skeleton2D/Spine/Spine2/Spine3"]
+show_behind_parent = true
+position = Vector2( -2, -14 )
+rotation = -1.6948
+scale = Vector2( 1, 1 )
+rest = Transform2D( -0.123691, -0.992321, 0.992321, -0.123691, -2, -14 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="Front" type="Bone2D" parent="Skeleton2D/Spine"]
+position = Vector2( 0, 16 )
+rest = Transform2D( 1, 0, 0, 1, 0, 16 )
+
+[node name="ThornR" type="Sprite" parent="Skeleton2D"]
+show_behind_parent = true
+position = Vector2( -15, 7 )
+texture = ExtResource( 1 )
+
+[node name="ThornL" type="Sprite" parent="Skeleton2D"]
+show_behind_parent = true
+position = Vector2( 39, 5 )
+texture = ExtResource( 3 )

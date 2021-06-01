@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scenes/enemies/bosses/paraprin/SpriteSkirt.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/enemies/bosses/paraprin/ParaPrin.cs" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/bosses/paraprin/SpriteHead.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/enemies/bosses/paraprin/SpriteHair.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/bosses/paraprin/SpriteTorso.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/bosses/paraprin/SpriteHairTop.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/bosses/paraprin/weapons/ParaPrinWeap1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemies/bosses/paraprin/ai/ParaPrinAI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/enemies/bosses/paraprin/HairBack.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/enemies/bosses/paraprin/weapons/ParaPrinWeap2.tscn" type="PackedScene" id=14]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 30.0
+
+[node name="ParaPrin" instance=ExtResource( 3 )]
+script = ExtResource( 4 )
+acts = {
+"melee_attack": 0.5
+}
+patrolPoints = null
+
+[node name="Skirt" parent="Sprite" index="0" instance=ExtResource( 2 )]
+position = Vector2( -50, -50.5 )
+
+[node name="HairBack" parent="Sprite/Skirt" index="1" instance=ExtResource( 12 )]
+visible = false
+position = Vector2( 20, -67.5 )
+z_index = 1
+
+[node name="Hair" parent="Sprite/Skirt" index="2" instance=ExtResource( 6 )]
+show_behind_parent = true
+position = Vector2( 13, -55 )
+
+[node name="Torso" parent="Sprite/Skirt" index="3" instance=ExtResource( 7 )]
+position = Vector2( 37.5, -24.5 )
+
+[node name="Skeleton2D" parent="Sprite/Skirt/Torso" index="0"]
+show_behind_parent = true
+
+[node name="Spine" parent="Sprite/Skirt/Torso/Skeleton2D" index="0"]
+show_behind_parent = true
+
+[node name="Spine2" parent="Sprite/Skirt/Torso/Skeleton2D/Spine" index="0"]
+show_behind_parent = true
+
+[node name="Spine3" parent="Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2" index="0"]
+show_behind_parent = true
+
+[node name="Spine4" parent="Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3" index="0"]
+show_behind_parent = true
+
+[node name="EnemyWeapon" parent="Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3" index="1" instance=ExtResource( 9 )]
+show_behind_parent = true
+position = Vector2( 5.2932, -13.1061 )
+rotation = 0.837156
+scale = Vector2( 0.952381, 1 )
+
+[node name="EnemyWeapon2" parent="Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3" index="2" instance=ExtResource( 14 )]
+show_behind_parent = true
+position = Vector2( -10.391, -13.5764 )
+rotation = 2.08108
+
+[node name="Head" parent="Sprite/Skirt/Torso" index="1" instance=ExtResource( 5 )]
+position = Vector2( 15.75, -9.5 )
+
+[node name="HairTop" parent="Sprite/Skirt/Torso/Head" index="2" instance=ExtResource( 8 )]
+position = Vector2( -21, -35 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 1 )
+
+[node name="Health" parent="HUD" index="0"]
+visible = false
+
+[node name="AI" parent="." index="4" instance=ExtResource( 10 )]
+too_close_dist = 150
+
+[editable path="Sprite/Skirt"]
+[editable path="Sprite/Skirt/HairBack"]
+[editable path="Sprite/Skirt/Hair"]
+[editable path="Sprite/Skirt/Torso"]
+[editable path="Sprite/Skirt/Torso/Head"]
+[editable path="Sprite/Skirt/Torso/Head/HairTop"]

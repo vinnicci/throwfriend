@@ -22,7 +22,7 @@ public class BlobSpawnerCharger : BaseCharger
     }
 
 
-    private const int BLOB_SPAWN_FORCE = 2000;
+    private const int BLOB_SPAWN_FORCE = 1000;
 
 
     public void InstanceBlob(int count) {

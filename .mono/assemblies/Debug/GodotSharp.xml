@@ -24606,7 +24606,7 @@
             mdt.create_from_surface(mesh, 0)
             for i in range(mdt.get_vertex_count()):
                 var vertex = mdt.get_vertex(i)
-                # In this example we extend the mesh by one unit, which results in seperated faces as it is flat shaded.
+                # In this example we extend the mesh by one unit, which results in separated faces as it is flat shaded.
                 vertex += mdt.get_vertex_normal(i)
                 # Save your change.
                 mdt.set_vertex(i, vertex)
@@ -25663,7 +25663,7 @@
         <member name="M:Godot.NetworkedMultiplayerENet.SetPeerTimeout(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             <para>Sets the timeout parameters for a peer.The timeout parameters control how and when a peer will timeout from a failure to acknowledge reliable traffic. Timeout values are expressed in milliseconds.</para>
-            <para>The <c>timeout_limit</c> is a factor that, multiplied by a value based on the avarage round trip time, will determine the timeout limit for a reliable packet. When that limit is reached, the timeout will be doubled, and the peer will be disconnected if that limit has reached <c>timeout_min</c>. The <c>timeout_max</c> parameter, on the other hand, defines a fixed timeout for which any packet must be acknowledged or the peer will be dropped.</para>
+            <para>The <c>timeout_limit</c> is a factor that, multiplied by a value based on the average round trip time, will determine the timeout limit for a reliable packet. When that limit is reached, the timeout will be doubled, and the peer will be disconnected if that limit has reached <c>timeout_min</c>. The <c>timeout_max</c> parameter, on the other hand, defines a fixed timeout for which any packet must be acknowledged or the peer will be dropped.</para>
             </summary>
         </member>
         <member name="M:Godot.NetworkedMultiplayerENet.GetPacketChannel">
@@ -25892,7 +25892,7 @@
         </member>
         <member name="P:Godot.Node2D.ZIndex">
             <summary>
-            <para>Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others.</para>
+            <para>Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between  and  (inclusive).</para>
             </summary>
         </member>
         <member name="P:Godot.Node2D.ZAsRelative">
@@ -30952,7 +30952,7 @@
             <summary>
             <para>Contains global variables accessible from everywhere. Use <see cref="M:Godot.ProjectSettings.GetSetting(System.String)"/>, <see cref="M:Godot.ProjectSettings.SetSetting(System.String,System.Object)"/> or <see cref="M:Godot.ProjectSettings.HasSetting(System.String)"/> to access them. Variables stored in <c>project.godot</c> are also loaded into ProjectSettings, making this object very useful for reading custom game configuration options.</para>
             <para>When naming a Project Settings property, use the full path to the setting including the category. For example, <c>"application/config/name"</c> for the project name. Category and property names can be viewed in the Project Settings dialog.</para>
-            <para>Feature tags: Project settings can be overriden for specific platforms and configurations (debug, release, ...) using <a href="https://docs.godotengine.org/en/latest/tutorials/export/feature_tags.html">feature tags</a>.</para>
+            <para>Feature tags: Project settings can be overridden for specific platforms and configurations (debug, release, ...) using <a href="https://docs.godotengine.org/en/latest/tutorials/export/feature_tags.html">feature tags</a>.</para>
             <para>Overriding: Any project setting can be overridden by creating a file named <c>override.cfg</c> in the project's root directory. This can also be used in exported projects by placing this file in the same directory as the project binary. Overriding will still take the base project settings' <a href="https://docs.godotengine.org/en/latest/tutorials/export/feature_tags.html">feature tags</a> in account. Therefore, make sure to also override the setting with the desired feature tags if you want them to override base project settings on all platforms and configurations.</para>
             </summary>
         </member>
@@ -33698,11 +33698,13 @@
         <member name="F:Godot.Sky.RadianceSizeEnum.Size1024">
             <summary>
             <para>Radiance texture size is 1024×1024 pixels.</para>
+            <para>Note:  is not exposed in the inspector as it is known to cause GPU hangs on certain systems.</para>
             </summary>
         </member>
         <member name="F:Godot.Sky.RadianceSizeEnum.Size2048">
             <summary>
             <para>Radiance texture size is 2048×2048 pixels.</para>
+            <para>Note:  is not exposed in the inspector as it is known to cause GPU hangs on certain systems.</para>
             </summary>
         </member>
         <member name="F:Godot.Sky.RadianceSizeEnum.Max">
@@ -33714,7 +33716,7 @@
             <summary>
             <para>The <see cref="T:Godot.Sky"/>'s radiance map size. The higher the radiance map size, the more detailed the lighting from the <see cref="T:Godot.Sky"/> will be.</para>
             <para>See <see cref="T:Godot.Sky.RadianceSizeEnum"/> constants for values.</para>
-            <para>Note: Some hardware will have trouble with higher radiance sizes, especially  and above. Only use such high values on high-end hardware.</para>
+            <para>Note: You will only benefit from high radiance sizes if you have perfectly sharp reflective surfaces in your project and are not using <see cref="T:Godot.ReflectionProbe"/>s or <see cref="T:Godot.GIProbe"/>s. For most projects, keeping <see cref="P:Godot.Sky.RadianceSize"/> to the default value is the best compromise between visuals and performance. Be careful when using high radiance size values as these can cause crashes on low-end GPUs.</para>
             </summary>
         </member>
         <member name="T:Godot.Slider">
@@ -35866,7 +35868,7 @@
         </member>
         <member name="T:Godot.StreamPeer">
             <summary>
-            <para>StreamPeer is an abstraction and base class for stream-based protocols (such as TCP or UNIX sockets). It provides an API for sending and receiving data through streams as raw data or strings.</para>
+            <para>StreamPeer is an abstraction and base class for stream-based protocols (such as TCP). It provides an API for sending and receiving data through streams as raw data or strings.</para>
             </summary>
         </member>
         <member name="P:Godot.StreamPeer.BigEndian">
@@ -47166,7 +47168,7 @@
             <para>Valid <c>options</c> are:</para>
             <para><code>
             {
-                "negotiated": true, # When set to true (default off), means the channel is negotiated out of band. "id" must be set too. data_channel_received will not be called.
+                "negotiated": true, # When set to true (default off), means the channel is negotiated out of band. "id" must be set too. "data_channel_received" will not be called.
                 "id": 1, # When "negotiated" is true this value must also be set to the same value on both peer.
             
                 # Only one of maxRetransmits and maxPacketLifeTime can be specified, not both. They make the channel unreliable (but also better at real time).
@@ -47417,7 +47419,7 @@
             <para>WebXR is an open standard that allows creating VR and AR applications that run in the web browser.</para>
             <para>As such, this interface is only available when running in an HTML5 export.</para>
             <para>WebXR supports a wide range of devices, from the very capable (like Valve Index, HTC Vive, Oculus Rift and Quest) down to the much less capable (like Google Cardboard, Oculus Go, GearVR, or plain smartphones).</para>
-            <para>Since WebXR is based on Javascript, it makes extensive use of callbacks, which means that <see cref="T:Godot.WebXRInterface"/> is forced to use signals, where other AR/VR interfaces would instead use functions that return a result immediately. This makes <see cref="T:Godot.WebXRInterface"/> quite a bit more complicated to intialize than other AR/VR interfaces.</para>
+            <para>Since WebXR is based on Javascript, it makes extensive use of callbacks, which means that <see cref="T:Godot.WebXRInterface"/> is forced to use signals, where other AR/VR interfaces would instead use functions that return a result immediately. This makes <see cref="T:Godot.WebXRInterface"/> quite a bit more complicated to initialize than other AR/VR interfaces.</para>
             <para>Here's the minimum code required to start an immersive VR session:</para>
             <para><code>
             extends Spatial
@@ -49600,7 +49602,7 @@
         <member name="M:Godot.OS.GetUnixTime">
             <summary>
             <para>Returns the current UNIX epoch timestamp in seconds.</para>
-            <para>Important: This is the system clock that the user can manully set. Never use this method for precise time calculation since its results are also subject to automatic adjustments by the operating system. Always use <see cref="M:Godot.OS.GetTicksUsec"/> or <see cref="M:Godot.OS.GetTicksMsec"/> for precise time calculation instead, since they are guaranteed to be monotonic (i.e. never decrease).</para>
+            <para>Important: This is the system clock that the user can manually set. Never use this method for precise time calculation since its results are also subject to automatic adjustments by the operating system. Always use <see cref="M:Godot.OS.GetTicksUsec"/> or <see cref="M:Godot.OS.GetTicksMsec"/> for precise time calculation instead, since they are guaranteed to be monotonic (i.e. never decrease).</para>
             </summary>
         </member>
         <member name="M:Godot.OS.GetDatetimeFromUnixTime(System.Int64)">
@@ -49613,7 +49615,7 @@
             <summary>
             <para>Gets an epoch time value from a dictionary of time values.</para>
             <para><c>datetime</c> must be populated with the following keys: <c>year</c>, <c>month</c>, <c>day</c>, <c>hour</c>, <c>minute</c>, <c>second</c>.</para>
-            <para>If the dictionary is empty <c>0</c> is returned.</para>
+            <para>If the dictionary is empty <c>0</c> is returned. If some keys are omitted, they default to the equivalent values for the UNIX epoch timestamp 0 (1970-01-01 at 00:00:00 UTC).</para>
             <para>You can pass the output from <see cref="M:Godot.OS.GetDatetimeFromUnixTime(System.Int64)"/> directly into this function. Daylight Savings Time (<c>dst</c>), if present, is ignored.</para>
             </summary>
         </member>

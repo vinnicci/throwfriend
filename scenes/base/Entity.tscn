@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/base/Entity.cs" type="Script" id=1]
 [ext_resource path="res://scenes/ui/HealthHUD.tscn" type="PackedScene" id=2]
@@ -6,53 +6,6 @@
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 1.0
-
-[sub_resource type="SpriteFrames" id=2]
-resource_local_to_scene = true
-animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-} ]
-
-[sub_resource type="Animation" id=3]
-resource_name = "damaged"
-length = 0.5
-step = 0.05
-
-[sub_resource type="Animation" id=4]
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "queue_free"
-} ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
 
 [node name="Entity" type="RigidBody2D"]
 mode = 2
@@ -67,28 +20,16 @@ health = 3
 
 [node name="Sprite" type="Node2D" parent="."]
 
-[node name="Legs" type="AnimatedSprite" parent="Sprite"]
-frames = SubResource( 2 )
-animation = "idle"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-
-[node name="DeathTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="HitCooldown" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
 
-[node name="Anim" type="AnimationPlayer" parent="."]
-anims/damaged = SubResource( 3 )
-anims/die = SubResource( 4 )
-
 [node name="HUD" type="Node2D" parent="."]
 
 [node name="Health" parent="HUD" instance=ExtResource( 2 )]
-margin_left = -65.0
-margin_right = -39.0
-
-[connection signal="timeout" from="DeathTimer" to="." method="OnDeathTimerTimeout"]
+margin_left = -39.0
+margin_right = -13.0
+rect_scale = Vector2( 3, 1.5 )

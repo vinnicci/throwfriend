@@ -1,14 +1,19 @@
 using System;
 using Godot;
 
-public class AllRounder: Enemy
+public abstract class BaseAllRounder: Enemy
 {
     //melee
-    protected const int FORWARD_IMPULSE = 500;
+    protected const int FORWARD_IMPULSE = 250;
 
 
     public virtual void MeleeAttack() {
         WeaponNode.MeleeAttack();
+    }
+
+
+    public virtual void MeleeAttackBack() {
+        ((BaseAllRounderWeapon)WeaponNode).MeleeAttackBack();
     }
 
 
@@ -18,11 +23,16 @@ public class AllRounder: Enemy
 
 
     //ranged
-    protected const int BLASTER_RECOIL = 250;
+    protected const int BLASTER_RECOIL = 130;
 
 
     public virtual void Shoot() {
         WeaponNode.Shoot();
+    }
+
+
+    public virtual void ShootBack() {
+        ((BaseAllRounderWeapon)WeaponNode).ShootBack();
     }
 
 
@@ -33,8 +43,7 @@ public class AllRounder: Enemy
 
     //throw blobnade
     public virtual void ThrowBlob() {
-        AllRounderWeapon weap = (AllRounderWeapon)WeaponNode;
-        weap.ThrowBlob();
+        ((BaseAllRounderWeapon)WeaponNode).ThrowBlob();
     }
 
 

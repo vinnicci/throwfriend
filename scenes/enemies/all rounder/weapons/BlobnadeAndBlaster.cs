@@ -1,9 +1,11 @@
 using Godot;
 using System;
 
-public class BlobnadeAndBlaster : AllRounderWeapon
+public class BlobnadeAndBlaster : BaseAllRounderWeapon
 {
     [Export] PackedScene projectile2;
+
+    const int BLOBNADE_THROW_STRENGTH = 1000;
 
 
     public override void SpawnBlob()
@@ -13,7 +15,7 @@ public class BlobnadeAndBlaster : AllRounderWeapon
         blob.AddChild(ai);
         ai.Call("init_properties", ParentNode.LevelNode, blob);
         blob.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition);
-        blob.ApplyCentralImpulse(new Vector2(2000, 0).Rotated(spawnPoint.GlobalRotation));
+        blob.ApplyCentralImpulse(new Vector2(BLOBNADE_THROW_STRENGTH, 0).Rotated(spawnPoint.GlobalRotation));
     }
 
 

@@ -3,7 +3,7 @@ using System;
 
 public class Player : Entity
 {
-    [Export] protected int throwStrength = 250;
+    [Export] protected int throwStrength = 130;
     public int ThrowStrength {get; set;}
     public Node2D Center {get; set;}
     public Weapon WeaponNode {get; set;}
@@ -38,8 +38,9 @@ public class Player : Entity
     private Settings settings;
     private HotkeyHUD hotkeyHUD;
     private WarningText uiWarning;
-    private AnimationPlayer armsAnim;
-    private const int EXTRA_SPEED_WITHOUT_WEAPON = 500;
+    private AnimationPlayer throwAnim;
+    private AnimationPlayer damageAnim;
+    private const int EXTRA_SPEED_WITHOUT_WEAPON = 250;
 
 
     public override void _Ready()
@@ -64,7 +65,8 @@ public class Player : Entity
         hotkeyHUD = (HotkeyHUD)GetNode("CanvasLayer/HotkeyHUD");
         loadout.HotkeyHUDNode = hotkeyHUD;
         uiWarning = (WarningText)GetNode("CanvasLayer/UIWarning");
-        armsAnim = (AnimationPlayer)GetNode("Center/Arms/Anim");
+        throwAnim = (AnimationPlayer)GetNode("Center/Arms/ThrowAnim");
+        damageAnim = (AnimationPlayer)GetNode("Sprite/DamageAnim");
     }
 
 
@@ -91,8 +93,8 @@ public class Player : Entity
     }
 
 
-    private Vector2 WEAP_POS_VEC = new Vector2(-35, -22);
-    private Vector2 WEAP_POS_VEC_FLIP = new Vector2(-35, 22); 
+    private Vector2 WEAP_POS_VEC = new Vector2(-18, -10);
+    private Vector2 WEAP_POS_VEC_FLIP = new Vector2(-18, 10); 
 
 
     public override void _Process(float delta)
@@ -103,20 +105,48 @@ public class Player : Entity
         }
         Center.LookAt(GetGlobalMousePosition());
         float dotProd = new Vector2(1,0).Dot(new Vector2(1,0).Rotated(Center.Rotation));
-        if(dotProd <= 0 && head.FlipH == false) {
-            head.FlipH = true;
-            arms.FlipH = true;
-            legs.FlipH = true;
+        //GD.Print(dotProd);
+        if(dotProd <= 0 && arms.Scale.x > 0) {
+            Vector2 scale = new Vector2(-1,1);
+            spriteNode.Scale *= scale;
+            arms.Scale *= scale;
             weapPos.Position = WEAP_POS_VEC_FLIP;
         }
-        else if(dotProd > 0 && head.FlipH == true) {
-            head.FlipH = false;
-            arms.FlipH = false;
-            legs.FlipH = false;
+        else if(dotProd > 0 && arms.Scale.x < 0) {
+            Vector2 scale = new Vector2(-1,1);
+            spriteNode.Scale *= scale;
+            arms.Scale *= scale;
             weapPos.Position = WEAP_POS_VEC;
         }
         if(WeaponNode != inGameUI.WeaponNode) {
             inGameUI.WeaponNode = WeaponNode;
+        }
+    }
+
+
+    public override void AdjustSprites()
+    {
+        //running
+        if(Velocity == Vector2.Zero) {
+            //legs.Play("idle");
+            anim.Play("idle");
+        }
+        else {
+            //legs.Play("run");
+            FlipLegs(spriteNode.Scale.x, Velocity.x);
+        }
+        
+    }
+
+
+    private void FlipLegs(float sprite, float velocity) {
+        if((sprite > 0 && velocity > 0) || (sprite < 0 && velocity <= 0)) {
+            //legs.Scale = new Vector2(1,1);
+            anim.Play("run");
+        }
+        else if((sprite < 0 && velocity > 0) || (sprite > 0 && velocity <= 0)) {
+            //legs.Scale = new Vector2(-1,1);
+            anim.Play("run_back");
         }
     }
 
@@ -174,10 +204,10 @@ public class Player : Entity
         if(Input.IsActionJustReleased("throw_weap") && hasWeap == true) {
             WeaponNode.Throw(ThrowStrength, GlobalPosition, Center.GlobalRotation);
             if(arms.FlipH == false) {
-                armsAnim.Play("throw");
+                throwAnim.Play("throw");
             }
             else {
-                armsAnim.PlayBackwards("throw");
+                throwAnim.PlayBackwards("throw");
             }
             Speed += EXTRA_SPEED_WITHOUT_WEAPON;
         }
@@ -213,7 +243,8 @@ public class Player : Entity
     {
         if(base.Hit(knockback, damage) == true) {
             if(Health > 0 && damage > 0 && IsDead == false) {
-                anim.Play("damaged");
+                //anim.Play("damaged");
+                damageAnim.Play("damaged");
                 HitCooldown.Start(1f);
             }
             return true;
@@ -222,12 +253,11 @@ public class Player : Entity
     }
 
 
-    public override void OnDeathTimerTimeout() {
+    private void TransferCamera() {
         camera.GetParent().RemoveChild(camera);
         LevelNode.AddChild(camera);
         camera.ParentNode = LevelNode;
         camera.GlobalPosition = GlobalPosition;
-        base.OnDeathTimerTimeout();
     }
 
 

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class DualRanged : AllRounder
+public class DualRanged : BaseAllRounder
 {
     public override void Shoot()
     {
@@ -9,8 +9,8 @@ public class DualRanged : AllRounder
     }
 
 
-    public void Shoot2() {
-        ((DualBlaster)WeaponNode).Shoot2();
+    public override void ShootBack() {
+        base.ShootBack();
     }
 
 

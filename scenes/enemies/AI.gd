@@ -1,10 +1,10 @@
 extends Node2D
 
 
-export var detection_range: int = 600
-export var seek_dist: int = 250
-export var too_far_dist: int = 500
-export var too_close_dist: int = 150
+export var detection_range: int = 500
+export var seek_dist: int = 150
+export var too_far_dist: int = 250
+export var too_close_dist: int = 75
 
 onready var ray: RayCast2D = $RayCast2D
 onready var detection_area: Area2D = $DetectionRange
@@ -246,8 +246,8 @@ func get_target_dist(target_bb_name: String) -> int:
 #move actions
 
 
-const ORIGIN_DIST: = 62500
-const TARGET_DIST: = 2500
+const ORIGIN_DIST: = 30000
+const TARGET_DIST: = 1250
 
 
 #_try_interrupt overridable func - use custom conditions to stop seeking
@@ -312,6 +312,8 @@ func task_aim_weapon(task):
 	ray.force_raycast_update()
 	if ray.get_collider() == bb[task.get_param(0)]:
 		weapon_node.look_at(bb[task.get_param(0)].global_position)
+		parent_node.Velocity = Vector2(1,0).rotated(weapon_node.global_rotation)
+		parent_node.call("AdjustSprites")
 		task.succeed()
 	else:
 		task.failed()

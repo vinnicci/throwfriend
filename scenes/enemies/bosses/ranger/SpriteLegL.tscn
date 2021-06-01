@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/enemies/bosses/ranger/tex_boss_ranger_leg_L.png" type="Texture" id=2]
+
+[node name="LegL" type="Polygon2D"]
+texture = ExtResource( 2 )
+skeleton = NodePath("Skeleton2D")
+polygon = PoolVector2Array( -1.47991, 0.951374, 8.87949, -2.64271, 19.9789, 1.79704, 19.3056, 36.1111, 17.6389, 42.0139, 16.7361, 46.7361, 15.7639, 51.0417, 14, 62, 15, 67, 19, 70, 23, 73, 28, 74, 32, 76, 34.5666, 83.4038, 25, 87, 19, 86, 14, 85, 4, 84, 2.39389, 75.7306, 1, 72, 0, 68, -2, 56, -1.38889, 45.2778, -0.277778, 40.0694, 0.277778, 33.8194, 0, 29, 9.09091, 6.13108, 10.2778, 33.5417, 9.16667, 39.0278, 8.19444, 43.1944, 7.36111, 47.5694, 7.7167, 66.5962, 10.2537, 70.9302, 12.5793, 74.3129, 17.5476, 78.0127, 23.1501, 79.3869, 27.5898, 80.1268 )
+uv = PoolVector2Array( -1.47991, 0.951374, 8.87949, -2.64271, 19.9789, 1.79704, 19.3056, 36.1111, 17.6389, 42.0139, 16.7361, 46.7361, 15.7639, 51.0417, 14, 62, 15, 67, 19, 70, 23, 73, 28, 74, 32, 76, 34.5666, 83.4038, 25, 87, 19, 86, 14, 85, 4, 84, 2.39389, 75.7306, 1, 72, 0, 68, -2, 56, -1.38889, 45.2778, -0.277778, 40.0694, 0.277778, 33.8194, 0, 29, 9.09091, 6.13108, 10.2778, 33.5417, 9.16667, 39.0278, 8.19444, 43.1944, 7.36111, 47.5694, 7.7167, 66.5962, 10.2537, 70.9302, 12.5793, 74.3129, 17.5476, 78.0127, 23.1501, 79.3869, 27.5898, 80.1268 )
+polygons = [ PoolIntArray( 1, 0, 26 ), PoolIntArray( 2, 1, 26 ), PoolIntArray( 0, 25, 26 ), PoolIntArray( 3, 2, 26 ), PoolIntArray( 25, 24, 27 ), PoolIntArray( 3, 26, 27 ), PoolIntArray( 26, 25, 27 ), PoolIntArray( 4, 3, 28 ), PoolIntArray( 3, 27, 28 ), PoolIntArray( 24, 23, 28 ), PoolIntArray( 27, 24, 28 ), PoolIntArray( 5, 4, 29 ), PoolIntArray( 4, 28, 29 ), PoolIntArray( 23, 22, 29 ), PoolIntArray( 28, 23, 29 ), PoolIntArray( 7, 6, 30 ), PoolIntArray( 21, 7, 30 ), PoolIntArray( 22, 21, 30 ), PoolIntArray( 29, 22, 30 ), PoolIntArray( 6, 5, 30 ), PoolIntArray( 5, 29, 30 ), PoolIntArray( 8, 7, 31 ), PoolIntArray( 20, 19, 31 ), PoolIntArray( 7, 21, 31 ), PoolIntArray( 21, 20, 31 ), PoolIntArray( 8, 31, 32 ), PoolIntArray( 19, 18, 32 ), PoolIntArray( 31, 19, 32 ), PoolIntArray( 9, 8, 33 ), PoolIntArray( 8, 32, 33 ), PoolIntArray( 17, 16, 33 ), PoolIntArray( 18, 17, 33 ), PoolIntArray( 32, 18, 33 ), PoolIntArray( 10, 9, 34 ), PoolIntArray( 9, 33, 34 ), PoolIntArray( 16, 15, 34 ), PoolIntArray( 33, 16, 34 ), PoolIntArray( 11, 10, 35 ), PoolIntArray( 10, 34, 35 ), PoolIntArray( 15, 14, 35 ), PoolIntArray( 34, 15, 35 ), PoolIntArray( 12, 11, 36 ), PoolIntArray( 11, 35, 36 ), PoolIntArray( 13, 12, 36 ), PoolIntArray( 14, 13, 36 ), PoolIntArray( 35, 14, 36 ) ]
+bones = [ NodePath("Leg"), PoolRealArray( 1, 1, 1, 1, 1, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 0, 0, 0, 0, 0 ), NodePath("Leg/Leg2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0.48, 1, 0.44, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.44, 0.44, 1, 1, 0.48, 0.13, 0, 0, 0, 0, 0, 0.61, 1, 1, 0.44, 0.44, 0, 0, 0 ), NodePath("Leg/Leg2/Leg3"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0.44, 1, 0.55, 0, 0, 0, 0, 0.45, 1, 1, 0.44, 0.44, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.44, 0.44, 1, 0.45, 0 ), NodePath("Leg/Leg2/Leg3/Leg4"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.61, 1, 1, 1, 1, 0.61, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.61, 1 ), NodePath("Leg/Leg2/Filler"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.55, 1, 0.55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+internal_vertex_count = 11
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="Leg" type="Bone2D" parent="Skeleton2D"]
+position = Vector2( 9, 5 )
+rest = Transform2D( 1, 0, 0, 1, 9, 5 )
+
+[node name="Leg2" type="Bone2D" parent="Skeleton2D/Leg"]
+position = Vector2( 0, 33 )
+rest = Transform2D( 1, 0, 0, 1, 0, 33 )
+
+[node name="Leg3" type="Bone2D" parent="Skeleton2D/Leg/Leg2"]
+position = Vector2( 1, 33 )
+rest = Transform2D( 1, 0, 0, 1, 1, 33 )
+
+[node name="Leg4" type="Bone2D" parent="Skeleton2D/Leg/Leg2/Leg3"]
+position = Vector2( 10, 9 )
+rotation = 0.182787
+scale = Vector2( 1, 1 )
+rest = Transform2D( 0.983341, 0.181771, -0.181771, 0.983341, 10, 9 )
+
+[node name="Filler" type="Bone2D" parent="Skeleton2D/Leg/Leg2"]
+rotation = 2.38756
+rest = Transform2D( -0.728935, 0.684583, -0.684583, -0.728935, 0, 0 )

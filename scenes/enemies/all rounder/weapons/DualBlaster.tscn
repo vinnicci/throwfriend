@@ -1,93 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/player/tex_player_arms.png" type="Texture" id=1]
 [ext_resource path="res://scenes/enemies/shooter/weapons/ShooterProj.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_blaster.png" type="Texture" id=3]
-[ext_resource path="res://scenes/enemies/EnemyWeapon.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/enemies/all rounder/weapons/DualBlaster.cs" type="Script" id=5]
-
-[sub_resource type="Animation" id=1]
-length = 2.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Hand:rotation_degrees")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -20.0, 5.0, -20.0 ]
-}
-
-[sub_resource type="Animation" id=2]
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Hand:rotation_degrees")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5, 0.6, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ -20.0, 0.0, 0.0, -60.0, 0.0, -20.0 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "SpawnProj"
-}, {
-"args": [  ],
-"method": "FinishShooting"
-} ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "shoot_2"
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Hand:rotation_degrees")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5, 0.6, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ -20.0, -180.0, -180.0, -240.0, -180.0, -20.0 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "SpawnProj"
-}, {
-"args": [  ],
-"method": "FinishShooting"
-} ]
-}
+[ext_resource path="res://scenes/enemies/all rounder/weapons/BaseAllRounderWeapon.tscn" type="PackedScene" id=4]
 
 [node name="EnemyWeapon" instance=ExtResource( 4 )]
-script = ExtResource( 5 )
 projectile = ExtResource( 2 )
 
 [node name="Hand" type="Sprite" parent="Sprites" index="0"]
@@ -110,6 +28,3 @@ position = Vector2( 34.5, 0 )
 
 [node name="Anim" parent="." index="1"]
 autoplay = "idle"
-anims/idle = SubResource( 1 )
-anims/shoot = SubResource( 2 )
-anims/shoot_2 = SubResource( 3 )

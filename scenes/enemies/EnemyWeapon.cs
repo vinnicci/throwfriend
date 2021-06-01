@@ -1,12 +1,11 @@
 using Godot;
 using System;
 
-public class EnemyWeapon : Node2D
+public abstract class EnemyWeapon : Node2D
 {
     [Export] protected PackedScene projectile;
     
     public Enemy ParentNode {get; set;}
-    //public Level LevelNode {get; set;}
 
     protected Position2D spawnPoint;
     protected AnimationPlayer anim;

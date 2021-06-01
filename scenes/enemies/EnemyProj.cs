@@ -16,7 +16,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
     private Sprite sprite;
     private Explosion explosion;
     private AnimationPlayer anim;
-    const int KNOCKBACK = 300;
+    const int KNOCKBACK = 250;
 
 
     public override void _Ready()

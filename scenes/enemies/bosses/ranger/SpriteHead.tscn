@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/enemies/bosses/ranger/tex_boss_ranger_head.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemies/bosses/ranger/tex_boss_ranger_face.png" type="Texture" id=3]
+[ext_resource path="res://assets/enemies/bosses/ranger/tex_boss_ranger_face_blink.png" type="Texture" id=4]
+
+[node name="Head" type="Polygon2D"]
+texture = ExtResource( 2 )
+skeleton = NodePath("Skeleton2D")
+polygon = PoolVector2Array( 16.3293, 3.50877, 24.5614, -1.61943, 36.1673, 0.269905, 48.8529, 12.0108, 52.4966, 23.3468, 50.0675, 31.5789, 36.9771, 43.4548, 21.3225, 43.0499, 11.471, 34.1431, 1.61943, 27.5304, -3.10391, 17.4089, 3.77868, 6.07288, 38.8125, 5.75, 43.5, 10.8125, 48.875, 20.0625, 49.3125, 26.375, 41.875, 17.5625, 45.6875, 22.9375, 43.3125, 31.4375, 37.75, 38.6875, 31.8125, 38.3125, 26.5, 34, 27.4322, 2.07336, 14.8325, 7.41627, 5.27778, 11.9444, 10.3472, 14.7917, 1.83413, 16.1882, 7.43056, 20.4167, 12.6389, 23.6806, 1.94444, 23.4722, 13.7161, 31.4992, 22.625, 39.4375, 25, 38.1875, 37.4801, 14.5136, 32.6954, 21.2919, 28.1499, 27.8309, 33.375, 4.125, 20.625, 4.5625, 16.9856, 14.4338, 16.0625, 20.1875, 16.125, 29.75, 22.9665, 21.1324, 27.0335, 14.3541, 21.5625, 34.125, 4.51389, 18.6111, 7.6875, 27.75, 32.75, 35.625, 40.7639, 29.6528, 46.125, 14.3125, 20.6875, 9.5625, 18.0625, 35.8125, 7.63889, 23.6111, 13.625, 12.3125 )
+uv = PoolVector2Array( 16.3293, 3.50877, 24.5614, -1.61943, 36.1673, 0.269905, 48.8529, 12.0108, 52.4966, 23.3468, 50.0675, 31.5789, 36.9771, 43.4548, 21.3225, 43.0499, 11.471, 34.1431, 1.61943, 27.5304, -3.10391, 17.4089, 3.77868, 6.07288, 38.8125, 5.75, 43.5, 10.8125, 48.875, 20.0625, 49.3125, 26.375, 41.875, 17.5625, 45.6875, 22.9375, 43.3125, 31.4375, 37.75, 38.6875, 31.8125, 38.3125, 26.5, 34, 27.4322, 2.07336, 14.8325, 7.41627, 5.27778, 11.9444, 10.3472, 14.7917, 1.83413, 16.1882, 7.43056, 20.4167, 12.6389, 23.6806, 1.94444, 23.4722, 13.7161, 31.4992, 22.625, 39.4375, 25, 38.1875, 37.4801, 14.5136, 32.6954, 21.2919, 28.1499, 27.8309, 33.375, 4.125, 20.625, 4.5625, 16.9856, 14.4338, 16.0625, 20.1875, 16.125, 29.75, 22.9665, 21.1324, 27.0335, 14.3541, 21.5625, 34.125, 4.51389, 18.6111, 7.6875, 27.75, 32.75, 35.625, 40.7639, 29.6528, 46.125, 14.3125, 20.6875, 9.5625, 18.0625, 35.8125, 7.63889, 23.6111, 13.625, 12.3125 )
+polygons = [ PoolIntArray( 0, 1, 11 ), PoolIntArray( 3, 2, 12 ), PoolIntArray( 3, 12, 13 ), PoolIntArray( 4, 3, 14 ), PoolIntArray( 5, 4, 15 ), PoolIntArray( 4, 14, 15 ), PoolIntArray( 15, 14, 17 ), PoolIntArray( 14, 16, 17 ), PoolIntArray( 5, 15, 18 ), PoolIntArray( 15, 17, 18 ), PoolIntArray( 6, 5, 19 ), PoolIntArray( 5, 18, 19 ), PoolIntArray( 7, 6, 20 ), PoolIntArray( 6, 19, 20 ), PoolIntArray( 2, 1, 22 ), PoolIntArray( 0, 11, 23 ), PoolIntArray( 23, 11, 24 ), PoolIntArray( 11, 10, 26 ), PoolIntArray( 24, 11, 26 ), PoolIntArray( 10, 9, 29 ), PoolIntArray( 26, 10, 29 ), PoolIntArray( 7, 20, 32 ), PoolIntArray( 31, 7, 32 ), PoolIntArray( 20, 21, 32 ), PoolIntArray( 13, 12, 33 ), PoolIntArray( 16, 13, 33 ), PoolIntArray( 16, 33, 34 ), PoolIntArray( 12, 2, 36 ), PoolIntArray( 2, 22, 36 ), PoolIntArray( 33, 12, 36 ), PoolIntArray( 1, 0, 37 ), PoolIntArray( 22, 1, 37 ), PoolIntArray( 0, 23, 37 ), PoolIntArray( 25, 27, 39 ), PoolIntArray( 27, 28, 39 ), PoolIntArray( 38, 25, 39 ), PoolIntArray( 28, 30, 40 ), PoolIntArray( 39, 28, 40 ), PoolIntArray( 35, 34, 41 ), PoolIntArray( 38, 39, 41 ), PoolIntArray( 39, 40, 41 ), PoolIntArray( 40, 35, 41 ), PoolIntArray( 34, 33, 42 ), PoolIntArray( 41, 34, 42 ), PoolIntArray( 33, 36, 42 ), PoolIntArray( 36, 22, 42 ), PoolIntArray( 38, 41, 42 ), PoolIntArray( 31, 32, 43 ), PoolIntArray( 32, 21, 43 ), PoolIntArray( 21, 35, 43 ), PoolIntArray( 35, 40, 43 ), PoolIntArray( 25, 24, 44 ), PoolIntArray( 27, 25, 44 ), PoolIntArray( 24, 26, 44 ), PoolIntArray( 26, 29, 44 ), PoolIntArray( 29, 27, 44 ), PoolIntArray( 29, 9, 45 ), PoolIntArray( 9, 8, 45 ), PoolIntArray( 8, 30, 45 ), PoolIntArray( 30, 28, 45 ), PoolIntArray( 20, 19, 46 ), PoolIntArray( 21, 20, 46 ), PoolIntArray( 35, 21, 46 ), PoolIntArray( 17, 16, 47 ), PoolIntArray( 16, 34, 47 ), PoolIntArray( 18, 17, 47 ), PoolIntArray( 19, 18, 47 ), PoolIntArray( 46, 19, 47 ), PoolIntArray( 34, 35, 47 ), PoolIntArray( 35, 46, 47 ), PoolIntArray( 3, 13, 48 ), PoolIntArray( 13, 16, 48 ), PoolIntArray( 14, 3, 48 ), PoolIntArray( 16, 14, 48 ), PoolIntArray( 37, 23, 49 ), PoolIntArray( 22, 37, 49 ), PoolIntArray( 42, 22, 49 ), PoolIntArray( 38, 42, 49 ), PoolIntArray( 8, 7, 50 ), PoolIntArray( 7, 31, 50 ), PoolIntArray( 30, 8, 50 ), PoolIntArray( 31, 43, 50 ), PoolIntArray( 40, 30, 50 ), PoolIntArray( 43, 40, 50 ), PoolIntArray( 28, 27, 51 ), PoolIntArray( 45, 28, 51 ), PoolIntArray( 27, 29, 51 ), PoolIntArray( 29, 45, 51 ), PoolIntArray( 23, 24, 52 ), PoolIntArray( 24, 25, 52 ), PoolIntArray( 25, 38, 52 ), PoolIntArray( 38, 49, 52 ), PoolIntArray( 49, 23, 52 ) ]
+bones = [ NodePath("Head"), PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), NodePath("Head/Front"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.32, 0.32, 0.32, 0.32, 0.28, 0.28, 0.28, 0.28, 0.28, 0.28, 1, 0.32, 0.32, 0.32, 0.32, 0.32, 0.64, 0.32, 0.64, 1, 0.28, 0.64, 0.64, 0.64, 1, 0.64, 0.64, 0.64, 0.64, 1, 1, 0.64, 0.32, 0.32, 0.28, 0.28, 0.32, 0.64, 0.64, 0.55, 0.64 ) ]
+internal_vertex_count = 41
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="Head" type="Bone2D" parent="Skeleton2D"]
+position = Vector2( 31, 6 )
+rest = Transform2D( 1, 0, 0, 1, 31, 6 )
+
+[node name="Front" type="Bone2D" parent="Skeleton2D/Head"]
+position = Vector2( 0, -12 )
+rest = Transform2D( 1, 0, 0, 1, 0, -12 )
+
+[node name="Face" type="Sprite" parent="Skeleton2D/Head"]
+position = Vector2( 5.5, 19.5 )
+texture = ExtResource( 3 )
+
+[node name="FaceBlink" type="Sprite" parent="Skeleton2D/Head"]
+visible = false
+position = Vector2( 5.5, 19.5 )
+texture = ExtResource( 4 )

@@ -4,6 +4,7 @@
 [ext_resource path="res://scenes/enemies/EnemyProj.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 5.0
 
 [sub_resource type="Animation" id=2]
 tracks/0/type = "method"
@@ -47,13 +48,13 @@ tracks/2/keys = {
 
 [node name="ShooterProj" instance=ExtResource( 2 )]
 range = 1000
-speed = 15
+speed = 8
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
-scale = Vector2( 2, 0.5 )
+scale = Vector2( 1, 0.25 )
 texture = ExtResource( 1 )
 offset = Vector2( -25, 0 )
 

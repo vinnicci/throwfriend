@@ -12,7 +12,7 @@ public class Guided : WeaponItem
     }
 
 
-    private const int HOME_MAGNITUDE = 500;
+    private const int HOME_MAGNITUDE = 250;
 
 
     public override void _PhysicsProcess(float delta)

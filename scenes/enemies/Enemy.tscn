@@ -1,75 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/base/Entity.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/enemies/Enemy.cs" type="Script" id=3]
-
-[sub_resource type="SpriteFrames" id=1]
-resource_local_to_scene = true
-animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [  ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-} ]
-
-[sub_resource type="Animation" id=2]
-length = 0.5
-step = 0.05
-
-[sub_resource type="Animation" id=3]
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "queue_free"
-} ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-loop = true
 
 [node name="Enemy" instance=ExtResource( 2 )]
 collision_mask = 2
 script = ExtResource( 3 )
 patrolPoints = [  ]
 
-[node name="Sprite" parent="." index="0"]
-scale = Vector2( 2, 2 )
-
-[node name="Legs" parent="Sprite" index="0"]
-frames = SubResource( 1 )
-
 [node name="CollisionShape2D" parent="." index="1"]
 visible = true
-
-[node name="Anim" parent="." index="4"]
-autoplay = "idle"
-anims/damaged = SubResource( 2 )
-anims/die = SubResource( 3 )
-anims/idle = SubResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="OnEnemyBodyEntered"]

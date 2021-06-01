@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Shooter : Enemy
+public abstract class BaseShooter : Enemy
 {
     public void Shoot() {
         WeaponNode.Shoot();

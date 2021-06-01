@@ -36,7 +36,7 @@ public abstract class Explosion : Area2D
     }
 
 
-    private const int KNOCKBACK = 400;
+    private const int KNOCKBACK = 250;
 
 
     public void Explode() {
