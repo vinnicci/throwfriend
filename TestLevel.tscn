@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/base/Level.cs" type="Script" id=1]
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
@@ -11,7 +11,8 @@
 [ext_resource path="res://scenes/enemies/shooter/ScatterShooter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/enemies/shooter/LongRangeShooter.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemies/shooter/Shooter.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/enemies/shooter/LongRangeCannoneer.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/enemies/shooter/LaserShooter.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/enemies/charger/TeleportingCharger.tscn" type="PackedScene" id=13]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -41,7 +42,7 @@ acts = {
 }
 
 [node name="Melee" parent="Enemies" instance=ExtResource( 8 )]
-position = Vector2( -583, 800 )
+position = Vector2( 633, 708 )
 acts = {
 "melee_attack": 1.0
 }
@@ -71,10 +72,16 @@ acts = {
 "shoot": 0.2
 }
 
-[node name="LongRangeCannoneer" parent="Enemies" instance=ExtResource( 12 )]
-position = Vector2( 257, 907 )
+[node name="LaserShooter" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( -610, 1210 )
 acts = {
 "shoot": 1.0
+}
+
+[node name="TeleportingCharger" parent="Enemies" instance=ExtResource( 13 )]
+position = Vector2( 222, 617 )
+acts = {
+"charge": 1.0
 }
 
 [node name="PatrolPoints" type="Node2D" parent="."]

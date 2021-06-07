@@ -15,7 +15,7 @@ public class TeleportToWeapon : PlayerItem
             return;
         }
         base.ApplyEffect();
-        PlayerNode.Teleport(Weapon.GlobalPosition);
+        PlayerNode.Teleport(PlayerNode.LevelNode, Weapon.GlobalPosition);
         EmitSignal("Activated");
         Cooldown.Start();
     }

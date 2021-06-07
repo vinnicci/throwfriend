@@ -77,8 +77,27 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     private Vector2 teleportPos;
 
 
-    public void Teleport(Vector2 global_pos) {
+    public void Teleport(Level level, Vector2 global_pos) {
+        //sprite fade out effect
+        Sprite teleSprite = (Sprite)GetNode("Sprite").Duplicate();
+        level.AddChild(teleSprite);
+        Tween tween = new Tween();
+        teleSprite.AddChild(tween);
+        teleSprite.GlobalPosition = GlobalPosition;
+        teleSprite.GlobalRotation = GlobalRotation;
+        Godot.Collections.Array arr = new Godot.Collections.Array();
+        arr.Add(teleSprite);
+        tween.Connect("tween_all_completed", this, "FreeSprite", arr);
+        tween.InterpolateProperty(teleSprite, "modulate",
+        new Color(1,1,1,1), new Color(1,1,1,0), 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        tween.Start();
+        //teleport
         teleportPos = global_pos;
+    }
+
+
+    public void FreeSprite(Godot.Object teleSprite) {
+        ((Sprite)teleSprite).QueueFree();
     }
 
 
@@ -131,7 +150,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     }
 
 
-    public void Throw(int throwStrength, Vector2 globalPos, float globalRot) {
+    public void Throw(int throwStrength, Vector2 globalPos, Vector2 destination, float globalRot) {
         CurrentState = States.ACTIVE;
         Mode = RigidBody2D.ModeEnum.Rigid;
         SetCollisionMaskBit(Global.BIT_MASK_ENEMY, true);
@@ -140,13 +159,13 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         if(IsInstanceValid(GetParent()) == true) {
             GetParent().RemoveChild(this);
         }
-        Spawn(PlayerNode.LevelNode, globalPos, globalRot);
+        Spawn(PlayerNode.LevelNode, globalPos, Vector2.Zero, globalRot);
         Vector2 throwVector = new Vector2(throwStrength, 0);
         ApplyCentralImpulse(throwVector.Rotated(GlobalRotation));
     }
 
 
-    public void Spawn(Level lvl, Vector2 globalPos, float globalRot = 0) {
+    public void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0) {
         lvl.AddChild(this);
         GlobalPosition = globalPos;
         GlobalRotation = globalRot;

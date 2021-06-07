@@ -1,11 +1,212 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=18 format=2]
 
+[ext_resource path="res://assets/player/tex_run_1.png" type="Texture" id=1]
+[ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder3.png" type="Texture" id=2]
+[ext_resource path="res://assets/player/tex_run_2.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/tex_run_3.png" type="Texture" id=4]
+[ext_resource path="res://assets/player/tex_run_4.png" type="Texture" id=5]
 [ext_resource path="res://scenes/enemies/all rounder/BaseAllRounder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/all rounder/all_rounder_die3.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/DualRanged.cs" type="Script" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/DualBlaster.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Head:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1.25 ), Vector2( 1.25, 1 ), Vector2( 1, 1.25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -13 ), Vector2( 0, -11 ), Vector2( 0, -13 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Legs:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "melee_attack"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "MeleeAttack"
+}, {
+"args": [  ],
+"method": "AttackImpulse"
+}, {
+"args": [ "melee_attack" ],
+"method": "FinishAction"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "melee_attack_back"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "MeleeAttackBack"
+}, {
+"args": [  ],
+"method": "AttackImpulse"
+}, {
+"args": [ "melee_attack_back" ],
+"method": "FinishAction"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "run"
+length = 0.24
+loop = true
+step = 0.06
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Legs:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -11 ), Vector2( 0, -14 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Head:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.25, 1 ), Vector2( 1, 1.25 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "shoot"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "Shoot"
+}, {
+"args": [  ],
+"method": "Recoil"
+}, {
+"args": [ "shoot" ],
+"method": "FinishAction"
+} ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "shoot_back"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "ShootBack"
+}, {
+"args": [  ],
+"method": "Recoil"
+}, {
+"args": [ "shoot_back" ],
+"method": "FinishAction"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "throw_blob"
+length = 1.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "ThrowBlob"
+}, {
+"args": [ "throw_blob" ],
+"method": "FinishAction"
+} ]
+}
 
 [node name="DualRanged" instance=ExtResource( 6 )]
 script = ExtResource( 8 )
@@ -17,9 +218,24 @@ acts = {
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 9 )]
 
+[node name="Head" parent="Sprite" index="2"]
+position = Vector2( 0, -11 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 2 )
+
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( 1 )
 
 [node name="Health" parent="HUD" index="0"]
 margin_top = -50.0
 margin_bottom = -87.0
+
+[node name="Anim" parent="." index="5"]
+anims/die = ExtResource( 7 )
+anims/idle = SubResource( 3 )
+anims/melee_attack = SubResource( 4 )
+anims/melee_attack_back = SubResource( 5 )
+anims/run = SubResource( 6 )
+anims/shoot = SubResource( 7 )
+anims/shoot_back = SubResource( 8 )
+anims/throw_blob = SubResource( 9 )

@@ -16,11 +16,11 @@ public class Swap : PlayerItem
         }
         base.ApplyEffect();
         var playerPos = PlayerNode.GlobalPosition;
-        PlayerNode.Teleport(Weapon.GlobalPosition);
+        PlayerNode.Teleport(PlayerNode.LevelNode, Weapon.GlobalPosition);
         if(PlayerNode.WeaponNode != Weapon) {
             Weapon = PlayerNode.WeaponNode;
         }
-        Weapon.Teleport(playerPos);
+        Weapon.Teleport(PlayerNode.LevelNode, playerPos);
         EmitSignal("Activated");
         Cooldown.Start();
     }

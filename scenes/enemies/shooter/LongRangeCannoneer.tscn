@@ -62,5 +62,5 @@ anims/run = ExtResource( 4 )
 anims/shoot = SubResource( 2 )
 
 [node name="AI" parent="." index="6"]
-seek_dist = 300
+seek_dist = 350
 too_far_dist = 375

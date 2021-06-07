@@ -30,6 +30,7 @@ public class ExtraLarge : WeaponItem
             weapSlot.RemoveChild(tempWeap);
             weapSlot.AddChild(largeWeap);
             Player.WeaponNode = largeWeap;
+            largeWeap.Damage *= 2;
             largeWeap.Connect("PickedUp", Player, "PickUpWeapon");
         }
         largeWeap.RefreshItems();

@@ -10,7 +10,7 @@ public abstract class Enemy : Entity
     public Level LevelNode {
         get {
             return levelNode;
-    }
+        }
         set{
             levelNode = value;
             if(HasNode("EnemyWeapon") == true) {

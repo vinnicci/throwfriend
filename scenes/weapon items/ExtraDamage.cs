@@ -3,7 +3,7 @@ using System;
 
 public class ExtraDamage : WeaponItem
 {
-    private const int EXTRA_DMG = 2;
+    private const int EXTRA_DMG = 3;
     private bool done = false;
 
 
@@ -13,7 +13,7 @@ public class ExtraDamage : WeaponItem
         if(done == true) {
             return;
         }
-        WeaponNode.Damage += EXTRA_DMG;
+        WeaponNode.Damage *= EXTRA_DMG;
         done = true;
     }
 

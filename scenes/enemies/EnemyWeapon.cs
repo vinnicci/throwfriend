@@ -19,15 +19,15 @@ public abstract class EnemyWeapon : Node2D
     }
 
 
-    //ranged
-    public virtual void Shoot() {
-        anim.Play("shoot");
+    //generic melee action
+    public virtual void MeleeAttack() {
+        anim.Play("melee_attack");
     }
 
 
-    //melee
-    public virtual void MeleeAttack() {
-        anim.Play("melee_attack");
+    //generic ranged action
+    public virtual void Shoot() {
+        anim.Play("shoot");
     }
 
 
@@ -35,7 +35,7 @@ public abstract class EnemyWeapon : Node2D
     public virtual void SpawnProj() {
         EnemyProj proj = (EnemyProj)projectile.Instance();
         proj.AddHitException(ParentNode);
-        proj.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition, spawnPoint.GlobalRotationDegrees);
+        proj.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition, Vector2.Zero, spawnPoint.GlobalRotationDegrees);
     }
 
 

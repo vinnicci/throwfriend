@@ -25,14 +25,29 @@ patrolPoints = null
 [node name="Skirt" parent="Sprite" index="0" instance=ExtResource( 2 )]
 position = Vector2( -50, -50.5 )
 
+[node name="Spine4" parent="Sprite/Skirt/Skeleton2D/Spine1/Spine2/Spine3" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="HairBack" parent="Sprite/Skirt" index="1" instance=ExtResource( 12 )]
 visible = false
 position = Vector2( 20, -67.5 )
 z_index = 1
 
+[node name="Spine4" parent="Sprite/Skirt/HairBack/Skeleton2D/Spine/Spine2/Spine3" index="0"]
+scale = Vector2( 1, 1 )
+
 [node name="Hair" parent="Sprite/Skirt" index="2" instance=ExtResource( 6 )]
 show_behind_parent = true
 position = Vector2( 13, -55 )
+
+[node name="HairFront" parent="Sprite/Skirt/Hair/Skeleton2D/Hair" index="0"]
+scale = Vector2( 1, 1 )
+
+[node name="HairL5" parent="Sprite/Skirt/Hair/Skeleton2D/Hair/HairL2/HairL3/HairL4" index="0"]
+scale = Vector2( 1, 1 )
+
+[node name="HairR4" parent="Sprite/Skirt/Hair/Skeleton2D/Hair/HairR2/HairR3" index="0"]
+scale = Vector2( 1, 1 )
 
 [node name="Torso" parent="Sprite/Skirt" index="3" instance=ExtResource( 7 )]
 position = Vector2( 37.5, -24.5 )
@@ -51,6 +66,7 @@ show_behind_parent = true
 
 [node name="Spine4" parent="Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3" index="0"]
 show_behind_parent = true
+scale = Vector2( 1, 1 )
 
 [node name="EnemyWeapon" parent="Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3" index="1" instance=ExtResource( 9 )]
 show_behind_parent = true

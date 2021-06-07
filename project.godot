@@ -27,7 +27,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/btree/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Palette Swap/plugin.cfg", "res://addons/TwistedIK2/plugin.cfg", "res://addons/btree/plugin.cfg" )
 
 [importer_defaults]
 

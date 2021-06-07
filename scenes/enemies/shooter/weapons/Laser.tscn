@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/enemies/EnemyWeapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/enemies/shooter/tex_en_laser_pinc1.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemies/shooter/tex_en_mouth_laser.png" type="Texture" id=3]
+[ext_resource path="res://assets/enemies/shooter/tex_en_laser_pinc2.png" type="Texture" id=4]
+[ext_resource path="res://scenes/enemies/shooter/weapons/Laser.cs" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/shooter/weapons/laser_shoot.tres" type="Animation" id=6]
+[ext_resource path="res://scenes/enemies/shooter/weapons/shooter_weap_idle.tres" type="Animation" id=7]
+[ext_resource path="res://assets/enemies/shooter/tex_laser_beam.png" type="Texture" id=8]
+
+[sub_resource type="RayShape2D" id=3]
+length = 5000.0
+
+[node name="EnemyWeapon" instance=ExtResource( 1 )]
+script = ExtResource( 5 )
+
+[node name="Barrel" type="Sprite" parent="Sprites" index="0"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 3 )
+offset = Vector2( 5, 0 )
+
+[node name="Sprite2" type="Sprite" parent="Sprites" index="1"]
+rotation = -0.785398
+texture = ExtResource( 4 )
+offset = Vector2( 0, 6 )
+
+[node name="Sprite" type="Sprite" parent="Sprites" index="2"]
+rotation = -0.0872665
+texture = ExtResource( 2 )
+offset = Vector2( 3.5, -7 )
+
+[node name="ProjSpawn" parent="Sprites" index="3"]
+position = Vector2( 25, 0 )
+
+[node name="Anim" type="AnimationPlayer" parent="." index="1"]
+autoplay = "idle"
+anims/idle = ExtResource( 7 )
+anims/shoot = ExtResource( 6 )
+
+[node name="Beam" type="Area2D" parent="." index="2"]
+monitoring = false
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Beam" index="0"]
+rotation = -1.5708
+shape = SubResource( 3 )
+
+[node name="Line2D" type="Line2D" parent="." index="3"]
+modulate = Color( 1, 1, 1, 0 )
+show_behind_parent = true
+points = PoolVector2Array( 0, 0, 5000, 0 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 8 )
+texture_mode = 1
+
+[connection signal="body_entered" from="Beam" to="." method="OnBeamBodyEntered"]

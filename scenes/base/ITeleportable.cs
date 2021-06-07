@@ -2,5 +2,6 @@ using Godot;
 
 public interface ITeleportable
 {
-    void Teleport(Vector2 globalPos);
+    void Teleport(Level level, Vector2 globalPos);
+    void FreeSprite(Godot.Object teleSprite);
 }

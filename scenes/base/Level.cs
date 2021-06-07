@@ -51,17 +51,7 @@ public abstract class Level : YSort
     public Vector2[] GetPath(Vector2 to, Vector2 from) {
         Vector2[] vec;
         vec = nav.GetSimplePath(to, from);
-        // Line2D line = new Line2D();
-        // Tween tween = new Tween();
-        // line.Points = vec;
-        // AddChild(line);
-        // Godot.Collections.Array arr = new Godot.Collections.Array();
-        // arr.Add(line);
-        // tween.InterpolateProperty(line, "modulate", line.Modulate, new Color(1,1,1,0), 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-        // tween.Connect("tween_all_completed", this, "OnTweenCompleted");
-        // line.AddChild(tween);
-        // lines.Enqueue(line);
-        // tween.Start();
+        //ShowLine(vec);
         return vec;
     }
 
@@ -79,9 +69,25 @@ public abstract class Level : YSort
     }
 
 
-    // private void OnTweenCompleted() {
-    //     lines.Dequeue().QueueFree();
-    // }
+    //used to debug: show ai path
+    private void ShowLine(Vector2[] vec) {
+        Line2D line = new Line2D();
+        Tween tween = new Tween();
+        line.Points = vec;
+        AddChild(line);
+        Godot.Collections.Array arr = new Godot.Collections.Array();
+        arr.Add(line);
+        tween.InterpolateProperty(line, "modulate", line.Modulate, new Color(1,1,1,0), 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        tween.Connect("tween_all_completed", this, "OnTweenCompleted");
+        line.AddChild(tween);
+        lines.Enqueue(line);
+        tween.Start();
+    }
+
+
+    private void OnTweenCompleted() {
+        lines.Dequeue().QueueFree();
+    }
 
 
 }

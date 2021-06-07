@@ -105,7 +105,6 @@ public class Player : Entity
         }
         Center.LookAt(GetGlobalMousePosition());
         float dotProd = new Vector2(1,0).Dot(new Vector2(1,0).Rotated(Center.Rotation));
-        //GD.Print(dotProd);
         if(dotProd <= 0 && arms.Scale.x > 0) {
             Vector2 scale = new Vector2(-1,1);
             spriteNode.Scale *= scale;
@@ -128,24 +127,19 @@ public class Player : Entity
     {
         //running
         if(Velocity == Vector2.Zero) {
-            //legs.Play("idle");
             anim.Play("idle");
         }
         else {
-            //legs.Play("run");
             FlipLegs(spriteNode.Scale.x, Velocity.x);
         }
-        
     }
 
 
     private void FlipLegs(float sprite, float velocity) {
         if((sprite > 0 && velocity > 0) || (sprite < 0 && velocity <= 0)) {
-            //legs.Scale = new Vector2(1,1);
             anim.Play("run");
         }
         else if((sprite < 0 && velocity > 0) || (sprite > 0 && velocity <= 0)) {
-            //legs.Scale = new Vector2(-1,1);
             anim.Play("run_back");
         }
     }
@@ -202,7 +196,7 @@ public class Player : Entity
         }
         //throw
         if(Input.IsActionJustReleased("throw_weap") && hasWeap == true) {
-            WeaponNode.Throw(ThrowStrength, GlobalPosition, Center.GlobalRotation);
+            WeaponNode.Throw(ThrowStrength, GlobalPosition, Vector2.Zero, Center.GlobalRotation);
             if(arms.FlipH == false) {
                 throwAnim.Play("throw");
             }
@@ -243,7 +237,6 @@ public class Player : Entity
     {
         if(base.Hit(knockback, damage) == true) {
             if(Health > 0 && damage > 0 && IsDead == false) {
-                //anim.Play("damaged");
                 damageAnim.Play("damaged");
                 HitCooldown.Start(1f);
             }

@@ -63,8 +63,27 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     private Vector2 teleportPos;
 
 
-    public void Teleport(Vector2 global_pos) {
+    public void Teleport(Level level, Vector2 global_pos) {
+        //sprite fade out effect
+        Node2D teleSprite = (Node2D)GetNode("Sprite").Duplicate();
+        level.AddChild(teleSprite);
+        Tween tween = new Tween();
+        teleSprite.AddChild(tween);
+        teleSprite.GlobalPosition = GlobalPosition;
+        teleSprite.GlobalRotation = GlobalRotation;
+        Godot.Collections.Array arr = new Godot.Collections.Array();
+        arr.Add(teleSprite);
+        tween.Connect("tween_all_completed", this, "FreeSprite", arr);
+        tween.InterpolateProperty(teleSprite, "modulate",
+        new Color(1,1,1,1), new Color(1,1,1,0), 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        tween.Start();
+        //teleport
         teleportPos = global_pos;
+    }
+
+
+    public void FreeSprite(Godot.Object teleSprite) {
+        ((Node2D)teleSprite).QueueFree();
     }
 
 
@@ -126,7 +145,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
 
 
-    public void Spawn(Level lvl, Vector2 globalPos, float globalRot = 0) {
+    public void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0) {
         lvl.Spawn(this, globalPos, globalRot);
     }
 

@@ -2,49 +2,10 @@
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/enemies/EnemyProj.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/shooter/weapons/weap_proj_hit.tres" type="Animation" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.0
-
-[sub_resource type="Animation" id=2]
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "queue_free"
-} ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
 
 [node name="ShooterProj" instance=ExtResource( 2 )]
 range = 1000
@@ -58,5 +19,5 @@ scale = Vector2( 1, 0.25 )
 texture = ExtResource( 1 )
 offset = Vector2( -25, 0 )
 
-[node name="Anim" parent="." index="2"]
-anims/hit = SubResource( 2 )
+[node name="Anim" type="AnimationPlayer" parent="." index="2"]
+anims/hit = ExtResource( 3 )

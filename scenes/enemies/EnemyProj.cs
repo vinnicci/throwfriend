@@ -53,8 +53,13 @@ public abstract class EnemyProj : Area2D, ISpawnable
     }
 
 
-    public void Spawn(Level lvl, Vector2 globalPos, float globalRotDeg = 0) {
-        Range = range;
+    public virtual void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRotDeg = 0) {
+        if(destination != Vector2.Zero) {
+            Range = CalculateRange(destination);
+        }
+        else {
+            Range = range;
+        }
         Speed = speed;
         Damage = damage;
         if(IsInstanceValid(explosion) == true) {
@@ -63,6 +68,11 @@ public abstract class EnemyProj : Area2D, ISpawnable
         currentRange = Range;
         Velocity = new Vector2(Speed, 0).Rotated(Godot.Mathf.Deg2Rad(globalRotDeg));
         lvl.Spawn(this, globalPos, Godot.Mathf.Deg2Rad(globalRotDeg));
+    }
+
+
+    private int CalculateRange(Vector2 dest) {
+        return (int)dest.Length() - 50;
     }
 
 
@@ -78,7 +88,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
     }
 
 
-    private void StopProjectile() {
+    public void StopProjectile() {
         if(Velocity != Vector2.Zero) {
             sprite.GlobalRotation = Velocity.Angle();
             Velocity = Vector2.Zero;
