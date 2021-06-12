@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class BlobSpawnerCharger : BaseCharger
+public class BlobCharger : BaseCharger
 {
     [Export] private PackedScene blob;
     [Export] private PackedScene aiNode;
@@ -30,7 +30,6 @@ public class BlobSpawnerCharger : BaseCharger
             Blob blobInstance = (Blob)blob.Instance();
             Node2D ai = (Node2D)aiNode.Instance();
             blobInstance.AddChild(ai);
-            ai.Call("init_properties", LevelNode, blobInstance);
             blobInstance.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
             blobInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
         }

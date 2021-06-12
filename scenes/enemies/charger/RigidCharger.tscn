@@ -5,9 +5,9 @@
 [ext_resource path="res://assets/enemies/charger/tex_en_rigid_charger.png" type="Texture" id=3]
 [ext_resource path="res://scenes/enemies/charger/BaseCharger.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemies/charger/RigidCharger.cs" type="Script" id=5]
-[ext_resource path="res://scenes/enemies/charger/rigid_charger_charge.tres" type="Animation" id=7]
-[ext_resource path="res://scenes/enemies/charger/rigid_charger_idle.tres" type="Animation" id=8]
-[ext_resource path="res://scenes/enemies/charger/rigid_charger_run.tres" type="Animation" id=9]
+[ext_resource path="res://scenes/enemies/charger/anim/rigid_charger_charge.tres" type="Animation" id=7]
+[ext_resource path="res://scenes/enemies/charger/anim/rigid_charger_idle.tres" type="Animation" id=8]
+[ext_resource path="res://scenes/enemies/charger/anim/rigid_charger_run.tres" type="Animation" id=9]
 [ext_resource path="res://scenes/base/entity_die.tres" type="Animation" id=10]
 
 [sub_resource type="CircleShape2D" id=1]

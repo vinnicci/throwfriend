@@ -1,22 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/enemies/EnemyWeapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/BaseAllRounderWeapon.cs" type="Script" id=2]
-[ext_resource path="res://scenes/enemies/all rounder/weapons/all_rounder_weap_idle.tres" type="Animation" id=3]
-[ext_resource path="res://scenes/enemies/all rounder/weapons/all_rounder_weap_shoot.tres" type="Animation" id=4]
-[ext_resource path="res://scenes/enemies/all rounder/weapons/all_rounder_weap_melee_attack_back.tres" type="Animation" id=5]
-[ext_resource path="res://scenes/enemies/all rounder/weapons/all_rounder_weap_melee_attack.tres" type="Animation" id=6]
-[ext_resource path="res://scenes/enemies/all rounder/weapons/all_rounder_weap_shoot_back.tres" type="Animation" id=7]
-[ext_resource path="res://scenes/enemies/all rounder/weapons/all_rounder_weap_throw_blob.tres" type="Animation" id=8]
 
 [node name="EnemyWeapon" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-
-[node name="Anim" type="AnimationPlayer" parent="." index="1"]
-autoplay = "idle"
-anims/idle = ExtResource( 3 )
-anims/melee_attack = ExtResource( 6 )
-anims/melee_attack_back = ExtResource( 5 )
-anims/shoot = ExtResource( 4 )
-anims/shoot_back = ExtResource( 7 )
-anims/throw_blob = ExtResource( 8 )

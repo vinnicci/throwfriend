@@ -3,20 +3,15 @@ using Godot;
 [Tool]
 public class TransformConstraintTool : Node2D
 {
-    Godot.Collections.Array targets;
+    Godot.Collections.Array<NodePath> targets;
     ///<summary>Fill array with NodePaths</summary>
-    [Export] Godot.Collections.Array Targets {
+    [Export] Godot.Collections.Array<NodePath> Targets {
         get {
             return targets;
         }
         set {
             targets = value;
-            if(targets == null) {
-                enabled = false;
-            }
-            if(enabled == true) {
-                SetBoundTargets();
-            }
+            SetBoundTargets();
         }
     }
     bool enabled;
@@ -28,7 +23,6 @@ public class TransformConstraintTool : Node2D
             enabled = value;
             SetProcess(enabled);
             if(enabled == true) {
-                SetBoundTargets();
                 tOrigin = Transform;
             }
         }
@@ -43,6 +37,7 @@ public class TransformConstraintTool : Node2D
     public override void _Ready()
     {
         base._Ready();
+        Targets = Targets;
         Enabled = Enabled;
     }
 
@@ -51,15 +46,15 @@ public class TransformConstraintTool : Node2D
 
 
     void SetBoundTargets() {
-        if(targets.Count == 0 || targets == null) {
+        if(Targets == null || Targets.Count == 0) {
             return;
         }
         bound_targets = new Godot.Collections.Array();
-        foreach(NodePath target in targets) {
-            if(target == null) {
+        foreach(NodePath target in Targets) {
+            Node2D node = GetNodeOrNull<Node2D>(target);
+            if(node == null) {
                 continue;
             }
-            Node2D node = GetNodeOrNull<Node2D>(target);
             bound_targets.Add(node);
         }
     }
@@ -76,8 +71,12 @@ public class TransformConstraintTool : Node2D
         }
         Transform2D t = Transform2D.Identity;
         //scale
-        t.x *= Scale.x * ScaleRateX;
-        t.y *= Scale.y * ScaleRateY;
+        if(ScaleRateX != 0) {
+            t.x *= Scale.x * ScaleRateX;
+        }
+        if(ScaleRateY != 0) {
+            t.y *= Scale.y * ScaleRateY;
+        }
         //rotation
         t = t.Rotated(Rotation * RotationRate);
         foreach(Node2D node in bound_targets) {
@@ -89,7 +88,7 @@ public class TransformConstraintTool : Node2D
             node.Transform = t;
 
             //position
-            Vector2 diff = GlobalPosition - tOrigin.origin;
+            Vector2 diff = Transform.origin - tOrigin.origin;
             diff.x *= PositionRateX;
             diff.y *= PositionRateY;
             node.Translate(diff);

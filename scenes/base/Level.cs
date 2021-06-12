@@ -27,7 +27,9 @@ public abstract class Level : YSort
 
     public void Spawn(ISpawnable body, Vector2 pos, float rot = 0) {
         if(body is Enemy) {
-            enemies.AddChild((Node2D)body);
+            Enemy enemy = (Enemy)body;
+            enemy.LevelNode = this;
+            enemies.AddChild(enemy);
         }
         else {
             AddChild((Node2D)body);

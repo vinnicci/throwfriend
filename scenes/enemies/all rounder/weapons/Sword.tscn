@@ -1,74 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/player/tex_player_arms.png" type="Texture" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/BaseAllRounderWeapon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_sword.png" type="Texture" id=3]
-[ext_resource path="res://scenes/enemies/all rounder/weapons/BaseAllRounderWeapon.cs" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/anim/melee_attack.tres" type="Animation" id=4]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/anim/idle.tres" type="Animation" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.0
 height = 80.0
 
-[sub_resource type="Animation" id=2]
-length = 2.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Hand:rotation_degrees")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -20.0, 5.0, -20.0 ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "melee_attack"
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Hand:rotation_degrees")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.55, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ -20.0, -195.0, -220.0, 120.0, 130.0, -20.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprites/Hand/Sword/Hitbox:collision_mask")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4, 0.65 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 4, 0 ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "FinishShooting"
-} ]
-}
-
 [node name="EnemyWeapon" instance=ExtResource( 2 )]
-script = ExtResource( 4 )
 
 [node name="Hand" type="Sprite" parent="Sprites" index="0"]
 rotation = -0.349066
@@ -89,9 +31,9 @@ position = Vector2( 6, -1 )
 rotation = -1.5708
 shape = SubResource( 1 )
 
-[node name="Anim" parent="." index="1"]
+[node name="Anim" type="AnimationPlayer" parent="." index="1"]
 autoplay = "idle"
-anims/idle = SubResource( 2 )
-anims/melee_attack = SubResource( 3 )
+anims/idle = ExtResource( 5 )
+anims/melee_attack = ExtResource( 4 )
 
 [connection signal="body_entered" from="Sprites/Hand/Sword/Hitbox" to="." method="OnHitboxBodyEntered"]

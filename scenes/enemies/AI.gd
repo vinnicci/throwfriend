@@ -243,6 +243,19 @@ func get_target_dist(target_bb_name: String) -> int:
 	return -1
 
 
+#param 0: target
+#param 1: distance required
+func task_is_target_in_range(task):
+	if bb.has(task.get_param(1) + "_sq") == false:
+		bb[task.get_param(1) + "_sq"] = bb[task.get_param(1)] * bb[task.get_param(1)]
+	if (global_position.distance_squared_to(bb[task.get_param(0)].global_position) <=
+	bb[task.get_param(1) + "_sq"]):
+		task.succeed()
+	else:
+		task.failed()
+
+
+
 #move actions
 
 

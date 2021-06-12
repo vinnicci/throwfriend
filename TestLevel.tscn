@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/base/Level.cs" type="Script" id=1]
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
@@ -11,10 +11,15 @@
 [ext_resource path="res://scenes/enemies/shooter/ScatterShooter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/enemies/shooter/LongRangeShooter.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemies/shooter/Shooter.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/enemies/shooter/LaserShooter.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/enemies/spawner/BlobChargerSpawner.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/enemies/charger/TeleportingCharger.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/enemies/shooter/LongRangeCannoneer.tscn" type="PackedScene" id=14]
 
 [sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id=2]
 friction = 0.0
 bounce = 1.0
 
@@ -37,18 +42,21 @@ tile_data = PoolIntArray( 262134, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0
 
 [node name="BlobnadierShielded" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( -612, 1300 )
+physics_material_override = SubResource( 1 )
 acts = {
 "throw_blob": 3.0
 }
 
 [node name="Melee" parent="Enemies" instance=ExtResource( 8 )]
 position = Vector2( 633, 708 )
+physics_material_override = SubResource( 1 )
 acts = {
 "melee_attack": 1.0
 }
 
 [node name="DualRanged" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( -594, 1069 )
+physics_material_override = SubResource( 1 )
 acts = {
 "shoot": 2.0,
 "shoot_back": 2.0
@@ -72,16 +80,22 @@ acts = {
 "shoot": 0.2
 }
 
-[node name="LaserShooter" parent="Enemies" instance=ExtResource( 12 )]
-position = Vector2( -610, 1210 )
+[node name="TeleportingCharger3" parent="Enemies" instance=ExtResource( 13 )]
+position = Vector2( 719, 553 )
+acts = {
+"charge": 1.0
+}
+
+[node name="LongRangeCannoneer" parent="Enemies" instance=ExtResource( 14 )]
+position = Vector2( -579, 1189 )
 acts = {
 "shoot": 1.0
 }
 
-[node name="TeleportingCharger" parent="Enemies" instance=ExtResource( 13 )]
-position = Vector2( 222, 617 )
+[node name="BlobChargerSpawner" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 190, 643 )
 acts = {
-"charge": 1.0
+"spawn_blob_charger": 8.0
 }
 
 [node name="PatrolPoints" type="Node2D" parent="."]
@@ -112,4 +126,4 @@ position = Vector2( -570, 951 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -195, 606 )
-physics_material_override = SubResource( 1 )
+physics_material_override = SubResource( 2 )

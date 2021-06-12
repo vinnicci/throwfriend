@@ -5,136 +5,12 @@
 [ext_resource path="res://scenes/enemies/blob/Blob.cs" type="Script" id=3]
 [ext_resource path="res://scenes/enemies/blob/BlobExplosion.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/base/entity_die.tres" type="Animation" id=5]
+[ext_resource path="res://scenes/enemies/blob/anim/explode.tres" type="Animation" id=6]
+[ext_resource path="res://scenes/enemies/blob/anim/idle.tres" type="Animation" id=7]
+[ext_resource path="res://scenes/enemies/blob/anim/run.tres" type="Animation" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
-
-[sub_resource type="Animation" id=2]
-resource_name = "explode"
-length = 1.75
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/Blob:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.85 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1.05, 1.05 ), Vector2( 1.5, 1.5 ), Vector2( 1.8, 1.8 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/Blob:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 4 ), Vector2( 0, -4 ), Vector2( 3, -3 ), Vector2( -3, 3 ), Vector2( 3, 3 ), Vector2( -3, -3 ), Vector2( 0, -4 ), Vector2( 3, -3 ), Vector2( -3, 3 ), Vector2( 3, 3 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite/Blob:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 1.25, 1.75 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "Explode"
-}, {
-"args": [  ],
-"method": "queue_free"
-} ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("HUD/Health:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 1.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
-length = 2.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/Blob:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 2 ), Vector2( 0, 6 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/Blob:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.9, 1.2 ), Vector2( 1.2, 0.9 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "run"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/Blob:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.9, 1.2 ), Vector2( 1.2, 0.9 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/Blob:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 2 ), Vector2( 0, 6 ) ]
-}
 
 [node name="Blob" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -143,8 +19,8 @@ acts = {
 }
 
 [node name="Blob" type="Sprite" parent="Sprite" index="0"]
-position = Vector2( 0, 4 )
-scale = Vector2( 1.05, 1.05 )
+position = Vector2( 0, 2 )
+scale = Vector2( 0.9, 1.2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="1"]
@@ -160,6 +36,6 @@ margin_bottom = -29.0
 [node name="Anim" type="AnimationPlayer" parent="." index="5"]
 autoplay = "idle"
 anims/die = ExtResource( 5 )
-anims/explode = SubResource( 2 )
-anims/idle = SubResource( 3 )
-anims/run = SubResource( 4 )
+anims/explode = ExtResource( 6 )
+anims/idle = ExtResource( 7 )
+anims/run = ExtResource( 8 )
