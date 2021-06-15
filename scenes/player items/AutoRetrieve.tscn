@@ -6,7 +6,7 @@
 
 [node name="AutoRetrieve" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "You can now pull Snark back to you, and he will still bite when coming back."
+itemDescription = "You can now pull Snark back to you, and he can inflict damage while being pulled."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

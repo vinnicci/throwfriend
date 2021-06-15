@@ -5,6 +5,7 @@
 
 [resource]
 resource_name = "die"
+length = 5.0
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite/Head:texture")
@@ -101,4 +102,30 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ -1, 0 ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath(".:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 4.5, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }

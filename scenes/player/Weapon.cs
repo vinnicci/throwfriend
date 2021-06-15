@@ -188,12 +188,13 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         }
         else if(body is IHealthModifiable) {
             IHealthModifiable hitBody = (IHealthModifiable)body;
+            int dmg = Damage * PlayerNode.SnarkDmgMult;
             if(CurrentState == States.ACTIVE) {
-                hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), Damage);
+                hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), dmg);
             }
             else if(CurrentState == States.INACTIVE &&
             (PlayerNode.Item1 is AutoRetrieve || PlayerNode.Item2 is AutoRetrieve)) {
-                hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), Damage);
+                hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), dmg);
             }
         }
         int i = 1;

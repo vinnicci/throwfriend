@@ -3,8 +3,10 @@ using System;
 
 public abstract class Enemy : Entity
 {
-    [Export] protected Godot.Collections.Dictionary<String, float> acts;
-    [Export] protected Godot.Collections.Array<int> patrolPoints;
+    [Export] protected Godot.Collections.Dictionary<String, float> acts =
+    new Godot.Collections.Dictionary<String, float>();
+    [Export] protected Godot.Collections.Array<int> patrolPoints =
+    new Godot.Collections.Array<int>();
 
     private Level levelNode;
     public Level LevelNode {

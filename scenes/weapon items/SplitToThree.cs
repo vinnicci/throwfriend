@@ -37,8 +37,10 @@ public class SplitToThree : WeaponItem
         weaps[1].RefreshItems();
         weaps[0].PlayerNode = Player;
         weaps[0].IsClone = true;
+        weaps[0].Damage = WeaponNode.Damage;
         weaps[1].PlayerNode = Player;
         weaps[1].IsClone = true;
+        weaps[1].Damage = WeaponNode.Damage;
         if(IsInstanceValid(WeaponNode.Item1) == true && WeaponNode.Item1 is SplitToThree == false) {
             weaps[0].ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
             weaps[1].ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());

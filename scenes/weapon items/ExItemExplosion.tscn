@@ -36,5 +36,9 @@ collision_mask = 7
 script = ExtResource( 2 )
 explosionRadius = 75
 
+[node name="Polygon2D" parent="." index="1"]
+visible = false
+modulate = Color( 0.992157, 0.470588, 0, 0 )
+
 [node name="Anim" parent="." index="3"]
 anims/explode = SubResource( 1 )

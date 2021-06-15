@@ -12,6 +12,7 @@ public class HealthHUD : TextureProgress
          parentNode = value;
          MaxValue = parentNode.Health;
          Value = MaxValue;
+         UpdateHealth();
       }
    }
 

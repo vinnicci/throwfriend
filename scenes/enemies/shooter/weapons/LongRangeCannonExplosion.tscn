@@ -31,7 +31,7 @@ tracks/1/keys = {
 }
 
 [node name="Explosion" instance=ExtResource( 1 )]
-explosionRadius = 100
+explosionRadius = 125
 
 [node name="Polygon2D" parent="." index="1"]
 visible = false

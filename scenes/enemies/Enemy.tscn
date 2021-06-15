@@ -6,6 +6,8 @@
 [node name="Enemy" instance=ExtResource( 2 )]
 collision_mask = 2
 script = ExtResource( 3 )
+acts = {
+}
 patrolPoints = [  ]
 
 [node name="CollisionShape2D" parent="." index="1"]

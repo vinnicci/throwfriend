@@ -10,7 +10,7 @@ public class ExtraDamage : WeaponItem
     public override void InitEffect()
     {
         base.InitEffect();
-        if(done == true) {
+        if(done == true || WeaponNode.IsClone == true) {
             return;
         }
         WeaponNode.Damage *= EXTRA_DMG;

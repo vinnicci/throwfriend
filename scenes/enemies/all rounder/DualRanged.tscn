@@ -24,8 +24,6 @@ acts = {
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 9 )]
 
 [node name="Head" parent="Sprite" index="2"]
-position = Vector2( 0, -13 )
-scale = Vector2( 1, 1.25 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="2"]

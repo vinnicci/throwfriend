@@ -27,7 +27,7 @@ public class Explosive : WeaponItem
         if(body is Player || WeaponNode.CurrentState != Weapon.States.ACTIVE) {
             return;
         }
-        explosionNode.Damage = WeaponNode.Damage;
+        explosionNode.Damage = WeaponNode.Damage * PlayerNode.SnarkDmgMult;
         if(WeaponNode.Filename == "res://scenes/player/WeaponLarge.tscn") {
             explosionNode.ExplosionRadius = explosionNode.explosionRadius * 2;
         }

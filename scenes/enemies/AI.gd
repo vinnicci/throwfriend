@@ -5,6 +5,7 @@ export var detection_range: int = 500
 export var seek_dist: int = 150
 export var too_far_dist: int = 250
 export var too_close_dist: int = 75
+export var flee_ray_len: int = 75
 
 onready var ray: RayCast2D = $RayCast2D
 onready var detection_area: Area2D = $DetectionRange
@@ -25,8 +26,11 @@ func _ready() -> void:
 	detection_area.get_node("CollisionShape2D").shape = circle
 	for i in range(8):
 		var flee_ray: RayCast2D = flee_rays_parent.get_node("FleeRay" + i as String)
+		flee_ray.cast_to = Vector2(flee_ray_len, 0)
 		flee_ray.rotation_degrees = i * 45
-		flee_rays_dict[flee_ray] = flee_ray.get_node("Pos")
+		var pos = flee_ray.get_node("Pos")
+		pos.position = Vector2(flee_ray_len, 0)
+		flee_rays_dict[flee_ray] = pos
 	btree = get_node("BTREE")
 	bb["seek_dist"] = seek_dist
 	bb["too_far_dist"] = too_far_dist
@@ -286,7 +290,8 @@ func _try_interrupt_seek(task) -> bool:
 #param 0: distance needed
 func task_flee(task):
 	is_moving = true
-	if parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
+	if (parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST ||
+	parent_node.global_position.distance_squared_to(bb["target"]) > ORIGIN_DIST):
 		get_flee_point()
 	if _try_interrupt_flee(task):
 		is_moving = false

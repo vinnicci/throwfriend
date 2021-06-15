@@ -3,9 +3,9 @@ using System;
 
 public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, ISpawnable
 {
-    [Export] protected int speed = 250;
+    [Export] public int speed = 250;
     public int Speed {get; set;}
-    [Export] protected int health = 1;
+    [Export] public int health = 1;
     public int Health {get; set;}
     public Vector2 Velocity {get; protected set;}
     public bool IsDead {get; set;}
@@ -144,6 +144,20 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         return true;
     }
 
+
+    ///<summary>Enter -1 as argument to ignore stat change</summary>
+    public void ChangeEntityBaseStats(int newHealth, int newSpeed) {
+        if(newHealth != -1) {
+            health = newHealth;
+            Health = health;
+            healthHUD.ParentNode = this;
+        }
+        if(newSpeed != -1) {
+            speed = newSpeed;
+            Speed = speed;
+        }
+    }
+    
 
     public void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0) {
         lvl.Spawn(this, globalPos, globalRot);

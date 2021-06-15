@@ -27,6 +27,7 @@ public class Player : Entity
     public Node2D ItemSlot2Node {get; private set;}
     public PlayerItem Item2 {get; set;}
     public int AvailableUpgrade {get; set;}
+    public int SnarkDmgMult {get; set;}
     
     private Position2D weapPos;
     private PlayerCam camera;
@@ -40,14 +41,16 @@ public class Player : Entity
     private WarningText uiWarning;
     private AnimationPlayer throwAnim;
     private AnimationPlayer damageAnim;
+    private Node2D snarkPointer;
     private const int EXTRA_SPEED_WITHOUT_WEAPON = 250;
-
+    
 
     public override void _Ready()
     {
         base._Ready();
         ThrowStrength = throwStrength;
         AvailableUpgrade = 0;
+        SnarkDmgMult = 1;
         Center = (Node2D)GetNode("Center");
         Center.LookAt(GetGlobalMousePosition());
         camera = (PlayerCam)GetNode("PlayerCam");
@@ -67,6 +70,7 @@ public class Player : Entity
         uiWarning = (WarningText)GetNode("CanvasLayer/UIWarning");
         throwAnim = (AnimationPlayer)GetNode("Center/Arms/ThrowAnim");
         damageAnim = (AnimationPlayer)GetNode("Sprite/DamageAnim");
+        snarkPointer = (Node2D)GetNode("SnarkPointer");
     }
 
 
@@ -173,6 +177,10 @@ public class Player : Entity
                 inGameUIAnim.Play("exit");
             }
         }
+        //snark pointer
+        if(snarkPointer.Visible == true) {
+            snarkPointer.LookAt(WeaponNode.GlobalPosition);
+        }
         //velocity
         if(settings.Visible == true) {
             return;
@@ -203,6 +211,7 @@ public class Player : Entity
             else {
                 throwAnim.PlayBackwards("throw");
             }
+            snarkPointer.Visible = true;
             Speed += EXTRA_SPEED_WITHOUT_WEAPON;
         }
         if(IsInstanceValid(Item1) == true && Input.IsActionJustPressed("hotkey_1")) {
@@ -227,6 +236,7 @@ public class Player : Entity
         float rot = Center.GlobalRotation;
         WeaponNode.GlobalRotation = rot;
         Speed -= EXTRA_SPEED_WITHOUT_WEAPON;
+        snarkPointer.Visible = false;
     }
 
 
@@ -249,6 +259,7 @@ public class Player : Entity
     private void TransferCamera() {
         camera.GetParent().RemoveChild(camera);
         LevelNode.AddChild(camera);
+        ((Button)camera.GetNode("CanvasLayer/RestartLvlButton")).Visible = true;
         camera.ParentNode = LevelNode;
         camera.GlobalPosition = GlobalPosition;
     }

@@ -7,7 +7,7 @@ public class HealthPickup : Pickable
     {
         if(body is Player) {
             Player player = (Player)body;
-            if(player.Health == 3) {
+            if(player.Health == player.health) {
                 return;
             }
             animation.Play("pickup");

@@ -16,7 +16,7 @@ tracks/0/keys = {
 "values": [ -20.0, -195.0, -220.0, 120.0, 130.0, -20.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprites/Hand/Weapon/Hitbox:collision_mask")
+tracks/1/path = NodePath("Sprites/Hand/Sword/Hitbox:collision_mask")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false

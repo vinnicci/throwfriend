@@ -22,15 +22,15 @@ public class ExtraLarge : WeaponItem
     public override void InitEffect()
     {
         base.InitEffect();
-        Player = WeaponNode.PlayerNode;
+        Player = WeaponNode.PlayerNode;        
         largeWeap = (Weapon)weapLarge.Instance();
         if(WeaponNode.IsClone == false && Player.WeaponNode != largeWeap) {
             tempWeap = Player.WeaponNode;
             Position2D weapSlot = (Position2D)tempWeap.GetParent();
             weapSlot.RemoveChild(tempWeap);
             weapSlot.AddChild(largeWeap);
-            Player.WeaponNode = largeWeap;
             largeWeap.Damage *= 2;
+            Player.WeaponNode = largeWeap;
             largeWeap.Connect("PickedUp", Player, "PickUpWeapon");
         }
         largeWeap.RefreshItems();

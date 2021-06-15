@@ -6,7 +6,7 @@
 
 [node name="Boost" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Snark is strapped with a jetpack, so you can now boost him while he's on the ground and he will be ready to bite again."
+itemDescription = "Active ability: Snark can now throw himself from the ground."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )
