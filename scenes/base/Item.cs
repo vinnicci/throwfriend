@@ -13,7 +13,6 @@ public abstract class Item : Node2D
         }
         set {
             playerNode = value;
-            weaponNode = playerNode.WeaponNode;
             if(this is PlayerItem) {
                 InitEffect();
             }
@@ -26,7 +25,6 @@ public abstract class Item : Node2D
         }
         set{
             weaponNode = value;
-            playerNode = weaponNode.PlayerNode;
             if(this is WeaponItem) {
                 InitEffect();
             }

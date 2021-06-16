@@ -4,7 +4,6 @@ using System;
 public class SplitToThree : WeaponItem
 {
     private Weapon[] weaps = new Weapon[2];
-    public Player Player {get; set;}
 
 
     public override void _PhysicsProcess(float delta)
@@ -26,19 +25,19 @@ public class SplitToThree : WeaponItem
     public override void InitEffect()
     {
         base.InitEffect();
-        Player = WeaponNode.PlayerNode;
-        if(Player.IsConnected("ActivatedWeaponItem", this, "ApplyEffectsToClones") == false) {
-            Player.Connect("ActivatedWeaponItem", this, "ApplyEffectsToClones");
+        PlayerNode = WeaponNode.PlayerNode;
+        if(PlayerNode.IsConnected("ActivatedWeaponItem", this, "ApplyEffectsToClones") == false) {
+            PlayerNode.Connect("ActivatedWeaponItem", this, "ApplyEffectsToClones");
         }
         PackedScene res = (PackedScene)ResourceLoader.Load(WeaponNode.Filename);
         weaps[0] = (Weapon)res.Instance();
         weaps[1] = (Weapon)res.Instance();
         weaps[0].RefreshItems();
         weaps[1].RefreshItems();
-        weaps[0].PlayerNode = Player;
+        weaps[0].PlayerNode = PlayerNode;
         weaps[0].IsClone = true;
         weaps[0].Damage = WeaponNode.Damage;
-        weaps[1].PlayerNode = Player;
+        weaps[1].PlayerNode = PlayerNode;
         weaps[1].IsClone = true;
         weaps[1].Damage = WeaponNode.Damage;
         if(IsInstanceValid(WeaponNode.Item1) == true && WeaponNode.Item1 is SplitToThree == false) {
@@ -71,7 +70,7 @@ public class SplitToThree : WeaponItem
 
 
     private void Split() {
-        int strength = Player.ThrowStrength;
+        int strength = PlayerNode.ThrowStrength;
         weaps[0].Throw(strength, WeaponNode.GlobalPosition, Vector2.Zero,
         Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees + (float)GD.RandRange(0,30)));
         weaps[1].Throw(strength, WeaponNode.GlobalPosition, Vector2.Zero,

@@ -3,8 +3,6 @@ using System;
 
 public class ExtraLarge : WeaponItem
 {
-    public Player Player {get; set;}
-
     private Weapon largeWeap;
     private Weapon tempWeap;
 
@@ -22,19 +20,19 @@ public class ExtraLarge : WeaponItem
     public override void InitEffect()
     {
         base.InitEffect();
-        Player = WeaponNode.PlayerNode;        
+        PlayerNode = WeaponNode.PlayerNode;        
         largeWeap = (Weapon)weapLarge.Instance();
-        if(WeaponNode.IsClone == false && Player.WeaponNode != largeWeap) {
-            tempWeap = Player.WeaponNode;
+        if(WeaponNode.IsClone == false && PlayerNode.WeaponNode != largeWeap) {
+            tempWeap = PlayerNode.WeaponNode;
             Position2D weapSlot = (Position2D)tempWeap.GetParent();
             weapSlot.RemoveChild(tempWeap);
             weapSlot.AddChild(largeWeap);
             largeWeap.Damage *= 2;
-            Player.WeaponNode = largeWeap;
-            largeWeap.Connect("PickedUp", Player, "PickUpWeapon");
+            PlayerNode.WeaponNode = largeWeap;
+            largeWeap.Connect("PickedUp", PlayerNode, "PickUpWeapon");
         }
         largeWeap.RefreshItems();
-        largeWeap.PlayerNode = Player;
+        largeWeap.PlayerNode = PlayerNode;
         if(IsInstanceValid(WeaponNode.Item1) == true) {
             largeWeap.ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
             largeWeap.RefreshItems();

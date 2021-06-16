@@ -12,7 +12,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ 5 ],
+"args": [ 3 ],
 "method": "InstanceBlob"
 }, {
 "args": [  ],

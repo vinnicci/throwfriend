@@ -21,11 +21,11 @@ radius = 25.02
 [node name="BlobCharger" instance=ExtResource( 11 )]
 physics_material_override = SubResource( 1 )
 script = ExtResource( 8 )
-speed = 250
 acts = {
 "charge": 0.5,
 "spawn_blob": 3.0
 }
+patrolPoints = [  ]
 blob = ExtResource( 4 )
 aiNode = ExtResource( 3 )
 
@@ -36,7 +36,7 @@ position = Vector2( 0, 7 )
 texture = ExtResource( 2 )
 
 [node name="Upper" type="Sprite" parent="Sprite/Lower" index="0"]
-position = Vector2( 0, -8.83333 )
+position = Vector2( 0, -10 )
 texture = ExtResource( 1 )
 offset = Vector2( -6, 0 )
 

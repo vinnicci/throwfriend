@@ -1,18 +1,16 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/base/Level.cs" type="Script" id=1]
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/enemies/all rounder/DualRanged.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemies/charger/TeleportingCharger.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/obtainables/AbilityItem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/Melee.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/BlobnadierShielded.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/enemies/all rounder/RangedShielded.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemies/shooter/LongRangeCannoneer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/enemies/spawner/BlobChargerSpawner.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/obtainables/SnarkDmgUpgrade.tscn" type="PackedScene" id=13]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -120,26 +118,14 @@ position = Vector2( 635, 1308 )
 [node name="2" type="Position2D" parent="PatrolPoints"]
 position = Vector2( -599, 1309 )
 
-[node name="AbilityItem" parent="." instance=ExtResource( 6 )]
-position = Vector2( -377, 623 )
-
-[node name="AbilityItem2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -372, 782 )
-
 [node name="HealthPickup" parent="." instance=ExtResource( 7 )]
-position = Vector2( -598, 233 )
+position = Vector2( 633, 950 )
 
 [node name="HealthPickup2" parent="." instance=ExtResource( 7 )]
-position = Vector2( -609, 351 )
+position = Vector2( -50, 1332 )
 
 [node name="HealthPickup3" parent="." instance=ExtResource( 7 )]
-position = Vector2( -593, 449 )
-
-[node name="SnarkDmgUpgrade" parent="." instance=ExtResource( 13 )]
-position = Vector2( -348, 476 )
-
-[node name="SnarkDmgUpgrade2" parent="." instance=ExtResource( 13 )]
-position = Vector2( -317, 909 )
+position = Vector2( -603, 459 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -195, 606 )

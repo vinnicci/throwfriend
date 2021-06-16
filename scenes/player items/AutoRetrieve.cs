@@ -3,8 +3,6 @@ using System;
 
 public class AutoRetrieve : PlayerItem
 {
-    public Weapon Weapon {get; set;}
-    
     private bool weapIsReturning = false;
     private const int RETRIEVE_SPEED = 130;
     
@@ -20,29 +18,24 @@ public class AutoRetrieve : PlayerItem
     private const int STOP_RETURN_DIST = 10000;
 
 
+    public override void InitEffect()
+    {
+        base.InitEffect();
+        WeaponNode = PlayerNode.WeaponNode;
+    }
+
+
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
-        if(PlayerNode.WeaponNode != Weapon) {
-            Weapon = PlayerNode.WeaponNode;
-        }
         if(weapIsReturning == true) {
-            if(Weapon.CurrentState == Weapon.States.INACTIVE) {
-                Vector2 vec = (PlayerNode.GlobalPosition - Weapon.GlobalPosition).Clamped(1) * RETRIEVE_SPEED;
-                Weapon.Velocity = vec;
-                if(Weapon.GetCollisionMaskBit(Global.BIT_MASK_ENEMY) == false) {
-                    Weapon.SetCollisionMaskBit(Global.BIT_MASK_ENEMY, true);
-                }
-            }
-            else if(Weapon.GlobalPosition.DistanceSquaredTo(PlayerNode.GlobalPosition) <= STOP_RETURN_DIST) {
+            Vector2 vec = (PlayerNode.GlobalPosition - WeaponNode.GlobalPosition).Clamped(1) * RETRIEVE_SPEED;
+            WeaponNode.Velocity = vec;
+            if(WeaponNode.CurrentState == Weapon.States.HELD) {
                 weapIsReturning = false;
-                Weapon.AppliedForce = Vector2.Zero;
-                if(Weapon.GetCollisionMaskBit(Global.BIT_MASK_ENEMY) == true) {
-                    Weapon.SetCollisionMaskBit(Global.BIT_MASK_ENEMY, false);
-                }
             }
         }
-        else if(weapIsReturning == false && Weapon.CurrentState == Weapon.States.INACTIVE) {
+        else if(weapIsReturning == false && WeaponNode.CurrentState == Weapon.States.INACTIVE) {
             weapIsReturning = true;
         }
     }

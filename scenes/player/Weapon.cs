@@ -135,6 +135,11 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
             SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
             CurrentState = States.INACTIVE;
         }
+        else if(CurrentState == States.INACTIVE && lv > WEAP_MIN_LIN_VEL_LEN) {
+            SetCollisionMaskBit(Global.BIT_MASK_ENEMY, true);
+            SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
+            CurrentState = States.ACTIVE;
+        }
     }
 
 
