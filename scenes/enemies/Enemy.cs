@@ -29,6 +29,7 @@ public abstract class Enemy : Entity
     protected Explosion ExplosionNode {get; private set;}
     private Node2D aINode;
     protected Godot.Collections.Dictionary ActDict {get; private set;}
+    [Export] PackedScene hpDrop;
 
 
     public override void _Ready()
@@ -113,6 +114,27 @@ public abstract class Enemy : Entity
         anim.Stop();
         anim.Play(actionName);
         return true;
+    }
+
+
+    const float CHANCE_HP_DROP = 5f;
+
+
+    public override bool Hit(Vector2 knockback, int damage)
+    {
+        if(base.Hit(knockback, damage) == true) {
+            if(IsDead == true && GD.RandRange(0, 100) <= CHANCE_HP_DROP) {
+                CallDeferred("InstanceHPDrop");
+            }
+            return true;
+        }
+        return false;
+    }
+
+
+    void InstanceHPDrop() {
+        HealthPickup healthInst = (HealthPickup)hpDrop.Instance();
+        healthInst.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
     }
 
 

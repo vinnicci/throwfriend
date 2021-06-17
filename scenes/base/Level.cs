@@ -71,7 +71,7 @@ public abstract class Level : YSort
     }
 
 
-    //used to debug: show ai path
+    //debug: show ai path
     private void ShowLine(Vector2[] vec) {
         Line2D line = new Line2D();
         Tween tween = new Tween();

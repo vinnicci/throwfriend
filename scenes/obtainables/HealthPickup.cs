@@ -12,7 +12,6 @@ public class HealthPickup : Pickable
             }
             animation.Play("pickup");
             player.Hit(new Vector2(0,0), -1);
-            SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
             player.UpdateStatsDisp();
         }
     }

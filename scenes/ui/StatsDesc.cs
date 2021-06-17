@@ -13,6 +13,8 @@ public class StatsDesc : Control
     Label speedStat;
     Label throwStrengthStat;
     Label snarkDmgStat;
+    Control helpDisp;
+    Label tipLabel;
 
     private Button settingsButton;
 
@@ -28,6 +30,10 @@ public class StatsDesc : Control
         speedStat = (Label)GetNode("StatsPanel/StatsDisp/Speed");
         throwStrengthStat = (Label)GetNode("StatsPanel/StatsDisp/ThrowStrength");
         snarkDmgStat = (Label)GetNode("StatsPanel/StatsDisp/SnarkDmg");
+        helpDisp = (Control)GetNode("StatsPanel/HelpDisp");
+        tipLabel = (Label)GetNode("StatsPanel/HelpDisp/Tip");
+        currentTip = 5;
+        OnNextTipPressed();
     }
 
 
@@ -67,9 +73,58 @@ public class StatsDesc : Control
             return "Moderate";
         }
         else {
-            if(type == 0) return "Strong";
-            else return "Fast";
+            if(type == 0) return "Fast";
+            else return "Strong";
         }
+    }
+
+
+    private void OnStatsPressed() {
+        statsDisp.Visible = true;
+        helpDisp.Visible = false;
+    }
+
+
+    private void OnHelpPressed() {
+        helpDisp.Visible = true;
+        statsDisp.Visible = false;
+    }
+
+
+    int currentTip;
+    const String path = "StatsPanel/HelpDisp/Tip";
+
+
+    private void OnNextTipPressed() {
+        ((Node2D)GetNode(path + currentTip)).Visible = false;
+        switch(currentTip) {
+            case 1: {
+                currentTip = 2;
+                tipLabel.Text = "Snark can only inflict damage when he's active. You know he's active when his mouth is open.";
+            }
+            break;
+            case 2: {
+                currentTip = 3;
+                tipLabel.Text = "You can bind abilities with the same key, allowing you to do some interesting moves.";
+            }
+            break;
+            case 3: {
+                currentTip = 4;
+                tipLabel.Text = "Selecting an ability is permanent and irreversible. Choose wisely.";
+            }
+            break;
+            case 4: {
+                currentTip = 5;
+                tipLabel.Text = "Look out for secret paths. These paths will lead you to some cool rewards.";
+            }
+            break;
+            case 5: {
+                currentTip = 1;
+                tipLabel.Text = "Increase your mobility by dropping Snark.";
+            }
+            break;
+        }
+        ((Node2D)GetNode(path + currentTip)).Visible = true;
     }
 
 

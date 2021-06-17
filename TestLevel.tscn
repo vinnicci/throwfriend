@@ -133,13 +133,13 @@ position = Vector2( -195, 606 )
 physics_material_override = SubResource( 1 )
 
 [node name="AbilityItem" parent="." instance=ExtResource( 6 )]
-position = Vector2( -340, 545 )
+position = Vector2( -291, 466 )
 
 [node name="AbilityItem2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -338, 619 )
+position = Vector2( -284, 322 )
 
 [node name="AbilityItem3" parent="." instance=ExtResource( 6 )]
-position = Vector2( -605, 262 )
+position = Vector2( -390, 313 )
 
 [node name="AbilityItem4" parent="." instance=ExtResource( 6 )]
-position = Vector2( -605, 262 )
+position = Vector2( -341, 383 )

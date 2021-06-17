@@ -8,11 +8,9 @@ public class SnarkDmgUpgrade : Pickable
             animation.Play("pickup");
             Player player = (Player)body;
             player.SnarkDmgMult += 1;
-            SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
             player.UpdateStatsDisp();
         }
     }
-
 
 
 }
