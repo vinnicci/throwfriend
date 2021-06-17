@@ -11,7 +11,7 @@
 radius = 22.0
 
 [node name="MeleeShielded" instance=ExtResource( 6 )]
-speed = 150
+speed = 125
 acts = {
 "melee_attack_back": 1.0
 }

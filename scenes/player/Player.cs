@@ -3,7 +3,7 @@ using System;
 
 public class Player : Entity
 {
-    [Export] protected int throwStrength = 130;
+    [Export] protected int throwStrength = 125;
     public int ThrowStrength {get; set;}
     public Node2D Center {get; set;}
     public Weapon WeaponNode {get; set;}
@@ -14,12 +14,12 @@ public class Player : Entity
         }
         set {
             levelNode = value;
-            RefreshItems();
-            ActivateItem(1);
-            ActivateItem(2);
             WeaponNode.PlayerNode = this;
             inGameUI.PlayerNode = this;
             inGameUI.WeaponNode = WeaponNode;
+            RefreshItems();
+            ActivateItem(1);
+            ActivateItem(2);
         }
     }
     public Node2D ItemSlot1Node {get; private set;}
@@ -36,6 +36,7 @@ public class Player : Entity
     private InGame inGameUI;
     private AnimationPlayer inGameUIAnim;
     private Loadout loadout;
+    private StatsDesc statsDesc;
     private Settings settings;
     private HotkeyHUD hotkeyHUD;
     private WarningText uiWarning;
@@ -64,6 +65,7 @@ public class Player : Entity
         inGameUI = (InGame)GetNode("CanvasLayer/InGame");
         inGameUIAnim = (AnimationPlayer)inGameUI.GetNode("Anim");
         loadout = (Loadout)inGameUI.GetNode("Loadout");
+        statsDesc = (StatsDesc)inGameUI.GetNode("StatsDesc");
         settings = (Settings)inGameUI.GetNode("Settings");
         hotkeyHUD = (HotkeyHUD)GetNode("CanvasLayer/HotkeyHUD");
         loadout.HotkeyHUDNode = hotkeyHUD;
@@ -83,6 +85,7 @@ public class Player : Entity
         if(ItemSlot2Node.GetChildCount() != 0) {
             Item2 = (PlayerItem)ItemSlot2Node.GetChild(0);
         }
+        UpdateStatsDisp();
     }
 
 
@@ -250,6 +253,7 @@ public class Player : Entity
                 damageAnim.Play("damaged");
                 HitCooldown.Start(1f);
             }
+            UpdateStatsDisp();
             return true;
         }
         return false;
@@ -267,6 +271,11 @@ public class Player : Entity
 
     public void UpdateUpgrade() {
         loadout.UpdateUpgrade();
+    }
+
+
+    public void UpdateStatsDisp() {
+        statsDesc.UpdateStatsDisp();
     }
 
 

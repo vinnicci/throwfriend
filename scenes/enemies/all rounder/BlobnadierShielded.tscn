@@ -11,7 +11,7 @@
 radius = 22.0
 
 [node name="BlobnadierShielded" instance=ExtResource( 6 )]
-speed = 150
+speed = 125
 acts = {
 "throw_blob": 3.0
 }

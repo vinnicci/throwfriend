@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/base/Level.cs" type="Script" id=1]
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/enemies/all rounder/DualRanged.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemies/charger/TeleportingCharger.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/obtainables/AbilityItem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/Melee.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/BlobnadierShielded.tscn" type="PackedScene" id=9]
@@ -130,3 +131,15 @@ position = Vector2( -603, 459 )
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -195, 606 )
 physics_material_override = SubResource( 1 )
+
+[node name="AbilityItem" parent="." instance=ExtResource( 6 )]
+position = Vector2( -340, 545 )
+
+[node name="AbilityItem2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -338, 619 )
+
+[node name="AbilityItem3" parent="." instance=ExtResource( 6 )]
+position = Vector2( -605, 262 )
+
+[node name="AbilityItem4" parent="." instance=ExtResource( 6 )]
+position = Vector2( -605, 262 )

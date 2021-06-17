@@ -49,11 +49,12 @@ public abstract class BaseAllRounderWeapon: EnemyWeapon
 
 
     public virtual void SpawnBlob() {
-        Blob blob = (Blob)projectile.Instance();
+        Blob blobInstance = (Blob)projectile.Instance();
         Node2D ai = (Node2D)aiNode.Instance();
-        blob.AddChild(ai);
-        blob.LevelNode = ParentNode.LevelNode;
-        blob.ApplyCentralImpulse(new Vector2(BLOBNADE_THROW_STRENGTH, 0).Rotated(spawnPoint.GlobalRotation));
+        blobInstance.AddChild(ai);
+        blobInstance.LevelNode = ParentNode.LevelNode;
+        blobInstance.Spawn(blobInstance.LevelNode, spawnPoint.GlobalPosition, Vector2.Zero);
+        blobInstance.ApplyCentralImpulse(new Vector2(BLOBNADE_THROW_STRENGTH, 0).Rotated(spawnPoint.GlobalRotation));
     }
 
 

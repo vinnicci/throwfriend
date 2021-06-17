@@ -47,7 +47,8 @@ var player_node: RigidBody2D
 
 func init_properties(new_lvl: Node2D, new_parent: RigidBody2D, patrol_pts: Array = []):
 	level_node = new_lvl
-	player_node = level_node.get_node("Player")
+	if is_ent_valid(level_node.get_node("Player")) == true:
+		player_node = level_node.get_node("Player")
 	parent_node = new_parent
 	if is_instance_valid(parent_node.WeaponNode) == true:
 		weapon_node = parent_node.WeaponNode

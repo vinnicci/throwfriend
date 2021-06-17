@@ -13,6 +13,7 @@ public class AbilityItem : Pickable
             player.UpdateUpgrade();
             player.ChangeEntityBaseStats(player.health + 1, -1);
             SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
+            player.UpdateStatsDisp();
         }
     }
 

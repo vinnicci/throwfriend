@@ -32,7 +32,7 @@ tracks/0/keys = {
 }
 
 [node name="LongRangeShooter" instance=ExtResource( 1 )]
-speed = 750
+speed = 625
 acts = {
 "shoot": 1.0
 }

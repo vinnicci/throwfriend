@@ -22,21 +22,32 @@ public class Homing : WeaponItem
 
 
     private const int HOME_MAGNITUDE = 250;
+    private const int HOME_MAGNITUDE_CLOSE = 750;
+    private const int DIST_HOME_ACCEL = 2500;
     private Queue<Enemy> enemies = new Queue<Enemy>();
 
 
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
-        if(WeaponNode.CurrentState != Weapon.States.ACTIVE) {
-            if(enemies.Count > 0 || IsInstanceValid(target) == true) {
+        if(WeaponNode.CurrentState == Weapon.States.HELD) {
+            if(enemies.Count > 0) {
                 enemies.Clear();
+            }
+            if(IsInstanceValid(target) == true) {
                 target = null;
             }
         }
         else if(WeaponNode.CurrentState == Weapon.States.ACTIVE) {
-            if(IsInstanceValid(target) == true) {
-                Vector2 vec = (target.Position - WeaponNode.Position).Clamped(1) * HOME_MAGNITUDE;
+            if(IsInstanceValid(target) == true && target.IsDead == false) {
+                int mag;
+                if(WeaponNode.GlobalPosition.DistanceSquaredTo(target.GlobalPosition) <= DIST_HOME_ACCEL) {
+                    mag = HOME_MAGNITUDE_CLOSE;
+                }
+                else {
+                    mag = HOME_MAGNITUDE;
+                }
+                Vector2 vec = (target.Position - WeaponNode.Position).Clamped(1) * mag;
                 WeaponNode.Velocity += vec;
             }
         }
@@ -61,7 +72,8 @@ public class Homing : WeaponItem
             return;
         }
         Enemy enemy = enemies.Dequeue();
-        if(IsInstanceValid(target) == true || IsInstanceValid(enemy) == false) {
+        if((IsInstanceValid(target) == true && target.IsDead == false) ||
+        (IsInstanceValid(enemy) == false || enemy.IsDead == true)) {
             return;
         }
         ray.LookAt(enemy.GlobalPosition);

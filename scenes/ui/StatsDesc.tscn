@@ -27,6 +27,59 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Stats" type="Button" parent="StatsPanel"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 54.0
+margin_bottom = 25.0
+text = "STATS"
+
+[node name="StatsDisp" type="VBoxContainer" parent="StatsPanel"]
+margin_left = 5.0
+margin_top = 51.0
+margin_right = 78.0
+margin_bottom = 103.0
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="Label" parent="StatsPanel/StatsDisp"]
+margin_right = 103.0
+margin_bottom = 14.0
+text = "Current HP:"
+
+[node name="MaxHealth" type="Label" parent="StatsPanel/StatsDisp"]
+margin_top = 19.0
+margin_right = 103.0
+margin_bottom = 33.0
+text = "Max HP:"
+
+[node name="Speed" type="Label" parent="StatsPanel/StatsDisp"]
+margin_top = 38.0
+margin_right = 103.0
+margin_bottom = 52.0
+text = "Speed:"
+
+[node name="ThrowStrength" type="Label" parent="StatsPanel/StatsDisp"]
+margin_top = 57.0
+margin_right = 103.0
+margin_bottom = 71.0
+text = "Throw Strength: "
+
+[node name="SnarkDmg" type="Label" parent="StatsPanel/StatsDisp"]
+margin_top = 76.0
+margin_right = 103.0
+margin_bottom = 90.0
+text = "Snark Damage:"
+
+[node name="Help" type="Button" parent="StatsPanel"]
+margin_left = 61.0
+margin_top = 5.0
+margin_right = 105.0
+margin_bottom = 25.0
+text = "HELP"
+
 [node name="DescPanel" type="Panel" parent="."]
 self_modulate = Color( 1, 1, 1, 0.686275 )
 margin_top = 190.0

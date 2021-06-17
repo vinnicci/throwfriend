@@ -15,6 +15,7 @@ public class InGame : Control
         }
         set {
             playerNode = value;
+            statsDescNode.PlayerNode = PlayerNode;
             loadoutNode.PlayerNode = PlayerNode;
             loadoutNode.UpdateSlotIcon(1);
             loadoutNode.UpdateSlotIcon(2);

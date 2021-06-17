@@ -4,7 +4,7 @@ using System;
 public class AutoRetrieve : PlayerItem
 {
     private bool weapIsReturning = false;
-    private const int RETRIEVE_SPEED = 130;
+    private const int RETRIEVE_SPEED = 125;
     
 
     public override void _Ready()

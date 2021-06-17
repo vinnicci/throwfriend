@@ -203,6 +203,7 @@ public class Loadout : Control
                 upgradeLabel.Visible = false;
             }
         }
+        PlayerNode.UpdateStatsDisp();
     }
 
 
@@ -248,7 +249,6 @@ public class Loadout : Control
                 PlayerNode.ActivateItem(2);
                 UpdateSlotIcon(2);
             }
-            //PlayerNode.RefreshItems();
             playerItemSel.ShowItemSelection(false);
             playerItemSel.SetIncompatibleItems(item.incompatibilityList);
         }
@@ -268,7 +268,6 @@ public class Loadout : Control
                 WeaponNode.ActivateItem(2);
                 UpdateSlotIcon(4);
             }
-            //WeaponNode.RefreshItems();
             weaponItemSel.ShowItemSelection(false);
             weaponItemSel.SetIncompatibleItems(item.incompatibilityList);
         }
