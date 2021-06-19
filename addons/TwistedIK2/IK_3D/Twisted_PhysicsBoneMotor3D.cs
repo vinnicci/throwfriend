@@ -47,6 +47,8 @@ public class Twisted_PhysicsBoneMotor3D : Spatial
     /// </summary>
     public bool motor_enabled = false;
 
+    private int joint_count = 0;
+
 
     public override void _Ready()
     {
@@ -73,10 +75,10 @@ public class Twisted_PhysicsBoneMotor3D : Spatial
             return true;
         }
         else if (property == "Motor/joint_count") {
-            int num = (int)value;
+            joint_count = (int)value;
 
-            MOTOR_BONE3D[] new_array = new MOTOR_BONE3D[num];
-            for (int i = 0; i < num; i++) {
+            MOTOR_BONE3D[] new_array = new MOTOR_BONE3D[joint_count];
+            for (int i = 0; i < joint_count; i++) {
                 if (i < motor_joints.Length) {
                     new_array[i] = motor_joints[i];
                 } else {
@@ -128,10 +130,8 @@ public class Twisted_PhysicsBoneMotor3D : Spatial
             return motor_enabled;
         }
         else if (property == "Motor/joint_count") {
-            return motor_joints.Length;
+            return joint_count;
         }
-
-        
         else if (property.StartsWith("Motor/joint/")) {
             String[] motor_data = property.Split("/");
             int joint_index = motor_data[2].ToInt();
@@ -185,7 +185,7 @@ public class Twisted_PhysicsBoneMotor3D : Spatial
         // The Motor Joints
         // ===================
         String motor_string = "Motor/joint/";
-        for (int i = 0; i < motor_joints.Length; i++) {
+        for (int i = 0; i < joint_count; i++) {
             tmp_dict = new Godot.Collections.Dictionary();
             tmp_dict.Add("name", motor_string + i.ToString() + "/twisted_physics_bone");
             tmp_dict.Add("type", Variant.Type.NodePath);

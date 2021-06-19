@@ -434,8 +434,12 @@ public class Twisted_Bone3D : Spatial
     }
 
     public Transform get_reset_bone_global_pose(bool convert_to_world_space=true) {
-        twisted_skeleton3d.current_skeleton.SetBoneGlobalPoseOverride(bone_id, Transform.Identity, 0.0f, false);
-        return get_bone_global_pose(convert_to_world_space);
+        Transform bone_transform = twisted_skeleton3d.current_skeleton.GetBoneGlobalPoseNoOverride(bone_id);
+        if (convert_to_world_space == true) {
+            bone_transform = twisted_skeleton3d.global_pose_to_world_transform(bone_transform);
+            bone_transform.basis = twisted_skeleton3d.bone_forward_to_negative_z_forward(bone_transform.basis);
+        }
+        return bone_transform;
     }
 
     /// <summary>

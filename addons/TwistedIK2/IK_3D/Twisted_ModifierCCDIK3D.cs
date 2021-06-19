@@ -71,6 +71,8 @@ public class Twisted_ModifierCCDIK3D : Twisted_Modifier3D
     /// </summary>
     public CCDIK_JOINT[] ccdik_joints = new CCDIK_JOINT[0];
 
+    private int joint_count = 0;
+
     public override void _Ready()
     {
         if (path_to_target != null) {
@@ -102,10 +104,10 @@ public class Twisted_ModifierCCDIK3D : Twisted_Modifier3D
             return true;
         }
         else if (property == "CCDIK/joint_count") {
-            int num = (int)value;
+            joint_count = (int)value;
 
-            CCDIK_JOINT[] new_array = new CCDIK_JOINT[num];
-            for (int i = 0; i < num; i++) {
+            CCDIK_JOINT[] new_array = new CCDIK_JOINT[joint_count];
+            for (int i = 0; i < joint_count; i++) {
                 if (i < ccdik_joints.Length) {
                     new_array[i] = ccdik_joints[i];
                 } else {
@@ -172,7 +174,7 @@ public class Twisted_ModifierCCDIK3D : Twisted_Modifier3D
             return high_quality_solve;
         }
         else if (property == "CCDIK/joint_count") {
-            return ccdik_joints.Length;
+            return joint_count;
         }
 
         else if (property.StartsWith("CCDIK/joint/")) {
@@ -242,7 +244,7 @@ public class Twisted_ModifierCCDIK3D : Twisted_Modifier3D
         // The CCDIK Joints
         // ===================
         String ccdik_string = "CCDIK/joint/";
-        for (int i = 0; i < ccdik_joints.Length; i++) {
+        for (int i = 0; i < joint_count; i++) {
             tmp_dict = new Godot.Collections.Dictionary();
             tmp_dict.Add("name", ccdik_string + i.ToString() + "/twisted_bone");
             tmp_dict.Add("type", Variant.Type.NodePath);

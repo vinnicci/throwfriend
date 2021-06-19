@@ -57,6 +57,8 @@ public class Twisted_PhysicsBoneMotor2D : Node2D
     /// </summary>
     public Node2D tip_node = null;
 
+    private int joint_count = 0;
+
 
     public override void _Ready()
     {
@@ -93,10 +95,10 @@ public class Twisted_PhysicsBoneMotor2D : Node2D
             return true;
         }
         else if (property == "Motor/joint_count") {
-            int num = (int)value;
+            joint_count = (int)value;
 
-            MOTOR_BONE2D[] new_array = new MOTOR_BONE2D[num];
-            for (int i = 0; i < num; i++) {
+            MOTOR_BONE2D[] new_array = new MOTOR_BONE2D[joint_count];
+            for (int i = 0; i < joint_count; i++) {
                 if (i < motor_joints.Length) {
                     new_array[i] = motor_joints[i];
                 } else {
@@ -151,7 +153,7 @@ public class Twisted_PhysicsBoneMotor2D : Node2D
             return motor_enabled;
         }
         else if (property == "Motor/joint_count") {
-            return motor_joints.Length;
+            return joint_count;
         }
 
         
@@ -215,7 +217,7 @@ public class Twisted_PhysicsBoneMotor2D : Node2D
         // The Motor Joints
         // ===================
         String motor_string = "Motor/joint/";
-        for (int i = 0; i < motor_joints.Length; i++) {
+        for (int i = 0; i < joint_count; i++) {
             tmp_dict = new Godot.Collections.Dictionary();
             tmp_dict.Add("name", motor_string + i.ToString() + "/twisted_physics_bone");
             tmp_dict.Add("type", Variant.Type.NodePath);

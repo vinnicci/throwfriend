@@ -131,6 +131,8 @@ public class Twisted_ModifierJiggle3D : Twisted_Modifier3D
     /// </summary>
     public bool use_lookat = true;
 
+    private int joint_count = 0;
+
     public override void _Ready()
     {
         if (path_to_target != null) {
@@ -171,10 +173,10 @@ public class Twisted_ModifierJiggle3D : Twisted_Modifier3D
             }
         }
         else if (property == "Jiggle/joint_count") {
-            int num = (int)value;
+            joint_count = (int)value;
 
-            JIGGLE_JOINT[] new_array = new JIGGLE_JOINT[num];
-            for (int i = 0; i < num; i++) {
+            JIGGLE_JOINT[] new_array = new JIGGLE_JOINT[joint_count];
+            for (int i = 0; i < joint_count; i++) {
                 if (i < jiggle_joints.Length) {
                     new_array[i] = jiggle_joints[i];
                 } else {
@@ -330,7 +332,7 @@ public class Twisted_ModifierJiggle3D : Twisted_Modifier3D
             return target_vector_relative_node_path;
         }
         else if (property == "Jiggle/joint_count") {
-            return jiggle_joints.Length;
+            return joint_count;
         }
         else if (property == "Jiggle/use_colliders") {
             return use_colliders;
@@ -555,7 +557,7 @@ public class Twisted_ModifierJiggle3D : Twisted_Modifier3D
         // The Jiggle Joints
         // ===================
         String jiggle_string = "Jiggle/joint/";
-        for (int i = 0; i < jiggle_joints.Length; i++) {
+        for (int i = 0; i < joint_count; i++) {
             tmp_dict = new Godot.Collections.Dictionary();
             tmp_dict.Add("name", jiggle_string + i.ToString() + "/twisted_bone");
             tmp_dict.Add("type", Variant.Type.NodePath);

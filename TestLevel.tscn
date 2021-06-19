@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/base/Level.cs" type="Script" id=1]
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://scenes/enemies/all rounder/RangedShielded.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemies/shooter/LongRangeCannoneer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/enemies/spawner/BlobChargerSpawner.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/obtainables/SnarkDmgUpgrade.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/obtainables/HealthUpgrade.tscn" type="PackedScene" id=14]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -138,8 +140,8 @@ position = Vector2( -291, 466 )
 [node name="AbilityItem2" parent="." instance=ExtResource( 6 )]
 position = Vector2( -284, 322 )
 
-[node name="AbilityItem3" parent="." instance=ExtResource( 6 )]
-position = Vector2( -390, 313 )
+[node name="SnarkDmgUpgrade" parent="." instance=ExtResource( 13 )]
+position = Vector2( -386, 403 )
 
-[node name="AbilityItem4" parent="." instance=ExtResource( 6 )]
-position = Vector2( -341, 383 )
+[node name="HealthUpgrade" parent="." instance=ExtResource( 14 )]
+position = Vector2( -214, 397 )

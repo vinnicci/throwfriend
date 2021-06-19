@@ -63,6 +63,8 @@ public class Twisted_ModifierFABRIK2D : Twisted_Modifier2D
 
     protected Transform2D[] fabrik_transfroms = new Transform2D[0];
 
+    private int joint_count = 0;
+
 
     public override void _Ready()
     {
@@ -95,10 +97,10 @@ public class Twisted_ModifierFABRIK2D : Twisted_Modifier2D
             return true;
         }
         else if (property == "FABRIK/joint_count") {
-            int num = (int)value;
+            joint_count = (int)value;
 
-            FABRIK_JOINT[] new_array = new FABRIK_JOINT[num];
-            for (int i = 0; i < num; i++) {
+            FABRIK_JOINT[] new_array = new FABRIK_JOINT[joint_count];
+            for (int i = 0; i < joint_count; i++) {
                 if (i < fabrik_joints.Length) {
                     new_array[i] = fabrik_joints[i];
                 } else {
@@ -107,7 +109,7 @@ public class Twisted_ModifierFABRIK2D : Twisted_Modifier2D
             }
             fabrik_joints = new_array;
 
-            fabrik_transfroms = new Transform2D[num];
+            fabrik_transfroms = new Transform2D[joint_count];
             for (int i = 0; i < fabrik_transfroms.Length; i++) {
                 fabrik_transfroms[i] = new Transform2D();
             }
@@ -165,7 +167,7 @@ public class Twisted_ModifierFABRIK2D : Twisted_Modifier2D
             return chain_max_iterations;
         }
         else if (property == "FABRIK/joint_count") {
-            return fabrik_joints.Length;
+            return joint_count;
         }
 
         
@@ -230,7 +232,7 @@ public class Twisted_ModifierFABRIK2D : Twisted_Modifier2D
         // The FABRIK Joints
         // ===================
         String fabrik_string = "FABRIK/joint/";
-        for (int i = 0; i < fabrik_joints.Length; i++) {
+        for (int i = 0; i < joint_count; i++) {
             tmp_dict = new Godot.Collections.Dictionary();
             tmp_dict.Add("name", fabrik_string + i.ToString() + "/twisted_bone");
             tmp_dict.Add("type", Variant.Type.NodePath);

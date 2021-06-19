@@ -52,6 +52,8 @@ public class Twisted_ModifierCurveIK3D : Twisted_Modifier3D
     /// </summary>
     public CURVE_JOINT[] curve_joints = new CURVE_JOINT[0];
 
+    private int joint_count = 0;
+
     public override void _Ready()
     {
         if (path_to_curve != null) {
@@ -82,10 +84,10 @@ public class Twisted_ModifierCurveIK3D : Twisted_Modifier3D
             return true;
         }
         else if (property == "CurveIK/joint_count") {
-            int num = (int)value;
+            joint_count = (int)value;
 
-            CURVE_JOINT[] new_array = new CURVE_JOINT[num];
-            for (int i = 0; i < num; i++) {
+            CURVE_JOINT[] new_array = new CURVE_JOINT[joint_count];
+            for (int i = 0; i < joint_count; i++) {
                 if (i < curve_joints.Length) {
                     new_array[i] = curve_joints[i];
                 } else {
@@ -146,7 +148,7 @@ public class Twisted_ModifierCurveIK3D : Twisted_Modifier3D
             return scale_bones_to_fit_curve;
         }
         else if (property == "CurveIK/joint_count") {
-            return curve_joints.Length;
+            return joint_count;
         }
 
         else if (property.StartsWith("CurveIK/joint/")) {
@@ -217,7 +219,7 @@ public class Twisted_ModifierCurveIK3D : Twisted_Modifier3D
         // The Curve Joints
         // ===================
         String curve_string = "CurveIK/joint/";
-        for (int i = 0; i < curve_joints.Length; i++) {
+        for (int i = 0; i < joint_count; i++) {
             tmp_dict = new Godot.Collections.Dictionary();
             tmp_dict.Add("name", curve_string + i.ToString() + "/twisted_bone");
             tmp_dict.Add("type", Variant.Type.NodePath);

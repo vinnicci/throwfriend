@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/ui/StatsDesc.cs" type="Script" id=1]
 [ext_resource path="res://scenes/ui/Tip1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/ui/Tip2.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/ui/Tip3.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/ui/Tip4.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ui/Tip5.tscn" type="PackedScene" id=6]
 
 [node name="StatsDesc" type="Control"]
 anchor_right = 1.0
@@ -147,8 +148,14 @@ position = Vector2( 243, 95 )
 [node name="Sprite5" parent="StatsPanel/HelpDisp/Tip4" index="4"]
 position = Vector2( 301, 69 )
 
-[node name="Tip5" type="Node2D" parent="StatsPanel/HelpDisp"]
+[node name="Tip5" parent="StatsPanel/HelpDisp" instance=ExtResource( 6 )]
 visible = false
+
+[node name="Sprite" parent="StatsPanel/HelpDisp/Tip5" index="0"]
+position = Vector2( 136, 80 )
+
+[node name="Sprite2" parent="StatsPanel/HelpDisp/Tip5" index="1"]
+position = Vector2( 219, 79 )
 
 [node name="NextTip" type="Button" parent="StatsPanel/HelpDisp"]
 margin_left = 364.0
@@ -193,3 +200,4 @@ __meta__ = {
 [editable path="StatsPanel/HelpDisp/Tip2"]
 [editable path="StatsPanel/HelpDisp/Tip3"]
 [editable path="StatsPanel/HelpDisp/Tip4"]
+[editable path="StatsPanel/HelpDisp/Tip5"]

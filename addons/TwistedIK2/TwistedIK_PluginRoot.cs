@@ -66,6 +66,10 @@ public class TwistedIK_PluginRoot : EditorPlugin
         node_texture = GD.Load<Texture>("res://addons/TwistedIK2/IK_3D/Twisted_ModifierDuoIK3D.png");
         AddCustomType("Twisted_ModifierDuoBoneIK3D", "Spatial", node_script, node_texture);
 
+        node_script = GD.Load<Script>("res://addons/TwistedIK2/IK_3D/Twisted_ModifierVelvet3D.cs");
+        node_texture = GD.Load<Texture>("res://addons/TwistedIK2/IK_3D/Twisted_ModifierVelvet3D.png");
+        AddCustomType("Twisted_ModifierVelvet3D", "Spatial", node_script, node_texture);
+
         // ======= 3D OTHER
 
         node_script = GD.Load<Script>("res://addons/TwistedIK2/IK_3D/Twisted_PhysicsBoneMotor3D.cs");
@@ -126,6 +130,10 @@ public class TwistedIK_PluginRoot : EditorPlugin
         node_texture = GD.Load<Texture>("res://addons/TwistedIK2/IK_2D/Twisted_ModifierDuoIK2D.png");
         AddCustomType("Twisted_ModifierDuoBoneIK2D", "Node2D", node_script, node_texture);
 
+        node_script = GD.Load<Script>("res://addons/TwistedIK2/IK_2D/Twisted_ModifierVelvet2D.cs");
+        node_texture = GD.Load<Texture>("res://addons/TwistedIK2/IK_2D/Twisted_ModifierVelvet2D.png");
+        AddCustomType("Twisted_ModifierVelvet2D", "Node2D", node_script, node_texture);
+
         // ======= 2D OTHER
 
         node_script = GD.Load<Script>("res://addons/TwistedIK2/IK_2D/Twisted_PhysicsBoneMotor2D.cs");
@@ -151,6 +159,7 @@ public class TwistedIK_PluginRoot : EditorPlugin
         RemoveCustomType("Twisted_ModifierCurveIK3D");
         RemoveCustomType("Twisted_ModifierSliderJoint3D");
         RemoveCustomType("Twisted_ModifierDuoIK3D");
+        RemoveCustomType("Twisted_ModifierVelvet3D");
 
         RemoveCustomType("Twisted_PhysicsBoneMotor3D");
 
@@ -168,6 +177,7 @@ public class TwistedIK_PluginRoot : EditorPlugin
         RemoveCustomType("Twisted_ModifierConstrainedFABRIK2D");
         RemoveCustomType("Twisted_ModifierSliderJoint2D");
         RemoveCustomType("Twisted_ModifierDuoIK2D");
+        RemoveCustomType("Twisted_ModifierVelvet2D");
 
         RemoveCustomType("Twisted_PhysicsBoneMotor2D");
     }

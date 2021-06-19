@@ -138,16 +138,13 @@ public class Twisted_Skeleton3D : Spatial
         return list;
     }
 
-    public override void _Notification(int what)
+    public override void _Process(float delta)
     {
-        base._Notification(what);
-        if (what == NotificationTransformChanged) {
-            if (current_skeleton != null) {
+        base._Process(delta);
+        if (current_skeleton != null) {
                 GlobalTransform = current_skeleton.GlobalTransform;
             }
-        }
     }
-
 
     /// <summary>
     /// Converts a global Transform to a global pose Transform that is usable in a Skeleton node. This is because a global
