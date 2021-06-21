@@ -3,9 +3,9 @@ using System;
 
 public class ShooterWeapon : EnemyWeapon
 {
-    public override void SpawnProj()
+    public override void SpawnInstance(string packedSceneKey, int count = 1)
     {
-        base.SpawnProj();
+        base.SpawnInstance(packedSceneKey, count);
     }
 
 

@@ -14,9 +14,11 @@
 
 [node name="EnemyWeapon" instance=ExtResource( 2 )]
 script = ExtResource( 4 )
-projectile = ExtResource( 6 )
-aiNode = ExtResource( 7 )
-projectile2 = ExtResource( 9 )
+spawnScenes = {
+"ai": ExtResource( 7 ),
+"blob": ExtResource( 9 ),
+"proj": ExtResource( 6 )
+}
 
 [node name="Hand" type="Sprite" parent="Sprites" index="0"]
 rotation = -0.349066

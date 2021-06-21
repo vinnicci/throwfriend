@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=2]
 [ext_resource path="res://scenes/enemies/all rounder/anim/shoot_back.tres" type="Animation" id=3]
 [ext_resource path="res://scenes/enemies/all rounder/anim/die1.tres" type="Animation" id=4]
+[ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/all rounder/BaseAllRounder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/shooter/weapons/ShooterProj.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/BlasterAndShield.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=10]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -17,11 +21,19 @@ radius = 22.0
 [node name="RangedShielded" instance=ExtResource( 6 )]
 physics_material_override = SubResource( 1 )
 speed = 125
+spawnScenes = {
+"hp_drop": ExtResource( 9 )
+}
 acts = {
 "shoot_back": 2.0
 }
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 8 )]
+spawnScenes = {
+"ai": ExtResource( 10 ),
+"blob": ExtResource( 5 ),
+"proj": ExtResource( 7 )
+}
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( 2 )

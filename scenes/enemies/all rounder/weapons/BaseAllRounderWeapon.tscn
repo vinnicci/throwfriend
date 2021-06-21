@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/enemies/EnemyWeapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/BaseAllRounderWeapon.cs" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/enemies/shooter/weapons/ShooterProj.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=5]
 
 [node name="EnemyWeapon" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+spawnScenes = {
+"ai": ExtResource( 5 ),
+"blob": ExtResource( 3 ),
+"proj": ExtResource( 4 )
+}

@@ -1,23 +1,35 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=1]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder3.png" type="Texture" id=2]
 [ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=3]
 [ext_resource path="res://scenes/enemies/all rounder/anim/shoot.tres" type="Animation" id=4]
+[ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/all rounder/BaseAllRounder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/all rounder/anim/die3.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/Blaster.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/shooter/weapons/ShooterProj.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
 
 [node name="Ranged" instance=ExtResource( 6 )]
 speed = 375
+spawnScenes = {
+"hp_drop": ExtResource( 10 )
+}
 acts = {
 "shoot": 2.0
 }
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 8 )]
+spawnScenes = {
+"ai": ExtResource( 11 ),
+"blob": ExtResource( 5 ),
+"proj": ExtResource( 9 )
+}
 
 [node name="Head" parent="Sprite" index="2"]
 position = Vector2( 0, -13 )

@@ -61,8 +61,8 @@ tracks/4/keys = {
 "times": PoolRealArray( 0.3, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [  ],
-"method": "SpawnProj"
+"args": [ "proj", 1 ],
+"method": "SpawnInstance"
 }, {
 "args": [  ],
 "method": "FinishShooting"

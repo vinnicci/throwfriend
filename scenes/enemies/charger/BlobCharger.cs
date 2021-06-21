@@ -3,10 +3,6 @@ using System;
 
 public class BlobCharger : BaseCharger
 {
-    [Export] private PackedScene blob;
-    [Export] private PackedScene aiNode;
-
-
     public override void OnEnemyBodyEntered(Godot.Object body) {
         base.OnEnemyBodyEntered(body);
     }
@@ -25,14 +21,17 @@ public class BlobCharger : BaseCharger
     private const int BLOB_SPAWN_FORCE = 1000;
 
 
-    public void InstanceBlob(int count) {
-        for(int i = 1; i <= count; i++) {
-            Blob blobInstance = (Blob)blob.Instance();
-            Node2D ai = (Node2D)aiNode.Instance();
-            blobInstance.AddChild(ai);
-            blobInstance.LevelNode = LevelNode;
-            blobInstance.Spawn(blobInstance.LevelNode, GlobalPosition, Vector2.Zero);
-            blobInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
+    public override void SpawnInstance(String packedSceneKey, int count = 1) {
+        base.SpawnInstance(packedSceneKey);
+        if(packedSceneKey == "blob") {
+            for(int i = 0; i <= count - 1; i++) {
+                Blob blobInstance = (Blob)spawnScenes[packedSceneKey].Instance();
+                Node2D ai = (Node2D)spawnScenes["ai"].Instance();
+                blobInstance.AddChild(ai);
+                blobInstance.LevelNode = LevelNode;
+                blobInstance.Spawn(blobInstance.LevelNode, GlobalPosition, Vector2.Zero);
+                blobInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
+            }
         }
     }
 

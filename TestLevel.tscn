@@ -60,12 +60,6 @@ acts = {
 "melee_attack": 1.0
 }
 
-[node name="BlobChargerSpawner" parent="Enemies" instance=ExtResource( 12 )]
-position = Vector2( 195, 600 )
-acts = {
-"spawn_blob_charger": 8.0
-}
-
 [node name="DualRanged" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 600, 508 )
 acts = {
@@ -110,6 +104,12 @@ acts = {
 "melee_attack": 1.0
 }
 
+[node name="BlobChargerSpawner" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 182, 638 )
+acts = {
+"spawn_blob_charger": 8.0
+}
+
 [node name="PatrolPoints" type="Node2D" parent="."]
 
 [node name="0" type="Position2D" parent="PatrolPoints"]
@@ -145,3 +145,5 @@ position = Vector2( -386, 403 )
 
 [node name="HealthUpgrade" parent="." instance=ExtResource( 14 )]
 position = Vector2( -214, 397 )
+
+[editable path="Enemies/BlobChargerSpawner"]

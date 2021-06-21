@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/enemies/charger/tex_en_rigid_charger_shell.png" type="Texture" id=1]
 [ext_resource path="res://assets/enemies/charger/tex_en_rigid_charger_hide.png" type="Texture" id=2]
 [ext_resource path="res://assets/enemies/charger/tex_en_rigid_charger.png" type="Texture" id=3]
 [ext_resource path="res://scenes/enemies/charger/BaseCharger.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemies/charger/RigidCharger.cs" type="Script" id=5]
+[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/charger/anim/rigid_charger_charge.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/charger/anim/rigid_charger_idle.tres" type="Animation" id=8]
 [ext_resource path="res://scenes/enemies/charger/anim/rigid_charger_run.tres" type="Animation" id=9]
@@ -15,6 +16,9 @@ radius = 25.0
 
 [node name="RigidCharger" instance=ExtResource( 4 )]
 script = ExtResource( 5 )
+spawnScenes = {
+"hp_drop": ExtResource( 6 )
+}
 acts = {
 "charge": 1.0
 }

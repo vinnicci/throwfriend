@@ -25,8 +25,8 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.5, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ 1 ],
-"method": "InstanceBlob"
+"args": [ "blob", 1 ],
+"method": "SpawnInstance"
 }, {
 "args": [ "spawn_blob" ],
 "method": "FinishAction"

@@ -1,11 +1,8 @@
 using Godot;
 using System;
 
-public class BlobChargerSpawner : Enemy
+public class BlobChargerSpawner : Enemy, ISpawner
 {
-    [Export] PackedScene blobcharger;
-
-
     public void SpawnBlobCharger() {
         anim.Play("spawn_blob_charger");
     }
@@ -14,10 +11,13 @@ public class BlobChargerSpawner : Enemy
     const int BLOB_SPAWN_FORCE = 1000;
 
 
-    public void InstanceBlobCharger() {
-        BlobCharger bInstance = (BlobCharger)blobcharger.Instance();
-        bInstance.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
-        bInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
+    public override void SpawnInstance(String packedSceneKey, int count = 1) {
+        base.SpawnInstance(packedSceneKey);
+        if(packedSceneKey == "blob_charger") {
+            BlobCharger bInstance = (BlobCharger)spawnScenes[packedSceneKey].Instance();
+            bInstance.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
+            bInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
+        }
     }
 
 

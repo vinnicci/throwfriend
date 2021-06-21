@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public abstract class EnemyWeapon : Node2D
+public abstract class EnemyWeapon : Node2D, ISpawner
 {
-    [Export] protected PackedScene projectile;
+    [Export] public Godot.Collections.Dictionary<String, PackedScene> spawnScenes {get; set;}
     
     public Enemy ParentNode {get; set;}
 
@@ -31,9 +31,16 @@ public abstract class EnemyWeapon : Node2D
     }
 
 
+    public virtual void SpawnInstance(String packedSceneKey, int count = 1) {
+        if(packedSceneKey == "proj") {
+            SpawnProj();
+        }
+    }
+
+
     //used by range attack anim to create projectiles
     public virtual void SpawnProj() {
-        EnemyProj proj = (EnemyProj)projectile.Instance();
+        EnemyProj proj = (EnemyProj)spawnScenes["proj"].Instance();
         proj.AddHitException(ParentNode);
         proj.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition, Vector2.Zero, spawnPoint.GlobalRotationDegrees);
     }

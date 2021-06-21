@@ -10,7 +10,9 @@
 
 [node name="EnemyWeapon" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
-projectile = ExtResource( 2 )
+spawnScenes = {
+"proj": ExtResource( 2 )
+}
 
 [node name="Sprite2" type="Sprite" parent="Sprites" index="0"]
 rotation = -0.785398

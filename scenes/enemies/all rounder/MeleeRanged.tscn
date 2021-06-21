@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/shoot_back.tres" type="Animation" id=1]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder3.png" type="Texture" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://scenes/enemies/all rounder/BaseAllRounder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/all rounder/anim/die3.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/SwordAndBlaster.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemies/shooter/weapons/ShooterProj.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=12]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -19,12 +23,20 @@ radius = 22.0
 [node name="MeleeRanged" instance=ExtResource( 6 )]
 physics_material_override = SubResource( 1 )
 speed = 375
+spawnScenes = {
+"hp_drop": ExtResource( 11 )
+}
 acts = {
 "melee_attack": 1.0,
 "shoot_back": 2.0
 }
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 8 )]
+spawnScenes = {
+"ai": ExtResource( 12 ),
+"blob": ExtResource( 9 ),
+"proj": ExtResource( 10 )
+}
 
 [node name="Sprite" parent="." index="1"]
 rotation = -0.0127287

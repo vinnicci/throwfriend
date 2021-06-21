@@ -1,12 +1,13 @@
 using Godot;
 using System;
 
-public abstract class Enemy : Entity
+public abstract class Enemy : Entity, ISpawner
 {
     [Export] protected Godot.Collections.Dictionary<String, float> acts =
     new Godot.Collections.Dictionary<String, float>();
     [Export] protected Godot.Collections.Array<int> patrolPoints =
     new Godot.Collections.Array<int>();
+    [Export] public Godot.Collections.Dictionary<String, PackedScene> spawnScenes {get; set;}
 
     private Level levelNode;
     public Level LevelNode {
@@ -29,7 +30,6 @@ public abstract class Enemy : Entity
     protected Explosion ExplosionNode {get; private set;}
     private Node2D aINode;
     protected Godot.Collections.Dictionary ActDict {get; private set;}
-    [Export] PackedScene hpDrop;
 
 
     public override void _Ready()
@@ -117,14 +117,14 @@ public abstract class Enemy : Entity
     }
 
 
-    const float CHANCE_HP_DROP = 5f;
+    const float CHANCE_HP_DROP = 10f;
 
 
     public override bool Hit(Vector2 knockback, int damage)
     {
         if(base.Hit(knockback, damage) == true) {
             if(IsDead == true && GD.RandRange(0, 100) <= CHANCE_HP_DROP) {
-                CallDeferred("InstanceHPDrop");
+                CallDeferred("SpawnInstance", "hp_drop", 1);
             }
             return true;
         }
@@ -132,9 +132,11 @@ public abstract class Enemy : Entity
     }
 
 
-    void InstanceHPDrop() {
-        HealthPickup healthInst = (HealthPickup)hpDrop.Instance();
-        healthInst.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
+    public virtual void SpawnInstance(String packedSceneKey, int count = 1) {
+        if(packedSceneKey == "hp_drop") {
+            HealthPickup healthInst = (HealthPickup)spawnScenes[packedSceneKey].Instance();
+            healthInst.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
+        }
     }
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/melee_attack.tres" type="Animation" id=1]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder2.png" type="Texture" id=2]
@@ -6,20 +6,32 @@
 [ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=4]
 [ext_resource path="res://scenes/enemies/all rounder/anim/throw_blob.tres" type="Animation" id=5]
 [ext_resource path="res://scenes/enemies/all rounder/anim/die2.tres" type="Animation" id=6]
+[ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/BaseAllRounder.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/SwordAndBlobnade.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemies/shooter/weapons/ShooterProj.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
 
 [node name="MeleeBlobnadier" instance=ExtResource( 8 )]
 speed = 375
+spawnScenes = {
+"hp_drop": ExtResource( 11 )
+}
 acts = {
 "melee_attack": 1.0,
 "throw_blob": 3.0
 }
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 9 )]
+spawnScenes = {
+"ai": ExtResource( 12 ),
+"blob": ExtResource( 7 ),
+"proj": ExtResource( 10 )
+}
 
 [node name="Head" parent="Sprite" index="2"]
 texture = ExtResource( 2 )

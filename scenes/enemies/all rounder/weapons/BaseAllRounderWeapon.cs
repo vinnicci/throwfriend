@@ -3,9 +3,6 @@ using Godot;
 
 public abstract class BaseAllRounderWeapon: EnemyWeapon
 {
-    [Export] protected PackedScene aiNode; //used by blobnades
-
-
     public override void _Process(float delta)
     {
         base._Process(delta);
@@ -45,12 +42,23 @@ public abstract class BaseAllRounderWeapon: EnemyWeapon
     }
 
 
+    
+    public override void SpawnInstance(String packedSceneKey, int count = 1) {
+        base.SpawnInstance(packedSceneKey);
+        if(packedSceneKey == "blob") {
+            for(int i = 0; i <= count; i++) {
+                SpawnBlob();
+            }
+        }
+    }
+
+
     const int BLOBNADE_THROW_STRENGTH = 1000;
 
 
-    public virtual void SpawnBlob() {
-        Blob blobInstance = (Blob)projectile.Instance();
-        Node2D ai = (Node2D)aiNode.Instance();
+    public void SpawnBlob() {
+        Blob blobInstance = (Blob)spawnScenes["blob"].Instance();
+        Node2D ai = (Node2D)spawnScenes["ai"].Instance();
         blobInstance.AddChild(ai);
         blobInstance.LevelNode = ParentNode.LevelNode;
         blobInstance.Spawn(blobInstance.LevelNode, spawnPoint.GlobalPosition, Vector2.Zero);
