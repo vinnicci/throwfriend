@@ -14,8 +14,8 @@ public class PlayerCam : Camera2D
     }
 
 
-    private const float LERP_RETURN = 0.03f;
-    private const float VDIST = 0.5f;
+    const float LERP_RETURN = 0.03f;
+    const float VDIST = 0.5f;
 
 
     public override void _PhysicsProcess(float delta)
@@ -33,7 +33,7 @@ public class PlayerCam : Camera2D
     }
 
 
-    private void OnRestartLvlButtonButtonUp() {
+    void OnRestartLvlButtonButtonUp() {
         GetTree().ReloadCurrentScene();
     }
 

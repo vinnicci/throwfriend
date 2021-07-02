@@ -1,20 +1,19 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/enemies/shooter/tex_en_shooter_proj.png" type="Texture" id=1]
+[ext_resource path="res://assets/enemies/shooter/tex_en_scattershooter_proj.png" type="Texture" id=1]
 [ext_resource path="res://scenes/enemies/EnemyProj.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/enemies/shooter/weapons/anim/proj_hit.tres" type="Animation" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.0
 
-[node name="LongRangeShooterProj" instance=ExtResource( 2 )]
-range = 1500
-speed = 15
+[node name="ShooterProj" instance=ExtResource( 2 )]
+range = 750
+speed = 10
 
 [node name="Sprite" parent="." index="0"]
-scale = Vector2( 1.25, 1.25 )
 texture = ExtResource( 1 )
-offset = Vector2( -10, 0 )
+offset = Vector2( -8, 0 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )

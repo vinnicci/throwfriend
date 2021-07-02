@@ -5,3 +5,18 @@
 [node name="TC" type="Position2D"]
 script = ExtResource( 1 )
 Targets = [  ]
+Position/RateX = 1.0
+Position/RateY = 1.0
+Position/Clamped = false
+Position/ClampXMin = -100.0
+Position/ClampXMax = 100.0
+Position/ClampYMin = -100.0
+Position/ClampYMax = 100.0
+Scale/RateX = 1.0
+Scale/RateY = 1.0
+Scale/Clamped = false
+Scale/ClampXMin = -1.0
+Scale/ClampXMax = 1.0
+Scale/ClampYMin = -1.0
+Scale/ClampYMax = 1.0
+Rotation/Rate = 1.0

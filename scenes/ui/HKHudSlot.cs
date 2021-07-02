@@ -5,8 +5,8 @@ public class HKHudSlot : ColorRect
 {
     public Item Item {get; set;}
 
-    private Position2D iconPos;
-    private AnimationPlayer anim;
+    Position2D iconPos;
+    AnimationPlayer anim;
 
 
     public override void _Ready()
@@ -33,7 +33,7 @@ public class HKHudSlot : ColorRect
     }
 
 
-    private void AnimateCooldown() {
+    void AnimateCooldown() {
         anim.Play("cooldown");
     }
 

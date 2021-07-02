@@ -3,7 +3,7 @@ using System;
 
 public class WarningText : Label
 {
-    private AnimationPlayer anim;
+    AnimationPlayer anim;
 
 
     public override void _Ready()

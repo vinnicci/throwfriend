@@ -15,8 +15,7 @@ public class StatsDesc : Control
     Label snarkDmgStat;
     Control helpDisp;
     Label tipLabel;
-
-    private Button settingsButton;
+    Button settingsButton;
 
 
     public override void _Ready()
@@ -37,14 +36,14 @@ public class StatsDesc : Control
     }
 
 
-    private void OnSettingsButtonPressed() {
+    void OnSettingsButtonPressed() {
         if(InGameUIAnim.IsPlaying() == false && SettingsNode.Visible == false) {
             InGameUIAnim.Play("settings_enter");
         }
     }
     
 
-    private void OnExitPressed() {
+    void OnExitPressed() {
         if(InGameUIAnim.IsPlaying() == false) {
             InGameUIAnim.Play("exit");
         }
@@ -63,7 +62,7 @@ public class StatsDesc : Control
     const int INCREMENT = 125;
 
 
-    private String GetDescriptive(int mag, int type) {
+    String GetDescriptive(int mag, int type) {
         float val = mag/INCREMENT;
         if(val <= 1) {
             if(type == 0) return "Slow";
@@ -79,13 +78,13 @@ public class StatsDesc : Control
     }
 
 
-    private void OnStatsPressed() {
+    void OnStatsPressed() {
         statsDisp.Visible = true;
         helpDisp.Visible = false;
     }
 
 
-    private void OnHelpPressed() {
+    void OnHelpPressed() {
         helpDisp.Visible = true;
         statsDisp.Visible = false;
     }
@@ -95,7 +94,7 @@ public class StatsDesc : Control
     const String path = "StatsPanel/HelpDisp/Tip";
 
 
-    private void OnNextTipPressed() {
+    void OnNextTipPressed() {
         ((Node2D)GetNode(path + currentTip)).Visible = false;
         switch(currentTip) {
             case 1: {

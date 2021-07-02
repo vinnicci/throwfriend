@@ -6,13 +6,13 @@
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_Bone2D.cs" type="Script" id=4]
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierStack2D.cs" type="Script" id=5]
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierJiggle2D.cs" type="Script" id=6]
-[ext_resource path="res://toolscripts/TransformConstraintTool.cs" type="Script" id=7]
 [ext_resource path="res://scenes/enemies/spawner/anim/idle.tres" type="Animation" id=8]
 [ext_resource path="res://scenes/base/entity_die.tres" type="Animation" id=9]
 [ext_resource path="res://scenes/enemies/spawner/BlobChargerSpawner.cs" type="Script" id=10]
 [ext_resource path="res://scenes/enemies/charger/BlobCharger.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/enemies/spawner/ai/BlobChargerSpawnerAI.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=13]
+[ext_resource path="res://toolscripts/TC.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 24.9999
@@ -33,7 +33,7 @@ tracks/0/keys = {
 "values": [ false, true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/UpperTC:rotation_degrees")
+tracks/1/path = NodePath("Sprite/UpperTC:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -42,10 +42,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5, 1, 1.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, -30.2761, -30.2761, 0.0 ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -31 ), Vector2( 0, -31 ), Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite/UpperTC:position")
+tracks/2/path = NodePath("Sprite/UpperTC:rotation_degrees")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -54,7 +54,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5, 1, 1.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -63, -49 ), Vector2( -68, -75 ), Vector2( -68, -75 ), Vector2( -63, -49 ) ]
+"values": [ 0.0, -30.2761, -30.2761, 0.0 ]
 }
 tracks/3/type = "method"
 tracks/3/path = NodePath(".")
@@ -121,7 +121,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="0"]
 position = Vector2( 2, -21 )
-rotation = 0.0112355
+rotation = 0.0112715
 rest = Transform2D( 1, 0, 0, 1, 2, -21 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -137,6 +137,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper2" type="Bone2D" parent="Sprite/Skeleton2D/Root/Upper" index="0"]
 position = Vector2( 0, -23 )
+rotation = -0.000121474
 rest = Transform2D( 1, 0, 0, 1, 0, -23 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -152,7 +153,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper3" type="Bone2D" parent="Sprite/Skeleton2D/Root/Upper/Upper2" index="0"]
 position = Vector2( 0, -26 )
-rotation = -1.5708
+rotation = -1.57078
 rest = Transform2D( 1, 0, 0, 1, 0, -26 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -196,22 +197,18 @@ gizmo/gizmo_bone_shape_index = 2
 gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
 gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
-[node name="UpperPosBase" type="Position2D" parent="Sprite" index="3"]
-position = Vector2( -63, -49 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="UpperTC" type="Position2D" parent="Sprite" index="4"]
-position = Vector2( -63, -49 )
-script = ExtResource( 7 )
-Targets = [ NodePath("../Skeleton2D/Root/Upper") ]
+[node name="UpperTC" parent="Sprite" index="3" instance=ExtResource( 14 )]
 Enabled = true
+Targets = [ NodePath("../Skeleton2D/Root/Upper") ]
+Position/ClampedX = false
+Position/ClampedY = false
+Scale/ClampedX = false
+Scale/ClampedY = false
 
-[node name="UpperTarget" type="Position2D" parent="Sprite" index="5"]
+[node name="UpperTarget" type="Position2D" parent="Sprite" index="4"]
 position = Vector2( 3, -110 )
 
-[node name="Twisted_ModifierStack2D" type="Node2D" parent="Sprite" index="6"]
+[node name="Twisted_ModifierStack2D" type="Node2D" parent="Sprite" index="5"]
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true

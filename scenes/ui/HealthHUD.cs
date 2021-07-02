@@ -3,7 +3,7 @@ using System;
 
 public class HealthHUD : TextureProgress
 {
-   private Entity parentNode;
+   Entity parentNode;
    public Entity ParentNode {
       get {
          return parentNode;
@@ -16,7 +16,7 @@ public class HealthHUD : TextureProgress
       }
    }
 
-   private Tween tween;
+   Tween tween;
 
 
    public override void _Ready()

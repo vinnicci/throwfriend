@@ -9,26 +9,20 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     public int Health {get; set;}
     public Vector2 Velocity {get; protected set;}
     public bool IsDead {get; set;}
-    protected Timer hitCooldown;
-    public Timer HitCooldown {
-        get {
-            return hitCooldown;
-        }
-        set {
-            return;
-        }
-    }
+    public Timer HitCooldown {get; set;}
+    public AnimationPlayer TeleportAnim {get; set;}
 
     protected AnimationPlayer anim;
     protected Node2D spriteNode;
-    private Node2D hud;
-    private HealthHUD healthHUD;
+    Node2D hud;
+    HealthHUD healthHUD;
 
 
     public override void _Ready()
     {
         base._Ready();
-        hitCooldown = (Timer)GetNode("HitCooldown");
+        HitCooldown = (Timer)GetNode("HitCooldown");
+        TeleportAnim = (AnimationPlayer)GetNode("TeleAnim");
         spriteNode = (Node2D)GetNode("Sprite");
         Speed = speed;
         Health = health;
@@ -60,7 +54,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
 
 
-    private Vector2 teleportPos;
+    Vector2 teleportPos;
 
 
     public void Teleport(Level level, Vector2 global_pos) {
@@ -79,6 +73,8 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         tween.Start();
         //teleport
         teleportPos = global_pos;
+        TeleportAnim.Stop();
+        TeleportAnim.Play("teleported");
     }
 
 

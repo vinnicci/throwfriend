@@ -10,7 +10,7 @@
 [ext_resource path="res://scenes/enemies/all rounder/DualRanged.cs" type="Script" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/DualBlaster.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/enemies/shooter/weapons/ShooterProj.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/BlasterProj.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=13]
 

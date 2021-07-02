@@ -4,7 +4,7 @@ using System;
 public class KeyRebindButton : Button
 {
     public String Key {get; set;}
-    private Control mainNode;
+    Control mainNode;
     public Control MainNode {
         get {
             return mainNode;
@@ -22,7 +22,7 @@ public class KeyRebindButton : Button
         }
     }
     
-    private ConfigFile configFile;
+    ConfigFile configFile;
 
 
     public override void _Ready()
@@ -54,7 +54,7 @@ public class KeyRebindButton : Button
     }
 
 
-    private void Rebind(int buttonCode) {
+    void Rebind(int buttonCode) {
         configFile.SetValue("keybinds", Key, buttonCode);
         if(MainNode is Settings) {
             Settings settings = (Settings)MainNode;

@@ -3,12 +3,11 @@ using System;
 
 public class InGame : Control
 {
-    private Loadout loadoutNode;
-    private StatsDesc statsDescNode;
-    private Settings settingsNode;
-    private AnimationPlayer inGameUIAnim;
-
-    private Player playerNode;
+    Loadout loadoutNode;
+    StatsDesc statsDescNode;
+    Settings settingsNode;
+    AnimationPlayer inGameUIAnim;
+    Player playerNode;
     public Player PlayerNode {
         get {
             return playerNode;
@@ -21,7 +20,7 @@ public class InGame : Control
             loadoutNode.UpdateSlotIcon(2);
         }
     }
-    private Weapon weaponNode;
+    Weapon weaponNode;
     public Weapon WeaponNode {
         get {
             return weaponNode;

@@ -64,7 +64,7 @@ margin_top = -76.0
 margin_bottom = -70.0
 
 [node name="AI" parent="." index="5"]
-seek_dist = 300
+seek_dist = 350
 too_far_dist = 375
 
 [node name="Anim" type="AnimationPlayer" parent="." index="6"]

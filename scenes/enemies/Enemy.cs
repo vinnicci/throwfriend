@@ -9,7 +9,7 @@ public abstract class Enemy : Entity, ISpawner
     new Godot.Collections.Array<int>();
     [Export] public Godot.Collections.Dictionary<String, PackedScene> spawnScenes {get; set;}
 
-    private Level levelNode;
+    Level levelNode;
     public Level LevelNode {
         get {
             return levelNode;
@@ -28,7 +28,7 @@ public abstract class Enemy : Entity, ISpawner
     }
     public EnemyWeapon WeaponNode {get; protected set;}
     protected Explosion ExplosionNode {get; private set;}
-    private Node2D aINode;
+    Node2D aINode;
     protected Godot.Collections.Dictionary ActDict {get; private set;}
 
 

@@ -12,12 +12,12 @@ public class Loadout : Control
     public HotkeyHUD HotkeyHUDNode {get; set;}
     public ConfigFile ConfigFile {get; private set;}
 
-    private Button slot1KeyBind;
-    private Button slot2KeyBind;
-    private Button slot3KeyBind;
-    private Button slot4KeyBind;
-    private ItemSelection playerItemSel;
-    private ItemSelection weaponItemSel;
+    Button slot1KeyBind;
+    Button slot2KeyBind;
+    Button slot3KeyBind;
+    Button slot4KeyBind;
+    ItemSelection playerItemSel;
+    ItemSelection weaponItemSel;
     const String CONFIG = "user://config/config.ini";
 
 
@@ -36,7 +36,7 @@ public class Loadout : Control
     }
 
 
-    private void ConnectSlots() {
+    void ConnectSlots() {
         for(int i = 1; i <= 4; i++) {
             String slot = "Slot" + i;
             switch(i) {
@@ -52,7 +52,7 @@ public class Loadout : Control
     }
 
 
-    private void ConnectButtons() {
+    void ConnectButtons() {
         for(int i = 1; i <= 4; i++) {
             Godot.Collections.Array arr = new Godot.Collections.Array();
             String currentKeyBind = "slot" + i + "KeyBind";
@@ -69,7 +69,7 @@ public class Loadout : Control
     Godot.Collections.Dictionary keybinds = new Godot.Collections.Dictionary();
 
 
-    private void InitKeybinds() {
+    void InitKeybinds() {
         String[] controls = {"hotkey_1", "hotkey_2", "hotkey_3", "hotkey_4"};
         for(int i = 0; i <= controls.Length-1; i++) {
             Godot.Collections.Dictionary dict = new Godot.Collections.Dictionary();
@@ -90,7 +90,7 @@ public class Loadout : Control
     }
 
 
-    private void InitKeybind(String key, int keyPress, KeyRebindButton button, Godot.Collections.Dictionary dict) {
+    void InitKeybind(String key, int keyPress, KeyRebindButton button, Godot.Collections.Dictionary dict) {
         dict.Add("default", keyPress);
         dict.Add("button", button);
         button.MainNode = this;
@@ -98,7 +98,7 @@ public class Loadout : Control
     }
 
 
-    private void LoadConfig() {
+    void LoadConfig() {
         if(ConfigFile.Load(CONFIG) != Error.Ok) {
             GD.PrintErr("Loadout Node can't load the config file.");
             return;
@@ -183,7 +183,7 @@ public class Loadout : Control
     }
 
 
-    private void OnKeyBindPressed(KeyRebindButton button) {
+    void OnKeyBindPressed(KeyRebindButton button) {
         button.Text = "PRESS A KEY...";
         button.Pressed = true;
     }
@@ -207,7 +207,7 @@ public class Loadout : Control
     }
 
 
-    private struct SelectRef {
+    struct SelectRef {
         public String Panel {get;}
         public String Slot {get;}
         public Label UpgradeLabel {get;}
@@ -218,7 +218,7 @@ public class Loadout : Control
             UpgradeLabel = upgradeLabel;
         }
     }
-    private SelectRef selectRef;
+    SelectRef selectRef;
 
 
     public void ShowItemSelection(String panel, String slot, Label upgradeLabel) {

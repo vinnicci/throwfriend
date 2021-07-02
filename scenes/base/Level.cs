@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public abstract class Level : YSort
 {
-    private Player playerNode;
-    private Navigation2D nav;
-    private YSort enemies;
+    Player playerNode;
+    Navigation2D nav;
+    YSort enemies;
 
 
     public override void _Ready()
@@ -72,7 +72,7 @@ public abstract class Level : YSort
 
 
     //debug: show ai path
-    private void ShowLine(Vector2[] vec) {
+    void ShowLine(Vector2[] vec) {
         Line2D line = new Line2D();
         Tween tween = new Tween();
         line.Points = vec;
@@ -87,7 +87,7 @@ public abstract class Level : YSort
     }
 
 
-    private void OnTweenCompleted() {
+    void OnTweenCompleted() {
         lines.Dequeue().QueueFree();
     }
 

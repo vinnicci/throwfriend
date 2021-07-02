@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class Homing : WeaponItem
 {
-    private Area2D range;
-    private RayCast2D ray;
-    private Timer tick;
-    private Enemy target;
+    Area2D range;
+    RayCast2D ray;
+    Timer tick;
+    Enemy target;
 
 
     public override void _Ready()
@@ -21,10 +21,10 @@ public class Homing : WeaponItem
     }
 
 
-    private const int HOME_MAGNITUDE = 250;
-    private const int HOME_MAGNITUDE_CLOSE = 750;
-    private const int DIST_HOME_ACCEL = 2500;
-    private Queue<Enemy> enemies = new Queue<Enemy>();
+    const int HOME_MAGNITUDE = 250;
+    const int HOME_MAGNITUDE_CLOSE = 750;
+    const int DIST_HOME_ACCEL = 2500;
+    Queue<Enemy> enemies = new Queue<Enemy>();
 
 
     public override void _PhysicsProcess(float delta)
@@ -54,7 +54,7 @@ public class Homing : WeaponItem
     }
 
 
-    private void OnDetectionRangeBodyEntered(Godot.Object body) {
+    void OnDetectionRangeBodyEntered(Godot.Object body) {
         if(body is Enemy) {
             Enemy enemy = (Enemy)body;
             if(enemies.Contains(enemy) == false && enemy.HasNode("AI") == true) {
@@ -67,7 +67,7 @@ public class Homing : WeaponItem
     }
 
 
-    private void OnTickTimeout() {
+    void OnTickTimeout() {
         if(enemies.Count == 0) {
             return;
         }

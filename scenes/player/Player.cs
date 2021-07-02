@@ -7,7 +7,7 @@ public class Player : Entity
     public int ThrowStrength {get; set;}
     public Node2D Center {get; set;}
     public Weapon WeaponNode {get; set;}
-    private Level levelNode;
+    Level levelNode;
     public Level LevelNode {
         get {
             return levelNode;
@@ -29,21 +29,21 @@ public class Player : Entity
     public int AvailableUpgrade {get; set;}
     public int SnarkDmgMult {get; set;}
     
-    private Position2D weapPos;
-    private PlayerCam camera;
-    private Sprite head;
-    private Sprite arms;
-    private InGame inGameUI;
-    private AnimationPlayer inGameUIAnim;
-    private Loadout loadout;
-    private StatsDesc statsDesc;
-    private Settings settings;
-    private HotkeyHUD hotkeyHUD;
-    private WarningText uiWarning;
-    private AnimationPlayer throwAnim;
-    private AnimationPlayer damageAnim;
-    private Node2D snarkPointer;
-    private const int EXTRA_SPEED_WITHOUT_WEAPON = 250;
+    Position2D weapPos;
+    PlayerCam camera;
+    Sprite head;
+    Sprite arms;
+    InGame inGameUI;
+    AnimationPlayer inGameUIAnim;
+    Loadout loadout;
+    StatsDesc statsDesc;
+    Settings settings;
+    HotkeyHUD hotkeyHUD;
+    WarningText uiWarning;
+    AnimationPlayer throwAnim;
+    AnimationPlayer damageAnim;
+    Node2D snarkPointer;
+    const int EXTRA_SPEED_WITHOUT_WEAPON = 250;
     
 
     public override void _Ready()
@@ -100,8 +100,8 @@ public class Player : Entity
     }
 
 
-    private Vector2 WEAP_POS_VEC = new Vector2(-18, -10);
-    private Vector2 WEAP_POS_VEC_FLIP = new Vector2(-18, 10); 
+    Vector2 WEAP_POS_VEC = new Vector2(-18, -10);
+    Vector2 WEAP_POS_VEC_FLIP = new Vector2(-18, 10); 
 
 
     public override void _Process(float delta)
@@ -142,7 +142,7 @@ public class Player : Entity
     }
 
 
-    private void FlipLegs(float sprite, float velocity) {
+    void FlipLegs(float sprite, float velocity) {
         if((sprite > 0 && velocity > 0) || (sprite < 0 && velocity <= 0)) {
             anim.Play("run");
         }
@@ -234,7 +234,7 @@ public class Player : Entity
     }
 
 
-    private void PickUpWeapon() {
+    void PickUpWeapon() {
         weapPos.AddChild(WeaponNode);
         float rot = Center.GlobalRotation;
         WeaponNode.GlobalRotation = rot;
@@ -260,7 +260,7 @@ public class Player : Entity
     }
 
 
-    private void TransferCamera() {
+    void TransferCamera() {
         camera.GetParent().RemoveChild(camera);
         LevelNode.AddChild(camera);
         ((Button)camera.GetNode("CanvasLayer/RestartLvlButton")).Visible = true;

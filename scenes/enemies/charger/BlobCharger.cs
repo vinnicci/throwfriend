@@ -18,7 +18,7 @@ public class BlobCharger : BaseCharger
     }
 
 
-    private const int BLOB_SPAWN_FORCE = 1000;
+    const int BLOB_SPAWN_FORCE = 1000;
 
 
     public override void SpawnInstance(String packedSceneKey, int count = 1) {

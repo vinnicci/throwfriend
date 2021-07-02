@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=1]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder2.png" type="Texture" id=2]
@@ -8,18 +8,30 @@
 [ext_resource path="res://scenes/enemies/all rounder/BaseAllRounder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/all rounder/anim/die2.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/BlobnadeAndBlaster.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/BlasterProj.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
 
 [node name="RangedBlobnadier" instance=ExtResource( 6 )]
 speed = 375
+spawnScenes = {
+"hp_drop": ExtResource( 9 )
+}
 acts = {
 "shoot": 2.0,
 "throw_blob": 3.0
 }
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 8 )]
+spawnScenes = {
+"ai": ExtResource( 12 ),
+"blob": ExtResource( 11 ),
+"proj": ExtResource( 10 )
+}
 
 [node name="Head" parent="Sprite" index="2"]
 position = Vector2( 0, -13 )

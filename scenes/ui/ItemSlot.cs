@@ -7,8 +7,8 @@ public class ItemSlot : Control
     public Label DescriptionLabel {get; set;}
     public Loadout LoadoutNode {get; set;}
 
-    private Position2D iconPos;
-    private Label upgradeLabel;
+    Position2D iconPos;
+    Label upgradeLabel;
 
 
     public override void _Ready()
@@ -32,14 +32,14 @@ public class ItemSlot : Control
     }
 
 
-    private void OnTextureButtonPressed() {
+    void OnTextureButtonPressed() {
         if(upgradeLabel.Visible == true) {
             LoadoutNode.ShowItemSelection(GetParent().Name, Name, upgradeLabel);
         }
     }
 
 
-    private void OnTextureButtonMouseEntered() {
+    void OnTextureButtonMouseEntered() {
         if(IsInstanceValid(Item) == false) {
             return;
         }
@@ -47,7 +47,7 @@ public class ItemSlot : Control
     }
 
 
-    private void OnTextureButtonMouseExited() {
+    void OnTextureButtonMouseExited() {
         if(IsInstanceValid(Item) == false) {
             return;
         }
@@ -55,7 +55,7 @@ public class ItemSlot : Control
     }
 
 
-    private void OnTextureButtonHide() {
+    void OnTextureButtonHide() {
         if(IsInstanceValid(Item) == false) {
             return;
         }

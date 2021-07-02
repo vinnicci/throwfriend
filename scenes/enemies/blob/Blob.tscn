@@ -23,8 +23,8 @@ acts = {
 }
 
 [node name="Blob" type="Sprite" parent="Sprite" index="0"]
-position = Vector2( 0, 2 )
-scale = Vector2( 0.9, 1.2 )
+position = Vector2( 0, 4 )
+scale = Vector2( 1.05, 1.05 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="1"]

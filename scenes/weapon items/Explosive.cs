@@ -3,7 +3,7 @@ using System;
 
 public class Explosive : WeaponItem
 {
-    private Explosion explosionNode;
+    Explosion explosionNode;
 
 
     public override void _Ready()
@@ -23,7 +23,7 @@ public class Explosive : WeaponItem
     }
 
 
-    private void Explode(Godot.Object body) {
+    void Explode(Godot.Object body) {
         if(body is Player || WeaponNode.CurrentState != Weapon.States.ACTIVE) {
             return;
         }

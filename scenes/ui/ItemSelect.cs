@@ -7,7 +7,7 @@ public class ItemSelect : Control
     public Label DescriptionNode {get; set;}
     public Loadout LoadoutNode {get; set;}
 
-    private String itemDescription;
+    String itemDescription;
 
 
     public override void _Ready()
@@ -19,22 +19,22 @@ public class ItemSelect : Control
     }
 
 
-    private void OnTextureButtonMouseEntered() {
+    void OnTextureButtonMouseEntered() {
         DescriptionNode.Text = itemDescription;
     }
 
 
-    private void OnTextureButtonMouseExited() {
+    void OnTextureButtonMouseExited() {
         DescriptionNode.Text = "";
     }
 
 
-    private void OnTextureButtonPressed() {
+    void OnTextureButtonPressed() {
         LoadoutNode.SelectItem((Item)itemEx.Instance());
     }
 
 
-    private void OnTextureButtonHide() {
+    void OnTextureButtonHide() {
         DescriptionNode.Text = "";
     }
 

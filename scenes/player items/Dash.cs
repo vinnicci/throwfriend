@@ -3,7 +3,7 @@ using System;
 
 public class Dash : PlayerItem
 {
-    private const int DASH_STRENGTH = 250;
+    const int DASH_STRENGTH = 250;
 
 
     public override void ApplyEffect()

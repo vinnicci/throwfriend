@@ -7,15 +7,15 @@ public abstract class EnemyProj : Area2D, ISpawnable
     [Export] protected int speed = 20;
     [Export] protected int damage = 1;
 
-    private Godot.Collections.Array hitExceptions = new Godot.Collections.Array();
+    Godot.Collections.Array hitExceptions = new Godot.Collections.Array();
     public Vector2 Velocity {get; private set;}
     public int Damage {get; set;}
     public int Range {get; set;}
     public int Speed {get; set;}
 
-    private Sprite sprite;
-    private Explosion explosion;
-    private AnimationPlayer anim;
+    protected Sprite sprite;
+    Explosion explosion;
+    AnimationPlayer anim;
     const int KNOCKBACK = 250;
 
 
@@ -30,7 +30,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
     }
 
 
-    private float currentRange;
+    float currentRange;
 
 
     public override void _PhysicsProcess(float delta)
@@ -71,12 +71,19 @@ public abstract class EnemyProj : Area2D, ISpawnable
     }
 
 
-    private int CalculateRange(Vector2 dest) {
-        return (int)dest.Length() - 50;
+    const int MIN_RANGE = 150; 
+
+
+    int CalculateRange(Vector2 dest) {
+        int projRange = (int)dest.Length() - 50;
+        if(projRange <= MIN_RANGE) {
+            projRange = MIN_RANGE + 50;
+        }
+        return projRange;
     }
 
 
-    private void OnEnemyProjBodyEntered(Godot.Object body) {
+    void OnEnemyProjBodyEntered(Godot.Object body) {
         if(hitExceptions.Contains(body) == true) {
             return;
         }

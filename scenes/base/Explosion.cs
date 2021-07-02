@@ -8,10 +8,10 @@ public abstract class Explosion : Area2D
     public int ExplosionRadius {get; set;}
     public int Damage {get; set;}
     
-    private Polygon2D poly;
-    private CollisionShape2D collision;
-    private RayCast2D ray;
-    private AnimationPlayer anim;
+    Polygon2D poly;
+    CollisionShape2D collision;
+    RayCast2D ray;
+    AnimationPlayer anim;
 
     
     public override void _Ready()
@@ -36,7 +36,7 @@ public abstract class Explosion : Area2D
     }
 
 
-    private const int KNOCKBACK = 250;
+    const int KNOCKBACK = 250;
 
 
     public void Explode() {

@@ -3,10 +3,10 @@ using System;
 
 public class HotkeyHUD : Control
 {
-    private HKHudSlot slot1;
-    private HKHudSlot slot2;
-    private HKHudSlot slot3;
-    private HKHudSlot slot4;
+    HKHudSlot slot1;
+    HKHudSlot slot2;
+    HKHudSlot slot3;
+    HKHudSlot slot4;
 
 
     public override void _Ready()

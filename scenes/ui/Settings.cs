@@ -19,7 +19,7 @@ public class Settings : Control
     }
 
 
-    private void ConnectButtons() {
+    void ConnectButtons() {
         Panel panel = (Panel)GetNode("Panel");
         for(int i = 0; i <= panel.GetChildren().Count-1; i++) {
             Node obj = panel.GetChild(i);
@@ -43,10 +43,10 @@ public class Settings : Control
     }
 
 
-    private Godot.Collections.Dictionary keybinds = new Godot.Collections.Dictionary();
+    Godot.Collections.Dictionary keybinds = new Godot.Collections.Dictionary();
 
 
-    private void InitKeybinds() {
+    void InitKeybinds() {
         String[] controls = {"up", "down", "left", "right", "throw_weap", "in_game_ui"};
         for(int i = 0; i <= controls.Length-1; i++) {
             Godot.Collections.Dictionary dict = new Godot.Collections.Dictionary();
@@ -71,7 +71,7 @@ public class Settings : Control
     }
 
 
-    private void InitKeybind(String key, int keyPress, KeyRebindButton button, Godot.Collections.Dictionary dict) {
+    void InitKeybind(String key, int keyPress, KeyRebindButton button, Godot.Collections.Dictionary dict) {
         dict.Add("default", keyPress);
         dict.Add("button", button);
         button.MainNode = this;
@@ -79,7 +79,7 @@ public class Settings : Control
     }
 
 
-    private void LoadConfig() {
+    void LoadConfig() {
         if(ConfigFile.Load(CONFIG) != Error.Ok) {
             InitIniFile();
         }
@@ -90,7 +90,7 @@ public class Settings : Control
     }
 
 
-    private void InitIniFile() {
+    void InitIniFile() {
         Directory directory = new Directory();
         File iniFile = new File();
         if(directory.DirExists("user://config/") == false) {
@@ -113,7 +113,7 @@ public class Settings : Control
     }
 
 
-    private void ResetToDefault() {
+    void ResetToDefault() {
         foreach(String key in keybinds.Keys) {
             Godot.Collections.Dictionary val = (Godot.Collections.Dictionary)keybinds[key];
             ConfigFile.SetValue("keybinds", key, val["default"]);
@@ -171,7 +171,7 @@ public class Settings : Control
     }
 
 
-    private void OnButtonPressed(String slotName, Button button) {
+    void OnButtonPressed(String slotName, Button button) {
         switch(slotName) {
             case "Up":
             case "Down":

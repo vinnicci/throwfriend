@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class ItemSelection : Panel
 {
-    private Loadout loadoutNode;
+    Loadout loadoutNode;
     public Loadout LoadoutNode {
         get {
             return loadoutNode;
@@ -19,9 +19,9 @@ public class ItemSelection : Panel
         }
     }
 
-    private AnimationPlayer anim;
-    private Label description;
-    private Color RED = new Color(0.6f, 0.3f, 0.3f);
+    AnimationPlayer anim;
+    Label description;
+    Color RED = new Color(0.6f, 0.3f, 0.3f);
 
 
     public override void _Ready()
@@ -56,12 +56,12 @@ public class ItemSelection : Panel
     }
 
 
-    private void OnWeaponItemSelectionHide() {
+    void OnWeaponItemSelectionHide() {
         Visible = false;
     }
 
 
-    private void OnPlayerItemSelectionHide() {
+    void OnPlayerItemSelectionHide() {
         Visible = false;
     }
 

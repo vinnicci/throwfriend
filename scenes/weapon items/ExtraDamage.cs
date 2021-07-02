@@ -3,8 +3,8 @@ using System;
 
 public class ExtraDamage : WeaponItem
 {
-    private const int EXTRA_DMG = 3;
-    private bool done = false;
+    const int EXTRA_DMG = 3;
+    bool done = false;
 
 
     public override void InitEffect()

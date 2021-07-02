@@ -4,10 +4,10 @@ using System;
 
 public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 {
-    [Export] private Texture texture;
-    [Export] private Texture activeTexture;
+    [Export] Texture texture;
+    [Export] Texture activeTexture;
 
-    private Player playerNode;
+    Player playerNode;
     public Player PlayerNode {
         get {
             return playerNode;
@@ -30,8 +30,9 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     }
     public States CurrentState {get; private set;}
     public bool IsClone {get; set;}
+    public AnimationPlayer TeleportAnim {get; set;}
 
-    private Sprite sprite;
+    Sprite sprite;
 
 
     public override void _Notification(int what)
@@ -47,6 +48,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     {
         base._Ready();
         sprite = (Sprite)GetNode("Sprite");
+        TeleportAnim = (AnimationPlayer)GetNode("TeleAnim");
         sprite.Texture = texture;
     }
 
@@ -74,7 +76,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     }
 
 
-    private Vector2 teleportPos;
+    Vector2 teleportPos;
 
 
     public void Teleport(Level level, Vector2 global_pos) {
@@ -93,6 +95,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         tween.Start();
         //teleport
         teleportPos = global_pos;
+        TeleportAnim.Play("teleported");
     }
 
 
@@ -117,7 +120,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     }
 
 
-    private const int WEAP_MIN_LIN_VEL_LEN = 62500;
+    const int WEAP_MIN_LIN_VEL_LEN = 62500;
 
 
     public override void _PhysicsProcess(float delta)
@@ -178,11 +181,11 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 
 
     [Signal] public delegate void PickedUp();
-    private const int KNOCKBACK = 200;
-    private const int BOUNCE_ROTATION = 30;
+    const int KNOCKBACK = 200;
+    const int BOUNCE_ROTATION = 30;
 
 
-    private void OnWeaponBodyEntered(Godot.Object body) {
+    void OnWeaponBodyEntered(Godot.Object body) {
         if(body is Player && CurrentState == States.INACTIVE) {
             if(PlayerNode.WeaponNode == this) {
                 PickUp();
@@ -218,7 +221,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     }
 
 
-    private void PickUpDeferred() {
+    void PickUpDeferred() {
         if(IsInstanceValid(GetParent()) == true) {
             GetParent().RemoveChild(this);
         }

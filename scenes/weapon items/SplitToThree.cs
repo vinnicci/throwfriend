@@ -3,7 +3,7 @@ using System;
 
 public class SplitToThree : WeaponItem
 {
-    private Weapon[] weaps = new Weapon[2];
+    Weapon[] weaps = new Weapon[2];
 
 
     public override void _PhysicsProcess(float delta)
@@ -59,7 +59,7 @@ public class SplitToThree : WeaponItem
     }
 
 
-    private void ApplyEffectsToClones(int num) {
+    void ApplyEffectsToClones(int num) {
         WeaponItem weap0Item = (WeaponItem)weaps[0].Get("Item" + num);
         WeaponItem weap1Item = (WeaponItem)weaps[1].Get("Item" + num);
         if((IsInstanceValid(weap0Item) && IsInstanceValid(weap1Item)) == true) {
@@ -69,7 +69,7 @@ public class SplitToThree : WeaponItem
     }
 
 
-    private void Split() {
+    void Split() {
         int strength = PlayerNode.ThrowStrength;
         weaps[0].Throw(strength, WeaponNode.GlobalPosition, Vector2.Zero,
         Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees + (float)GD.RandRange(0,30)));

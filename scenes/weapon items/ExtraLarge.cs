@@ -3,8 +3,8 @@ using System;
 
 public class ExtraLarge : WeaponItem
 {
-    private Weapon largeWeap;
-    private Weapon tempWeap;
+    Weapon largeWeap;
+    Weapon tempWeap;
 
 
     public override void _Ready()

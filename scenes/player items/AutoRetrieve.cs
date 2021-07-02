@@ -3,8 +3,8 @@ using System;
 
 public class AutoRetrieve : PlayerItem
 {
-    private bool weapIsReturning = false;
-    private const int RETRIEVE_SPEED = 125;
+    bool weapIsReturning = false;
+    const int RETRIEVE_SPEED = 125;
     
 
     public override void _Ready()
@@ -15,7 +15,7 @@ public class AutoRetrieve : PlayerItem
     }
 
 
-    private const int STOP_RETURN_DIST = 10000;
+    const int STOP_RETURN_DIST = 10000;
 
 
     public override void InitEffect()

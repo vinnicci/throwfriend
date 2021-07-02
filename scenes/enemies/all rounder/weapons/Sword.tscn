@@ -7,7 +7,7 @@
 [ext_resource path="res://scenes/enemies/all rounder/weapons/anim/idle.tres" type="Animation" id=5]
 [ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/enemies/shooter/weapons/ShooterProj.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/BlasterProj.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 12.0
