@@ -1,6 +1,6 @@
 using Godot;
 using System;
 
-public class Blobqueen : RigidBody2D
+public class Blobqueen : Enemy
 {
 }

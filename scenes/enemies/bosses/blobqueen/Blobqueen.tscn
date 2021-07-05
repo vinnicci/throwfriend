@@ -10,71 +10,120 @@
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierJiggle2D.cs" type="Script" id=8]
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierCCDIK2D.cs" type="Script" id=9]
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierLookAt2D.cs" type="Script" id=10]
+[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
-resource_name = "test"
-length = 2.0
+resource_name = "test_idle"
+length = 4.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/Breast2TargetBase/Breast2Target:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -36, 0 ), Vector2( 36, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/Breast1TargetBase/Breast1Target:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -36, 0 ), Vector2( 36, 0 ) ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "testb"
-length = 2.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/BodyTarget:position")
+tracks/0/path = NodePath("Sprite/HeadTarget:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -82, -202 ), Vector2( 122, -206 ) ]
+"values": [ Vector2( -32, -257 ), Vector2( 13, -250 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/BodyTarget:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 23, -209 ), Vector2( -29, -219 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Arm1Target:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -38, -32 ), Vector2( -57, -43 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/FArm1Target:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -71, 25 ), Vector2( -85, 22 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/Hand1Target:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -70, 65 ), Vector2( -99, 48 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite/Arm2Target:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 39, -39 ), Vector2( 52, -42 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite/FArm2Target:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 80, 7 ), Vector2( 108, 14 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sprite/Hand2Target:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 103, 72 ), Vector2( 127, 75 ) ]
 }
 
 [node name="Blobqueen" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+spawnScenes = {
+"hp_drop": ExtResource( 11 )
+}
+acts = {
+}
 
 [node name="Hair" parent="Sprite" index="0" instance=ExtResource( 5 )]
-position = Vector2( -152, -197 )
-offset = Vector2( 0, 0.5 )
-skeleton = NodePath("../Skeleton2D")
-bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body"), PoolRealArray( 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), NodePath("Root/Body/Body2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Body3"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Body3/Head"), PoolRealArray( 1, 1, 1, 1, 1, 0.6, 0.6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.6, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Body3/Head/Head2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm11/Arm12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm11/Arm12/Arm13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm11/Arm12/Arm13/Arm14"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm21/Arm22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm21/Arm22/Arm23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm21/Arm22/Arm23/Arm24"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Breast11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Breast11/Breast12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Breast11/Breast12/Breast13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Breast21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Breast21/Breast22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Breast21/Breast22/Breast23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Turn"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
 
 [node name="Body" parent="Sprite" index="1" instance=ExtResource( 3 )]
-position = Vector2( -85, -179 )
-offset = Vector2( 0, 0.5 )
-skeleton = NodePath("../Skeleton2D")
-polygon = PoolVector2Array( 80.1852, -2.40741, 114.862, 3.54331, 127.024, 23.4136, 130.197, 57.0022, 118.809, 78.0239, 118.5, 83.8881, 123.047, 88.4833, 148.333, 127.593, 151.552, 134.143, 155.331, 141.026, 162.069, 169.115, 163.023, 174.359, 165.517, 179.01, 172.264, 198.351, 157.085, 226.181, 147.368, 219.568, 146.027, 182.909, 146.424, 178.138, 145.727, 173.463, 132.963, 147.222, 130.499, 141.026, 126.316, 134.008, 115.798, 120.449, 113.985, 115.449, 113.298, 122.887, 117.865, 140.909, 120.627, 151.044, 121.802, 160.574, 122.193, 171.54, 122.516, 180.655, 45.8225, 180.157, 46.4752, 172.063, 47.6501, 161.227, 48.8251, 151.697, 51.5666, 141.775, 55.8931, 123.694, 56.0478, 115.699, 52.7339, 122.236, 42.779, 135.449, 39.2959, 141.217, 35.8862, 147.702, 23.523, 172.976, 21.4442, 178.993, 22.2101, 184.026, 22.037, 222.407, 11.488, 225.383, -2.51641, 196.061, 3.50109, 180.416, 5.57987, 175.164, 6.78337, 169.365, 16.1926, 138.731, 18.9815, 132.654, 21.9912, 125.93, 44.0198, 92.8703, 49.0158, 86.3189, 47.3425, 78.4449, 29.5405, 50, 47.7362, 17.126, 63.1184, 23.6882, 81.2594, 25.3373, 100.15, 23.6882, 116.042, 21.8891, 48.5757, 41.5292, 66.1169, 44.078, 82.3088, 43.6282, 100, 42.4288, 118.741, 41.2294, 41.979, 56.9715, 58.6207, 71.3643, 82.6087, 64.9175, 107.196, 66.4168, 121.589, 57.8711, 68.3658, 79.91, 83.5082, 85.3073, 100.3, 77.961, 49.4983, 106.324, 56.017, 105.977, 61.8235, 107.725, 109.359, 102.86, 116.164, 102.305, 120.054, 106.774, 137.631, 131.034, 141.679, 137.181, 144.678, 144.228, 154.423, 170.315, 155.622, 175.712, 155.772, 180.96, 12.1439, 181.709, 13.3433, 176.462, 15.8921, 171.064, 64.6779, 113.91, 105.496, 112.292, 67.7463, 126.856, 84.8853, 126.856, 105.117, 126.215, 84.6154, 142.51, 84.6154, 159.649, 84.8853, 173.684, 32.3657, 130.652, 28.9182, 136.906, 26.4661, 143.456, 84.3977, 110.89, 112.691, 85.7768 )
-uv = PoolVector2Array( 80.1852, -2.40741, 114.862, 3.54331, 127.024, 23.4136, 130.197, 57.0022, 118.809, 78.0239, 118.5, 83.8881, 123.047, 88.4833, 148.333, 127.593, 151.552, 134.143, 155.331, 141.026, 162.069, 169.115, 163.023, 174.359, 165.517, 179.01, 172.264, 198.351, 157.085, 226.181, 147.368, 219.568, 146.027, 182.909, 146.424, 178.138, 145.727, 173.463, 132.963, 147.222, 130.499, 141.026, 126.316, 134.008, 115.798, 120.449, 113.985, 115.449, 113.298, 122.887, 117.865, 140.909, 120.627, 151.044, 121.802, 160.574, 122.193, 171.54, 122.516, 180.655, 45.8225, 180.157, 46.4752, 172.063, 47.6501, 161.227, 48.8251, 151.697, 51.5666, 141.775, 55.8931, 123.694, 56.0478, 115.699, 52.7339, 122.236, 42.779, 135.449, 39.2959, 141.217, 35.8862, 147.702, 23.523, 172.976, 21.4442, 178.993, 22.2101, 184.026, 22.037, 222.407, 11.488, 225.383, -2.51641, 196.061, 3.50109, 180.416, 5.57987, 175.164, 6.78337, 169.365, 16.1926, 138.731, 18.9815, 132.654, 21.9912, 125.93, 44.0198, 92.8703, 49.0158, 86.3189, 47.3425, 78.4449, 29.5405, 50, 47.7362, 17.126, 63.1184, 23.6882, 81.2594, 25.3373, 100.15, 23.6882, 116.042, 21.8891, 48.5757, 41.5292, 66.1169, 44.078, 82.3088, 43.6282, 100, 42.4288, 118.741, 41.2294, 41.979, 56.9715, 58.6207, 71.3643, 82.6087, 64.9175, 107.196, 66.4168, 121.589, 57.8711, 68.3658, 79.91, 83.5082, 85.3073, 100.3, 77.961, 49.4983, 106.324, 56.017, 105.977, 61.8235, 107.725, 109.359, 102.86, 116.164, 102.305, 120.054, 106.774, 137.631, 131.034, 141.679, 137.181, 144.678, 144.228, 154.423, 170.315, 155.622, 175.712, 155.772, 180.96, 12.1439, 181.709, 13.3433, 176.462, 15.8921, 171.064, 64.6779, 113.91, 105.496, 112.292, 67.7463, 126.856, 84.8853, 126.856, 105.117, 126.215, 84.6154, 142.51, 84.6154, 159.649, 84.8853, 173.684, 32.3657, 130.652, 28.9182, 136.906, 26.4661, 143.456, 84.3977, 110.89, 112.691, 85.7768 )
-polygons = [ PoolIntArray( 7, 8, 9 ), PoolIntArray( 14, 13, 15 ), PoolIntArray( 15, 13, 16 ), PoolIntArray( 44, 43, 46 ), PoolIntArray( 45, 44, 46 ), PoolIntArray( 38, 37, 52 ), PoolIntArray( 0, 57, 58 ), PoolIntArray( 0, 58, 59 ), PoolIntArray( 1, 0, 60 ), PoolIntArray( 0, 59, 60 ), PoolIntArray( 2, 1, 61 ), PoolIntArray( 1, 60, 61 ), PoolIntArray( 57, 56, 62 ), PoolIntArray( 58, 57, 62 ), PoolIntArray( 59, 58, 63 ), PoolIntArray( 58, 62, 63 ), PoolIntArray( 59, 63, 64 ), PoolIntArray( 60, 59, 65 ), PoolIntArray( 59, 64, 65 ), PoolIntArray( 3, 2, 66 ), PoolIntArray( 2, 61, 66 ), PoolIntArray( 61, 60, 66 ), PoolIntArray( 60, 65, 66 ), PoolIntArray( 56, 55, 67 ), PoolIntArray( 62, 56, 67 ), PoolIntArray( 55, 54, 68 ), PoolIntArray( 67, 55, 68 ), PoolIntArray( 65, 64, 69 ), PoolIntArray( 64, 63, 69 ), PoolIntArray( 63, 68, 69 ), PoolIntArray( 65, 69, 70 ), PoolIntArray( 4, 3, 71 ), PoolIntArray( 70, 4, 71 ), PoolIntArray( 3, 66, 71 ), PoolIntArray( 68, 54, 72 ), PoolIntArray( 69, 68, 72 ), PoolIntArray( 69, 72, 73 ), PoolIntArray( 4, 70, 74 ), PoolIntArray( 70, 69, 74 ), PoolIntArray( 69, 73, 74 ), PoolIntArray( 37, 36, 75 ), PoolIntArray( 52, 37, 75 ), PoolIntArray( 53, 52, 75 ), PoolIntArray( 54, 53, 76 ), PoolIntArray( 53, 75, 76 ), PoolIntArray( 75, 36, 76 ), PoolIntArray( 76, 36, 77 ), PoolIntArray( 72, 54, 77 ), PoolIntArray( 54, 76, 77 ), PoolIntArray( 6, 5, 79 ), PoolIntArray( 5, 78, 79 ), PoolIntArray( 78, 23, 79 ), PoolIntArray( 7, 6, 80 ), PoolIntArray( 6, 79, 80 ), PoolIntArray( 23, 22, 80 ), PoolIntArray( 79, 23, 80 ), PoolIntArray( 21, 20, 81 ), PoolIntArray( 22, 21, 81 ), PoolIntArray( 7, 80, 81 ), PoolIntArray( 80, 22, 81 ), PoolIntArray( 8, 7, 82 ), PoolIntArray( 7, 81, 82 ), PoolIntArray( 20, 19, 82 ), PoolIntArray( 81, 20, 82 ), PoolIntArray( 19, 18, 83 ), PoolIntArray( 9, 8, 83 ), PoolIntArray( 8, 82, 83 ), PoolIntArray( 82, 19, 83 ), PoolIntArray( 10, 9, 84 ), PoolIntArray( 9, 83, 84 ), PoolIntArray( 83, 18, 84 ), PoolIntArray( 11, 10, 85 ), PoolIntArray( 10, 84, 85 ), PoolIntArray( 18, 17, 85 ), PoolIntArray( 84, 18, 85 ), PoolIntArray( 13, 12, 86 ), PoolIntArray( 16, 13, 86 ), PoolIntArray( 12, 11, 86 ), PoolIntArray( 11, 85, 86 ), PoolIntArray( 17, 16, 86 ), PoolIntArray( 85, 17, 86 ), PoolIntArray( 43, 42, 87 ), PoolIntArray( 46, 43, 87 ), PoolIntArray( 47, 46, 87 ), PoolIntArray( 48, 47, 87 ), PoolIntArray( 87, 42, 88 ), PoolIntArray( 49, 48, 88 ), PoolIntArray( 48, 87, 88 ), PoolIntArray( 41, 40, 89 ), PoolIntArray( 50, 49, 89 ), PoolIntArray( 42, 41, 89 ), PoolIntArray( 88, 42, 89 ), PoolIntArray( 49, 88, 89 ), PoolIntArray( 77, 36, 90 ), PoolIntArray( 73, 72, 90 ), PoolIntArray( 72, 77, 90 ), PoolIntArray( 74, 73, 91 ), PoolIntArray( 78, 74, 91 ), PoolIntArray( 23, 78, 91 ), PoolIntArray( 35, 34, 92 ), PoolIntArray( 36, 35, 92 ), PoolIntArray( 90, 36, 92 ), PoolIntArray( 90, 92, 93 ), PoolIntArray( 25, 24, 94 ), PoolIntArray( 24, 23, 94 ), PoolIntArray( 23, 91, 94 ), PoolIntArray( 91, 93, 94 ), PoolIntArray( 92, 34, 95 ), PoolIntArray( 93, 92, 95 ), PoolIntArray( 25, 94, 95 ), PoolIntArray( 94, 93, 95 ), PoolIntArray( 27, 26, 96 ), PoolIntArray( 33, 32, 96 ), PoolIntArray( 26, 25, 96 ), PoolIntArray( 25, 95, 96 ), PoolIntArray( 34, 33, 96 ), PoolIntArray( 95, 34, 96 ), PoolIntArray( 28, 27, 97 ), PoolIntArray( 27, 96, 97 ), PoolIntArray( 29, 28, 97 ), PoolIntArray( 31, 30, 97 ), PoolIntArray( 32, 31, 97 ), PoolIntArray( 96, 32, 97 ), PoolIntArray( 30, 97, 29 ), PoolIntArray( 65, 70, 66 ), PoolIntArray( 70, 71, 66 ), PoolIntArray( 62, 68, 67 ), PoolIntArray( 62, 63, 68 ), PoolIntArray( 50, 89, 100 ), PoolIntArray( 100, 40, 89 ), PoolIntArray( 50, 99, 100 ), PoolIntArray( 100, 99, 40 ), PoolIntArray( 99, 40, 39 ), PoolIntArray( 99, 39, 38 ), PoolIntArray( 99, 98, 38 ), PoolIntArray( 52, 98, 99 ), PoolIntArray( 99, 51, 52 ), PoolIntArray( 99, 50, 51 ), PoolIntArray( 90, 93, 101 ), PoolIntArray( 90, 73, 101 ), PoolIntArray( 73, 101, 91 ), PoolIntArray( 101, 93, 91 ), PoolIntArray( 78, 102, 5 ), PoolIntArray( 102, 4, 5 ), PoolIntArray( 102, 74, 4 ), PoolIntArray( 102, 78, 74 ) ]
-bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0 ), NodePath("Root/Body/Body2/Body3"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ), NodePath("Root/Body/Body2/Body3/Breast11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Body3/Breast11/Breast12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Body3/Breast11/Breast12/Breast13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Body3/Breast21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Body3/Breast21/Breast22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Body3/Breast21/Breast22/Breast23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Body3/Head"), PoolRealArray( 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ), NodePath("Root/Body/Body2/Body3/Head/Head2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm11/Arm12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.52, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0.52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0 ), NodePath("Root/Body/Body2/Arm11/Arm12/Arm13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.52, 1, 1, 1, 1, 1, 0.52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm11/Arm12/Arm13/Arm14"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm21"), PoolRealArray( 0, 0, 0, 0, 0, 1, 1, 1, 0.55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.55, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm21/Arm22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0.55, 0, 0, 0, 0, 0, 0.55, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm21/Arm22/Arm23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.55, 1, 1, 1, 1, 1, 0.55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Body/Body2/Arm21/Arm22/Arm23/Arm24"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Turn"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
-internal_vertex_count = 28
 
 [node name="Breast1" parent="Sprite" index="2" instance=ExtResource( 7 )]
 position = Vector2( -37, -70 )
@@ -111,7 +160,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Body" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="0"]
 position = Vector2( 0, -6 )
-rotation = -0.00149524
+rotation = 0.064799
+scale = Vector2( 1, 1 )
 rest = Transform2D( 0.999993, -0.0038483, 0.0038483, 0.999993, 0, -6 )
 script = ExtResource( 6 )
 settings/auto_get_skeleton = true
@@ -126,8 +176,8 @@ gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
 gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Body2" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body" index="0"]
-position = Vector2( -9.31323e-10, -24 )
-rotation = 0.00568032
+position = Vector2( -5.96046e-08, -24 )
+rotation = -0.0189274
 scale = Vector2( 1, 1 )
 rest = Transform2D( 0.999999, -0.00124419, 0.00124419, 0.999999, 3.72529e-09, -24 )
 script = ExtResource( 6 )
@@ -143,9 +193,8 @@ gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
 gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Body3" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2" index="0"]
-position = Vector2( 5.96046e-08, -44 )
-rotation = 0.00953054
-scale = Vector2( 1, 1 )
+position = Vector2( 3.57628e-07, -44 )
+rotation = -0.00222983
 rest = Transform2D( 1, -8.70414e-06, 8.70414e-06, 1, 2.98023e-08, -44 )
 script = ExtResource( 6 )
 settings/auto_get_skeleton = true
@@ -161,7 +210,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Head" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2/Body3" index="0"]
 position = Vector2( 0, -21 )
-rotation = -0.0381168
+rotation = -0.208237
 scale = Vector2( 1, 1 )
 rest = Transform2D( 0.999954, -0.0095397, 0.0095397, 0.999954, 0, -21 )
 script = ExtResource( 6 )
@@ -193,8 +242,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm11" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2" index="1"]
 position = Vector2( -29, -53 )
-rotation = -0.0126547
-scale = Vector2( 1, 1 )
+rotation = -0.285846
 rest = Transform2D( 0.999959, -0.00907408, 0.00907408, 0.999959, -29, -53 )
 script = ExtResource( 6 )
 settings/auto_get_skeleton = true
@@ -210,7 +258,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm12" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2/Arm11" index="0"]
 position = Vector2( -28, 42 )
-rotation = -0.000373125
+rotation = 0.39934
 scale = Vector2( 1, 1 )
 rest = Transform2D( 0.999998, 0.00230312, -0.00230312, 0.999998, -28, 42 )
 script = ExtResource( 6 )
@@ -227,8 +275,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm13" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2/Arm11/Arm12" index="0"]
 position = Vector2( -14, 41 )
-rotation = 0.00739122
-scale = Vector2( 1, 1 )
+rotation = 0.0883305
 rest = Transform2D( 0.999971, 0.00755959, -0.00755959, 0.999971, -14, 41 )
 script = ExtResource( 6 )
 settings/auto_get_skeleton = true
@@ -259,7 +306,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm21" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2" index="2"]
 position = Vector2( 32, -53 )
-rotation = 0.00329184
+rotation = 0.331182
 rest = Transform2D( 0.99998, 0.00630851, -0.00630851, 0.99998, 32, -53 )
 script = ExtResource( 6 )
 settings/auto_get_skeleton = true
@@ -275,7 +322,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm22" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2/Arm21" index="0"]
 position = Vector2( 24, 41 )
-rotation = 0.0157855
+rotation = -0.828341
+scale = Vector2( 1, 1 )
 rest = Transform2D( 0.999812, 0.0194169, -0.0194169, 0.999812, 24, 41 )
 script = ExtResource( 6 )
 settings/auto_get_skeleton = true
@@ -291,8 +339,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm23" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2/Arm21/Arm22" index="0"]
 position = Vector2( 15, 42 )
-rotation = -0.00931703
-scale = Vector2( 1, 1 )
+rotation = 0.0283107
 rest = Transform2D( 0.999954, -0.0095646, 0.0095646, 0.999954, 15, 42 )
 script = ExtResource( 6 )
 settings/auto_get_skeleton = true
@@ -323,7 +370,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Breast11" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2" index="3"]
 position = Vector2( -15.9999, -31.9999 )
-rotation = -0.00272632
+rotation = -0.00881243
 scale = Vector2( 1, 1 )
 rest = Transform2D( 0.999998, 0.00168514, -0.00168514, 0.999998, -15.9999, -31.9999 )
 script = ExtResource( 6 )
@@ -340,7 +387,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Breast12" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2/Breast11" index="0"]
 position = Vector2( 0, 16 )
-rotation = -4.33922e-05
+rotation = 0.00155139
 rest = Transform2D( 1, 2.02656e-06, -2.02656e-06, 1, 0, 16 )
 script = ExtResource( 6 )
 settings/auto_get_skeleton = true
@@ -356,7 +403,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Breast13" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2/Breast11/Breast12" index="0"]
 position = Vector2( 0, 15 )
-rotation = 1.57074
+rotation = 1.57216
 rest = Transform2D( -1.47422e-06, 1, -1, -1.47422e-06, 0, 15 )
 script = ExtResource( 6 )
 settings/auto_get_skeleton = true
@@ -372,7 +419,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Breast21" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2" index="4"]
 position = Vector2( 17.0001, -32.0001 )
-rotation = 0.0106113
+rotation = 0.00492537
 scale = Vector2( 0.999999, 0.999999 )
 rest = Transform2D( 0.999887, 0.0150042, -0.0150042, 0.999887, 17.0001, -32.0001 )
 script = ExtResource( 6 )
@@ -389,7 +436,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Breast22" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2/Breast21" index="0"]
 position = Vector2( 0, 16 )
-rotation = -4.39882e-05
+rotation = 0.00157833
 rest = Transform2D( 1, 3.09944e-06, -3.09944e-06, 1, 0, 16 )
 script = ExtResource( 6 )
 settings/auto_get_skeleton = true
@@ -405,7 +452,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Breast23" type="Bone2D" parent="Sprite/Skeleton2D/Root/Body/Body2/Breast21/Breast22" index="0"]
 position = Vector2( 0, 15 )
-rotation = 1.57075
+rotation = 1.57221
 rest = Transform2D( -4.01339e-07, 1, -1, -4.01339e-07, 0, 15 )
 script = ExtResource( 6 )
 settings/auto_get_skeleton = true
@@ -451,28 +498,28 @@ __meta__ = {
 [node name="Breast2Target" type="Position2D" parent="Sprite/Breast2TargetBase" index="0"]
 
 [node name="Arm1Target" type="Position2D" parent="Sprite" index="7"]
-position = Vector2( -55, -40 )
+position = Vector2( -42.902, -34.838 )
 
 [node name="FArm1Target" type="Position2D" parent="Sprite" index="8"]
-position = Vector2( -71, 25 )
+position = Vector2( -74.612, 24.226 )
 
 [node name="Hand1Target" type="Position2D" parent="Sprite" index="9"]
-position = Vector2( -70, 65 )
+position = Vector2( -77.482, 60.614 )
 
 [node name="Arm2Target" type="Position2D" parent="Sprite" index="10"]
-position = Vector2( 49, -43 )
+position = Vector2( 42.354, -39.774 )
 
 [node name="FArm2Target" type="Position2D" parent="Sprite" index="11"]
-position = Vector2( 80, 7 )
+position = Vector2( 87.224, 8.806 )
 
 [node name="Hand2Target" type="Position2D" parent="Sprite" index="12"]
-position = Vector2( 69, 65 )
+position = Vector2( 109.192, 72.774 )
 
 [node name="BodyTarget" type="Position2D" parent="Sprite" index="13"]
-position = Vector2( -2, -214 )
+position = Vector2( 9.584, -211.58 )
 
 [node name="HeadTarget" type="Position2D" parent="Sprite" index="14"]
-position = Vector2( -18, -295 )
+position = Vector2( -20.39, -255.194 )
 
 [node name="Twisted_ModifierStack2D" type="Node2D" parent="Sprite" index="15"]
 visible = false
@@ -481,7 +528,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 stack/skeleton = NodePath("../Skeleton2D")
-stack/execution_enabled = false
+stack/execution_enabled = true
 
 [node name="Body" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="0"]
 script = ExtResource( 9 )
@@ -687,5 +734,5 @@ CCDIK/joint/0/constraint_angle_enabled = false
 visible = false
 
 [node name="Anim" type="AnimationPlayer" parent="." index="5"]
-anims/test = SubResource( 1 )
-anims/testb = SubResource( 2 )
+autoplay = "test_idle"
+anims/test_idle = SubResource( 1 )

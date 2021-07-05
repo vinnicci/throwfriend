@@ -4,7 +4,4 @@ using System;
 public class Ranger : Enemy
 {
 
-
-
-
 }

@@ -1,24 +1,15 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/base/Level.cs" type="Script" id=1]
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/enemies/all rounder/DualRanged.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/enemies/charger/TeleportingCharger.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/obtainables/AbilityItem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/enemies/all rounder/Melee.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/enemies/all rounder/BlobnadierShielded.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/enemies/all rounder/RangedShielded.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/enemies/shooter/LongRangeCannoneer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/enemies/spawner/BlobChargerSpawner.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/obtainables/SnarkDmgUpgrade.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/obtainables/HealthUpgrade.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/enemies/all rounder/MeleeRanged.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/enemies/charger/BlobCharger.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/enemies/shooter/ScatterShooter.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/enemies/shooter/LongRangeShooter.tscn" type="PackedScene" id=18]
-[ext_resource path="res://scenes/enemies/shooter/Shooter.tscn" type="PackedScene" id=19]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -41,8 +32,18 @@ tile_data = PoolIntArray( 262134, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0
 
 [node name="Enemies" type="YSort" parent="."]
 
+[node name="BlobChargerSpawner" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 185, 656 )
+spawnScenes = {
+"blob_charger": ExtResource( 16 ),
+"hp_drop": ExtResource( 7 )
+}
+acts = {
+"spawn_blob_charger": 8.0
+}
+
 [node name="MeleeRanged" parent="Enemies" instance=ExtResource( 15 )]
-position = Vector2( 340, 530 )
+position = Vector2( 288, 759 )
 spawnScenes = {
 "hp_drop": ExtResource( 7 )
 }
@@ -52,7 +53,7 @@ acts = {
 }
 
 [node name="MeleeRanged2" parent="Enemies" instance=ExtResource( 15 )]
-position = Vector2( 330, 694 )
+position = Vector2( 271, 443 )
 spawnScenes = {
 "hp_drop": ExtResource( 7 )
 }
@@ -61,105 +62,14 @@ acts = {
 "shoot_back": 2.0
 }
 
-[node name="DualRanged" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 600, 508 )
+[node name="MeleeRanged3" parent="Enemies" instance=ExtResource( 15 )]
+position = Vector2( 337, 584 )
 spawnScenes = {
 "hp_drop": ExtResource( 7 )
 }
 acts = {
-"shoot": 2.0,
+"melee_attack": 1.0,
 "shoot_back": 2.0
-}
-
-[node name="TeleportingCharger" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 697, 564 )
-spawnScenes = {
-"hp_drop": ExtResource( 7 )
-}
-acts = {
-"charge": 1.0
-}
-
-[node name="BlobnadierShielded" parent="Enemies" instance=ExtResource( 9 )]
-position = Vector2( 372, 1293 )
-spawnScenes = {
-"hp_drop": ExtResource( 7 )
-}
-acts = {
-"throw_blob": 3.0
-}
-
-[node name="RangedShielded" parent="Enemies" instance=ExtResource( 10 )]
-position = Vector2( 291, 1352 )
-spawnScenes = {
-"hp_drop": ExtResource( 7 )
-}
-acts = {
-"shoot_back": 2.0
-}
-
-[node name="LongRangeCannoneer" parent="Enemies" instance=ExtResource( 11 )]
-position = Vector2( -666, 1027 )
-spawnScenes = {
-"hp_drop": ExtResource( 7 )
-}
-acts = {
-"shoot": 1.0
-}
-
-[node name="Melee2" parent="Enemies" instance=ExtResource( 8 )]
-position = Vector2( -588, 1079 )
-spawnScenes = {
-"hp_drop": ExtResource( 7 )
-}
-acts = {
-"melee_attack": 1.0
-}
-
-[node name="Melee3" parent="Enemies" instance=ExtResource( 8 )]
-position = Vector2( -611, 929 )
-spawnScenes = {
-"hp_drop": ExtResource( 7 )
-}
-acts = {
-"melee_attack": 1.0
-}
-
-[node name="BlobChargerSpawner" parent="Enemies" instance=ExtResource( 12 )]
-position = Vector2( 182, 638 )
-spawnScenes = {
-"blob_charger": ExtResource( 16 ),
-"hp_drop": ExtResource( 7 )
-}
-acts = {
-"spawn_blob_charger": 8.0
-}
-
-[node name="ScatterShooter" parent="Enemies" instance=ExtResource( 17 )]
-position = Vector2( 421, 640 )
-spawnScenes = {
-"hp_drop": ExtResource( 7 )
-}
-acts = {
-"shoot": 1.0
-}
-
-[node name="LongRangeShooter" parent="Enemies" instance=ExtResource( 18 )]
-position = Vector2( -437, 1315 )
-spawnScenes = {
-"hp_drop": ExtResource( 7 )
-}
-acts = {
-"shoot": 1.0
-}
-
-[node name="Shooter" parent="Enemies" instance=ExtResource( 19 )]
-position = Vector2( 252, 1298 )
-spawnScenes = {
-"hp_drop": ExtResource( 7 )
-}
-acts = {
-"shoot": 0.2
 }
 
 [node name="PatrolPoints" type="Node2D" parent="."]
@@ -174,7 +84,7 @@ position = Vector2( 635, 1308 )
 position = Vector2( -599, 1309 )
 
 [node name="HealthPickup" parent="." instance=ExtResource( 7 )]
-position = Vector2( 633, 950 )
+position = Vector2( -385, 472 )
 
 [node name="HealthPickup2" parent="." instance=ExtResource( 7 )]
 position = Vector2( -50, 1332 )
@@ -186,14 +96,11 @@ position = Vector2( -603, 459 )
 position = Vector2( -195, 606 )
 physics_material_override = SubResource( 1 )
 
-[node name="AbilityItem" parent="." instance=ExtResource( 6 )]
-position = Vector2( -291, 466 )
-
 [node name="AbilityItem2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -284, 322 )
+position = Vector2( -383, 339 )
 
 [node name="SnarkDmgUpgrade" parent="." instance=ExtResource( 13 )]
 position = Vector2( -386, 403 )
 
 [node name="HealthUpgrade" parent="." instance=ExtResource( 14 )]
-position = Vector2( -214, 397 )
+position = Vector2( -384, 274 )

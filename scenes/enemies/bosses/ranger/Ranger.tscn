@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enemies/bosses/ranger/PolyTorso.tscn" type="PackedScene" id=2]
@@ -16,22 +16,131 @@
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierCCDIK2D.cs" type="Script" id=14]
 [ext_resource path="res://scenes/enemies/bosses/ranger/Ranger.cs" type="Script" id=15]
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierLookAt2D.cs" type="Script" id=16]
+[ext_resource path="res://toolscripts/AnimTool.cs" type="Script" id=17]
 
 [sub_resource type="Animation" id=1]
-resource_name = "te"
-length = 2.0
+resource_name = "test_anim"
+length = 4.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/Leg1Target:position")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Sprite/HeadTarget:position")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -67, -20 ), Vector2( -13, -24 ) ]
+"values": [ Vector2( 70, -105 ), Vector2( 71, -118 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Arm1Target:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -24, -74 ), Vector2( -24, -74 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/FArm1Target:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -34, -17 ), Vector2( -72, -44 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Arm2Target:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 29, -99 ), Vector2( 30, -89 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/FArm2Target:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 13, -85 ), Vector2( 13, -79 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite/Leg1Target:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -22, 21 ), Vector2( -22, 21 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite/Foot1Target:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 14, 25 ), Vector2( 14, 25 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sprite/Leg2Target:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 13, 35 ), Vector2( 13, 35 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Sprite/Foot2Target:position")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 47, 17 ), Vector2( 47, 17 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Sprite/BodyTarget:position")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -48, -202 ), Vector2( 13, -185 ) ]
 }
 
 [node name="Ranger" instance=ExtResource( 1 )]
@@ -115,6 +224,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Hip" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="0"]
 position = Vector2( 0, -17 )
+rotation = -0.224883
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, 0, -17 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -130,6 +241,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Torso" type="Bone2D" parent="Sprite/Skeleton2D/Root/Hip" index="0"]
 position = Vector2( -2, -18 )
+rotation = -0.0240486
 rest = Transform2D( 1, 0, 0, 1, -2, -18 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -145,6 +257,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Head" type="Bone2D" parent="Sprite/Skeleton2D/Root/Hip/Torso" index="0"]
 position = Vector2( -3, -19 )
+rotation = 0.34114
 rest = Transform2D( 1, 0, 0, 1, -3, -19 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -175,6 +288,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm11" type="Bone2D" parent="Sprite/Skeleton2D/Root/Hip/Torso" index="1"]
 position = Vector2( -17, -12 )
+rotation = -0.518464
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, -17, -12 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -190,6 +305,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm12" type="Bone2D" parent="Sprite/Skeleton2D/Root/Hip/Torso/Arm11" index="0"]
 position = Vector2( -15, 14 )
+rotation = 0.155916
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, -15, 14 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -220,6 +337,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm21" type="Bone2D" parent="Sprite/Skeleton2D/Root/Hip/Torso" index="2"]
 position = Vector2( 5, -10 )
+rotation = -0.208117
 rest = Transform2D( 1, 0, 0, 1, 5, -10 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -235,6 +353,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm22" type="Bone2D" parent="Sprite/Skeleton2D/Root/Hip/Torso/Arm21" index="0"]
 position = Vector2( 16, 15 )
+rotation = 1.71552
 rest = Transform2D( 1, 0, 0, 1, 16, 15 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -295,6 +414,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Leg11" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="1"]
 position = Vector2( -12, -13 )
+rotation = -0.00477922
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, -12, -13 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -310,6 +431,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Leg12" type="Bone2D" parent="Sprite/Skeleton2D/Root/Leg11" index="0"]
 position = Vector2( -5, 36 )
+rotation = -0.0418476
 rest = Transform2D( 1, 0, 0, 1, -5, 36 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -325,6 +447,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Leg13" type="Bone2D" parent="Sprite/Skeleton2D/Root/Leg11/Leg12" index="0"]
 position = Vector2( -6, 33 )
+rotation = 0.0650477
 rest = Transform2D( 1, 0, 0, 1, -6, 33 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -355,6 +478,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Leg21" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="2"]
 position = Vector2( 6, -14 )
+rotation = -0.0897006
 rest = Transform2D( 1, 0, 0, 1, 6, -14 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -370,6 +494,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Leg22" type="Bone2D" parent="Sprite/Skeleton2D/Root/Leg21" index="0"]
 position = Vector2( -2, 37 )
+rotation = 0.0873225
 rest = Transform2D( 1, 0, 0, 1, -2, 37 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -385,6 +510,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Leg23" type="Bone2D" parent="Sprite/Skeleton2D/Root/Leg21/Leg22" index="0"]
 position = Vector2( 1, 30 )
+rotation = 0.0873525
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, 1, 30 )
 script = ExtResource( 11 )
 settings/auto_get_skeleton = true
@@ -429,19 +556,19 @@ gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
 gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm1Target" type="Position2D" parent="Sprite" index="10"]
-position = Vector2( -35, -98 )
+position = Vector2( -24, -74 )
 
 [node name="FArm1Target" type="Position2D" parent="Sprite" index="11"]
-position = Vector2( -68, -71 )
+position = Vector2( -34, -17 )
 
 [node name="Arm2Target" type="Position2D" parent="Sprite" index="12"]
-position = Vector2( 27, -94 )
+position = Vector2( 29, -99 )
 
 [node name="FArm2Target" type="Position2D" parent="Sprite" index="13"]
-position = Vector2( 68, -72 )
+position = Vector2( 13, -85 )
 
 [node name="Leg1Target" type="Position2D" parent="Sprite" index="14"]
-position = Vector2( -19, 1 )
+position = Vector2( -22, 21 )
 
 [node name="Foot1Target" type="Position2D" parent="Sprite" index="15"]
 position = Vector2( 14, 25 )
@@ -453,10 +580,10 @@ position = Vector2( 13, 35 )
 position = Vector2( 47, 17 )
 
 [node name="BodyTarget" type="Position2D" parent="Sprite" index="18"]
-position = Vector2( -4, -179 )
+position = Vector2( -48, -202 )
 
 [node name="HeadTarget" type="Position2D" parent="Sprite" index="19"]
-position = Vector2( 71, -118 )
+position = Vector2( 70, -105 )
 
 [node name="Twisted_ModifierStack2D" type="Node2D" parent="Sprite" index="20"]
 visible = false
@@ -465,7 +592,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 stack/skeleton = NodePath("../Skeleton2D")
-stack/execution_enabled = false
+stack/execution_enabled = true
 
 [node name="Body" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="0"]
 script = ExtResource( 14 )
@@ -641,4 +768,8 @@ CCDIK/joint/0/constraint_angle_enabled = false
 visible = false
 
 [node name="Anim" type="AnimationPlayer" parent="." index="5"]
-anims/te = SubResource( 1 )
+autoplay = "test_anim"
+anims/test_anim = SubResource( 1 )
+script = ExtResource( 17 )
+InterpolationMode = 2
+animName = "test_anim"
