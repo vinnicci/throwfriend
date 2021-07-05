@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://toolscripts/PolyMeshTool.cs" type="Script" id=1]
+[ext_resource path="res://assets/enemies/bosses/ranger/tex_en_boss_ranger_thorn_r.png" type="Texture" id=2]
+
+[node name="Back" type="Polygon2D"]
+position = Vector2( -57, -138 )
+texture = ExtResource( 2 )
+polygon = PoolVector2Array( 0, -6, 42, -6, 42, 48, 0, 48 )
+uv = PoolVector2Array( 0, -6, 42, -6, 42, 48, 0, 48 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+script = ExtResource( 1 )

@@ -376,7 +376,7 @@ public class Twisted_ModifierVelvet2D : Twisted_Modifier2D
 				if (additional_accel.LengthSquared() >= minimum_required_velocity) {
 					current_joint.velvet_accel += additional_accel;
 				}
-				current_joint.velvet_accel += (current_joint.twisted_bone.GlobalPosition - current_joint.last_position);
+				current_joint.velvet_accel -= (current_joint.twisted_bone.GlobalPosition - current_joint.last_position);
 				// ==============
 
 				// Velvet integration source credit: Wikipedia article

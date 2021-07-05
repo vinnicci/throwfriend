@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func init_properties(new_lvl: Node2D, new_parent: RigidBody2D, patrol_pts: Array = []):
 	.init_properties(new_lvl, new_parent, patrol_pts)
-	weapon1 = parent_node.get_node("Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3/EnemyWeapon")
+	#weapon1 = parent_node.get_node("Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3/EnemyWeapon")
 
 
 #param 0: target

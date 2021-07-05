@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://toolscripts/PolyMeshTool.cs" type="Script" id=1]
+[ext_resource path="res://assets/enemies/bosses/ranger/tex_en_boss_ranger_leg_r.png" type="Texture" id=2]
+
+[node name="Leg1" type="Polygon2D"]
+texture = ExtResource( 2 )
+polygon = PoolVector2Array( 2.03193, 1.74165, 18.4325, -4.49927, 30.6375, 7.51665, 23.216, 36.4415, 21.1227, 42.8164, 18.8392, 49.7621, 13.02, 70.6471, 14.4068, 74.7304, 16.3328, 79.5069, 30.8166, 89.0601, 26.8875, 95.5316, 3.15871, 90.9091, -1.30971, 83.9753, -1.15562, 77.812, -1.07858, 72.1109, -0.428082, 46.3185, 0, 39.4775, 0.435413, 31.7852, 10.9661, 41.7755, 6.62558, 76.7334 )
+uv = PoolVector2Array( 2.03193, 1.74165, 18.4325, -4.49927, 30.6375, 7.51665, 23.216, 36.4415, 21.1227, 42.8164, 18.8392, 49.7621, 13.02, 70.6471, 14.4068, 74.7304, 16.3328, 79.5069, 30.8166, 89.0601, 26.8875, 95.5316, 3.15871, 90.9091, -1.30971, 83.9753, -1.15562, 77.812, -1.07858, 72.1109, -0.428082, 46.3185, 0, 39.4775, 0.435413, 31.7852, 10.9661, 41.7755, 6.62558, 76.7334 )
+polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 9, 8, 10 ), PoolIntArray( 10, 8, 11 ), PoolIntArray( 11, 8, 12 ), PoolIntArray( 6, 5, 15 ), PoolIntArray( 14, 6, 15 ), PoolIntArray( 2, 0, 17 ), PoolIntArray( 3, 2, 17 ), PoolIntArray( 5, 4, 18 ), PoolIntArray( 15, 5, 18 ), PoolIntArray( 4, 3, 18 ), PoolIntArray( 16, 15, 18 ), PoolIntArray( 3, 17, 18 ), PoolIntArray( 17, 16, 18 ), PoolIntArray( 8, 7, 19 ), PoolIntArray( 12, 8, 19 ), PoolIntArray( 13, 12, 19 ), PoolIntArray( 7, 6, 19 ), PoolIntArray( 6, 14, 19 ), PoolIntArray( 14, 13, 19 ) ]
+internal_vertex_count = 2
+script = ExtResource( 1 )

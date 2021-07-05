@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://toolscripts/PolyMeshTool.cs" type="Script" id=1]
+[ext_resource path="res://assets/enemies/bosses/paraprin/tex_en_paraprin_torso.png" type="Texture" id=2]
+
+[node name="Torso" type="Polygon2D"]
+texture = ExtResource( 2 )
+polygon = PoolVector2Array( 1.25, 4, 11.3189, -1.37795, 23.4252, 3.93701, 23.0463, 12.3604, 22.807, 22.0096, 24.0032, 30.941, 14.7528, 38.756, 0, 28.5486, 2.15311, 21.6108, 2.26378, 11.811, 14.0625, 6.0625, 16, 12.8125, 15.9375, 22.8125, 3.5625, 6.1875, 6.125, 12.5625, 5.5, 22.875, 2.375, 27.375, 14.8125, 34.6875, 21.5, 30.375, 20.4375, 21.9375, 20.75, 12.625, 20.875, 5.75 )
+uv = PoolVector2Array( 1.25, 4, 11.3189, -1.37795, 23.4252, 3.93701, 23.0463, 12.3604, 22.807, 22.0096, 24.0032, 30.941, 14.7528, 38.756, 0, 28.5486, 2.15311, 21.6108, 2.26378, 11.811, 14.0625, 6.0625, 16, 12.8125, 15.9375, 22.8125, 3.5625, 6.1875, 6.125, 12.5625, 5.5, 22.875, 2.375, 27.375, 14.8125, 34.6875, 21.5, 30.375, 20.4375, 21.9375, 20.75, 12.625, 20.875, 5.75 )
+polygons = [ PoolIntArray( 1, 0, 13 ), PoolIntArray( 10, 1, 13 ), PoolIntArray( 0, 9, 13 ), PoolIntArray( 9, 8, 14 ), PoolIntArray( 11, 10, 14 ), PoolIntArray( 10, 13, 14 ), PoolIntArray( 13, 9, 14 ), PoolIntArray( 14, 8, 15 ), PoolIntArray( 12, 11, 15 ), PoolIntArray( 11, 14, 15 ), PoolIntArray( 8, 7, 16 ), PoolIntArray( 15, 8, 16 ), PoolIntArray( 7, 6, 17 ), PoolIntArray( 16, 7, 17 ), PoolIntArray( 12, 15, 17 ), PoolIntArray( 15, 16, 17 ), PoolIntArray( 5, 4, 18 ), PoolIntArray( 6, 5, 18 ), PoolIntArray( 17, 6, 18 ), PoolIntArray( 12, 17, 18 ), PoolIntArray( 11, 12, 19 ), PoolIntArray( 12, 18, 19 ), PoolIntArray( 18, 4, 19 ), PoolIntArray( 4, 3, 20 ), PoolIntArray( 19, 4, 20 ), PoolIntArray( 11, 19, 20 ), PoolIntArray( 2, 1, 21 ), PoolIntArray( 1, 10, 21 ), PoolIntArray( 3, 2, 21 ), PoolIntArray( 20, 3, 21 ), PoolIntArray( 10, 11, 21 ), PoolIntArray( 11, 20, 21 ) ]
+internal_vertex_count = 12
+script = ExtResource( 1 )

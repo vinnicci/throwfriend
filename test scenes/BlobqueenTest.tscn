@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/enemies/bosses/blobqueen/Blobqueen.tscn" type="PackedScene" id=1]
+
+[node name="BlobqueenTest" type="Node2D"]
+
+[node name="Blobqueen" parent="." instance=ExtResource( 1 )]
+position = Vector2( -22, -8 )
+
+[node name="Body" parent="Blobqueen/Sprite/Skeleton2D/Root" index="0"]
+rotation = -0.00202429
+
+[node name="Body2" parent="Blobqueen/Sprite/Skeleton2D/Root/Body" index="0"]
+position = Vector2( 7.62939e-06, -24 )
+rotation = -0.00372231
+scale = Vector2( 1, 1 )
+
+[node name="Body3" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2" index="0"]
+position = Vector2( 3.8147e-06, -44 )
+rotation = -0.0133898
+scale = Vector2( 1, 1 )
+
+[node name="Head" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2/Body3" index="0"]
+rotation = 0.00117254
+scale = Vector2( 1, 1 )
+
+[node name="Arm11" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2" index="1"]
+position = Vector2( -29, -53 )
+rotation = -0.00808966
+
+[node name="Arm12" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2/Arm11" index="0"]
+position = Vector2( -28, 42 )
+rotation = 0.00194478
+scale = Vector2( 1, 1 )
+
+[node name="Arm13" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2/Arm11/Arm12" index="0"]
+position = Vector2( -14, 41 )
+rotation = 0.0075301
+scale = Vector2( 1, 1 )
+
+[node name="Arm21" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2" index="2"]
+position = Vector2( 32, -53 )
+rotation = -0.00576616
+
+[node name="Arm22" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2/Arm21" index="0"]
+position = Vector2( 24, 41 )
+rotation = 0.0438186
+scale = Vector2( 1, 1 )
+
+[node name="Arm23" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2/Arm21/Arm22" index="0"]
+position = Vector2( 15, 42 )
+rotation = -0.0207317
+scale = Vector2( 1, 1 )
+
+[node name="Breast11" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2" index="3"]
+rotation = 0.00264835
+scale = Vector2( 1, 1 )
+
+[node name="Breast12" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2/Breast11" index="0"]
+rotation = -4.76837e-07
+scale = Vector2( 1, 1 )
+
+[node name="Breast13" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2/Breast11/Breast12" index="0"]
+rotation = 1.5708
+
+[node name="Breast21" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2" index="4"]
+rotation = 0.0159647
+
+[node name="Breast22" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2/Breast21" index="0"]
+rotation = -3.57628e-07
+
+[node name="Breast23" parent="Blobqueen/Sprite/Skeleton2D/Root/Body/Body2/Breast21/Breast22" index="0"]
+rotation = 1.5708
+
+[node name="Arm2Target" parent="Blobqueen/Sprite" index="10"]
+position = Vector2( 60, -36 )
+
+[node name="BodyTarget" parent="Blobqueen/Sprite" index="13"]
+position = Vector2( -3, -215 )
+
+[editable path="Blobqueen"]

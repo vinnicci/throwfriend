@@ -1,102 +1,658 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://scenes/enemies/bosses/paraprin/SpriteSkirt.tscn" type="PackedScene" id=2]
+[ext_resource path="res://toolscripts/PolyMeshTool.cs" type="Script" id=1]
+[ext_resource path="res://assets/enemies/bosses/paraprin/tex_en_paraprin_torso.png" type="Texture" id=2]
 [ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/enemies/bosses/paraprin/ParaPrin.cs" type="Script" id=4]
-[ext_resource path="res://scenes/enemies/bosses/paraprin/SpriteHead.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/enemies/bosses/paraprin/SpriteHair.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/enemies/bosses/paraprin/SpriteTorso.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/enemies/bosses/paraprin/SpriteHairTop.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/enemies/bosses/paraprin/weapons/ParaPrinWeap1.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/enemies/bosses/paraprin/ai/ParaPrinAI.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/enemies/bosses/paraprin/HairBack.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/enemies/bosses/paraprin/weapons/ParaPrinWeap2.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/enemies/bosses/paraprin/tex_en_paraprin_skirt.png" type="Texture" id=4]
+[ext_resource path="res://assets/enemies/bosses/paraprin/tex_en_paraprin_head.png" type="Texture" id=5]
+[ext_resource path="res://assets/enemies/bosses/paraprin/tex_en_paraprin_hair.png" type="Texture" id=6]
+[ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_Bone2D.cs" type="Script" id=7]
+[ext_resource path="res://assets/enemies/bosses/paraprin/tex_en_paraprin_face_1.png" type="Texture" id=8]
+[ext_resource path="res://assets/enemies/bosses/paraprin/tex_en_boss_paraprin_arms.png" type="Texture" id=9]
+[ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierStack2D.cs" type="Script" id=10]
+[ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierCCDIK2D.cs" type="Script" id=11]
+[ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierLookAt2D.cs" type="Script" id=12]
+[ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierVelvet2D.cs" type="Script" id=14]
+[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=15]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 30.0
+[sub_resource type="Animation" id=1]
+resource_name = "front"
+length = 2.0
+loop = true
 
 [node name="ParaPrin" instance=ExtResource( 3 )]
-script = ExtResource( 4 )
-acts = {
-"melee_attack": 0.5
+spawnScenes = {
+"hp_drop": ExtResource( 15 )
 }
-patrolPoints = null
+acts = {
+}
 
-[node name="Skirt" parent="Sprite" index="0" instance=ExtResource( 2 )]
-position = Vector2( -50, -50.5 )
+[node name="Hair" type="Polygon2D" parent="Sprite" index="0"]
+position = Vector2( -33.5303, -127 )
+texture = ExtResource( 6 )
+skeleton = NodePath("../Skeleton2D")
+polygon = PoolVector2Array( 26.5794, 2.54237, 37.4422, -1.92604, 51.5408, 2.23421, 54.7089, 9.41781, 55.9931, 18.4932, 58.5194, 27.6146, 64.7474, 35.8402, 66.1017, 46.4561, 68.5076, 53.2315, 68.2589, 61.5562, 61.5562, 66.4869, 55.8139, 73.2558, 49.2296, 69.8767, 34.4376, 64.1757, 19.1834, 70.339, 14.5548, 74.0582, 6.70262, 71.2635, 0.770414, 65.0231, 0.0770416, 56.4715, 2.31125, 48.3821, 0.940069, 38.0729, 5.77812, 30.5085, 14.0216, 24.8074, 17.7196, 17.1032, 20.5701, 8.62866, 25.0856, 12.4144, 29.5377, 16.1815, 25, 22.089, 21.661, 29.024, 19.7774, 35.702, 18.75, 44.0068, 19.3493, 53.4247, 19.3493, 62.9281, 15.1541, 68.2363, 21.4897, 19.2637, 17.3801, 26.1986, 13.613, 32.7055, 10.274, 40.0685, 10.7877, 49.4863, 9.67466, 59.4178, 43.4075, 15.2397, 46.9178, 20.7192, 49.2294, 27.4829, 50.3425, 34.589, 50.5993, 41.8664, 50.4281, 49.4007, 50.2568, 56.25, 49.4863, 65.3253, 52.8253, 69.3493, 49.2294, 12.5, 52.3116, 19.2637, 53.2534, 27.1404, 56.8493, 34.161, 58.6473, 41.6096, 58.3048, 50.2568, 59.5034, 57.4486 )
+uv = PoolVector2Array( 26.5794, 2.54237, 37.4422, -1.92604, 51.5408, 2.23421, 54.7089, 9.41781, 55.9931, 18.4932, 58.5194, 27.6146, 64.7474, 35.8402, 66.1017, 46.4561, 68.5076, 53.2315, 68.2589, 61.5562, 61.5562, 66.4869, 55.8139, 73.2558, 49.2296, 69.8767, 34.4376, 64.1757, 19.1834, 70.339, 14.5548, 74.0582, 6.70262, 71.2635, 0.770414, 65.0231, 0.0770416, 56.4715, 2.31125, 48.3821, 0.940069, 38.0729, 5.77812, 30.5085, 14.0216, 24.8074, 17.7196, 17.1032, 20.5701, 8.62866, 25.0856, 12.4144, 29.5377, 16.1815, 25, 22.089, 21.661, 29.024, 19.7774, 35.702, 18.75, 44.0068, 19.3493, 53.4247, 19.3493, 62.9281, 15.1541, 68.2363, 21.4897, 19.2637, 17.3801, 26.1986, 13.613, 32.7055, 10.274, 40.0685, 10.7877, 49.4863, 9.67466, 59.4178, 43.4075, 15.2397, 46.9178, 20.7192, 49.2294, 27.4829, 50.3425, 34.589, 50.5993, 41.8664, 50.4281, 49.4007, 50.2568, 56.25, 49.4863, 65.3253, 52.8253, 69.3493, 49.2294, 12.5, 52.3116, 19.2637, 53.2534, 27.1404, 56.8493, 34.161, 58.6473, 41.6096, 58.3048, 50.2568, 59.5034, 57.4486 )
+polygons = [ PoolIntArray( 0, 24, 25 ), PoolIntArray( 24, 23, 25 ), PoolIntArray( 1, 0, 26 ), PoolIntArray( 0, 25, 26 ), PoolIntArray( 14, 13, 32 ), PoolIntArray( 13, 31, 32 ), PoolIntArray( 16, 15, 33 ), PoolIntArray( 15, 14, 33 ), PoolIntArray( 14, 32, 33 ), PoolIntArray( 25, 23, 34 ), PoolIntArray( 26, 25, 34 ), PoolIntArray( 27, 26, 34 ), PoolIntArray( 23, 22, 35 ), PoolIntArray( 34, 23, 35 ), PoolIntArray( 28, 27, 35 ), PoolIntArray( 27, 34, 35 ), PoolIntArray( 22, 21, 36 ), PoolIntArray( 35, 22, 36 ), PoolIntArray( 29, 28, 36 ), PoolIntArray( 28, 35, 36 ), PoolIntArray( 20, 19, 37 ), PoolIntArray( 21, 20, 37 ), PoolIntArray( 36, 21, 37 ), PoolIntArray( 30, 29, 37 ), PoolIntArray( 29, 36, 37 ), PoolIntArray( 19, 18, 38 ), PoolIntArray( 31, 30, 38 ), PoolIntArray( 30, 37, 38 ), PoolIntArray( 37, 19, 38 ), PoolIntArray( 17, 16, 39 ), PoolIntArray( 16, 33, 39 ), PoolIntArray( 18, 17, 39 ), PoolIntArray( 33, 32, 39 ), PoolIntArray( 38, 18, 39 ), PoolIntArray( 32, 31, 39 ), PoolIntArray( 31, 38, 39 ), PoolIntArray( 1, 26, 40 ), PoolIntArray( 26, 27, 41 ), PoolIntArray( 40, 26, 41 ), PoolIntArray( 27, 28, 42 ), PoolIntArray( 41, 27, 42 ), PoolIntArray( 28, 29, 43 ), PoolIntArray( 42, 28, 43 ), PoolIntArray( 29, 30, 44 ), PoolIntArray( 43, 29, 44 ), PoolIntArray( 30, 31, 45 ), PoolIntArray( 44, 30, 45 ), PoolIntArray( 31, 13, 46 ), PoolIntArray( 45, 31, 46 ), PoolIntArray( 13, 12, 47 ), PoolIntArray( 46, 13, 47 ), PoolIntArray( 11, 10, 48 ), PoolIntArray( 10, 47, 48 ), PoolIntArray( 12, 11, 48 ), PoolIntArray( 47, 12, 48 ), PoolIntArray( 2, 1, 49 ), PoolIntArray( 1, 40, 49 ), PoolIntArray( 3, 2, 49 ), PoolIntArray( 4, 3, 49 ), PoolIntArray( 40, 41, 49 ), PoolIntArray( 41, 42, 50 ), PoolIntArray( 4, 49, 50 ), PoolIntArray( 49, 41, 50 ), PoolIntArray( 42, 43, 51 ), PoolIntArray( 5, 4, 51 ), PoolIntArray( 4, 50, 51 ), PoolIntArray( 50, 42, 51 ), PoolIntArray( 6, 5, 52 ), PoolIntArray( 43, 44, 52 ), PoolIntArray( 5, 51, 52 ), PoolIntArray( 51, 43, 52 ), PoolIntArray( 44, 45, 53 ), PoolIntArray( 7, 6, 53 ), PoolIntArray( 6, 52, 53 ), PoolIntArray( 52, 44, 53 ), PoolIntArray( 8, 7, 54 ), PoolIntArray( 45, 46, 54 ), PoolIntArray( 7, 53, 54 ), PoolIntArray( 53, 45, 54 ), PoolIntArray( 46, 47, 55 ), PoolIntArray( 47, 10, 55 ), PoolIntArray( 9, 8, 55 ), PoolIntArray( 8, 54, 55 ), PoolIntArray( 10, 9, 55 ), PoolIntArray( 54, 46, 55 ) ]
+bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head"), PoolRealArray( 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Head2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11"), PoolRealArray( 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13/Hair14"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21"), PoolRealArray( 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22"), PoolRealArray( 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23/Hair24"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12/Arm13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22/Arm23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Turn"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+internal_vertex_count = 31
+script = ExtResource( 1 )
 
-[node name="Spine4" parent="Sprite/Skirt/Skeleton2D/Spine1/Spine2/Spine3" index="0"]
+[node name="Lower" type="Polygon2D" parent="Sprite" index="1"]
+position = Vector2( -47, -73 )
+texture = ExtResource( 4 )
+skeleton = NodePath("../Skeleton2D")
+polygon = PoolVector2Array( 35.966, -0.607534, 50.0984, -0.688976, 61.7254, 0.121506, 72.175, 11.7861, 81.1665, 27.096, 85.6622, 39.2467, 88.2139, 53.2199, 96.4763, 66.3427, 93.4386, 80.5589, 75.0911, 83.9611, 57.3512, 86.0267, 39.1252, 85.2977, 20.0486, 84.2041, 6.07533, 79.5869, -1.94411, 66.3427, -0.486027, 51.3973, 9.23451, 40.4617, 13.8518, 27.2175, 24.4228, 11.7861, 65.8465, 15.9449, 74.9601, 28.9474, 79.9213, 41.0433, 84.252, 57.6772, 86.3189, 71.4567, 74.5079, 73.3268, 59.3504, 75.689, 40.0591, 75, 22.3425, 71.752, 8.85827, 70.1772, 3.34646, 63.6811, 13.4843, 49.0158, 20.8661, 33.9567, 30.8071, 14.0748, 36.2205, 5.01969, 51.6746, 14.3541, 62.4016, 6.88976, 7.28346, 54.0354, 14.8622, 40.1575, 22.8346, 22.5394, 71.2598, 21.6535, 79.4291, 34.252, 83.8583, 49.2126, 75.5905, 63.0905, 64.0351, 67.4641, 21.3583, 55.8071, 32.874, 60.2362, 70.374, 44.685, 60.8268, 51.5748, 50.1595, 56.6986, 29.3461, 39.3939, 40.4306, 42.6635, 67.4641, 34.37, 57.4803, 36.122, 38.0383, 20.0159, 46.6535, 23.3268, 57.8947, 21.2121, 32.4803, 28.7402, 51.5949, 28.7081, 51.3557, 39.075, 50.319, 68.0223, 50.2392, 75.1994 )
+uv = PoolVector2Array( 35.966, -0.607534, 50.0984, -0.688976, 61.7254, 0.121506, 72.175, 11.7861, 81.1665, 27.096, 85.6622, 39.2467, 88.2139, 53.2199, 96.4763, 66.3427, 93.4386, 80.5589, 75.0911, 83.9611, 57.3512, 86.0267, 39.1252, 85.2977, 20.0486, 84.2041, 6.07533, 79.5869, -1.94411, 66.3427, -0.486027, 51.3973, 9.23451, 40.4617, 13.8518, 27.2175, 24.4228, 11.7861, 65.8465, 15.9449, 74.9601, 28.9474, 79.9213, 41.0433, 84.252, 57.6772, 86.3189, 71.4567, 74.5079, 73.3268, 59.3504, 75.689, 40.0591, 75, 22.3425, 71.752, 8.85827, 70.1772, 3.34646, 63.6811, 13.4843, 49.0158, 20.8661, 33.9567, 30.8071, 14.0748, 36.2205, 5.01969, 51.6746, 14.3541, 62.4016, 6.88976, 7.28346, 54.0354, 14.8622, 40.1575, 22.8346, 22.5394, 71.2598, 21.6535, 79.4291, 34.252, 83.8583, 49.2126, 75.5905, 63.0905, 64.0351, 67.4641, 21.3583, 55.8071, 32.874, 60.2362, 70.374, 44.685, 60.8268, 51.5748, 50.1595, 56.6986, 29.3461, 39.3939, 40.4306, 42.6635, 67.4641, 34.37, 57.4803, 36.122, 38.0383, 20.0159, 46.6535, 23.3268, 57.8947, 21.2121, 32.4803, 28.7402, 51.5949, 28.7081, 51.3557, 39.075, 50.319, 68.0223, 50.2392, 75.1994 )
+polygons = [ PoolIntArray( 7, 6, 22 ), PoolIntArray( 8, 7, 23 ), PoolIntArray( 7, 22, 23 ), PoolIntArray( 9, 8, 23 ), PoolIntArray( 9, 23, 24 ), PoolIntArray( 10, 9, 25 ), PoolIntArray( 9, 24, 25 ), PoolIntArray( 12, 11, 27 ), PoolIntArray( 11, 26, 27 ), PoolIntArray( 13, 12, 28 ), PoolIntArray( 12, 27, 28 ), PoolIntArray( 14, 13, 28 ), PoolIntArray( 15, 14, 29 ), PoolIntArray( 14, 28, 29 ), PoolIntArray( 1, 0, 33 ), PoolIntArray( 0, 18, 33 ), PoolIntArray( 18, 32, 33 ), PoolIntArray( 1, 33, 34 ), PoolIntArray( 3, 2, 35 ), PoolIntArray( 19, 3, 35 ), PoolIntArray( 2, 1, 35 ), PoolIntArray( 1, 34, 35 ), PoolIntArray( 16, 15, 36 ), PoolIntArray( 30, 16, 36 ), PoolIntArray( 15, 29, 36 ), PoolIntArray( 29, 28, 36 ), PoolIntArray( 17, 16, 37 ), PoolIntArray( 31, 17, 37 ), PoolIntArray( 16, 30, 37 ), PoolIntArray( 18, 17, 38 ), PoolIntArray( 32, 18, 38 ), PoolIntArray( 17, 31, 38 ), PoolIntArray( 4, 3, 39 ), PoolIntArray( 20, 4, 39 ), PoolIntArray( 3, 19, 39 ), PoolIntArray( 5, 4, 40 ), PoolIntArray( 21, 5, 40 ), PoolIntArray( 4, 20, 40 ), PoolIntArray( 6, 5, 41 ), PoolIntArray( 5, 21, 41 ), PoolIntArray( 22, 6, 41 ), PoolIntArray( 23, 22, 42 ), PoolIntArray( 24, 23, 42 ), PoolIntArray( 22, 41, 42 ), PoolIntArray( 25, 24, 43 ), PoolIntArray( 24, 42, 43 ), PoolIntArray( 28, 27, 44 ), PoolIntArray( 36, 28, 44 ), PoolIntArray( 30, 36, 44 ), PoolIntArray( 27, 26, 45 ), PoolIntArray( 44, 27, 45 ), PoolIntArray( 21, 40, 46 ), PoolIntArray( 41, 21, 46 ), PoolIntArray( 42, 41, 46 ), PoolIntArray( 43, 42, 47 ), PoolIntArray( 42, 46, 47 ), PoolIntArray( 43, 47, 48 ), PoolIntArray( 31, 37, 49 ), PoolIntArray( 37, 30, 49 ), PoolIntArray( 30, 44, 49 ), PoolIntArray( 44, 45, 49 ), PoolIntArray( 45, 48, 50 ), PoolIntArray( 49, 45, 50 ), PoolIntArray( 40, 20, 51 ), PoolIntArray( 46, 40, 51 ), PoolIntArray( 20, 39, 51 ), PoolIntArray( 47, 46, 52 ), PoolIntArray( 46, 51, 52 ), PoolIntArray( 33, 32, 53 ), PoolIntArray( 34, 33, 53 ), PoolIntArray( 19, 35, 55 ), PoolIntArray( 35, 34, 55 ), PoolIntArray( 39, 19, 55 ), PoolIntArray( 51, 39, 55 ), PoolIntArray( 52, 51, 55 ), PoolIntArray( 38, 31, 56 ), PoolIntArray( 31, 49, 56 ), PoolIntArray( 32, 38, 56 ), PoolIntArray( 53, 32, 56 ), PoolIntArray( 49, 50, 56 ), PoolIntArray( 54, 53, 56 ), PoolIntArray( 52, 55, 57 ), PoolIntArray( 54, 56, 57 ), PoolIntArray( 56, 50, 57 ), PoolIntArray( 48, 47, 58 ), PoolIntArray( 50, 48, 58 ), PoolIntArray( 47, 52, 58 ), PoolIntArray( 52, 57, 58 ), PoolIntArray( 57, 50, 58 ), PoolIntArray( 43, 48, 59 ), PoolIntArray( 45, 26, 59 ), PoolIntArray( 48, 45, 59 ), PoolIntArray( 11, 10, 60 ), PoolIntArray( 26, 11, 60 ), PoolIntArray( 10, 25, 60 ), PoolIntArray( 59, 26, 60 ), PoolIntArray( 25, 43, 60 ), PoolIntArray( 43, 59, 60 ), PoolIntArray( 34, 54, 57 ), PoolIntArray( 34, 57, 55 ), PoolIntArray( 53, 34, 54 ) ]
+bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower"), PoolRealArray( 0, 0, 0, 0, 0.29, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0.29, 0, 0, 0.29, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0.29, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.29, 0.29, 0.29, 0.29, 0, 0, 0, 0, 0, 0.29, 1, 0 ), NodePath("Root/Lower/Lower2"), PoolRealArray( 1, 1, 1, 1, 0.29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.29, 1, 1, 0.29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.29, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.29, 0.29, 0.29, 0.29, 1, 1, 1, 1, 1, 0.29, 0, 0 ), NodePath("Root/Lower/Lower2/Torso"), PoolRealArray( 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Head2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13/Hair14"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23/Hair24"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12/Arm13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22/Arm23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Turn"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+internal_vertex_count = 42
+script = ExtResource( 1 )
+
+[node name="Arm1" type="Polygon2D" parent="Sprite" index="2"]
+position = Vector2( -3, -89 )
+rotation = 0.544351
+offset = Vector2( -23, -4 )
+texture = ExtResource( 9 )
+skeleton = NodePath("../Skeleton2D")
+polygon = PoolVector2Array( 24.4795, 0.5743, 28.1407, 5.31228, 22.3977, 20.0287, 19.9569, 25.6281, 17.7315, 30.5097, 8.82986, 51.6152, 1.50754, 54.8457, -1.7229, 48.2412, 7.39411, 25.9153, 9.97846, 20.603, 11.9167, 16.224, 17.8033, 1.22039, 14.7164, 23.1874 )
+uv = PoolVector2Array( 24.4795, 0.5743, 28.1407, 5.31228, 22.3977, 20.0287, 19.9569, 25.6281, 17.7315, 30.5097, 8.82986, 51.6152, 1.50754, 54.8457, -1.7229, 48.2412, 7.39411, 25.9153, 9.97846, 20.603, 11.9167, 16.224, 17.8033, 1.22039, 14.7164, 23.1874 )
+polygons = [ PoolIntArray( 6, 5, 7 ), PoolIntArray( 5, 4, 8 ), PoolIntArray( 7, 5, 8 ), PoolIntArray( 1, 0, 11 ), PoolIntArray( 2, 1, 11 ), PoolIntArray( 10, 2, 11 ), PoolIntArray( 4, 3, 12 ), PoolIntArray( 8, 4, 12 ), PoolIntArray( 9, 8, 12 ), PoolIntArray( 3, 2, 12 ), PoolIntArray( 2, 10, 12 ), PoolIntArray( 10, 9, 12 ) ]
+bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Head2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13/Hair14"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23/Hair24"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11"), PoolRealArray( 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12"), PoolRealArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12/Arm13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22/Arm23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Turn"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+internal_vertex_count = 1
+script = ExtResource( 1 )
+
+[node name="Arm2" type="Polygon2D" parent="Sprite" index="3"]
+position = Vector2( 11, -87 )
+rotation = -3.70438
+scale = Vector2( 1, -1 )
+offset = Vector2( -23, -4 )
+texture = ExtResource( 9 )
+skeleton = NodePath("../Skeleton2D")
+polygon = PoolVector2Array( 24.4795, 0.5743, 28.1407, 5.31228, 22.3977, 20.0287, 19.9569, 25.6281, 17.7315, 30.5097, 8.82986, 51.6152, 1.50754, 54.8457, -1.7229, 48.2412, 7.39411, 25.9153, 9.97846, 20.603, 11.9167, 16.224, 17.8033, 1.22039, 14.7164, 23.1874 )
+uv = PoolVector2Array( 24.4795, 0.5743, 28.1407, 5.31228, 22.3977, 20.0287, 19.9569, 25.6281, 17.7315, 30.5097, 8.82986, 51.6152, 1.50754, 54.8457, -1.7229, 48.2412, 7.39411, 25.9153, 9.97846, 20.603, 11.9167, 16.224, 17.8033, 1.22039, 14.7164, 23.1874 )
+polygons = [ PoolIntArray( 6, 5, 7 ), PoolIntArray( 5, 4, 8 ), PoolIntArray( 7, 5, 8 ), PoolIntArray( 1, 0, 11 ), PoolIntArray( 2, 1, 11 ), PoolIntArray( 10, 2, 11 ), PoolIntArray( 4, 3, 12 ), PoolIntArray( 8, 4, 12 ), PoolIntArray( 9, 8, 12 ), PoolIntArray( 3, 2, 12 ), PoolIntArray( 2, 10, 12 ), PoolIntArray( 10, 9, 12 ) ]
+bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Head2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13/Hair14"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23/Hair24"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12/Arm13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21"), PoolRealArray( 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22"), PoolRealArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22/Arm23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Turn"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+internal_vertex_count = 1
+script = ExtResource( 1 )
+
+[node name="Torso" type="Polygon2D" parent="Sprite" index="4"]
+position = Vector2( -9, -97 )
+texture = ExtResource( 2 )
+skeleton = NodePath("../Skeleton2D")
+polygon = PoolVector2Array( 1.25, 4, 11.3189, -1.37795, 23.4252, 3.93701, 23.0463, 12.3604, 22.807, 22.0096, 24.0032, 30.941, 14.7528, 38.756, 0, 28.5486, 2.15311, 21.6108, 2.26378, 11.811, 14.0625, 6.0625, 16, 12.8125, 15.9375, 22.8125, 3.5625, 6.1875, 6.125, 12.5625, 5.5, 22.875, 2.375, 27.375, 14.8125, 34.6875, 21.5, 30.375, 20.4375, 21.9375, 20.75, 12.625, 20.875, 5.75 )
+uv = PoolVector2Array( 1.25, 4, 11.3189, -1.37795, 23.4252, 3.93701, 23.0463, 12.3604, 22.807, 22.0096, 24.0032, 30.941, 14.7528, 38.756, 0, 28.5486, 2.15311, 21.6108, 2.26378, 11.811, 14.0625, 6.0625, 16, 12.8125, 15.9375, 22.8125, 3.5625, 6.1875, 6.125, 12.5625, 5.5, 22.875, 2.375, 27.375, 14.8125, 34.6875, 21.5, 30.375, 20.4375, 21.9375, 20.75, 12.625, 20.875, 5.75 )
+polygons = [ PoolIntArray( 1, 0, 13 ), PoolIntArray( 10, 1, 13 ), PoolIntArray( 0, 9, 13 ), PoolIntArray( 9, 8, 14 ), PoolIntArray( 11, 10, 14 ), PoolIntArray( 10, 13, 14 ), PoolIntArray( 13, 9, 14 ), PoolIntArray( 14, 8, 15 ), PoolIntArray( 12, 11, 15 ), PoolIntArray( 11, 14, 15 ), PoolIntArray( 8, 7, 16 ), PoolIntArray( 15, 8, 16 ), PoolIntArray( 7, 6, 17 ), PoolIntArray( 16, 7, 17 ), PoolIntArray( 12, 15, 17 ), PoolIntArray( 15, 16, 17 ), PoolIntArray( 5, 4, 18 ), PoolIntArray( 6, 5, 18 ), PoolIntArray( 17, 6, 18 ), PoolIntArray( 12, 17, 18 ), PoolIntArray( 11, 12, 19 ), PoolIntArray( 12, 18, 19 ), PoolIntArray( 18, 4, 19 ), PoolIntArray( 4, 3, 20 ), PoolIntArray( 19, 4, 20 ), PoolIntArray( 11, 19, 20 ), PoolIntArray( 2, 1, 21 ), PoolIntArray( 1, 10, 21 ), PoolIntArray( 3, 2, 21 ), PoolIntArray( 20, 3, 21 ), PoolIntArray( 10, 11, 21 ), PoolIntArray( 11, 20, 21 ) ]
+bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2"), PoolRealArray( 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso"), PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), NodePath("Root/Lower/Lower2/Torso/Head"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Head2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13/Hair14"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23/Hair24"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12/Arm13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22/Arm23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Turn"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+internal_vertex_count = 12
+script = ExtResource( 1 )
+
+[node name="Face" type="Polygon2D" parent="Sprite" index="5"]
+position = Vector2( -5, -119 )
+texture = ExtResource( 8 )
+skeleton = NodePath("../Skeleton2D")
+polygon = PoolVector2Array( 1.125, 1.0625, 11.7284, -2.70062, 20.75, 0.9375, 22.5309, 8.41049, 20.4375, 22.125, 11.5, 26.8125, 2.0625, 22.25, -0.875, 8.4375, 2.31481, 8.41049, 2.9321, 16.7438, 8.41049, 23.6883, 14.6605, 23.6111, 19.1358, 17.6698, 19.5216, 7.71605, 12.5, 8.4375, 12.6875, 16.5 )
+uv = PoolVector2Array( 1.125, 1.0625, 11.7284, -2.70062, 20.75, 0.9375, 22.5309, 8.41049, 20.4375, 22.125, 11.5, 26.8125, 2.0625, 22.25, -0.875, 8.4375, 2.31481, 8.41049, 2.9321, 16.7438, 8.41049, 23.6883, 14.6605, 23.6111, 19.1358, 17.6698, 19.5216, 7.71605, 12.5, 8.4375, 12.6875, 16.5 )
+polygons = [ PoolIntArray( 1, 0, 8 ), PoolIntArray( 0, 7, 8 ), PoolIntArray( 7, 6, 9 ), PoolIntArray( 8, 7, 9 ), PoolIntArray( 6, 5, 10 ), PoolIntArray( 9, 6, 10 ), PoolIntArray( 5, 4, 11 ), PoolIntArray( 10, 5, 11 ), PoolIntArray( 4, 3, 12 ), PoolIntArray( 11, 4, 12 ), PoolIntArray( 2, 1, 13 ), PoolIntArray( 3, 2, 13 ), PoolIntArray( 12, 3, 13 ), PoolIntArray( 1, 8, 14 ), PoolIntArray( 13, 1, 14 ), PoolIntArray( 8, 9, 14 ), PoolIntArray( 10, 11, 15 ), PoolIntArray( 11, 12, 15 ), PoolIntArray( 9, 10, 15 ), PoolIntArray( 14, 9, 15 ), PoolIntArray( 12, 13, 15 ), PoolIntArray( 13, 14, 15 ) ]
+bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head"), PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), NodePath("Root/Lower/Lower2/Torso/Head/Head2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13/Hair14"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23/Hair24"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12/Arm13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22/Arm23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Turn"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+internal_vertex_count = 8
+script = ExtResource( 1 )
+
+[node name="Head" type="Polygon2D" parent="Sprite" index="6"]
+position = Vector2( -15, -141 )
+texture = ExtResource( 5 )
+skeleton = NodePath("../Skeleton2D")
+polygon = PoolVector2Array( -0.437637, 9.95624, 6.9375, 1.5, 17.75, 0.1875, 30.4375, 0.9375, 39.8125, 9.6875, 38.0625, 19.625, 36.5, 30, 36.375, 42.5625, 28.3125, 51.375, 22.1528, 47.8472, 15.0625, 50.6875, 5.03282, 42.5602, 2.95405, 30.0875, 3.75, 17.625, 11, 19.625, 22.4375, 20.75, 31.4375, 20.3125, 7.98611, 8.47222, 32.9167, 8.68056, 21.3889, 8.19444, 11.3889, 30.9722, 22.0833, 32.5694, 31.6667, 30.2778, 13.375, 39.5625, 22.0833, 41.0417, 30.5625, 39.4375 )
+uv = PoolVector2Array( -0.437637, 9.95624, 6.9375, 1.5, 17.75, 0.1875, 30.4375, 0.9375, 39.8125, 9.6875, 38.0625, 19.625, 36.5, 30, 36.375, 42.5625, 28.3125, 51.375, 22.1528, 47.8472, 15.0625, 50.6875, 5.03282, 42.5602, 2.95405, 30.0875, 3.75, 17.625, 11, 19.625, 22.4375, 20.75, 31.4375, 20.3125, 7.98611, 8.47222, 32.9167, 8.68056, 21.3889, 8.19444, 11.3889, 30.9722, 22.0833, 32.5694, 31.6667, 30.2778, 13.375, 39.5625, 22.0833, 41.0417, 30.5625, 39.4375 )
+polygons = [ PoolIntArray( 13, 12, 14 ), PoolIntArray( 6, 5, 16 ), PoolIntArray( 1, 0, 17 ), PoolIntArray( 0, 13, 17 ), PoolIntArray( 2, 1, 17 ), PoolIntArray( 13, 14, 17 ), PoolIntArray( 4, 3, 18 ), PoolIntArray( 5, 4, 18 ), PoolIntArray( 16, 5, 18 ), PoolIntArray( 14, 15, 19 ), PoolIntArray( 17, 14, 19 ), PoolIntArray( 2, 17, 19 ), PoolIntArray( 3, 2, 19 ), PoolIntArray( 18, 3, 19 ), PoolIntArray( 15, 16, 19 ), PoolIntArray( 16, 18, 19 ), PoolIntArray( 14, 12, 20 ), PoolIntArray( 6, 16, 22 ), PoolIntArray( 16, 15, 22 ), PoolIntArray( 15, 21, 22 ), PoolIntArray( 11, 10, 23 ), PoolIntArray( 12, 11, 23 ), PoolIntArray( 20, 12, 23 ), PoolIntArray( 21, 20, 23 ), PoolIntArray( 21, 23, 24 ), PoolIntArray( 8, 7, 25 ), PoolIntArray( 7, 6, 25 ), PoolIntArray( 6, 22, 25 ), PoolIntArray( 22, 21, 25 ), PoolIntArray( 21, 24, 25 ), PoolIntArray( 14, 21, 20 ), PoolIntArray( 14, 21, 15 ) ]
+bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head"), PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), NodePath("Root/Lower/Lower2/Torso/Head/Head2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13/Hair14"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23/Hair24"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm11/Arm12/Arm13"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2/Torso/Arm21/Arm22/Arm23"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Turn"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+internal_vertex_count = 12
+script = ExtResource( 1 )
+
+[node name="Skeleton2D" type="Skeleton2D" parent="Sprite" index="7"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Root" type="Bone2D" parent="Sprite/Skeleton2D" index="0"]
+rest = Transform2D( 1, 0, 0, 1, 0, 0 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 5.0
+bone_data/bone_angle = 0.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Lower" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="0"]
+position = Vector2( 5, 0 )
+rotation = -0.00204396
+rest = Transform2D( 1, 0, 0, 1, 5, 0 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 33.0
+bone_data/bone_angle = -90.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Lower2" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower" index="0"]
+position = Vector2( 0, -33 )
+rotation = -0.0347467
 scale = Vector2( 1, 1 )
+rest = Transform2D( 1, 0, 0, 1, 0, -33 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 32.0156
+bone_data/bone_angle = -88.2101
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
-[node name="HairBack" parent="Sprite/Skirt" index="1" instance=ExtResource( 12 )]
+[node name="Torso" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2" index="0"]
+position = Vector2( 1, -32 )
+rotation = 0.0489066
+rest = Transform2D( 1, 0, 0, 1, 1, -32 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 28.0713
+bone_data/bone_angle = -94.0856
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Head" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso" index="0"]
+position = Vector2( -2, -28 )
+rotation = -0.0584804
+rest = Transform2D( 1, 0, 0, 1, -2, -28 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 43.0116
+bone_data/bone_angle = -88.6678
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Head2" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head" index="0"]
+position = Vector2( 1, -43 )
+rest = Transform2D( 1, 0, 0, 1, 1, -43 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = -1.0
+bone_data/bone_angle = 0.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Hair11" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head" index="1"]
+position = Vector2( -13, -23 )
+rotation = 0.143545
+rest = Transform2D( 1, 0, 0, 1, -13, -23 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 16.7631
+bone_data/bone_angle = 107.354
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Hair12" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair11" index="0"]
+position = Vector2( -5, 16 )
+rotation = 0.00768626
+rest = Transform2D( 1, 0, 0, 1, -5, 16 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 22.561
+bone_data/bone_angle = 102.804
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Hair13" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair11/Hair12" index="0"]
+position = Vector2( -5, 22 )
+rotation = -0.349079
+rest = Transform2D( 1, 0, 0, 1, -5, 22 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 21.3776
+bone_data/bone_angle = 100.784
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Hair14" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13" index="0"]
+position = Vector2( -4, 21 )
+rotation = -0.984654
+rest = Transform2D( 1, 0, 0, 1, -4, 21 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = -1.0
+bone_data/bone_angle = 0.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Hair21" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head" index="2"]
+position = Vector2( 12, -22 )
+rotation = -0.184186
+rest = Transform2D( 1, 0, 0, 1, 12, -22 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 20.2237
+bone_data/bone_angle = 81.4692
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Hair22" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair21" index="0"]
+position = Vector2( 3, 20 )
+rotation = 0.0881101
+rest = Transform2D( 1, 0, 0, 1, 3, 20 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 21.2132
+bone_data/bone_angle = 81.8699
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Hair23" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair21/Hair22" index="0"]
+position = Vector2( 3, 21 )
+rotation = 0.477856
+rest = Transform2D( 1, 0, 0, 1, 3, 21 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 16.2788
+bone_data/bone_angle = 79.3803
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Hair24" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23" index="0"]
+position = Vector2( 3, 16 )
+rotation = -2.25061
+rest = Transform2D( 1, 0, 0, 1, 3, 16 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = -1.0
+bone_data/bone_angle = 0.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Arm11" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso" index="1"]
+position = Vector2( -9, -25 )
+rotation = -0.0111476
+rest = Transform2D( 1, 0, 0, 1, -9, -25 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 22.8035
+bone_data/bone_angle = 142.125
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Arm12" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Arm11" index="0"]
+position = Vector2( -18, 14 )
+rotation = 0.0160412
+scale = Vector2( 1, 1 )
+rest = Transform2D( 1, 0, 0, 1, -18, 14 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 28.6007
+bone_data/bone_angle = 143.531
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Arm13" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Arm11/Arm12" index="0"]
+position = Vector2( -23, 17 )
+rest = Transform2D( 1, 0, 0, 1, -23, 17 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = -1.0
+bone_data/bone_angle = 0.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Arm21" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso" index="2"]
+position = Vector2( 5, -23 )
+rotation = -0.0776856
+rest = Transform2D( 1, 0, 0, 1, 5, -23 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 21.4009
+bone_data/bone_angle = 37.4054
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Arm22" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Arm21" index="0"]
+position = Vector2( 17, 13 )
+rotation = 0.0540943
+scale = Vector2( 1, 1 )
+rest = Transform2D( 1, 0, 0, 1, 17, 13 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 31.6228
+bone_data/bone_angle = 34.6952
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Arm23" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Arm21/Arm22" index="0"]
+position = Vector2( 26, 18 )
+rest = Transform2D( 1, 0, 0, 1, 26, 18 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = -1.0
+bone_data/bone_angle = 0.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Turn" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="1"]
+position = Vector2( 0, 32 )
+rest = Transform2D( 1, 0, 0, 1, 0, 32 )
+script = ExtResource( 7 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = -1.0
+bone_data/bone_angle = 0.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Hair1Target" type="Position2D" parent="Sprite" index="8"]
+position = Vector2( -25, -47 )
+
+[node name="Hair2Target" type="Position2D" parent="Sprite" index="9"]
+position = Vector2( 27, -46 )
+
+[node name="LowerTarget" type="Position2D" parent="Sprite" index="10"]
+position = Vector2( 4, -201 )
+
+[node name="TorsoTarget" type="Position2D" parent="Sprite" index="11"]
+position = Vector2( -2, -179 )
+
+[node name="HeadTarget" type="Position2D" parent="Sprite" index="12"]
+position = Vector2( 88, -95 )
+
+[node name="Arm1Target" type="Position2D" parent="Sprite" index="13"]
+position = Vector2( -26, -73 )
+
+[node name="FArm1Target" type="Position2D" parent="Sprite" index="14"]
+position = Vector2( -53, -54 )
+
+[node name="Arm2Target" type="Position2D" parent="Sprite" index="15"]
+position = Vector2( 34, -72 )
+
+[node name="FArm2Target" type="Position2D" parent="Sprite" index="16"]
+position = Vector2( 65, -51 )
+
+[node name="Twisted_ModifierStack2D" type="Node2D" parent="Sprite" index="17"]
 visible = false
-position = Vector2( 20, -67.5 )
-z_index = 1
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+stack/skeleton = NodePath("../Skeleton2D")
+stack/execution_enabled = true
 
-[node name="Spine4" parent="Sprite/Skirt/HairBack/Skeleton2D/Spine/Spine2/Spine3" index="0"]
-scale = Vector2( 1, 1 )
+[node name="Lower" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="0"]
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+base_settings/execution_enabled = true
+base_settings/execution_mode = 0
+base_settings/gizmo_can_draw_in_editor = true
+base_settings/gizmo_can_draw_in_game = false
+base_settings/gizmo_update_on_execution = false
+CCDIK/target = NodePath("../../LowerTarget")
+CCDIK/tip = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso")
+CCDIK/solve_mode = 3
+CCDIK/joint_count = 2
+CCDIK/joint/0/twisted_bone = NodePath("../../Skeleton2D/Root/Lower")
+CCDIK/joint/0/constraint_angle_enabled = false
+CCDIK/joint/1/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2")
+CCDIK/joint/1/constraint_angle_enabled = false
 
-[node name="Hair" parent="Sprite/Skirt" index="2" instance=ExtResource( 6 )]
-show_behind_parent = true
-position = Vector2( 13, -55 )
+[node name="Torso" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="1"]
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+base_settings/execution_enabled = true
+base_settings/execution_mode = 0
+base_settings/gizmo_can_draw_in_editor = true
+base_settings/gizmo_can_draw_in_game = false
+base_settings/gizmo_update_on_execution = false
+CCDIK/target = NodePath("../../TorsoTarget")
+CCDIK/tip = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Head")
+CCDIK/solve_mode = 0
+CCDIK/joint_count = 1
+CCDIK/joint/0/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso")
+CCDIK/joint/0/constraint_angle_enabled = false
 
-[node name="HairFront" parent="Sprite/Skirt/Hair/Skeleton2D/Hair" index="0"]
-scale = Vector2( 1, 1 )
+[node name="Head" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="2"]
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+base_settings/execution_enabled = true
+base_settings/execution_mode = 0
+base_settings/gizmo_can_draw_in_editor = true
+base_settings/gizmo_can_draw_in_game = false
+base_settings/gizmo_update_on_execution = false
+look_at/target = NodePath("../../HeadTarget")
+look_at/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Head")
+look_at/additional_rotation = -90.0
+look_at/constraint_angle_enabled = false
 
-[node name="HairL5" parent="Sprite/Skirt/Hair/Skeleton2D/Hair/HairL2/HairL3/HairL4" index="0"]
-scale = Vector2( 1, 1 )
+[node name="HairV1" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="3"]
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_lock_": true
+}
+base_settings/execution_enabled = true
+base_settings/execution_mode = 0
+base_settings/gizmo_can_draw_in_editor = true
+base_settings/gizmo_can_draw_in_game = false
+base_settings/gizmo_update_on_execution = false
+Velvet/target_node = NodePath("../../Hair1Target")
+Velvet/iteration_count = 3
+Velvet/acceleration_speed = 40.0
+Velvet/minimum_required_velocity = 0.01
+Velvet/default_data/mass = 1.0
+Velvet/default_data/drag = 0.1
+Velvet/joint_count = 4
+Velvet/joint/0/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair11")
+Velvet/joint/0/override_defaults = false
+Velvet/joint/1/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair11/Hair12")
+Velvet/joint/1/override_defaults = false
+Velvet/joint/2/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13")
+Velvet/joint/2/override_defaults = false
+Velvet/joint/3/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13/Hair14")
+Velvet/joint/3/override_defaults = false
 
-[node name="HairR4" parent="Sprite/Skirt/Hair/Skeleton2D/Hair/HairR2/HairR3" index="0"]
-scale = Vector2( 1, 1 )
+[node name="HairV2" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="4"]
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_lock_": true
+}
+base_settings/execution_enabled = true
+base_settings/execution_mode = 0
+base_settings/gizmo_can_draw_in_editor = true
+base_settings/gizmo_can_draw_in_game = false
+base_settings/gizmo_update_on_execution = false
+Velvet/target_node = NodePath("../../Hair2Target")
+Velvet/iteration_count = 3
+Velvet/acceleration_speed = 40.0
+Velvet/minimum_required_velocity = 0.01
+Velvet/default_data/mass = 1.0
+Velvet/default_data/drag = 0.1
+Velvet/joint_count = 4
+Velvet/joint/0/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair21")
+Velvet/joint/0/override_defaults = false
+Velvet/joint/1/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair21/Hair22")
+Velvet/joint/1/override_defaults = false
+Velvet/joint/2/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23")
+Velvet/joint/2/override_defaults = false
+Velvet/joint/3/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23/Hair24")
+Velvet/joint/3/override_defaults = false
 
-[node name="Torso" parent="Sprite/Skirt" index="3" instance=ExtResource( 7 )]
-position = Vector2( 37.5, -24.5 )
+[node name="Arm1" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="5"]
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+base_settings/execution_enabled = true
+base_settings/execution_mode = 0
+base_settings/gizmo_can_draw_in_editor = true
+base_settings/gizmo_can_draw_in_game = false
+base_settings/gizmo_update_on_execution = false
+CCDIK/target = NodePath("../../Arm1Target")
+CCDIK/tip = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Arm11/Arm12")
+CCDIK/solve_mode = 0
+CCDIK/joint_count = 1
+CCDIK/joint/0/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Arm11")
+CCDIK/joint/0/constraint_angle_enabled = false
 
-[node name="Skeleton2D" parent="Sprite/Skirt/Torso" index="0"]
-show_behind_parent = true
+[node name="FArm1" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="6"]
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+base_settings/execution_enabled = true
+base_settings/execution_mode = 0
+base_settings/gizmo_can_draw_in_editor = true
+base_settings/gizmo_can_draw_in_game = false
+base_settings/gizmo_update_on_execution = false
+CCDIK/target = NodePath("../../FArm1Target")
+CCDIK/tip = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Arm11/Arm12/Arm13")
+CCDIK/solve_mode = 0
+CCDIK/joint_count = 1
+CCDIK/joint/0/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Arm11/Arm12")
+CCDIK/joint/0/constraint_angle_enabled = false
 
-[node name="Spine" parent="Sprite/Skirt/Torso/Skeleton2D" index="0"]
-show_behind_parent = true
+[node name="Arm2" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="7"]
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+base_settings/execution_enabled = true
+base_settings/execution_mode = 0
+base_settings/gizmo_can_draw_in_editor = true
+base_settings/gizmo_can_draw_in_game = false
+base_settings/gizmo_update_on_execution = false
+CCDIK/target = NodePath("../../Arm2Target")
+CCDIK/tip = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Arm21/Arm22")
+CCDIK/solve_mode = 0
+CCDIK/joint_count = 1
+CCDIK/joint/0/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Arm21")
+CCDIK/joint/0/constraint_angle_enabled = false
 
-[node name="Spine2" parent="Sprite/Skirt/Torso/Skeleton2D/Spine" index="0"]
-show_behind_parent = true
+[node name="FArm2" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="8"]
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+base_settings/execution_enabled = true
+base_settings/execution_mode = 0
+base_settings/gizmo_can_draw_in_editor = true
+base_settings/gizmo_can_draw_in_game = false
+base_settings/gizmo_update_on_execution = false
+CCDIK/target = NodePath("../../FArm2Target")
+CCDIK/tip = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Arm21/Arm22/Arm23")
+CCDIK/solve_mode = 0
+CCDIK/joint_count = 1
+CCDIK/joint/0/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Arm21/Arm22")
+CCDIK/joint/0/constraint_angle_enabled = false
 
-[node name="Spine3" parent="Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2" index="0"]
-show_behind_parent = true
-
-[node name="Spine4" parent="Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3" index="0"]
-show_behind_parent = true
-scale = Vector2( 1, 1 )
-
-[node name="EnemyWeapon" parent="Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3" index="1" instance=ExtResource( 9 )]
-show_behind_parent = true
-position = Vector2( 5.2932, -13.1061 )
-rotation = 0.837156
-scale = Vector2( 0.952381, 1 )
-
-[node name="EnemyWeapon2" parent="Sprite/Skirt/Torso/Skeleton2D/Spine/Spine2/Spine3" index="2" instance=ExtResource( 14 )]
-show_behind_parent = true
-position = Vector2( -10.391, -13.5764 )
-rotation = 2.08108
-
-[node name="Head" parent="Sprite/Skirt/Torso" index="1" instance=ExtResource( 5 )]
-position = Vector2( 15.75, -9.5 )
-
-[node name="HairTop" parent="Sprite/Skirt/Torso/Head" index="2" instance=ExtResource( 8 )]
-position = Vector2( -21, -35 )
-
-[node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource( 1 )
-
-[node name="Health" parent="HUD" index="0"]
-visible = false
-
-[node name="AI" parent="." index="4" instance=ExtResource( 10 )]
-too_close_dist = 150
-
-[editable path="Sprite/Skirt"]
-[editable path="Sprite/Skirt/HairBack"]
-[editable path="Sprite/Skirt/Hair"]
-[editable path="Sprite/Skirt/Torso"]
-[editable path="Sprite/Skirt/Torso/Head"]
-[editable path="Sprite/Skirt/Torso/Head/HairTop"]
+[node name="Anim" type="AnimationPlayer" parent="." index="4"]
+anims/front = SubResource( 1 )

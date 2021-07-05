@@ -3,7 +3,6 @@ using System;
 
 public class ParaPrin : Enemy
 {
-    public ParaPrinWeap1 Weapon1 {get; private set;}
     public EnemyWeapon Weapon2 {get; private set;}
 
 
@@ -19,22 +18,22 @@ public class ParaPrin : Enemy
     private float impulseRot;
 
 
-    public void MeleeAttack() {
-        Weapon1.LookAt(LevelNode.GetPlayerPos());
-        impulseRot = Weapon1.GlobalRotation;
-        float dotProd =
-        new Vector2(0,1).Dot(new Vector2(1,0).Rotated(impulseRot));
-        if(dotProd <= -0.5) {
-            //anim.Play("melee_attack_up");
-            anim.Play("melee_attack_up");
-            Weapon1.MeleeAttackDir(true);
-        }
-        else {
-            //anim.Play("melee_attack_down");
-            anim.Play("melee_attack_down");
-            Weapon1.MeleeAttackDir(false);
-        }
-    }
+    // public void MeleeAttack() {
+    //     Weapon1.LookAt(LevelNode.GetPlayerPos());
+    //     impulseRot = Weapon1.GlobalRotation;
+    //     float dotProd =
+    //     new Vector2(0,1).Dot(new Vector2(1,0).Rotated(impulseRot));
+    //     if(dotProd <= -0.5) {
+    //         //anim.Play("melee_attack_up");
+    //         anim.Play("melee_attack_up");
+    //         Weapon1.MeleeAttackDir(true);
+    //     }
+    //     else {
+    //         //anim.Play("melee_attack_down");
+    //         anim.Play("melee_attack_down");
+    //         Weapon1.MeleeAttackDir(false);
+    //     }
+    // }
 
 
     public override void AdjustSprites()

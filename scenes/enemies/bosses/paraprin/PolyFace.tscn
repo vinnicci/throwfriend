@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/enemies/bosses/paraprin/tex_en_paraprin_face_1.png" type="Texture" id=1]
+[ext_resource path="res://toolscripts/PolyMeshTool.cs" type="Script" id=2]
+
+[node name="FaceBlank" type="Polygon2D"]
+texture = ExtResource( 1 )
+polygon = PoolVector2Array( 1.125, 1.0625, 11.7284, -2.70062, 20.75, 0.9375, 22.5309, 8.41049, 20.4375, 22.125, 11.5, 26.8125, 2.0625, 22.25, -0.875, 8.4375, 2.31481, 8.41049, 2.9321, 16.7438, 8.41049, 23.6883, 14.6605, 23.6111, 19.1358, 17.6698, 19.5216, 7.71605, 12.5, 8.4375, 12.6875, 16.5 )
+uv = PoolVector2Array( 1.125, 1.0625, 11.7284, -2.70062, 20.75, 0.9375, 22.5309, 8.41049, 20.4375, 22.125, 11.5, 26.8125, 2.0625, 22.25, -0.875, 8.4375, 2.31481, 8.41049, 2.9321, 16.7438, 8.41049, 23.6883, 14.6605, 23.6111, 19.1358, 17.6698, 19.5216, 7.71605, 12.5, 8.4375, 12.6875, 16.5 )
+polygons = [ PoolIntArray( 1, 0, 8 ), PoolIntArray( 0, 7, 8 ), PoolIntArray( 7, 6, 9 ), PoolIntArray( 8, 7, 9 ), PoolIntArray( 6, 5, 10 ), PoolIntArray( 9, 6, 10 ), PoolIntArray( 5, 4, 11 ), PoolIntArray( 10, 5, 11 ), PoolIntArray( 4, 3, 12 ), PoolIntArray( 11, 4, 12 ), PoolIntArray( 2, 1, 13 ), PoolIntArray( 3, 2, 13 ), PoolIntArray( 12, 3, 13 ), PoolIntArray( 1, 8, 14 ), PoolIntArray( 13, 1, 14 ), PoolIntArray( 8, 9, 14 ), PoolIntArray( 10, 11, 15 ), PoolIntArray( 11, 12, 15 ), PoolIntArray( 9, 10, 15 ), PoolIntArray( 14, 9, 15 ), PoolIntArray( 12, 13, 15 ), PoolIntArray( 13, 14, 15 ) ]
+internal_vertex_count = 8
+script = ExtResource( 2 )
+AutoPoly = true

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://toolscripts/PolyMeshTool.cs" type="Script" id=1]
+[ext_resource path="res://assets/enemies/bosses/paraprin/tex_en_boss_paraprin_arms.png" type="Texture" id=2]
+
+[node name="Arm1" type="Polygon2D"]
+rotation = -1.99253
+offset = Vector2( -23, -4 )
+texture = ExtResource( 2 )
+polygon = PoolVector2Array( 24.4795, 0.5743, 28.1407, 5.31228, 22.3977, 20.0287, 19.9569, 25.6281, 17.7315, 30.5097, 8.82986, 51.6152, 1.50754, 54.8457, -1.7229, 48.2412, 7.39411, 25.9153, 9.97846, 20.603, 11.9167, 16.224, 17.8033, 1.22039, 14.7164, 23.1874 )
+uv = PoolVector2Array( 24.4795, 0.5743, 28.1407, 5.31228, 22.3977, 20.0287, 19.9569, 25.6281, 17.7315, 30.5097, 8.82986, 51.6152, 1.50754, 54.8457, -1.7229, 48.2412, 7.39411, 25.9153, 9.97846, 20.603, 11.9167, 16.224, 17.8033, 1.22039, 14.7164, 23.1874 )
+polygons = [ PoolIntArray( 6, 5, 7 ), PoolIntArray( 5, 4, 8 ), PoolIntArray( 7, 5, 8 ), PoolIntArray( 1, 0, 11 ), PoolIntArray( 2, 1, 11 ), PoolIntArray( 10, 2, 11 ), PoolIntArray( 4, 3, 12 ), PoolIntArray( 8, 4, 12 ), PoolIntArray( 9, 8, 12 ), PoolIntArray( 3, 2, 12 ), PoolIntArray( 2, 10, 12 ), PoolIntArray( 10, 9, 12 ) ]
+internal_vertex_count = 1
+script = ExtResource( 1 )
+AutoPoly = true
