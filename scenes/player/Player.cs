@@ -43,6 +43,12 @@ public class Player : Entity
     AnimationPlayer throwAnim;
     AnimationPlayer damageAnim;
     Node2D snarkPointer;
+    Sprite confusedIndicator;
+    Sprite slowedIndicator;
+    public enum StatusEffect {
+        CONFUSE, SLOW
+    }
+    public bool[] CurrentStatusEffect {get; set;}
     const int EXTRA_SPEED_WITHOUT_WEAPON = 250;
     
 
@@ -52,6 +58,9 @@ public class Player : Entity
         ThrowStrength = throwStrength;
         AvailableUpgrade = 0;
         SnarkDmgMult = 1;
+        CurrentStatusEffect = new bool[2];
+        confusedIndicator = (Sprite)hud.GetNode("Confused");
+        slowedIndicator = (Sprite)hud.GetNode("Slowed");
         Center = (Node2D)GetNode("Center");
         Center.LookAt(GetGlobalMousePosition());
         camera = (PlayerCam)GetNode("PlayerCam");
@@ -201,6 +210,19 @@ public class Player : Entity
         else if(Input.IsActionPressed("right")) {
             velocity.x += 1;
         }
+        //movement status effect
+        if(CurrentStatusEffect[(int)StatusEffect.CONFUSE] == true) {
+            velocity *= -1;
+            if(confusedIndicator.Visible == false) {
+                confusedIndicator.Visible = true;
+            }
+        }
+        if(CurrentStatusEffect[(int)StatusEffect.SLOW] == true) {
+            velocity *= 0.25f;
+            if(slowedIndicator.Visible == false) {
+                slowedIndicator.Visible = true;
+            }
+        }
         Velocity = velocity;
         if(inGameUI.Visible == true) {
             return;
@@ -231,6 +253,19 @@ public class Player : Entity
             WeaponNode.Item2.ApplyEffect();
             EmitSignal("ActivatedWeaponItem", 2);
         }
+    }
+
+
+    void ClearStatusEffect(StatusEffect eff, Timer timer) {
+        if(eff == StatusEffect.CONFUSE) {
+            CurrentStatusEffect[(int)StatusEffect.CONFUSE] = false;
+            confusedIndicator.Visible = false;
+        }
+        else if(eff == StatusEffect.SLOW) {
+            CurrentStatusEffect[(int)StatusEffect.SLOW] = false;
+            slowedIndicator.Visible = false;
+        }
+        timer.QueueFree();
     }
 
 

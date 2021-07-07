@@ -3,15 +3,11 @@ using System;
 
 public class TeleportToWeapon : PlayerItem
 {
-    public override void InitEffect()
-    {
-        base.InitEffect();
-        WeaponNode = PlayerNode.WeaponNode;
-    }
-
-
     public override void ApplyEffect()
     {
+        if(WeaponNode != PlayerNode.WeaponNode) {
+            WeaponNode = PlayerNode.WeaponNode;
+        }
         if(WeaponNode.Mode != RigidBody2D.ModeEnum.Rigid || Cooldown.IsStopped() == false) {
             return;
         }

@@ -1,0 +1,41 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/enemies/all rounder/anim/blob_fly_1.tres" type="Animation" id=1]
+[ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=2]
+[ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=3]
+[ext_resource path="res://scenes/enemies/all rounder/anim/die1.tres" type="Animation" id=4]
+[ext_resource path="res://scenes/enemies/all rounder/BaseFlyBlobCarrier.cs" type="Script" id=5]
+[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/ParaBlob.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/all rounder/BaseAllRounder.tscn" type="PackedScene" id=8]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 22.0
+
+[node name="ParaBlobCarrier" instance=ExtResource( 8 )]
+modulate = Color( 1, 1, 1, 0.997965 )
+script = ExtResource( 5 )
+speed = 375
+spawnScenes = {
+"flyblob": ExtResource( 7 ),
+"hp_drop": ExtResource( 6 )
+}
+acts = {
+"blob_fly": 1.0
+}
+
+[node name="Arms" parent="Sprite" index="0"]
+visible = true
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 1 )
+
+[node name="AI" parent="." index="4"]
+seek_dist = 300
+
+[node name="Anim" type="AnimationPlayer" parent="." index="6"]
+autoplay = "idle"
+anims/blob_fly = ExtResource( 1 )
+anims/die = ExtResource( 4 )
+anims/idle = ExtResource( 3 )
+anims/run = ExtResource( 2 )

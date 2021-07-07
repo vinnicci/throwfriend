@@ -3,15 +3,11 @@ using System;
 
 public class Swap : PlayerItem
 {
-    public override void InitEffect()
-    {
-        base.InitEffect();
-        WeaponNode = PlayerNode.WeaponNode;
-    }
-
-
     public override void ApplyEffect()
     {
+        if(WeaponNode != PlayerNode.WeaponNode) {
+            WeaponNode = PlayerNode.WeaponNode;
+        }
         if(WeaponNode.CurrentState == Weapon.States.HELD || Cooldown.IsStopped() == false) {
             return;
         }

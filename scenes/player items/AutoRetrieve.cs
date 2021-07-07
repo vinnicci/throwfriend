@@ -18,16 +18,12 @@ public class AutoRetrieve : PlayerItem
     const int STOP_RETURN_DIST = 10000;
 
 
-    public override void InitEffect()
-    {
-        base.InitEffect();
-        WeaponNode = PlayerNode.WeaponNode;
-    }
-
-
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
+        if(WeaponNode != PlayerNode.WeaponNode) {
+            WeaponNode = PlayerNode.WeaponNode;
+        }
         if(weapIsReturning == true) {
             Vector2 vec = (PlayerNode.GlobalPosition - WeaponNode.GlobalPosition).Clamped(1) * RETRIEVE_SPEED;
             WeaponNode.Velocity = vec;

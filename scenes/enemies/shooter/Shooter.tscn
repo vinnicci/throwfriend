@@ -59,8 +59,8 @@ position = Vector2( 0, -5 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="HUD" index="0"]
-margin_top = -65.0
-margin_bottom = -59.0
+margin_top = -78.0
+margin_bottom = -72.0
 
 [node name="AI" parent="." index="5"]
 seek_dist = 225

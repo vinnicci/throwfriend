@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/enemies/all rounder/weapons/anim/blob_fly.tres" type="Animation" id=1]
+[ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder3.png" type="Texture" id=2]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/TeleBlob.cs" type="Script" id=3]
+[ext_resource path="res://scenes/enemies/EnemyProj.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/enemies/shooter/weapons/anim/proj_hit.tres" type="Animation" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 15.1327
+
+[node name="TeleBlob" instance=ExtResource( 4 )]
+script = ExtResource( 3 )
+range = 1500
+speed = 3
+damage = 0
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+offset = Vector2( 0, 3 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 1 )
+
+[node name="Anim" type="AnimationPlayer" parent="." index="2"]
+autoplay = "fly"
+anims/fly = ExtResource( 1 )
+anims/hit = ExtResource( 5 )

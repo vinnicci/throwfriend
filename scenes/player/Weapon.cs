@@ -173,7 +173,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     }
 
 
-    public void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0) {
+    public void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0, bool homeToPlayer = false) {
         lvl.AddChild(this);
         GlobalPosition = globalPos;
         GlobalRotation = globalRot;

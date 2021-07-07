@@ -14,7 +14,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
 
     protected AnimationPlayer anim;
     protected Node2D spriteNode;
-    Node2D hud;
+    protected Node2D hud;
     HealthHUD healthHUD;
 
 
@@ -68,8 +68,8 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         Godot.Collections.Array arr = new Godot.Collections.Array();
         arr.Add(teleSprite);
         tween.Connect("tween_all_completed", this, "FreeSprite", arr);
-        tween.InterpolateProperty(teleSprite, "modulate",
-        new Color(1,1,1,1), new Color(1,1,1,0), 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        tween.InterpolateProperty(teleSprite, "scale", teleSprite.Scale, new Vector2(0.01f, teleSprite.Scale.y), 0.25f,
+        Tween.TransitionType.Linear, Tween.EaseType.InOut);
         tween.Start();
         //teleport
         teleportPos = global_pos;
@@ -122,11 +122,14 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
 
 
+    [Export] float knockbackMult = 1f;
+
+
     public virtual bool Hit(Vector2 knockback, int damage) {
         if(IsDead == true || HitCooldown.IsStopped() == false) {
             return false;
         }
-        ApplyCentralImpulse(knockback);
+        ApplyCentralImpulse(knockback * knockbackMult);
         Health -= damage;
         if(Health <= 0) {
             IsDead = true;
@@ -142,7 +145,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
 
 
     ///<summary>Enter -1 as argument to ignore stat change</summary>
-    public void ChangeEntityBaseStats(int newHealth, int newSpeed) {
+    public void ChangeEntityBaseStats(int newHealth = -1, int newSpeed = -1) {
         if(newHealth != -1) {
             health = newHealth;
             Health = health;
@@ -155,7 +158,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
     
 
-    public void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0) {
+    public void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0, bool homeToPlayer = false) {
         lvl.Spawn(this, globalPos, globalRot);
     }
 

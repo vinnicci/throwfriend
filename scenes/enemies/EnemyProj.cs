@@ -6,12 +6,15 @@ public abstract class EnemyProj : Area2D, ISpawnable
     [Export] protected int range = 500;
     [Export] protected int speed = 20;
     [Export] protected int damage = 1;
+    [Export] protected int homing_magnitude = 100;
 
     Godot.Collections.Array hitExceptions = new Godot.Collections.Array();
     public Vector2 Velocity {get; private set;}
     public int Damage {get; set;}
     public int Range {get; set;}
     public int Speed {get; set;}
+    public bool Homing {get; set;}
+    protected Level levelNode;
 
     protected Sprite sprite;
     Explosion explosion;
@@ -43,8 +46,19 @@ public abstract class EnemyProj : Area2D, ISpawnable
         if(Velocity != Vector2.Zero) {
             sprite.GlobalRotation = Velocity.Angle();
         }
+        SeekPlayer();
         currentRange -= Speed;
         Position += Velocity;
+    }
+
+
+    void SeekPlayer() {
+        if(Homing == true) {
+            Vector2 v = GlobalPosition + Velocity;
+            Vector2 home_target = (levelNode.GetPlayerPos() - v).Clamped(1) * homing_magnitude;
+            Velocity += home_target;
+            Velocity = Velocity.Clamped(Speed);
+        }
     }
 
 
@@ -53,7 +67,8 @@ public abstract class EnemyProj : Area2D, ISpawnable
     }
 
 
-    public virtual void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRotDeg = 0) {
+    public virtual void Spawn(Level lvl, Vector2 globalPos, Vector2 destination,
+    float globalRotDeg = 0, bool homeToPlayer = false) {
         if(destination != Vector2.Zero) {
             Range = CalculateRange(destination);
         }
@@ -62,12 +77,14 @@ public abstract class EnemyProj : Area2D, ISpawnable
         }
         Speed = speed;
         Damage = damage;
+        Homing = homeToPlayer;
+        levelNode = lvl;
         if(IsInstanceValid(explosion) == true) {
             explosion.Damage = Damage;
         }
         currentRange = Range;
         Velocity = new Vector2(Speed, 0).Rotated(Godot.Mathf.Deg2Rad(globalRotDeg));
-        lvl.Spawn(this, globalPos, Godot.Mathf.Deg2Rad(globalRotDeg));
+        levelNode.Spawn(this, globalPos, Godot.Mathf.Deg2Rad(globalRotDeg));
     }
 
 
@@ -83,7 +100,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
     }
 
 
-    void OnEnemyProjBodyEntered(Godot.Object body) {
+    public virtual void OnEnemyProjBodyEntered(Godot.Object body) {
         if(hitExceptions.Contains(body) == true) {
             return;
         }
@@ -99,6 +116,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
         if(Velocity != Vector2.Zero) {
             sprite.GlobalRotation = Velocity.Angle();
             Velocity = Vector2.Zero;
+            anim.Stop();
             anim.Play("hit");
             if(IsInstanceValid(explosion) == true) {
                 explosion.Explode();

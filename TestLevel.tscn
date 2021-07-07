@@ -1,15 +1,19 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/base/Level.cs" type="Script" id=1]
 [ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/enemies/all rounder/ParaBlobCarrier.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/ParaBlob.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/obtainables/AbilityItem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/enemies/spawner/BlobChargerSpawner.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/enemies/all rounder/TeleBlobCarrier.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/SlowBlob.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/TeleBlob.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/enemies/all rounder/SlowBlobCarrier.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/charger/TeleportingCharger.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/obtainables/SnarkDmgUpgrade.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/obtainables/HealthUpgrade.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/enemies/all rounder/MeleeRanged.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/enemies/charger/BlobCharger.tscn" type="PackedScene" id=16]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -32,44 +36,103 @@ tile_data = PoolIntArray( 262134, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0
 
 [node name="Enemies" type="YSort" parent="."]
 
-[node name="BlobChargerSpawner" parent="Enemies" instance=ExtResource( 12 )]
-position = Vector2( 185, 656 )
+[node name="ParaBlobCarrier" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 227, 514 )
 spawnScenes = {
-"blob_charger": ExtResource( 16 ),
+"flyblob": ExtResource( 5 ),
 "hp_drop": ExtResource( 7 )
 }
 acts = {
-"spawn_blob_charger": 8.0
+"blob_fly": 1.0
 }
 
-[node name="MeleeRanged" parent="Enemies" instance=ExtResource( 15 )]
-position = Vector2( 288, 759 )
+[node name="TeleBlobCarrier" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 646, 392 )
 spawnScenes = {
+"flyblob": ExtResource( 10 ),
 "hp_drop": ExtResource( 7 )
 }
 acts = {
-"melee_attack": 1.0,
-"shoot_back": 2.0
+"blob_fly": 1.0
 }
 
-[node name="MeleeRanged2" parent="Enemies" instance=ExtResource( 15 )]
-position = Vector2( 271, 443 )
+[node name="SlowBlobCarrier" parent="Enemies" instance=ExtResource( 11 )]
+position = Vector2( 364, 583 )
 spawnScenes = {
+"flyblob": ExtResource( 9 ),
 "hp_drop": ExtResource( 7 )
 }
 acts = {
-"melee_attack": 1.0,
-"shoot_back": 2.0
+"blob_fly": 1.0
 }
 
-[node name="MeleeRanged3" parent="Enemies" instance=ExtResource( 15 )]
-position = Vector2( 337, 584 )
+[node name="ParaBlobCarrier2" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 227, 514 )
+spawnScenes = {
+"flyblob": ExtResource( 5 ),
+"hp_drop": ExtResource( 7 )
+}
+acts = {
+"blob_fly": 1.0
+}
+
+[node name="SlowBlobCarrier2" parent="Enemies" instance=ExtResource( 11 )]
+position = Vector2( 364, 583 )
+spawnScenes = {
+"flyblob": ExtResource( 9 ),
+"hp_drop": ExtResource( 7 )
+}
+acts = {
+"blob_fly": 1.0
+}
+
+[node name="ParaBlobCarrier3" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 227, 514 )
+spawnScenes = {
+"flyblob": ExtResource( 5 ),
+"hp_drop": ExtResource( 7 )
+}
+acts = {
+"blob_fly": 1.0
+}
+
+[node name="SlowBlobCarrier3" parent="Enemies" instance=ExtResource( 11 )]
+position = Vector2( 364, 583 )
+spawnScenes = {
+"flyblob": ExtResource( 9 ),
+"hp_drop": ExtResource( 7 )
+}
+acts = {
+"blob_fly": 1.0
+}
+
+[node name="ParaBlobCarrier4" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 571, 662 )
+spawnScenes = {
+"flyblob": ExtResource( 5 ),
+"hp_drop": ExtResource( 7 )
+}
+acts = {
+"blob_fly": 1.0
+}
+
+[node name="SlowBlobCarrier4" parent="Enemies" instance=ExtResource( 11 )]
+position = Vector2( 708, 731 )
+spawnScenes = {
+"flyblob": ExtResource( 9 ),
+"hp_drop": ExtResource( 7 )
+}
+acts = {
+"blob_fly": 1.0
+}
+
+[node name="TeleportingCharger" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 634, 529 )
 spawnScenes = {
 "hp_drop": ExtResource( 7 )
 }
 acts = {
-"melee_attack": 1.0,
-"shoot_back": 2.0
+"charge": 1.0
 }
 
 [node name="PatrolPoints" type="Node2D" parent="."]
