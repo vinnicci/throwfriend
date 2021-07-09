@@ -8,7 +8,7 @@ extents = Vector2( 64, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 32 )
 
-[sub_resource type="NavigationPolygon" id=6]
+[sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 ) ]
@@ -26,6 +26,7 @@ outlines = [ PoolVector2Array( 0, 32, -32, 32, -32, 0, 0, 0 ) ]
 [node name="WallScene" type="Node2D"]
 
 [node name="Wall" type="Sprite" parent="."]
+modulate = Color( 0.513726, 0.513726, 0.513726, 1 )
 texture = ExtResource( 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
@@ -34,7 +35,7 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Corner" type="Sprite" parent="."]
-modulate = Color( 0.556863, 0.556863, 0.556863, 1 )
+modulate = Color( 0.133333, 0.133333, 0.133333, 1 )
 position = Vector2( 96, 0 )
 texture = ExtResource( 1 )
 
@@ -49,7 +50,7 @@ position = Vector2( 192, 0 )
 texture = ExtResource( 1 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Nav"]
-navpoly = SubResource( 6 )
+navpoly = SubResource( 3 )
 
 [node name="NavHalf" type="Sprite" parent="."]
 modulate = Color( 0.701961, 1, 0.478431, 1 )

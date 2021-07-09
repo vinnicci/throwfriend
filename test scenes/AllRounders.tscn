@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/enemies/all rounder/DualRanged.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/Melee.tscn" type="PackedScene" id=2]
-[ext_resource path="res://test scenes/Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://test scenes/WallBlue.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/enemies/all rounder/MeleeRanged.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemies/all rounder/MeleeBlobnadier.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/all rounder/MeleeShielded.tscn" type="PackedScene" id=6]

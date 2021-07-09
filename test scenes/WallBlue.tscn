@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://test scenes/WallBlue.tres" type="TileSet" id=1]
+[ext_resource path="res://test scenes/Wall.cs" type="Script" id=2]
+
+[node name="WallBlue" type="TileMap"]
+tile_set = ExtResource( 1 )
+collision_friction = 0.0
+collision_bounce = 0.5
+collision_layer = 2
+collision_mask = 0
+format = 1
+script = ExtResource( 2 )

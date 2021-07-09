@@ -3,7 +3,7 @@ using System;
 
 public class Player : Entity
 {
-    [Export] protected int throwStrength = 125;
+    [Export] protected int throwStrength = 75;
     public int ThrowStrength {get; set;}
     public Node2D Center {get; set;}
     public Weapon WeaponNode {get; set;}

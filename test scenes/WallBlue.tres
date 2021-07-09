@@ -8,15 +8,15 @@ extents = Vector2( 64, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 32 )
 
-[sub_resource type="NavigationPolygon" id=3]
-vertices = PoolVector2Array( -32, 0, 32, 0, 32, 32, -32, 32 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( -32, 0, 32, 0, 32, 32, -32, 32 ) ]
-
 [sub_resource type="NavigationPolygon" id=4]
 vertices = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 ) ]
+
+[sub_resource type="NavigationPolygon" id=3]
+vertices = PoolVector2Array( -32, 0, 32, 0, 32, 32, -32, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -32, 0, 32, 0, 32, 32, -32, 32 ) ]
 
 [sub_resource type="NavigationPolygon" id=5]
 vertices = PoolVector2Array( 0, 32, -32, 32, -32, 0, 0, 0 )
@@ -27,7 +27,7 @@ outlines = [ PoolVector2Array( 0, 32, -32, 32, -32, 0, 0, 0 ) ]
 0/name = "Wall"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 0.513726, 0.513726, 0.513726, 1 )
+0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 64, 64 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 32, 32 )
@@ -48,7 +48,7 @@ outlines = [ PoolVector2Array( 0, 32, -32, 32, -32, 0, 0, 0 ) ]
 1/name = "Corner"
 1/texture = ExtResource( 1 )
 1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 0.133333, 0.133333, 0.133333, 1 )
+1/modulate = Color( 0.556863, 0.556863, 0.556863, 1 )
 1/region = Rect2( 0, 0, 64, 64 )
 1/tile_mode = 0
 1/occluder_offset = Vector2( 32, 32 )
@@ -74,7 +74,7 @@ outlines = [ PoolVector2Array( 0, 32, -32, 32, -32, 0, 0, 0 ) ]
 2/tile_mode = 0
 2/occluder_offset = Vector2( 32, 32 )
 2/navigation_offset = Vector2( 32, 32 )
-2/navigation = SubResource( 3 )
+2/navigation = SubResource( 4 )
 2/shape_offset = Vector2( 0, 0 )
 2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 2/shape_one_way = false
@@ -89,7 +89,7 @@ outlines = [ PoolVector2Array( 0, 32, -32, 32, -32, 0, 0, 0 ) ]
 3/tile_mode = 0
 3/occluder_offset = Vector2( 32, 16 )
 3/navigation_offset = Vector2( 32, 16 )
-3/navigation = SubResource( 4 )
+3/navigation = SubResource( 3 )
 3/shape_offset = Vector2( 0, 0 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 3/shape_one_way = false

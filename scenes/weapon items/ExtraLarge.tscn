@@ -7,7 +7,7 @@
 
 [node name="ExtraLarge" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Snark is bigger and more erratic. He will inflict 2x more damage, break through enemy shields and if he has the explosion ability, the explosion radius is larger."
+itemDescription = "Snark is bigger and more erratic. He will inflict 2x more damage, break through enemy shields and make larger explosions."
 weapLarge = ExtResource( 4 )
 
 [node name="Icon" parent="." index="0"]

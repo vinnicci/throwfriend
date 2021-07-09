@@ -28,7 +28,7 @@ public class Explosive : WeaponItem
             return;
         }
         explosionNode.Damage = WeaponNode.Damage * PlayerNode.SnarkDmgMult;
-        if(WeaponNode.Filename == "res://scenes/player/WeaponLarge.tscn") {
+        if(WeaponNode.Filename == Global.WEAP_LARGE_FILE) {
             explosionNode.ExplosionRadius = explosionNode.explosionRadius * 2;
         }
         explosionNode.Explode();

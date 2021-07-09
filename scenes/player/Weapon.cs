@@ -120,7 +120,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     }
 
 
-    const int WEAP_MIN_LIN_VEL_LEN = 62500;
+    const int WEAP_MIN_LIN_VEL_LEN = 15625;
 
 
     public override void _PhysicsProcess(float delta)
@@ -181,7 +181,8 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 
 
     [Signal] public delegate void PickedUp();
-    const int KNOCKBACK = 200;
+    const int KNOCKBACK = 125;
+    const int LARGE_KNOCKBACK = 250;
     const int BOUNCE_ROTATION = 30;
 
 
@@ -197,12 +198,16 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         else if(body is IHealthModifiable) {
             IHealthModifiable hitBody = (IHealthModifiable)body;
             int dmg = Damage * PlayerNode.SnarkDmgMult;
+            int knockback = KNOCKBACK;
+            if(Filename == Global.WEAP_LARGE_FILE) {
+                knockback = LARGE_KNOCKBACK;
+            }
             if(CurrentState == States.ACTIVE) {
-                hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), dmg);
+                hitBody.Hit(new Vector2(knockback, 0).Rotated(GlobalRotation), dmg);
             }
             else if(CurrentState == States.INACTIVE &&
             (PlayerNode.Item1 is AutoRetrieve || PlayerNode.Item2 is AutoRetrieve)) {
-                hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), dmg);
+                hitBody.Hit(new Vector2(knockback, 0).Rotated(GlobalRotation), dmg);
             }
         }
         int i = 1;

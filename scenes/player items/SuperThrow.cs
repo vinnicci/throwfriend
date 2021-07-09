@@ -3,7 +3,7 @@ using System;
 
 public class SuperThrow : PlayerItem
 {
-    const int EXTRA_STRENGTH = 125;
+    const int EXTRA_STRENGTH = 75;
 
 
     public override void InitEffect()

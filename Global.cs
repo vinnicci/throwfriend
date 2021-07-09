@@ -9,4 +9,5 @@ public static class Global
     public const short BIT_MASK_WEAPON = 3;
     public const short BIT_MASK_WEAPON_LARGET = 4;
     public const int CCD_MAX = 4000000;
+    public const String WEAP_LARGE_FILE = "res://scenes/player/WeaponLarge.tscn";
 }

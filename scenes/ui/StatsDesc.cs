@@ -59,11 +59,18 @@ public class StatsDesc : Control
     }
 
 
-    const int INCREMENT = 125;
+    const int SPEED_INCREMENT = 125;
+    const int THROW_INCREMENT = 75;
 
 
     String GetDescriptive(int mag, int type) {
-        float val = mag/INCREMENT;
+        float val = 0;
+        if(type == 0) {
+            val = mag/SPEED_INCREMENT;
+        }
+        else {
+            val = mag/THROW_INCREMENT;
+        }
         if(val <= 1) {
             if(type == 0) return "Slow";
             else return "Weak";
@@ -99,7 +106,7 @@ public class StatsDesc : Control
         switch(currentTip) {
             case 1: {
                 currentTip = 2;
-                tipLabel.Text = "Snark can only inflict damage when he's active. You know he's active when his mouth is open.";
+                tipLabel.Text = "Snark can only inflict damage when he's active. You will know he's active when his mouth is open.";
             }
             break;
             case 2: {
@@ -114,12 +121,12 @@ public class StatsDesc : Control
             break;
             case 4: {
                 currentTip = 5;
-                tipLabel.Text = "Look out for secret paths. These paths will lead you to some cool rewards.";
+                tipLabel.Text = "Look out for secret paths. These paths will either lead you to cool rewards or dangerous places.";
             }
             break;
             case 5: {
                 currentTip = 1;
-                tipLabel.Text = "Increase your mobility by dropping Snark.";
+                tipLabel.Text = "Releasing Snark increases mobility.";
             }
             break;
         }
