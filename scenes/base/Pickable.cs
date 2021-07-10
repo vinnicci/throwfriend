@@ -16,7 +16,7 @@ public abstract class Pickable : Area2D, ISpawnable
     public abstract void OnPickableItemBodyEntered(Godot.Object body);
 
 
-    public void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0, bool homeToPlayer = false) {
+    public void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0) {
         lvl.Spawn(this, globalPos);
     }
 

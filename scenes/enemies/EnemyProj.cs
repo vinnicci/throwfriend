@@ -6,14 +6,13 @@ public abstract class EnemyProj : Area2D, ISpawnable
     [Export] protected int range = 500;
     [Export] protected int speed = 20;
     [Export] protected int damage = 1;
-    [Export] protected int homing_magnitude = 100;
+    [Export] protected int homing_magnitude = 0;
 
     Godot.Collections.Array hitExceptions = new Godot.Collections.Array();
     public Vector2 Velocity {get; private set;}
     public int Damage {get; set;}
     public int Range {get; set;}
     public int Speed {get; set;}
-    public bool Homing {get; set;}
     protected Level levelNode;
 
     protected Sprite sprite;
@@ -33,32 +32,34 @@ public abstract class EnemyProj : Area2D, ISpawnable
     }
 
 
-    float currentRange;
+    int currentRange;
 
 
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
         if(currentRange <= 0) {
-            StopProjectile();
+            if(Velocity != Vector2.Zero) {
+                StopProjectile();
+            }
             return;
         }
         if(Velocity != Vector2.Zero) {
             sprite.GlobalRotation = Velocity.Angle();
         }
-        SeekPlayer();
+        if(homing_magnitude > 0) {
+            SeekPlayer();
+        }
         currentRange -= Speed;
         Position += Velocity;
     }
 
 
     void SeekPlayer() {
-        if(Homing == true) {
-            Vector2 v = GlobalPosition + Velocity;
-            Vector2 home_target = (levelNode.GetPlayerPos() - v).Clamped(1) * homing_magnitude;
-            Velocity += home_target;
-            Velocity = Velocity.Clamped(Speed);
-        }
+        Vector2 v = GlobalPosition + Velocity;
+        Vector2 home_target = (levelNode.GetPlayerPos() - v).Clamped(1) * homing_magnitude;
+        Velocity += home_target;
+        Velocity = Velocity.Clamped(Speed);
     }
 
 
@@ -67,8 +68,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
     }
 
 
-    public virtual void Spawn(Level lvl, Vector2 globalPos, Vector2 destination,
-    float globalRotDeg = 0, bool homeToPlayer = false) {
+    public virtual void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRotDeg = 0) {
         if(destination != Vector2.Zero) {
             Range = CalculateRange(destination);
         }
@@ -77,7 +77,6 @@ public abstract class EnemyProj : Area2D, ISpawnable
         }
         Speed = speed;
         Damage = damage;
-        Homing = homeToPlayer;
         levelNode = lvl;
         if(IsInstanceValid(explosion) == true) {
             explosion.Damage = Damage;
@@ -112,15 +111,18 @@ public abstract class EnemyProj : Area2D, ISpawnable
     }
 
 
-    public void StopProjectile() {
-        if(Velocity != Vector2.Zero) {
-            sprite.GlobalRotation = Velocity.Angle();
-            Velocity = Vector2.Zero;
+    public virtual void StopProjectile() {
+        sprite.GlobalRotation = Velocity.Angle();
+        Velocity = Vector2.Zero;
+        if(anim.IsPlaying() == true && anim.CurrentAnimation != "hit") {
             anim.Stop();
             anim.Play("hit");
-            if(IsInstanceValid(explosion) == true) {
-                explosion.Explode();
-            }
+        }
+        else {
+            anim.Play("hit");
+        }
+        if(IsInstanceValid(explosion) == true) {
+            explosion.Explode();
         }
     }
 

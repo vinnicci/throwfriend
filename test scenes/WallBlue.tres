@@ -8,12 +8,12 @@ extents = Vector2( 64, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 32 )
 
-[sub_resource type="NavigationPolygon" id=4]
+[sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 ) ]
 
-[sub_resource type="NavigationPolygon" id=3]
+[sub_resource type="NavigationPolygon" id=4]
 vertices = PoolVector2Array( -32, 0, 32, 0, 32, 32, -32, 32 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( -32, 0, 32, 0, 32, 32, -32, 32 ) ]
@@ -74,7 +74,7 @@ outlines = [ PoolVector2Array( 0, 32, -32, 32, -32, 0, 0, 0 ) ]
 2/tile_mode = 0
 2/occluder_offset = Vector2( 32, 32 )
 2/navigation_offset = Vector2( 32, 32 )
-2/navigation = SubResource( 4 )
+2/navigation = SubResource( 3 )
 2/shape_offset = Vector2( 0, 0 )
 2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 2/shape_one_way = false
@@ -89,7 +89,7 @@ outlines = [ PoolVector2Array( 0, 32, -32, 32, -32, 0, 0, 0 ) ]
 3/tile_mode = 0
 3/occluder_offset = Vector2( 32, 16 )
 3/navigation_offset = Vector2( 32, 16 )
-3/navigation = SubResource( 3 )
+3/navigation = SubResource( 4 )
 3/shape_offset = Vector2( 0, 0 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 3/shape_one_way = false

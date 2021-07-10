@@ -6,9 +6,8 @@ public class TeleBlob : EnemyProj
     Vector2 teleDest;
 
 
-    public override void Spawn(Level lvl, Vector2 globalPos, Vector2 destination,
-    float globalRotDeg = 0, bool homeToPlayer = false) {
-        base.Spawn(lvl, globalPos, destination, globalRotDeg, homeToPlayer);
+    public override void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRotDeg = 0) {
+        base.Spawn(lvl, globalPos, destination);
         teleDest = GlobalPosition;
     }
 

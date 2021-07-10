@@ -158,7 +158,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
     
 
-    public void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0, bool homeToPlayer = false) {
+    public void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0) {
         lvl.Spawn(this, globalPos, globalRot);
     }
 

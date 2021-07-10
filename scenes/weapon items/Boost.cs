@@ -3,7 +3,7 @@ using System;
 
 public class Boost : WeaponItem
 {
-    const int BOOST_SPEED = 150;
+    const int BOOST_SPEED = 165;
 
 
     public override void ApplyEffect()
