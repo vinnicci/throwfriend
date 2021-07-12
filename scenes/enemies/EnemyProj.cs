@@ -123,6 +123,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
         }
         if(IsInstanceValid(explosion) == true) {
             explosion.Explode();
+            sprite.Visible = false;
         }
     }
 

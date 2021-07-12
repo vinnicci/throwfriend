@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://test scenes/WallStone.tres" type="TileSet" id=1]
+
+[node name="WallStone" type="TileMap"]
+tile_set = ExtResource( 1 )
+cell_tile_origin = 1
+cell_y_sort = true
+show_collision = true
+collision_bounce = 0.2
+collision_layer = 2
+collision_mask = 0
+format = 1

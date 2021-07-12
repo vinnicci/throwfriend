@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/enemies/shooter/weapons/anim/idle.tres" type="Animation" id=2]
 [ext_resource path="res://assets/enemies/shooter/tex_en_sprayer_pincer2.png" type="Texture" id=3]
 [ext_resource path="res://assets/enemies/shooter/tex_en_sprayer_pincer1.png" type="Texture" id=4]
-[ext_resource path="res://scenes/enemies/shooter/weapons/SprayerWeapon.cs" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/shooter/weapons/ShooterWeapon.cs" type="Script" id=5]
 [ext_resource path="res://scenes/enemies/EnemyWeapon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/shooter/weapons/SprayerAcidProj.tscn" type="PackedScene" id=7]
 

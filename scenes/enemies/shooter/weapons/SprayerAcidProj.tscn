@@ -31,10 +31,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 6.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 4 ]
+"values": [ 4, 0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath(".:visible")
@@ -86,7 +86,8 @@ range = 300
 speed = 5
 
 [node name="Sprite" parent="." index="0"]
-z_index = -1
+modulate = Color( 0.290196, 1, 0, 1 )
+z_index = -3
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="1"]
