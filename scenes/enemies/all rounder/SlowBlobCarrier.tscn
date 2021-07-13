@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/blob_fly_2.tres" type="Animation" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=2]
@@ -9,12 +9,12 @@
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder2.png" type="Texture" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/BaseAllRounder.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/SlowBlob.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemies/all rounder/anim/damaged.tres" type="Animation" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
 
 [node name="SlowBlobCarrier" instance=ExtResource( 8 )]
-modulate = Color( 1, 1, 1, 0.955555 )
 script = ExtResource( 5 )
 speed = 375
 spawnScenes = {
@@ -27,10 +27,6 @@ acts = {
 
 [node name="Arms" parent="Sprite" index="0"]
 visible = true
-z_index = 0
-
-[node name="Torso" parent="Sprite" index="1"]
-z_index = 0
 
 [node name="Head" parent="Sprite" index="2"]
 texture = ExtResource( 7 )
@@ -41,7 +37,10 @@ shape = SubResource( 1 )
 [node name="AI" parent="." index="4"]
 seek_dist = 300
 
-[node name="Anim" type="AnimationPlayer" parent="." index="6"]
+[node name="DamageAnim" parent="Anims" index="1"]
+anims/damaged = ExtResource( 10 )
+
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/blob_fly = ExtResource( 1 )
 anims/die = ExtResource( 4 )

@@ -65,7 +65,7 @@ margin_bottom = -72.0
 [node name="AI" parent="." index="5"]
 seek_dist = 225
 
-[node name="Anim" type="AnimationPlayer" parent="." index="6"]
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/die = ExtResource( 2 )
 anims/idle = ExtResource( 9 )

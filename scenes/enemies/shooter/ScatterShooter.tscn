@@ -7,31 +7,11 @@
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/enemies/shooter/tex_en_scattershooter_body.png" type="Texture" id=6]
 [ext_resource path="res://scenes/enemies/shooter/weapons/ScatterShooterWeapon.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/shooter/anim/scattershooter_shoot.tres" type="Animation" id=8]
 [ext_resource path="res://scenes/enemies/shooter/anim/idle.tres" type="Animation" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
-
-[sub_resource type="Animation" id=2]
-resource_name = "shoot"
-length = 2.0
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "Shoot"
-}, {
-"args": [ "shoot" ],
-"method": "FinishAction"
-} ]
-}
 
 [node name="ScatterShooter" instance=ExtResource( 1 )]
 spawnScenes = {
@@ -40,9 +20,6 @@ spawnScenes = {
 acts = {
 "shoot": 1.0
 }
-
-[node name="Sprite" parent="." index="0"]
-position = Vector2( 0, 3 )
 
 [node name="Body" parent="Sprite" index="0"]
 texture = ExtResource( 6 )
@@ -69,9 +46,9 @@ margin_bottom = -76.0
 seek_dist = 250
 too_far_dist = 300
 
-[node name="Anim" type="AnimationPlayer" parent="." index="6"]
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/die = ExtResource( 2 )
 anims/idle = ExtResource( 9 )
 anims/run = ExtResource( 3 )
-anims/shoot = SubResource( 2 )
+anims/shoot = ExtResource( 8 )

@@ -4,7 +4,7 @@
 resource_name = "charge"
 length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/Shell:position")
+tracks/0/path = NodePath("../Sprite/Shell:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -16,7 +16,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -10 ), Vector2( -3, -15.8 ), Vector2( 3, -19.6 ), Vector2( -3, -22.4 ), Vector2( 3, -26.2 ), Vector2( 0, -31 ), Vector2( 8.5, 6 ), Vector2( 8.5, 6 ), Vector2( 0, -10 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/Body:scale")
+tracks/1/path = NodePath("../Sprite/Body:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -28,7 +28,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1.15, 0.9 ), Vector2( 0.8, 1.5 ), Vector2( 0.8, 0.3 ), Vector2( 0.8, 0.3 ), Vector2( 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite/Body:position")
+tracks/2/path = NodePath("../Sprite/Body:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -40,7 +40,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 5 ), Vector2( 0, -8 ), Vector2( 0, 15 ), Vector2( 0, 15 ), Vector2( 0, 0 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite/Body:visible")
+tracks/3/path = NodePath("../Sprite/Body:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -52,7 +52,7 @@ tracks/3/keys = {
 "values": [ true, false, true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite/Shell/Hide:visible")
+tracks/4/path = NodePath("../Sprite/Shell/Hide:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -64,7 +64,7 @@ tracks/4/keys = {
 "values": [ false, true, false ]
 }
 tracks/5/type = "method"
-tracks/5/path = NodePath(".")
+tracks/5/path = NodePath("..")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -81,7 +81,7 @@ tracks/5/keys = {
 } ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath(".:collision_layer")
+tracks/6/path = NodePath("..:collision_layer")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false

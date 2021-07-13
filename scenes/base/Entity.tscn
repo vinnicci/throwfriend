@@ -2,27 +2,11 @@
 
 [ext_resource path="res://scenes/base/Entity.cs" type="Script" id=1]
 [ext_resource path="res://scenes/ui/HealthHUD.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/base/entity_teleported.tres" type="Animation" id=3]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 1.0
-
-[sub_resource type="Animation" id=2]
-resource_name = "teleported"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.980392, 0.109804, 0.0196078, 0 ), Color( 1, 1, 1, 1 ) ]
-}
 
 [node name="Entity" type="RigidBody2D"]
 mode = 2
@@ -51,5 +35,9 @@ margin_left = -39.0
 margin_right = -13.0
 rect_scale = Vector2( 3, 1.5 )
 
-[node name="TeleAnim" type="AnimationPlayer" parent="."]
-anims/teleported = SubResource( 2 )
+[node name="Anims" type="Node2D" parent="."]
+
+[node name="TeleAnim" type="AnimationPlayer" parent="Anims"]
+anims/teleported = ExtResource( 3 )
+
+[node name="DamageAnim" type="AnimationPlayer" parent="Anims"]

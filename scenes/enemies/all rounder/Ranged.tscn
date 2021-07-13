@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=1]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder3.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/enemies/all rounder/weapons/BlasterProj.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/all rounder/anim/damaged.tres" type="Animation" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
@@ -43,7 +44,10 @@ shape = SubResource( 1 )
 margin_top = -50.0
 margin_bottom = -44.0
 
-[node name="Anim" type="AnimationPlayer" parent="." index="6"]
+[node name="DamageAnim" parent="Anims" index="1"]
+anims/damaged = ExtResource( 12 )
+
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/die = ExtResource( 7 )
 anims/idle = ExtResource( 1 )

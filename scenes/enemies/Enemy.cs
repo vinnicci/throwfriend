@@ -123,8 +123,13 @@ public abstract class Enemy : Entity, ISpawner
     public override bool Hit(Vector2 knockback, int damage)
     {
         if(base.Hit(knockback, damage) == true) {
-            if(IsDead == true && GD.RandRange(0, 100) <= CHANCE_HP_DROP) {
-                CallDeferred("SpawnInstance", "hp_drop", 1);
+            if(IsDead == true) {
+                if(IsInstanceValid(WeaponNode) == true) {
+                    WeaponNode.Anim.Stop();
+                }
+                if(GD.RandRange(0, 100) <= CHANCE_HP_DROP) {
+                    CallDeferred("SpawnInstance", "hp_drop", 1);
+                }
             }
             return true;
         }

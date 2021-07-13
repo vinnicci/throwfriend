@@ -27,15 +27,12 @@ acts = {
 "charge": 0.5
 }
 
-[node name="Sprite" parent="." index="0"]
-position = Vector2( 0, 6 )
-scale = Vector2( 1.15, 1 )
-
 [node name="Lower" type="Sprite" parent="Sprite" index="0"]
+scale = Vector2( 1.15, 0.9 )
 texture = ExtResource( 4 )
 
 [node name="Upper" type="Sprite" parent="Sprite/Lower" index="0"]
-position = Vector2( 0, -8.83333 )
+position = Vector2( 0, -10 )
 texture = ExtResource( 5 )
 offset = Vector2( -6, 0 )
 
@@ -46,7 +43,7 @@ shape = SubResource( 2 )
 margin_top = -40.0
 margin_bottom = -34.0
 
-[node name="Anim" type="AnimationPlayer" parent="." index="4"]
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/charge = ExtResource( 6 )
 anims/die = ExtResource( 9 )

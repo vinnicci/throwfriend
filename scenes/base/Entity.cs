@@ -11,6 +11,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     public bool IsDead {get; set;}
     public Timer HitCooldown {get; set;}
     public AnimationPlayer TeleportAnim {get; set;}
+    public AnimationPlayer DamageAnim {get; set;}
 
     protected AnimationPlayer anim;
     protected Node2D spriteNode;
@@ -22,7 +23,9 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     {
         base._Ready();
         HitCooldown = (Timer)GetNode("HitCooldown");
-        TeleportAnim = (AnimationPlayer)GetNode("TeleAnim");
+        TeleportAnim = (AnimationPlayer)GetNode("Anims/TeleAnim");
+        DamageAnim = (AnimationPlayer)GetNode("Anims/DamageAnim");
+        anim = (AnimationPlayer)GetNode("Anims/Anim");
         spriteNode = (Node2D)GetNode("Sprite");
         Speed = speed;
         Health = health;
@@ -30,7 +33,6 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         hud = (Node2D)GetNode("HUD");
         healthHUD = (HealthHUD)hud.GetNode("Health");
         healthHUD.ParentNode = this;
-        anim = (AnimationPlayer)GetNode("Anim");
     }
 
 
@@ -130,6 +132,9 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
             return false;
         }
         ApplyCentralImpulse(knockback * knockbackMult);
+        if(damage > 0) {
+            DamageAnim.Play("damaged");
+        }
         Health -= damage;
         if(Health <= 0) {
             IsDead = true;

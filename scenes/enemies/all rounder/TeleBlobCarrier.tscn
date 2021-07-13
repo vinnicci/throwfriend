@@ -6,15 +6,15 @@
 [ext_resource path="res://scenes/enemies/all rounder/anim/die1.tres" type="Animation" id=4]
 [ext_resource path="res://scenes/enemies/all rounder/BaseFlyBlobCarrier.cs" type="Script" id=5]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder3.png" type="Texture" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/BaseAllRounder.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/TeleBlob.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemies/all rounder/anim/damaged.tres" type="Animation" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
 
 [node name="TeleBlobCarrier" instance=ExtResource( 8 )]
-modulate = Color( 1, 1, 1, 0.997965 )
+modulate = Color( 1, 1, 1, 0.999999 )
 script = ExtResource( 5 )
 speed = 375
 spawnScenes = {
@@ -27,13 +27,10 @@ acts = {
 
 [node name="Arms" parent="Sprite" index="0"]
 visible = true
-z_index = 0
-
-[node name="Torso" parent="Sprite" index="1"]
-z_index = 0
 
 [node name="Head" parent="Sprite" index="2"]
-texture = ExtResource( 7 )
+position = Vector2( 0, -13 )
+scale = Vector2( 1, 1.25 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
@@ -41,7 +38,10 @@ shape = SubResource( 1 )
 [node name="AI" parent="." index="4"]
 seek_dist = 300
 
-[node name="Anim" type="AnimationPlayer" parent="." index="6"]
+[node name="DamageAnim" parent="Anims" index="1"]
+anims/damaged = ExtResource( 10 )
+
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/blob_fly = ExtResource( 1 )
 anims/die = ExtResource( 4 )

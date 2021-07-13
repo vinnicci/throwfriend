@@ -33,7 +33,7 @@ shape = SubResource( 1 )
 [node name="AI" parent="." index="4"]
 seek_dist = 300
 
-[node name="Anim" type="AnimationPlayer" parent="." index="6"]
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/blob_fly = ExtResource( 1 )
 anims/die = ExtResource( 4 )

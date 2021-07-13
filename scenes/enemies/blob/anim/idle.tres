@@ -5,7 +5,7 @@ resource_name = "idle"
 length = 2.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/Blob:position")
+tracks/0/path = NodePath("../Sprite/Blob:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -17,7 +17,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 2 ), Vector2( 0, 6 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/Blob:scale")
+tracks/1/path = NodePath("../Sprite/Blob:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false

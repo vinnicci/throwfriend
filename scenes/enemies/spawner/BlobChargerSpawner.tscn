@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enemies/spawner/PolyBlobChargerSpawnerLower.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_Bone2D.cs" type="Script" id=4]
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierStack2D.cs" type="Script" id=5]
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierJiggle2D.cs" type="Script" id=6]
+[ext_resource path="res://scenes/enemies/spawner/anim/spawn_blob_charger.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/spawner/anim/idle.tres" type="Animation" id=8]
 [ext_resource path="res://scenes/base/entity_die.tres" type="Animation" id=9]
 [ext_resource path="res://scenes/enemies/spawner/BlobChargerSpawner.cs" type="Script" id=10]
@@ -19,59 +20,19 @@ radius = 24.9999
 height = 30.0001
 
 [sub_resource type="Animation" id=2]
-length = 1.5
+resource_name = "damaged"
+length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/Twisted_ModifierStack2D:stack/execution_enabled")
-tracks/0/interp = 1
+tracks/0/path = NodePath("../Sprite:scale")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/UpperTC:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -31 ), Vector2( 0, -31 ), Vector2( 0, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite/UpperTC:rotation_degrees")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, -30.2761, -30.2761, 0.0 ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.7, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "blob_charger", 1 ],
-"method": "SpawnInstance"
-}, {
-"args": [ "spawn_blob_charger" ],
-"method": "FinishAction"
-} ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.4 ), Vector2( 1, 1 ) ]
 }
 
 [node name="BlobChargerSpawner" instance=ExtResource( 1 )]
@@ -122,8 +83,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="0"]
 position = Vector2( 2, -21 )
-rotation = 0.0112309
-scale = Vector2( 1, 1 )
+rotation = 0.239499
 rest = Transform2D( 1, 0, 0, 1, 2, -21 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -139,7 +99,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper2" type="Bone2D" parent="Sprite/Skeleton2D/Root/Upper" index="0"]
 position = Vector2( 0, -23 )
-rotation = 1.66893e-06
+rotation = -1.19209e-07
 rest = Transform2D( 1, 0, 0, 1, 0, -23 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -155,7 +115,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper3" type="Bone2D" parent="Sprite/Skeleton2D/Root/Upper/Upper2" index="0"]
 position = Vector2( 0, -26 )
-rotation = -1.57079
+rotation = -1.5708
 rest = Transform2D( 1, 0, 0, 1, 0, -26 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -200,15 +160,15 @@ gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
 gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="UpperTC" parent="Sprite" index="3" instance=ExtResource( 14 )]
-Enabled = true
 Targets = [ NodePath("../Skeleton2D/Root/Upper") ]
+Enabled = true
 Position/ClampedX = false
 Position/ClampedY = false
 Scale/ClampedX = false
 Scale/ClampedY = false
 
 [node name="UpperTarget" type="Position2D" parent="Sprite" index="4"]
-position = Vector2( 3, -110 )
+position = Vector2( 23, -107 )
 
 [node name="Twisted_ModifierStack2D" type="Node2D" parent="Sprite" index="5"]
 script = ExtResource( 5 )
@@ -258,12 +218,15 @@ shape = SubResource( 1 )
 margin_top = -107.0
 margin_bottom = -101.0
 
-[node name="Anim" type="AnimationPlayer" parent="." index="4"]
+[node name="AI" parent="." index="4" instance=ExtResource( 12 )]
+flee_ray_len = 100
+
+[node name="DamageAnim" parent="Anims" index="1"]
+anims/damaged = SubResource( 2 )
+
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/die = ExtResource( 9 )
 anims/idle = ExtResource( 8 )
 anims/run = ExtResource( 8 )
-anims/spawn_blob_charger = SubResource( 2 )
-
-[node name="AI" parent="." index="5" instance=ExtResource( 12 )]
-flee_ray_len = 100
+anims/spawn_blob_charger = ExtResource( 7 )

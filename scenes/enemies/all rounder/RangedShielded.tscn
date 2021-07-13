@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/enemies/all rounder/weapons/BlasterAndShield.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/enemies/all rounder/anim/damaged.tres" type="Animation" id=11]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -35,6 +36,10 @@ spawnScenes = {
 "proj": ExtResource( 7 )
 }
 
+[node name="Head" parent="Sprite" index="2"]
+position = Vector2( 0, -13 )
+scale = Vector2( 1, 1.25 )
+
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( 2 )
 
@@ -42,7 +47,10 @@ shape = SubResource( 2 )
 margin_top = -50.0
 margin_bottom = -44.0
 
-[node name="Anim" type="AnimationPlayer" parent="." index="6"]
+[node name="DamageAnim" parent="Anims" index="1"]
+anims/damaged = ExtResource( 11 )
+
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/die = ExtResource( 4 )
 anims/idle = ExtResource( 1 )

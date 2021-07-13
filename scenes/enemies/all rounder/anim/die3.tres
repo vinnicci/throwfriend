@@ -8,7 +8,7 @@ resource_name = "die"
 length = 5.0
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/Head:texture")
+tracks/0/path = NodePath("../Sprite/Head:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 2 ), ExtResource( 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/Head:modulate")
+tracks/1/path = NodePath("../Sprite/Head:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -32,7 +32,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.25 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite/Arms:visible")
+tracks/2/path = NodePath("../Sprite/Arms:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -44,7 +44,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:rotation_degrees")
+tracks/3/path = NodePath("../Sprite:rotation_degrees")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -56,7 +56,7 @@ tracks/3/keys = {
 "values": [ 0.0, -90.0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite/Head:scale")
+tracks/4/path = NodePath("../Sprite/Head:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -68,7 +68,7 @@ tracks/4/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Sprite/Head:position")
+tracks/5/path = NodePath("../Sprite/Head:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -80,7 +80,7 @@ tracks/5/keys = {
 "values": [ Vector2( 0, -11 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Sprite/Arms:z_index")
+tracks/6/path = NodePath("../Sprite/Arms:z_index")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -92,7 +92,7 @@ tracks/6/keys = {
 "values": [ -1, 0 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Sprite/Torso:z_index")
+tracks/7/path = NodePath("../Sprite/Torso:z_index")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -104,7 +104,7 @@ tracks/7/keys = {
 "values": [ -1, 0 ]
 }
 tracks/8/type = "method"
-tracks/8/path = NodePath(".")
+tracks/8/path = NodePath("..")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -118,7 +118,7 @@ tracks/8/keys = {
 } ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath(".:modulate")
+tracks/9/path = NodePath("..:modulate")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -128,4 +128,16 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("../EnemyWeapon:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }

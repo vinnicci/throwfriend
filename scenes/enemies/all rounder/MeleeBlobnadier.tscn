@@ -43,7 +43,7 @@ shape = SubResource( 1 )
 margin_top = -50.0
 margin_bottom = -87.0
 
-[node name="Anim" type="AnimationPlayer" parent="." index="6"]
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/die = ExtResource( 6 )
 anims/idle = ExtResource( 3 )

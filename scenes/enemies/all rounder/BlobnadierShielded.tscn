@@ -15,6 +15,7 @@
 radius = 22.0
 
 [node name="BlobnadierShielded" instance=ExtResource( 6 )]
+modulate = Color( 1, 1, 1, 0.999999 )
 speed = 125
 spawnScenes = {
 "hp_drop": ExtResource( 9 )
@@ -37,7 +38,10 @@ shape = SubResource( 1 )
 margin_top = -50.0
 margin_bottom = -87.0
 
-[node name="Anim" type="AnimationPlayer" parent="." index="6"]
+[node name="Anims" parent="." index="6"]
+modulate = Color( 1, 1, 1, 0.972159 )
+
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/die = ExtResource( 4 )
 anims/idle = ExtResource( 1 )

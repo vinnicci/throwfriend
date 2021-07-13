@@ -5,7 +5,7 @@ public class Wall : TileMap, IHealthModifiable
 {
     [Export] protected int health = 10;
     [Export] protected bool destructible = false;
-
+    
     public int Health {get; set;}
     public Timer HitCooldown {
         get {
@@ -15,6 +15,7 @@ public class Wall : TileMap, IHealthModifiable
             GD.PrintErr("No hitcooldown timer for Level nodes.");
         }
     }
+    public AnimationPlayer DamageAnim {get; set;}
 
 
     public override void _Ready()

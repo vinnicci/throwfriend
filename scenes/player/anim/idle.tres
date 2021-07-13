@@ -6,7 +6,7 @@
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/Head:position")
+tracks/0/path = NodePath("../Sprite/Head:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -11 ), Vector2( 0, -9 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/Legs:texture")
+tracks/1/path = NodePath("../Sprite/Legs:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false

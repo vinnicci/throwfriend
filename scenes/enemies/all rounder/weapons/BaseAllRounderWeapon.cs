@@ -3,16 +3,6 @@ using Godot;
 
 public abstract class BaseAllRounderWeapon: EnemyWeapon
 {
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-        if(ParentNode.IsDead == true && anim.IsPlaying() == true) {
-            anim.Stop();
-            QueueFree();
-        }
-    }
-
-
     //melee
     protected const int KNOCKBACK = 250;
 
@@ -26,19 +16,19 @@ public abstract class BaseAllRounderWeapon: EnemyWeapon
 
 
     public void MeleeAttackBack() {
-        anim.Play("melee_attack_back");
+        Anim.Play("melee_attack_back");
     }
 
 
     //shoot
     public void ShootBack() {
-        anim.Play("shoot_back");
+        Anim.Play("shoot_back");
     }
 
 
     //blobnade
     public void ThrowBlob() {
-        anim.Play("throw_blob");
+        Anim.Play("throw_blob");
     }
 
 

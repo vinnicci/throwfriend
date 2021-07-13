@@ -8,26 +8,26 @@ public abstract class EnemyWeapon : Node2D, ISpawner
     public Enemy ParentNode {get; set;}
 
     protected Position2D spawnPoint;
-    protected AnimationPlayer anim;
+    public AnimationPlayer Anim {get; set;}
 
 
     public override void _Ready()
     {
         base._Ready();
         spawnPoint = (Position2D)GetNode("Sprites/ProjSpawn");
-        anim = (AnimationPlayer)GetNode("Anim");
+        Anim = (AnimationPlayer)GetNode("Anim");
     }
 
 
     //generic melee action
     public virtual void MeleeAttack() {
-        anim.Play("melee_attack");
+        Anim.Play("melee_attack");
     }
 
 
     //generic ranged action
     public virtual void Shoot() {
-        anim.Play("shoot");
+        Anim.Play("shoot");
     }
 
 
@@ -47,7 +47,7 @@ public abstract class EnemyWeapon : Node2D, ISpawner
 
 
     public virtual void FinishShooting() {
-        anim.Play("idle");
+        Anim.Play("idle");
     }
 
 

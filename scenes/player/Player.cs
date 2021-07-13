@@ -41,7 +41,6 @@ public class Player : Entity
     HotkeyHUD hotkeyHUD;
     WarningText uiWarning;
     AnimationPlayer throwAnim;
-    AnimationPlayer damageAnim;
     Node2D snarkPointer;
     Sprite confusedIndicator;
     Sprite slowedIndicator;
@@ -79,8 +78,7 @@ public class Player : Entity
         hotkeyHUD = (HotkeyHUD)GetNode("CanvasLayer/HotkeyHUD");
         loadout.HotkeyHUDNode = hotkeyHUD;
         uiWarning = (WarningText)GetNode("CanvasLayer/UIWarning");
-        throwAnim = (AnimationPlayer)GetNode("Center/Arms/ThrowAnim");
-        damageAnim = (AnimationPlayer)GetNode("Sprite/DamageAnim");
+        throwAnim = (AnimationPlayer)GetNode("Anims/ThrowAnim");
         snarkPointer = (Node2D)GetNode("SnarkPointer");
     }
 
@@ -285,8 +283,10 @@ public class Player : Entity
     {
         if(base.Hit(knockback, damage) == true) {
             if(Health > 0 && damage > 0 && IsDead == false) {
-                damageAnim.Play("damaged");
                 HitCooldown.Start(1f);
+            }
+            else if(IsDead == true) {
+                DamageAnim.Stop();
             }
             UpdateStatsDisp();
             return true;

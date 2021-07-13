@@ -36,6 +36,8 @@ spawnScenes = {
 }
 
 [node name="Head" parent="Sprite" index="2"]
+position = Vector2( 0, -13 )
+scale = Vector2( 1, 1.25 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="2"]
@@ -45,7 +47,7 @@ shape = SubResource( 1 )
 margin_top = -50.0
 margin_bottom = -87.0
 
-[node name="Anim" type="AnimationPlayer" parent="." index="6"]
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/die = ExtResource( 7 )
 anims/idle = ExtResource( 4 )

@@ -1,7 +1,8 @@
 [gd_resource type="Animation" format=2]
 
 [resource]
-resource_name = "melee_attack"
+resource_name = "shoot"
+length = 1.2
 tracks/0/type = "method"
 tracks/0/path = NodePath("..")
 tracks/0/interp = 1
@@ -9,16 +10,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "MeleeAttack"
+"method": "Shoot"
 }, {
-"args": [  ],
-"method": "AttackImpulse"
-}, {
-"args": [ "melee_attack" ],
+"args": [ "shoot" ],
 "method": "FinishAction"
 } ]
 }

@@ -7,31 +7,11 @@
 [ext_resource path="res://scenes/enemies/shooter/weapons/LongRangeShooterProj.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/shooter/weapons/LongRangeShooterWeapon.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/shooter/anim/shooter_shoot.tres" type="Animation" id=8]
 [ext_resource path="res://scenes/enemies/shooter/anim/idle.tres" type="Animation" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
-
-[sub_resource type="Animation" id=2]
-resource_name = "shoot"
-length = 0.7
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "Shoot"
-}, {
-"args": [ "shoot" ],
-"method": "FinishAction"
-} ]
-}
 
 [node name="LongRangeShooter" instance=ExtResource( 1 )]
 speed = 625
@@ -67,9 +47,9 @@ margin_bottom = -70.0
 seek_dist = 350
 too_far_dist = 375
 
-[node name="Anim" type="AnimationPlayer" parent="." index="6"]
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"
 anims/die = ExtResource( 2 )
 anims/idle = ExtResource( 9 )
 anims/run = ExtResource( 4 )
-anims/shoot = SubResource( 2 )
+anims/shoot = ExtResource( 8 )
