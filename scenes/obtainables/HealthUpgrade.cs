@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class HealthUpgrade : Pickable
+public class HealthUpgrade : BaseObtainable
 {
     public override void OnPickableItemBodyEntered(Godot.Object body) {
         if(body is Player) {

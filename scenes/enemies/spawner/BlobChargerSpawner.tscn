@@ -8,7 +8,7 @@
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierJiggle2D.cs" type="Script" id=6]
 [ext_resource path="res://scenes/enemies/spawner/anim/spawn_blob_charger.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/spawner/anim/idle.tres" type="Animation" id=8]
-[ext_resource path="res://scenes/base/entity_die.tres" type="Animation" id=9]
+[ext_resource path="res://scenes/base/anim/entity_die.tres" type="Animation" id=9]
 [ext_resource path="res://scenes/enemies/spawner/BlobChargerSpawner.cs" type="Script" id=10]
 [ext_resource path="res://scenes/enemies/charger/BlobCharger.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/enemies/spawner/ai/BlobChargerSpawnerAI.tscn" type="PackedScene" id=12]
@@ -21,7 +21,8 @@ height = 30.0001
 
 [sub_resource type="Animation" id=2]
 resource_name = "damaged"
-length = 0.3
+length = 0.2
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprite:scale")
 tracks/0/interp = 2
@@ -29,7 +30,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3 ),
+"times": PoolRealArray( 0, 0.05, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1, 0.4 ), Vector2( 1, 1 ) ]
@@ -99,7 +100,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper2" type="Bone2D" parent="Sprite/Skeleton2D/Root/Upper" index="0"]
 position = Vector2( 0, -23 )
-rotation = -1.19209e-07
+rotation = 1.19209e-07
 rest = Transform2D( 1, 0, 0, 1, 0, -23 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true

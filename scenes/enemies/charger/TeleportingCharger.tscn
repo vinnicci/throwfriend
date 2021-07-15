@@ -8,7 +8,7 @@
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/charger/anim/charger_idle.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/charger/anim/charger_run.tres" type="Animation" id=8]
-[ext_resource path="res://scenes/base/entity_die.tres" type="Animation" id=9]
+[ext_resource path="res://scenes/base/anim/entity_die.tres" type="Animation" id=9]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0

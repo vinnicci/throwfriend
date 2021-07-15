@@ -22,6 +22,9 @@ public abstract class Level : YSort
             enemy.LevelNode = this;
         }
         nav = (Navigation2D)GetNode("Nav");
+        foreach(Blackboard blackboard in ((Node2D)GetNode("Blackboards")).GetChildren()) {
+            blackboard.Init();
+        }
     }
 
 

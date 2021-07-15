@@ -7,7 +7,7 @@
 [ext_resource path="res://scenes/enemies/shooter/ScatterShooter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/shooter/Shooter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/base/Level.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=10]
 
 [node name="Shooters" instance=ExtResource( 8 )]

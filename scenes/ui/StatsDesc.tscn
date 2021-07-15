@@ -134,19 +134,23 @@ position = Vector2( 208, 76 )
 visible = false
 
 [node name="Sprite" parent="StatsPanel/HelpDisp/Tip4" index="0"]
-position = Vector2( 76, 64 )
+position = Vector2( 206, 49 )
 
 [node name="Sprite2" parent="StatsPanel/HelpDisp/Tip4" index="1"]
-position = Vector2( 136, 91 )
+position = Vector2( 154, 65 )
 
 [node name="Sprite3" parent="StatsPanel/HelpDisp/Tip4" index="2"]
-position = Vector2( 191, 67 )
+position = Vector2( 130, 97 )
 
 [node name="Sprite4" parent="StatsPanel/HelpDisp/Tip4" index="3"]
-position = Vector2( 243, 95 )
+position = Vector2( 254, 58 )
 
 [node name="Sprite5" parent="StatsPanel/HelpDisp/Tip4" index="4"]
-position = Vector2( 301, 69 )
+position = Vector2( 281, 96 )
+
+[node name="Sprite6" parent="StatsPanel/HelpDisp/Tip4" index="5"]
+position = Vector2( 206, 96 )
+scale = Vector2( 2, 2 )
 
 [node name="Tip5" parent="StatsPanel/HelpDisp" instance=ExtResource( 6 )]
 visible = false

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class AbilityItem : Pickable
+public class AbilityItem : BaseObtainable
 {
     //perma hp + 1
     public override void OnPickableItemBodyEntered(Godot.Object body)

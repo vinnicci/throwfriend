@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/enemies/blob/tex_en_blob.png" type="Texture" id=2]
 [ext_resource path="res://scenes/enemies/blob/Blob.cs" type="Script" id=3]
 [ext_resource path="res://scenes/enemies/blob/BlobExplosion.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/base/entity_die.tres" type="Animation" id=5]
+[ext_resource path="res://scenes/base/anim/entity_die.tres" type="Animation" id=5]
 [ext_resource path="res://scenes/enemies/blob/anim/explode.tres" type="Animation" id=6]
 [ext_resource path="res://scenes/enemies/blob/anim/idle.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/blob/anim/run.tres" type="Animation" id=8]
@@ -15,7 +15,8 @@ radius = 20.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "damaged"
-length = 0.3
+length = 0.2
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprite:scale")
 tracks/0/interp = 2
@@ -23,7 +24,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3 ),
+"times": PoolRealArray( 0, 0.05, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1, 0.2 ), Vector2( 1, 1 ) ]

@@ -121,7 +121,7 @@ public class StatsDesc : Control
             break;
             case 4: {
                 currentTip = 5;
-                tipLabel.Text = "Look out for secret paths. These paths will either lead you to cool rewards or dangerous places.";
+                tipLabel.Text = "Look out for any secret paths. These will lead you to areas with rewards at the end.";
             }
             break;
             case 5: {
