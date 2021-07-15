@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scenes/level/tilemaps/FloorSoil.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/level/tilemaps/Floors.tres" type="TileSet" id=1]
 
-[node name="FloorSoil" type="TileMap"]
+[node name="Floors" type="TileMap"]
 z_index = -4
 tile_set = ExtResource( 1 )
 cell_tile_origin = 1

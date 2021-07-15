@@ -4,6 +4,7 @@ using System;
 public abstract class EnemyWeapon : Node2D, ISpawner
 {
     [Export] public Godot.Collections.Dictionary<String, PackedScene> spawnScenes {get; set;}
+    [Export] Godot.Collections.Array<NodePath> bodies;
     
     public Enemy ParentNode {get; set;}
 
@@ -48,6 +49,26 @@ public abstract class EnemyWeapon : Node2D, ISpawner
 
     public virtual void FinishShooting() {
         Anim.Play("idle");
+    }
+
+
+    public void Disable() {
+        foreach(NodePath bodyPath in bodies) {
+            Node2D body = (Node2D)GetNodeOrNull(bodyPath);
+            if(body is Area2D) {
+                Area2D area = (Area2D)body;
+                area.SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
+                area.SetCollisionMaskBit(Global.BIT_MASK_WEAPON, false);
+                area.SetCollisionMaskBit(Global.BIT_MASK_WEAPON_LARGE, false);
+            }
+            else if(body is StaticBody2D) {
+                StaticBody2D staticBody = (StaticBody2D)body;
+                staticBody.SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
+                staticBody.SetCollisionMaskBit(Global.BIT_MASK_WEAPON, false);
+                staticBody.SetCollisionMaskBit(Global.BIT_MASK_WEAPON_LARGE, false);
+            }
+        }
+        Anim.Stop();
     }
 
 

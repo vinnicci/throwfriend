@@ -125,7 +125,8 @@ public abstract class Enemy : Entity, ISpawner
         if(base.Hit(knockback, damage) == true) {
             if(IsDead == true) {
                 if(IsInstanceValid(WeaponNode) == true) {
-                    WeaponNode.Anim.Stop();
+                    WeaponNode.Disable();
+                    
                 }
                 if(GD.RandRange(0, 100) <= CHANCE_HP_DROP) {
                     CallDeferred("SpawnInstance", "hp_drop", 1);

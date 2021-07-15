@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://scenes/level/tilemaps/WallStone.tres" type="TileSet" id=1]
-[ext_resource path="res://scenes/level/BaseWall.tscn" type="PackedScene" id=2]
-
-[node name="WallStone" instance=ExtResource( 2 )]
-tile_set = ExtResource( 1 )
-show_collision = true

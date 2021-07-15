@@ -24,6 +24,7 @@ spawnScenes = {
 "blob": ExtResource( 6 ),
 "proj": ExtResource( 9 )
 }
+bodies = [ NodePath("Sprites/Hand/Shield/StaticBody") ]
 
 [node name="Hand" type="Sprite" parent="Sprites" index="0"]
 rotation = -0.349066
