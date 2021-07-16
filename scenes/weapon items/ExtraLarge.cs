@@ -29,7 +29,7 @@ public class ExtraLarge : WeaponItem
             weapSlot.AddChild(largeWeap);
             largeWeap.Damage *= 2;
             PlayerNode.WeaponNode = largeWeap;
-            largeWeap.Connect("PickedUp", PlayerNode, "PickUpWeapon");
+            largeWeap.Connect(nameof(Weapon.PickedUp), PlayerNode, nameof(Player.PickedUpWeapon));
         }
         largeWeap.RefreshItems();
         largeWeap.PlayerNode = PlayerNode;

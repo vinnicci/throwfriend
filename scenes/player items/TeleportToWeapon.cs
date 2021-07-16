@@ -13,7 +13,7 @@ public class TeleportToWeapon : PlayerItem
         }
         base.ApplyEffect();
         PlayerNode.Teleport(PlayerNode.LevelNode, WeaponNode.GlobalPosition);
-        EmitSignal("Activated");
+        EmitSignal(nameof(Activated));
         Cooldown.Start();
     }
 

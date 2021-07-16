@@ -13,7 +13,7 @@ public class Boost : WeaponItem
         }
         base.ApplyEffect();
         WeaponNode.Throw(BOOST_SPEED, WeaponNode.GlobalPosition, Vector2.Zero, WeaponNode.GlobalRotation);
-        EmitSignal("Activated");
+        EmitSignal(nameof(Activated));
         Cooldown.Start();
     }
 

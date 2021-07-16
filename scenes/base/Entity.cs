@@ -69,7 +69,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         teleSprite.GlobalRotation = GlobalRotation;
         Godot.Collections.Array arr = new Godot.Collections.Array();
         arr.Add(teleSprite);
-        tween.Connect("tween_all_completed", this, "FreeSprite", arr);
+        tween.Connect("tween_all_completed", this, nameof(FreeSprite), arr);
         tween.InterpolateProperty(teleSprite, "scale", teleSprite.Scale, new Vector2(0.01f, teleSprite.Scale.y), 0.25f,
         Tween.TransitionType.Linear, Tween.EaseType.InOut);
         tween.Start();

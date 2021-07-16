@@ -13,7 +13,7 @@ public class TeleRetrieve : PlayerItem
         }
         base.ApplyEffect();
         WeaponNode.Teleport(PlayerNode.LevelNode, PlayerNode.GlobalPosition);
-        EmitSignal("Activated");
+        EmitSignal(nameof(Activated));
         Cooldown.Start();
     }
 

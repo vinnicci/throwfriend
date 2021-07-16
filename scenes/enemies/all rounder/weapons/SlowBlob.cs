@@ -26,7 +26,7 @@ public class SlowBlob : EnemyProj
             Godot.Collections.Array arr = new Godot.Collections.Array();
             arr.Add(Player.StatusEffect.SLOW);
             arr.Add(slowTimer);
-            slowTimer.Connect("timeout", player, "ClearStatusEffect", arr);
+            slowTimer.Connect("timeout", player, nameof(Player.ClearStatusEffect), arr);
             player.CurrentStatusEffect[(int)Player.StatusEffect.SLOW] = true;
             slowTimer.Start();
         }

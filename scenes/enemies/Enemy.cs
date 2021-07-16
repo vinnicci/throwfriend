@@ -129,7 +129,7 @@ public abstract class Enemy : Entity, ISpawner
                     
                 }
                 if(GD.RandRange(0, 100) <= CHANCE_HP_DROP) {
-                    CallDeferred("SpawnInstance", "hp_drop", 1);
+                    CallDeferred(nameof(SpawnInstance), "hp_drop", 1);
                 }
             }
             return true;

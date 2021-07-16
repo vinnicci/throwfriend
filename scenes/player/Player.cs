@@ -65,7 +65,7 @@ public class Player : Entity
         camera = (PlayerCam)GetNode("PlayerCam");
         camera.ParentNode = this;
         WeaponNode = (Weapon)Center.GetNode("WeapPos/Weapon");
-        WeaponNode.Connect("PickedUp", this, "PickUpWeapon");
+        WeaponNode.Connect(nameof(Weapon.PickedUp), this, nameof(PickedUpWeapon));
         weapPos = (Position2D)Center.GetNode("WeapPos");
         Center.LookAt(GetGlobalMousePosition());
         head = (Sprite)spriteNode.GetNode("Head");
@@ -245,16 +245,16 @@ public class Player : Entity
         }
         if(IsInstanceValid(WeaponNode.Item1) == true && Input.IsActionJustPressed("hotkey_3")) {
             WeaponNode.Item1.ApplyEffect();
-            EmitSignal("ActivatedWeaponItem", 1);
+            EmitSignal(nameof(ActivatedWeaponItem), 1);
         }
         if(IsInstanceValid(WeaponNode.Item2) == true && Input.IsActionJustPressed("hotkey_4")) {
             WeaponNode.Item2.ApplyEffect();
-            EmitSignal("ActivatedWeaponItem", 2);
+            EmitSignal(nameof(ActivatedWeaponItem), 2);
         }
     }
 
 
-    void ClearStatusEffect(StatusEffect eff, Timer timer) {
+    public void ClearStatusEffect(StatusEffect eff, Timer timer) {
         if(eff == StatusEffect.CONFUSE) {
             CurrentStatusEffect[(int)StatusEffect.CONFUSE] = false;
             confusedIndicator.Visible = false;
@@ -267,7 +267,7 @@ public class Player : Entity
     }
 
 
-    void PickUpWeapon() {
+    public void PickedUpWeapon() {
         weapPos.AddChild(WeaponNode);
         float rot = Center.GlobalRotation;
         WeaponNode.GlobalRotation = rot;

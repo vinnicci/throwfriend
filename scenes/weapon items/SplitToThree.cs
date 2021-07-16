@@ -14,10 +14,10 @@ public class SplitToThree : WeaponItem
             Split();
         }
         if(weaps[0].CurrentState != Weapon.States.HELD && WeaponNode.CurrentState == Weapon.States.HELD) {
-            weaps[0].PickUp();
+            weaps[0].OnPickedUp();
         }
         if(weaps[1].CurrentState != Weapon.States.HELD && WeaponNode.CurrentState == Weapon.States.HELD) {
-            weaps[1].PickUp();
+            weaps[1].OnPickedUp();
         }
     }
 
@@ -26,8 +26,8 @@ public class SplitToThree : WeaponItem
     {
         base.InitEffect();
         PlayerNode = WeaponNode.PlayerNode;
-        if(PlayerNode.IsConnected("ActivatedWeaponItem", this, "ApplyEffectsToClones") == false) {
-            PlayerNode.Connect("ActivatedWeaponItem", this, "ApplyEffectsToClones");
+        if(PlayerNode.IsConnected(nameof(Player.ActivatedWeaponItem), this, nameof(ApplyEffectsToClones)) == false) {
+            PlayerNode.Connect(nameof(Player.ActivatedWeaponItem), this, nameof(ApplyEffectsToClones));
         }
         PackedScene res = (PackedScene)ResourceLoader.Load(WeaponNode.Filename);
         weaps[0] = (Weapon)res.Instance();

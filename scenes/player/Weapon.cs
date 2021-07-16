@@ -89,7 +89,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         teleSprite.GlobalRotation = GlobalRotation;
         Godot.Collections.Array arr = new Godot.Collections.Array();
         arr.Add(teleSprite);
-        tween.Connect("tween_all_completed", this, "FreeSprite", arr);
+        tween.Connect("tween_all_completed", this, nameof(FreeSprite), arr);
         tween.InterpolateProperty(teleSprite, "modulate",
         new Color(1,1,1,1), new Color(1,1,1,0), 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
         tween.Start();
@@ -189,7 +189,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     void OnWeaponBodyEntered(Godot.Object body) {
         if(body is Player && CurrentState == States.INACTIVE) {
             if(PlayerNode.WeaponNode == this) {
-                PickUp();
+                OnPickedUp();
             }
             else {
                 SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
@@ -218,11 +218,11 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     }
 
 
-    public void PickUp() {
+    public void OnPickedUp() {
         CurrentState = States.HELD;
         SetCollisionMaskBit(Global.BIT_MASK_LVL, false);
         SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
-        CallDeferred("PickUpDeferred");
+        CallDeferred(nameof(PickUpDeferred));
     }
 
 
@@ -232,7 +232,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         }
         Position = Vector2.Zero;
         Mode = RigidBody2D.ModeEnum.Static;
-        EmitSignal("PickedUp");
+        EmitSignal(nameof(PickedUp));
     }
 
 

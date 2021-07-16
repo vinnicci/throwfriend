@@ -38,7 +38,7 @@ public class Settings : Control
             arr = new Godot.Collections.Array();
             arr.Add(obj.Name);
             arr.Add(button);
-            button.Connect("pressed", this, "OnButtonPressed", arr);
+            button.Connect("pressed", this, nameof(OnButtonPressed), arr);
         }
     }
 

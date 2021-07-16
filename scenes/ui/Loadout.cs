@@ -60,7 +60,7 @@ public class Loadout : Control
             Set(currentKeyBind, slot.GetNode("Button"));
             Button button = (Button)Get(currentKeyBind);
             arr.Add(button);
-            button.Connect("pressed", this, "OnKeyBindPressed", arr);
+            button.Connect("pressed", this, nameof(OnKeyBindPressed), arr);
             button.FocusMode = FocusModeEnum.None;
         }
     }

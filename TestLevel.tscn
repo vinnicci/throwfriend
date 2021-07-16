@@ -158,5 +158,5 @@ acts = {
 position = Vector2( -71, 69 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -134, 335 )
+position = Vector2( -170, 144 )
 physics_material_override = SubResource( 1 )

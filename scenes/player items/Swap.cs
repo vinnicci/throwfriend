@@ -18,7 +18,7 @@ public class Swap : PlayerItem
             WeaponNode = PlayerNode.WeaponNode;
         }
         WeaponNode.Teleport(PlayerNode.LevelNode, playerPos);
-        EmitSignal("Activated");
+        EmitSignal(nameof(Activated));
         Cooldown.Start();
     }
 

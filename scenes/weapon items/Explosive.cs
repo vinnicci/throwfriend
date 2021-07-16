@@ -17,8 +17,8 @@ public class Explosive : WeaponItem
     {
         base.InitEffect();
         explosionNode = (Explosion)GetNode("Explosion");
-        if(WeaponNode.IsConnected("body_entered", this, "Explode") == false) {
-            WeaponNode.Connect("body_entered", this, "Explode");
+        if(WeaponNode.IsConnected("body_entered", this, nameof(Explode)) == false) {
+            WeaponNode.Connect("body_entered", this, nameof(Explode));
         }
     }
 
