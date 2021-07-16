@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/enemies/shooter/BaseShooter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/base/anim/entity_die.tres" type="Animation" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/enemies/shooter/anim/run.tres" type="Animation" id=5]
 [ext_resource path="res://scenes/enemies/shooter/weapons/ShooterProj.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/shooter/anim/shooter_shoot.tres" type="Animation" id=8]
 [ext_resource path="res://scenes/enemies/shooter/anim/idle.tres" type="Animation" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -16,7 +17,7 @@ radius = 22.0
 resource_name = "shoot"
 length = 0.5
 tracks/0/type = "method"
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("..")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -71,3 +72,4 @@ anims/die = ExtResource( 2 )
 anims/idle = ExtResource( 9 )
 anims/run = ExtResource( 5 )
 anims/shoot = SubResource( 2 )
+anims/shooter_shoot = ExtResource( 8 )

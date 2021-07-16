@@ -7,7 +7,7 @@
 [ext_resource path="res://scenes/enemies/shooter/weapons/LongRangeShooterProj.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/shooter/weapons/LongRangeShooterWeapon.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/enemies/shooter/anim/shooter_shoot.tres" type="Animation" id=8]
+[ext_resource path="res://scenes/enemies/shooter/anim/longrangeshooter_shoot.tres" type="Animation" id=8]
 [ext_resource path="res://scenes/enemies/shooter/anim/idle.tres" type="Animation" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
