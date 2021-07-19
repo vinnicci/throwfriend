@@ -53,29 +53,34 @@ public class StatsDesc : Control
     public void UpdateStatsDisp() {
         healthStat.Text = "Current HP: " + PlayerNode.Health;
         maxHealthStat.Text = "Max HP: " + PlayerNode.health;
-        speedStat.Text = "Speed: " + GetDescriptive(PlayerNode.Speed, 0);
+        speedStat.Text = "Speed: " +
+        (PlayerNode.WeaponNode.CurrentState == Weapon.States.HELD ?
+        GetDescriptive(PlayerNode.Speed, 0) :
+        GetDescriptive(PlayerNode.Speed - Player.EXTRA_SPEED_WITHOUT_WEAPON, 0));
         throwStrengthStat.Text = "Throw Strength: " + GetDescriptive(PlayerNode.ThrowStrength, 1);
         snarkDmgStat.Text = "Snark Damage: " + (PlayerNode.WeaponNode.Damage * PlayerNode.SnarkDmgMult);
     }
 
 
+    const int BASE_SPEED = 90;
     const int SPEED_INCREMENT = 125;
-    const int THROW_INCREMENT = 75;
+    const int BASE_THROW = 100;
+    const int THROW_INCREMENT = 50;
 
 
     String GetDescriptive(int mag, int type) {
-        float val = 0;
+        int val = 0;
         if(type == 0) {
-            val = mag/SPEED_INCREMENT;
+            val = (mag - BASE_SPEED)/SPEED_INCREMENT;
         }
         else {
-            val = mag/THROW_INCREMENT;
+            val = (mag - BASE_THROW)/THROW_INCREMENT;
         }
-        if(val <= 1) {
+        if(val <= 0) {
             if(type == 0) return "Slow";
             else return "Weak";
         }
-        else if(val <= 2) {
+        else if(val <= 1) {
             return "Moderate";
         }
         else {

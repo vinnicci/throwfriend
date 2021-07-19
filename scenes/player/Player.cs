@@ -3,7 +3,7 @@ using System;
 
 public class Player : Entity
 {
-    [Export] protected int throwStrength = 90;
+    [Export] protected int throwStrength = 100;
     public int ThrowStrength {get; set;}
     public Node2D Center {get; set;}
     public Weapon WeaponNode {get; set;}
@@ -48,7 +48,7 @@ public class Player : Entity
         CONFUSE, SLOW
     }
     public bool[] CurrentStatusEffect {get; set;}
-    const int EXTRA_SPEED_WITHOUT_WEAPON = 250;
+    public const int EXTRA_SPEED_WITHOUT_WEAPON = 250;
     
 
     public override void _Ready()

@@ -21,8 +21,8 @@ public class Homing : WeaponItem
     }
 
 
-    const int HOME_MAGNITUDE = 250;
-    const int HOME_MAGNITUDE_CLOSE = 750;
+    const int HOME_MAGNITUDE = 150;
+    const int HOME_MAGNITUDE_CLOSE = 500;
     const int DIST_HOME_ACCEL = 2500;
     Queue<Enemy> enemies = new Queue<Enemy>();
 

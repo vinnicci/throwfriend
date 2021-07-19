@@ -7,7 +7,7 @@ public class HealthUpgrade : BaseObtainable
         if(body is Player) {
             animation.Play("pickup");
             Player player = (Player)body;
-            player.ChangeEntityBaseStats(player.health + 1);
+            player.ChangeEntityBaseStats(player.health + 1, -1);
             player.UpdateStatsDisp();
         }
     }

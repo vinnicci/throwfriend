@@ -10,13 +10,13 @@ public class Explosive : WeaponItem
     {
         base._Ready();
         incompatibilityList.Add("Explosive");
+        explosionNode = (Explosion)GetNode("Explosion");
     }
 
 
     public override void InitEffect()
     {
         base.InitEffect();
-        explosionNode = (Explosion)GetNode("Explosion");
         if(WeaponNode.IsConnected("body_entered", this, nameof(Explode)) == false) {
             WeaponNode.Connect("body_entered", this, nameof(Explode));
         }
@@ -26,6 +26,9 @@ public class Explosive : WeaponItem
     void Explode(Godot.Object body) {
         if(body is Player || WeaponNode.CurrentState != Weapon.States.ACTIVE) {
             return;
+        }
+        if(IsInstanceValid(PlayerNode) == false) {
+            PlayerNode = WeaponNode.PlayerNode;
         }
         explosionNode.Damage = WeaponNode.Damage * PlayerNode.SnarkDmgMult;
         if(WeaponNode.Filename == Global.WEAP_LARGE_FILE) {
