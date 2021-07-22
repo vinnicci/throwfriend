@@ -1,0 +1,70 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scenes/enemies/shooter/weapons/ShooterWeapon.cs" type="Script" id=1]
+[ext_resource path="res://scenes/enemies/shooter/weapons/anim/idle.tres" type="Animation" id=2]
+[ext_resource path="res://scenes/enemies/shooter/weapons/anim/sprayer_weap_shoot.tres" type="Animation" id=3]
+[ext_resource path="res://assets/enemies/shooter/tex_en_sprayer_acid_pincer2.png" type="Texture" id=4]
+[ext_resource path="res://assets/enemies/shooter/tex_en_sprayer_acid_pincer1.png" type="Texture" id=5]
+[ext_resource path="res://scenes/enemies/shooter/weapons/SprayerAcidProj.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/EnemyWeapon.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.151515 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.131241, 1, 0.078125, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+max_value = 100.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.476124, 100 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+flag_disable_z = true
+spread = 5.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 350.0
+angular_velocity = 300.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+damping_curve = SubResource( 4 )
+scale = 20.0
+scale_random = 0.5
+color_ramp = SubResource( 2 )
+
+[node name="EnemyWeapon" instance=ExtResource( 7 )]
+script = ExtResource( 1 )
+spawnScenes = {
+"proj": ExtResource( 6 )
+}
+
+[node name="Particles2D" type="Particles2D" parent="Sprites" index="0"]
+position = Vector2( 13, 1.21715e-05 )
+z_index = 1
+emitting = false
+amount = 100
+visibility_rect = Rect2( -300, -300, 600, 600 )
+local_coords = false
+process_material = SubResource( 5 )
+
+[node name="Sprite2" type="Sprite" parent="Sprites" index="1"]
+position = Vector2( 0, 2 )
+rotation = -0.785398
+texture = ExtResource( 5 )
+offset = Vector2( 0.5, 7 )
+
+[node name="Sprite" type="Sprite" parent="Sprites" index="2"]
+position = Vector2( 0, 3 )
+rotation = -0.0872665
+texture = ExtResource( 4 )
+offset = Vector2( 8, -8 )
+
+[node name="Anim" type="AnimationPlayer" parent="." index="1"]
+autoplay = "idle"
+anims/idle = ExtResource( 2 )
+anims/shoot = ExtResource( 3 )

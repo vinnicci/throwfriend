@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class SprayerAcidProj : EnemyProj
+public class SprayerProj : EnemyProj
 {
     public override void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRotDeg = 0) {
         base.Spawn(lvl, globalPos, destination, globalRotDeg);

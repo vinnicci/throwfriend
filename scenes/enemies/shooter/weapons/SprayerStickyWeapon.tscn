@@ -1,16 +1,16 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://scenes/enemies/shooter/weapons/anim/sprayer_weap_shoot.tres" type="Animation" id=1]
+[ext_resource path="res://scenes/enemies/shooter/weapons/ShooterWeapon.cs" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/shooter/weapons/anim/idle.tres" type="Animation" id=2]
-[ext_resource path="res://assets/enemies/shooter/tex_en_sprayer_pincer2.png" type="Texture" id=3]
-[ext_resource path="res://assets/enemies/shooter/tex_en_sprayer_pincer1.png" type="Texture" id=4]
-[ext_resource path="res://scenes/enemies/shooter/weapons/ShooterWeapon.cs" type="Script" id=5]
-[ext_resource path="res://scenes/enemies/EnemyWeapon.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/enemies/shooter/weapons/SprayerAcidProj.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/shooter/weapons/anim/sprayer_weap_shoot.tres" type="Animation" id=3]
+[ext_resource path="res://assets/enemies/shooter/tex_en_sprayer_sticky_pincer2.png" type="Texture" id=4]
+[ext_resource path="res://assets/enemies/shooter/tex_en_sprayer_sticky_pincer1.png" type="Texture" id=5]
+[ext_resource path="res://scenes/enemies/shooter/weapons/SprayerStickyProj.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/EnemyWeapon.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.151515 )
-colors = PoolColorArray( 1, 1, 1, 1, 0.131241, 1, 0.078125, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.505882, 0, 1, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
@@ -37,10 +37,10 @@ scale = 20.0
 scale_random = 0.5
 color_ramp = SubResource( 2 )
 
-[node name="EnemyWeapon" instance=ExtResource( 6 )]
-script = ExtResource( 5 )
+[node name="EnemyWeapon" instance=ExtResource( 7 )]
+script = ExtResource( 1 )
 spawnScenes = {
-"proj": ExtResource( 7 )
+"proj": ExtResource( 6 )
 }
 
 [node name="Particles2D" type="Particles2D" parent="Sprites" index="0"]
@@ -55,16 +55,16 @@ process_material = SubResource( 5 )
 [node name="Sprite2" type="Sprite" parent="Sprites" index="1"]
 position = Vector2( 0, 2 )
 rotation = -0.785398
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 offset = Vector2( 0.5, 7 )
 
 [node name="Sprite" type="Sprite" parent="Sprites" index="2"]
 position = Vector2( 0, 3 )
 rotation = -0.0872665
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 offset = Vector2( 8, -8 )
 
 [node name="Anim" type="AnimationPlayer" parent="." index="1"]
 autoplay = "idle"
 anims/idle = ExtResource( 2 )
-anims/shoot = ExtResource( 1 )
+anims/shoot = ExtResource( 3 )

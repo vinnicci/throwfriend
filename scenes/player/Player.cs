@@ -167,6 +167,7 @@ public class Player : Entity
 
 
     [Signal] public delegate void ActivatedWeaponItem();
+    const float SLOW_EFFECT = 0.5f;
 
 
     public void GetInput() {
@@ -216,7 +217,7 @@ public class Player : Entity
             }
         }
         if(CurrentStatusEffect[(int)StatusEffect.SLOW] == true) {
-            velocity *= 0.25f;
+            velocity *= SLOW_EFFECT;
             if(slowedIndicator.Visible == false) {
                 slowedIndicator.Visible = true;
             }

@@ -7,7 +7,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     public int Speed {get; set;}
     [Export] public int health = 1;
     public int Health {get; set;}
-    public Vector2 Velocity {get; protected set;}
+    public Vector2 Velocity {get; set;}
     public bool IsDead {get; set;}
     public Timer HitCooldown {get; set;}
     public AnimationPlayer TeleportAnim {get; set;}
