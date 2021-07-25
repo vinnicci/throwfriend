@@ -3,13 +3,13 @@
 [ext_resource path="res://scenes/enemies/all rounder/anim/blob_fly_2.tres" type="Animation" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=2]
 [ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=3]
-[ext_resource path="res://scenes/enemies/all rounder/anim/die1.tres" type="Animation" id=4]
+[ext_resource path="res://scenes/enemies/all rounder/anim/blobcarrier_die2.tres" type="Animation" id=4]
 [ext_resource path="res://scenes/enemies/all rounder/BaseFlyBlobCarrier.cs" type="Script" id=5]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder2.png" type="Texture" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/BaseAllRounder.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/SlowBlob.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/enemies/all rounder/anim/damaged.tres" type="Animation" id=10]
+[ext_resource path="res://scenes/enemies/all rounder/anim/blobcarrier_damaged.tres" type="Animation" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
@@ -38,7 +38,7 @@ shape = SubResource( 1 )
 seek_dist = 300
 
 [node name="DamageAnim" parent="Anims" index="1"]
-anims/damaged = ExtResource( 10 )
+anims/blobcarrier_damaged = ExtResource( 10 )
 
 [node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"

@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/blob_fly_3.tres" type="Animation" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=2]
 [ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=3]
-[ext_resource path="res://scenes/enemies/all rounder/anim/die1.tres" type="Animation" id=4]
+[ext_resource path="res://scenes/enemies/all rounder/anim/blobcarrier_die3.tres" type="Animation" id=4]
 [ext_resource path="res://scenes/enemies/all rounder/BaseFlyBlobCarrier.cs" type="Script" id=5]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder3.png" type="Texture" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/BaseAllRounder.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/TeleBlob.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/enemies/all rounder/anim/damaged.tres" type="Animation" id=10]
+[ext_resource path="res://scenes/enemies/all rounder/anim/blobcarrier_damaged.tres" type="Animation" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
@@ -29,8 +30,7 @@ acts = {
 visible = true
 
 [node name="Head" parent="Sprite" index="2"]
-position = Vector2( 0, -13 )
-scale = Vector2( 1, 1.25 )
+texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )

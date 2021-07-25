@@ -1,0 +1,177 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/game/MainMenu.cs" type="Script" id=1]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = -40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Title" type="Label" parent="Main"]
+margin_right = 152.0
+margin_bottom = 14.0
+rect_scale = Vector2( 4, 4 )
+text = "PROJECT THROWFRIEND"
+
+[node name="New" type="Button" parent="Main"]
+margin_top = 100.0
+margin_right = 42.0
+margin_bottom = 120.0
+rect_scale = Vector2( 2, 2 )
+text = "NEW"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="Button" parent="Main"]
+margin_top = 175.0
+margin_right = 49.0
+margin_bottom = 195.0
+rect_scale = Vector2( 2, 2 )
+text = "LOAD"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Button" parent="Main"]
+margin_top = 250.0
+margin_right = 64.0
+margin_bottom = 270.0
+rect_scale = Vector2( 2, 2 )
+text = "CREDITS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="Main"]
+margin_top = 325.0
+margin_right = 45.0
+margin_bottom = 345.0
+rect_scale = Vector2( 2, 2 )
+text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="New" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="NewGameWarning" type="Label" parent="New"]
+margin_right = 152.0
+margin_bottom = 14.0
+rect_scale = Vector2( 4, 4 )
+text = "New Game: All previous game data 
+will be erased. Continue?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Yes" type="Button" parent="New"]
+margin_top = 166.0
+margin_right = 33.0
+margin_bottom = 186.0
+rect_scale = Vector2( 2, 2 )
+text = "YES"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="No" type="Button" parent="New"]
+margin_top = 241.0
+margin_right = 33.0
+margin_bottom = 261.0
+rect_scale = Vector2( 2, 2 )
+text = "NO"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Creator" type="Label" parent="Credits"]
+margin_right = 124.0
+margin_bottom = 31.0
+rect_scale = Vector2( 4, 4 )
+text = "Created by: Vic Ben
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Plugin" type="Label" parent="Credits"]
+margin_top = 119.0
+margin_right = 239.0
+margin_bottom = 133.0
+rect_scale = Vector2( 4, 4 )
+text = "Plugin: Visual Behavior Tree by fian46"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tools" type="Label" parent="Credits"]
+margin_top = 241.0
+margin_right = 228.0
+margin_bottom = 289.0
+rect_scale = Vector2( 4, 4 )
+text = "Tools:
+    Godot Engine
+    Krita"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LinkYT" type="Button" parent="Credits"]
+margin_left = 573.169
+margin_top = 6.51279
+margin_right = 599.169
+margin_bottom = 26.5128
+rect_scale = Vector2( 2, 2 )
+text = "Youtube Ch."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LinkItch" type="Button" parent="Credits"]
+margin_left = 785.651
+margin_top = 7.08057
+margin_right = 856.651
+margin_bottom = 27.0806
+rect_scale = Vector2( 2, 2 )
+text = "Itch Page"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="Credits"]
+margin_top = 550.0
+margin_right = 71.0
+margin_bottom = 570.0
+rect_scale = Vector2( 2, 2 )
+text = "<BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Main/New" to="." method="OnNewPressed"]
+[connection signal="pressed" from="Main/Load" to="." method="OnLoadPressed"]
+[connection signal="pressed" from="Main/Credits" to="." method="OnCreditsPressed"]
+[connection signal="pressed" from="Main/Quit" to="." method="OnQuitPressed"]
+[connection signal="pressed" from="New/Yes" to="." method="OnNewGameYesPressed"]
+[connection signal="pressed" from="New/No" to="." method="OnNewGameNoPressed"]
+[connection signal="pressed" from="Credits/Back" to="." method="OnCreditsBackPressed"]

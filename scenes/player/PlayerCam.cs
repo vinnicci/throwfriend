@@ -33,9 +33,4 @@ public class PlayerCam : Camera2D
     }
 
 
-    void OnRestartLvlButtonButtonUp() {
-        GetTree().ReloadCurrentScene();
-    }
-
-
 }

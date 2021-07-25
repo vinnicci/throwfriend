@@ -299,7 +299,6 @@ public class Player : Entity
     void TransferCamera() {
         camera.GetParent().RemoveChild(camera);
         LevelNode.AddChild(camera);
-        ((Button)camera.GetNode("CanvasLayer/RestartLvlButton")).Visible = true;
         camera.ParentNode = LevelNode;
         camera.GlobalPosition = GlobalPosition;
     }

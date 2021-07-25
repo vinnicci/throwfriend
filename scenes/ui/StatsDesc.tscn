@@ -194,11 +194,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MainMenuButton" type="Button" parent="DescPanel"]
+margin_left = 276.0
+margin_top = 160.0
+margin_right = 367.0
+margin_bottom = 180.0
+text = "MAIN MENU"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="StatsPanel/Exit" to="." method="OnExitPressed"]
 [connection signal="pressed" from="StatsPanel/Stats" to="." method="OnStatsPressed"]
 [connection signal="pressed" from="StatsPanel/Help" to="." method="OnHelpPressed"]
 [connection signal="pressed" from="StatsPanel/HelpDisp/NextTip" to="." method="OnNextTipPressed"]
 [connection signal="pressed" from="DescPanel/SettingsButton" to="." method="OnSettingsButtonPressed"]
+[connection signal="pressed" from="DescPanel/MainMenuButton" to="." method="OnMainMenuButtonPressed"]
 
 [editable path="StatsPanel/HelpDisp/Tip1"]
 [editable path="StatsPanel/HelpDisp/Tip2"]

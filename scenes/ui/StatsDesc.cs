@@ -139,4 +139,9 @@ public class StatsDesc : Control
     }
 
 
+    void OnMainMenuButtonPressed() {
+        GD.Print("to main menu");
+    }
+
+
 }
