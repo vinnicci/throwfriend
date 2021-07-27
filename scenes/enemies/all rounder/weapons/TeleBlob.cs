@@ -12,10 +12,13 @@ public class TeleBlob : EnemyProj
     }
 
 
-    public override void OnEnemyProjBodyEntered(Godot.Object body) {
-        base.OnEnemyProjBodyEntered(body);
+    public override bool OnEnemyProjBodyEntered(Godot.Object body) {
+        if(base.OnEnemyProjBodyEntered(body) == false) {
+            return false;
+        }
         Player player = (Player)body;
-        player.Teleport(levelNode, teleDest);        
+        player.Teleport(levelNode, teleDest);
+        return true;        
     }
 
 

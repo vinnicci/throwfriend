@@ -3,7 +3,7 @@ using System;
 
 public class MainMenu : Control
 {
-    public Main MainNode {get; set;}
+    Main mainNode;
     Control mainUI;
     Control newGameUI;
     Control creditsUI;
@@ -12,14 +12,17 @@ public class MainMenu : Control
     public override void _Ready()
     {
         base._Ready();
-        mainUI = (Control)GetNode("Main");
+        mainNode = (Main)GetNode("/root/Main");
+        mainNode.MainMenuNode = this;
+        mainNode.GameNode = GetNode("/root/Game");
+        mainUI = (Control)GetNode("Menu");
         newGameUI = (Control)GetNode("New");
         creditsUI = (Control)GetNode("Credits");
     }
 
 
     async void OnNewPressed() {
-        MainNode.FadeAnim.Play("fade_in");
+        mainNode.FadeAnim.Play("fade_in");
         await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
         mainUI.Visible = false;
         newGameUI.Visible = true;
@@ -27,12 +30,14 @@ public class MainMenu : Control
 
 
     void OnNewGameYesPressed() {
-        MainNode.NewGame();
+        newGameUI.Visible = false;
+        PackedScene playerPack = (PackedScene)ResourceLoader.Load(Global.PLAYER_SCN);
+        mainNode.GoToLevel("TestLevel1", (Player)playerPack.Instance());
     }
 
 
     async void OnNewGameNoPressed() {
-        MainNode.FadeAnim.Play("fade_in");
+        mainNode.FadeAnim.Play("fade_in");
         await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
         newGameUI.Visible = false;
         mainUI.Visible = true;
@@ -40,12 +45,12 @@ public class MainMenu : Control
 
 
     void OnLoadPressed() {
-        MainNode.LoadGame();
+        mainNode.LoadGame();
     }
 
 
     async void OnCreditsPressed() {
-        MainNode.FadeAnim.Play("fade_in");
+        mainNode.FadeAnim.Play("fade_in");
         await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
         mainUI.Visible = false;
         creditsUI.Visible = true;
@@ -53,7 +58,7 @@ public class MainMenu : Control
 
 
     async void OnCreditsBackPressed() {
-        MainNode.FadeAnim.Play("fade_in");
+        mainNode.FadeAnim.Play("fade_in");
         await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
         creditsUI.Visible = false;
         mainUI.Visible = true;

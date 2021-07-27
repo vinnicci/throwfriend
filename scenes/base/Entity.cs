@@ -101,7 +101,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         //velocity
         AdjustSprites();
         AppliedForce = Vector2.Zero;
-        state.AddCentralForce(Velocity.Clamped(1) * Speed);
+        state.AddCentralForce(Velocity * Speed);
         Velocity = Vector2.Zero;
     }
 

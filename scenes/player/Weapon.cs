@@ -187,6 +187,9 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 
 
     void OnWeaponBodyEntered(Godot.Object body) {
+        if(CurrentState == States.HELD) {
+            return;
+        }
         if(body is Player && CurrentState == States.INACTIVE) {
             if(PlayerNode.WeaponNode == this) {
                 OnPickedUp();
@@ -199,7 +202,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
             IHealthModifiable hitBody = (IHealthModifiable)body;
             int dmg = Damage * PlayerNode.SnarkDmgMult;
             int knockback = KNOCKBACK;
-            if(Filename == Global.WEAP_LARGE_FILE) {
+            if(Filename == Global.WEAP_LARGE_SCN) {
                 knockback = LARGE_KNOCKBACK;
             }
             if(CurrentState == States.ACTIVE) {

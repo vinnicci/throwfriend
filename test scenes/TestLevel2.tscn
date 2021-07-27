@@ -4,14 +4,14 @@
 [ext_resource path="res://scenes/level/NavTileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/level/Floors.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/level/Walls.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/charger/BlobCharger.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/shooter/ScatterShooter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=11]
 
-[node name="Level" instance=ExtResource( 1 )]
+[node name="TestLevel2" instance=ExtResource( 1 )]
 
 [node name="NavTileMap" parent="Nav" index="0" instance=ExtResource( 2 )]
 visible = false
@@ -73,5 +73,9 @@ acts = {
 "spawn_blob": 3.0
 }
 
-[node name="Player" parent="." index="8" instance=ExtResource( 5 )]
-position = Vector2( -175, 147 )
+[node name="TestLevel1" parent="." index="8" instance=ExtResource( 11 )]
+position = Vector2( -246, 156 )
+
+[node name="TestLevel3" parent="." index="9" instance=ExtResource( 11 )]
+position = Vector2( 2458, 837 )
+rotation = -3.14159

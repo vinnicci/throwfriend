@@ -33,4 +33,12 @@ public class PlayerCam : Camera2D
     }
 
 
+    void OnRestartPressed() {
+        ((Button)GetNode("CanvasLayer/Restart")).Visible = false;
+        Main mainNode = (Main)GetNode("/root/Main");
+        PackedScene playerPack = (PackedScene)ResourceLoader.Load(Global.PLAYER_SCN);
+        mainNode.GoToLevel("TestLevel1", (Player)playerPack.Instance());
+    }
+
+
 }

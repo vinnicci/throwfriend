@@ -6,8 +6,9 @@ public class SprayerStickyProj : SprayerProj
     Player player;
 
 
-    public override void OnEnemyProjBodyEntered(Godot.Object body) {
+    public override bool OnEnemyProjBodyEntered(Godot.Object body) {
         player = (Player)body;
+        return true;
     }
 
 
@@ -16,11 +17,14 @@ public class SprayerStickyProj : SprayerProj
     }
 
 
+    const float SLOW_EFFECT = 0.3f;
+
+
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
-        if(IsInstanceValid(player) == true && player.Velocity.LengthSquared() > 0.25f) {
-            player.Velocity *= 0.5f;
+        if(IsInstanceValid(player) == true && player.Velocity.Length() > SLOW_EFFECT) {
+            player.Velocity *= SLOW_EFFECT;
         }
     }
 

@@ -25,6 +25,11 @@ public abstract class Level : YSort
         foreach(Blackboard blackboard in ((Node2D)GetNode("Blackboards")).GetChildren()) {
             blackboard.Init();
         }
+        foreach(Node2D node in GetChildren()) {
+            if(node is NextLevel) {
+                
+            }
+        }
     }
 
 

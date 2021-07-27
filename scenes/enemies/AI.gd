@@ -70,9 +70,9 @@ func _physics_process(_delta: float) -> void:
 				weapon_node.look_at(bb["enemy"].global_position)
 			else:
 				weapon_node.look_at(bb["target"])
-		parent_node.Velocity = (separate_from_allies(bb["target"] - parent_node.global_position)).clamped(1)
+		parent_node.Velocity = (separate_from_allies(bb["target"] - parent_node.global_position)).normalized()
 	elif is_moving == false:
-		parent_node.Velocity = (separate_from_allies()).clamped(1)
+		parent_node.Velocity = (separate_from_allies()).normalized()
 
 
 func separate_from_allies(velocity: Vector2 = Vector2.ZERO) -> Vector2:

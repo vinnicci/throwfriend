@@ -57,7 +57,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
 
     void SeekPlayer() {
         Vector2 v = GlobalPosition + Velocity;
-        Vector2 home_target = (levelNode.GetPlayerPos() - v).Clamped(1) * homing_magnitude;
+        Vector2 home_target = (levelNode.GetPlayerPos() - v).Normalized() * homing_magnitude;
         Velocity += home_target;
         Velocity = Velocity.Clamped(Speed);
     }
@@ -99,15 +99,18 @@ public abstract class EnemyProj : Area2D, ISpawnable
     }
 
 
-    public virtual void OnEnemyProjBodyEntered(Godot.Object body) {
+    public virtual bool OnEnemyProjBodyEntered(Godot.Object body) {
         if(hitExceptions.Contains(body) == true) {
-            return;
+            return false;
         }
+        bool result = false;
         if(body is IHealthModifiable && ((IHealthModifiable)body).HitCooldown.IsStopped() == true) {
             ((IHealthModifiable)body).Hit((((Node2D)body).GlobalPosition - GlobalPosition).Clamped(1) *
             KNOCKBACK, Damage);
-            StopProjectile();
+            result = true;
         }
+        StopProjectile();
+        return result;
     }
 
 

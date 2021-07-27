@@ -13,8 +13,10 @@ public class ParaBlob : EnemyProj
     }
 
 
-    public override void OnEnemyProjBodyEntered(Godot.Object body) {
-        base.OnEnemyProjBodyEntered(body);
+    public override bool OnEnemyProjBodyEntered(Godot.Object body) {
+        if(base.OnEnemyProjBodyEntered(body) == false) {
+            return false;
+        }
         Player player = (Player)body;
         if(player.HasNode("ConfuseTimer") == true) {
             confuseTimer = (Timer)player.GetNode("ConfuseTimer");
@@ -30,10 +32,8 @@ public class ParaBlob : EnemyProj
             player.CurrentStatusEffect[(int)Player.StatusEffect.CONFUSE] = true;
             confuseTimer.Start();
         }
-
-
+        return true;
     }
-
 
 
 }

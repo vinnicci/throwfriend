@@ -38,7 +38,7 @@ shape = SubResource( 1 )
 seek_dist = 300
 
 [node name="DamageAnim" parent="Anims" index="1"]
-anims/blobcarrier_damaged = ExtResource( 10 )
+anims/damaged = ExtResource( 10 )
 
 [node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"

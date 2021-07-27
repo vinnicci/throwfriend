@@ -13,8 +13,10 @@ public class SlowBlob : EnemyProj
     }
 
 
-    public override void OnEnemyProjBodyEntered(Godot.Object body) {
-        base.OnEnemyProjBodyEntered(body);
+    public override bool OnEnemyProjBodyEntered(Godot.Object body) {
+        if(base.OnEnemyProjBodyEntered(body) == false) {
+            return false;
+        }
         Player player = (Player)body;
         if(player.HasNode("SlowTimer") == true) {
             slowTimer = (Timer)player.GetNode("SlowTimer");
@@ -30,8 +32,7 @@ public class SlowBlob : EnemyProj
             player.CurrentStatusEffect[(int)Player.StatusEffect.SLOW] = true;
             slowTimer.Start();
         }
-
-
+        return true;
     }
 
 

@@ -166,8 +166,14 @@ public class Player : Entity
     }
 
 
+    public void WarnPlayer(String warning) {
+        uiWarning.Text = warning;
+        uiWarning.ShowWarning();
+    }
+
+
     [Signal] public delegate void ActivatedWeaponItem();
-    const float SLOW_EFFECT = 0.5f;
+    const float SLOW_EFFECT = 0.3f;
 
 
     public void GetInput() {
@@ -179,7 +185,7 @@ public class Player : Entity
         if(Input.IsActionJustPressed("in_game_ui") && settings.Visible == false &&
         inGameUIAnim.IsPlaying() == false) {
             if(hasWeap == false) {
-                uiWarning.ShowWarning();
+                WarnPlayer("YOU MUST CARRY SNARK TO OPEN INGAME MENU");
             }
             else if(inGameUI.Visible == false) {
                 inGameUIAnim.Play("enter");
@@ -222,7 +228,7 @@ public class Player : Entity
                 slowedIndicator.Visible = true;
             }
         }
-        Velocity = velocity;
+        Velocity = velocity.Normalized();
         if(inGameUI.Visible == true) {
             return;
         }
@@ -301,6 +307,7 @@ public class Player : Entity
         LevelNode.AddChild(camera);
         camera.ParentNode = LevelNode;
         camera.GlobalPosition = GlobalPosition;
+        ((Button)camera.GetNode("CanvasLayer/Restart")).Visible = true;
     }
 
 

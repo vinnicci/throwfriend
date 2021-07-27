@@ -14,17 +14,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Main" type="Control" parent="."]
+[node name="Menu" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Title" type="Label" parent="Main"]
+[node name="Title" type="Label" parent="Menu"]
 margin_right = 152.0
 margin_bottom = 14.0
 rect_scale = Vector2( 4, 4 )
 text = "PROJECT THROWFRIEND"
 
-[node name="New" type="Button" parent="Main"]
+[node name="New" type="Button" parent="Menu"]
 margin_top = 100.0
 margin_right = 42.0
 margin_bottom = 120.0
@@ -34,7 +34,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Load" type="Button" parent="Main"]
+[node name="Load" type="Button" parent="Menu"]
 margin_top = 175.0
 margin_right = 49.0
 margin_bottom = 195.0
@@ -44,7 +44,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Credits" type="Button" parent="Main"]
+[node name="Credits" type="Button" parent="Menu"]
 margin_top = 250.0
 margin_right = 64.0
 margin_bottom = 270.0
@@ -54,7 +54,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Quit" type="Button" parent="Main"]
+[node name="Quit" type="Button" parent="Menu"]
 margin_top = 325.0
 margin_right = 45.0
 margin_bottom = 345.0
@@ -168,10 +168,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Main/New" to="." method="OnNewPressed"]
-[connection signal="pressed" from="Main/Load" to="." method="OnLoadPressed"]
-[connection signal="pressed" from="Main/Credits" to="." method="OnCreditsPressed"]
-[connection signal="pressed" from="Main/Quit" to="." method="OnQuitPressed"]
+[connection signal="pressed" from="Menu/New" to="." method="OnNewPressed"]
+[connection signal="pressed" from="Menu/Load" to="." method="OnLoadPressed"]
+[connection signal="pressed" from="Menu/Credits" to="." method="OnCreditsPressed"]
+[connection signal="pressed" from="Menu/Quit" to="." method="OnQuitPressed"]
 [connection signal="pressed" from="New/Yes" to="." method="OnNewGameYesPressed"]
 [connection signal="pressed" from="New/No" to="." method="OnNewGameNoPressed"]
 [connection signal="pressed" from="Credits/Back" to="." method="OnCreditsBackPressed"]
