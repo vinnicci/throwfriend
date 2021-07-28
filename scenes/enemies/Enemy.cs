@@ -99,8 +99,11 @@ public abstract class Enemy : Entity, ISpawner
 
     public virtual void OnEnemyBodyEntered(Godot.Object body) {
         if(body is Weapon && IsInstanceValid(aINode) == true) {
+            Godot.Collections.Dictionary bbDict = (Godot.Collections.Dictionary)aINode.Get("bb");
             Weapon weap = (Weapon)body;
-            aINode.Call("engage_enemy", weap.PlayerNode);
+            if(bbDict["enemy"] != weap.PlayerNode) {
+                aINode.Call("engage_enemy", weap.PlayerNode);
+            }
         }
     }
 
@@ -126,7 +129,6 @@ public abstract class Enemy : Entity, ISpawner
             if(IsDead == true) {
                 if(IsInstanceValid(WeaponNode) == true) {
                     WeaponNode.Disable();
-                    
                 }
                 if(GD.RandRange(0, 100) <= CHANCE_HP_DROP) {
                     CallDeferred(nameof(SpawnInstance), "hp_drop", 1);

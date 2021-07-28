@@ -29,7 +29,7 @@ public class BlobCharger : BaseCharger
                 Node2D ai = (Node2D)spawnScenes["ai"].Instance();
                 blobInstance.AddChild(ai);
                 blobInstance.LevelNode = LevelNode;
-                blobInstance.Spawn(blobInstance.LevelNode, GlobalPosition, Vector2.Zero);
+                blobInstance.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
                 blobInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
             }
         }

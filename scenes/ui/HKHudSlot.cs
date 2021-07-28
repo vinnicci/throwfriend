@@ -7,6 +7,7 @@ public class HKHudSlot : ColorRect
 
     Position2D iconPos;
     AnimationPlayer anim;
+    Timer cooldown;
 
 
     public override void _Ready()
@@ -14,6 +15,7 @@ public class HKHudSlot : ColorRect
         base._Ready();
         iconPos = (Position2D)GetNode("IconSlot");
         anim = (AnimationPlayer)GetNode("Anim");
+        cooldown = (Timer)GetNode("Cooldown");
     }
 
 
@@ -27,14 +29,25 @@ public class HKHudSlot : ColorRect
             iconPos.AddChild(icon);
             icon.Visible = true;
             if(Item.IsConnected(nameof(Item.Activated), this, nameof(AnimateCooldown)) == false) {
-                Item.Connect(nameof(Item.Activated), this, nameof(AnimateCooldown));
+                Godot.Collections.Array arr = new Godot.Collections.Array();
+                arr.Add(Item.Cooldown.WaitTime);
+                Item.Connect(nameof(Item.Activated), this, nameof(AnimateCooldown), arr);
             }
         }
     }
 
 
-    void AnimateCooldown() {
-        anim.Play("cooldown");
+    Color RED = new Color(1,0,0);
+
+
+    void AnimateCooldown(float length) {
+        cooldown.Start(length - 0.2f);
+        Color = RED;
+    }
+
+
+    void OnCooldownTimeout() {
+        anim.Play("cooldown_flash");
     }
 
 

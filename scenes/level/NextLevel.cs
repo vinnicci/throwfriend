@@ -15,13 +15,18 @@ public class NextLevel : Area2D
     }
 
 
+    public Level LevelNode {get; set;}
+
+
     void OnNextLevelBodyEntered(Godot.Object body) {
         if(body is Player) {
             player = (Player)body;
             proceeding = true;
             if(player.WeaponNode.CurrentState != Weapon.States.HELD) {
                 player.WarnPlayer("YOU MUST CARRY SNARK TO PROCEED");
-                return;
+            }
+            else if(LevelNode.PlayerEngaging > 0) {
+                player.WarnPlayer("CAN'T PROCEED WHILE ENGAGING WITH ENEMIES");
             }
         }
     }
@@ -37,7 +42,7 @@ public class NextLevel : Area2D
     public override void _Process(float delta)
     {
         base._Process(delta);
-        if(proceeding == true && player.WeaponNode.CurrentState == Weapon.States.HELD) {
+        if(proceeding == true && player.WeaponNode.CurrentState == Weapon.States.HELD && LevelNode.PlayerEngaging == 0) {
             mainNode = (Main)GetNode("/root/Main");
             mainNode.GoToLevel(Name, (Player)player);
             SetProcess(false);

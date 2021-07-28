@@ -10,3 +10,6 @@ itemDescription = "Active ability: Instantly retrieve Snark. He can only be retr
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )
+
+[node name="Cooldown" parent="." index="1"]
+wait_time = 3.0

@@ -126,6 +126,8 @@ func engage_enemy(enemy: RigidBody2D):
 	if is_ent_valid(enemy) == false:
 		return;
 	bb["enemy"] = enemy
+	level_node.set("PlayerEngaging", level_node.get("PlayerEngaging") + 1)
+	print("engage: " + str(level_node.get("PlayerEngaging")))
 	_on_Tick_timeout()
 	tick.start()
 
@@ -136,8 +138,7 @@ func _on_Tick_timeout():
 		ray.look_at(player_node.global_position)
 		ray.force_raycast_update()
 		if ray.get_collider() == player_node:
-			bb["enemy"] = player_node
-			bb["enemy_dist"] = level_node.call("GetDist", bb["enemy"].global_position, parent_node.global_position)
+			engage_enemy(player_node)
 	elif is_ent_valid(bb["enemy"]) == true:
 		bb["enemy_dist"] = level_node.call("GetDist", bb["enemy"].global_position, parent_node.global_position)
 

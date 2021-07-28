@@ -3,7 +3,8 @@
 [ext_resource path="res://scenes/ui/HKHudSlot.cs" type="Script" id=1]
 
 [sub_resource type="Animation" id=1]
-resource_name = "cooldown"
+resource_name = "cooldown_flash"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
@@ -11,10 +12,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0.796078, 0.2, 0.2, 1 ), Color( 0.796078, 0.2, 0.2, 1 ), Color( 1, 1, 1, 1 ), Color( 0.141176, 0.145098, 0.196078, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.141176, 0.145098, 0.196078, 1 ) ]
 }
 
 [node name="HKHudSlot1" type="ColorRect"]
@@ -31,4 +32,9 @@ position = Vector2( 37.5, 37.5 )
 scale = Vector2( 1.4, 1.4 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-anims/cooldown = SubResource( 1 )
+anims/cooldown_flash = SubResource( 1 )
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Cooldown" to="." method="OnCooldownTimeout"]

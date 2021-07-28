@@ -20,6 +20,7 @@ public abstract class Level : YSort
         enemies = (YSort)GetNode("Enemies");
         foreach(Enemy enemy in enemies.GetChildren()) {
             enemy.LevelNode = this;
+            enemy.Connect(nameof(Entity.Died), this, nameof(OnEnemyDead));
         }
         nav = (Navigation2D)GetNode("Nav");
         foreach(Blackboard blackboard in ((Node2D)GetNode("Blackboards")).GetChildren()) {
@@ -27,9 +28,18 @@ public abstract class Level : YSort
         }
         foreach(Node2D node in GetChildren()) {
             if(node is NextLevel) {
-                
+                ((NextLevel)node).LevelNode = this;
             }
         }
+    }
+
+
+    public int PlayerEngaging {get; set;}
+
+
+    void OnEnemyDead() {
+        PlayerEngaging -= 1;
+        GD.Print("died: " + PlayerEngaging);
     }
 
 
@@ -37,6 +47,7 @@ public abstract class Level : YSort
         if(body is Enemy) {
             Enemy enemy = (Enemy)body;
             enemy.LevelNode = this;
+            enemy.Connect(nameof(Entity.Died), this, nameof(OnEnemyDead));
             enemies.AddChild(enemy);
         }
         else {

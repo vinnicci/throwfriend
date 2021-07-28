@@ -125,10 +125,11 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
 
 
     [Export] float knockbackMult = 1f;
+    [Signal] public delegate void Died();
 
 
     public virtual bool Hit(Vector2 knockback, int damage) {
-        if(IsDead == true || HitCooldown.IsStopped() == false) {
+        if(IsDead == true || (HitCooldown.IsStopped() == false && damage > 0)) {
             return false;
         }
         ApplyCentralImpulse(knockback * knockbackMult);
@@ -137,6 +138,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         }
         Health -= damage;
         if(Health <= 0) {
+            EmitSignal(nameof(Died));
             IsDead = true;
             anim.Stop();
             anim.Play("die");
