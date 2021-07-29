@@ -30,6 +30,9 @@ public abstract class Level : YSort
             if(node is NextLevel) {
                 ((NextLevel)node).LevelNode = this;
             }
+            else if(node is SavePoint) {
+                ((SavePoint)node).LevelNode = this;
+            }
         }
     }
 
@@ -99,7 +102,9 @@ public abstract class Level : YSort
         Godot.Collections.Array arr = new Godot.Collections.Array();
         arr.Add(line);
         tween.InterpolateProperty(line, "modulate", line.Modulate, new Color(1,1,1,0), 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-        tween.Connect("tween_all_completed", this, nameof(OnTweenCompleted));
+        if(tween.IsConnected("tween_all_completed", this, nameof(OnTweenCompleted)) == false) {
+            tween.Connect("tween_all_completed", this, nameof(OnTweenCompleted));
+        }
         line.AddChild(tween);
         lines.Enqueue(line);
         tween.Start();

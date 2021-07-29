@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/level/Floors.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/obtainables/AbilityItem.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/level/SavePoint.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/obtainables/HealthUpgrade.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/obtainables/SnarkDmgUpgrade.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=19]
 
 [node name="TestLevel1" instance=ExtResource( 2 )]
@@ -49,17 +52,24 @@ position = Vector2( 377, 196 )
 position = Vector2( 376, 137 )
 
 [node name="AbilityItem3" parent="." index="10" instance=ExtResource( 10 )]
-position = Vector2( 1345, 2 )
+position = Vector2( 1334, -11 )
 
 [node name="AbilityItem4" parent="." index="11" instance=ExtResource( 10 )]
-position = Vector2( 1346, 66 )
+position = Vector2( 1332, 84 )
 
 [node name="TestLevel2" parent="." index="12" instance=ExtResource( 19 )]
 position = Vector2( 2125, 97 )
 rotation = -3.14159
+nextLevel = "res://test scenes/TestLevel2.tscn"
 
-[node name="Start" type="Position2D" parent="." index="13"]
-position = Vector2( 1891, 29 )
-
-[node name="HealthPickup" parent="." index="14" instance=ExtResource( 9 )]
+[node name="HealthPickup" parent="." index="13" instance=ExtResource( 9 )]
 position = Vector2( 717, 520 )
+
+[node name="SavePoint" parent="." index="14" instance=ExtResource( 11 )]
+position = Vector2( 1638, 59 )
+
+[node name="HealthUpgrade" parent="." index="15" instance=ExtResource( 12 )]
+position = Vector2( 1436, -13 )
+
+[node name="SnarkDmgUpgrade" parent="." index="16" instance=ExtResource( 13 )]
+position = Vector2( 1331, 186 )

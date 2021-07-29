@@ -59,3 +59,4 @@ acts = {
 
 [node name="TestLevel2" parent="." index="9" instance=ExtResource( 10 )]
 position = Vector2( 91, 179 )
+nextLevel = "res://test scenes/TestLevel2.tscn"

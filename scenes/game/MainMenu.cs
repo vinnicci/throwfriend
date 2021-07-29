@@ -21,6 +21,11 @@ public class MainMenu : Control
     }
 
 
+    public new void Show() {
+        mainUI.Visible = true;
+    }
+
+
     async void OnNewPressed() {
         mainNode.FadeAnim.Play("fade_in");
         await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
@@ -31,8 +36,7 @@ public class MainMenu : Control
 
     void OnNewGameYesPressed() {
         newGameUI.Visible = false;
-        PackedScene playerPack = (PackedScene)ResourceLoader.Load(Global.PLAYER_SCN);
-        mainNode.GoToLevel("TestLevel1", (Player)playerPack.Instance());
+        mainNode.NewGame();
     }
 
 
@@ -45,6 +49,7 @@ public class MainMenu : Control
 
 
     void OnLoadPressed() {
+        mainUI.Visible = false;
         mainNode.LoadGame();
     }
 

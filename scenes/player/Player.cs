@@ -5,6 +5,11 @@ public class Player : Entity
 {
     [Export] protected int throwStrength = 100;
     public int ThrowStrength {get; set;}
+    public PlayerItem Item1 {get; set;}
+    public PlayerItem Item2 {get; set;}
+    public int AvailableUpgrade {get; set;}
+    public int SnarkDmgMult {get; set;}
+
     public Node2D Center {get; set;}
     public Weapon WeaponNode {get; set;}
     Level levelNode;
@@ -23,11 +28,12 @@ public class Player : Entity
         }
     }
     public Node2D ItemSlot1Node {get; private set;}
-    public PlayerItem Item1 {get; set;}
     public Node2D ItemSlot2Node {get; private set;}
-    public PlayerItem Item2 {get; set;}
-    public int AvailableUpgrade {get; set;}
-    public int SnarkDmgMult {get; set;}
+    public enum StatusEffect {
+        CONFUSE, SLOW
+    }
+    public bool[] CurrentStatusEffect {get; set;}
+    public const int EXTRA_SPEED_WITHOUT_WEAPON = 250;
     
     Position2D weapPos;
     PlayerCam camera;
@@ -44,30 +50,28 @@ public class Player : Entity
     Node2D snarkPointer;
     Sprite confusedIndicator;
     Sprite slowedIndicator;
-    public enum StatusEffect {
-        CONFUSE, SLOW
+
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+        if(what == NotificationInstanced) {
+            ThrowStrength = throwStrength;
+            AvailableUpgrade = 0;
+            SnarkDmgMult = 1;
+        }
     }
-    public bool[] CurrentStatusEffect {get; set;}
-    public const int EXTRA_SPEED_WITHOUT_WEAPON = 250;
-    
+
 
     public override void _Ready()
     {
         base._Ready();
-        ThrowStrength = throwStrength;
-        AvailableUpgrade = 0;
-        SnarkDmgMult = 1;
-        CurrentStatusEffect = new bool[2];
-        confusedIndicator = (Sprite)hud.GetNode("Confused");
-        slowedIndicator = (Sprite)hud.GetNode("Slowed");
         Center = (Node2D)GetNode("Center");
-        Center.LookAt(GetGlobalMousePosition());
         camera = (PlayerCam)GetNode("PlayerCam");
         camera.ParentNode = this;
         WeaponNode = (Weapon)Center.GetNode("WeapPos/Weapon");
         WeaponNode.Connect(nameof(Weapon.PickedUp), this, nameof(PickedUpWeapon));
         weapPos = (Position2D)Center.GetNode("WeapPos");
-        Center.LookAt(GetGlobalMousePosition());
         head = (Sprite)spriteNode.GetNode("Head");
         arms = (Sprite)GetNode("Center/Arms");
         inGameUI = (InGame)GetNode("CanvasLayer/InGame");
@@ -80,6 +84,11 @@ public class Player : Entity
         uiWarning = (WarningText)GetNode("CanvasLayer/UIWarning");
         throwAnim = (AnimationPlayer)GetNode("Anims/ThrowAnim");
         snarkPointer = (Node2D)GetNode("SnarkPointer");
+        confusedIndicator = (Sprite)hud.GetNode("Confused");
+        slowedIndicator = (Sprite)hud.GetNode("Slowed");
+        CurrentStatusEffect = new bool[2];
+        Center.LookAt(GetGlobalMousePosition());
+        Center.LookAt(GetGlobalMousePosition());
     }
 
 
@@ -307,7 +316,15 @@ public class Player : Entity
         LevelNode.AddChild(camera);
         camera.ParentNode = LevelNode;
         camera.GlobalPosition = GlobalPosition;
-        ((Button)camera.GetNode("CanvasLayer/Restart")).Visible = true;
+        camera.ShowRestart();
+    }
+
+
+    public void UpdateSlotsIcon() {
+        loadout.UpdateSlotIcon(1);
+        loadout.UpdateSlotIcon(2);
+        loadout.UpdateSlotIcon(3);
+        loadout.UpdateSlotIcon(4);
     }
 
 

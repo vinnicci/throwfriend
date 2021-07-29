@@ -9,6 +9,9 @@ public class SplitToThree : WeaponItem
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
+        if(IsInstanceValid(WeaponNode) == false) {
+            return;
+        }
         if(WeaponNode.CurrentState == Weapon.States.ACTIVE && weaps[0].CurrentState == Weapon.States.HELD &&
         weaps[1].CurrentState == Weapon.States.HELD) {
             Split();

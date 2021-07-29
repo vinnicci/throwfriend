@@ -7,6 +7,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     public int Speed {get; set;}
     [Export] public int health = 1;
     public int Health {get; set;}
+    
     public Vector2 Velocity {get; set;}
     public bool IsDead {get; set;}
     public Timer HitCooldown {get; set;}
@@ -19,20 +20,27 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     HealthHUD healthHUD;
 
 
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+        if(what == NotificationInstanced) {
+            Speed = speed;
+            Health = health;
+        }
+    }
+
+
     public override void _Ready()
     {
         base._Ready();
-        HitCooldown = (Timer)GetNode("HitCooldown");
-        TeleportAnim = (AnimationPlayer)GetNode("Anims/TeleAnim");
-        DamageAnim = (AnimationPlayer)GetNode("Anims/DamageAnim");
-        anim = (AnimationPlayer)GetNode("Anims/Anim");
-        spriteNode = (Node2D)GetNode("Sprite");
-        Speed = speed;
-        Health = health;
-        IsDead = false;
         hud = (Node2D)GetNode("HUD");
         healthHUD = (HealthHUD)hud.GetNode("Health");
         healthHUD.ParentNode = this;
+        spriteNode = (Node2D)GetNode("Sprite");
+        TeleportAnim = (AnimationPlayer)GetNode("Anims/TeleAnim");
+        DamageAnim = (AnimationPlayer)GetNode("Anims/DamageAnim");
+        anim = (AnimationPlayer)GetNode("Anims/Anim");
+        HitCooldown = (Timer)GetNode("HitCooldown");
     }
 
 
@@ -69,7 +77,9 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         teleSprite.GlobalRotation = GlobalRotation;
         Godot.Collections.Array arr = new Godot.Collections.Array();
         arr.Add(teleSprite);
-        tween.Connect("tween_all_completed", this, nameof(FreeSprite), arr);
+        if(tween.IsConnected("tween_all_completed", this, nameof(FreeSprite)) == false) {
+            tween.Connect("tween_all_completed", this, nameof(FreeSprite), arr);
+        }
         tween.InterpolateProperty(teleSprite, "scale", teleSprite.Scale, new Vector2(0.01f, teleSprite.Scale.y), 0.25f,
         Tween.TransitionType.Linear, Tween.EaseType.InOut);
         tween.Start();

@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 BTDebugServer="*res://addons/btree/script/bt_debug_server.gd"
 Main="*res://scenes/game/Main.tscn"
+Global="*res://Global.cs"
 
 [display]
 
@@ -117,11 +118,6 @@ hotkey_4={
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Weapon"
 2d_physics/layer_5="WeaponLarge"
-
-[network]
-
-limits/websocket_server/max_in_buffer_kb=4096
-limits/websocket_server/max_out_buffer_kb=4096
 
 [physics]
 

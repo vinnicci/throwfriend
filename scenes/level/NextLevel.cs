@@ -4,6 +4,7 @@ using System;
 public class NextLevel : Area2D
 {
     Position2D spawnPos;
+    [Export] String nextLevel;
     Main mainNode;
     bool proceeding = false;
     Player player;
@@ -44,7 +45,7 @@ public class NextLevel : Area2D
         base._Process(delta);
         if(proceeding == true && player.WeaponNode.CurrentState == Weapon.States.HELD && LevelNode.PlayerEngaging == 0) {
             mainNode = (Main)GetNode("/root/Main");
-            mainNode.GoToLevel(Name, (Player)player);
+            mainNode.GoToLevel(nextLevel, LevelNode.Name+"/SpawnPos", (Player)player);
             SetProcess(false);
         }
     }

@@ -11,8 +11,6 @@ public class AbilityItem : BaseObtainable
             Player player = (Player)body;
             player.AvailableUpgrade += 1;
             player.UpdateUpgrade();
-            player.ChangeEntityBaseStats(player.health + 1, -1);
-            player.UpdateStatsDisp();
         }
     }
 

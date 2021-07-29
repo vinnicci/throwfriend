@@ -18,6 +18,9 @@ public class Guided : WeaponItem
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
+        if(IsInstanceValid(WeaponNode) == false) {
+            return;
+        }
         if(WeaponNode.Mode != RigidBody2D.ModeEnum.Rigid || IsInstanceValid(WeaponNode.PlayerNode) == false) {
             return;
         }

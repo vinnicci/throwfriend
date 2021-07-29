@@ -28,7 +28,9 @@ public class ParaBlob : EnemyProj
             Godot.Collections.Array arr = new Godot.Collections.Array();
             arr.Add(Player.StatusEffect.CONFUSE);
             arr.Add(confuseTimer);
-            confuseTimer.Connect("timeout", player, nameof(Player.ClearStatusEffect), arr);
+            if(confuseTimer.IsConnected("timeout", player, nameof(Player.ClearStatusEffect)) == false) {
+                confuseTimer.Connect("timeout", player, nameof(Player.ClearStatusEffect), arr);
+            }
             player.CurrentStatusEffect[(int)Player.StatusEffect.CONFUSE] = true;
             confuseTimer.Start();
         }

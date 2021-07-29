@@ -33,11 +33,16 @@ public class PlayerCam : Camera2D
     }
 
 
+    public async void ShowRestart() {
+        await ToSignal(GetTree().CreateTimer(1), "timeout");
+        ((Button)GetNode("CanvasLayer/Restart")).Visible = true;
+    }
+
+
     void OnRestartPressed() {
         ((Button)GetNode("CanvasLayer/Restart")).Visible = false;
         Main mainNode = (Main)GetNode("/root/Main");
-        PackedScene playerPack = (PackedScene)ResourceLoader.Load(Global.PLAYER_SCN);
-        mainNode.GoToLevel("TestLevel1", (Player)playerPack.Instance());
+        mainNode.LoadGame();
     }
 
 

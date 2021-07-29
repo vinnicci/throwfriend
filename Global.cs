@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public static class Global
+public class Global: Node
 {
     public const short BIT_MASK_ENEMY = 0;
     public const short BIT_MASK_LVL = 1;
@@ -11,4 +11,5 @@ public static class Global
     public const int CCD_MAX = 2500000;
     public const String WEAP_LARGE_SCN = "res://scenes/player/WeaponLarge.tscn";
     public const String PLAYER_SCN = "res://scenes/player/Player.tscn";
+    public const String SAVE_DIR = "user://save/";
 }

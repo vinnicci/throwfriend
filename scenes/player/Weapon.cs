@@ -4,8 +4,9 @@ using System;
 
 public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 {
-    [Export] Texture texture;
-    [Export] Texture activeTexture;
+    public WeaponItem Item1 {get; set;}
+    public WeaponItem Item2 {get; set;}
+    public int Damage {get; set;}
 
     Player playerNode;
     public Player PlayerNode {
@@ -19,12 +20,9 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
             ActivateItem(2);
         }
     }
-    public int Damage {get; set;}
     public Vector2 Velocity {get; set;}
     public Node2D ItemSlot1Node {get; private set;}
-    public WeaponItem Item1 {get; set;}
     public Node2D ItemSlot2Node {get; private set;}
-    public WeaponItem Item2 {get; set;}
     public enum States {
         HELD, ACTIVE, INACTIVE
     }
@@ -32,6 +30,8 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     public bool IsClone {get; set;}
     public AnimationPlayer TeleportAnim {get; set;}
 
+    [Export] Texture texture;
+    [Export] Texture activeTexture;
     Sprite sprite;
 
 
@@ -89,7 +89,9 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         teleSprite.GlobalRotation = GlobalRotation;
         Godot.Collections.Array arr = new Godot.Collections.Array();
         arr.Add(teleSprite);
-        tween.Connect("tween_all_completed", this, nameof(FreeSprite), arr);
+        if(tween.IsConnected("tween_all_completed", this, nameof(FreeSprite)) == false) {
+            tween.Connect("tween_all_completed", this, nameof(FreeSprite), arr);
+        }
         tween.InterpolateProperty(teleSprite, "modulate",
         new Color(1,1,1,1), new Color(1,1,1,0), 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
         tween.Start();

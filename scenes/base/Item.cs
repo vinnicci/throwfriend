@@ -2,6 +2,14 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+
+///<summary>
+/// To activate:
+///     1. Refresh() user slots (Player or Snark)
+///     2. Add Item as child
+///     3. Activate
+///     4. Refresh() again
+///</summary>
 public abstract class Item : Node2D
 {
     public List<String> incompatibilityList = new List<string>();

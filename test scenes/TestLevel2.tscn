@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/level/NavTileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/level/Floors.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/level/Walls.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/level/SavePoint.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/charger/BlobCharger.tscn" type="PackedScene" id=8]
@@ -75,7 +76,12 @@ acts = {
 
 [node name="TestLevel1" parent="." index="8" instance=ExtResource( 11 )]
 position = Vector2( -246, 156 )
+nextLevel = "res://test scenes/TestLevel1.tscn"
 
 [node name="TestLevel3" parent="." index="9" instance=ExtResource( 11 )]
 position = Vector2( 2458, 837 )
 rotation = -3.14159
+nextLevel = "res://test scenes/TestLevel3.tscn"
+
+[node name="SavePoint" parent="." index="10" instance=ExtResource( 5 )]
+position = Vector2( 2172, 827 )

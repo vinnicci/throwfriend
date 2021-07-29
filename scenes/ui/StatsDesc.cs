@@ -69,7 +69,7 @@ public class StatsDesc : Control
 
 
     String GetDescriptive(int mag, int type) {
-        int val = 0;
+        float val = 0;
         if(type == 0) {
             val = (mag - BASE_SPEED)/SPEED_INCREMENT;
         }
@@ -77,15 +77,15 @@ public class StatsDesc : Control
             val = (mag - BASE_THROW)/THROW_INCREMENT;
         }
         if(val <= 0) {
-            if(type == 0) return "Slow";
-            else return "Weak";
+            if(type == 0) return "Slow" + " (" + mag + ")";
+            else return "Weak" + " (" + mag + ")";
         }
         else if(val <= 1) {
-            return "Moderate";
+            return "Moderate" + " (" + mag + ")";
         }
         else {
-            if(type == 0) return "Fast";
-            else return "Strong";
+            if(type == 0) return "Fast" + " (" + mag + ")";
+            else return "Strong" + " (" + mag + ")";
         }
     }
 
@@ -140,7 +140,8 @@ public class StatsDesc : Control
 
 
     void OnMainMenuButtonPressed() {
-        GD.Print("to main menu");
+        Main mainNode = (Main)GetNode("/root/Main");
+        mainNode.GoToMainMenu();
     }
 
 

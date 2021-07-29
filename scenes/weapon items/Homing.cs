@@ -30,6 +30,9 @@ public class Homing : WeaponItem
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
+        if(IsInstanceValid(WeaponNode) == false) {
+            return;
+        }
         if(WeaponNode.CurrentState == Weapon.States.HELD) {
             if(enemies.Count > 0) {
                 enemies.Clear();
