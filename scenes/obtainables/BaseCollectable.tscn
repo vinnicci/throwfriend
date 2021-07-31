@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/obtainables/BaseObtainable.cs" type="Script" id=1]
+[ext_resource path="res://scenes/obtainables/BaseCollectable.cs" type="Script" id=1]
 [ext_resource path="res://scenes/obtainables/anim/hover.tres" type="Animation" id=2]
 [ext_resource path="res://scenes/obtainables/anim/pickup.tres" type="Animation" id=3]
 

@@ -6,7 +6,7 @@
 
 [node name="TeleRetrieve" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Active ability: Instantly retrieve Snark. He can only be retrieved when he's inactive."
+itemDescription = "Active ability: Instantly retrieve Snark. He can only be teleported back while he's inactive. However, this ability also has a chance to fail."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

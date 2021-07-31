@@ -27,7 +27,7 @@ public class HealthHUD : TextureProgress
 
 
    public void UpdateHealth() {
-      if(parentNode.IsDead == true) {
+      if(parentNode.IsDead) {
          QueueFree();
       }
       tween.InterpolateProperty(this, "value", Value, parentNode.Health, 0.5f,

@@ -4,7 +4,7 @@ using System;
 public class BaseFlyBlobCarrier : BaseAllRounder
 {
     public void SpawnFlyBlob() {
-        if(IsDead == true) {
+        if(IsDead) {
             return;
         }
         EmitSignal(nameof(Entity.Died));

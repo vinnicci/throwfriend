@@ -18,7 +18,7 @@ public class ParaBlob : EnemyProj
             return false;
         }
         Player player = (Player)body;
-        if(player.HasNode("ConfuseTimer") == true) {
+        if(player.HasNode("ConfuseTimer")) {
             confuseTimer = (Timer)player.GetNode("ConfuseTimer");
             confuseTimer.Start();
         }

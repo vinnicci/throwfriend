@@ -10,7 +10,7 @@ public class Blackboard : Node2D
     public void Init() {
         foreach(NodePath agentPath in agents) {
             Enemy agentNode = (Enemy)GetNodeOrNull(agentPath);
-            if(IsInstanceValid(agentNode) == true && agentNode.HasNode("AI") == true) {
+            if(IsInstanceValid(agentNode) && agentNode.HasNode("AI")) {
                 AssignAgent(agentNode);
             }
         }

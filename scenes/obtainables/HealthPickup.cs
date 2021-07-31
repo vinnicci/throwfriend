@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class HealthPickup : BaseObtainable
+public class HealthPickup : BaseCollectable
 {
     public override void OnPickableItemBodyEntered(Godot.Object body)
     {

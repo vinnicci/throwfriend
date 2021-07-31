@@ -33,10 +33,10 @@ public class ItemSelection : Panel
 
     public void ShowItemSelection(bool visibility) {
         if(anim.IsPlaying() == false) {
-            if(visibility == true && Visible == false) {
+            if(visibility && Visible == false) {
                 anim.Play("show");
             }
-            else if(visibility == false && Visible == true) {
+            else if(visibility == false && Visible) {
                 anim.Play("hide");
             }
         }
@@ -45,7 +45,7 @@ public class ItemSelection : Panel
 
     public void SetIncompatibleItems(List<String> incompatibilityList) {
         foreach(ItemSelect itemselect in GetNode("GridContainer").GetChildren()) {
-            if(incompatibilityList.Contains(itemselect.Name) == true) {
+            if(incompatibilityList.Contains(itemselect.Name)) {
                 ColorRect color = (ColorRect)itemselect.GetNode("ColorRect");
                 TextureButton button = (TextureButton)itemselect.GetNode("TextureButton");
                 color.Modulate = RED;

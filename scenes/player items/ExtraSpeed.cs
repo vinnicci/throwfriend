@@ -10,7 +10,7 @@ public class ExtraSpeed : PlayerItem
     public override void InitEffect()
     {
         base.InitEffect();
-        if(done == true) {
+        if(done) {
             return;
         }
         PlayerNode.Speed += EXTRA_SPEED;

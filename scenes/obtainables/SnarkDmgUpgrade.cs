@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class SnarkDmgUpgrade : BaseObtainable
+public class SnarkDmgUpgrade : BaseCollectable
 {
     public override void OnPickableItemBodyEntered(Godot.Object body) {
         if(body is Player) {

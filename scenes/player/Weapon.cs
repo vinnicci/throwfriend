@@ -15,7 +15,6 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         }
         set {
             playerNode = value;
-            RefreshItems();
             ActivateItem(1);
             ActivateItem(2);
         }
@@ -40,6 +39,8 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         base._Notification(what);
         if(what == NotificationInstanced) {
             Damage = 1;
+            ItemSlot1Node = (Node2D)GetNode("ItemSlot1");
+            ItemSlot2Node = (Node2D)GetNode("ItemSlot2");
         }
     }
 
@@ -54,11 +55,9 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 
 
     public void RefreshItems() {
-        ItemSlot1Node = (Node2D)GetNode("ItemSlot1");
         if(ItemSlot1Node.GetChildCount() != 0) {
             Item1 = (WeaponItem)ItemSlot1Node.GetChild(0);
         }
-        ItemSlot2Node = (Node2D)GetNode("ItemSlot2");
         if(ItemSlot2Node.GetChildCount() != 0) {
             Item2 = (WeaponItem)ItemSlot2Node.GetChild(0);
         }
@@ -66,10 +65,11 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 
 
     public void ActivateItem(int slotNum) {
-        if(slotNum == 1 && IsInstanceValid(Item1) == true) {
+        RefreshItems();
+        if(slotNum == 1 && IsInstanceValid(Item1)) {
             Item1.WeaponNode = this;
         }
-        else if(slotNum == 2 && IsInstanceValid(Item2) == true) {
+        else if(slotNum == 2 && IsInstanceValid(Item2)) {
             Item2.WeaponNode = this;
         }
         RefreshItems();
@@ -151,7 +151,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     public override void _Process(float delta)
     {
         base._Process(delta);
-        if(GetCollisionMaskBit(Global.BIT_MASK_ENEMY) == true && sprite.Texture == texture) {
+        if(GetCollisionMaskBit(Global.BIT_MASK_ENEMY) && sprite.Texture == texture) {
             sprite.Texture = activeTexture;
         }
         else if(GetCollisionMaskBit(Global.BIT_MASK_ENEMY) == false && sprite.Texture == activeTexture) {
@@ -166,7 +166,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         SetCollisionMaskBit(Global.BIT_MASK_ENEMY, true);
         SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
         SetCollisionMaskBit(Global.BIT_MASK_LVL, true);
-        if(IsInstanceValid(GetParent()) == true) {
+        if(IsInstanceValid(GetParent())) {
             GetParent().RemoveChild(this);
         }
         Spawn(PlayerNode.LevelNode, globalPos, Vector2.Zero, globalRot);
@@ -232,7 +232,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 
 
     void PickUpDeferred() {
-        if(IsInstanceValid(GetParent()) == true) {
+        if(IsInstanceValid(GetParent())) {
             GetParent().RemoveChild(this);
         }
         Position = Vector2.Zero;

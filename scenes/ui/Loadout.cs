@@ -4,7 +4,7 @@ using System;
 public class Loadout : Control
 {
     public Player PlayerNode {get; set;}
-    public Weapon WeaponNode {get; set;}
+    //public Weapon WeaponNode {get; set;}
     public ItemSlot Slot1 {get; private set;}
     public ItemSlot Slot2 {get; private set;}
     public ItemSlot Slot3 {get; private set;}
@@ -171,13 +171,13 @@ public class Loadout : Control
             }
             break;
             case 3: {
-                Slot3.UpdateIcon(WeaponNode.Item1);
-                HotkeyHUDNode.UpdateSlotIcon(slotNum, WeaponNode.Item1);
+                Slot3.UpdateIcon(PlayerNode.WeaponNode.Item1);
+                HotkeyHUDNode.UpdateSlotIcon(slotNum, PlayerNode.WeaponNode.Item1);
             }
             break;
             case 4: {
-                Slot4.UpdateIcon(WeaponNode.Item2);
-                HotkeyHUDNode.UpdateSlotIcon(slotNum, WeaponNode.Item2);
+                Slot4.UpdateIcon(PlayerNode.WeaponNode.Item2);
+                HotkeyHUDNode.UpdateSlotIcon(slotNum, PlayerNode.WeaponNode.Item2);
             }
             break;
             default: GD.PrintErr("Slot doesn't exist."); break;
@@ -195,7 +195,7 @@ public class Loadout : Control
         for(int i = 1; i <= 4; i++) {
             ItemSlot itemSlot = (ItemSlot)Get("Slot" + i);
             Label upgradeLabel = (Label)itemSlot.GetNode("UpgradeLabel");
-            if(IsInstanceValid((Item)itemSlot.Item) == true) {
+            if(IsInstanceValid((Item)itemSlot.Item)) {
                 continue;
             }
             if(PlayerNode.AvailableUpgrade > 0) {
@@ -238,16 +238,13 @@ public class Loadout : Control
 
     public void SelectItem(Item item) {
         if(selectRef.Panel == "PlayerPanel") {
-            PlayerNode.RefreshItems();
             if(selectRef.Slot == "ItemSlot1") {
                 PlayerNode.ItemSlot1Node.AddChild(item);
-                PlayerNode.RefreshItems();
                 PlayerNode.ActivateItem(1);
                 UpdateSlotIcon(1);
             }
             else if(selectRef.Slot == "ItemSlot2") {
                 PlayerNode.ItemSlot2Node.AddChild(item);
-                PlayerNode.RefreshItems();
                 PlayerNode.ActivateItem(2);
                 UpdateSlotIcon(2);
             }
@@ -255,19 +252,16 @@ public class Loadout : Control
             playerItemSel.SetIncompatibleItems(item.incompatibilityList);
         }
         else if(selectRef.Panel == "WeaponPanel") {
-            WeaponNode.RefreshItems();
             if(selectRef.Slot == "ItemSlot1") {
-                WeaponNode.ItemSlot1Node.AddChild(item);
-                WeaponNode.RefreshItems();
-                WeaponNode.ActivateItem(1);
-                WeaponNode.ActivateItem(2);
+                PlayerNode.WeaponNode.ItemSlot1Node.AddChild(item);
+                PlayerNode.WeaponNode.ActivateItem(1);
+                PlayerNode.WeaponNode.ActivateItem(2);
                 UpdateSlotIcon(3);
             }
             else if(selectRef.Slot == "ItemSlot2") {
-                WeaponNode.ItemSlot2Node.AddChild(item);
-                WeaponNode.RefreshItems();
-                WeaponNode.ActivateItem(1);
-                WeaponNode.ActivateItem(2);
+                PlayerNode.WeaponNode.ItemSlot2Node.AddChild(item);
+                PlayerNode.WeaponNode.ActivateItem(1);
+                PlayerNode.WeaponNode.ActivateItem(2);
                 UpdateSlotIcon(4);
             }
             weaponItemSel.ShowItemSelection(false);

@@ -25,7 +25,7 @@ public class Settings : Control
             Node obj = panel.GetChild(i);
             Button button;
             Godot.Collections.Array arr;
-            if(obj is Label && obj.IsInGroup("Key") == true) {
+            if(obj is Label && obj.IsInGroup("Key")) {
                 button = (Button)obj.GetChild(0);
             }
             else if(obj is Button) {
@@ -166,7 +166,7 @@ public class Settings : Control
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
-        if(Input.IsActionJustPressed("in_game_ui") && Visible == true && IsInstanceValid(InGameUIAnim) == true &&
+        if(Input.IsActionJustPressed("in_game_ui") && Visible && IsInstanceValid(InGameUIAnim) &&
         InGameUIAnim.IsPlaying() == false) {
             InGameUIAnim.Play("settings_exit");
         }

@@ -26,7 +26,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
         base._Ready();
         sprite = (Sprite)GetNode("Sprite");
         anim = (AnimationPlayer)GetNode("Anim");
-        if(HasNode("Explosion") == true) {
+        if(HasNode("Explosion")) {
             explosion = (Explosion)GetNode("Explosion");
         }
     }
@@ -78,7 +78,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
         Speed = speed;
         Damage = damage;
         levelNode = lvl;
-        if(IsInstanceValid(explosion) == true) {
+        if(IsInstanceValid(explosion)) {
             explosion.Damage = Damage;
         }
         currentRange = Range;
@@ -100,11 +100,11 @@ public abstract class EnemyProj : Area2D, ISpawnable
 
 
     public virtual bool OnEnemyProjBodyEntered(Godot.Object body) {
-        if(hitExceptions.Contains(body) == true) {
+        if(hitExceptions.Contains(body)) {
             return false;
         }
         bool result = false;
-        if(body is IHealthModifiable && ((IHealthModifiable)body).HitCooldown.IsStopped() == true) {
+        if(body is IHealthModifiable && ((IHealthModifiable)body).HitCooldown.IsStopped()) {
             ((IHealthModifiable)body).Hit((((Node2D)body).GlobalPosition - GlobalPosition).Clamped(1) *
             KNOCKBACK, Damage);
             result = true;
@@ -117,14 +117,14 @@ public abstract class EnemyProj : Area2D, ISpawnable
     public virtual void StopProjectile() {
         sprite.GlobalRotation = Velocity.Angle();
         Velocity = Vector2.Zero;
-        if(anim.IsPlaying() == true && anim.CurrentAnimation != "hit") {
+        if(anim.IsPlaying() && anim.CurrentAnimation != "hit") {
             anim.Stop();
             anim.Play("hit");
         }
         else {
             anim.Play("hit");
         }
-        if(IsInstanceValid(explosion) == true) {
+        if(IsInstanceValid(explosion)) {
             explosion.Explode();
             sprite.Visible = false;
         }

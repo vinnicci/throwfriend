@@ -43,9 +43,9 @@ public class NextLevel : Area2D
     public override void _Process(float delta)
     {
         base._Process(delta);
-        if(proceeding == true && player.WeaponNode.CurrentState == Weapon.States.HELD && LevelNode.PlayerEngaging == 0) {
+        if(proceeding && player.WeaponNode.CurrentState == Weapon.States.HELD && LevelNode.PlayerEngaging == 0) {
             mainNode = (Main)GetNode("/root/Main");
-            mainNode.GoToLevel(nextLevel, LevelNode.Name+"/SpawnPos", (Player)player);
+            mainNode.GoToLevel(nextLevel, LevelNode.Name+"/SpawnPos", (Player)player, false);
             SetProcess(false);
         }
     }

@@ -20,11 +20,11 @@ public class ItemSlot : Control
 
 
     public void UpdateIcon(Item item) {
-        if(IsInstanceValid(Item) == true) {
+        if(IsInstanceValid(Item)) {
             iconPos.GetChild(0).QueueFree();
         }
         Item = item;
-        if(IsInstanceValid(Item) == true) {
+        if(IsInstanceValid(Item)) {
             Sprite icon = (Sprite)Item.GetNode("Icon").Duplicate();
             iconPos.AddChild(icon);
             icon.Visible = true;
@@ -33,7 +33,7 @@ public class ItemSlot : Control
 
 
     void OnTextureButtonPressed() {
-        if(upgradeLabel.Visible == true) {
+        if(upgradeLabel.Visible) {
             LoadoutNode.ShowItemSelection(GetParent().Name, Name, upgradeLabel);
         }
     }

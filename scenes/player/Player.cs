@@ -9,7 +9,6 @@ public class Player : Entity
     public PlayerItem Item2 {get; set;}
     public int AvailableUpgrade {get; set;}
     public int SnarkDmgMult {get; set;}
-
     public Node2D Center {get; set;}
     public Weapon WeaponNode {get; set;}
     Level levelNode;
@@ -21,8 +20,6 @@ public class Player : Entity
             levelNode = value;
             WeaponNode.PlayerNode = this;
             inGameUI.PlayerNode = this;
-            inGameUI.WeaponNode = WeaponNode;
-            RefreshItems();
             ActivateItem(1);
             ActivateItem(2);
         }
@@ -59,6 +56,8 @@ public class Player : Entity
             ThrowStrength = throwStrength;
             AvailableUpgrade = 0;
             SnarkDmgMult = 1;
+            ItemSlot1Node = (Node2D)GetNode("ItemSlot1");
+            ItemSlot2Node = (Node2D)GetNode("ItemSlot2");
         }
     }
 
@@ -69,9 +68,9 @@ public class Player : Entity
         Center = (Node2D)GetNode("Center");
         camera = (PlayerCam)GetNode("PlayerCam");
         camera.ParentNode = this;
+        weapPos = (Position2D)Center.GetNode("WeapPos");
         WeaponNode = (Weapon)Center.GetNode("WeapPos/Weapon");
         WeaponNode.Connect(nameof(Weapon.PickedUp), this, nameof(PickedUpWeapon));
-        weapPos = (Position2D)Center.GetNode("WeapPos");
         head = (Sprite)spriteNode.GetNode("Head");
         arms = (Sprite)GetNode("Center/Arms");
         inGameUI = (InGame)GetNode("CanvasLayer/InGame");
@@ -92,12 +91,21 @@ public class Player : Entity
     }
 
 
+    public void UpdateWeapon(Weapon newWeap) {
+        Weapon temp = WeaponNode;
+        temp.GetParent().RemoveChild(temp);
+        weapPos.AddChild(newWeap);
+        WeaponNode = newWeap;
+        WeaponNode.PlayerNode = this;
+        WeaponNode.Connect(nameof(Weapon.PickedUp), this, nameof(PickedUpWeapon));
+        temp.QueueFree();
+    }
+
+
     public void RefreshItems() {
-        ItemSlot1Node = (Node2D)GetNode("ItemSlot1");
         if(ItemSlot1Node.GetChildCount() != 0) {
             Item1 = (PlayerItem)ItemSlot1Node.GetChild(0);
         }
-        ItemSlot2Node = (Node2D)GetNode("ItemSlot2");
         if(ItemSlot2Node.GetChildCount() != 0) {
             Item2 = (PlayerItem)ItemSlot2Node.GetChild(0);
         }
@@ -106,10 +114,11 @@ public class Player : Entity
 
 
     public void ActivateItem(int slotNum) {
-        if(slotNum == 1 && IsInstanceValid(Item1) == true) {
+        RefreshItems();
+        if(slotNum == 1 && IsInstanceValid(Item1)) {
             Item1.PlayerNode = this;
         }
-        else if(slotNum == 2 && IsInstanceValid(Item2) == true) {
+        else if(slotNum == 2 && IsInstanceValid(Item2)) {
             Item2.PlayerNode = this;
         }
         RefreshItems();
@@ -123,7 +132,7 @@ public class Player : Entity
     public override void _Process(float delta)
     {
         base._Process(delta);
-        if(IsDead == true) {
+        if(IsDead) {
             return;
         }
         Center.LookAt(GetGlobalMousePosition());
@@ -140,9 +149,9 @@ public class Player : Entity
             arms.Scale *= scale;
             weapPos.Position = WEAP_POS_VEC;
         }
-        if(WeaponNode != inGameUI.WeaponNode) {
-            inGameUI.WeaponNode = WeaponNode;
-        }
+        // if(WeaponNode != inGameUI.WeaponNode) {
+        //     inGameUI.WeaponNode = WeaponNode;
+        // }
     }
 
 
@@ -186,7 +195,7 @@ public class Player : Entity
 
 
     public void GetInput() {
-        if(IsDead == true) {
+        if(IsDead) {
             return;
         }
         bool hasWeap = Center.HasNode("WeapPos/Weapon");
@@ -199,16 +208,16 @@ public class Player : Entity
             else if(inGameUI.Visible == false) {
                 inGameUIAnim.Play("enter");
             }
-            else if(inGameUI.Visible == true) {
+            else if(inGameUI.Visible) {
                 inGameUIAnim.Play("exit");
             }
         }
         //snark pointer
-        if(snarkPointer.Visible == true) {
+        if(snarkPointer.Visible) {
             snarkPointer.LookAt(WeaponNode.GlobalPosition);
         }
         //velocity
-        if(settings.Visible == true) {
+        if(settings.Visible) {
             return;
         }
         Vector2 velocity = Vector2.Zero;
@@ -225,24 +234,24 @@ public class Player : Entity
             velocity.x += 1;
         }
         //movement status effect
-        if(CurrentStatusEffect[(int)StatusEffect.CONFUSE] == true) {
+        if(CurrentStatusEffect[(int)StatusEffect.CONFUSE]) {
             velocity *= -1;
             if(confusedIndicator.Visible == false) {
                 confusedIndicator.Visible = true;
             }
         }
-        if(CurrentStatusEffect[(int)StatusEffect.SLOW] == true) {
+        if(CurrentStatusEffect[(int)StatusEffect.SLOW]) {
             velocity *= SLOW_EFFECT;
             if(slowedIndicator.Visible == false) {
                 slowedIndicator.Visible = true;
             }
         }
         Velocity = velocity.Normalized();
-        if(inGameUI.Visible == true) {
+        if(inGameUI.Visible) {
             return;
         }
         //throw
-        if(Input.IsActionJustReleased("throw_weap") && hasWeap == true) {
+        if(Input.IsActionJustReleased("throw_weap") && hasWeap) {
             WeaponNode.Throw(ThrowStrength, GlobalPosition, Vector2.Zero, Center.GlobalRotation);
             if(arms.FlipH == false) {
                 throwAnim.Play("throw");
@@ -253,17 +262,17 @@ public class Player : Entity
             snarkPointer.Visible = true;
             Speed += EXTRA_SPEED_WITHOUT_WEAPON;
         }
-        if(IsInstanceValid(Item1) == true && Input.IsActionJustPressed("hotkey_1")) {
+        if(IsInstanceValid(Item1) && Input.IsActionJustPressed("hotkey_1")) {
             Item1.ApplyEffect();
         }
-        if(IsInstanceValid(Item2) == true && Input.IsActionJustPressed("hotkey_2")) {
+        if(IsInstanceValid(Item2) && Input.IsActionJustPressed("hotkey_2")) {
             Item2.ApplyEffect();
         }
-        if(IsInstanceValid(WeaponNode.Item1) == true && Input.IsActionJustPressed("hotkey_3")) {
+        if(IsInstanceValid(WeaponNode.Item1) && Input.IsActionJustPressed("hotkey_3")) {
             WeaponNode.Item1.ApplyEffect();
             EmitSignal(nameof(ActivatedWeaponItem), 1);
         }
-        if(IsInstanceValid(WeaponNode.Item2) == true && Input.IsActionJustPressed("hotkey_4")) {
+        if(IsInstanceValid(WeaponNode.Item2) && Input.IsActionJustPressed("hotkey_4")) {
             WeaponNode.Item2.ApplyEffect();
             EmitSignal(nameof(ActivatedWeaponItem), 2);
         }
@@ -297,11 +306,11 @@ public class Player : Entity
 
     public override bool Hit(Vector2 knockback, int damage)
     {
-        if(base.Hit(knockback, damage) == true) {
+        if(base.Hit(knockback, damage)) {
             if(Health > 0 && damage > 0 && IsDead == false) {
                 HitCooldown.Start(1f);
             }
-            else if(IsDead == true) {
+            else if(IsDead) {
                 DamageAnim.Stop();
             }
             UpdateStatsDisp();

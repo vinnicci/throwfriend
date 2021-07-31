@@ -10,7 +10,7 @@ public class SuperThrow : PlayerItem
     public override void InitEffect()
     {
         base.InitEffect();
-        if(done == true) {
+        if(done) {
             return;
         }
         PlayerNode.ThrowStrength += EXTRA_STRENGTH;

@@ -2,19 +2,30 @@ extends Node
 
 
 const SAVE_DIR: String = "user://save/"
+var player_save_file
+var level_save_file
 
 
-func save_data(dict: Dictionary):
-    #save data
-    var save_file = load("res://scenes/game/SaveFile.gd").new()
-    save_file.Level = dict["Level"]
-    save_file.MaxHP = dict["MaxHP"]
-    save_file.SnarkDmgMult = dict["SnarkDmgMult"]
-    save_file.AvailableUpgrades = dict["AvailableUpgrades"]
-    save_file.PlayerItem1 = dict["PlayerItem1"]
-    save_file.PlayerItem2 = dict["PlayerItem2"]
-    save_file.WeapItem1 = dict["WeapItem1"]
-    save_file.WeapItem2 = dict["WeapItem2"]
-    if ResourceSaver.save(SAVE_DIR + "save.tres", save_file) != OK:
-        printerr("Save data unsuccessful.")
+func new_player_save_file():
+    var dir: Directory = Directory.new()
+    if(dir.file_exists(SAVE_DIR) == false):
+        if dir.make_dir_recursive(SAVE_DIR) != OK:
+            printerr("Save directory error.")
+    player_save_file = load("res://scenes/game/PlayerSaveFile.gd").new()
+    save_player_data()
 
+
+func save_player_data():
+    if ResourceSaver.save(SAVE_DIR + "player_save.tres", player_save_file) != OK:
+        printerr("Player save data unsuccessful.")
+
+
+func new_level_save_file():
+    level_save_file = load("res://scenes/game/LevelSaveFile.gd").new()
+    level_save_file.Collectables = {}
+    save_level_data()
+
+
+func save_level_data():
+    if ResourceSaver.save(SAVE_DIR + "level_save.tres", level_save_file) != OK:
+        printerr("Level save data unsuccessful.")

@@ -98,7 +98,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     public override void _IntegrateForces(Physics2DDirectBodyState state)
     {
         base._IntegrateForces(state);
-        if(IsDead == true) {
+        if(IsDead) {
             AppliedForce = Vector2.Zero;
             return;
         }
@@ -139,7 +139,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
 
 
     public virtual bool Hit(Vector2 knockback, int damage) {
-        if(IsDead == true || (HitCooldown.IsStopped() == false && damage > 0)) {
+        if(IsDead || (HitCooldown.IsStopped() == false && damage > 0)) {
             return false;
         }
         ApplyCentralImpulse(knockback * knockbackMult);

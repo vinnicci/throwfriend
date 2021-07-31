@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract class BaseObtainable : Area2D, ISpawnable
+public abstract class BaseCollectable : Area2D, ISpawnable
 {
     protected AnimationPlayer animation;
 

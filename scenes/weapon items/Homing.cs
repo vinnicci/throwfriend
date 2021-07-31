@@ -37,12 +37,12 @@ public class Homing : WeaponItem
             if(enemies.Count > 0) {
                 enemies.Clear();
             }
-            if(IsInstanceValid(target) == true) {
+            if(IsInstanceValid(target)) {
                 target = null;
             }
         }
         else if(WeaponNode.CurrentState == Weapon.States.ACTIVE) {
-            if(IsInstanceValid(target) == true && target.IsDead == false) {
+            if(IsInstanceValid(target) && target.IsDead == false) {
                 int mag;
                 if(WeaponNode.GlobalPosition.DistanceSquaredTo(target.GlobalPosition) <= DIST_HOME_ACCEL) {
                     mag = HOME_MAGNITUDE_CLOSE;
@@ -60,9 +60,9 @@ public class Homing : WeaponItem
     void OnDetectionRangeBodyEntered(Godot.Object body) {
         if(body is Enemy) {
             Enemy enemy = (Enemy)body;
-            if(enemies.Contains(enemy) == false && enemy.HasNode("AI") == true) {
+            if(enemies.Contains(enemy) == false && enemy.HasNode("AI")) {
                 enemies.Enqueue(enemy);
-                if(tick.IsStopped() == true) {
+                if(tick.IsStopped()) {
                     tick.Start();
                 }
             }
@@ -75,8 +75,8 @@ public class Homing : WeaponItem
             return;
         }
         Enemy enemy = enemies.Dequeue();
-        if((IsInstanceValid(target) == true && target.IsDead == false) ||
-        (IsInstanceValid(enemy) == false || enemy.IsDead == true)) {
+        if((IsInstanceValid(target) && target.IsDead == false) ||
+        (IsInstanceValid(enemy) == false || enemy.IsDead)) {
             return;
         }
         ray.LookAt(enemy.GlobalPosition);

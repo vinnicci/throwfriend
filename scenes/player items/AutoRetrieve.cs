@@ -24,7 +24,7 @@ public class AutoRetrieve : PlayerItem
         if(WeaponNode != PlayerNode.WeaponNode) {
             WeaponNode = PlayerNode.WeaponNode;
         }
-        if(weapIsReturning == true) {
+        if(weapIsReturning) {
             Vector2 vec = (PlayerNode.GlobalPosition - WeaponNode.GlobalPosition).Clamped(1) * RETRIEVE_SPEED;
             WeaponNode.Velocity = vec;
             if(WeaponNode.CurrentState == Weapon.States.HELD) {

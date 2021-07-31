@@ -18,20 +18,20 @@ public class InGame : Control
             loadoutNode.PlayerNode = PlayerNode;
             loadoutNode.UpdateSlotIcon(1);
             loadoutNode.UpdateSlotIcon(2);
-        }
-    }
-    Weapon weaponNode;
-    public Weapon WeaponNode {
-        get {
-            return weaponNode;
-        }
-        set {
-            weaponNode = value;
-            loadoutNode.WeaponNode = WeaponNode;
             loadoutNode.UpdateSlotIcon(3);
             loadoutNode.UpdateSlotIcon(4);
         }
     }
+    // Weapon weaponNode;
+    // public Weapon WeaponNode {
+    //     get {
+    //         return weaponNode;
+    //     }
+    //     set {
+    //         weaponNode = value;
+    //         loadoutNode.WeaponNode = WeaponNode;
+    //     }
+    // }
 
 
     public override void _Ready()

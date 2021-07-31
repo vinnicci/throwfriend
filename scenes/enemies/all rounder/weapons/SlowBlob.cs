@@ -18,7 +18,7 @@ public class SlowBlob : EnemyProj
             return false;
         }
         Player player = (Player)body;
-        if(player.HasNode("SlowTimer") == true) {
+        if(player.HasNode("SlowTimer")) {
             slowTimer = (Timer)player.GetNode("SlowTimer");
             slowTimer.Start();
         }

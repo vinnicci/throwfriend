@@ -7,13 +7,15 @@ public abstract class Level : YSort
     Player playerNode;
     Navigation2D nav;
     YSort enemies;
+    Main mainNode;
 
 
     public override void _Ready()
     {
         base._Ready();
+        mainNode = (Main)GetNode("/root/Main");
         GD.Randomize();
-        if(HasNode("Player") == true) {
+        if(HasNode("Player")) {
             playerNode = (Player)GetNode("Player");
             playerNode.LevelNode = this;
         }
@@ -62,7 +64,7 @@ public abstract class Level : YSort
 
 
     public Vector2 GetPlayerPos() {
-        if(playerNode.IsDead == true || IsInstanceValid(playerNode) == false) {
+        if(playerNode.IsDead || IsInstanceValid(playerNode) == false) {
             return Vector2.Zero;
         }
         return playerNode.GlobalPosition;

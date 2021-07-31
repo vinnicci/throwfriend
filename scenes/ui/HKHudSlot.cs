@@ -20,11 +20,11 @@ public class HKHudSlot : ColorRect
 
 
     public void UpdateIcon(Item item) {
-        if(IsInstanceValid(Item) == true) {
+        if(IsInstanceValid(Item)) {
             iconPos.GetChild(0).QueueFree();
         }
         Item = item;
-        if(IsInstanceValid(Item) == true) {
+        if(IsInstanceValid(Item)) {
             Sprite icon = (Sprite)Item.GetNode("Icon").Duplicate();
             iconPos.AddChild(icon);
             icon.Visible = true;

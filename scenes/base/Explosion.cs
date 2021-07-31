@@ -40,7 +40,7 @@ public abstract class Explosion : Area2D
 
 
     public void Explode() {
-        if(anim.IsPlaying() == true) {
+        if(anim.IsPlaying()) {
             return;
         }
         if(explosionRadius != ExplosionRadius) {

@@ -23,7 +23,7 @@ public class SprayerStickyProj : SprayerProj
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
-        if(IsInstanceValid(player) == true && player.Velocity.Length() > SLOW_EFFECT) {
+        if(IsInstanceValid(player) && player.Velocity.Length() > SLOW_EFFECT) {
             player.Velocity *= SLOW_EFFECT;
         }
     }

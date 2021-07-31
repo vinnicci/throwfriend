@@ -23,7 +23,7 @@ public class TransformConstraintTool : Node2D
         set {
             enabled = value;
             SetProcess(enabled);
-            if(enabled == true) {
+            if(enabled) {
                 tOrigin = Transform;
             }
         }
@@ -282,22 +282,22 @@ public class TransformConstraintTool : Node2D
         if(Transform == tOrigin || bound_targets == null || bound_targets.Count == 0) {
             return;
         }
-        if(scaleXClamped == true) {
+        if(scaleXClamped) {
             float x = Mathf.Clamp(Scale.x, scaleXClampMin, scaleXClampMax);
             Vector2 v = new Vector2(x,Scale.y);
             Scale = v;
         }
-        if(scaleYClamped == true) {
+        if(scaleYClamped) {
             float y = Mathf.Clamp(Scale.y, scaleYClampMin, scaleYClampMax);
             Vector2 v = new Vector2(Scale.x,y);
             Scale = v;
         }
-        if(positionXClamped == true) {
+        if(positionXClamped) {
             float x = Mathf.Clamp(Position.x, positionXClampMin, positionXClampMax);
             Vector2 v = new Vector2(x,Position.y);
             Position = v;
         }
-        if(positionYClamped == true) {
+        if(positionYClamped) {
             float y = Mathf.Clamp(Position.y, positionYClampMin, positionYClampMax);
             Vector2 v = new Vector2(Position.x,y);
             Position = v;

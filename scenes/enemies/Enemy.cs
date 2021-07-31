@@ -16,11 +16,11 @@ public abstract class Enemy : Entity, ISpawner
         }
         set{
             levelNode = value;
-            if(HasNode("EnemyWeapon") == true) {
+            if(HasNode("EnemyWeapon")) {
                 WeaponNode = (EnemyWeapon)GetNode("EnemyWeapon");
                 WeaponNode.ParentNode = this;
             }
-            if(HasNode("AI") == true) {
+            if(HasNode("AI")) {
                 aINode = (Node2D)GetNode("AI");
                 aINode.Call("init_properties", LevelNode, this, patrolPoints);
             }
@@ -35,7 +35,7 @@ public abstract class Enemy : Entity, ISpawner
     public override void _Ready()
     {
         base._Ready();
-        if(HasNode("Explosion") == true) {
+        if(HasNode("Explosion")) {
             ExplosionNode = (Explosion)GetNode("Explosion");
         }
         ActDict = new Godot.Collections.Dictionary();
@@ -98,7 +98,7 @@ public abstract class Enemy : Entity, ISpawner
 
 
     public virtual void OnEnemyBodyEntered(Godot.Object body) {
-        if(body is Weapon && IsInstanceValid(aINode) == true) {
+        if(body is Weapon && IsInstanceValid(aINode)) {
             Godot.Collections.Dictionary bbDict = (Godot.Collections.Dictionary)aINode.Get("bb");
             Weapon weap = (Weapon)body;
             if(bbDict["enemy"] != weap.PlayerNode) {
@@ -110,7 +110,7 @@ public abstract class Enemy : Entity, ISpawner
 
     public virtual bool DoAction(String actionName) {
         Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
-        if(IsDead == true || (bool)action["IsActive"] == true || (float)action["TimeRemain"] > 0f) {
+        if(IsDead || (bool)action["IsActive"] || (float)action["TimeRemain"] > 0f) {
             return false;
         }
         action["IsActive"] = true;
@@ -125,9 +125,9 @@ public abstract class Enemy : Entity, ISpawner
 
     public override bool Hit(Vector2 knockback, int damage)
     {
-        if(base.Hit(knockback, damage) == true) {
-            if(IsDead == true) {
-                if(IsInstanceValid(WeaponNode) == true) {
+        if(base.Hit(knockback, damage)) {
+            if(IsDead) {
+                if(IsInstanceValid(WeaponNode)) {
                     WeaponNode.Disable();
                 }
                 if(GD.RandRange(0, 100) <= CHANCE_HP_DROP) {

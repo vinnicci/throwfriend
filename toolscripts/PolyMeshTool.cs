@@ -11,7 +11,7 @@ public class PolyMeshTool : Polygon2D
         set {
             autoPoly = value;
             currentPolyCount = Polygon.Length;
-            if(autoPoly == true) {
+            if(autoPoly) {
                 SetProcess(true);
             }
             else {
@@ -34,7 +34,7 @@ public class PolyMeshTool : Polygon2D
     public override void _Process(float delta)
     {
         base._Process(delta);
-        if(AutoPoly == true && currentPolyCount != Polygon.Length) {
+        if(AutoPoly && currentPolyCount != Polygon.Length) {
             CreatePoly();
             currentPolyCount = Polygon.Length;
         }
