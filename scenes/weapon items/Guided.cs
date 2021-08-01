@@ -24,7 +24,7 @@ public class Guided : WeaponItem
         if(WeaponNode.Mode != RigidBody2D.ModeEnum.Rigid || IsInstanceValid(WeaponNode.PlayerNode) == false) {
             return;
         }
-        Vector2 vec = (GetGlobalMousePosition() - WeaponNode.GlobalPosition).Clamped(1) * HOME_MAGNITUDE;
+        Vector2 vec = (GetGlobalMousePosition() - WeaponNode.GlobalPosition).Normalized() * HOME_MAGNITUDE;
         WeaponNode.Velocity += vec;
     }
 

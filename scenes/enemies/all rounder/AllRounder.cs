@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public abstract class BaseAllRounder: Enemy
+public abstract class AllRounder: Enemy
 {
     //melee
     protected const int FORWARD_IMPULSE = 250;
@@ -13,7 +13,7 @@ public abstract class BaseAllRounder: Enemy
 
 
     public virtual void MeleeAttackBack() {
-        ((BaseAllRounderWeapon)WeaponNode).MeleeAttackBack();
+        ((AllRounderWeapon)WeaponNode).MeleeAttackBack();
     }
 
 
@@ -32,7 +32,7 @@ public abstract class BaseAllRounder: Enemy
 
 
     public virtual void ShootBack() {
-        ((BaseAllRounderWeapon)WeaponNode).ShootBack();
+        ((AllRounderWeapon)WeaponNode).ShootBack();
     }
 
 
@@ -43,7 +43,7 @@ public abstract class BaseAllRounder: Enemy
 
     //throw blobnade
     public virtual void ThrowBlob() {
-        ((BaseAllRounderWeapon)WeaponNode).ThrowBlob();
+        ((AllRounderWeapon)WeaponNode).ThrowBlob();
     }
 
 

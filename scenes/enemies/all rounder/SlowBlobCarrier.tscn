@@ -4,10 +4,10 @@
 [ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=2]
 [ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=3]
 [ext_resource path="res://scenes/enemies/all rounder/anim/blobcarrier_die2.tres" type="Animation" id=4]
-[ext_resource path="res://scenes/enemies/all rounder/BaseFlyBlobCarrier.cs" type="Script" id=5]
-[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/all rounder/FlyBlobCarrier.cs" type="Script" id=5]
+[ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder2.png" type="Texture" id=7]
-[ext_resource path="res://scenes/enemies/all rounder/BaseAllRounder.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/all rounder/AllRounder.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/SlowBlob.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/enemies/all rounder/anim/blobcarrier_damaged.tres" type="Animation" id=10]
 

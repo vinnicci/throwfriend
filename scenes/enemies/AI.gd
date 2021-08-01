@@ -47,10 +47,10 @@ var player_node: RigidBody2D
 
 func init_properties(new_lvl: Node2D, new_parent: RigidBody2D, patrol_pts: Array = []):
 	level_node = new_lvl
-	if is_ent_valid(level_node.get_node_or_null("Player")) == true:
+	if is_ent_valid(level_node.get_node_or_null("Player")):
 		player_node = level_node.get_node("Player")
 	parent_node = new_parent
-	if is_instance_valid(parent_node.WeaponNode) == true:
+	if is_instance_valid(parent_node.WeaponNode):
 		weapon_node = parent_node.WeaponNode
 	bb["patrol_points"] = []
 	var lvl_patrol_pts: Node2D = level_node.get_node("PatrolPoints")
@@ -64,9 +64,9 @@ func _physics_process(_delta: float) -> void:
 		is_moving = false
 		queue_free()
 		return
-	if is_moving == true:
-		if is_instance_valid(weapon_node) == true:
-			if is_ent_valid(bb["enemy"]) == true:
+	if is_moving:
+		if is_instance_valid(weapon_node):
+			if is_ent_valid(bb["enemy"]):
 				weapon_node.look_at(bb["enemy"].global_position)
 			else:
 				weapon_node.look_at(bb["target"])
@@ -85,8 +85,8 @@ func separate_from_allies(velocity: Vector2 = Vector2.ZERO) -> Vector2:
 
 
 func is_ent_valid(ent: Node2D):
-	var output: bool = is_instance_valid(ent) == true
-	if output == true && ent.get("IsDead") != null:
+	var output: bool = is_instance_valid(ent)
+	if output && ent.get("IsDead") != null:
 		return output && ent.IsDead == false
 	return output
 
@@ -103,12 +103,12 @@ func get_new_path(target):
 func _on_FriendlyRange_body_entered(body: Node):
 	if body == parent_node:
 		return
-	if body is RigidBody2D && body.has_node("AI") == true:
+	if body is RigidBody2D && body.has_node("AI"):
 		bb["allies"].append(body)
 
 
 func _on_FriendlyRange_body_exited(body: Node):
-	if body is RigidBody2D && bb["allies"].has(body) == true:
+	if body is RigidBody2D && bb["allies"].has(body):
 		bb["allies"].erase(body)
 
 
@@ -134,12 +134,12 @@ func engage_enemy(enemy: RigidBody2D):
 
 #periodic distance calculator for enemy/master
 func _on_Tick_timeout():
-	if is_ent_valid(bb["enemy"]) == false && is_ent_valid(player_node) == true:
+	if is_ent_valid(bb["enemy"]) == false && is_ent_valid(player_node):
 		ray.look_at(player_node.global_position)
 		ray.force_raycast_update()
 		if ray.get_collider() == player_node:
 			engage_enemy(player_node)
-	elif is_ent_valid(bb["enemy"]) == true:
+	elif is_ent_valid(bb["enemy"]):
 		bb["enemy_dist"] = level_node.call("GetDist", bb["enemy"].global_position, parent_node.global_position)
 
 
@@ -153,9 +153,9 @@ signal resume
 
 #time based wait task using coroutine
 func task_timed_stop(task):
-	if paused == true:
+	if paused:
 		return
-	elif paused == false && timer_resume.is_stopped() == true:
+	elif paused == false && timer_resume.is_stopped():
 		paused = true;
 		timer_resume.start(task.get_param(0))
 	yield(self, "resume")
@@ -172,7 +172,7 @@ func _on_Resume_timeout():
 
 #param 0: bb name
 func task_is_ent_valid(task):
-	if is_ent_valid(bb[task.get_param(0)]) == true:
+	if is_ent_valid(bb[task.get_param(0)]):
 		task.succeed()
 	else:
 		task.failed()
@@ -206,7 +206,7 @@ func get_flee_point():
 		return
 	var flee_routes: Dictionary = {}
 	for flee_ray in flee_rays_dict:
-		if is_instance_valid(flee_ray.get_collider()) == true:
+		if is_instance_valid(flee_ray.get_collider()):
 			continue
 		var pos = flee_rays_dict[flee_ray].global_position
 		var flee_points: int = bb["enemy"].global_position.distance_squared_to(pos) as int
@@ -244,7 +244,7 @@ func task_is_target_close(task):
 
 
 func get_target_dist(target_bb_name: String) -> int:
-	if bb.keys().has(target_bb_name + "_dist") == true:
+	if bb.keys().has(target_bb_name + "_dist"):
 		return bb[target_bb_name + "_dist"]
 	return -1
 
@@ -348,14 +348,14 @@ func task_act(task):
 
 #param 0: enemy action name
 func task_is_act_ready(task):
-	if is_act_ready(task.get_param(0)) == true:
+	if is_act_ready(task.get_param(0)):
 		task.succeed()
 	else:
 		task.failed()
 
 
 func is_act_ready(act_name: String):
-	return (parent_node.HasAct(act_name) == true &&
+	return (parent_node.HasAct(act_name) &&
 	parent_node.IsActActive(act_name) == false &&
 	parent_node.IsActCoolingDown(act_name) == false)
 

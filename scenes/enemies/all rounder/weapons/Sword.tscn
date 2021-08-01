@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/player/tex_player_arms.png" type="Texture" id=1]
-[ext_resource path="res://scenes/enemies/all rounder/weapons/BaseAllRounderWeapon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/AllRounderWeapon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_sword.png" type="Texture" id=3]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/anim/melee_attack.tres" type="Animation" id=4]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/anim/idle.tres" type="Animation" id=5]

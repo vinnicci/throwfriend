@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract class BaseWall : TileMap, IHealthModifiable
+public abstract class Wall : TileMap, IHealthModifiable
 {
     [Export] protected int health = 10;
     [Export] protected bool destructible = false;

@@ -9,7 +9,7 @@
 [ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/charger/BlobCharger.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/shooter/ScatterShooter.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=11]
 
 [node name="TestLevel2" instance=ExtResource( 1 )]

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class DualRanged : BaseAllRounder
+public class DualRanged : AllRounder
 {
     public override void Shoot()
     {

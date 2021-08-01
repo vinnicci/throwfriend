@@ -9,7 +9,7 @@
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/Ranged.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemies/all rounder/RangedBlobnadier.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/enemies/all rounder/RangedShielded.tscn" type="PackedScene" id=12]
 

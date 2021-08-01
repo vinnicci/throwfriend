@@ -11,7 +11,7 @@
 [ext_resource path="res://scenes/enemies/charger/anim/charger_idle.tres" type="Animation" id=9]
 [ext_resource path="res://scenes/enemies/charger/anim/charger_run.tres" type="Animation" id=10]
 [ext_resource path="res://scenes/enemies/charger/BaseCharger.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=12]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0

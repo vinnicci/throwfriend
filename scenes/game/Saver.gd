@@ -22,7 +22,6 @@ func save_player_data():
 
 func new_level_save_file():
     level_save_file = load("res://scenes/game/LevelSaveFile.gd").new()
-    level_save_file.Collectables = {}
     save_level_data()
 
 

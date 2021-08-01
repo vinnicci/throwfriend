@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public abstract class BaseAllRounderWeapon: EnemyWeapon
+public abstract class AllRounderWeapon: EnemyWeapon
 {
     //melee
     protected const int KNOCKBACK = 250;

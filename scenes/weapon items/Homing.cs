@@ -50,7 +50,7 @@ public class Homing : WeaponItem
                 else {
                     mag = HOME_MAGNITUDE;
                 }
-                Vector2 vec = (target.Position - WeaponNode.Position).Clamped(1) * mag;
+                Vector2 vec = (target.Position - WeaponNode.Position).Normalized() * mag;
                 WeaponNode.Velocity += vec;
             }
         }

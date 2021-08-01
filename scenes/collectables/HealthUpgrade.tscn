@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/obtainables/HealthUpgrade.cs" type="Script" id=1]
+[ext_resource path="res://scenes/collectables/HealthUpgrade.cs" type="Script" id=1]
 [ext_resource path="res://assets/items/tex_pickup_health_upgrade.png" type="Texture" id=2]
-[ext_resource path="res://scenes/obtainables/BaseCollectable.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/collectables/Collectable.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )

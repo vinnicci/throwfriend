@@ -14,7 +14,6 @@ public abstract class Level : YSort
     {
         base._Ready();
         mainNode = (Main)GetNode("/root/Main");
-        GD.Randomize();
         if(HasNode("Player")) {
             playerNode = (Player)GetNode("Player");
             playerNode.LevelNode = this;

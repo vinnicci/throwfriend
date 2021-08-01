@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/enemies/shooter/BaseShooter.cs" type="Script" id=2]
 [ext_resource path="res://scenes/enemies/shooter/ais/ShooterAI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/enemies/shooter/tex_en_shooter_leg3.png" type="Texture" id=4]
-[ext_resource path="res://scenes/obtainables/HealthPickup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/shooter/anim/damaged.tres" type="Animation" id=6]
 
 [node name="BaseShooter" instance=ExtResource( 1 )]

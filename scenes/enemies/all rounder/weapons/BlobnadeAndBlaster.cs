@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class BlobnadeAndBlaster : BaseAllRounderWeapon
+public class BlobnadeAndBlaster : AllRounderWeapon
 {
     const int BLOBNADE_THROW_STRENGTH = 1000;
 

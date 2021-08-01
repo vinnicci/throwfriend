@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class BaseFlyBlobCarrier : BaseAllRounder
+public class FlyBlobCarrier : AllRounder
 {
     public void SpawnFlyBlob() {
         if(IsDead) {
