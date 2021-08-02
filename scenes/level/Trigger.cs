@@ -5,6 +5,7 @@ public abstract class Trigger : Area2D, ILevelObject
 {
     public String SwitchSignal {get; set;}
 
+    [Export] Godot.Collections.Array<NodePath> actObjects;
     AnimationPlayer anim;
 
 
@@ -22,14 +23,24 @@ public abstract class Trigger : Area2D, ILevelObject
     public virtual void OnTriggerAreaEntered(Godot.Object area) {
         anim.Play("trigger");
         EmitSignal(nameof(Switched));
-        GD.Print("triggered!");
+        ActivateObjects();
     }
 
 
     public virtual void OnTriggerBodyEntered(Godot.Object body) {
         anim.Play("trigger");
         EmitSignal(nameof(Switched));
-        GD.Print("triggered!");
+        ActivateObjects();
+    }
+
+
+    void ActivateObjects() {
+        foreach(NodePath path in actObjects) {
+            Wall wall = GetNodeOrNull<Wall>(path);
+            if(IsInstanceValid(wall)) {
+                wall.FadeOut();
+            }
+        }
     }
 
 

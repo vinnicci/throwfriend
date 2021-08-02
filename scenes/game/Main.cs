@@ -159,7 +159,12 @@ public class Main : Node
         if((String)playerSaveFile.Get(slot) != "") {
             PackedScene itemPack = (PackedScene)ResourceLoader.Load((String)playerSaveFile.Get(slot));
             Item item = (Item)itemPack.Instance();
-            player.ItemSlot1Node.AddChild(item);
+            if(itemType == "PlayerItem") {
+                ((Node2D)player.Get("ItemSlot" + slotNum + "Node")).AddChild(item);
+            }
+            else if(itemType == "WeapItem") {
+                ((Node2D)player.WeaponNode.Get("ItemSlot" + slotNum + "Node")).AddChild(item);
+            }
             player.ActivateItem(slotNum);
         }
     }
@@ -172,7 +177,8 @@ public class Main : Node
         Resource levelSaveFile = (Resource)saver.Get("level_save_file");
         String[] levelDataArr = {
             "Collectables",
-            "Triggers"
+            "Triggers",
+            "Walls"
         };
         if(VerifySaveFile(levelSaveFile, levelDataArr) == false) {
             return;
@@ -181,11 +187,15 @@ public class Main : Node
         foreach(Node2D node in currentLevel.GetChildren()) {
             //collectables
             if(node is Collectable) {
-                InitLevelObject(levelSaveFile, node, "Collectables");
+                InitLevelObject(levelSaveFile, node, levelDataArr[0]);
             }
             //triggers
             else if(node is Trigger) {
-                InitLevelObject(levelSaveFile, node, "Triggers");
+                InitLevelObject(levelSaveFile, node, levelDataArr[1]);
+            }
+            //secret walls and stuff
+            else if(node is Wall) {
+                InitLevelObject(levelSaveFile, node, levelDataArr[2]);
             }
         }
         saver.Call("save_level_data");
@@ -205,7 +215,6 @@ public class Main : Node
         arr.Add(levelObj.GetPath().ToString());
         //pass type
         arr.Add(objType);
-        GD.Print(((ILevelObject)levelObj).SwitchSignal);
         levelObj.Connect(((ILevelObject)levelObj).SwitchSignal, this, nameof(OnLevelObjectSwitched), arr);
     }
 
@@ -275,10 +284,10 @@ public class Main : Node
 
     public override void _ExitTree()
     {
+        base._ExitTree();
         if(IsInstanceValid(currentLevel)) {
             SavePlayerData();
         }
-        base._ExitTree();
         QueueFree();
     }
 
