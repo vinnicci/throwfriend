@@ -58,40 +58,42 @@ acts = {
 "spawn_blob": 3.0
 }
 
-[node name="AbilityItem" parent="." index="10" instance=ExtResource( 10 )]
-position = Vector2( 377, 196 )
+[node name="NextLevelW" parent="." index="10" instance=ExtResource( 19 )]
+position = Vector2( -583, 150 )
 
-[node name="AbilityItem2" parent="." index="11" instance=ExtResource( 10 )]
-position = Vector2( 376, 137 )
-
-[node name="AbilityItem3" parent="." index="12" instance=ExtResource( 10 )]
-position = Vector2( 1334, -11 )
-
-[node name="AbilityItem4" parent="." index="13" instance=ExtResource( 10 )]
-position = Vector2( 1332, 84 )
-
-[node name="TestLevel2" parent="." index="14" instance=ExtResource( 19 )]
+[node name="NextLevelE" parent="." index="11" instance=ExtResource( 19 )]
 position = Vector2( 2125, 97 )
 rotation = -3.14159
-nextLevel = "res://test scenes/TestLevel2.tscn"
 
-[node name="HealthPickup" parent="." index="15" instance=ExtResource( 9 )]
-position = Vector2( 717, 520 )
-
-[node name="SavePoint" parent="." index="16" instance=ExtResource( 11 )]
+[node name="SavePoint" parent="." index="12" instance=ExtResource( 11 )]
 position = Vector2( 1638, 59 )
 
-[node name="HealthUpgrade" parent="." index="17" instance=ExtResource( 12 )]
+[node name="AbilityItem" parent="." index="13" instance=ExtResource( 10 )]
+position = Vector2( 377, 196 )
+
+[node name="AbilityItem2" parent="." index="14" instance=ExtResource( 10 )]
+position = Vector2( 376, 137 )
+
+[node name="AbilityItem3" parent="." index="15" instance=ExtResource( 10 )]
+position = Vector2( 1334, -11 )
+
+[node name="AbilityItem4" parent="." index="16" instance=ExtResource( 10 )]
+position = Vector2( 1332, 84 )
+
+[node name="HealthPickup" parent="." index="17" instance=ExtResource( 9 )]
+position = Vector2( 717, 520 )
+
+[node name="HealthUpgrade" parent="." index="18" instance=ExtResource( 12 )]
 position = Vector2( 1436, -13 )
 
-[node name="SnarkDmgUpgrade" parent="." index="18" instance=ExtResource( 13 )]
+[node name="SnarkDmgUpgrade" parent="." index="19" instance=ExtResource( 13 )]
 position = Vector2( 1331, 186 )
 
-[node name="PlayerTrigger" parent="." index="19" instance=ExtResource( 14 )]
+[node name="PlayerTrigger" parent="." index="20" instance=ExtResource( 14 )]
 position = Vector2( 1345, 287 )
 actObjects = [ NodePath("../SecretWall") ]
 
-[node name="SnarkTrigger" parent="." index="20" instance=ExtResource( 15 )]
+[node name="SnarkTrigger" parent="." index="21" instance=ExtResource( 15 )]
 visible = false
 position = Vector2( 1185, 681 )
 actObjects = [ NodePath("../SecretWall2") ]

@@ -1,18 +1,22 @@
 using Godot;
 using System;
 
-public class NextLevel : Area2D
+public class NextLevel : Area2D, ILevelObject
 {
     Position2D spawnPos;
-    [Export] String nextLevel;
+    String nextLevel;
     Main mainNode;
     bool proceeding = false;
     Player player;
 
+    public String SwitchSignal {get; set;}
+
 
     public override void _Ready() {
         base._Ready();
+        mainNode = (Main)GetNode("/root/Main");
         spawnPos = (Position2D)GetNode("SpawnPos");
+        SwitchSignal = nameof(Switched);
     }
 
 
@@ -21,6 +25,7 @@ public class NextLevel : Area2D
 
     void OnNextLevelBodyEntered(Godot.Object body) {
         if(body is Player) {
+            EmitSignal(nameof(Switched));
             player = (Player)body;
             proceeding = true;
             if(player.WeaponNode.CurrentState != Weapon.States.HELD) {
@@ -44,10 +49,54 @@ public class NextLevel : Area2D
     {
         base._Process(delta);
         if(proceeding && player.WeaponNode.CurrentState == Weapon.States.HELD && LevelNode.PlayerEngaging == 0) {
-            mainNode = (Main)GetNode("/root/Main");
-            mainNode.GoToLevel(nextLevel, LevelNode.Name+"/SpawnPos", (Player)player, false);
+            mainNode.GoToLevel(GetRandomLevel(), GetEntrance(), (Player)player, false);
             SetProcess(false);
         }
+    }
+
+
+    String GetRandomLevel() {
+        Godot.Collections.Dictionary dict =
+        (Godot.Collections.Dictionary)((Resource)mainNode.Saver.Get("world_save_file")).Get("NextLevels");
+        if((String)dict[GetPath().ToString()] != "") {
+            return (String)dict[GetPath().ToString()];
+        }
+        Godot.Collections.Array arr =
+        (Godot.Collections.Array)((Resource)mainNode.Saver.Get("world_save_file")).Get("LevelPool");
+        arr.Shuffle();
+        String lvl = (String)arr[0];
+        arr.RemoveAt(0);
+        //current current entrance to next lvl
+        LinkToLevel(lvl);
+        return lvl;
+    }
+
+
+    public void LinkToLevel(String lvl) {
+        Godot.Collections.Dictionary dict =
+        (Godot.Collections.Dictionary)((Resource)mainNode.Saver.Get("world_save_file")).Get("NextLevels");
+        dict[GetPath().ToString()] = lvl;
+    }
+
+
+    String GetEntrance() {
+        switch(Name) {
+            case "NextLevelN": return "NextLevelS/SpawnPos";
+            case "NextLevelE": return "NextLevelW/SpawnPos";
+            case "NextLevelW": return "NextLevelE/SpawnPos";
+            case "NextLevelS": return "NextLevelN/SpawnPos";
+        }
+        return default;
+    }
+
+
+    [Signal] public delegate void Switched();
+
+
+    public void Switch() {
+        Godot.Collections.Dictionary dict =
+        (Godot.Collections.Dictionary)((Resource)mainNode.Saver.Get("world_save_file")).Get("NextLevels");
+        nextLevel = (String)dict[GetPath().ToString()];
     }
 
 

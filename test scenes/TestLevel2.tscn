@@ -41,28 +41,7 @@ acts = {
 "shoot": 1.0
 }
 
-[node name="ScatterShooter2" parent="Enemies" index="1" instance=ExtResource( 9 )]
-position = Vector2( 1593, 412 )
-spawnScenes = {
-"hp_drop": ExtResource( 10 )
-}
-acts = {
-"shoot": 1.0
-}
-
-[node name="BlobCharger" parent="Enemies" index="2" instance=ExtResource( 8 )]
-position = Vector2( 1592, 147 )
-spawnScenes = {
-"ai": ExtResource( 7 ),
-"blob": ExtResource( 6 ),
-"hp_drop": ExtResource( 10 )
-}
-acts = {
-"charge": 0.5,
-"spawn_blob": 3.0
-}
-
-[node name="BlobCharger2" parent="Enemies" index="3" instance=ExtResource( 8 )]
+[node name="BlobCharger2" parent="Enemies" index="1" instance=ExtResource( 8 )]
 position = Vector2( 1398, 367 )
 spawnScenes = {
 "ai": ExtResource( 7 ),
@@ -74,14 +53,12 @@ acts = {
 "spawn_blob": 3.0
 }
 
-[node name="TestLevel1" parent="." index="8" instance=ExtResource( 11 )]
+[node name="NextLevelW" parent="." index="8" instance=ExtResource( 11 )]
 position = Vector2( -246, 156 )
-nextLevel = "res://test scenes/TestLevel1.tscn"
 
-[node name="TestLevel3" parent="." index="9" instance=ExtResource( 11 )]
+[node name="NextLevelE" parent="." index="9" instance=ExtResource( 11 )]
 position = Vector2( 2458, 837 )
 rotation = -3.14159
-nextLevel = "res://test scenes/TestLevel3.tscn"
 
 [node name="SavePoint" parent="." index="10" instance=ExtResource( 5 )]
 position = Vector2( 2172, 827 )
