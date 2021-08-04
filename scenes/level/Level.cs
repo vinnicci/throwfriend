@@ -14,25 +14,32 @@ public abstract class Level : YSort
     {
         base._Ready();
         mainNode = (Main)GetNode("/root/Main");
+        enemies = (YSort)GetNode("Enemies");
+        nav = (Navigation2D)GetNode("Nav");
         if(HasNode("Player")) {
             playerNode = (Player)GetNode("Player");
             playerNode.LevelNode = this;
         }
-        enemies = (YSort)GetNode("Enemies");
-        foreach(Enemy enemy in enemies.GetChildren()) {
-            enemy.LevelNode = this;
-            enemy.Connect(nameof(Entity.Died), this, nameof(OnEnemyDead));
-        }
-        nav = (Navigation2D)GetNode("Nav");
-        foreach(Blackboard blackboard in ((Node2D)GetNode("Blackboards")).GetChildren()) {
-            blackboard.Init();
-        }
         foreach(Node2D node in GetChildren()) {
-            if(node is NextLevel) {
+            if(node.Name == "Blackboards") {
+                foreach(Blackboard blackboard in node.GetChildren()) {
+                    blackboard.Init();
+                }
+            }
+            else if(node == enemies) {
+                foreach(Enemy enemy in enemies.GetChildren()) {
+                    enemy.LevelNode = this;
+                    enemy.Connect(nameof(Entity.Died), this, nameof(OnEnemyDead));
+                }
+            }
+            else if(node is NextLevel) {
                 ((NextLevel)node).LevelNode = this;
             }
             else if(node is SavePoint) {
                 ((SavePoint)node).LevelNode = this;
+            }
+            else if(node is RandomEnemySpawner) {
+                ((RandomEnemySpawner)node).LevelNode = this;
             }
         }
     }

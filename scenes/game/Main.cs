@@ -183,6 +183,15 @@ public class Main : Node
         if(VerifySaveFile(levelSaveFile, levelDataArr) == false) {
             return;
         }
+        Resource worldSaveFile = (Resource)Saver.Get("world_save_file");
+        String[] worldDataArr = {
+            "NextLevels",
+            "EnemySpawns",
+            "LevelPool"
+        };
+        if(VerifySaveFile(worldSaveFile, worldDataArr) == false) {
+            return;
+        }
         //init save file dict
         foreach(Node2D node in currentLevel.GetChildren()) {
             //collectables
@@ -200,8 +209,7 @@ public class Main : Node
             else if(node is NextLevel) {
                 InitLevelObject(levelSaveFile, node, levelDataArr[3]);
                 //enlist to world data
-                Godot.Collections.Dictionary dict =
-                (Godot.Collections.Dictionary)((Resource)Saver.Get("world_save_file")).Get("NextLevels");
+                Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)worldSaveFile.Get("NextLevels");
                 if(dict.Contains(node.GetPath().ToString()) == false) {
                     dict.Add(node.GetPath().ToString(), "");
                 }

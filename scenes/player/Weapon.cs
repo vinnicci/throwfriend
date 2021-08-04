@@ -165,7 +165,8 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         Mode = RigidBody2D.ModeEnum.Rigid;
         SetCollisionMaskBit(Global.BIT_MASK_ENEMY, true);
         SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
-        SetCollisionMaskBit(Global.BIT_MASK_LVL, true);
+        SetCollisionMaskBit(Global.BIT_MASK_WALL, true);
+        SetCollisionMaskBit(Global.BIT_MASK_SEETHROUGH_WALL, true);
         if(IsInstanceValid(GetParent())) {
             GetParent().RemoveChild(this);
         }
@@ -225,7 +226,8 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 
     public void OnPickedUp() {
         CurrentState = States.HELD;
-        SetCollisionMaskBit(Global.BIT_MASK_LVL, false);
+        SetCollisionMaskBit(Global.BIT_MASK_WALL, false);
+        SetCollisionMaskBit(Global.BIT_MASK_SEETHROUGH_WALL, false);
         SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
         CallDeferred(nameof(PickUpDeferred));
     }

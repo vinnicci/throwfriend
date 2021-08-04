@@ -31,7 +31,6 @@ tracks/1/keys = {
 }
 
 [node name="Explosion" instance=ExtResource( 1 )]
-collision_mask = 29
 
 [node name="Polygon2D" parent="." index="1"]
 visible = false

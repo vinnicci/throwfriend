@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/enemies/Enemy.cs" type="Script" id=3]
 
 [node name="Enemy" instance=ExtResource( 2 )]
-collision_mask = 2
+collision_mask = 34
 script = ExtResource( 3 )
 spawnScenes = {
 "hp_drop": ExtResource( 1 )

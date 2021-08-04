@@ -18,7 +18,6 @@ config/icon="res://icon.png"
 
 BTDebugServer="*res://addons/btree/script/bt_debug_server.gd"
 Main="*res://scenes/game/Main.tscn"
-Global="*res://Global.cs"
 
 [display]
 
@@ -114,10 +113,11 @@ hotkey_4={
 [layer_names]
 
 2d_physics/layer_1="Enemy"
-2d_physics/layer_2="Level"
+2d_physics/layer_2="Wall"
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Weapon"
 2d_physics/layer_5="WeaponLarge"
+2d_physics/layer_6="SeeThroughWall"
 
 [network]
 

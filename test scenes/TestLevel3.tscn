@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/level/NavTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/level/Walls.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/level/Floors.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/enemies/RandomEnemySpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/shooter/LaserShooter.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/level/BG.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=10]
@@ -63,3 +64,7 @@ position = Vector2( 91, 179 )
 [node name="NextLevelE" parent="." index="10" instance=ExtResource( 10 )]
 position = Vector2( 1432, 1402 )
 rotation = 3.14159
+
+[node name="RandomEnemySpawner" parent="." index="11" instance=ExtResource( 6 )]
+position = Vector2( 1217, 647 )
+maxSpawnCount = 3
