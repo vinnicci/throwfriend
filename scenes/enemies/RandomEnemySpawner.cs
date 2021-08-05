@@ -5,8 +5,6 @@ public class RandomEnemySpawner : Position2D
 {
     [Export] int maxSpawnCount;
     [Export] EnemySet enemySet;
-    [Export] float healthMult = 1f;
-    [Export] float speedMult = 0;
 
     public enum EnemySet {
         EASY_SET_1,
@@ -19,6 +17,8 @@ public class RandomEnemySpawner : Position2D
         HARD_SET_2,
         HARD_SET_3
     }
+    public float HealthMult {get; set;}
+    public float SpeedMult {get; set;}
     Level levelNode;
     public Level LevelNode {
         get {
@@ -26,7 +26,19 @@ public class RandomEnemySpawner : Position2D
         }
         set {
             levelNode = value;
+            HealthMult = levelNode.EnemyHealthMult;
+            SpeedMult = levelNode.EnemySpeedMult;
             SpawnRandomEnemy();
+        }
+    }
+
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+        if(what == NotificationInstanced) {
+            SpeedMult = 1;
+            HealthMult = 1;
         }
     }
 
@@ -47,7 +59,6 @@ public class RandomEnemySpawner : Position2D
                 PackedScene enemyPack = (PackedScene)ResourceLoader.Load(enemyFilePath);
                 Enemy enemy = (Enemy)enemyPack.Instance();
                 LevelNode.Spawn(enemy, GlobalPosition);
-                enemy.ChangeEntityBaseStats((int)(enemy.health*healthMult), (int)(enemy.speed*speedMult));
             }
             dict.Add(path, enemyArr);
         }
@@ -57,7 +68,6 @@ public class RandomEnemySpawner : Position2D
                 PackedScene enemyPack = (PackedScene)ResourceLoader.Load(enemyPath);
                 Enemy enemy = (Enemy)enemyPack.Instance();
                 LevelNode.Spawn(enemy, GlobalPosition);
-                enemy.ChangeEntityBaseStats((int)(enemy.health*healthMult), (int)(enemy.speed*speedMult));
             }
         }
     }

@@ -48,10 +48,7 @@ public abstract class AllRounderWeapon: EnemyWeapon
 
     public void SpawnBlob() {
         Blob blobInstance = (Blob)spawnScenes["blob"].Instance();
-        blobInstance.LevelNode = ParentNode.LevelNode;
         blobInstance.Spawn(blobInstance.LevelNode, spawnPoint.GlobalPosition, Vector2.Zero);
-        blobInstance.ChangeEntityBaseStats((int)(blobInstance.health*ParentNode.HealthMult),
-            (int)(blobInstance.speed*ParentNode.SpeedMult));
         blobInstance.ApplyCentralImpulse(new Vector2(BLOBNADE_THROW_STRENGTH, 0).Rotated(spawnPoint.GlobalRotation));
     }
 
