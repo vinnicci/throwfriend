@@ -16,6 +16,7 @@ radius = 25.0
 
 [node name="RigidCharger" instance=ExtResource( 4 )]
 script = ExtResource( 5 )
+health = 8
 spawnScenes = {
 "hp_drop": ExtResource( 6 )
 }

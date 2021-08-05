@@ -163,11 +163,12 @@ public class Main : Node
             Item item = (Item)itemPack.Instance();
             if(itemType == "PlayerItem") {
                 ((Node2D)player.Get("ItemSlot" + slotNum + "Node")).AddChild(item);
+                player.ActivateItem(slotNum);
             }
             else if(itemType == "WeapItem") {
                 ((Node2D)player.WeaponNode.Get("ItemSlot" + slotNum + "Node")).AddChild(item);
+                player.WeaponNode.ActivateItem(slotNum);
             }
-            player.ActivateItem(slotNum);
         }
     }
 
@@ -194,11 +195,9 @@ public class Main : Node
         }
         //init save file dict
         foreach(Node2D node in currentLevel.GetChildren()) {
-            //collectables
             if(node is Collectable) {
                 InitLevelObject(levelSaveFile, node, levelDataArr[0]);
             }
-            //triggers
             else if(node is Trigger) {
                 InitLevelObject(levelSaveFile, node, levelDataArr[1]);
             }
@@ -304,16 +303,6 @@ public class Main : Node
         if(animName == "fade_in") {
             FadeAnim.Play("fade_out");
         }
-    }
-
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-        if(IsInstanceValid(currentLevel)) {
-            SavePlayerData();
-        }
-        QueueFree();
     }
 
 

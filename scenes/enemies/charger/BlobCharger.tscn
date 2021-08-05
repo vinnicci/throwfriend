@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/enemies/charger/tex_en_blob_spawner_charger_upperbody.png" type="Texture" id=1]
 [ext_resource path="res://assets/enemies/charger/tex_en_blob_spawner_charger_lowerbody.png" type="Texture" id=2]
-[ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/enemies/blob/HostileBlob.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/enemies/charger/anim/blob_charger_spawn_blob.tres" type="Animation" id=5]
 [ext_resource path="res://scenes/enemies/charger/anim/charger_charge.tres" type="Animation" id=6]
 [ext_resource path="res://scenes/enemies/charger/anim/blob_charger_die.tres" type="Animation" id=7]
@@ -40,8 +39,7 @@ physics_material_override = SubResource( 1 )
 script = ExtResource( 8 )
 speed = 375
 spawnScenes = {
-"ai": ExtResource( 3 ),
-"blob": ExtResource( 4 ),
+"blob": ExtResource( 3 ),
 "hp_drop": ExtResource( 12 )
 }
 acts = {

@@ -1,16 +1,15 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/melee_attack.tres" type="Animation" id=1]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder3.png" type="Texture" id=2]
 [ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=3]
 [ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=4]
-[ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/enemies/blob/HostileBlob.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/all rounder/AllRounder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/all rounder/anim/die3.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/Sword.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/BlasterProj.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
@@ -27,7 +26,6 @@ acts = {
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 8 )]
 rotation = 0.00174533
 spawnScenes = {
-"ai": ExtResource( 11 ),
 "blob": ExtResource( 5 ),
 "proj": ExtResource( 9 )
 }

@@ -18,14 +18,16 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     protected Node2D spriteNode;
     protected Node2D hud;
     HealthHUD healthHUD;
-
+    
 
     public override void _Notification(int what)
     {
         base._Notification(what);
         if(what == NotificationInstanced) {
-            Speed = speed;
             Health = health;
+            HealthMult = 1;
+            Speed = speed;
+            SpeedMult = 1;
         }
     }
 
@@ -161,14 +163,20 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
 
 
+    public float HealthMult {get; set;}
+    public float SpeedMult {get; set;}
+
+
     ///<summary>Enter -1 as argument to ignore stat change</summary>
     public void ChangeEntityBaseStats(int newHealth = -1, int newSpeed = -1) {
         if(newHealth != -1) {
+            HealthMult = newHealth/health;
             health = newHealth;
             Health = health;
             healthHUD.ParentNode = this;
         }
         if(newSpeed != -1) {
+            SpeedMult = newSpeed/speed;
             speed = newSpeed;
             Speed = speed;
         }

@@ -26,10 +26,10 @@ public class BlobCharger : BaseCharger
         if(packedSceneKey == "blob") {
             for(int i = 0; i <= count - 1; i++) {
                 Blob blobInstance = (Blob)spawnScenes[packedSceneKey].Instance();
-                Node2D ai = (Node2D)spawnScenes["ai"].Instance();
-                blobInstance.AddChild(ai);
                 blobInstance.LevelNode = LevelNode;
                 blobInstance.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
+                blobInstance.ChangeEntityBaseStats((int)(blobInstance.health*HealthMult),
+                    (int)(blobInstance.speed*SpeedMult));
                 blobInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
             }
         }

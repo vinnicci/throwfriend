@@ -1,0 +1,233 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/enemies/spawner/PolyChargerSpawnerLower.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/spawner/PolyChargerSpawnerUpper.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_Bone2D.cs" type="Script" id=4]
+[ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierStack2D.cs" type="Script" id=5]
+[ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierJiggle2D.cs" type="Script" id=6]
+[ext_resource path="res://scenes/enemies/spawner/anim/spawn_charger.tres" type="Animation" id=7]
+[ext_resource path="res://scenes/enemies/spawner/anim/idle.tres" type="Animation" id=8]
+[ext_resource path="res://scenes/base/anim/entity_die.tres" type="Animation" id=9]
+[ext_resource path="res://scenes/enemies/spawner/BaseChargerSpawner.cs" type="Script" id=10]
+[ext_resource path="res://scenes/enemies/charger/BlobCharger.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/spawner/ai/ChargerSpawnerAI.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=13]
+[ext_resource path="res://toolscripts/TC.tscn" type="PackedScene" id=14]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 24.9999
+height = 30.0001
+
+[sub_resource type="Animation" id=2]
+resource_name = "damaged"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.4 ), Vector2( 1, 1 ) ]
+}
+
+[node name="BaseChargerSpawner" instance=ExtResource( 1 )]
+script = ExtResource( 10 )
+speed = 130
+health = 10
+knockbackMult = 0.3
+spawnScenes = {
+"charger": ExtResource( 11 ),
+"hp_drop": ExtResource( 13 )
+}
+acts = {
+"spawn_charger": 8.0
+}
+
+[node name="Lower" parent="Sprite" index="0" instance=ExtResource( 2 )]
+offset = Vector2( -58, -67 )
+skeleton = NodePath("../Skeleton2D")
+polygon = PoolVector2Array( 55.4861, 1.73611, 63.8675, 3.62095, 71.7257, 7.24191, 76.8875, 12.0185, 83.4361, 23.1125, 93.3125, 28.625, 102.5, 37.625, 115.188, 48.125, 115.242, 60.8889, 108.625, 70.1875, 97.875, 77.25, 84.5, 77.8125, 68.4375, 83.25, 50.4375, 83.5, 39.4375, 77.5625, 23, 77.1875, 11.1875, 73.6875, 0.694445, 67.7778, 0.277778, 59.2361, 15.9375, 49.0625, 27.2727, 42.9892, 30.8937, 27.1186, 34.2835, 19.4915, 40, 11.1111, 47.9861, 5.13889, 86.4407, 28.8906, 83.2279, 32.3299, 80.9951, 41.2613, 74.137, 49.3953, 67.1195, 41.5005, 57.8691, 34.8817, 50.4528, 42.0587, 45.9871, 51.6281, 38.9696, 57.928, 31.3938, 52.2661, 21.8028, 57.7042, 20.6875, 54.8125, 99.4772, 46.1724, 91.6032, 53.9479, 81.418, 61.7078, 68.0433, 64.8964, 54.3143, 67.1993, 37.0424, 66.9336, 22.5087, 59.755 )
+uv = PoolVector2Array( 55.4861, 1.73611, 63.8675, 3.62095, 71.7257, 7.24191, 76.8875, 12.0185, 83.4361, 23.1125, 93.3125, 28.625, 102.5, 37.625, 115.188, 48.125, 115.242, 60.8889, 108.625, 70.1875, 97.875, 77.25, 84.5, 77.8125, 68.4375, 83.25, 50.4375, 83.5, 39.4375, 77.5625, 23, 77.1875, 11.1875, 73.6875, 0.694445, 67.7778, 0.277778, 59.2361, 15.9375, 49.0625, 27.2727, 42.9892, 30.8937, 27.1186, 34.2835, 19.4915, 40, 11.1111, 47.9861, 5.13889, 86.4407, 28.8906, 83.2279, 32.3299, 80.9951, 41.2613, 74.137, 49.3953, 67.1195, 41.5005, 57.8691, 34.8817, 50.4528, 42.0587, 45.9871, 51.6281, 38.9696, 57.928, 31.3938, 52.2661, 21.8028, 57.7042, 20.6875, 54.8125, 99.4772, 46.1724, 91.6032, 53.9479, 81.418, 61.7078, 68.0433, 64.8964, 54.3143, 67.1993, 37.0424, 66.9336, 22.5087, 59.755 )
+bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Upper"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Upper/Upper2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Upper/Upper2/Upper3"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower"), PoolRealArray( 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1 ), NodePath("Root/Lower/Lower2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+
+[node name="Upper" parent="Sprite" index="1" instance=ExtResource( 3 )]
+position = Vector2( -46, -91 )
+skeleton = NodePath("../Skeleton2D")
+polygon = PoolVector2Array( 42.5625, -0.5, 54.875, 3.375, 65.5, 9.5, 72.5, 16.125, 70.9375, 28, 73.25, 37.75, 77.75, 46.25, 78.4375, 55.625, 74.625, 65.5, 70.5, 73.9375, 65.3125, 80, 58.625, 77.5, 55.5, 70.1875, 49.9375, 64.75, 43.4375, 68.8125, 39.25, 77.1875, 34.2361, 83.6806, 27.7778, 85.625, 17.9167, 83.4028, 11.0625, 81.25, 1.625, 76.0625, 1.17892, 67.8918, 9.5, 62.0625, 13.6806, 54.375, 16.3889, 45.2778, 16.1806, 36.4583, 12.375, 30.625, 15.1389, 20.9722, 24.5625, 15.3125, 30.3125, 12.5, 34.1875, 5, 44.3279, 7.14967, 46.4252, 21.163, 47.0925, 36.3203, 48.3317, 52.7169, 30.9819, 23.0696, 29.266, 36.511, 29.552, 51.5729, 21.5443, 67.3022, 56.816, 20.6864, 59.8665, 36.511, 63.8704, 52.6216 )
+uv = PoolVector2Array( 42.5625, -0.5, 54.875, 3.375, 65.5, 9.5, 72.5, 16.125, 70.9375, 28, 73.25, 37.75, 77.75, 46.25, 78.4375, 55.625, 74.625, 65.5, 70.5, 73.9375, 65.3125, 80, 58.625, 77.5, 55.5, 70.1875, 49.9375, 64.75, 43.4375, 68.8125, 39.25, 77.1875, 34.2361, 83.6806, 27.7778, 85.625, 17.9167, 83.4028, 11.0625, 81.25, 1.625, 76.0625, 1.17892, 67.8918, 9.5, 62.0625, 13.6806, 54.375, 16.3889, 45.2778, 16.1806, 36.4583, 12.375, 30.625, 15.1389, 20.9722, 24.5625, 15.3125, 30.3125, 12.5, 34.1875, 5, 44.3279, 7.14967, 46.4252, 21.163, 47.0925, 36.3203, 48.3317, 52.7169, 30.9819, 23.0696, 29.266, 36.511, 29.552, 51.5729, 21.5443, 67.3022, 56.816, 20.6864, 59.8665, 36.511, 63.8704, 52.6216 )
+bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Upper"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0.51, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0.49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.51, 0, 0, 0.51, 1, 0, 0, 0.51 ), NodePath("Root/Upper/Upper2"), PoolRealArray( 1, 1, 1, 1, 1, 1, 0.49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.49, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.49, 1, 1, 0.49, 0, 1, 1, 0.49 ), NodePath("Root/Upper/Upper2/Upper3"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+
+[node name="Skeleton2D" type="Skeleton2D" parent="Sprite" index="2"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Root" type="Bone2D" parent="Sprite/Skeleton2D" index="0"]
+rest = Transform2D( 1, 0, 0, 1, 0, 0 )
+script = ExtResource( 4 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 21.095
+bone_data/bone_angle = -84.5597
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Upper" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="0"]
+position = Vector2( 2, -21 )
+rotation = 0.239499
+rest = Transform2D( 1, 0, 0, 1, 2, -21 )
+script = ExtResource( 4 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 23.0
+bone_data/bone_angle = -90.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Upper2" type="Bone2D" parent="Sprite/Skeleton2D/Root/Upper" index="0"]
+position = Vector2( 0, -23 )
+rotation = 1.19209e-07
+rest = Transform2D( 1, 0, 0, 1, 0, -23 )
+script = ExtResource( 4 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 26.0
+bone_data/bone_angle = -90.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Upper3" type="Bone2D" parent="Sprite/Skeleton2D/Root/Upper/Upper2" index="0"]
+position = Vector2( 0, -26 )
+rotation = -1.5708
+rest = Transform2D( 1, 0, 0, 1, 0, -26 )
+script = ExtResource( 4 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = -1.0
+bone_data/bone_angle = 0.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Lower" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="1"]
+position = Vector2( 8, 0 )
+rest = Transform2D( 1, 0, 0, 1, 8, 0 )
+script = ExtResource( 4 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = 16.0
+bone_data/bone_angle = -90.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="Lower2" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower" index="0"]
+position = Vector2( 0, -16 )
+rest = Transform2D( 1, 0, 0, 1, 0, -16 )
+script = ExtResource( 4 )
+settings/auto_get_skeleton = true
+settings/auto_calcualte_bone_length = true
+settings/auto_calcualte_bone_angle = true
+bone_data/bone_length = -1.0
+bone_data/bone_angle = 0.0
+gizmo/gizmo_can_draw_in_editor = true
+gizmo/gizmo_can_draw_in_game = false
+gizmo/gizmo_bone_shape_index = 2
+gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
+gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
+
+[node name="UpperTC" parent="Sprite" index="3" instance=ExtResource( 14 )]
+Enabled = true
+Targets = [ NodePath("../Skeleton2D/Root/Upper") ]
+Position/ClampedX = false
+Position/ClampedY = false
+Scale/ClampedX = false
+Scale/ClampedY = false
+
+[node name="UpperTarget" type="Position2D" parent="Sprite" index="4"]
+position = Vector2( 23, -107 )
+
+[node name="Twisted_ModifierStack2D" type="Node2D" parent="Sprite" index="5"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+stack/skeleton = NodePath("../Skeleton2D")
+stack/execution_enabled = true
+
+[node name="UpperIK" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="0"]
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+base_settings/execution_enabled = true
+base_settings/execution_mode = 0
+base_settings/gizmo_can_draw_in_editor = true
+base_settings/gizmo_can_draw_in_game = false
+base_settings/gizmo_update_on_execution = false
+Jiggle/target = NodePath("../../UpperTarget")
+Jiggle/use_target_vector_instead_of_node = false
+Jiggle/joint_count = 3
+Jiggle/send_inertia_through_chain = true
+Jiggle/send_inertia_through_all_bones_in_chain = true
+Jiggle/Default_Joint_Data/stiffness = 2.0
+Jiggle/Default_Joint_Data/mass = 0.75
+Jiggle/Default_Joint_Data/damping = 0.75
+Jiggle/Default_Joint_Data/use_gravity = false
+Jiggle/Default_Joint_Data/gravity = Vector2( 0, 6 )
+Jiggle/Default_Joint_Data/parent_inertia = 0.25
+Jiggle/joint/0/twisted_bone = NodePath("../../Skeleton2D/Root/Upper")
+Jiggle/joint/0/override_defaults = false
+Jiggle/joint/0/additional_rotation = 0.0
+Jiggle/joint/1/twisted_bone = NodePath("../../Skeleton2D/Root/Upper/Upper2")
+Jiggle/joint/1/override_defaults = false
+Jiggle/joint/1/additional_rotation = 0.0
+Jiggle/joint/2/twisted_bone = NodePath("../../Skeleton2D/Root/Upper/Upper2/Upper3")
+Jiggle/joint/2/override_defaults = false
+Jiggle/joint/2/additional_rotation = 0.0
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, -7 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Health" parent="HUD" index="0"]
+margin_top = -107.0
+margin_bottom = -101.0
+
+[node name="AI" parent="." index="4" instance=ExtResource( 12 )]
+flee_ray_len = 100
+
+[node name="DamageAnim" parent="Anims" index="1"]
+anims/damaged = SubResource( 2 )
+
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
+autoplay = "idle"
+anims/die = ExtResource( 9 )
+anims/idle = ExtResource( 8 )
+anims/run = ExtResource( 8 )
+anims/spawn_charger = ExtResource( 7 )

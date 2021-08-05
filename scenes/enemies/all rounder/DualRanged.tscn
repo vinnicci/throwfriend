@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/shoot.tres" type="Animation" id=1]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder3.png" type="Texture" id=2]
@@ -9,10 +9,9 @@
 [ext_resource path="res://scenes/enemies/all rounder/anim/die3.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/DualRanged.cs" type="Script" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/DualBlaster.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/enemies/blob/HostileBlob.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/BlasterProj.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
@@ -30,7 +29,6 @@ acts = {
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 9 )]
 spawnScenes = {
-"ai": ExtResource( 13 ),
 "blob": ExtResource( 10 ),
 "proj": ExtResource( 11 )
 }

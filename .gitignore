@@ -3,3 +3,11 @@ assets/
 .mono/
 icon.png
 icon.png.import
+.mono/metadata/ide_messaging_meta.txt
+.mono/metadata/scripts_metadata.editor
+.mono/metadata/scripts_metadata.editor_player
+.mono/temp/bin/Debug/Project ThrowFriend.dll
+.mono/temp/bin/Debug/Project ThrowFriend.pdb
+.mono/temp/obj/Debug/Project ThrowFriend.csproj.CoreCompileInputs.cache
+.mono/temp/obj/Debug/Project ThrowFriend.dll
+.mono/temp/obj/Debug/Project ThrowFriend.pdb
