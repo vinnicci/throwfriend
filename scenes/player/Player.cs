@@ -149,15 +149,11 @@ public class Player : Entity
             arms.Scale *= scale;
             weapPos.Position = WEAP_POS_VEC;
         }
-        // if(WeaponNode != inGameUI.WeaponNode) {
-        //     inGameUI.WeaponNode = WeaponNode;
-        // }
     }
 
 
     public override void AdjustSprites()
     {
-        //running
         if(Velocity == Vector2.Zero) {
             anim.Play("idle");
         }

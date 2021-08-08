@@ -22,16 +22,6 @@ public class InGame : Control
             loadoutNode.UpdateSlotIcon(4);
         }
     }
-    // Weapon weaponNode;
-    // public Weapon WeaponNode {
-    //     get {
-    //         return weaponNode;
-    //     }
-    //     set {
-    //         weaponNode = value;
-    //         loadoutNode.WeaponNode = WeaponNode;
-    //     }
-    // }
 
 
     public override void _Ready()

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public static class Global
 {
@@ -101,7 +102,7 @@ public static class Global
         "res://scenes/enemies/shooter/SprayerAcid.tscn",
     };
 
-
+    //lvl sets
     //NONE
     public static readonly String[] ID00_SET1 = {
 
@@ -119,7 +120,7 @@ public static class Global
 
     };
     public static readonly String[] ID05_SET1 = {
-
+        "res://levels/051None1.tscn"
     };
     public static readonly String[] ID06_SET1 = {
 
@@ -137,10 +138,10 @@ public static class Global
 
     };
     public static readonly String[] ID11_SET1 = {
-
+        "res://levels/111None1.tscn"
     };
     public static readonly String[] ID12_SET1 = {
-
+        "res://levels/121None1.tscn"
     };
     public static readonly String[] ID13_SET1 = {
 
@@ -164,7 +165,7 @@ public static class Global
 
     };
     public static readonly String[] ID05_SET2 = {
-
+        "res://levels/052None1.tscn"
     };
     public static readonly String[] ID06_SET2 = {
 
@@ -185,7 +186,7 @@ public static class Global
 
     };
     public static readonly String[] ID12_SET2 = {
-
+        "res://levels/122None1.tscn"
     };
     public static readonly String[] ID13_SET2 = {
 
@@ -272,7 +273,7 @@ public static class Global
 
     };
     public static readonly String[] ID11_SET1_CHECKPT = {
-
+        "res://levels/111Checkpt1.tscn"
     };
     public static readonly String[] ID12_SET1_CHECKPT = {
 
@@ -409,52 +410,16 @@ public static class Global
 
 
     //SECRET N
-    public static readonly String[] ID00_SET1_SECRET_N = {
-
-    };
     public static readonly String[] ID01_SET1_SECRET_N = {
 
     };
     public static readonly String[] ID02_SET1_SECRET_N = {
 
     };
-    public static readonly String[] ID03_SET1_SECRET_N = {
-
-    };
     public static readonly String[] ID04_SET1_SECRET_N = {
 
     };
-    public static readonly String[] ID05_SET1_SECRET_N = {
-
-    };
-    public static readonly String[] ID06_SET1_SECRET_N = {
-
-    };
-    public static readonly String[] ID07_SET1_SECRET_N = {
-
-    };
     public static readonly String[] ID08_SET1_SECRET_N = {
-
-    };
-    public static readonly String[] ID09_SET1_SECRET_N = {
-
-    };
-    public static readonly String[] ID10_SET1_SECRET_N = {
-
-    };
-    public static readonly String[] ID11_SET1_SECRET_N = {
-
-    };
-    public static readonly String[] ID12_SET1_SECRET_N = {
-
-    };
-    public static readonly String[] ID13_SET1_SECRET_N = {
-
-    };
-    public static readonly String[] ID14_SET1_SECRET_N = {
-
-    };
-    public static readonly String[] ID00_SET2_SECRET_N = {
 
     };
     public static readonly String[] ID01_SET2_SECRET_N = {
@@ -463,43 +428,10 @@ public static class Global
     public static readonly String[] ID02_SET2_SECRET_N = {
 
     };
-    public static readonly String[] ID03_SET2_SECRET_N = {
-
-    };
     public static readonly String[] ID04_SET2_SECRET_N = {
 
     };
-    public static readonly String[] ID05_SET2_SECRET_N = {
-
-    };
-    public static readonly String[] ID06_SET2_SECRET_N = {
-
-    };
-    public static readonly String[] ID07_SET2_SECRET_N = {
-
-    };
     public static readonly String[] ID08_SET2_SECRET_N = {
-
-    };
-    public static readonly String[] ID09_SET2_SECRET_N = {
-
-    };
-    public static readonly String[] ID10_SET2_SECRET_N = {
-
-    };
-    public static readonly String[] ID11_SET2_SECRET_N = {
-
-    };
-    public static readonly String[] ID12_SET2_SECRET_N = {
-
-    };
-    public static readonly String[] ID13_SET2_SECRET_N = {
-
-    };
-    public static readonly String[] ID14_SET2_SECRET_N = {
-
-    };
-    public static readonly String[] ID00_SET3_SECRET_N = {
 
     };
     public static readonly String[] ID01_SET3_SECRET_N = {
@@ -508,91 +440,25 @@ public static class Global
     public static readonly String[] ID02_SET3_SECRET_N = {
 
     };
-    public static readonly String[] ID03_SET3_SECRET_N = {
-
-    };
     public static readonly String[] ID04_SET3_SECRET_N = {
-
-    };
-    public static readonly String[] ID05_SET3_SECRET_N = {
-
-    };
-    public static readonly String[] ID06_SET3_SECRET_N = {
-
-    };
-    public static readonly String[] ID07_SET3_SECRET_N = {
 
     };
     public static readonly String[] ID08_SET3_SECRET_N = {
 
     };
-    public static readonly String[] ID09_SET3_SECRET_N = {
-
-    };
-    public static readonly String[] ID10_SET3_SECRET_N = {
-
-    };
-    public static readonly String[] ID11_SET3_SECRET_N = {
-
-    };
-    public static readonly String[] ID12_SET3_SECRET_N = {
-
-    };
-    public static readonly String[] ID13_SET3_SECRET_N = {
-
-    };
-    public static readonly String[] ID14_SET3_SECRET_N = {
-
-    };
 
 
     //SECRET E
-    public static readonly String[] ID00_SET1_SECRET_E = {
-
-    };
     public static readonly String[] ID01_SET1_SECRET_E = {
 
     };
     public static readonly String[] ID02_SET1_SECRET_E = {
 
     };
-    public static readonly String[] ID03_SET1_SECRET_E = {
-
-    };
     public static readonly String[] ID04_SET1_SECRET_E = {
 
     };
-    public static readonly String[] ID05_SET1_SECRET_E = {
-
-    };
-    public static readonly String[] ID06_SET1_SECRET_E = {
-
-    };
-    public static readonly String[] ID07_SET1_SECRET_E = {
-
-    };
     public static readonly String[] ID08_SET1_SECRET_E = {
-
-    };
-    public static readonly String[] ID09_SET1_SECRET_E = {
-
-    };
-    public static readonly String[] ID10_SET1_SECRET_E = {
-
-    };
-    public static readonly String[] ID11_SET1_SECRET_E = {
-
-    };
-    public static readonly String[] ID12_SET1_SECRET_E = {
-
-    };
-    public static readonly String[] ID13_SET1_SECRET_E = {
-
-    };
-    public static readonly String[] ID14_SET1_SECRET_E = {
-
-    };
-    public static readonly String[] ID00_SET2_SECRET_E = {
 
     };
     public static readonly String[] ID01_SET2_SECRET_E = {
@@ -601,43 +467,10 @@ public static class Global
     public static readonly String[] ID02_SET2_SECRET_E = {
 
     };
-    public static readonly String[] ID03_SET2_SECRET_E = {
-
-    };
     public static readonly String[] ID04_SET2_SECRET_E = {
 
     };
-    public static readonly String[] ID05_SET2_SECRET_E = {
-
-    };
-    public static readonly String[] ID06_SET2_SECRET_E = {
-
-    };
-    public static readonly String[] ID07_SET2_SECRET_E = {
-
-    };
     public static readonly String[] ID08_SET2_SECRET_E = {
-
-    };
-    public static readonly String[] ID09_SET2_SECRET_E = {
-
-    };
-    public static readonly String[] ID10_SET2_SECRET_E = {
-
-    };
-    public static readonly String[] ID11_SET2_SECRET_E = {
-
-    };
-    public static readonly String[] ID12_SET2_SECRET_E = {
-
-    };
-    public static readonly String[] ID13_SET2_SECRET_E = {
-
-    };
-    public static readonly String[] ID14_SET2_SECRET_E = {
-
-    };
-    public static readonly String[] ID00_SET3_SECRET_E = {
 
     };
     public static readonly String[] ID01_SET3_SECRET_E = {
@@ -646,91 +479,25 @@ public static class Global
     public static readonly String[] ID02_SET3_SECRET_E = {
 
     };
-    public static readonly String[] ID03_SET3_SECRET_E = {
-
-    };
     public static readonly String[] ID04_SET3_SECRET_E = {
-
-    };
-    public static readonly String[] ID05_SET3_SECRET_E = {
-
-    };
-    public static readonly String[] ID06_SET3_SECRET_E = {
-
-    };
-    public static readonly String[] ID07_SET3_SECRET_E = {
 
     };
     public static readonly String[] ID08_SET3_SECRET_E = {
 
     };
-    public static readonly String[] ID09_SET3_SECRET_E = {
-
-    };
-    public static readonly String[] ID10_SET3_SECRET_E = {
-
-    };
-    public static readonly String[] ID11_SET3_SECRET_E = {
-
-    };
-    public static readonly String[] ID12_SET3_SECRET_E = {
-
-    };
-    public static readonly String[] ID13_SET3_SECRET_E = {
-
-    };
-    public static readonly String[] ID14_SET3_SECRET_E = {
-
-    };
 
 
     //SECRET W
-    public static readonly String[] ID00_SET1_SECRET_W = {
-
-    };
     public static readonly String[] ID01_SET1_SECRET_W = {
 
     };
     public static readonly String[] ID02_SET1_SECRET_W = {
 
     };
-    public static readonly String[] ID03_SET1_SECRET_W = {
-
-    };
     public static readonly String[] ID04_SET1_SECRET_W = {
 
     };
-    public static readonly String[] ID05_SET1_SECRET_W = {
-
-    };
-    public static readonly String[] ID06_SET1_SECRET_W = {
-
-    };
-    public static readonly String[] ID07_SET1_SECRET_W = {
-
-    };
     public static readonly String[] ID08_SET1_SECRET_W = {
-
-    };
-    public static readonly String[] ID09_SET1_SECRET_W = {
-
-    };
-    public static readonly String[] ID10_SET1_SECRET_W = {
-
-    };
-    public static readonly String[] ID11_SET1_SECRET_W = {
-
-    };
-    public static readonly String[] ID12_SET1_SECRET_W = {
-
-    };
-    public static readonly String[] ID13_SET1_SECRET_W = {
-
-    };
-    public static readonly String[] ID14_SET1_SECRET_W = {
-
-    };
-    public static readonly String[] ID00_SET2_SECRET_W = {
 
     };
     public static readonly String[] ID01_SET2_SECRET_W = {
@@ -739,43 +506,10 @@ public static class Global
     public static readonly String[] ID02_SET2_SECRET_W = {
 
     };
-    public static readonly String[] ID03_SET2_SECRET_W = {
-
-    };
     public static readonly String[] ID04_SET2_SECRET_W = {
 
     };
-    public static readonly String[] ID05_SET2_SECRET_W = {
-
-    };
-    public static readonly String[] ID06_SET2_SECRET_W = {
-
-    };
-    public static readonly String[] ID07_SET2_SECRET_W = {
-
-    };
     public static readonly String[] ID08_SET2_SECRET_W = {
-
-    };
-    public static readonly String[] ID09_SET2_SECRET_W = {
-
-    };
-    public static readonly String[] ID10_SET2_SECRET_W = {
-
-    };
-    public static readonly String[] ID11_SET2_SECRET_W = {
-
-    };
-    public static readonly String[] ID12_SET2_SECRET_W = {
-
-    };
-    public static readonly String[] ID13_SET2_SECRET_W = {
-
-    };
-    public static readonly String[] ID14_SET2_SECRET_W = {
-
-    };
-    public static readonly String[] ID00_SET3_SECRET_W = {
 
     };
     public static readonly String[] ID01_SET3_SECRET_W = {
@@ -784,90 +518,25 @@ public static class Global
     public static readonly String[] ID02_SET3_SECRET_W = {
 
     };
-    public static readonly String[] ID03_SET3_SECRET_W = {
-
-    };
     public static readonly String[] ID04_SET3_SECRET_W = {
-
-    };
-    public static readonly String[] ID05_SET3_SECRET_W = {
-
-    };
-    public static readonly String[] ID06_SET3_SECRET_W = {
-
-    };
-    public static readonly String[] ID07_SET3_SECRET_W = {
 
     };
     public static readonly String[] ID08_SET3_SECRET_W = {
 
     };
-    public static readonly String[] ID09_SET3_SECRET_W = {
 
-    };
-    public static readonly String[] ID10_SET3_SECRET_W = {
-
-    };
-    public static readonly String[] ID11_SET3_SECRET_W = {
-
-    };
-    public static readonly String[] ID12_SET3_SECRET_W = {
-
-    };
-    public static readonly String[] ID13_SET3_SECRET_W = {
-
-    };
-    public static readonly String[] ID14_SET3_SECRET_W = {
-
-    };
-
+    
     //SECRET S
-    public static readonly String[] ID00_SET1_SECRET_S = {
-
-    };
     public static readonly String[] ID01_SET1_SECRET_S = {
 
     };
     public static readonly String[] ID02_SET1_SECRET_S = {
 
     };
-    public static readonly String[] ID03_SET1_SECRET_S = {
-
-    };
     public static readonly String[] ID04_SET1_SECRET_S = {
 
     };
-    public static readonly String[] ID05_SET1_SECRET_S = {
-
-    };
-    public static readonly String[] ID06_SET1_SECRET_S = {
-
-    };
-    public static readonly String[] ID07_SET1_SECRET_S = {
-
-    };
     public static readonly String[] ID08_SET1_SECRET_S = {
-
-    };
-    public static readonly String[] ID09_SET1_SECRET_S = {
-
-    };
-    public static readonly String[] ID10_SET1_SECRET_S = {
-
-    };
-    public static readonly String[] ID11_SET1_SECRET_S = {
-
-    };
-    public static readonly String[] ID12_SET1_SECRET_S = {
-
-    };
-    public static readonly String[] ID13_SET1_SECRET_S = {
-
-    };
-    public static readonly String[] ID14_SET1_SECRET_S = {
-
-    };
-    public static readonly String[] ID00_SET2_SECRET_S = {
 
     };
     public static readonly String[] ID01_SET2_SECRET_S = {
@@ -876,43 +545,10 @@ public static class Global
     public static readonly String[] ID02_SET2_SECRET_S = {
 
     };
-    public static readonly String[] ID03_SET2_SECRET_S = {
-
-    };
     public static readonly String[] ID04_SET2_SECRET_S = {
 
     };
-    public static readonly String[] ID05_SET2_SECRET_S = {
-
-    };
-    public static readonly String[] ID06_SET2_SECRET_S = {
-
-    };
-    public static readonly String[] ID07_SET2_SECRET_S = {
-
-    };
     public static readonly String[] ID08_SET2_SECRET_S = {
-
-    };
-    public static readonly String[] ID09_SET2_SECRET_S = {
-
-    };
-    public static readonly String[] ID10_SET2_SECRET_S = {
-
-    };
-    public static readonly String[] ID11_SET2_SECRET_S = {
-
-    };
-    public static readonly String[] ID12_SET2_SECRET_S = {
-
-    };
-    public static readonly String[] ID13_SET2_SECRET_S = {
-
-    };
-    public static readonly String[] ID14_SET2_SECRET_S = {
-
-    };
-    public static readonly String[] ID00_SET3_SECRET_S = {
 
     };
     public static readonly String[] ID01_SET3_SECRET_S = {
@@ -921,43 +557,12 @@ public static class Global
     public static readonly String[] ID02_SET3_SECRET_S = {
 
     };
-    public static readonly String[] ID03_SET3_SECRET_S = {
-
-    };
     public static readonly String[] ID04_SET3_SECRET_S = {
-
-    };
-    public static readonly String[] ID05_SET3_SECRET_S = {
-
-    };
-    public static readonly String[] ID06_SET3_SECRET_S = {
-
-    };
-    public static readonly String[] ID07_SET3_SECRET_S = {
 
     };
     public static readonly String[] ID08_SET3_SECRET_S = {
 
     };
-    public static readonly String[] ID09_SET3_SECRET_S = {
-
-    };
-    public static readonly String[] ID10_SET3_SECRET_S = {
-
-    };
-    public static readonly String[] ID11_SET3_SECRET_S = {
-
-    };
-    public static readonly String[] ID12_SET3_SECRET_S = {
-
-    };
-    public static readonly String[] ID13_SET3_SECRET_S = {
-
-    };
-    public static readonly String[] ID14_SET3_SECRET_S = {
-
-    };
-
 
 
 }

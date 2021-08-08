@@ -10,9 +10,9 @@ public class Main : Node
 
     ColorRect screenColor;
     Level currentLevel;
-    Resource playerSaveFile;
-    Resource levelSaveFile;
-    Resource worldSaveFile;
+    public Resource PlayerSaveFile {get; private set;}
+    public Resource LevelSaveFile {get; private set;}
+    public Resource WorldSaveFile {get; private set;}
     
 
     public override void _Ready()
@@ -25,7 +25,7 @@ public class Main : Node
     }
 
 
-    const String STARTING_SCENE = "res://test scenes/TestLevel1.tscn";
+    const String STARTING_SCENE = "res://levels/111None1.tscn";
 
 
     public void NewGame() {
@@ -33,9 +33,9 @@ public class Main : Node
         Saver.Call("new_player_save_file");
         Saver.Call("new_level_save_file");
         Saver.Call("new_world_save_file");
-        playerSaveFile = (Resource)Saver.Get("player_save_file");
-        levelSaveFile = (Resource)Saver.Get("level_save_file");
-        worldSaveFile = (Resource)Saver.Get("world_save_file");
+        PlayerSaveFile = (Resource)Saver.Get("player_save_file");
+        LevelSaveFile = (Resource)Saver.Get("level_save_file");
+        WorldSaveFile = (Resource)Saver.Get("world_save_file");
         ((WorldLayout)GameNode.GetNode("WorldLayout")).GenerateLayout();
         GoToLevel(STARTING_SCENE, "SavePoint", (Player)playerPack.Instance(), false);
     }
@@ -67,9 +67,9 @@ public class Main : Node
         Saver.Call("load_player_data");
         Saver.Call("load_level_data");
         Saver.Call("load_world_data");
-        playerSaveFile = (Resource)Saver.Get("player_save_file");
-        levelSaveFile = (Resource)Saver.Get("level_save_file");
-        worldSaveFile = (Resource)Saver.Get("world_save_file");
+        PlayerSaveFile = (Resource)Saver.Get("player_save_file");
+        LevelSaveFile = (Resource)Saver.Get("level_save_file");
+        WorldSaveFile = (Resource)Saver.Get("world_save_file");
         String[] saveDataArr = {
             "SaveCell",
             "CurrentCell",
@@ -81,7 +81,7 @@ public class Main : Node
             "WeapItem1",
             "WeapItem2"
         };
-        if(VerifySaveFile(playerSaveFile, saveDataArr) == false) {
+        if(VerifySaveFile(PlayerSaveFile, saveDataArr) == false) {
             return;
         }
         GoToLevel(LoadLvl(), "SavePoint", player, true);
@@ -89,9 +89,9 @@ public class Main : Node
 
 
     String LoadLvl() {
-        Vector2 cell = (Vector2)playerSaveFile.Get("SaveCell");
-        playerSaveFile.Set("CurrentCell", cell);
-        Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)worldSaveFile.Get("WorldCells");
+        Vector2 cell = (Vector2)PlayerSaveFile.Get("SaveCell");
+        PlayerSaveFile.Set("CurrentCell", cell);
+        Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)WorldSaveFile.Get("WorldCells");
         return (String)((Godot.Collections.Dictionary)dict[cell])["scn"];
     }
 
@@ -111,15 +111,15 @@ public class Main : Node
         Player player = (Player)currentLevel.GetNode("Player");
         //current level
         if(newCell) {
-            playerSaveFile.Set("SaveCell", playerSaveFile.Get("CurrentCell"));
+            PlayerSaveFile.Set("SaveCell", PlayerSaveFile.Get("CurrentCell"));
         }
         //replenish and then save hp
         player.ChangeEntityBaseStats(player.health, -1);
-        playerSaveFile.Set("MaxHP", player.Health);
+        PlayerSaveFile.Set("MaxHP", player.Health);
         //snark dmg mult
-        playerSaveFile.Set("SnarkDmgMult", player.SnarkDmgMult);
+        PlayerSaveFile.Set("SnarkDmgMult", player.SnarkDmgMult);
         //available upgrades
-        playerSaveFile.Set("AvailableUpgrades", player.AvailableUpgrade);
+        PlayerSaveFile.Set("AvailableUpgrades", player.AvailableUpgrade);
         //items
         player.RefreshItems();
         player.WeaponNode.RefreshItems();
@@ -139,21 +139,21 @@ public class Main : Node
     void SavePlayerItems(Item item, String itemType, int slotNum) {
         String slot = itemType + slotNum;
         if(IsInstanceValid(item)) {
-            playerSaveFile.Set(slot, item.Filename);
+            PlayerSaveFile.Set(slot, item.Filename);
         }
         else {
-            playerSaveFile.Set(slot, "");
+            PlayerSaveFile.Set(slot, "");
         }
     }
 
 
     void LoadPlayerData(Player player) {
         //hp
-        player.ChangeEntityBaseStats((int)playerSaveFile.Get("MaxHP"), -1);
+        player.ChangeEntityBaseStats((int)PlayerSaveFile.Get("MaxHP"), -1);
         //snark dmg mult
-        player.SnarkDmgMult = (int)playerSaveFile.Get("SnarkDmgMult");
+        player.SnarkDmgMult = (int)PlayerSaveFile.Get("SnarkDmgMult");
         //available upgrade
-        player.AvailableUpgrade = (int)playerSaveFile.Get("AvailableUpgrades");
+        player.AvailableUpgrade = (int)PlayerSaveFile.Get("AvailableUpgrades");
         //items
         player.RefreshItems();
         player.WeaponNode.RefreshItems();
@@ -173,8 +173,8 @@ public class Main : Node
 
     void LoadPlayerItems(Player player, String itemType, int slotNum) {
         String slot = itemType + slotNum;
-        if((String)playerSaveFile.Get(slot) != "") {
-            PackedScene itemPack = (PackedScene)ResourceLoader.Load((String)playerSaveFile.Get(slot));
+        if((String)PlayerSaveFile.Get(slot) != "") {
+            PackedScene itemPack = (PackedScene)ResourceLoader.Load((String)PlayerSaveFile.Get(slot));
             Item item = (Item)itemPack.Instance();
             if(itemType == "PlayerItem") {
                 ((Node2D)player.Get("ItemSlot" + slotNum + "Node")).AddChild(item);
@@ -195,16 +195,15 @@ public class Main : Node
             "Walls",
             "NextLevels"
         };
-        if(VerifySaveFile(levelSaveFile, levelDataArr) == false) {
+        if(VerifySaveFile(LevelSaveFile, levelDataArr) == false) {
             return;
         }
         String[] worldDataArr = {
             "NextLevels",
             "EnemySpawns",
-            "LevelPool",
             "WorldCells"
         };
-        if(VerifySaveFile(worldSaveFile, worldDataArr) == false) {
+        if(VerifySaveFile(WorldSaveFile, worldDataArr) == false) {
             return;
         }
         //init save file dict
@@ -222,9 +221,10 @@ public class Main : Node
             else if(node is NextLevel) {
                 InitLevelObject(node, levelDataArr[3]);
                 //enlist to world data
-                Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)worldSaveFile.Get("NextLevels");
-                if(dict.Contains(node.GetPath().ToString()) == false) {
-                    dict.Add(node.GetPath().ToString(), "");
+                Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)WorldSaveFile.Get("NextLevels");
+                String key = PlayerSaveFile.Get("CurrentCell").ToString() + node.GetPath().ToString();
+                if(dict.Contains(key) == false) {
+                    dict.Add(key, "");
                 }
             }
         }
@@ -232,16 +232,17 @@ public class Main : Node
 
 
     void InitLevelObject(Node2D levelObj, String objType) {
-        Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)levelSaveFile.Get(objType);
-        if(dict.Contains(levelObj.GetPath().ToString()) == false) {
-            dict.Add(levelObj.GetPath().ToString(), true);
+        Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)LevelSaveFile.Get(objType);
+        String key = PlayerSaveFile.Get("CurrentCell").ToString() + levelObj.GetPath().ToString();
+        if(dict.Contains(key) == false) {
+            dict.Add(key, true);
         }
-        else if((bool)dict[levelObj.GetPath().ToString()] == false) {
+        else if((bool)dict[key] == false) {
             ((ILevelObject)levelObj).Switch();
         }
         Godot.Collections.Array arr = new Godot.Collections.Array();
         //pass path
-        arr.Add(levelObj.GetPath().ToString());
+        arr.Add(key);
         //pass type
         arr.Add(objType);
         levelObj.Connect(((ILevelObject)levelObj).SwitchSignal, this, nameof(OnLevelObjectSwitched), arr);
@@ -249,7 +250,7 @@ public class Main : Node
 
 
     void OnLevelObjectSwitched(String path, String type) {
-        Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)levelSaveFile.Get(type);
+        Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)LevelSaveFile.Get(type);
         dict[path.ToString()] = false;
         Saver.Call("save_level_data");
     }
@@ -290,6 +291,7 @@ public class Main : Node
         }
         PackedScene lvlPack = (PackedScene)ResourceLoader.Load(fileName); 
         currentLevel = (Level)lvlPack.Instance();
+        ApplyEnemyStrengthMult(currentLevel);
         currentLevel.AddChild(player);
         GameNode.AddChild(currentLevel);
         Node2D spawnPos = currentLevel.GetNodeOrNull<Node2D>(nodePos);
@@ -308,10 +310,19 @@ public class Main : Node
     }
 
 
+    void ApplyEnemyStrengthMult(Level lvl) {
+        Vector2 currentCell = (Vector2)PlayerSaveFile.Get("CurrentCell");
+        Godot.Collections.Dictionary dict =
+        (Godot.Collections.Dictionary)((Godot.Collections.Dictionary)WorldSaveFile.Get("WorldCells"))[currentCell];
+        lvl.enemyHealthMult = (float)dict["hpMult"];
+        lvl.enemySpeedMult = (float)dict["speedMult"];
+    }
+
+
     void AddLvlNameToWorld(String fileName) {
         Godot.Collections.Dictionary dict =
-        (Godot.Collections.Dictionary)worldSaveFile.Get("WorldCells");
-        Vector2 currentCell = (Vector2)playerSaveFile.Get("CurrentCell");
+        (Godot.Collections.Dictionary)WorldSaveFile.Get("WorldCells");
+        Vector2 currentCell = (Vector2)PlayerSaveFile.Get("CurrentCell");
         if((String)((Godot.Collections.Dictionary)(dict[currentCell]))["scn"] == "") {
             ((Godot.Collections.Dictionary)dict[currentCell])["scn"] = fileName;
         }

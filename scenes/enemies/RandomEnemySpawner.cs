@@ -37,9 +37,8 @@ public class RandomEnemySpawner : Position2D
     void SpawnRandomEnemy() {
         Main mainNode = (Main)GetNode("/root/Main");
         Godot.Collections.Dictionary dict =
-        (Godot.Collections.Dictionary)((Resource)mainNode.Saver.Get("world_save_file")).Get("EnemySpawns");
+        (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("EnemySpawns");
         Godot.Collections.Array arr = GetEnemySet();
-        //random spawn
         String path = GetPath().ToString();
         if(dict.Contains(path) == false) {
             Godot.Collections.Array enemyArr = new Godot.Collections.Array();
@@ -66,32 +65,19 @@ public class RandomEnemySpawner : Position2D
 
     Godot.Collections.Array GetEnemySet() {
         switch(enemySet) {
-            case EnemySet.EASY_ALL_ROUNDERS:
-                return new Godot.Collections.Array(Global.EASY_ALL_ROUNDERS);
-            case EnemySet.MEDIUM_ALL_ROUNDERS:
-                return new Godot.Collections.Array(Global.MEDIUM_ALL_ROUNDERS);
-            case EnemySet.HARD_ALL_ROUNDERS:
-                return new Godot.Collections.Array(Global.HARD_ALL_ROUNDERS);
-            case EnemySet.EASY_CHARGERS:
-                return new Godot.Collections.Array(Global.EASY_CHARGERS);
-            case EnemySet.MEDIUM_CHARGERS:
-                return new Godot.Collections.Array(Global.MEDIUM_CHARGERS);
-            case EnemySet.HARD_CHARGERS:
-                return new Godot.Collections.Array(Global.HARD_CHARGERS);
-            case EnemySet.EASY_SHOOTERS:
-                return new Godot.Collections.Array(Global.EASY_SHOOTERS);
-            case EnemySet.MEDIUM_SHOOTERS:
-                return new Godot.Collections.Array(Global.MEDIUM_SHOOTERS);
-            case EnemySet.HARD_SHOOTERS:
-                return new Godot.Collections.Array(Global.HARD_SHOOTERS);
-            case EnemySet.EASY_RANDOM:
-                return new Godot.Collections.Array(Global.EASY_RANDOM);
-            case EnemySet.MEDIUM_RANDOM:
-                return new Godot.Collections.Array(Global.MEDIUM_RANDOM);
-            case EnemySet.HARD_RANDOM:
-                return new Godot.Collections.Array(Global.HARD_RANDOM);
-            default:
-                return customSet;
+            case EnemySet.EASY_ALL_ROUNDERS: return new Godot.Collections.Array(Global.EASY_ALL_ROUNDERS);
+            case EnemySet.MEDIUM_ALL_ROUNDERS: return new Godot.Collections.Array(Global.MEDIUM_ALL_ROUNDERS);
+            case EnemySet.HARD_ALL_ROUNDERS: return new Godot.Collections.Array(Global.HARD_ALL_ROUNDERS);
+            case EnemySet.EASY_CHARGERS: return new Godot.Collections.Array(Global.EASY_CHARGERS);
+            case EnemySet.MEDIUM_CHARGERS: return new Godot.Collections.Array(Global.MEDIUM_CHARGERS);
+            case EnemySet.HARD_CHARGERS: return new Godot.Collections.Array(Global.HARD_CHARGERS);
+            case EnemySet.EASY_SHOOTERS: return new Godot.Collections.Array(Global.EASY_SHOOTERS);
+            case EnemySet.MEDIUM_SHOOTERS: return new Godot.Collections.Array(Global.MEDIUM_SHOOTERS);
+            case EnemySet.HARD_SHOOTERS: return new Godot.Collections.Array(Global.HARD_SHOOTERS);
+            case EnemySet.EASY_RANDOM: return new Godot.Collections.Array(Global.EASY_RANDOM);
+            case EnemySet.MEDIUM_RANDOM: return new Godot.Collections.Array(Global.MEDIUM_RANDOM);
+            case EnemySet.HARD_RANDOM: return new Godot.Collections.Array(Global.HARD_RANDOM);
+            default: return customSet;
         }
     }
 

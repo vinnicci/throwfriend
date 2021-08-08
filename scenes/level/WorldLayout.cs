@@ -3,9 +3,9 @@ using System;
 
 //  World Layout Rules:
 //  Start level must use cell ID 13
-//  Secret levels must have 3 walls (IDs: 7, 11, 13, 14)
+//  Secret levels must have THREE walls (IDs: 7, 11, 13, 14)
 //  Checkpoints max entrance of 3 (no ID 0)
-//  A level must be adjacent to one secret room only
+//  A level containing secret must only have ONE wall (3 entries) (IDs: 1, 2, 4, 8)
 
 public class WorldLayout : Node2D
 {
@@ -13,17 +13,6 @@ public class WorldLayout : Node2D
     TileMap worldTileMap2;
     TileMap worldTileMap3;
     Main mainNode;
-    // cells dict format
-    // cells = {
-    //     pos : {
-    //         type: "lvl type"
-    //         id: "tilemap id"
-    //         set: "tileset"
-    //         scn: "filename" 
-    //     }
-    // }
-    Godot.Collections.Dictionary cells = new Godot.Collections.Dictionary();
-    Godot.Collections.Dictionary marks = new Godot.Collections.Dictionary();
 
 
     public override void _Ready()
@@ -38,7 +27,7 @@ public class WorldLayout : Node2D
 
     public void GenerateLayout() {
         Godot.Collections.Dictionary dict =
-        (Godot.Collections.Dictionary)((Resource)mainNode.Saver.Get("world_save_file")).Get("WorldCells");
+        (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("WorldCells");
         if(dict.Count != 0) {
             QueueFree();
             return;
@@ -46,38 +35,78 @@ public class WorldLayout : Node2D
         InitTileMap(worldTileMap1, 1);
         InitTileMap(worldTileMap2, 2);
         InitTileMap(worldTileMap3, 3);
-        ((Resource)mainNode.Saver.Get("world_save_file")).Set("WorldCells", cells);
+        mainNode.WorldSaveFile.Set("WorldCells", cells);
         QueueFree();
     }
+
+
+    Godot.Collections.Dictionary marks = new Godot.Collections.Dictionary();
+    Godot.Collections.Dictionary cells = new Godot.Collections.Dictionary();
+    // cells dict format
+    // cells = {
+    //     pos : {
+    //         type: "lvl type"
+    //         id: "tilemap id"
+    //         set: "tileset"
+    //         scn: "filename"
+    //         hpMult: "enemy hp multiplier"
+    //         speedMult: "enemy speed multiplier"
+    //     }
+    // }
 
 
     void InitTileMap(TileMap worldTileMap, int setNum) {
         foreach(Node2D node in GetChildren()) {
             if(node is WorldMarker) {
                 Vector2 key = worldTileMap.WorldToMap(worldTileMap.ToLocal(node.GlobalPosition));
-                if(marks.Contains(key) == false) { 
-                    marks.Add(key, ((WorldMarker)node).levelType);
+                if(marks.Contains(key) == false) {
+                    marks.Add(key, node);
                 }
             }
         }
         foreach(Vector2 pos in worldTileMap.GetUsedCells()) {
             Godot.Collections.Dictionary posDict = new Godot.Collections.Dictionary();
-            WorldMarker.LevelType lvlType = GetLevelType(pos);
-            if(lvlType == WorldMarker.LevelType.Start) {
-                ((Resource)mainNode.Saver.Get("player_save_file")).Set("CurrentCell", pos);
+            WorldMarker marker = GetLevelMarker(pos);
+            WorldMarker.LevelType type;
+            if(IsInstanceValid(marker) == false) {
+                type = WorldMarker.LevelType.None;
             }
-            posDict.Add("type", GetLevelType(pos));
+            else {
+                type = marker.levelType;
+            }
+            if(type == WorldMarker.LevelType.Start) {
+                mainNode.PlayerSaveFile.Set("CurrentCell", pos);
+            }
+            posDict.Add("type", type);
             posDict.Add("id", worldTileMap.GetCellv(pos));
             posDict.Add("set", setNum);
-            posDict.Add("scn", "");
+            if(type == WorldMarker.LevelType.Misc) {
+                posDict.Add("scn", marker.miscLevelFile);
+            }
+            else {
+                posDict.Add("scn", "");
+            }
+            posDict.Add("hpMult", SetDifficulty(setNum, 0));
+            posDict.Add("speedMult", SetDifficulty(setNum, 1));
             cells.Add(pos, posDict);
         }
     }
 
 
-    WorldMarker.LevelType GetLevelType(Vector2 pos) {
+    float SetDifficulty(int setNum, int type) {
+        float rOut = 0;
+        switch(setNum) {
+            case 1: return 1f;
+            case 2: rOut = type == 0 ? 2f : 1.25f; break;
+            case 3: rOut = type == 0 ? 4f : 1.5f; break;
+        }
+        return rOut;
+    }
+
+
+    WorldMarker GetLevelMarker(Vector2 pos) {
         if(marks.Contains(pos)) {
-            return (WorldMarker.LevelType)marks[pos];
+            return (WorldMarker)marks[pos];
         }
         return default;
     }

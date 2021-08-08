@@ -4,7 +4,6 @@ using System;
 public class Loadout : Control
 {
     public Player PlayerNode {get; set;}
-    //public Weapon WeaponNode {get; set;}
     public ItemSlot Slot1 {get; private set;}
     public ItemSlot Slot2 {get; private set;}
     public ItemSlot Slot3 {get; private set;}

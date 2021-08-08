@@ -15,5 +15,5 @@ public class WorldMarker : Position2D
         Secret,
         Misc
     }
-    [Export] public PackedScene miscLevelScene;
+    [Export] public String miscLevelFile = "";
 }

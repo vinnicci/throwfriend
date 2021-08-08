@@ -49,7 +49,8 @@ public class NextLevel : Area2D, ILevelObject
     {
         base._Process(delta);
         if(proceeding && player.WeaponNode.CurrentState == Weapon.States.HELD && LevelNode.PlayerEngaging == 0) {
-            mainNode.GoToLevel(GetRandomLevel(), GetEntrance(), (Player)player, false);
+            String entr = GetEntrance();
+            mainNode.GoToLevel(GetRandomLevel(), entr, (Player)player, false);
             SetProcess(false);
         }
     }
@@ -57,25 +58,220 @@ public class NextLevel : Area2D, ILevelObject
 
     String GetRandomLevel() {
         Godot.Collections.Dictionary dict =
-        (Godot.Collections.Dictionary)((Resource)mainNode.Saver.Get("world_save_file")).Get("NextLevels");
-        if((String)dict[GetPath().ToString()] != "") {
-            return (String)dict[GetPath().ToString()];
+        (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("NextLevels");
+        Vector2 currentCell = (Vector2)mainNode.PlayerSaveFile.Get("CurrentCell");
+        Godot.Collections.Dictionary posDict =
+        (Godot.Collections.Dictionary)((Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("WorldCells"))[currentCell];
+        if(dict.Contains(currentCell.ToString() + GetPath().ToString())) {
+            return (String)dict[currentCell + GetPath().ToString()];
         }
-        Godot.Collections.Array arr =
-        (Godot.Collections.Array)((Resource)mainNode.Saver.Get("world_save_file")).Get("LevelPool");
-        arr.Shuffle();
-        String lvl = (String)arr[0];
-        arr.RemoveAt(0);
-        //current current entrance to next lvl
+        String lvl = "";
+        if((WorldMarker.LevelType)posDict["type"] == WorldMarker.LevelType.Misc) {
+            lvl = (String)posDict["scn"];
+        }
+        else {
+            Godot.Collections.Array arr =
+            GetFromSet((int)posDict["id"], (int)posDict["set"], (WorldMarker.LevelType)posDict["type"]);
+            arr.Shuffle();
+            lvl = (String)arr[0];
+        }
         LinkToLevel(lvl);
         return lvl;
     }
 
 
+    Godot.Collections.Array GetFromSet(int id, int setNum, WorldMarker.LevelType type) {
+        String idStr = "ID" + id.ToString().PadLeft(2, '0');
+        String setNumStr = "_SET" + setNum.ToString();
+        String typeStr = "";
+        switch(type) {
+            case WorldMarker.LevelType.None: break;
+            case WorldMarker.LevelType.Checkpoint: typeStr = "_CHECKPT"; break;
+            case WorldMarker.LevelType.Secret: typeStr = "_SECRET"; break;
+            case WorldMarker.LevelType.SecretN: typeStr = "_SECRET_N"; break;
+            case WorldMarker.LevelType.SecretW: typeStr = "_SECRET_W"; break;
+            case WorldMarker.LevelType.SecretE: typeStr = "_SECRET_E"; break;
+            case WorldMarker.LevelType.SecretS: typeStr = "_SECRET_S"; break;
+        }
+        switch(idStr + setNumStr + typeStr) {
+            //set 1 none
+            case nameof(Global.ID00_SET1): return new Godot.Collections.Array(Global.ID00_SET1);
+            case nameof(Global.ID01_SET1): return new Godot.Collections.Array(Global.ID01_SET1);
+            case nameof(Global.ID02_SET1): return new Godot.Collections.Array(Global.ID02_SET1);
+            case nameof(Global.ID03_SET1): return new Godot.Collections.Array(Global.ID03_SET1);
+            case nameof(Global.ID04_SET1): return new Godot.Collections.Array(Global.ID04_SET1);
+            case nameof(Global.ID05_SET1): return new Godot.Collections.Array(Global.ID05_SET1);
+            case nameof(Global.ID06_SET1): return new Godot.Collections.Array(Global.ID06_SET1);
+            case nameof(Global.ID07_SET1): return new Godot.Collections.Array(Global.ID07_SET1);
+            case nameof(Global.ID08_SET1): return new Godot.Collections.Array(Global.ID08_SET1);
+            case nameof(Global.ID09_SET1): return new Godot.Collections.Array(Global.ID09_SET1);
+            case nameof(Global.ID10_SET1): return new Godot.Collections.Array(Global.ID10_SET1);
+            case nameof(Global.ID11_SET1): return new Godot.Collections.Array(Global.ID11_SET1);
+            case nameof(Global.ID12_SET1): return new Godot.Collections.Array(Global.ID12_SET1);
+            case nameof(Global.ID13_SET1): return new Godot.Collections.Array(Global.ID13_SET1);
+            case nameof(Global.ID14_SET1): return new Godot.Collections.Array(Global.ID14_SET1);
+            //set 2 none
+            case nameof(Global.ID00_SET2): return new Godot.Collections.Array(Global.ID00_SET2);
+            case nameof(Global.ID01_SET2): return new Godot.Collections.Array(Global.ID01_SET2);
+            case nameof(Global.ID02_SET2): return new Godot.Collections.Array(Global.ID02_SET2);
+            case nameof(Global.ID03_SET2): return new Godot.Collections.Array(Global.ID03_SET2);
+            case nameof(Global.ID04_SET2): return new Godot.Collections.Array(Global.ID04_SET2);
+            case nameof(Global.ID05_SET2): return new Godot.Collections.Array(Global.ID05_SET2);
+            case nameof(Global.ID06_SET2): return new Godot.Collections.Array(Global.ID06_SET2);
+            case nameof(Global.ID07_SET2): return new Godot.Collections.Array(Global.ID07_SET2);
+            case nameof(Global.ID08_SET2): return new Godot.Collections.Array(Global.ID08_SET2);
+            case nameof(Global.ID09_SET2): return new Godot.Collections.Array(Global.ID09_SET2);
+            case nameof(Global.ID10_SET2): return new Godot.Collections.Array(Global.ID10_SET2);
+            case nameof(Global.ID11_SET2): return new Godot.Collections.Array(Global.ID11_SET2);
+            case nameof(Global.ID12_SET2): return new Godot.Collections.Array(Global.ID12_SET2);
+            case nameof(Global.ID13_SET2): return new Godot.Collections.Array(Global.ID13_SET2);
+            case nameof(Global.ID14_SET2): return new Godot.Collections.Array(Global.ID14_SET2);
+            //set 3 none
+            case nameof(Global.ID00_SET3): return new Godot.Collections.Array(Global.ID00_SET3);
+            case nameof(Global.ID01_SET3): return new Godot.Collections.Array(Global.ID01_SET3);
+            case nameof(Global.ID02_SET3): return new Godot.Collections.Array(Global.ID02_SET3);
+            case nameof(Global.ID03_SET3): return new Godot.Collections.Array(Global.ID03_SET3);
+            case nameof(Global.ID04_SET3): return new Godot.Collections.Array(Global.ID04_SET3);
+            case nameof(Global.ID05_SET3): return new Godot.Collections.Array(Global.ID05_SET3);
+            case nameof(Global.ID06_SET3): return new Godot.Collections.Array(Global.ID06_SET3);
+            case nameof(Global.ID07_SET3): return new Godot.Collections.Array(Global.ID07_SET3);
+            case nameof(Global.ID08_SET3): return new Godot.Collections.Array(Global.ID08_SET3);
+            case nameof(Global.ID09_SET3): return new Godot.Collections.Array(Global.ID09_SET3);
+            case nameof(Global.ID10_SET3): return new Godot.Collections.Array(Global.ID10_SET3);
+            case nameof(Global.ID11_SET3): return new Godot.Collections.Array(Global.ID11_SET3);
+            case nameof(Global.ID12_SET3): return new Godot.Collections.Array(Global.ID12_SET3);
+            case nameof(Global.ID13_SET3): return new Godot.Collections.Array(Global.ID13_SET3);
+            case nameof(Global.ID14_SET3): return new Godot.Collections.Array(Global.ID14_SET3);
+            //set 1 checkpt
+            case nameof(Global.ID01_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID01_SET1_CHECKPT);
+            case nameof(Global.ID02_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID02_SET1_CHECKPT);
+            case nameof(Global.ID03_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID03_SET1_CHECKPT);
+            case nameof(Global.ID04_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID04_SET1_CHECKPT);
+            case nameof(Global.ID05_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID05_SET1_CHECKPT);
+            case nameof(Global.ID06_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID06_SET1_CHECKPT);
+            case nameof(Global.ID07_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID07_SET1_CHECKPT);
+            case nameof(Global.ID08_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID08_SET1_CHECKPT);
+            case nameof(Global.ID09_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID09_SET1_CHECKPT);
+            case nameof(Global.ID10_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID10_SET1_CHECKPT);
+            case nameof(Global.ID11_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID11_SET1_CHECKPT);
+            case nameof(Global.ID12_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID12_SET1_CHECKPT);
+            case nameof(Global.ID13_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID13_SET1_CHECKPT);
+            case nameof(Global.ID14_SET1_CHECKPT): return new Godot.Collections.Array(Global.ID14_SET1_CHECKPT);
+            //set 2 checkpt
+            case nameof(Global.ID01_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID01_SET2_CHECKPT);
+            case nameof(Global.ID02_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID02_SET2_CHECKPT);
+            case nameof(Global.ID03_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID03_SET2_CHECKPT);
+            case nameof(Global.ID04_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID04_SET2_CHECKPT);
+            case nameof(Global.ID05_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID05_SET2_CHECKPT);
+            case nameof(Global.ID06_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID06_SET2_CHECKPT);
+            case nameof(Global.ID07_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID07_SET2_CHECKPT);
+            case nameof(Global.ID08_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID08_SET2_CHECKPT);
+            case nameof(Global.ID09_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID09_SET2_CHECKPT);
+            case nameof(Global.ID10_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID10_SET2_CHECKPT);
+            case nameof(Global.ID11_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID11_SET2_CHECKPT);
+            case nameof(Global.ID12_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID12_SET2_CHECKPT);
+            case nameof(Global.ID13_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID13_SET2_CHECKPT);
+            case nameof(Global.ID14_SET2_CHECKPT): return new Godot.Collections.Array(Global.ID14_SET2_CHECKPT);
+            //set 3 checkpt
+            case nameof(Global.ID01_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID01_SET3_CHECKPT);
+            case nameof(Global.ID02_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID02_SET3_CHECKPT);
+            case nameof(Global.ID03_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID03_SET3_CHECKPT);
+            case nameof(Global.ID04_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID04_SET3_CHECKPT);
+            case nameof(Global.ID05_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID05_SET3_CHECKPT);
+            case nameof(Global.ID06_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID06_SET3_CHECKPT);
+            case nameof(Global.ID07_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID07_SET3_CHECKPT);
+            case nameof(Global.ID08_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID08_SET3_CHECKPT);
+            case nameof(Global.ID09_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID09_SET3_CHECKPT);
+            case nameof(Global.ID10_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID10_SET3_CHECKPT);
+            case nameof(Global.ID11_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID11_SET3_CHECKPT);
+            case nameof(Global.ID12_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID12_SET3_CHECKPT);
+            case nameof(Global.ID13_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID13_SET3_CHECKPT);
+            case nameof(Global.ID14_SET3_CHECKPT): return new Godot.Collections.Array(Global.ID14_SET3_CHECKPT);
+            //set 1 secret
+            case nameof(Global.ID07_SET1_SECRET): return new Godot.Collections.Array(Global.ID07_SET1_SECRET);
+            case nameof(Global.ID11_SET1_SECRET): return new Godot.Collections.Array(Global.ID11_SET1_SECRET);
+            case nameof(Global.ID13_SET1_SECRET): return new Godot.Collections.Array(Global.ID13_SET1_SECRET);
+            case nameof(Global.ID14_SET1_SECRET): return new Godot.Collections.Array(Global.ID14_SET1_SECRET);
+            //set 2 secret
+            case nameof(Global.ID07_SET2_SECRET): return new Godot.Collections.Array(Global.ID07_SET2_SECRET);
+            case nameof(Global.ID11_SET2_SECRET): return new Godot.Collections.Array(Global.ID11_SET2_SECRET);
+            case nameof(Global.ID13_SET2_SECRET): return new Godot.Collections.Array(Global.ID13_SET2_SECRET);
+            case nameof(Global.ID14_SET2_SECRET): return new Godot.Collections.Array(Global.ID14_SET2_SECRET);
+            //set 3 secret
+            case nameof(Global.ID07_SET3_SECRET): return new Godot.Collections.Array(Global.ID07_SET3_SECRET);
+            case nameof(Global.ID11_SET3_SECRET): return new Godot.Collections.Array(Global.ID11_SET3_SECRET);
+            case nameof(Global.ID13_SET3_SECRET): return new Godot.Collections.Array(Global.ID13_SET3_SECRET);
+            case nameof(Global.ID14_SET3_SECRET): return new Godot.Collections.Array(Global.ID14_SET3_SECRET);
+            //set 1 secret n
+            case nameof(Global.ID01_SET1_SECRET_N): return new Godot.Collections.Array(Global.ID01_SET1_SECRET_N);
+            case nameof(Global.ID02_SET1_SECRET_N): return new Godot.Collections.Array(Global.ID02_SET1_SECRET_N);
+            case nameof(Global.ID04_SET1_SECRET_N): return new Godot.Collections.Array(Global.ID04_SET1_SECRET_N);
+            case nameof(Global.ID08_SET1_SECRET_N): return new Godot.Collections.Array(Global.ID08_SET1_SECRET_N);
+            //set 2 secret n
+            case nameof(Global.ID01_SET2_SECRET_N): return new Godot.Collections.Array(Global.ID01_SET2_SECRET_N);
+            case nameof(Global.ID02_SET2_SECRET_N): return new Godot.Collections.Array(Global.ID02_SET2_SECRET_N);
+            case nameof(Global.ID04_SET2_SECRET_N): return new Godot.Collections.Array(Global.ID04_SET2_SECRET_N);
+            case nameof(Global.ID08_SET2_SECRET_N): return new Godot.Collections.Array(Global.ID08_SET2_SECRET_N);
+            //set 3 secret n
+            case nameof(Global.ID01_SET3_SECRET_N): return new Godot.Collections.Array(Global.ID01_SET3_SECRET_N);
+            case nameof(Global.ID02_SET3_SECRET_N): return new Godot.Collections.Array(Global.ID02_SET3_SECRET_N);
+            case nameof(Global.ID04_SET3_SECRET_N): return new Godot.Collections.Array(Global.ID04_SET3_SECRET_N);
+            case nameof(Global.ID08_SET3_SECRET_N): return new Godot.Collections.Array(Global.ID08_SET3_SECRET_N);
+            //set 1 secret e
+            case nameof(Global.ID01_SET1_SECRET_E): return new Godot.Collections.Array(Global.ID01_SET1_SECRET_E);
+            case nameof(Global.ID02_SET1_SECRET_E): return new Godot.Collections.Array(Global.ID02_SET1_SECRET_E);
+            case nameof(Global.ID04_SET1_SECRET_E): return new Godot.Collections.Array(Global.ID04_SET1_SECRET_E);
+            case nameof(Global.ID08_SET1_SECRET_E): return new Godot.Collections.Array(Global.ID08_SET1_SECRET_E);
+            //set 2 secret e
+            case nameof(Global.ID01_SET2_SECRET_E): return new Godot.Collections.Array(Global.ID01_SET2_SECRET_E);
+            case nameof(Global.ID02_SET2_SECRET_E): return new Godot.Collections.Array(Global.ID02_SET2_SECRET_E);
+            case nameof(Global.ID04_SET2_SECRET_E): return new Godot.Collections.Array(Global.ID04_SET2_SECRET_E);
+            case nameof(Global.ID08_SET2_SECRET_E): return new Godot.Collections.Array(Global.ID08_SET2_SECRET_E);
+            //set 3 secret e
+            case nameof(Global.ID01_SET3_SECRET_E): return new Godot.Collections.Array(Global.ID01_SET3_SECRET_E);
+            case nameof(Global.ID02_SET3_SECRET_E): return new Godot.Collections.Array(Global.ID02_SET3_SECRET_E);
+            case nameof(Global.ID04_SET3_SECRET_E): return new Godot.Collections.Array(Global.ID04_SET3_SECRET_E);
+            case nameof(Global.ID08_SET3_SECRET_E): return new Godot.Collections.Array(Global.ID08_SET3_SECRET_E);
+            //set 1 secret w
+            case nameof(Global.ID01_SET1_SECRET_W): return new Godot.Collections.Array(Global.ID01_SET1_SECRET_W);
+            case nameof(Global.ID02_SET1_SECRET_W): return new Godot.Collections.Array(Global.ID02_SET1_SECRET_W);
+            case nameof(Global.ID04_SET1_SECRET_W): return new Godot.Collections.Array(Global.ID04_SET1_SECRET_W);
+            case nameof(Global.ID08_SET1_SECRET_W): return new Godot.Collections.Array(Global.ID08_SET1_SECRET_W);
+            //set 2 secret w
+            case nameof(Global.ID01_SET2_SECRET_W): return new Godot.Collections.Array(Global.ID01_SET2_SECRET_W);
+            case nameof(Global.ID02_SET2_SECRET_W): return new Godot.Collections.Array(Global.ID02_SET2_SECRET_W);
+            case nameof(Global.ID04_SET2_SECRET_W): return new Godot.Collections.Array(Global.ID04_SET2_SECRET_W);
+            case nameof(Global.ID08_SET2_SECRET_W): return new Godot.Collections.Array(Global.ID08_SET2_SECRET_W);
+            //set 3 secret w
+            case nameof(Global.ID01_SET3_SECRET_W): return new Godot.Collections.Array(Global.ID01_SET3_SECRET_W);
+            case nameof(Global.ID02_SET3_SECRET_W): return new Godot.Collections.Array(Global.ID02_SET3_SECRET_W);
+            case nameof(Global.ID04_SET3_SECRET_W): return new Godot.Collections.Array(Global.ID04_SET3_SECRET_W);
+            case nameof(Global.ID08_SET3_SECRET_W): return new Godot.Collections.Array(Global.ID08_SET3_SECRET_W);
+            //set 1 secret s
+            case nameof(Global.ID01_SET1_SECRET_S): return new Godot.Collections.Array(Global.ID01_SET1_SECRET_S);
+            case nameof(Global.ID02_SET1_SECRET_S): return new Godot.Collections.Array(Global.ID02_SET1_SECRET_S);
+            case nameof(Global.ID04_SET1_SECRET_S): return new Godot.Collections.Array(Global.ID04_SET1_SECRET_S);
+            case nameof(Global.ID08_SET1_SECRET_S): return new Godot.Collections.Array(Global.ID08_SET1_SECRET_S);
+            //set 2 secret s
+            case nameof(Global.ID01_SET2_SECRET_S): return new Godot.Collections.Array(Global.ID01_SET2_SECRET_S);
+            case nameof(Global.ID02_SET2_SECRET_S): return new Godot.Collections.Array(Global.ID02_SET2_SECRET_S);
+            case nameof(Global.ID04_SET2_SECRET_S): return new Godot.Collections.Array(Global.ID04_SET2_SECRET_S);
+            case nameof(Global.ID08_SET2_SECRET_S): return new Godot.Collections.Array(Global.ID08_SET2_SECRET_S);
+            //set 3 secret s
+            case nameof(Global.ID01_SET3_SECRET_S): return new Godot.Collections.Array(Global.ID01_SET3_SECRET_S);
+            case nameof(Global.ID02_SET3_SECRET_S): return new Godot.Collections.Array(Global.ID02_SET3_SECRET_S);
+            case nameof(Global.ID04_SET3_SECRET_S): return new Godot.Collections.Array(Global.ID04_SET3_SECRET_S);
+            case nameof(Global.ID08_SET3_SECRET_S): return new Godot.Collections.Array(Global.ID08_SET3_SECRET_S);
+        }
+        return default;
+    }
+
+
     public void LinkToLevel(String lvl) {
         Godot.Collections.Dictionary dict =
-        (Godot.Collections.Dictionary)((Resource)mainNode.Saver.Get("world_save_file")).Get("NextLevels");
-        dict[GetPath().ToString()] = lvl;
+        (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("NextLevels");
+        String key = mainNode.PlayerSaveFile.Get("CurrentCell").ToString() + GetPath().ToString();
+        dict[key] = lvl;
     }
 
 
@@ -104,8 +300,8 @@ public class NextLevel : Area2D, ILevelObject
 
 
     void ShiftCurrentCell(Vector2 to) {
-        Vector2 currentCell = (Vector2)((Resource)mainNode.Saver.Get("player_save_file")).Get("CurrentCell");
-        ((Resource)mainNode.Saver.Get("player_save_file")).Set("CurrentCell", currentCell + to);
+        Vector2 currentCell = (Vector2)mainNode.PlayerSaveFile.Get("CurrentCell");
+        mainNode.PlayerSaveFile.Set("CurrentCell", currentCell + to);
     }
 
 
@@ -114,8 +310,9 @@ public class NextLevel : Area2D, ILevelObject
 
     public void Switch() {
         Godot.Collections.Dictionary dict =
-        (Godot.Collections.Dictionary)((Resource)mainNode.Saver.Get("world_save_file")).Get("NextLevels");
-        nextLevel = (String)dict[GetPath().ToString()];
+        (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("NextLevels");
+        String key = mainNode.PlayerSaveFile.Get("CurrentCell").ToString() + GetPath().ToString();
+        nextLevel = (String)dict[key];
     }
 
 
