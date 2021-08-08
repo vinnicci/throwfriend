@@ -16,7 +16,7 @@ public abstract class Enemy : Entity, ISpawner
         }
         set{
             levelNode = value;
-            ChangeEntityBaseStats((int)(health*levelNode.EnemyHealthMult), (int)(speed*levelNode.EnemySpeedMult));
+            ChangeEntityBaseStats((int)(health*levelNode.enemyHealthMult), (int)(speed*levelNode.enemySpeedMult));
             if(HasNode("EnemyWeapon")) {
                 WeaponNode = (EnemyWeapon)GetNode("EnemyWeapon");
                 WeaponNode.ParentNode = this;

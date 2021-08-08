@@ -17,8 +17,6 @@ public abstract class BaseChargerSpawner : Enemy, ISpawner
             if(packedSceneKey == "charger") {
                 ISpawnable bInstance = (ISpawnable)spawnScenes[packedSceneKey].Instance();
                 bInstance.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
-                // ((Entity)bInstance).ChangeEntityBaseStats((int)(((Entity)bInstance).health*HealthMult),
-                //     (int)(((Entity)bInstance).speed*SpeedMult));
                 ((RigidBody2D)bInstance).ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
             }
         }

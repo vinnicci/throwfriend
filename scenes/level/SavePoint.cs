@@ -43,7 +43,7 @@ public class SavePoint : Area2D
             return;
         }
         Main mainNode = (Main)GetNode("/root/Main");
-        mainNode.SavePlayerData(LevelNode.Filename);
+        mainNode.SavePlayerData(true);
         player.WarnPlayer("GAME SAVED");
         //turn off process
         SetProcess(false);

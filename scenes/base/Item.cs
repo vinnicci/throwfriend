@@ -12,7 +12,7 @@ using System.Collections.Generic;
 public abstract class Item : Node2D
 {
     public List<String> incompatibilityList = new List<string>();
-    [Export] public String itemDescription;
+    [Export] public String itemDescription = "";
     protected Player playerNode;
     public Player PlayerNode {
         get {

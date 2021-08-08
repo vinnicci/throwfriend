@@ -58,10 +58,10 @@ acts = {
 "shoot": 1.0
 }
 
-[node name="NextLevelW" parent="." index="9" instance=ExtResource( 10 )]
+[node name="W" parent="." index="9" instance=ExtResource( 10 )]
 position = Vector2( 91, 179 )
 
-[node name="NextLevelE" parent="." index="10" instance=ExtResource( 10 )]
+[node name="E" parent="." index="10" instance=ExtResource( 10 )]
 position = Vector2( 1432, 1402 )
 rotation = 3.14159
 

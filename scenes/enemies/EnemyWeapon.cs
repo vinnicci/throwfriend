@@ -4,7 +4,7 @@ using System;
 public abstract class EnemyWeapon : Node2D, ISpawner
 {
     [Export] public Godot.Collections.Dictionary<String, PackedScene> spawnScenes {get; set;}
-    [Export] Godot.Collections.Array<NodePath> bodies;
+    [Export] Godot.Collections.Array<NodePath> bodies = new Godot.Collections.Array<NodePath>();
     
     public Enemy ParentNode {get; set;}
 

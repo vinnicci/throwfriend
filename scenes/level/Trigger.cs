@@ -5,7 +5,7 @@ public abstract class Trigger : Area2D, ILevelObject
 {
     public String SwitchSignal {get; set;}
 
-    [Export] Godot.Collections.Array<NodePath> actObjects;
+    [Export] Godot.Collections.Array<NodePath> actObjects = new Godot.Collections.Array<NodePath>();
     AnimationPlayer anim;
 
 

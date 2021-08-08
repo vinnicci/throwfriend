@@ -1,7 +1,8 @@
 extends Resource
 
 
-export(String) var Level
+export(String) var SaveCell
+export(Vector2) var CurrentCell
 export(int) var MaxHP
 export(int) var SnarkDmgMult
 export(int) var AvailableUpgrades

@@ -13,8 +13,8 @@ public abstract class EnemyProj : Area2D, ISpawnable
     public int Damage {get; set;}
     public int Range {get; set;}
     public int Speed {get; set;}
+    
     protected Level levelNode;
-
     protected Sprite sprite;
     Explosion explosion;
     AnimationPlayer anim;

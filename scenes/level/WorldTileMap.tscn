@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/level/tilemaps/WorldTileSet.tres" type="TileSet" id=1]
+
+[node name="WorldTileMap" type="TileMap"]
+scale = Vector2( 10, 10 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 5, 5 )
+format = 1

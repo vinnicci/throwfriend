@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public abstract class Level : YSort
 {
-    [Export] public float EnemyHealthMult = 1;
-    [Export] public float EnemySpeedMult = 1;
+    [Export] public float enemyHealthMult = 1;
+    [Export] public float enemySpeedMult = 1;
 
     Player playerNode;
     Navigation2D nav;

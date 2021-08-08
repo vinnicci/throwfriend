@@ -4,7 +4,7 @@ using System;
 [Tool]
 public class AnimTool : AnimationPlayer
 {
-    [Export] String animName;
+    [Export] String animName = "";
 
     enum UpdateModes {
         CONTINUOUS, DISCRETE, TRIGGER, CAPTURE

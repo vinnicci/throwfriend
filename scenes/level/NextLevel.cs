@@ -80,13 +80,32 @@ public class NextLevel : Area2D, ILevelObject
 
 
     String GetEntrance() {
+        String ent = "";
         switch(Name) {
-            case "NextLevelN": return "NextLevelS/SpawnPos";
-            case "NextLevelE": return "NextLevelW/SpawnPos";
-            case "NextLevelW": return "NextLevelE/SpawnPos";
-            case "NextLevelS": return "NextLevelN/SpawnPos";
+            case "N":
+                ent = "S/SpawnPos";
+                ShiftCurrentCell(Vector2.Up);
+                break;
+            case "E":
+                ent = "W/SpawnPos";
+                ShiftCurrentCell(Vector2.Right);
+                break;
+            case "W":
+                ent = "E/SpawnPos";
+                ShiftCurrentCell(Vector2.Left);
+                break;
+            case "S":
+                ent = "N/SpawnPos";
+                ShiftCurrentCell(Vector2.Down);
+                break;
         }
-        return default;
+        return ent;
+    }
+
+
+    void ShiftCurrentCell(Vector2 to) {
+        Vector2 currentCell = (Vector2)((Resource)mainNode.Saver.Get("player_save_file")).Get("CurrentCell");
+        ((Resource)mainNode.Saver.Get("player_save_file")).Set("CurrentCell", currentCell + to);
     }
 
 
