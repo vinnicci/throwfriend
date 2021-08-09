@@ -232,6 +232,9 @@ public class Main : Node
 
 
     void InitLevelObject(Node2D levelObj, String objType) {
+        if(((ILevelObject)levelObj).Persist == false) {
+            return;
+        }
         Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)LevelSaveFile.Get(objType);
         String key = PlayerSaveFile.Get("CurrentCell").ToString() + levelObj.GetPath().ToString();
         if(dict.Contains(key) == false) {
@@ -267,6 +270,7 @@ public class Main : Node
 
     public async void GoToLevel(String fileName, String nodePos, Player player, bool loadPlayerData) {
         FadeAnim.Play("fade_in");
+        player.IsStopped = true;
         await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
         if(IsInstanceValid(currentLevel)) {
             Player currPlayer = (Player)currentLevel.GetNodeOrNull("Player");
@@ -305,6 +309,7 @@ public class Main : Node
         if(entrance is NextLevel) {
             ((NextLevel)entrance).LinkToLevel(prevLvlPack);
         }
+        player.IsStopped = false;
         Saver.Call("save_level_data");
         Saver.Call("save_world_data");
     }

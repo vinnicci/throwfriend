@@ -190,8 +190,11 @@ public class Player : Entity
     const float SLOW_EFFECT = 0.3f;
 
 
+    public bool IsStopped {get; set;}
+
+
     public void GetInput() {
-        if(IsDead) {
+        if(IsStopped || IsDead) {
             return;
         }
         bool hasWeap = Center.HasNode("WeapPos/Weapon");
@@ -340,6 +343,16 @@ public class Player : Entity
 
     public void UpdateStatsDisp() {
         statsDesc.UpdateStatsDisp();
+    }
+
+
+    public void TriggerDialogue(Texture portrait, String name, Godot.Collections.Array stringArr, bool show) {
+        if(show) {
+            hotkeyHUD.ShowDialogue(portrait, name, stringArr);
+        }
+        else {
+            hotkeyHUD.HideDialogue();
+        }
     }
 
 

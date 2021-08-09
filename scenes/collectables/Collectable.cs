@@ -4,6 +4,7 @@ using System;
 public abstract class Collectable : Area2D, ISpawnable, ILevelObject
 {
     public String SwitchSignal {get; set;}
+    [Export] public bool Persist {get; set;}
 
     protected AnimationPlayer anim;
 

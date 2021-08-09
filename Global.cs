@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 
 public static class Global
 {
@@ -120,7 +119,7 @@ public static class Global
 
     };
     public static readonly String[] ID05_SET1 = {
-        "res://levels/051None1.tscn"
+
     };
     public static readonly String[] ID06_SET1 = {
 
@@ -138,10 +137,10 @@ public static class Global
 
     };
     public static readonly String[] ID11_SET1 = {
-        "res://levels/111None1.tscn"
+
     };
     public static readonly String[] ID12_SET1 = {
-        "res://levels/121None1.tscn"
+
     };
     public static readonly String[] ID13_SET1 = {
 
@@ -165,7 +164,7 @@ public static class Global
 
     };
     public static readonly String[] ID05_SET2 = {
-        "res://levels/052None1.tscn"
+        
     };
     public static readonly String[] ID06_SET2 = {
 
@@ -186,7 +185,7 @@ public static class Global
 
     };
     public static readonly String[] ID12_SET2 = {
-        "res://levels/122None1.tscn"
+        
     };
     public static readonly String[] ID13_SET2 = {
 
@@ -273,7 +272,7 @@ public static class Global
 
     };
     public static readonly String[] ID11_SET1_CHECKPT = {
-        "res://levels/111Checkpt1.tscn"
+        
     };
     public static readonly String[] ID12_SET1_CHECKPT = {
 
@@ -552,7 +551,7 @@ public static class Global
 
     };
     public static readonly String[] ID01_SET3_SECRET_S = {
-
+        
     };
     public static readonly String[] ID02_SET3_SECRET_S = {
 

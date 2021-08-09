@@ -9,23 +9,24 @@ script = ExtResource( 1 )
 
 [node name="WorldTileMap1" parent="." instance=ExtResource( 2 )]
 modulate = Color( 1, 0.658824, 0.278431, 1 )
-tile_data = PoolIntArray( -65536, 11, 0, -65535, 5, 0, 0, 11, 0, 1, 12, 0 )
+tile_data = PoolIntArray( -1, 11, 0, -65536, 9, 0, 0, 11, 0 )
 
 [node name="WorldTileMap2" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.427451, 1, 0.309804, 1 )
+tile_data = PoolIntArray( -65535, 5, 0, 1, 12, 0 )
 
 [node name="WorldTileMap3" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.521569, 0.521569, 0.521569, 1 )
 
 [node name="Checkpoint" parent="." instance=ExtResource( 3 )]
-position = Vector2( 24.6954, 26.0484 )
+position = Vector2( 21.8351, 26.0463 )
 levelType = 2
 
 [node name="Start" parent="." instance=ExtResource( 3 )]
-position = Vector2( 23.5076, -26.1489 )
+position = Vector2( -25.5, -25.3673 )
 levelType = 1
 
 [node name="Misc" parent="." instance=ExtResource( 3 )]
-position = Vector2( 197.952, -71.0902 )
+position = Vector2( 23.6502, -24.7747 )
 levelType = 8
 miscLevelFile = "res://test scenes/TestLevel1.tscn"

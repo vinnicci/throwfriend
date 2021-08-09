@@ -8,6 +8,7 @@ public abstract class Wall : TileMap, ILevelObject
     AnimationPlayer anim;
     
     public string SwitchSignal {get; set;}
+    [Export] public bool Persist {get; set;}
 
 
     public override void _Ready()

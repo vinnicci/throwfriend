@@ -10,6 +10,7 @@ public class NextLevel : Area2D, ILevelObject
     Player player;
 
     public String SwitchSignal {get; set;}
+    [Export] public bool Persist {get; set;}
 
 
     public override void _Ready() {
