@@ -10,6 +10,7 @@ public abstract class Level : YSort
     Player playerNode;
     Navigation2D nav;
     YSort enemies;
+    YSort lvlObjects;
     Main mainNode;
 
 
@@ -18,6 +19,7 @@ public abstract class Level : YSort
         base._Ready();
         mainNode = (Main)GetNode("/root/Main");
         enemies = (YSort)GetNode("Enemies");
+        lvlObjects = (YSort)GetNode("Objects");
         nav = (Navigation2D)GetNode("Nav");
         if(HasNode("Player")) {
             playerNode = (Player)GetNode("Player");
@@ -35,14 +37,18 @@ public abstract class Level : YSort
                     enemy.Connect(nameof(Entity.Died), this, nameof(OnEnemyDead));
                 }
             }
-            else if(node is NextLevel) {
-                ((NextLevel)node).LevelNode = this;
-            }
-            else if(node is SavePoint) {
-                ((SavePoint)node).LevelNode = this;
-            }
-            else if(node is RandomEnemySpawner) {
-                ((RandomEnemySpawner)node).LevelNode = this;
+            else if(node == lvlObjects) {
+                foreach(Node2D obj in lvlObjects.GetChildren()) {
+                    if(obj is NextLevel) {
+                        ((NextLevel)obj).LevelNode = this;
+                    }
+                    else if(obj is SavePoint) {
+                        ((SavePoint)obj).LevelNode = this;
+                    }
+                    else if(obj is RandomEnemySpawner) {
+                        ((RandomEnemySpawner)node).LevelNode = this;
+                    }
+                }
             }
         }
     }

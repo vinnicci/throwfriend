@@ -107,7 +107,7 @@ public static class Global
 
     };
     public static readonly String[] ID01_SET1 = {
-
+        "res://levels/01/EWS1None1.tscn",
     };
     public static readonly String[] ID02_SET1 = {
 
@@ -527,7 +527,7 @@ public static class Global
     
     //SECRET S
     public static readonly String[] ID01_SET1_SECRET_S = {
-
+        "res://levels/01/EWS1SecretS1.tscn",
     };
     public static readonly String[] ID02_SET1_SECRET_S = {
 

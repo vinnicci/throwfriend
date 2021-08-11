@@ -10,7 +10,7 @@ public class HealthPickup : Collectable
         if(player.Health == player.health) {
             return;
         }
-        anim.Play("pickup");
+        TriggerAnim.Play("pickup");
         player.Hit(new Vector2(0,0), -1);
         player.UpdateStatsDisp();
     }

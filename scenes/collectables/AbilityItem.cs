@@ -7,7 +7,7 @@ public class AbilityItem : Collectable
     public override void OnCollectableBodyEntered(Godot.Object body)
     {
         base.OnCollectableBodyEntered(body);
-        anim.Play("pickup");
+        TriggerAnim.Play("pickup");
         Player player = (Player)body;
         player.AvailableUpgrade += 1;
         player.UpdateUpgrade();

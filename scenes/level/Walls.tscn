@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/level/tilemaps/Walls.tres" type="TileSet" id=1]
-[ext_resource path="res://scenes/level/Wall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/level/anim/wall_fade_out.tres" type="Animation" id=2]
+[ext_resource path="res://scenes/level/Walls.cs" type="Script" id=3]
 
-[node name="Walls" instance=ExtResource( 2 )]
+[node name="Walls" type="TileMap"]
 tile_set = ExtResource( 1 )
+cell_tile_origin = 1
+cell_y_sort = true
+collision_bounce = 0.25
+collision_layer = 2
+collision_mask = 0
+format = 1
+script = ExtResource( 3 )
+BoundTriggers = [  ]
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/trigger = ExtResource( 2 )

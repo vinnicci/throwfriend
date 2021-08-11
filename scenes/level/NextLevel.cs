@@ -3,21 +3,32 @@ using System;
 
 public class NextLevel : Area2D, ILevelObject
 {
-    Position2D spawnPos;
     String nextLevel;
     Main mainNode;
     bool proceeding = false;
     Player player;
 
     public String SwitchSignal {get; set;}
+    public AnimationPlayer TriggerAnim {get; set;}
+
     [Export] public bool Persist {get; set;}
+    [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
 
 
     public override void _Ready() {
         base._Ready();
         mainNode = (Main)GetNode("/root/Main");
-        spawnPos = (Position2D)GetNode("SpawnPos");
+        InitLevelObject();
+    }
+
+
+    public void InitLevelObject() {
         SwitchSignal = nameof(Switched);
+    }
+
+
+    public void OnTriggeredAllBoundTriggers(NodePath path) {
+        GD.PrintErr("NextLevel object doesn't implement bound trigger functions.");
     }
 
 
@@ -50,24 +61,27 @@ public class NextLevel : Area2D, ILevelObject
     {
         base._Process(delta);
         if(proceeding && player.WeaponNode.CurrentState == Weapon.States.HELD && LevelNode.PlayerEngaging == 0) {
-            String entr = GetEntrance();
-            mainNode.GoToLevel(GetRandomLevel(), entr, (Player)player, false);
+            mainNode.GoToLevel(GetRandomLevel(), GetEntrance(), (Player)player, false);
             SetProcess(false);
         }
     }
 
 
     String GetRandomLevel() {
+        Vector2 oldCell = (Vector2)mainNode.PlayerSaveFile.Get("CurrentCell");
+        ShiftCurrentCell();
+        Vector2 currentCell = (Vector2)mainNode.PlayerSaveFile.Get("CurrentCell");
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("NextLevels");
-        Vector2 currentCell = (Vector2)mainNode.PlayerSaveFile.Get("CurrentCell");
         Godot.Collections.Dictionary posDict =
         (Godot.Collections.Dictionary)((Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("WorldCells"))[currentCell];
-        if(dict.Contains(currentCell.ToString() + GetPath().ToString())) {
-            return (String)dict[currentCell + GetPath().ToString()];
-        }
         String lvl = "";
-        if((WorldMarker.LevelType)posDict["type"] == WorldMarker.LevelType.Misc) {
+        String key = currentCell.ToString() + GetPath().ToString();
+        if(dict.Contains(key) && (String)dict[key] != "") {
+            return (String)dict[key];
+        }
+        if((WorldMarker.LevelType)posDict["type"] == WorldMarker.LevelType.Misc ||
+        (WorldMarker.LevelType)posDict["type"] == WorldMarker.LevelType.Start) {
             lvl = (String)posDict["scn"];
         }
         else {
@@ -76,7 +90,7 @@ public class NextLevel : Area2D, ILevelObject
             arr.Shuffle();
             lvl = (String)arr[0];
         }
-        LinkToLevel(lvl);
+        LinkToLevel(lvl, oldCell.ToString());
         return lvl;
     }
 
@@ -268,10 +282,10 @@ public class NextLevel : Area2D, ILevelObject
     }
 
 
-    public void LinkToLevel(String lvl) {
+    public void LinkToLevel(String lvl, String cell) {
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("NextLevels");
-        String key = mainNode.PlayerSaveFile.Get("CurrentCell").ToString() + GetPath().ToString();
+        String key = cell + GetPath().ToString();
         dict[key] = lvl;
     }
 
@@ -279,28 +293,23 @@ public class NextLevel : Area2D, ILevelObject
     String GetEntrance() {
         String ent = "";
         switch(Name) {
-            case "N":
-                ent = "S/SpawnPos";
-                ShiftCurrentCell(Vector2.Up);
-                break;
-            case "E":
-                ent = "W/SpawnPos";
-                ShiftCurrentCell(Vector2.Right);
-                break;
-            case "W":
-                ent = "E/SpawnPos";
-                ShiftCurrentCell(Vector2.Left);
-                break;
-            case "S":
-                ent = "N/SpawnPos";
-                ShiftCurrentCell(Vector2.Down);
-                break;
+            case "N": ent = "Objects/S/SpawnPos"; break;
+            case "E": ent = "Objects/W/SpawnPos"; break;
+            case "W": ent = "Objects/E/SpawnPos"; break;
+            case "S": ent = "Objects/N/SpawnPos"; break;
         }
         return ent;
     }
 
 
-    void ShiftCurrentCell(Vector2 to) {
+    void ShiftCurrentCell() {
+        Vector2 to = Vector2.Zero;
+        switch(Name) {
+            case "N": to = Vector2.Up; break;
+            case "E": to = Vector2.Right; break;
+            case "W": to = Vector2.Left; break;
+            case "S": to = Vector2.Down; break;
+        }
         Vector2 currentCell = (Vector2)mainNode.PlayerSaveFile.Get("CurrentCell");
         mainNode.PlayerSaveFile.Set("CurrentCell", currentCell + to);
     }

@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-public abstract class Trigger : Area2D, ILevelObject
+public class Floors : TileMap, ILevelObject
 {
-    public String SwitchSignal {get; set;}
     [Export] public bool Persist {get; set;}
-
     [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
+
+    public String SwitchSignal {get; set;}
     public AnimationPlayer TriggerAnim {get; set;}
 
 
@@ -40,20 +40,10 @@ public abstract class Trigger : Area2D, ILevelObject
     [Signal] public delegate void Switched();
 
 
-    public virtual void OnTriggerAreaEntered(Godot.Object area) {
-        Switch();
-    }
-
-
-    public virtual void OnTriggerBodyEntered(Godot.Object body) {
-        Switch();
-    }
-
-
     public void Switch() {
         TriggerAnim.Play("trigger");
         EmitSignal(nameof(Switched));
     }
-
-
+    
+    
 }

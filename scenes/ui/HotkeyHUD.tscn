@@ -18,7 +18,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.25 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -305, -180 ), Vector2( -305, 200 ) ]
+"values": [ Vector2( -305, -65 ), Vector2( -305, 200 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Panel:rect_position")
@@ -70,7 +70,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.25 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -305, 200 ), Vector2( -305, -180 ) ]
+"values": [ Vector2( -305, 200 ), Vector2( -305, -65 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Panel:rect_position")
@@ -134,13 +134,13 @@ self_modulate = Color( 1, 1, 1, 0.784314 )
 margin_left = -305.0
 margin_top = 200.0
 margin_right = 655.0
-margin_bottom = 450.0
+margin_bottom = 360.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Portrait" type="Sprite" parent="DialoguePanel"]
-position = Vector2( 105, 125 )
+position = Vector2( 102, 81 )
 texture = ExtResource( 3 )
 
 [node name="Name" type="Label" parent="DialoguePanel"]
@@ -158,26 +158,16 @@ margin_left = 211.0
 margin_top = 40.0
 margin_right = 1011.0
 margin_bottom = 233.0
-text = "test
-tet
-t
-t
-t
-t
-aldkfjlajsdf
-alkdjfljksdlf
-a;kldfjlskjd
-sl"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Next" type="Label" parent="DialoguePanel"]
-margin_left = 872.0
-margin_top = 222.0
-margin_right = 945.0
-margin_bottom = 236.0
+margin_left = 881.0
+margin_top = 140.0
+margin_right = 954.0
+margin_bottom = 154.0
 text = "Spacebar>>"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -186,6 +176,8 @@ __meta__ = {
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/hide_dialogue = SubResource( 1 )
 anims/show_dialogue = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
 
 [editable path="Panel/HKHudSlot1"]
 [editable path="Panel/HKHudSlot2"]

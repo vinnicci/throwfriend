@@ -25,7 +25,7 @@ public class Main : Node
     }
 
 
-    const String STARTING_SCENE = "res://levels/111None1.tscn";
+    const String STARTING_SCENE = "res://levels/misc/Tutorial.tscn";
 
 
     public void NewGame() {
@@ -37,7 +37,7 @@ public class Main : Node
         LevelSaveFile = (Resource)Saver.Get("level_save_file");
         WorldSaveFile = (Resource)Saver.Get("world_save_file");
         ((WorldLayout)GameNode.GetNode("WorldLayout")).GenerateLayout();
-        GoToLevel(STARTING_SCENE, "SavePoint", (Player)playerPack.Instance(), false);
+        GoToLevel(STARTING_SCENE, "Objects/SavePoint", (Player)playerPack.Instance(), false);
     }
 
 
@@ -84,7 +84,7 @@ public class Main : Node
         if(VerifySaveFile(PlayerSaveFile, saveDataArr) == false) {
             return;
         }
-        GoToLevel(LoadLvl(), "SavePoint", player, true);
+        GoToLevel(LoadLvl(), "Objects/SavePoint", player, true);
     }
 
 
@@ -207,7 +207,7 @@ public class Main : Node
             return;
         }
         //init save file dict
-        foreach(Node2D node in currentLevel.GetChildren()) {
+        foreach(Node2D node in currentLevel.GetNode<Node2D>("Objects").GetChildren()) {
             if(node is Collectable) {
                 InitLevelObject(node, levelDataArr[0]);
             }
@@ -215,7 +215,7 @@ public class Main : Node
                 InitLevelObject(node, levelDataArr[1]);
             }
             //secret walls and stuff
-            else if(node is Wall) {
+            else if(node is Walls) {
                 InitLevelObject(node, levelDataArr[2]);
             }
             else if(node is NextLevel) {
@@ -304,10 +304,10 @@ public class Main : Node
             LoadPlayerData(player);
         }
         InitLevelData();
-        //link entrance to current level within world data
+        //link entrance to current level
         Node2D entrance = spawnPos.GetParentOrNull<Node2D>();
         if(entrance is NextLevel) {
-            ((NextLevel)entrance).LinkToLevel(prevLvlPack);
+            ((NextLevel)entrance).LinkToLevel(prevLvlPack, PlayerSaveFile.Get("CurrentCell").ToString());
         }
         player.IsStopped = false;
         Saver.Call("save_level_data");
@@ -317,6 +317,7 @@ public class Main : Node
 
     void ApplyEnemyStrengthMult(Level lvl) {
         Vector2 currentCell = (Vector2)PlayerSaveFile.Get("CurrentCell");
+        GD.Print(currentCell);
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)((Godot.Collections.Dictionary)WorldSaveFile.Get("WorldCells"))[currentCell];
         lvl.enemyHealthMult = (float)dict["hpMult"];
