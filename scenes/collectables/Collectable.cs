@@ -7,7 +7,8 @@ public abstract class Collectable : Area2D, ISpawnable, ILevelObject
     [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
 
     public AnimationPlayer TriggerAnim {get; set;}
-    public String SwitchSignal {get; set;}
+    public String SwitchedOnSignal {get; set;}
+    public String SwitchedOffSignal {get; set;}
 
 
     public override void _Ready()
@@ -18,21 +19,23 @@ public abstract class Collectable : Area2D, ISpawnable, ILevelObject
 
 
     public void InitLevelObject() {
-        SwitchSignal = nameof(Switched);
+        SwitchedOnSignal = nameof(SwitchedOn);
+        SwitchedOffSignal = nameof(SwitchedOff);
         TriggerAnim = (AnimationPlayer)GetNode("Anim");
     }
 
 
-    public void OnTriggeredAllBoundTriggers(NodePath path) {
-        GD.PrintErr("Collectable doesn't implement bound trigger functions.");
+    public void OnTriggeredAllBoundTriggers(NodePath path, bool triggered) {
+        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnTriggeredAllBoundTriggers));
     }
 
 
-    [Signal] public delegate void Switched();
+    [Signal] public delegate void SwitchedOn();
+    [Signal] public delegate void SwitchedOff();
 
 
     public virtual void OnCollectableBodyEntered(Godot.Object body) {
-        EmitSignal(nameof(Switched));
+        EmitSignal(SwitchedOnSignal);
     }
 
 
@@ -41,8 +44,13 @@ public abstract class Collectable : Area2D, ISpawnable, ILevelObject
     }
 
 
-    public void Switch() {
+    public void OnSwitchedOn() {
         QueueFree();
+    }
+
+
+    public void OnSwitchedOff() {
+        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnSwitchedOff));
     }
 
 

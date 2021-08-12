@@ -8,7 +8,8 @@ public class NextLevel : Area2D, ILevelObject
     bool proceeding = false;
     Player player;
 
-    public String SwitchSignal {get; set;}
+    public String SwitchedOnSignal {get; set;}
+    public String SwitchedOffSignal {get; set;}
     public AnimationPlayer TriggerAnim {get; set;}
 
     [Export] public bool Persist {get; set;}
@@ -23,12 +24,13 @@ public class NextLevel : Area2D, ILevelObject
 
 
     public void InitLevelObject() {
-        SwitchSignal = nameof(Switched);
+        SwitchedOnSignal = nameof(SwitchedOn);
+        SwitchedOffSignal = nameof(SwitchedOff);
     }
 
 
-    public void OnTriggeredAllBoundTriggers(NodePath path) {
-        GD.PrintErr("NextLevel object doesn't implement bound trigger functions.");
+    public void OnTriggeredAllBoundTriggers(NodePath path, bool triggered) {
+        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnTriggeredAllBoundTriggers));
     }
 
 
@@ -37,14 +39,14 @@ public class NextLevel : Area2D, ILevelObject
 
     void OnNextLevelBodyEntered(Godot.Object body) {
         if(body is Player) {
-            EmitSignal(nameof(Switched));
+            EmitSignal(nameof(SwitchedOn));
             player = (Player)body;
             proceeding = true;
             if(player.WeaponNode.CurrentState != Weapon.States.HELD) {
                 player.WarnPlayer("YOU MUST CARRY SNARK TO PROCEED");
             }
             else if(LevelNode.PlayerEngaging > 0) {
-                player.WarnPlayer("CAN'T PROCEED WHILE ENGAGING WITH ENEMIES");
+                player.WarnPlayer("CAN'T PROCEED WHILE ENEMIES ARE TRACKING YOU");
             }
         }
     }
@@ -315,14 +317,21 @@ public class NextLevel : Area2D, ILevelObject
     }
 
 
-    [Signal] public delegate void Switched();
+    [Signal] public delegate void SwitchedOn();
+    [Signal] public delegate void SwitchedOff();
 
 
-    public void Switch() {
+
+    public void OnSwitchedOn() {
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("NextLevels");
         String key = mainNode.PlayerSaveFile.Get("CurrentCell").ToString() + GetPath().ToString();
         nextLevel = (String)dict[key];
+    }
+
+
+    public void OnSwitchedOff() {
+        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnSwitchedOff));
     }
 
 

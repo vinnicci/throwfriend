@@ -192,8 +192,8 @@ public class Main : Node
         String[] levelDataArr = {
             "Collectables",
             "Triggers",
-            "Walls",
-            "NextLevels"
+            "NextLevels",
+            "Enemies",
         };
         if(VerifySaveFile(LevelSaveFile, levelDataArr) == false) {
             return;
@@ -201,12 +201,13 @@ public class Main : Node
         String[] worldDataArr = {
             "NextLevels",
             "EnemySpawns",
-            "WorldCells"
+            "WorldCells",
         };
         if(VerifySaveFile(WorldSaveFile, worldDataArr) == false) {
             return;
         }
         //init save file dict
+        //lvl objects
         foreach(Node2D node in currentLevel.GetNode<Node2D>("Objects").GetChildren()) {
             if(node is Collectable) {
                 InitLevelObject(node, levelDataArr[0]);
@@ -214,18 +215,19 @@ public class Main : Node
             else if(node is Trigger) {
                 InitLevelObject(node, levelDataArr[1]);
             }
-            //secret walls and stuff
-            else if(node is Walls) {
-                InitLevelObject(node, levelDataArr[2]);
-            }
             else if(node is NextLevel) {
-                InitLevelObject(node, levelDataArr[3]);
+                InitLevelObject(node, levelDataArr[2]);
                 //enlist to world data
                 Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)WorldSaveFile.Get("NextLevels");
                 String key = PlayerSaveFile.Get("CurrentCell").ToString() + node.GetPath().ToString();
                 if(dict.Contains(key) == false) {
                     dict.Add(key, "");
                 }
+            }
+        }
+        foreach(Enemy enemy in currentLevel.GetNode<Node2D>("Enemies").GetChildren()) {
+            if(enemy.Persist) {
+                InitLevelObject(enemy, "Enemies");
             }
         }
     }
@@ -241,14 +243,14 @@ public class Main : Node
             dict.Add(key, true);
         }
         else if((bool)dict[key] == false) {
-            ((ILevelObject)levelObj).Switch();
+            ((ILevelObject)levelObj).OnSwitchedOn();
         }
         Godot.Collections.Array arr = new Godot.Collections.Array();
         //pass path
         arr.Add(key);
         //pass type
         arr.Add(objType);
-        levelObj.Connect(((ILevelObject)levelObj).SwitchSignal, this, nameof(OnLevelObjectSwitched), arr);
+        levelObj.Connect(((ILevelObject)levelObj).SwitchedOnSignal, this, nameof(OnLevelObjectSwitched), arr);
     }
 
 
@@ -317,7 +319,6 @@ public class Main : Node
 
     void ApplyEnemyStrengthMult(Level lvl) {
         Vector2 currentCell = (Vector2)PlayerSaveFile.Get("CurrentCell");
-        GD.Print(currentCell);
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)((Godot.Collections.Dictionary)WorldSaveFile.Get("WorldCells"))[currentCell];
         lvl.enemyHealthMult = (float)dict["hpMult"];

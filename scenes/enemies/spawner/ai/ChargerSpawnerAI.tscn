@@ -6,6 +6,7 @@
 
 [node name="AI" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+detection_range = 750
 seek_dist = 300
 too_far_dist = 350
 flee_ray_len = 90

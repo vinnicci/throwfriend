@@ -33,6 +33,7 @@ miscLevelFile = "res://test scenes/TestLevel1.tscn"
 [node name="FirstEncounter" parent="." instance=ExtResource( 3 )]
 position = Vector2( -25.4313, 73.9007 )
 levelType = 8
+miscLevelFile = "res://levels/misc/FirstBigEncounter.tscn"
 
 [node name="Hub" parent="." instance=ExtResource( 3 )]
 position = Vector2( -24.7624, 25.0115 )

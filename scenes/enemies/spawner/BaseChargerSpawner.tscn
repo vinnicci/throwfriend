@@ -100,7 +100,6 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper2" type="Bone2D" parent="Sprite/Skeleton2D/Root/Upper" index="0"]
 position = Vector2( 0, -23 )
-rotation = 1.19209e-07
 rest = Transform2D( 1, 0, 0, 1, 0, -23 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -161,8 +160,8 @@ gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
 gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="UpperTC" parent="Sprite" index="3" instance=ExtResource( 14 )]
-Enabled = true
 Targets = [ NodePath("../Skeleton2D/Root/Upper") ]
+Enabled = true
 Position/ClampedX = false
 Position/ClampedY = false
 Scale/ClampedX = false
@@ -220,6 +219,7 @@ margin_top = -107.0
 margin_bottom = -101.0
 
 [node name="AI" parent="." index="4" instance=ExtResource( 12 )]
+detection_range = 750
 flee_ray_len = 100
 
 [node name="DamageAnim" parent="Anims" index="1"]

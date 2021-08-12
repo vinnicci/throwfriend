@@ -380,7 +380,7 @@ public static class Global
 
     };
     public static readonly String[] ID14_SET1_SECRET = {
-
+        "res://levels/14/N1Secret1.tscn",
     };
     public static readonly String[] ID07_SET2_SECRET = {
 
@@ -562,6 +562,11 @@ public static class Global
     public static readonly String[] ID08_SET3_SECRET_S = {
 
     };
+
+    
+    public static void PrintErrNotImplemented(String className, String funcName) {
+        GD.PrintErr(className + ", " + funcName + ": Function not implemented.");
+    }
 
 
 }

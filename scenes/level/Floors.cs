@@ -6,7 +6,8 @@ public class Floors : TileMap, ILevelObject
     [Export] public bool Persist {get; set;}
     [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
 
-    public String SwitchSignal {get; set;}
+    public String SwitchedOnSignal {get; set;}
+    public String SwitchedOffSignal {get; set;}
     public AnimationPlayer TriggerAnim {get; set;}
 
 
@@ -18,31 +19,48 @@ public class Floors : TileMap, ILevelObject
 
 
     public void InitLevelObject() {
-        SwitchSignal = nameof(Switched);
+        SwitchedOnSignal = nameof(SwitchedOn);
+        SwitchedOffSignal = nameof(SwitchedOff);
         TriggerAnim = (AnimationPlayer)GetNode("Anim");
         foreach(NodePath nodePath in BoundTriggers) {
             Node2D node = GetNodeOrNull<Node2D>(nodePath);
             Godot.Collections.Array arr = new Godot.Collections.Array();
             arr.Add(nodePath);
-            node.Connect("Switched", this, nameof(OnTriggeredAllBoundTriggers), arr);
+            arr.Add(true);
+            node.Connect("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers), arr);
+            arr = new Godot.Collections.Array();
+            arr.Add(nodePath);
+            arr.Add(false);
+            node.Connect("SwitchedOff", this, nameof(OnTriggeredAllBoundTriggers), arr);
         }
     }
 
 
-    public void OnTriggeredAllBoundTriggers(NodePath path) {
-        BoundTriggers.Remove(path);
+    public void OnTriggeredAllBoundTriggers(NodePath path, bool triggered) {
+        if(triggered) {
+            BoundTriggers.Remove(path);
+        }
+        else {
+            BoundTriggers.Add(path);
+        }
         if(BoundTriggers.Count == 0) {
-            Switch();
+            OnSwitchedOn();
         }
     }
 
 
-    [Signal] public delegate void Switched();
+    [Signal] public delegate void SwitchedOn();
+    [Signal] public delegate void SwitchedOff();
 
 
-    public void Switch() {
+    public void OnSwitchedOn() {
         TriggerAnim.Play("trigger");
-        EmitSignal(nameof(Switched));
+        EmitSignal(SwitchedOnSignal);
+    }
+
+
+    public void OnSwitchedOff() {
+        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnSwitchedOff));
     }
     
     

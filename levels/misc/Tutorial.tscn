@@ -101,7 +101,7 @@ stringArr = [ "Let's try throwing.", "Aim with mouse, and then press LMB to thro
 position = Vector2( -414, 82 )
 portrait = ExtResource( 6 )
 name = "Tutorial"
-stringArr = [ "Now you know the basics.", "But be careful this time, monsters ahead will attack you." ]
+stringArr = [ "Now you know the basics.", "Good luck." ]
 
 [node name="InvisibleWalls" parent="Objects" index="10"]
 visible = false

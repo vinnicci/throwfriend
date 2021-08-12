@@ -33,4 +33,6 @@ BoundTriggers = [  ]
 anims/trigger = SubResource( 1 )
 
 [connection signal="area_entered" from="." to="." method="OnTriggerAreaEntered"]
+[connection signal="area_exited" from="." to="." method="OnTriggerAreaExited"]
 [connection signal="body_entered" from="." to="." method="OnTriggerBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnTriggerBodyExited"]

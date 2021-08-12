@@ -1,13 +1,14 @@
 using Godot;
 using System;
 
-public abstract class Enemy : Entity, ISpawner
+public abstract class Enemy : Entity, ISpawner, ILevelObject
 {
     [Export] protected Godot.Collections.Dictionary<String, float> acts =
     new Godot.Collections.Dictionary<String, float>();
     [Export] protected Godot.Collections.Array<int> patrolPoints =
     new Godot.Collections.Array<int>();
     [Export] public Godot.Collections.Dictionary<String, PackedScene> spawnScenes {get; set;}
+    [Export] public bool Persist {get; set;}
 
     Level levelNode;
     public Level LevelNode {
@@ -28,8 +29,15 @@ public abstract class Enemy : Entity, ISpawner
         }
     }
     public EnemyWeapon WeaponNode {get; protected set;}
-    protected Explosion ExplosionNode {get; private set;}
+    public String SwitchedOnSignal {get; set;}
+    public String SwitchedOffSignal {get; set;}
+    
+    //not implemented
+    public AnimationPlayer TriggerAnim {get; set;}
+    public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
+
     Node2D aINode;
+    protected Explosion ExplosionNode {get; private set;}    
     protected Godot.Collections.Dictionary ActDict {get; private set;}
 
 
@@ -43,6 +51,33 @@ public abstract class Enemy : Entity, ISpawner
         foreach(String act in acts.Keys) {
             InitAct(act, acts[act]);
         }
+        InitLevelObject();
+    }
+
+
+    [Signal] public delegate void SwitchedOn();
+    [Signal] public delegate void SwitchedOff();
+
+
+
+    public void InitLevelObject() {
+        SwitchedOnSignal = nameof(SwitchedOn);
+        SwitchedOffSignal = nameof(SwitchedOff);
+    }
+
+
+    public void OnSwitchedOn() {
+        QueueFree();
+    }
+
+
+    public void OnSwitchedOff() {
+        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnSwitchedOff));
+    }
+
+
+    public void OnTriggeredAllBoundTriggers(NodePath path, bool triggered) {
+        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnTriggeredAllBoundTriggers));
     }
 
 
@@ -134,6 +169,7 @@ public abstract class Enemy : Entity, ISpawner
                 if(GD.RandRange(0, 100) <= CHANCE_HP_DROP) {
                     CallDeferred(nameof(SpawnInstance), "hp_drop", 1);
                 }
+                EmitSignal(nameof(SwitchedOn));
             }
             return true;
         }
