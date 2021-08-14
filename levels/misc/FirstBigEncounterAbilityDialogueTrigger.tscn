@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://scenes/level/DialogueTrigger.tscn" type="PackedScene" id=2]
+
+[node name="DialogueTrigger" instance=ExtResource( 2 )]
+portrait = ExtResource( 1 )
+name = "Ability"
+stringArr = [ "You found an ability item.", "Press TAB to open the in-game menu.", "Some abilities require activation. You can change its keybinding by pressing the hotkey button in the corresponding ability slot." ]

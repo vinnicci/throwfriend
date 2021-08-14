@@ -60,6 +60,7 @@ public class Main : Node
 
     public void LoadGame() {
         if(VerifyDir() == false) {
+            MainMenuNode.Show();
             return;
         }
         PackedScene playerPack = (PackedScene)ResourceLoader.Load("res://scenes/player/Player.tscn");
@@ -191,6 +192,7 @@ public class Main : Node
     void InitLevelData() {
         String[] levelDataArr = {
             "Collectables",
+            "Tiles",
             "Triggers",
             "NextLevels",
             "Enemies",
@@ -202,6 +204,7 @@ public class Main : Node
             "NextLevels",
             "EnemySpawns",
             "WorldCells",
+            "Quests",
         };
         if(VerifySaveFile(WorldSaveFile, worldDataArr) == false) {
             return;
@@ -210,13 +213,16 @@ public class Main : Node
         //lvl objects
         foreach(Node2D node in currentLevel.GetNode<Node2D>("Objects").GetChildren()) {
             if(node is Collectable) {
-                InitLevelObject(node, levelDataArr[0]);
+                InitLevelObject(node, "Collectables");
             }
+            else if(node is Walls || node is Floors || node is Props) {
+                InitLevelObject(node, "Tiles");
+            } 
             else if(node is Trigger) {
-                InitLevelObject(node, levelDataArr[1]);
+                InitLevelObject(node, "Triggers");
             }
             else if(node is NextLevel) {
-                InitLevelObject(node, levelDataArr[2]);
+                InitLevelObject(node, "NextLevels");
                 //enlist to world data
                 Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)WorldSaveFile.Get("NextLevels");
                 String key = PlayerSaveFile.Get("CurrentCell").ToString() + node.GetPath().ToString();
@@ -224,16 +230,31 @@ public class Main : Node
                     dict.Add(key, "");
                 }
             }
+            if(node is IQuest) {
+                //add object quest ID to world save file
+                Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)WorldSaveFile.Get("Quests");
+                String key = ((IQuest)node).QuestID;
+                if(dict.Contains(key) == false) {
+                    dict.Add(key, new Godot.Collections.Array());
+                }
+                ((IQuest)node).CheckQuest();
+            }
         }
         foreach(Enemy enemy in currentLevel.GetNode<Node2D>("Enemies").GetChildren()) {
-            if(enemy.Persist) {
-                InitLevelObject(enemy, "Enemies");
+            InitLevelObject(enemy, "Enemies");
+            if(enemy is IQuest) {
+                //add enemy quest ID to world save file
+                Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)WorldSaveFile.Get("Quests");
+                String key = ((IQuest)enemy).QuestID;
+                if(dict.Contains(key) == false) {
+                    dict.Add(key, new Godot.Collections.Array());
+                }
             }
         }
     }
 
 
-    void InitLevelObject(Node2D levelObj, String objType) {
+    public void InitLevelObject(Node2D levelObj, String objType) {
         if(((ILevelObject)levelObj).Persist == false) {
             return;
         }
@@ -297,7 +318,7 @@ public class Main : Node
         }
         PackedScene lvlPack = (PackedScene)ResourceLoader.Load(fileName); 
         currentLevel = (Level)lvlPack.Instance();
-        ApplyEnemyStrengthMult(currentLevel);
+        ApplyEnemyMult(currentLevel);
         currentLevel.AddChild(player);
         GameNode.AddChild(currentLevel);
         Node2D spawnPos = currentLevel.GetNodeOrNull<Node2D>(nodePos);
@@ -317,12 +338,14 @@ public class Main : Node
     }
 
 
-    void ApplyEnemyStrengthMult(Level lvl) {
+    void ApplyEnemyMult(Level lvl) {
         Vector2 currentCell = (Vector2)PlayerSaveFile.Get("CurrentCell");
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)((Godot.Collections.Dictionary)WorldSaveFile.Get("WorldCells"))[currentCell];
-        lvl.enemyHealthMult = (float)dict["hpMult"];
-        lvl.enemySpeedMult = (float)dict["speedMult"];
+        if(lvl.overrideableEnemyMults) {
+            lvl.enemyHealthMult = (float)dict["hpMult"];
+            lvl.enemySpeedMult = (float)dict["speedMult"];
+        }
     }
 
 

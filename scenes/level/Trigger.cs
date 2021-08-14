@@ -73,13 +73,13 @@ public abstract class Trigger : Area2D, ILevelObject
     }
 
 
-    public void OnSwitchedOn() {
+    public virtual void OnSwitchedOn() {
         TriggerAnim.Play("trigger");
         EmitSignal(SwitchedOnSignal);
     }
 
 
-    public void OnSwitchedOff() {
+    public virtual void OnSwitchedOff() {
         if(Persist) {
             return;
         }

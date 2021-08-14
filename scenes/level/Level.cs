@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public abstract class Level : YSort
 {
+    [Export] public bool overrideableEnemyMults = true;
     [Export] public float enemyHealthMult = 1;
     [Export] public float enemySpeedMult = 1;
 

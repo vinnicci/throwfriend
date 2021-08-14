@@ -4,10 +4,10 @@ using System;
 public class NextLevel : Area2D, ILevelObject
 {
     String nextLevel;
-    Main mainNode;
     bool proceeding = false;
     Player player;
 
+    public Main MainNode {get; set;}
     public String SwitchedOnSignal {get; set;}
     public String SwitchedOffSignal {get; set;}
     public AnimationPlayer TriggerAnim {get; set;}
@@ -18,7 +18,7 @@ public class NextLevel : Area2D, ILevelObject
 
     public override void _Ready() {
         base._Ready();
-        mainNode = (Main)GetNode("/root/Main");
+        MainNode = (Main)GetNode("/root/Main");
         InitLevelObject();
     }
 
@@ -63,20 +63,20 @@ public class NextLevel : Area2D, ILevelObject
     {
         base._Process(delta);
         if(proceeding && player.WeaponNode.CurrentState == Weapon.States.HELD && LevelNode.PlayerEngaging == 0) {
-            mainNode.GoToLevel(GetRandomLevel(), GetEntrance(), (Player)player, false);
+            MainNode.GoToLevel(GetRandomLevel(), GetEntrance(), (Player)player, false);
             SetProcess(false);
         }
     }
 
 
     String GetRandomLevel() {
-        Vector2 oldCell = (Vector2)mainNode.PlayerSaveFile.Get("CurrentCell");
+        Vector2 oldCell = (Vector2)MainNode.PlayerSaveFile.Get("CurrentCell");
         ShiftCurrentCell();
-        Vector2 currentCell = (Vector2)mainNode.PlayerSaveFile.Get("CurrentCell");
+        Vector2 currentCell = (Vector2)MainNode.PlayerSaveFile.Get("CurrentCell");
         Godot.Collections.Dictionary dict =
-        (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("NextLevels");
+        (Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("NextLevels");
         Godot.Collections.Dictionary posDict =
-        (Godot.Collections.Dictionary)((Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("WorldCells"))[currentCell];
+        (Godot.Collections.Dictionary)((Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("WorldCells"))[currentCell];
         String lvl = "";
         String key = currentCell.ToString() + GetPath().ToString();
         if(dict.Contains(key) && (String)dict[key] != "") {
@@ -286,7 +286,7 @@ public class NextLevel : Area2D, ILevelObject
 
     public void LinkToLevel(String lvl, String cell) {
         Godot.Collections.Dictionary dict =
-        (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("NextLevels");
+        (Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("NextLevels");
         String key = cell + GetPath().ToString();
         dict[key] = lvl;
     }
@@ -312,8 +312,8 @@ public class NextLevel : Area2D, ILevelObject
             case "W": to = Vector2.Left; break;
             case "S": to = Vector2.Down; break;
         }
-        Vector2 currentCell = (Vector2)mainNode.PlayerSaveFile.Get("CurrentCell");
-        mainNode.PlayerSaveFile.Set("CurrentCell", currentCell + to);
+        Vector2 currentCell = (Vector2)MainNode.PlayerSaveFile.Get("CurrentCell");
+        MainNode.PlayerSaveFile.Set("CurrentCell", currentCell + to);
     }
 
 
@@ -324,8 +324,8 @@ public class NextLevel : Area2D, ILevelObject
 
     public void OnSwitchedOn() {
         Godot.Collections.Dictionary dict =
-        (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("NextLevels");
-        String key = mainNode.PlayerSaveFile.Get("CurrentCell").ToString() + GetPath().ToString();
+        (Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("NextLevels");
+        String key = MainNode.PlayerSaveFile.Get("CurrentCell").ToString() + GetPath().ToString();
         nextLevel = (String)dict[key];
     }
 
