@@ -166,7 +166,7 @@ points = PoolVector2Array( 64, 128, 0, 128, 0, 64, 64, 64 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 10/z_index = 0
-11/name = "5 Shrub"
+11/name = "4 Shrub"
 11/texture = ExtResource( 1 )
 11/tex_offset = Vector2( 0, 0 )
 11/modulate = Color( 1, 1, 1, 1 )
@@ -187,7 +187,7 @@ points = PoolVector2Array( 64, 128, 0, 128, 0, 64, 64, 64 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 11/z_index = 0
-12/name = "6 Shrub"
+12/name = "5 Shrub"
 12/texture = ExtResource( 1 )
 12/tex_offset = Vector2( 0, 0 )
 12/modulate = Color( 1, 1, 1, 1 )

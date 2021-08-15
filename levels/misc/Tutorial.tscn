@@ -97,7 +97,7 @@ position = Vector2( 336, 441 )
 position = Vector2( 336, 441 )
 portrait = ExtResource( 6 )
 name = "Tutorial: Moving"
-stringArr = [ "Greetings, guardian. Your mission is to defeat these invading monsters.", "To truly wipe out their forces. You need to find and eliminate their commanders.", "Let's warm up first.", "Press WASD to move." ]
+stringArr = [ "Greetings, guardian. Your mission is to defeat these invading monsters.", "To truly wipe out their forces, you need to find and eliminate their commanders.", "Let's warm up first.", "Press WASD to move." ]
 
 [node name="DialogueTrigger2" parent="Objects" index="8" instance=ExtResource( 4 )]
 position = Vector2( 33, 444 )
