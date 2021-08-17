@@ -47,7 +47,7 @@ public abstract class Level : YSort
                         ((SavePoint)obj).LevelNode = this;
                     }
                     else if(obj is RandomEnemySpawner) {
-                        ((RandomEnemySpawner)node).LevelNode = this;
+                        ((RandomEnemySpawner)obj).LevelNode = this;
                     }
                 }
             }

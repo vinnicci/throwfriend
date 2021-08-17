@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract class Walls : TileMap, ILevelObject
+public class Walls : TileMap, ILevelObject
 {
     [Export] public bool Persist {get; set;}
     [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
@@ -37,11 +37,17 @@ public abstract class Walls : TileMap, ILevelObject
 
 
     public void OnTriggeredAllBoundTriggers(NodePath path, bool triggered) {
+        if(Persist && BoundTriggers.Count == 0) {
+            return;
+        }
         if(triggered) {
             BoundTriggers.Remove(path);
         }
         else {
-            BoundTriggers.Add(path);
+            if(BoundTriggers.Count == 0) {
+                OnSwitchedOff();
+            }
+            BoundTriggers.Add(path);            
         }
         if(BoundTriggers.Count == 0) {
             OnSwitchedOn();
@@ -54,13 +60,17 @@ public abstract class Walls : TileMap, ILevelObject
 
 
     public void OnSwitchedOn() {
-        TriggerAnim.Play("trigger");
+        TriggerAnim.Queue("trigger");
         EmitSignal(SwitchedOnSignal);
     }
 
 
-    public void OnSwitchedOff() {
-        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnSwitchedOff));
+    public virtual void OnSwitchedOff() {
+        if(Persist) {
+            return;
+        }
+        TriggerAnim.Queue("trigger_back");
+        EmitSignal(SwitchedOffSignal);
     }
 
 

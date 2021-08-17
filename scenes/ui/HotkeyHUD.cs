@@ -36,9 +36,10 @@ public class HotkeyHUD : Control
     }
 
 
-    public void ShowDialogue(Texture portrait, String name, Godot.Collections.Array stringArr) {
+    public void ShowDialogue(Texture portrait, String name, Godot.Collections.Array stringArr, float portraitScale) {
         anim.Queue("show_dialogue");
         dialoguePortrait.Texture = portrait;
+        dialoguePortrait.Scale = new Vector2(portraitScale, portraitScale);
         dialogueSpeaker.Text = name;
         dialogueArr = stringArr;
         currentDialogueSlot = 0;

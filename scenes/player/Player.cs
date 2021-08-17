@@ -202,7 +202,7 @@ public class Player : Entity
         if(Input.IsActionJustPressed("in_game_ui") && settings.Visible == false &&
         inGameUIAnim.IsPlaying() == false) {
             if(hasWeap == false) {
-                WarnPlayer("YOU MUST CARRY SNARK TO OPEN INGAME MENU");
+                WarnPlayer("YOU MUST CARRY SNARK TO OPEN THE IN-GAME MENU");
             }
             else if(inGameUI.Visible == false) {
                 inGameUIAnim.Play("enter");
@@ -346,9 +346,10 @@ public class Player : Entity
     }
 
 
-    public void TriggerDialogue(Texture portrait, String name, Godot.Collections.Array stringArr, bool show) {
+    public void TriggerDialogue(Texture portrait, String name, Godot.Collections.Array stringArr,
+    float portraitScale, bool show) {
         if(show) {
-            hotkeyHUD.ShowDialogue(portrait, name, stringArr);
+            hotkeyHUD.ShowDialogue(portrait, name, stringArr, portraitScale);
         }
         else {
             hotkeyHUD.HideDialogue();

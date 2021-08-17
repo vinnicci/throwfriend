@@ -37,7 +37,7 @@ public class Main : Node
         LevelSaveFile = (Resource)Saver.Get("level_save_file");
         WorldSaveFile = (Resource)Saver.Get("world_save_file");
         ((WorldLayout)GameNode.GetNode("WorldLayout")).GenerateLayout();
-        GoToLevel(STARTING_SCENE, "Objects/SavePoint", (Player)playerPack.Instance(), false);
+        GoToLevel(STARTING_SCENE, "Objects/SavePoint/Pos", (Player)playerPack.Instance(), false);
     }
 
 
@@ -85,7 +85,7 @@ public class Main : Node
         if(VerifySaveFile(PlayerSaveFile, saveDataArr) == false) {
             return;
         }
-        GoToLevel(LoadLvl(), "Objects/SavePoint", player, true);
+        GoToLevel(LoadLvl(), "Objects/SavePoint/Pos", player, true);
     }
 
 

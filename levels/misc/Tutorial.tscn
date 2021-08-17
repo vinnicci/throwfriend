@@ -1,14 +1,17 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/level/SavePoint.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/level/DialogueTrigger.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/misc/TutorialE.cs" type="Script" id=5]
-[ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://assets/npcs/tex_npc_head.png" type="Texture" id=6]
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/blob/NeutralBlob.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/Melee.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/items/tex_speed.png" type="Texture" id=10]
+[ext_resource path="res://assets/player/tex_weapon.png" type="Texture" id=11]
+[ext_resource path="res://assets/npcs/tex_npc_head_smile.png" type="Texture" id=12]
 
 [node name="Tutorial" instance=ExtResource( 1 )]
 
@@ -85,32 +88,41 @@ script = ExtResource( 5 )
 portrait = ExtResource( 6 )
 name = "Town"
 stringArr = [ "The town is this way.", "You can come back once you've completed your mission." ]
+portraitScale = 4.0
 
 [node name="W" parent="Objects" index="5" instance=ExtResource( 2 )]
 position = Vector2( -1109, 632 )
 
 [node name="SavePoint" parent="Objects" index="6" instance=ExtResource( 3 )]
 visible = false
-position = Vector2( 336, 441 )
+position = Vector2( 336, 375 )
+
+[node name="StaticBody2D" parent="Objects/SavePoint/Sprite" index="0"]
+collision_layer = 0
 
 [node name="DialogueTrigger" parent="Objects" index="7" instance=ExtResource( 4 )]
 position = Vector2( 336, 441 )
-portrait = ExtResource( 6 )
+portrait = ExtResource( 10 )
 name = "Tutorial: Moving"
-stringArr = [ "Greetings, guardian. Your mission is to defeat these invading monsters.", "To truly wipe out their forces, you need to find and eliminate their commanders.", "Let's warm up first.", "Press WASD to move." ]
+stringArr = [ "Greetings, guardian. Your mission is to defeat the invading monsters.", "You need to find and eliminate their commanders.", "Let's warm up first.", "Press WASD to move." ]
+portraitScale = 2.0
 
 [node name="DialogueTrigger2" parent="Objects" index="8" instance=ExtResource( 4 )]
 position = Vector2( 33, 444 )
-portrait = ExtResource( 6 )
+portrait = ExtResource( 11 )
 name = "Tutorial: Throwing"
-stringArr = [ "As the guardian, you are entrusted with an ally to help you out with this mission.", "Snark is capable of smashing your enemies. All you have to do is throw him to the enemies' direction.", "Let's try it.", "Aim with mouse, and then press LMB to throw Snark." ]
+stringArr = [ "As the guardian, you will be joined by an ally to help you out in this mission.", "Snark will chomp the enemies. All you have to do is throw him to the enemies' direction.", "Let's try it.", "Aim with mouse, and then press LMB to throw Snark." ]
+portraitScale = 1.5
 
 [node name="DialogueTrigger3" parent="Objects" index="9" instance=ExtResource( 4 )]
 position = Vector2( -414, 82 )
-portrait = ExtResource( 6 )
+portrait = ExtResource( 12 )
 name = "Tutorial"
-stringArr = [ "Now you know the basics.", "Good luck." ]
+stringArr = [ "That's all for the basics.", "Good luck." ]
+portraitScale = 4.0
 
 [node name="InvisibleWalls" parent="Objects" index="10"]
 visible = false
 tile_data = PoolIntArray( 393226, 1, 65538, 458762, 1, 65538, 655341, 1, 65538, 720877, 1, 65538 )
+
+[editable path="Objects/SavePoint"]
