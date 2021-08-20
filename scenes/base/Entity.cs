@@ -148,16 +148,22 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         }
         Health -= damage;
         if(Health <= 0) {
-            EmitSignal(nameof(Died));
-            IsDead = true;
-            anim.Stop();
-            anim.Play("die");
-            SetCollisionLayerBit(Global.BIT_MASK_ENEMY, false);
-            SetCollisionLayerBit(Global.BIT_MASK_PLAYER, false);
+            Die();
         }
         Health = Godot.Mathf.Clamp(Health, 0, health);
         healthHUD.UpdateHealth();
         return true;
+    }
+
+
+    public void Die() {
+        healthHUD.Visible = false;
+        EmitSignal(nameof(Died));
+        IsDead = true;
+        anim.Stop();
+        anim.Play("die");
+        SetCollisionLayerBit(Global.BIT_MASK_ENEMY, false);
+        SetCollisionLayerBit(Global.BIT_MASK_PLAYER, false);
     }
 
 

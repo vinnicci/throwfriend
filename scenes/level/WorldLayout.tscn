@@ -9,7 +9,7 @@ script = ExtResource( 1 )
 
 [node name="WorldTileMap1" parent="." instance=ExtResource( 2 )]
 modulate = Color( 1, 0.658824, 0.278431, 1 )
-tile_data = PoolIntArray( -4, 1, 0, -3, 9, 0, -2, 5, 0, 65532, 2, 0, 65533, 9, 0, 65534, 8, 0, 65535, 0, 0, 131068, 14, 0, 131071, 10, 0, 65536, 1, 0, 65537, 9, 0, 131072, 14, 0 )
+tile_data = PoolIntArray( -65541, 7, 0, -6, 11, 0, -5, 8, 0, -4, 1, 0, -3, 9, 0, -2, 5, 0, 65532, 2, 0, 65533, 9, 0, 65534, 8, 0, 65535, 0, 0, 131068, 14, 0, 131071, 10, 0, 65536, 1, 0, 65537, 9, 0, 131072, 14, 0 )
 
 [node name="WorldTileMap2" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.427451, 1, 0.309804, 1 )
@@ -43,10 +43,22 @@ miscLevelFile = "res://levels/misc/Hub.tscn"
 position = Vector2( -173.982, -26.5418 )
 levelType = 2
 
-[node name="SecretS" parent="." instance=ExtResource( 3 )]
-position = Vector2( -176.791, 21.0784 )
+[node name="SecretS2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -173.959, 30.0452 )
 levelType = 6
 
 [node name="Secret2" parent="." instance=ExtResource( 3 )]
-position = Vector2( -173.982, 75.8965 )
+position = Vector2( -174.926, 76.8404 )
 levelType = 7
+
+[node name="SecretN1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -225.969, -26.5418 )
+levelType = 3
+
+[node name="Secret3" parent="." instance=ExtResource( 3 )]
+position = Vector2( -225.969, -72.1286 )
+levelType = 7
+
+[node name="Boss1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -273.388, -24.3768 )
+levelType = 8

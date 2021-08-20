@@ -1,17 +1,17 @@
 using Godot;
 using System;
 
-public class FirstBigEncounterChargerSpawner : BaseChargerSpawner, IQuest
+class FirstBigEncounterChargerSpawner : BaseChargerSpawner, IQuest
 {
     public Main MainNode {get; set;}
-    public string QuestID {get; set;}
+    [Export] public String QuestID {get; set;}
+    [Export] public String QuestKey {get; set;}
 
 
     public override void _Ready()
     {
         base._Ready();
         MainNode = (Main)GetNode("/root/Main");
-        QuestID = "MAIN_MISSION";
     }
 
 
@@ -34,9 +34,8 @@ public class FirstBigEncounterChargerSpawner : BaseChargerSpawner, IQuest
     public void UpdateQuest() {
         Godot.Collections.Array arr =
         (Godot.Collections.Array)((Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("Quests"))[QuestID];
-        Vector2 currentCell = (Vector2)MainNode.PlayerSaveFile.Get("CurrentCell");
-        if(arr.Contains(currentCell) == false) {
-            arr.Add(currentCell);
+        if(arr.Contains(QuestKey) == false) {
+            arr.Add(QuestKey);
             MainNode.Saver.Call("save_world_data");
         }
     }

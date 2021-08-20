@@ -10,6 +10,7 @@ script = ExtResource( 3 )
 spawnScenes = {
 "hp_drop": ExtResource( 1 )
 }
+BoundTriggers = [  ]
 acts = {
 }
 

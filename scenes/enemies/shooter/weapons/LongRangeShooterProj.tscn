@@ -8,7 +8,7 @@
 radius = 5.0
 
 [node name="LongRangeShooterProj" instance=ExtResource( 2 )]
-range = 1500
+range = 2000
 speed = 15
 
 [node name="Sprite" parent="." index="0"]

@@ -1,16 +1,16 @@
 using Godot;
 using System;
 
-class TutorialE : NextLevel, IQuest
+class TutorialNextLevelE : NextLevel, IQuest
 {
-    public string QuestID {get; set;}
+    [Export] public string QuestID {get; set;}
+    [Export] public String QuestKey {get; set;}
     DialogueTrigger dialogueNode;
 
 
     public override void _Ready()
     {
         base._Ready();
-        QuestID = "MAIN_MISSION";
         dialogueNode = (DialogueTrigger)GetNode("DialogueTrigger");
     }
 

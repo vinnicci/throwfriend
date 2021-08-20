@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/level/SavePoint.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/level/DialogueTrigger.tscn" type="PackedScene" id=4]
-[ext_resource path="res://levels/misc/TutorialE.cs" type="Script" id=5]
+[ext_resource path="res://levels/misc/TutorialNextLevelE.cs" type="Script" id=5]
 [ext_resource path="res://assets/npcs/tex_npc_head.png" type="Texture" id=6]
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/blob/NeutralBlob.tscn" type="PackedScene" id=8]
@@ -83,6 +83,8 @@ position = Vector2( 616, 440 )
 rotation = -3.14159
 collision_mask = 0
 script = ExtResource( 5 )
+QuestID = "MAIN"
+QuestKey = ""
 
 [node name="DialogueTrigger" parent="Objects/E" index="2" instance=ExtResource( 4 )]
 portrait = ExtResource( 6 )
@@ -104,7 +106,7 @@ collision_layer = 0
 position = Vector2( 336, 441 )
 portrait = ExtResource( 10 )
 name = "Tutorial: Moving"
-stringArr = [ "Greetings, guardian. Your mission is to defeat the invading monsters.", "You need to find and eliminate their commanders.", "Let's warm up first.", "Press WASD to move." ]
+stringArr = [ "Greetings, guardian. Your mission is to defeat the invading monsters.", "You need to find and eliminate their commanders.", "But before all of that, let's warm up first.", "Press WASD to move." ]
 portraitScale = 2.0
 
 [node name="DialogueTrigger2" parent="Objects" index="8" instance=ExtResource( 4 )]
@@ -121,7 +123,7 @@ name = "Tutorial"
 stringArr = [ "That's all for the basics.", "Good luck." ]
 portraitScale = 4.0
 
-[node name="InvisibleWalls" parent="Objects" index="10"]
+[node name="InvisibleWalls" parent="Objects" index="11"]
 visible = false
 tile_data = PoolIntArray( 393226, 1, 65538, 458762, 1, 65538, 655341, 1, 65538, 720877, 1, 65538 )
 

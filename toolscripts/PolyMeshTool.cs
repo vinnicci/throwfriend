@@ -1,7 +1,7 @@
 using Godot;
 
 [Tool]
-public class PolyMeshTool : Polygon2D
+class PolyMeshTool : Polygon2D
 {
     bool autoPoly;
     [Export] bool AutoPoly {

@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/enemies/blob/Blob.cs" type="Script" id=3]
 [ext_resource path="res://scenes/enemies/blob/BlobExplosion.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/base/anim/entity_die.tres" type="Animation" id=5]
-[ext_resource path="res://scenes/enemies/blob/anim/explode.tres" type="Animation" id=6]
+[ext_resource path="res://scenes/enemies/blob/anim/act_explode.tres" type="Animation" id=6]
 [ext_resource path="res://scenes/enemies/blob/anim/idle.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/blob/anim/run.tres" type="Animation" id=8]
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=9]
@@ -40,8 +40,9 @@ acts = {
 }
 
 [node name="Blob" type="Sprite" parent="Sprite" index="0"]
-position = Vector2( 0, 2 )
-scale = Vector2( 0.9, 1.2 )
+modulate = Color( 1, 0.992394, 0.992394, 1 )
+position = Vector2( 0, 4 )
+scale = Vector2( 1.05, 1.05 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="1"]

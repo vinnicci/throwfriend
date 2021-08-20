@@ -38,8 +38,8 @@ tracks/0/keys = {
 "values": [ Color( 0.286275, 0.286275, 0.286275, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="PressurePlate" instance=ExtResource( 2 )]
-collision_mask = 28
+[node name="PlayerPressurePlate" instance=ExtResource( 2 )]
+collision_mask = 4
 Persist = false
 
 [node name="Sprite" parent="." index="0"]

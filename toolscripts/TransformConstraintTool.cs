@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 [Tool]
-public class TransformConstraintTool : Node2D
+class TransformConstraintTool : Node2D
 {
     Godot.Collections.Array<NodePath> targets;
     ///<summary>Fill array with NodePaths</summary>

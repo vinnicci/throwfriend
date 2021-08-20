@@ -13,7 +13,7 @@ public abstract class Explosion : Area2D
     RayCast2D ray;
     AnimationPlayer anim;
 
-    
+
     public override void _Ready()
     {
         base._Ready();
@@ -39,9 +39,9 @@ public abstract class Explosion : Area2D
     const int KNOCKBACK = 250;
 
 
-    public void Explode() {
+    public virtual bool Explode() {
         if(anim.IsPlaying()) {
-            return;
+            return false;
         }
         if(explosionRadius != ExplosionRadius) {
             float scale = ExplosionRadius/explosionRadius;
@@ -64,6 +64,13 @@ public abstract class Explosion : Area2D
                 weap.ApplyCentralImpulse(new Vector2(KNOCKBACK, 0).Rotated(ray.GlobalRotation));
             }
         }
+        Godot.Collections.Array areas = GetOverlappingAreas();
+        foreach(Godot.Object area in areas) {
+            if(((Area2D)area).Filename == "res://scenes/triggers/ExplosionDetector.tscn") {
+                ((Trigger)area).OnSwitchedOn();
+            }
+        }
+        return true;
     }
 
 

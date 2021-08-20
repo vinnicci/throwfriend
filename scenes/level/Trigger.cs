@@ -10,11 +10,16 @@ public abstract class Trigger : Area2D, ILevelObject
     public String SwitchedOffSignal {get; set;}
     public AnimationPlayer TriggerAnim {get; set;}
 
+    protected uint defaultCollisionLayer;
+    protected uint defaultCollisionMask;
+
 
     public override void _Ready()
     {
         base._Ready();
         InitLevelObject();
+        defaultCollisionLayer = CollisionLayer;
+        defaultCollisionMask = CollisionMask;
     }
 
 
@@ -22,6 +27,17 @@ public abstract class Trigger : Area2D, ILevelObject
         SwitchedOnSignal = nameof(SwitchedOn);
         SwitchedOffSignal = nameof(SwitchedOff);
         TriggerAnim = (AnimationPlayer)GetNode("Anim");
+        foreach(NodePath nodePath in BoundTriggers) {
+            Node2D node = GetNodeOrNull<Node2D>(nodePath);
+            Godot.Collections.Array arr = new Godot.Collections.Array();
+            arr.Add(nodePath);
+            arr.Add(true);
+            node.Connect("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers), arr);
+            arr = new Godot.Collections.Array();
+            arr.Add(nodePath);
+            arr.Add(false);
+            node.Connect("SwitchedOff", this, nameof(OnTriggeredAllBoundTriggers), arr);
+        }
     }
 
 
@@ -54,7 +70,14 @@ public abstract class Trigger : Area2D, ILevelObject
     }
 
 
+    protected bool triggered = false;
+
+
     public virtual void OnSwitchedOn() {
+        if(Persist && triggered) {
+            return;
+        }
+        triggered = true;
         TriggerAnim.Queue("trigger");
         EmitSignal(SwitchedOnSignal);
     }
@@ -64,6 +87,7 @@ public abstract class Trigger : Area2D, ILevelObject
         if(Persist) {
             return;
         }
+        triggered = false;
         TriggerAnim.Queue("trigger_back");
         EmitSignal(SwitchedOffSignal);
     }

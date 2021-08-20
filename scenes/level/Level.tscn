@@ -31,4 +31,9 @@ position = Vector2( -32, -32 )
 
 [node name="Props" parent="Objects" instance=ExtResource( 5 )]
 
+[node name="SeeThroughWalls" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( -32, -32 )
+cell_y_sort = true
+collision_layer = 32
+
 [node name="InvisibleWalls" parent="Objects" instance=ExtResource( 3 )]

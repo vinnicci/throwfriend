@@ -78,7 +78,7 @@ public class NextLevel : Area2D, ILevelObject
         Godot.Collections.Dictionary posDict =
         (Godot.Collections.Dictionary)((Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("WorldCells"))[currentCell];
         String lvl = "";
-        String key = currentCell.ToString() + GetPath().ToString();
+        String key = oldCell.ToString() + GetPath().ToString();
         if(dict.Contains(key) && (String)dict[key] != "") {
             return (String)dict[key];
         }
@@ -89,8 +89,15 @@ public class NextLevel : Area2D, ILevelObject
         else {
             Godot.Collections.Array arr =
             GetFromSet((int)posDict["id"], (int)posDict["set"], (WorldMarker.LevelType)posDict["type"]);
-            arr.Shuffle();
-            lvl = (String)arr[0];
+            Godot.Collections.Array usedLvls =
+            (Godot.Collections.Array)MainNode.WorldSaveFile.Get("LevelsUsed");
+            do {
+                arr.Shuffle();
+                lvl = (String)arr[0];
+                arr.RemoveAt(0);
+            }
+            while(usedLvls.Contains(lvl));
+            usedLvls.Add(lvl);
         }
         LinkToLevel(lvl, oldCell.ToString());
         return lvl;

@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [Tool]
-public class AnimTool : AnimationPlayer
+class AnimTool : AnimationPlayer
 {
     [Export] String animName = "";
 

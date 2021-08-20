@@ -29,14 +29,17 @@ public class Main : Node
 
 
     public void NewGame() {
-        PackedScene playerPack = (PackedScene)ResourceLoader.Load(Global.PLAYER_SCN);
         Saver.Call("new_player_save_file");
         Saver.Call("new_level_save_file");
         Saver.Call("new_world_save_file");
+        Saver.Call("load_player_data");
+        Saver.Call("load_level_data");
+        Saver.Call("load_world_data");
         PlayerSaveFile = (Resource)Saver.Get("player_save_file");
         LevelSaveFile = (Resource)Saver.Get("level_save_file");
         WorldSaveFile = (Resource)Saver.Get("world_save_file");
         ((WorldLayout)GameNode.GetNode("WorldLayout")).GenerateLayout();
+        PackedScene playerPack = (PackedScene)ResourceLoader.Load(Global.PLAYER_SCN);
         GoToLevel(STARTING_SCENE, "Objects/SavePoint/Pos", (Player)playerPack.Instance(), false);
     }
 
@@ -63,14 +66,14 @@ public class Main : Node
             MainMenuNode.Show();
             return;
         }
-        PackedScene playerPack = (PackedScene)ResourceLoader.Load("res://scenes/player/Player.tscn");
-        Player player = (Player)playerPack.Instance();
         Saver.Call("load_player_data");
         Saver.Call("load_level_data");
         Saver.Call("load_world_data");
         PlayerSaveFile = (Resource)Saver.Get("player_save_file");
         LevelSaveFile = (Resource)Saver.Get("level_save_file");
         WorldSaveFile = (Resource)Saver.Get("world_save_file");
+        PackedScene playerPack = (PackedScene)ResourceLoader.Load("res://scenes/player/Player.tscn");
+        Player player = (Player)playerPack.Instance();
         String[] saveDataArr = {
             "SaveCell",
             "CurrentCell",
@@ -134,6 +137,8 @@ public class Main : Node
         SavePlayerItems(player.WeaponNode.Item2, "WeapItem", 2);
         player.UpdateStatsDisp();
         Saver.Call("save_player_data");
+        Saver.Call("save_level_data");
+        Saver.Call("save_world_data");
     }
 
 
@@ -205,6 +210,7 @@ public class Main : Node
             "EnemySpawns",
             "WorldCells",
             "Quests",
+            "LevelsUsed",
         };
         if(VerifySaveFile(WorldSaveFile, worldDataArr) == false) {
             return;
@@ -300,7 +306,7 @@ public class Main : Node
             if(IsInstanceValid(currPlayer) && currPlayer == player) {
                 currentLevel.RemoveChild(player);
             }
-            Saver.Call("save_level_data");
+            //Saver.Call("save_level_data");
         }
         if(player.IsConnected(nameof(Entity.Died), this, "OnPlayerDied") == false) {
             player.Connect(nameof(Entity.Died), this, "OnPlayerDied");

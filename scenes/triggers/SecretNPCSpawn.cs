@@ -4,14 +4,14 @@ using System;
 public class SecretNPCSpawn : Position2D, IQuest
 {
     public Main MainNode {get; set;}
-    public string QuestID {get; set;}
+    [Export] public String QuestID {get; set;}
+    [Export] public String QuestKey {get; set;}
 
 
     public override void _Ready()
     {
         base._Ready();
         MainNode = (Main)GetNode("/root/Main");
-        QuestID = "SECRET_ED";
     }
 
 
@@ -22,19 +22,15 @@ public class SecretNPCSpawn : Position2D, IQuest
             CallDeferred(nameof(SpawnSecretNPCDef), "res://scenes/triggers/SecretNPC1.tscn", qArr);
         }
         else if(qArr.Count == 1) {
-
+            CallDeferred(nameof(SpawnSecretNPCDef), "res://scenes/triggers/SecretNPC2.tscn", qArr);
         }
         else if(qArr.Count == 2) {
-
+            CallDeferred(nameof(SpawnSecretNPCDef), "res://scenes/triggers/SecretNPC3.tscn", qArr);
         }
     }
 
 
     void SpawnSecretNPCDef(String resName, Godot.Collections.Array arr) {
-        Vector2 currentCell = (Vector2)MainNode.PlayerSaveFile.Get("CurrentCell");
-        if(arr.Contains(currentCell)) {
-            return;
-        }
         PackedScene secretNPCPack = (PackedScene)ResourceLoader.Load(resName);
         SecretNPC secretNPC = (SecretNPC)secretNPCPack.Instance();
         GetParent().AddChild(secretNPC);

@@ -2,10 +2,9 @@ using Godot;
 using System;
 
 //  World Layout Rules:
-//  Start level must use cell ID 13
 //  Secret levels must have THREE walls (IDs: 7, 11, 13, 14)
-//  Checkpoints max entrance of 3 (no ID 0)
-//  A level containing secret must only have ONE wall (3 entries) (IDs: 1, 2, 4, 8)
+//  Checkpoints max entrance of THREE (no ID 0)
+//  A level containing secret must only have ONE wall (3 entrances) (IDs: 1, 2, 4, 8)
 
 public class WorldLayout : Node2D
 {
@@ -29,14 +28,12 @@ public class WorldLayout : Node2D
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("WorldCells");
         if(dict.Count != 0) {
-            QueueFree();
             return;
         }
         InitTileMap(worldTileMap1, 1);
         InitTileMap(worldTileMap2, 2);
         InitTileMap(worldTileMap3, 3);
         mainNode.WorldSaveFile.Set("WorldCells", cells);
-        QueueFree();
     }
 
 

@@ -50,7 +50,6 @@ public static class Global
     };
     public static readonly String[] EASY_SHOOTERS = {
         "res://scenes/enemies/shooter/Shooter.tscn",
-        "res://scenes/enemies/shooter/LongRangeShooter.tscn",
         "res://scenes/enemies/shooter/SprayerSticky.tscn",
     };
     public static readonly String[] MEDIUM_SHOOTERS = {
@@ -72,7 +71,6 @@ public static class Global
         "res://scenes/enemies/blob/HostileBlob.tscn",
         "res://scenes/enemies/charger/Charger.tscn",
         "res://scenes/enemies/shooter/Shooter.tscn",
-        "res://scenes/enemies/shooter/LongRangeShooter.tscn",
         "res://scenes/enemies/shooter/SprayerSticky.tscn",
     };
     public static readonly String[] MEDIUM_RANDOM = {
@@ -110,7 +108,7 @@ public static class Global
         "res://levels/01/EWS1None1.tscn",
     };
     public static readonly String[] ID02_SET1 = {
-
+        "res://levels/02/ENS1None1.tscn",
     };
     public static readonly String[] ID03_SET1 = {
 
@@ -119,7 +117,7 @@ public static class Global
 
     };
     public static readonly String[] ID05_SET1 = {
-
+        "res://levels/05/WS1None1.tscn",
     };
     public static readonly String[] ID06_SET1 = {
 
@@ -128,10 +126,12 @@ public static class Global
 
     };
     public static readonly String[] ID08_SET1 = {
-
+        "res://levels/08/ENW1None1.tscn",
+        "res://levels/08/ENW1None2.tscn",
     };
     public static readonly String[] ID09_SET1 = {
-
+        "res://levels/09/EW1None1.tscn",
+        "res://levels/09/EW1None2.tscn",
     };
     public static readonly String[] ID10_SET1 = {
 
@@ -242,7 +242,7 @@ public static class Global
 
     //CHECKPT
     public static readonly String[] ID01_SET1_CHECKPT = {
-
+        "res://levels/01/EWS1Checkpoint1.tscn",
     };
     public static readonly String[] ID02_SET1_CHECKPT = {
 
@@ -371,7 +371,7 @@ public static class Global
 
     //SECRET
     public static readonly String[] ID07_SET1_SECRET = {
-
+        "res://levels/07/S1Secret1.tscn",
     };
     public static readonly String[] ID11_SET1_SECRET = {
 
@@ -381,6 +381,9 @@ public static class Global
     };
     public static readonly String[] ID14_SET1_SECRET = {
         "res://levels/14/N1Secret1.tscn",
+        "res://levels/14/N1Secret2.tscn",
+        "res://levels/14/N1Secret3.tscn",
+        "res://levels/14/N1Secret4.tscn",
     };
     public static readonly String[] ID07_SET2_SECRET = {
 
@@ -419,7 +422,7 @@ public static class Global
 
     };
     public static readonly String[] ID08_SET1_SECRET_N = {
-
+        "res://levels/08/ENW1SecretN1.tscn",
     };
     public static readonly String[] ID01_SET2_SECRET_N = {
 
@@ -528,9 +531,10 @@ public static class Global
     //SECRET S
     public static readonly String[] ID01_SET1_SECRET_S = {
         "res://levels/01/EWS1SecretS1.tscn",
+        "res://levels/01/EWS1SecretS2.tscn",
     };
     public static readonly String[] ID02_SET1_SECRET_S = {
-
+        "res://levels/02/ENS1SecretS1.tscn",
     };
     public static readonly String[] ID04_SET1_SECRET_S = {
 

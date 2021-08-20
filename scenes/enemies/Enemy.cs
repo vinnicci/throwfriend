@@ -31,11 +31,11 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
     public EnemyWeapon WeaponNode {get; protected set;}
     public String SwitchedOnSignal {get; set;}
     public String SwitchedOffSignal {get; set;}
+    [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
     
     //not implemented
     public AnimationPlayer TriggerAnim {get; set;}
-    public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
-
+    
     Node2D aINode;
     protected Explosion ExplosionNode {get; private set;}    
     protected Godot.Collections.Dictionary ActDict {get; private set;}
@@ -63,21 +63,50 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
     public void InitLevelObject() {
         SwitchedOnSignal = nameof(SwitchedOn);
         SwitchedOffSignal = nameof(SwitchedOff);
+        foreach(NodePath nodePath in BoundTriggers) {
+            Node2D node = GetNodeOrNull<Node2D>(nodePath);
+            Godot.Collections.Array arr = new Godot.Collections.Array();
+            arr.Add(nodePath);
+            arr.Add(true);
+            node.Connect("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers), arr);
+            arr = new Godot.Collections.Array();
+            arr.Add(nodePath);
+            arr.Add(false);
+            node.Connect("SwitchedOff", this, nameof(OnTriggeredAllBoundTriggers), arr);
+        }
     }
 
 
     public void OnSwitchedOn() {
-        QueueFree();
+        if(IsDead == false) {
+            if(IsInstanceValid((RigidBody2D)((Godot.Collections.Dictionary)aINode.Get("bb"))["enemy"]) == false) {
+                GD.Print("non engaged died");
+                LevelNode.PlayerEngaging += 1;
+            }
+            Die();
+        }
     }
 
 
-    public void OnSwitchedOff() {
-        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnSwitchedOff));
-    }
+    public void OnSwitchedOff() {}
 
 
     public void OnTriggeredAllBoundTriggers(NodePath path, bool triggered) {
-        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnTriggeredAllBoundTriggers));
+        if(Persist && BoundTriggers.Count == 0) {
+            return;
+        }
+        if(triggered) {
+            BoundTriggers.Remove(path);
+        }
+        else {
+            if(BoundTriggers.Count == 0) {
+                OnSwitchedOff();
+            }
+            BoundTriggers.Add(path);            
+        }
+        if(BoundTriggers.Count == 0) {
+            OnSwitchedOn();
+        }
     }
 
 

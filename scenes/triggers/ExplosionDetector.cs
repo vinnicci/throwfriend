@@ -3,18 +3,10 @@ using System;
 
 public class ExplosionDetector : Trigger
 {
-    public override void OnTriggerAreaEntered(Godot.Object area) {
-        if(area is Explosion) {
-            base.OnTriggerAreaEntered(area);
-        }
-    }
+    public override void OnTriggerAreaEntered(Godot.Object area) {}
 
 
-    public override void OnTriggerAreaExited(Godot.Object area) {
-        if(area is Explosion) {
-            base.OnTriggerAreaExited(area);
-        }
-    }
+    public override void OnTriggerAreaExited(Godot.Object area) {}
 
 
     public override void OnTriggerBodyEntered(Godot.Object body) {}

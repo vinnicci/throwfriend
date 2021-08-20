@@ -3,7 +3,7 @@ using System;
 
 public class ExtraSpeed : PlayerItem
 {
-    const int EXTRA_SPEED = 125;
+    const int EXTRA_SPEED = 150;
     bool done = false;
     
 

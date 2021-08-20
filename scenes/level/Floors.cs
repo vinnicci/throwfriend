@@ -10,11 +10,16 @@ public class Floors : TileMap, ILevelObject
     public String SwitchedOffSignal {get; set;}
     public AnimationPlayer TriggerAnim {get; set;}
 
+    uint defaultCollisionLayer;
+    uint defaultCollisionMask;
+
 
     public override void _Ready()
     {
         base._Ready();
         InitLevelObject();
+        defaultCollisionLayer = CollisionLayer;
+        defaultCollisionMask = CollisionMask;
     }
 
 
@@ -71,6 +76,18 @@ public class Floors : TileMap, ILevelObject
         }
         TriggerAnim.Queue("trigger_back");
         EmitSignal(SwitchedOffSignal);
+    }
+
+
+    public virtual void OnAnimFinished(String animName) {
+        if(animName == "trigger") {
+            CollisionLayer = 0;
+            CollisionMask = 0;
+        }
+        else if(animName == "trigger_back") {
+            CollisionLayer = defaultCollisionLayer;
+            CollisionMask = defaultCollisionMask;
+        }
     }
     
     
