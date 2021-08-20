@@ -25,20 +25,20 @@ public class WorldLayout : Node2D
 
 
     public void GenerateLayout() {
+        Godot.Collections.Dictionary marks = new Godot.Collections.Dictionary();
+        Godot.Collections.Dictionary cells = new Godot.Collections.Dictionary();
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("WorldCells");
         if(dict.Count != 0) {
             return;
         }
-        InitTileMap(worldTileMap1, 1);
-        InitTileMap(worldTileMap2, 2);
-        InitTileMap(worldTileMap3, 3);
+        InitTileMap(worldTileMap1, 1, marks, cells);
+        InitTileMap(worldTileMap2, 2, marks, cells);
+        InitTileMap(worldTileMap3, 3, marks, cells);
         mainNode.WorldSaveFile.Set("WorldCells", cells);
     }
+    
 
-
-    Godot.Collections.Dictionary marks = new Godot.Collections.Dictionary();
-    Godot.Collections.Dictionary cells = new Godot.Collections.Dictionary();
     // cells dict format
     // cells = {
     //     pos : {
@@ -52,7 +52,8 @@ public class WorldLayout : Node2D
     // }
 
 
-    void InitTileMap(TileMap worldTileMap, int setNum) {
+    void InitTileMap(TileMap worldTileMap, int setNum,
+    Godot.Collections.Dictionary marks, Godot.Collections.Dictionary cells) {
         foreach(Node2D node in GetChildren()) {
             if(node is WorldMarker) {
                 Vector2 key = worldTileMap.WorldToMap(worldTileMap.ToLocal(node.GlobalPosition));
@@ -63,7 +64,7 @@ public class WorldLayout : Node2D
         }
         foreach(Vector2 pos in worldTileMap.GetUsedCells()) {
             Godot.Collections.Dictionary posDict = new Godot.Collections.Dictionary();
-            WorldMarker marker = GetLevelMarker(pos);
+            WorldMarker marker = GetLevelMarker(pos, marks);
             WorldMarker.LevelType type;
             if(IsInstanceValid(marker) == false) {
                 type = WorldMarker.LevelType.None;
@@ -101,7 +102,7 @@ public class WorldLayout : Node2D
     }
 
 
-    WorldMarker GetLevelMarker(Vector2 pos) {
+    WorldMarker GetLevelMarker(Vector2 pos, Godot.Collections.Dictionary marks) {
         if(marks.Contains(pos)) {
             return (WorldMarker)marks[pos];
         }
