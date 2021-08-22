@@ -105,10 +105,10 @@ public static class Global
 
     };
     public static readonly String[] ID01_SET1 = {
-        "res://levels/01/EWS1None1.tscn",
+        "res://levels/01/01_1None1.tscn",
     };
     public static readonly String[] ID02_SET1 = {
-        "res://levels/02/ENS1None1.tscn",
+        "res://levels/02/02_1None1.tscn",
     };
     public static readonly String[] ID03_SET1 = {
 
@@ -117,7 +117,7 @@ public static class Global
 
     };
     public static readonly String[] ID05_SET1 = {
-        "res://levels/05/WS1None1.tscn",
+        "res://levels/05/05_1None1.tscn",
     };
     public static readonly String[] ID06_SET1 = {
 
@@ -126,12 +126,12 @@ public static class Global
 
     };
     public static readonly String[] ID08_SET1 = {
-        "res://levels/08/ENW1None1.tscn",
-        "res://levels/08/ENW1None2.tscn",
+        "res://levels/08/08_1None1.tscn",
+        "res://levels/08/08_1None2.tscn",
     };
     public static readonly String[] ID09_SET1 = {
-        "res://levels/09/EW1None1.tscn",
-        "res://levels/09/EW1None2.tscn",
+        "res://levels/09/09_1None1.tscn",
+        "res://levels/09/09_1None2.tscn",
     };
     public static readonly String[] ID10_SET1 = {
 
@@ -242,7 +242,7 @@ public static class Global
 
     //CHECKPT
     public static readonly String[] ID01_SET1_CHECKPT = {
-        "res://levels/01/EWS1Checkpoint1.tscn",
+        "res://levels/01/01_1Checkpoint1.tscn",
     };
     public static readonly String[] ID02_SET1_CHECKPT = {
 
@@ -371,7 +371,7 @@ public static class Global
 
     //SECRET
     public static readonly String[] ID07_SET1_SECRET = {
-        "res://levels/07/S1Secret1.tscn",
+        "res://levels/07/07_1Secret1.tscn",
     };
     public static readonly String[] ID11_SET1_SECRET = {
 
@@ -380,10 +380,10 @@ public static class Global
 
     };
     public static readonly String[] ID14_SET1_SECRET = {
-        "res://levels/14/N1Secret1.tscn",
-        "res://levels/14/N1Secret2.tscn",
-        "res://levels/14/N1Secret3.tscn",
-        "res://levels/14/N1Secret4.tscn",
+        "res://levels/14/14_1Secret1.tscn",
+        "res://levels/14/14_1Secret2.tscn",
+        "res://levels/14/14_1Secret3.tscn",
+        "res://levels/14/14_1Secret4.tscn",
     };
     public static readonly String[] ID07_SET2_SECRET = {
 
@@ -422,7 +422,7 @@ public static class Global
 
     };
     public static readonly String[] ID08_SET1_SECRET_N = {
-        "res://levels/08/ENW1SecretN1.tscn",
+        "res://levels/08/08_1SecretN1.tscn",
     };
     public static readonly String[] ID01_SET2_SECRET_N = {
 
@@ -530,11 +530,11 @@ public static class Global
     
     //SECRET S
     public static readonly String[] ID01_SET1_SECRET_S = {
-        "res://levels/01/EWS1SecretS1.tscn",
-        "res://levels/01/EWS1SecretS2.tscn",
+        "res://levels/01/01_1SecretS1.tscn",
+        "res://levels/01/01_1SecretS2.tscn",
     };
     public static readonly String[] ID02_SET1_SECRET_S = {
-        "res://levels/02/ENS1SecretS1.tscn",
+        "res://levels/02/02_1SecretS1.tscn",
     };
     public static readonly String[] ID04_SET1_SECRET_S = {
 

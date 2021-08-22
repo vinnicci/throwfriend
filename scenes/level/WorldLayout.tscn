@@ -21,6 +21,13 @@ modulate = Color( 0.521569, 0.521569, 0.521569, 1 )
 position = Vector2( 74.6917, 75.8644 )
 levelType = 1
 
+[node name="Label" type="Label" parent="Start"]
+margin_bottom = 14.0
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SecretS1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 24.7835, 75.8965 )
 levelType = 6
@@ -39,12 +46,28 @@ position = Vector2( -24.7624, 25.0115 )
 levelType = 8
 miscLevelFile = "res://levels/misc/Hub.tscn"
 
+[node name="Label" type="Label" parent="Hub"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Hub"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Checkpoint1" parent="." instance=ExtResource( 3 )]
 position = Vector2( -173.982, -26.5418 )
 levelType = 2
 
+[node name="Label" type="Label" parent="Checkpoint1"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Checkpoint"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SecretS2" parent="." instance=ExtResource( 3 )]
-position = Vector2( -173.959, 30.0452 )
+position = Vector2( -174, 24 )
 levelType = 6
 
 [node name="Secret2" parent="." instance=ExtResource( 3 )]
@@ -62,3 +85,11 @@ levelType = 7
 [node name="Boss1" parent="." instance=ExtResource( 3 )]
 position = Vector2( -273.388, -24.3768 )
 levelType = 8
+
+[node name="Label" type="Label" parent="Boss1"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Boss"
+__meta__ = {
+"_edit_use_anchors_": false
+}
