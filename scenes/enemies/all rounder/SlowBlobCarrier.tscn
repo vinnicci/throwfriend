@@ -22,7 +22,7 @@ spawnScenes = {
 "hp_drop": ExtResource( 6 )
 }
 acts = {
-"blob_fly": 1.0
+"blob_fly": [ 1.0, 1.0 ]
 }
 
 [node name="Arms" parent="Sprite" index="0"]

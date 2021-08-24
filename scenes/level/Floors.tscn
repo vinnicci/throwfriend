@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/level/tilemaps/Floors.tres" type="TileSet" id=1]
-[ext_resource path="res://scenes/level/Floors.cs" type="Script" id=2]
+[ext_resource path="res://scenes/level/LevelTiles.cs" type="Script" id=2]
 [ext_resource path="res://scenes/triggers/anim/wall_fade_out_trigger.tres" type="Animation" id=3]
 [ext_resource path="res://scenes/triggers/anim/wall_fade_in_trigger_back.tres" type="Animation" id=4]
 

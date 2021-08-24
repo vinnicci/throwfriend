@@ -36,7 +36,7 @@ spawnScenes = {
 "hp_drop": ExtResource( 9 )
 }
 acts = {
-"explode": 1.0
+"explode": [ 1.0, 1.0 ]
 }
 
 [node name="Blob" type="Sprite" parent="Sprite" index="0"]

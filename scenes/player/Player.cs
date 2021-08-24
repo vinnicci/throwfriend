@@ -232,20 +232,20 @@ public class Player : Entity
         else if(Input.IsActionPressed("right")) {
             velocity.x += 1;
         }
+        Velocity = velocity.Normalized();
         //movement status effect
         if(CurrentStatusEffect[(int)StatusEffect.CONFUSE]) {
-            velocity *= -1;
+            Velocity *= -1;
             if(confusedIndicator.Visible == false) {
                 confusedIndicator.Visible = true;
             }
         }
         if(CurrentStatusEffect[(int)StatusEffect.SLOW]) {
-            velocity *= SLOW_EFFECT;
+            Velocity *= SLOW_EFFECT;
             if(slowedIndicator.Visible == false) {
                 slowedIndicator.Visible = true;
             }
         }
-        Velocity = velocity.Normalized();
         if(inGameUI.Visible) {
             return;
         }

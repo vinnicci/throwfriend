@@ -21,8 +21,8 @@ public class SecretTree : Trigger
         }
         triggered = true;
         TriggerAnim.Queue("trigger");
-        EmitSignal(SwitchedOnSignal);
         staticBody.CollisionLayer = 0;
+        EmitSignal(SwitchedOnSignal);
     }
 
 
@@ -32,8 +32,8 @@ public class SecretTree : Trigger
         }
         triggered = false;
         TriggerAnim.Queue("trigger_back");
-        EmitSignal(SwitchedOffSignal);
         staticBody.CollisionLayer = staticBodyDefaultCollisionLayer;
+        EmitSignal(SwitchedOffSignal);
     }
 
 

@@ -111,8 +111,5 @@ tracks/8/keys = {
 "values": [ {
 "args": [  ],
 "method": "SpawnProj"
-}, {
-"args": [  ],
-"method": "FinishShooting"
 } ]
 }

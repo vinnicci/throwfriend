@@ -3,8 +3,8 @@ using System;
 
 public abstract class Enemy : Entity, ISpawner, ILevelObject
 {
-    [Export] protected Godot.Collections.Dictionary<String, float> acts =
-    new Godot.Collections.Dictionary<String, float>();
+    [Export] protected Godot.Collections.Dictionary acts =
+    new Godot.Collections.Dictionary();
     [Export] protected Godot.Collections.Array<int> patrolPoints =
     new Godot.Collections.Array<int>();
     [Export] public Godot.Collections.Dictionary<String, PackedScene> spawnScenes {get; set;}
@@ -36,7 +36,7 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
     //not implemented
     public AnimationPlayer TriggerAnim {get; set;}
     
-    Node2D aINode;
+    protected Node2D aINode;
     protected Explosion ExplosionNode {get; private set;}    
     protected Godot.Collections.Dictionary ActDict {get; private set;}
 
@@ -49,8 +49,10 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
         }
         ActDict = new Godot.Collections.Dictionary();
         foreach(String act in acts.Keys) {
-            InitAct(act, acts[act]);
+            InitAct(act, (float)((Godot.Collections.Array)acts[act])[0],
+            (float)((Godot.Collections.Array)acts[act])[1]);
         }
+        anim.Connect("animation_finished", this, nameof(FinishAction));
         InitLevelObject();
     }
 
@@ -110,41 +112,65 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
     }
 
 
-    protected void InitAct(String actionName, float length) {
+    protected void InitAct(String actionName, float length, float hpPercent) {
         Godot.Collections.Dictionary act = new Godot.Collections.Dictionary();
         act["IsActive"] = false;
         act["TimeRemain"] = 0f;
         act["Length"] = length;
+        act["HPPercent"] = hpPercent;
         ActDict[actionName] = act;
     }
 
 
-    public bool HasAct(String actionName) {
-        Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
-        if(keys.Contains(actionName) == false) {
-            return false;
-        }
-        return true;
-    }
+    // public bool HasAct(String actionName) {
+    //     Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
+    //     if(keys.Contains(actionName) == false) {
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
 
-    public bool IsActActive(String actionName) {
+    // public bool IsActActive(String actionName) {
+    //     Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
+    //     if(keys.Contains(actionName) == false) {
+    //         return false;
+    //     }
+    //     Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
+    //     return (bool)action["IsActive"];
+    // }
+
+
+    // public bool IsActCoolingDown(String actionName) {
+    //     Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
+    //     if(keys.Contains(actionName) == false) {
+    //         return false;
+    //     }
+    //     Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
+    //     return (float)action["TimeRemain"] > 0;
+    // }
+
+
+    // //some actions require health percentage, used for phases
+    // public bool IsHPPercentageOK(String actionName) {
+    //     Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
+    //     if(keys.Contains(actionName) == false) {
+    //         return false;
+    //     }
+    //     Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
+    //     return Health*(float)action["HPPercent"] <= health;
+    // }
+
+
+    public bool IsActReady(String actionName) {
         Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
         if(keys.Contains(actionName) == false) {
             return false;
         }
         Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
-        return (bool)action["IsActive"];
-    }
-
-
-    public bool IsActCoolingDown(String actionName) {
-        Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
-        if(keys.Contains(actionName) == false) {
-            return false;
-        }
-        Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
-        return (float)action["TimeRemain"] > 0;
+        return (bool)action["IsActive"] == false && //action not animating
+            (float)action["TimeRemain"] <= 0 && //cooling down
+            Health <= health*(float)action["HPPercent"]; //hp requirement 
     }
 
 
@@ -175,7 +201,8 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
 
     public virtual bool DoAction(String actionName) {
         Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
-        if(IsDead || (bool)action["IsActive"] || (float)action["TimeRemain"] > 0f) {
+        if(IsDead || IsActReady(actionName) == false) {
+        //if(IsDead) {
             return false;
         }
         action["IsActive"] = true;
@@ -216,6 +243,9 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
 
     //override and use this func to end action anims
     public virtual void FinishAction(String actionName) {
+        if(ActDict.Contains(actionName) == false) {
+            return;
+        }
         Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
         action["IsActive"] = false;
         action["TimeRemain"] = action["Length"];

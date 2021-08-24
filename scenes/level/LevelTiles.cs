@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Walls : TileMap, ILevelObject
+public class LevelTiles: TileMap, ILevelObject
 {
     [Export] public bool Persist {get; set;}
     [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
@@ -10,8 +10,8 @@ public class Walls : TileMap, ILevelObject
     public String SwitchedOffSignal {get; set;}
     public AnimationPlayer TriggerAnim {get; set;}
 
-    uint defaultCollisionLayer;
-    uint defaultCollisionMask;
+    protected uint defaultCollisionLayer;
+    protected uint defaultCollisionMask;
 
 
     public override void _Ready()

@@ -9,7 +9,7 @@ spawnScenes = {
 "hp_drop": ExtResource( 3 )
 }
 acts = {
-"explode": 1.0
+"explode": [ 1.0, 1.0 ]
 }
 
 [node name="AI" parent="." index="6" instance=ExtResource( 2 )]

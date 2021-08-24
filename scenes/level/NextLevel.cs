@@ -39,7 +39,6 @@ public class NextLevel : Area2D, ILevelObject
 
     void OnNextLevelBodyEntered(Godot.Object body) {
         if(body is Player) {
-            EmitSignal(nameof(SwitchedOn));
             player = (Player)body;
             proceeding = true;
             if(player.WeaponNode.CurrentState != Weapon.States.HELD) {
@@ -48,6 +47,7 @@ public class NextLevel : Area2D, ILevelObject
             else if(LevelNode.PlayerEngaging > 0) {
                 player.WarnPlayer("CAN'T PROCEED WHILE ENEMIES ARE TRACKING YOU");
             }
+            EmitSignal(nameof(SwitchedOn));
         }
     }
 

@@ -39,6 +39,7 @@ tracks/0/keys = {
 }
 
 [node name="SnarkPressurePlate" instance=ExtResource( 2 )]
+z_index = -1
 collision_mask = 24
 Persist = false
 

@@ -18,7 +18,7 @@ public class LongRangeCannon : ShooterWeapon
     }
 
 
-    public override void FinishShooting()
+    public override void FinishShooting(String animName = "")
     {
         base.FinishShooting();
     }

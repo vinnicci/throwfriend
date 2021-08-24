@@ -10,5 +10,11 @@ spawnScenes = {
 "hp_drop": ExtResource( 3 )
 }
 acts = {
-"spawn_charger": 8.0
+"spawn_charger": [ 8.0, 1.0 ]
 }
+
+[node name="Upper" parent="Sprite/Skeleton2D/Root" index="0"]
+scale = Vector2( 1, 1 )
+
+[node name="Upper3" parent="Sprite/Skeleton2D/Root/Upper/Upper2" index="0"]
+scale = Vector2( 1, 1 )

@@ -72,7 +72,7 @@ spawnScenes = {
 "hp_drop": ExtResource( 3 )
 }
 acts = {
-"spawn_charger": 8.0
+"spawn_charger": [ 8.0, 1.0 ]
 }
 
 [node name="Lower" parent="Sprite" index="0"]

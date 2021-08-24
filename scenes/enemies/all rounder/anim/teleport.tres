@@ -1,8 +1,8 @@
 [gd_resource type="Animation" format=2]
 
 [resource]
-resource_name = "shoot"
-length = 2.0
+resource_name = "tele_attack"
+length = 1.7
 tracks/0/type = "method"
 tracks/0/path = NodePath("..")
 tracks/0/interp = 1
@@ -10,10 +10,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "Shoot"
+"method": "MeleeAttackBack"
+}, {
+"args": [  ],
+"method": "TeleAttack"
+}, {
+"args": [  ],
+"method": "AttackImpulse"
 } ]
 }

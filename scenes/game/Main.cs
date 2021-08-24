@@ -221,7 +221,7 @@ public class Main : Node
             if(node is Collectable) {
                 InitLevelObject(node, "Collectables");
             }
-            else if(node is Walls || node is Floors || node is Props) {
+            else if(node is LevelTiles) {
                 InitLevelObject(node, "Tiles");
             } 
             else if(node is Trigger) {

@@ -31,7 +31,6 @@ public abstract class AllRounderWeapon: EnemyWeapon
         Anim.Play("throw_blob");
     }
 
-
     
     public override void SpawnInstance(String packedSceneKey, int count = 1) {
         base.SpawnInstance(packedSceneKey);
@@ -69,7 +68,7 @@ public abstract class AllRounderWeapon: EnemyWeapon
     }
 
 
-    public override void FinishShooting()
+    public override void FinishShooting(String animName = "")
     {
         base.FinishShooting();
     }

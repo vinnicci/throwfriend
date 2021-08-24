@@ -1,0 +1,70 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://scenes/enemies/all rounder/anim/melee_attack_back.tres" type="Animation" id=1]
+[ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=2]
+[ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=3]
+[ext_resource path="res://scenes/enemies/all rounder/anim/die1.tres" type="Animation" id=4]
+[ext_resource path="res://scenes/enemies/blob/HostileBlob.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/enemies/all rounder/AllRounder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/BlasterProj.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/TeleBlob.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemies/all rounder/EliteMeleeShielded.cs" type="Script" id=11]
+[ext_resource path="res://scenes/enemies/all rounder/anim/teleport.tres" type="Animation" id=12]
+[ext_resource path="res://scenes/enemies/all rounder/anim/throw_flyblob.tres" type="Animation" id=13]
+[ext_resource path="res://scenes/enemies/all rounder/anim/elite_particles.tres" type="Material" id=14]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/ParaBlob.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/SlowBlob.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/enemies/all rounder/weapons/EliteSwordAndShield.tscn" type="PackedScene" id=17]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 22.0
+
+[node name="EliteMeleeShielded" instance=ExtResource( 6 )]
+modulate = Color( 1, 1, 1, 0.956055 )
+script = ExtResource( 11 )
+speed = 375
+health = 25
+knockbackMult = 0.7
+spawnScenes = {
+"hp_drop": ExtResource( 9 )
+}
+acts = {
+"melee_attack_back": [ 1.0, 1.0 ],
+"tele_attack": [ 5.0, 0.5 ],
+"throw_flyblob": [ 8.0, 0.25 ]
+}
+
+[node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 17 )]
+spawnScenes = {
+"blob": ExtResource( 5 ),
+"flyblob_1": ExtResource( 15 ),
+"flyblob_2": ExtResource( 16 ),
+"flyblob_3": ExtResource( 8 ),
+"proj": ExtResource( 7 )
+}
+
+[node name="Particles2D" type="Particles2D" parent="." index="1"]
+amount = 25
+local_coords = false
+process_material = ExtResource( 14 )
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource( 1 )
+
+[node name="Health" parent="HUD" index="0"]
+margin_top = -50.0
+margin_bottom = -44.0
+
+[node name="AI" parent="." index="6"]
+seek_dist = 150
+too_close_dist = 75
+
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
+autoplay = "idle"
+anims/die = ExtResource( 4 )
+anims/idle = ExtResource( 2 )
+anims/melee_attack_back = ExtResource( 1 )
+anims/run = ExtResource( 3 )
+anims/tele_attack = ExtResource( 12 )
+anims/throw_flyblob = ExtResource( 13 )

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/RandomEnemySpawner.tscn" type="PackedScene" id=3]
 
 [node name="08_1None2" instance=ExtResource( 1 )]
 
@@ -35,3 +36,26 @@ position = Vector2( -1877, 61 )
 [node name="InvisibleWalls" parent="Objects" index="8"]
 visible = false
 tile_data = PoolIntArray( -1179639, 1, 65538, -1179638, 1, 65538, 65505, 1, 65538, 131041, 1, 65538, 65544, 1, 65538, 131080, 1, 65538 )
+
+[node name="RandomEnemySpawner" parent="Objects" index="9" instance=ExtResource( 3 )]
+position = Vector2( -565, -523 )
+maxSpawnCount = 1
+enemySet = 2
+
+[node name="RandomEnemySpawner2" parent="Objects" index="10" instance=ExtResource( 3 )]
+position = Vector2( -570, -652 )
+maxSpawnCount = 1
+enemySet = 6
+
+[node name="RandomEnemySpawner3" parent="Objects" index="11" instance=ExtResource( 3 )]
+position = Vector2( 321, -690 )
+maxSpawnCount = 1
+enemySet = 6
+
+[node name="RandomEnemySpawner4" parent="Objects" index="12" instance=ExtResource( 3 )]
+position = Vector2( -696, 322 )
+maxSpawnCount = 2
+
+[node name="RandomEnemySpawner5" parent="Objects" index="13" instance=ExtResource( 3 )]
+position = Vector2( -1102, -249 )
+maxSpawnCount = 1

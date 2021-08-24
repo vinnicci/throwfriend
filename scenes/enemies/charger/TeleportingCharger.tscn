@@ -24,7 +24,7 @@ spawnScenes = {
 "hp_drop": ExtResource( 6 )
 }
 acts = {
-"charge": 1.0
+"charge": [ 1.0, 1.0 ]
 }
 
 [node name="Lower" type="Sprite" parent="Sprite" index="0"]

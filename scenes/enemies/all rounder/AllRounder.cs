@@ -51,5 +51,5 @@ public abstract class AllRounder: Enemy
         base.FinishAction(actionName);
     }
 
-    
+
 }

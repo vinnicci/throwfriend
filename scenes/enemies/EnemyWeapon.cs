@@ -17,6 +17,7 @@ public abstract class EnemyWeapon : Node2D, ISpawner
         base._Ready();
         spawnPoint = (Position2D)GetNode("Sprites/ProjSpawn");
         Anim = (AnimationPlayer)GetNode("Anim");
+        Anim.Connect("animation_finished", this, nameof(FinishShooting));
     }
 
 
@@ -47,7 +48,7 @@ public abstract class EnemyWeapon : Node2D, ISpawner
     }
 
 
-    public virtual void FinishShooting() {
+    public virtual void FinishShooting(String animName = "") {
         Anim.Play("idle");
     }
 

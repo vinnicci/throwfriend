@@ -342,8 +342,10 @@ func task_aim_weapon(task):
 #param 0: enemy action name
 func task_act(task):
 	parent_node.call("DoAction", task.get_param(0))
-	if parent_node.IsActActive(task.get_param(0)) == false:
-		task.succeed();
+	#is act active?
+	var dict: Dictionary = parent_node.ActDict[task.get_param(0)]
+	if dict["IsActive"] == false:
+		task.succeed()
 
 
 #param 0: enemy action name
@@ -355,8 +357,4 @@ func task_is_act_ready(task):
 
 
 func is_act_ready(act_name: String):
-	return (parent_node.HasAct(act_name) &&
-	parent_node.IsActActive(act_name) == false &&
-	parent_node.IsActCoolingDown(act_name) == false)
-
-	
+	return parent_node.IsActReady(act_name)

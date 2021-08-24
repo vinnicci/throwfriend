@@ -8,8 +8,8 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     [Export] public int health = 1;
     public int Health {get; set;}
     
-    public Vector2 Velocity {get; set;}
     public bool IsDead {get; set;}
+    public Vector2 Velocity {get; set;}
     public Timer HitCooldown {get; set;}
     public AnimationPlayer TeleportAnim {get; set;}
     public AnimationPlayer DamageAnim {get; set;}
@@ -157,13 +157,13 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
 
 
     public void Die() {
-        healthHUD.Visible = false;
-        EmitSignal(nameof(Died));
         IsDead = true;
+        healthHUD.Visible = false;
         anim.Stop();
         anim.Play("die");
         SetCollisionLayerBit(Global.BIT_MASK_ENEMY, false);
         SetCollisionLayerBit(Global.BIT_MASK_PLAYER, false);
+        EmitSignal(nameof(Died));
     }
 
 

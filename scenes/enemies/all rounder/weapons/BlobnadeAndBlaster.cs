@@ -12,7 +12,7 @@ public class BlobnadeAndBlaster : AllRounderWeapon
     }
 
 
-    public override void FinishShooting() {
+    public override void FinishShooting(String animName = "") {
         base.FinishShooting();
     }
 

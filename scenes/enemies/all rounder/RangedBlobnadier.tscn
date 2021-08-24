@@ -21,8 +21,8 @@ spawnScenes = {
 "hp_drop": ExtResource( 9 )
 }
 acts = {
-"shoot": 2.0,
-"throw_blob": 3.0
+"shoot": [ 2.0, 1.0 ],
+"throw_blob": [ 3.0, 1.0 ]
 }
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 8 )]
