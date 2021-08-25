@@ -31,11 +31,6 @@ public class BlobCharger : BaseCharger
             }
         }
     }
-
-
-    public override void FinishAction(String actionName) {
-        base.FinishAction(actionName);
-    }
-
+    
     
 }

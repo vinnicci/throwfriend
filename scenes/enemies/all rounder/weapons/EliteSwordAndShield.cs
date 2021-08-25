@@ -24,10 +24,4 @@ public class EliteSwordAndShield : AllRounderWeapon
     }
 
 
-    public override void FinishShooting(String animName = "")
-    {
-        base.FinishShooting();
-    }
-
-
 }

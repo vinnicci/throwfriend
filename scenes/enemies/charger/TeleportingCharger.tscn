@@ -28,7 +28,6 @@ acts = {
 }
 
 [node name="Lower" type="Sprite" parent="Sprite" index="0"]
-scale = Vector2( 1.15, 0.9 )
 texture = ExtResource( 4 )
 
 [node name="Upper" type="Sprite" parent="Sprite/Lower" index="0"]

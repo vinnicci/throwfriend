@@ -22,14 +22,11 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.5, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "blob", 1 ],
 "method": "SpawnInstance"
-}, {
-"args": [ "spawn_blob" ],
-"method": "FinishAction"
 } ]
 }
 tracks/2/type = "value"

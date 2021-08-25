@@ -47,9 +47,4 @@ public abstract class AllRounder: Enemy
     }
 
 
-    public override void FinishAction(String actionName) {
-        base.FinishAction(actionName);
-    }
-
-
 }

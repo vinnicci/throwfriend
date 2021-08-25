@@ -44,9 +44,4 @@ public abstract class BaseCharger : Enemy
     }
 
 
-    public override void FinishAction(String actionName) {
-        base.FinishAction(actionName);
-    }
-
-
 }

@@ -23,10 +23,4 @@ public abstract class BaseChargerSpawner : Enemy, ISpawner
     }
 
 
-    public override void FinishAction(string actionName)
-    {
-        base.FinishAction(actionName);
-    }
-
-
 }

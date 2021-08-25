@@ -68,9 +68,26 @@ public abstract class AllRounderWeapon: EnemyWeapon
     }
 
 
-    public override void FinishShooting(String animName = "")
-    {
-        base.FinishShooting();
+    //used by elite ranged variants
+    protected void SpawnProj2() {
+        GlobalRotationDegrees -= 40;
+        base.SpawnProj();
+        GlobalRotationDegrees += 10;
+        base.SpawnProj();
+        GlobalRotationDegrees += 10;
+        base.SpawnProj();
+        GlobalRotationDegrees += 10;
+        base.SpawnProj();
+        GlobalRotationDegrees += 10;
+        base.SpawnProj();
+        GlobalRotationDegrees += 10;
+        base.SpawnProj();
+        GlobalRotationDegrees += 10;
+        base.SpawnProj();
+        GlobalRotationDegrees += 10;
+        base.SpawnProj();
+        GlobalRotationDegrees += 10;
+        base.SpawnProj();
     }
 
 

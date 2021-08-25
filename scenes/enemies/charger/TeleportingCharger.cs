@@ -21,10 +21,4 @@ public class TeleportingCharger : BaseCharger
     }
 
 
-    public override void FinishAction(string actionName)
-    {
-        base.FinishAction(actionName);
-    }
-
-
 }

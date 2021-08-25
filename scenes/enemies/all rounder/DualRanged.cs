@@ -18,12 +18,6 @@ public class DualRanged : AllRounder
     {
         base.Recoil();
     }
-
-
-    public override void FinishAction(string actionName)
-    {
-        base.FinishAction(actionName);
-    }
-
+    
     
 }

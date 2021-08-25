@@ -8,10 +8,4 @@ public abstract class BaseShooter : Enemy
     }
 
 
-    public override void FinishAction(String actionName)
-    {
-        base.FinishAction(actionName);
-    }
-
-
 }

@@ -11,10 +11,5 @@ public class BlobnadeAndBlaster : AllRounderWeapon
         base.SpawnInstance(packedSceneKey);
     }
 
-
-    public override void FinishShooting(String animName = "") {
-        base.FinishShooting();
-    }
-
     
 }

@@ -51,7 +51,7 @@ acts = {
 texture = ExtResource( 2 )
 
 [node name="Upper" type="Sprite" parent="Sprite/Lower" index="0"]
-position = Vector2( 0, -8.83333 )
+position = Vector2( 0, -10 )
 texture = ExtResource( 1 )
 offset = Vector2( -6, 0 )
 

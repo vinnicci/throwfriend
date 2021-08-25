@@ -3,28 +3,17 @@ using System;
 
 public class EliteMeleeShielded : AllRounder
 {
+    const String AI_PATH = "res://scenes/enemies/all rounder/ais/EliteMeleeShieldedAI.tscn";
+
+
     //replace ai
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-        if(what == NotificationEnterTree) {
-            Node2D tempAI = GetNode<Node2D>("AI");
-            tempAI.GetParent().RemoveChild(tempAI);
-            tempAI.QueueFree();
-            PackedScene aIPack = (PackedScene)ResourceLoader.Load("res://scenes/enemies/all rounder/ais/EliteMeleeShieldedAI.tscn");
-            aINode = (Node2D)aIPack.Instance();
-            AddChild(aINode);
-        }
-    }
-
-
     public override void _Ready()
     {
         base._Ready();
-        Node2D tempAI = aINode;
+        Node2D tempAI = GetNode<Node2D>("AI");
         tempAI.GetParent().RemoveChild(tempAI);
         tempAI.QueueFree();
-        PackedScene aIPack = (PackedScene)ResourceLoader.Load("res://scenes/enemies/all rounder/ais/EliteMeleeShieldedAI.tscn");
+        PackedScene aIPack = (PackedScene)ResourceLoader.Load(AI_PATH);
         aINode = (Node2D)aIPack.Instance();
         AddChild(aINode);
     }
@@ -52,12 +41,6 @@ public class EliteMeleeShielded : AllRounder
     public void ThrowFlyBlob() {
         //requirement melee attack back not ready
         ((EliteSwordAndShield)WeaponNode).ThrowFlyBlob();
-    }
-
-
-    public override void FinishAction(string actionName)
-    {
-        base.FinishAction(actionName);
     }
 
 

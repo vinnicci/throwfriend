@@ -15,10 +15,4 @@ public class ShooterWeapon : EnemyWeapon
     }
 
 
-    public override void FinishShooting(String animName = "")
-    {
-        base.FinishShooting();
-    }
-
-
 }

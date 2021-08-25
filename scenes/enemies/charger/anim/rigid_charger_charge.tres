@@ -70,14 +70,11 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.5, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "Charge"
-}, {
-"args": [ "charge" ],
-"method": "FinishAction"
 } ]
 }
 tracks/6/type = "value"
