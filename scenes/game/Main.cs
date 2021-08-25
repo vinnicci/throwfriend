@@ -348,7 +348,7 @@ public class Main : Node
         Vector2 currentCell = (Vector2)PlayerSaveFile.Get("CurrentCell");
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)((Godot.Collections.Dictionary)WorldSaveFile.Get("WorldCells"))[currentCell];
-        if(lvl.overrideableEnemyMults) {
+        if(lvl.overrideableEnemyMults == false) {
             lvl.enemyHealthMult = (float)dict["hpMult"];
             lvl.enemySpeedMult = (float)dict["speedMult"];
         }

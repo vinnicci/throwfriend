@@ -98,6 +98,16 @@ public static class Global
         "res://scenes/enemies/shooter/ScatterShooter.tscn",
         "res://scenes/enemies/shooter/SprayerAcid.tscn",
     };
+    public static readonly String[] ELITE_ALL_ROUNDERS = {
+        "res://scenes/enemies/all rounder/EliteMeleeShielded.tscn",
+        "res://scenes/enemies/all rounder/EliteRangedShielded.tscn",
+    };
+    public static readonly String[] ELITE_CHARGERS = {
+
+    };
+    public static readonly String[] ELITE_SHOOTERS = {
+
+    };
 
     //lvl sets
     //NONE

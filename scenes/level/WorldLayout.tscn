@@ -85,6 +85,7 @@ levelType = 7
 [node name="Boss1" parent="." instance=ExtResource( 3 )]
 position = Vector2( -273.388, -24.3768 )
 levelType = 8
+miscLevelFile = "res://levels/misc/FirstBossArena.tscn"
 
 [node name="Label" type="Label" parent="Boss1"]
 margin_right = 40.0

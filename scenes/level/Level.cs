@@ -4,11 +4,23 @@ using System.Collections.Generic;
 
 public abstract class Level : YSort
 {
-    [Export] public bool overrideableEnemyMults = true;
+    //if true use provided mult
+    [Export] public bool overrideableEnemyMults;
     [Export] public float enemyHealthMult = 1;
     [Export] public float enemySpeedMult = 1;
 
     Player playerNode;
+    public Player PlayerNode {
+        get {
+            if(IsInstanceValid(playerNode) && playerNode.IsDead == false) {
+                return playerNode;
+            }
+            return default;
+        }
+        private set {
+            playerNode = value;
+        }
+    }
     Navigation2D nav;
     YSort enemies;
     YSort lvlObjects;
@@ -111,7 +123,7 @@ public abstract class Level : YSort
     }
 
 
-    //debug: show ai path
+    //for debugging: show ai path
     void ShowLine(Vector2[] vec) {
         Line2D line = new Line2D();
         Tween tween = new Tween();

@@ -10,7 +10,7 @@
 [ext_resource path="res://scenes/enemies/charger/Charger.tscn" type="PackedScene" id=8]
 
 [node name="FirstBigEncounter" instance=ExtResource( 1 )]
-overrideableEnemyMults = false
+overrideableEnemyMults = true
 enemyHealthMult = 0.75
 enemySpeedMult = 0.75
 

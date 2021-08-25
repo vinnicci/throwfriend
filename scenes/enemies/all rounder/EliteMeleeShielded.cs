@@ -31,7 +31,6 @@ public class EliteMeleeShielded : AllRounder
 
 
     public void TeleAttack() {
-        //teleport near player, requirement melee attack back ready
         Vector2 vec = LevelNode.GetPlayerPos() -
         new Vector2(50,0).Rotated(Godot.Mathf.Deg2Rad((float)GD.RandRange(0, 360)));
         Teleport(LevelNode, vec);
@@ -39,7 +38,6 @@ public class EliteMeleeShielded : AllRounder
 
 
     public void ThrowFlyBlob() {
-        //requirement melee attack back not ready
         ((EliteSwordAndShield)WeaponNode).ThrowFlyBlob();
     }
 
