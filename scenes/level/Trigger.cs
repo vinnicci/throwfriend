@@ -32,7 +32,8 @@ public abstract class Trigger : Area2D, ILevelObject
         }
         foreach(NodePath nodePath in BoundTriggers) {
             Node2D node = GetNodeOrNull<Node2D>(nodePath);
-            if(node.IsConnected("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers))) {
+            if(IsInstanceValid(node) == false ||
+            node.IsConnected("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers))) {
                 continue;
             }
             Godot.Collections.Array arr = new Godot.Collections.Array();
@@ -83,7 +84,7 @@ public abstract class Trigger : Area2D, ILevelObject
 
 
     public virtual void OnSwitchedOn() {
-        if((Persist && triggered) || triggered) {
+        if(triggered) {
             return;
         }
         triggered = true;

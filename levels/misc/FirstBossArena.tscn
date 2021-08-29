@@ -30,6 +30,6 @@ portrait = ExtResource( 4 )
 name = "The Labyrinth"
 stringArr = [ 
     "This path will lead you deeper into the labyrinth.",
-    "It protected the land well from the world outside.",
-    "But today is different. Somehow a large number of them came through." ]
+    "It protected the land well from the unknown world beyond.",
+    "Somehow a large number of them came through. But as usual, you have to take them all out." ]
 portraitScale = 4.0

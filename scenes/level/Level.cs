@@ -139,4 +139,9 @@ public abstract class Level : YSort
     }
 
 
+    public void QueueFreeObject(Godot.Object obj) {
+        ((Node)obj).QueueFree();
+    }
+
+
 }

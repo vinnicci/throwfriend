@@ -74,7 +74,8 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
         SwitchedOffSignal = nameof(SwitchedOff);
         foreach(NodePath nodePath in BoundTriggers) {
             Node2D node = GetNodeOrNull<Node2D>(nodePath);
-            if(node.IsConnected("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers))) {
+            if(IsInstanceValid(node) == false ||
+            node.IsConnected("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers))) {
                 continue;
             }
             Godot.Collections.Array arr = new Godot.Collections.Array();

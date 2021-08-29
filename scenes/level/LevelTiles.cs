@@ -32,7 +32,11 @@ public class LevelTiles: TileMap, ILevelObject
         }
         foreach(NodePath nodePath in BoundTriggers) {
             Node2D node = GetNodeOrNull<Node2D>(nodePath);
-            if(node.IsConnected("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers))) {
+            if(IsInstanceValid(node) == false) {
+                continue;
+            }
+            if(IsInstanceValid(node) == false ||
+            node.IsConnected("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers))) {
                 continue;
             }
             Godot.Collections.Array arr = new Godot.Collections.Array();
@@ -69,17 +73,24 @@ public class LevelTiles: TileMap, ILevelObject
     [Signal] public delegate void SwitchedOn();
     [Signal] public delegate void SwitchedOff();
 
+    bool isOn = false;
+
 
     public void OnSwitchedOn() {
+        if(isOn) {
+            return;
+        }
+        isOn = true;
         TriggerAnim.Queue("trigger");
         EmitSignal(SwitchedOnSignal);
     }
 
 
     public virtual void OnSwitchedOff() {
-        if(Persist) {
+        if(Persist || isOn == false) {
             return;
         }
+        isOn = false;
         TriggerAnim.Queue("trigger_back");
         EmitSignal(SwitchedOffSignal);
     }

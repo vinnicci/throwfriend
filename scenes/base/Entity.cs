@@ -85,8 +85,8 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         teleSprite.GlobalRotation = GlobalRotation;
         Godot.Collections.Array arr = new Godot.Collections.Array();
         arr.Add(teleSprite);
-        if(tween.IsConnected("tween_all_completed", this, nameof(FreeSprite)) == false) {
-            tween.Connect("tween_all_completed", this, nameof(FreeSprite), arr);
+        if(tween.IsConnected("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject)) == false) {
+            tween.Connect("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject), arr);
         }
         tween.InterpolateProperty(teleSprite, "scale", teleSprite.Scale, new Vector2(0.01f, teleSprite.Scale.y), 0.25f,
         Tween.TransitionType.Linear, Tween.EaseType.InOut);
@@ -95,11 +95,6 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         teleportPos = global_pos;
         TeleportAnim.Stop();
         TeleportAnim.Play("teleported");
-    }
-
-
-    public void FreeSprite(Godot.Object teleSprite) {
-        ((Node2D)teleSprite).QueueFree();
     }
 
 

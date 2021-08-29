@@ -89,8 +89,8 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         teleSprite.GlobalRotation = GlobalRotation;
         Godot.Collections.Array arr = new Godot.Collections.Array();
         arr.Add(teleSprite);
-        if(tween.IsConnected("tween_all_completed", this, nameof(FreeSprite)) == false) {
-            tween.Connect("tween_all_completed", this, nameof(FreeSprite), arr);
+        if(tween.IsConnected("tween_all_completed", PlayerNode.LevelNode, nameof(Level.QueueFreeObject)) == false) {
+            tween.Connect("tween_all_completed", PlayerNode.LevelNode, nameof(Level.QueueFreeObject), arr);
         }
         tween.InterpolateProperty(teleSprite, "modulate",
         new Color(1,1,1,1), new Color(1,1,1,0), 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
@@ -98,11 +98,6 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         //teleport
         teleportPos = global_pos;
         TeleportAnim.Play("teleported");
-    }
-
-
-    public void FreeSprite(Godot.Object teleSprite) {
-        ((Sprite)teleSprite).QueueFree();
     }
 
 
