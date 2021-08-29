@@ -83,7 +83,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
         }
         currentRange = Range;
         Velocity = new Vector2(Speed, 0).Rotated(Godot.Mathf.Deg2Rad(globalRotDeg));
-        levelNode.Spawn(this, globalPos, Godot.Mathf.Deg2Rad(globalRotDeg));
+        lvl.Spawn(this, globalPos, Godot.Mathf.Deg2Rad(globalRotDeg));
     }
 
 

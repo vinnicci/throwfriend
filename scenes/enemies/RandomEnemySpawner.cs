@@ -1,13 +1,21 @@
 using Godot;
 using System;
 
-public class RandomEnemySpawner : Position2D
+public class RandomEnemySpawner : Position2D, ILevelObject
 {
     [Export] int maxSpawnCount;
     [Export] EnemySet enemySet;
     [Export] Godot.Collections.Array customSet = new Godot.Collections.Array();
     [Export] Godot.Collections.Array<NodePath> triggers = new Godot.Collections.Array<NodePath>();
     [Export] bool continuous = false;
+    [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
+
+    public String SwitchedOnSignal {get; set;}
+    
+    //not implemented
+    public String SwitchedOffSignal {get; set;}
+    public AnimationPlayer TriggerAnim {get; set;}
+    public bool Persist {get; set;}
 
     public enum EnemySet {
         EASY_ALL_ROUNDERS,
@@ -34,6 +42,9 @@ public class RandomEnemySpawner : Position2D
         }
         set {
             levelNode = value;
+            if(continuous == false) {
+                InitLevelObject();
+            }
             SpawnRandomEnemy();
         }
     }
@@ -48,6 +59,50 @@ public class RandomEnemySpawner : Position2D
         base._Ready();
         spawnTimer = (Timer)GetNode("SpawnTimer");
         tween = (Tween)GetNode("Tween");
+    }
+
+
+    [Signal] public delegate void SwitchedOn();
+    [Signal] public delegate void SwitchedOff();
+
+
+    public void InitLevelObject() {
+        SwitchedOnSignal = nameof(SwitchedOn);
+        foreach(NodePath nodePath in BoundTriggers) {
+            Node2D node = GetNodeOrNull<Node2D>(nodePath);
+            if(node.IsConnected("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers))) {
+                continue;
+            }
+            Godot.Collections.Array arr = new Godot.Collections.Array();
+            arr.Add(nodePath);
+            arr.Add(true);
+            node.Connect("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers), arr);
+        }
+    }
+
+
+    public void OnTriggeredAllBoundTriggers(NodePath path, bool triggered) {
+        if(triggered) {
+            BoundTriggers.Remove(path);
+        }
+        if(BoundTriggers.Count == 0) {
+            OnSwitchedOn();
+        }
+    }
+
+
+    public virtual void OnSwitchedOn() {
+        QueueFree();
+    }
+
+
+    public virtual void OnSwitchedOff() {
+        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnSwitchedOff));
+    }
+
+
+    public void OnAnimFinished(String animName) {
+        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnAnimFinished));
     }
 
 
@@ -66,7 +121,7 @@ public class RandomEnemySpawner : Position2D
             return;
         }
         //else if not continuous
-        String path = GetPath().ToString();
+        String path = mainNode.PlayerSaveFile.Get("CurrentCell") + Name;
         if(dict.Contains(path) == false) {
             Godot.Collections.Array enemyArr = new Godot.Collections.Array();
             for(int i = 0; i <= maxSpawnCount - 1; i++) {
@@ -81,11 +136,6 @@ public class RandomEnemySpawner : Position2D
             Godot.Collections.Array enemyArr = (Godot.Collections.Array)dict[path];
             foreach(String enemyFilePath in enemyArr) {
                 SpawnEnemy(enemyFilePath);
-                //add self as trigger to object
-                foreach(NodePath triggerPath in triggers) {
-                    Node2D trigger = GetNode<Node2D>(triggerPath);
-                    ((ILevelObject)trigger).BoundTriggers.Add(GetPath());
-                }
             }
         }
     }
@@ -98,7 +148,16 @@ public class RandomEnemySpawner : Position2D
         PackedScene enemyPack = (PackedScene)ResourceLoader.Load(enemyFilePath);
         Enemy enemy = (Enemy)enemyPack.Instance();
         enemy.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
+        //make enemy node as one of bound triggers
+        foreach(NodePath triggerPath in triggers) {
+            Node2D trigger = GetNodeOrNull<Node2D>(triggerPath);
+            if(((ILevelObject)trigger).BoundTriggers.Contains(enemy.GetPath()) == false) {
+                ((ILevelObject)trigger).BoundTriggers.Add(enemy.GetPath());
+            }
+            ((ILevelObject)trigger).InitLevelObject();
+        }
         //fade in effect
+        enemy.Modulate = new Color(1,1,1,0);
         tween.InterpolateProperty(enemy, "modulate", new Color(1,1,1,0), new Color(1,1,1,1),
         0.3f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
         tween.Start();

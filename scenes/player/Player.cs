@@ -11,13 +11,12 @@ public class Player : Entity
     public int SnarkDmgMult {get; set;}
     public Node2D Center {get; set;}
     public Weapon WeaponNode {get; set;}
-    Level levelNode;
-    public Level LevelNode {
+    public override Level LevelNode {
         get {
             return levelNode;
         }
         set {
-            levelNode = value;
+            base.LevelNode = value;
             WeaponNode.PlayerNode = this;
             inGameUI.PlayerNode = this;
             ActivateItem(1);
@@ -132,7 +131,7 @@ public class Player : Entity
     public override void _Process(float delta)
     {
         base._Process(delta);
-        if(IsDead) {
+        if(Health <= 0) {
             return;
         }
         Center.LookAt(GetGlobalMousePosition());
@@ -194,7 +193,7 @@ public class Player : Entity
 
 
     public void GetInput() {
-        if(IsStopped || IsDead) {
+        if(IsStopped || Health <= 0) {
             return;
         }
         bool hasWeap = Center.HasNode("WeapPos/Weapon");
@@ -306,10 +305,10 @@ public class Player : Entity
     public override bool Hit(Vector2 knockback, int damage)
     {
         if(base.Hit(knockback, damage)) {
-            if(Health > 0 && damage > 0 && IsDead == false) {
+            if(Health > 0 && damage > 0) {
                 HitCooldown.Start(1f);
             }
-            else if(IsDead) {
+            else if(Health <= 0) {
                 DamageAnim.Stop();
             }
             UpdateStatsDisp();

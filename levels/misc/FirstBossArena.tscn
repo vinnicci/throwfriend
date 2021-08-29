@@ -20,7 +20,7 @@ tile_data = PoolIntArray( -1245205, 0, 0, -1179670, 0, 0, -1179668, 0, 0, -11796
 visible = false
 tile_data = PoolIntArray( -131099, 1, 65538, -131098, 1, 65538, -131097, 1, 65538, -65563, 1, 65538, -131062, 1, 65538, -27, 1, 65538, -65526, 1, 65538, 65509, 1, 65538, 65510, 1, 65538, 65511, 1, 65538 )
 
-[node name="NextLevel" parent="Objects" index="6" instance=ExtResource( 3 )]
+[node name="E" parent="Objects" index="6" instance=ExtResource( 3 )]
 position = Vector2( 597, -67 )
 rotation = 3.14159
 
@@ -28,5 +28,8 @@ rotation = 3.14159
 position = Vector2( -1600, -62 )
 portrait = ExtResource( 4 )
 name = "The Labyrinth"
-stringArr = [ "This path will lead you deeper into the labyrinth.", "It's a mystery on who created this and how?", "Some adventurers reported unbelievable things like walls popping in and out of existence changing the maze layout entirely thus making the maps useless.", "But it has served the land well in protecting you from the world outside.", "Occasionally however, a few intruders find their way and your job is to eliminate them." ]
+stringArr = [ 
+    "This path will lead you deeper into the labyrinth.",
+    "It protected the land well from the world outside.",
+    "But today is different. Somehow a large number of them came through." ]
 portraitScale = 4.0

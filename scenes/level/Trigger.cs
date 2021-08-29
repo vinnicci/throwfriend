@@ -27,8 +27,14 @@ public abstract class Trigger : Area2D, ILevelObject
         SwitchedOnSignal = nameof(SwitchedOn);
         SwitchedOffSignal = nameof(SwitchedOff);
         TriggerAnim = (AnimationPlayer)GetNode("Anim");
+        if(TriggerAnim.IsConnected("animation_finished", this, nameof(OnAnimFinished)) == false) {
+            TriggerAnim.Connect("animation_finished", this, nameof(OnAnimFinished));
+        }
         foreach(NodePath nodePath in BoundTriggers) {
             Node2D node = GetNodeOrNull<Node2D>(nodePath);
+            if(node.IsConnected("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers))) {
+                continue;
+            }
             Godot.Collections.Array arr = new Godot.Collections.Array();
             arr.Add(nodePath);
             arr.Add(true);
@@ -61,6 +67,9 @@ public abstract class Trigger : Area2D, ILevelObject
 
 
     public virtual void OnTriggerBodyEntered(Godot.Object body) {
+        if(body is Weapon && ((Weapon)body).CurrentState == Weapon.States.HELD) {
+            return;
+        }
         OnSwitchedOn();
     }
 
@@ -74,7 +83,7 @@ public abstract class Trigger : Area2D, ILevelObject
 
 
     public virtual void OnSwitchedOn() {
-        if(Persist && triggered) {
+        if((Persist && triggered) || triggered) {
             return;
         }
         triggered = true;
@@ -84,13 +93,16 @@ public abstract class Trigger : Area2D, ILevelObject
 
 
     public virtual void OnSwitchedOff() {
-        if(Persist) {
+        if(Persist || triggered == false) {
             return;
         }
         triggered = false;
         TriggerAnim.Queue("trigger_back");
         EmitSignal(SwitchedOffSignal);
     }
+
+
+    public virtual void OnAnimFinished(String animName) {}
 
 
 }

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/RandomEnemySpawner.tscn" type="PackedScene" id=3]
 
 [node name="09_1None3" instance=ExtResource( 2 )]
 
@@ -31,3 +32,20 @@ position = Vector2( -344, 123 )
 [node name="E" parent="Objects" index="7" instance=ExtResource( 1 )]
 position = Vector2( 790, 630 )
 rotation = -3.14159
+
+[node name="RandomEnemySpawner" parent="Objects" index="8" instance=ExtResource( 3 )]
+position = Vector2( -30, 958 )
+maxSpawnCount = 3
+
+[node name="RandomEnemySpawner2" parent="Objects" index="9" instance=ExtResource( 3 )]
+position = Vector2( 474, -268 )
+maxSpawnCount = 3
+
+[node name="RandomEnemySpawner3" parent="Objects" index="10" instance=ExtResource( 3 )]
+position = Vector2( 178, 374 )
+maxSpawnCount = 1
+enemySet = 6
+
+[node name="RandomEnemySpawner4" parent="Objects" index="11" instance=ExtResource( 3 )]
+position = Vector2( 276, 374 )
+maxSpawnCount = 1

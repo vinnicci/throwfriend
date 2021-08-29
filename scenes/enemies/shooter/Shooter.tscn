@@ -34,7 +34,6 @@ spawnScenes = {
 }
 
 [node name="CollisionShape2D" parent="." index="2"]
-visible = false
 position = Vector2( 0, -5 )
 shape = SubResource( 1 )
 

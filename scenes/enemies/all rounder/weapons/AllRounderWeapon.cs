@@ -36,20 +36,15 @@ public abstract class AllRounderWeapon: EnemyWeapon
         base.SpawnInstance(packedSceneKey);
         if(packedSceneKey == "blob") {
             for(int i = 0; i <= count; i++) {
-                SpawnBlob();
+                Blob blobInstance = (Blob)spawnScenes["blob"].Instance();
+                blobInstance.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition, Vector2.Zero);
+                blobInstance.ApplyCentralImpulse(new Vector2(BLOBNADE_THROW_STRENGTH, 0).Rotated(spawnPoint.GlobalRotation));
             }
         }
     }
 
 
     const int BLOBNADE_THROW_STRENGTH = 1000;
-
-
-    public void SpawnBlob() {
-        Blob blobInstance = (Blob)spawnScenes["blob"].Instance();
-        blobInstance.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition, Vector2.Zero);
-        blobInstance.ApplyCentralImpulse(new Vector2(BLOBNADE_THROW_STRENGTH, 0).Rotated(spawnPoint.GlobalRotation));
-    }
 
 
     //ranged

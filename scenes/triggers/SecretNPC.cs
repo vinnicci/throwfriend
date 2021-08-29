@@ -26,7 +26,7 @@ public class SecretNPC : Trigger, IQuest
         Godot.Collections.Array arr =
         (Godot.Collections.Array)((Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("Quests"))[QuestID];
         Vector2 currentCell = (Vector2)MainNode.PlayerSaveFile.Get("CurrentCell");
-        String key = currentCell.ToString() + GetPath().ToString();
+        String key = currentCell.ToString() + Name; //GetPath().ToString();
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)MainNode.LevelSaveFile.Get("Triggers");
         if(dict.Contains(key) && (bool)dict[key] == false) {

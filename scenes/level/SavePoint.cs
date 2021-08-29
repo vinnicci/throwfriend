@@ -39,7 +39,7 @@ public class SavePoint : Area2D
     public override void _Process(float delta)
     {
         base._Process(delta);
-        if(saving == false || player.WeaponNode.CurrentState != Weapon.States.HELD || player.IsDead) {
+        if(saving == false || player.WeaponNode.CurrentState != Weapon.States.HELD || player.Health <= 0) {
             return;
         }
         Main mainNode = (Main)GetNode("/root/Main");

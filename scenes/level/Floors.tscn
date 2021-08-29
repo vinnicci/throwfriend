@@ -19,5 +19,3 @@ BoundTriggers = [  ]
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/trigger = ExtResource( 3 )
 anims/trigger_back = ExtResource( 4 )
-
-[connection signal="animation_finished" from="Anim" to="." method="OnAnimFinished"]

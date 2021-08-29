@@ -8,12 +8,20 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     [Export] public int health = 1;
     public int Health {get; set;}
     
-    public bool IsDead {get; set;}
     public Vector2 Velocity {get; set;}
     public Timer HitCooldown {get; set;}
     public AnimationPlayer TeleportAnim {get; set;}
     public AnimationPlayer DamageAnim {get; set;}
 
+    protected Level levelNode;
+    public virtual Level LevelNode {
+        get {
+            return levelNode;
+        }
+        set{
+            levelNode = value;
+        }
+    }
     protected AnimationPlayer anim;
     protected Node2D spriteNode;
     protected Node2D hud;
@@ -34,13 +42,13 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     {
         base._Ready();
         hud = (Node2D)GetNode("HUD");
-        healthHUD = (HealthHUD)hud.GetNode("Health");
-        healthHUD.ParentNode = this;
         spriteNode = (Node2D)GetNode("Sprite");
         TeleportAnim = (AnimationPlayer)GetNode("Anims/TeleAnim");
         DamageAnim = (AnimationPlayer)GetNode("Anims/DamageAnim");
         anim = (AnimationPlayer)GetNode("Anims/Anim");
         HitCooldown = (Timer)GetNode("HitCooldown");
+        healthHUD = (HealthHUD)hud.GetNode("Health");
+        healthHUD.ParentNode = this;
     }
 
 
@@ -98,7 +106,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     public override void _IntegrateForces(Physics2DDirectBodyState state)
     {
         base._IntegrateForces(state);
-        if(IsDead) {
+        if(Health <= 0) {
             AppliedForce = Vector2.Zero;
             return;
         }
@@ -139,7 +147,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
 
 
     public virtual bool Hit(Vector2 knockback, int damage) {
-        if(IsDead || (HitCooldown.IsStopped() == false && damage > 0)) {
+        if(Health <= 0 || (HitCooldown.IsStopped() == false && damage > 0 && Health > 0)) {
             return false;
         }
         ApplyCentralImpulse(knockback * knockbackMult);
@@ -156,14 +164,14 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
 
 
-    public void Die() {
-        IsDead = true;
+    public virtual void Die() {
+        EmitSignal(nameof(Died));
+        Health = 0;
         healthHUD.Visible = false;
         anim.Stop();
         anim.Play("die");
         SetCollisionLayerBit(Global.BIT_MASK_ENEMY, false);
         SetCollisionLayerBit(Global.BIT_MASK_PLAYER, false);
-        EmitSignal(nameof(Died));
     }
 
 
@@ -171,6 +179,9 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     public void ChangeEntityBaseStats(int newHealth = -1, int newSpeed = -1) {
         if(newHealth != -1) {
             health = newHealth;
+            if(health <= 0) {
+                health = 1;
+            }
             Health = health;
             if(IsInstanceValid(healthHUD)) {
                 healthHUD.ParentNode = this;

@@ -199,7 +199,6 @@ public class Main : Node
             "Collectables",
             "Tiles",
             "Triggers",
-            "NextLevels",
             "Enemies",
         };
         if(VerifySaveFile(LevelSaveFile, levelDataArr) == false) {
@@ -228,10 +227,9 @@ public class Main : Node
                 InitLevelObject(node, "Triggers");
             }
             else if(node is NextLevel) {
-                InitLevelObject(node, "NextLevels");
                 //enlist to world data
                 Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)WorldSaveFile.Get("NextLevels");
-                String key = PlayerSaveFile.Get("CurrentCell").ToString() + node.GetPath().ToString();
+                String key = PlayerSaveFile.Get("CurrentCell").ToString() + node.Name;
                 if(dict.Contains(key) == false) {
                     dict.Add(key, "");
                 }
@@ -265,7 +263,7 @@ public class Main : Node
             return;
         }
         Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)LevelSaveFile.Get(objType);
-        String key = PlayerSaveFile.Get("CurrentCell").ToString() + levelObj.GetPath().ToString();
+        String key = PlayerSaveFile.Get("CurrentCell").ToString() + levelObj.Name;
         if(dict.Contains(key) == false) {
             dict.Add(key, true);
         }
@@ -298,6 +296,7 @@ public class Main : Node
 
 
     public async void GoToLevel(String fileName, String nodePos, Player player, bool loadPlayerData) {
+        AddLvlNameToWorld(fileName);
         FadeAnim.Play("fade_in");
         player.IsStopped = true;
         await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
@@ -306,12 +305,10 @@ public class Main : Node
             if(IsInstanceValid(currPlayer) && currPlayer == player) {
                 currentLevel.RemoveChild(player);
             }
-            //Saver.Call("save_level_data");
         }
-        if(player.IsConnected(nameof(Entity.Died), this, "OnPlayerDied") == false) {
-            player.Connect(nameof(Entity.Died), this, "OnPlayerDied");
+        if(player.IsConnected(nameof(Entity.Died), this, nameof(OnPlayerDied)) == false) {
+            player.Connect(nameof(Entity.Died), this, nameof(OnPlayerDied));
         }
-        AddLvlNameToWorld(fileName);
         CallDeferred(nameof(GoToLevelDef), fileName, nodePos, player, loadPlayerData);
     }
 

@@ -11,12 +11,6 @@ script = ExtResource( 1 )
 modulate = Color( 1, 0.658824, 0.278431, 1 )
 tile_data = PoolIntArray( -65541, 7, 0, -6, 11, 0, -5, 8, 0, -4, 1, 0, -3, 9, 0, -2, 5, 0, 65532, 2, 0, 65533, 9, 0, 65534, 8, 0, 65535, 0, 0, 131068, 14, 0, 131071, 10, 0, 65536, 1, 0, 65537, 9, 0, 131072, 14, 0 )
 
-[node name="WorldTileMap2" parent="." instance=ExtResource( 2 )]
-modulate = Color( 0.427451, 1, 0.309804, 1 )
-
-[node name="WorldTileMap3" parent="." instance=ExtResource( 2 )]
-modulate = Color( 0.521569, 0.521569, 0.521569, 1 )
-
 [node name="Start" parent="." instance=ExtResource( 3 )]
 position = Vector2( 74.6917, 75.8644 )
 levelType = 1
@@ -94,3 +88,9 @@ text = "Boss"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="WorldTileMap2" parent="." instance=ExtResource( 2 )]
+modulate = Color( 0.427451, 1, 0.309804, 1 )
+
+[node name="WorldTileMap3" parent="." instance=ExtResource( 2 )]
+modulate = Color( 0.521569, 0.521569, 0.521569, 1 )

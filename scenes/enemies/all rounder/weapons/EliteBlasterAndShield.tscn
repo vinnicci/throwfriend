@@ -52,7 +52,7 @@ texture = ExtResource( 5 )
 [node name="Blob" type="Sprite" parent="Sprites/Hand" index="2"]
 
 [node name="ProjSpawn" parent="Sprites" index="1"]
-position = Vector2( 34.5, 0 )
+position = Vector2( 35, 0 )
 scale = Vector2( 1, 1 )
 
 [node name="Anim" type="AnimationPlayer" parent="." index="1"]

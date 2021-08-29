@@ -62,7 +62,8 @@ func init_properties(new_lvl: Node2D, new_parent: RigidBody2D, patrol_pts: Array
 func _physics_process(_delta: float) -> void:
 	if is_ent_valid(parent_node) == false:
 		is_moving = false
-		queue_free()
+		set_process(false)
+		set_physics_process(false)
 		return
 	if is_moving:
 		if is_instance_valid(weapon_node):
@@ -86,8 +87,8 @@ func separate_from_allies(velocity: Vector2 = Vector2.ZERO) -> Vector2:
 
 func is_ent_valid(ent: Node2D):
 	var output: bool = is_instance_valid(ent)
-	if output && ent.get("IsDead") != null:
-		return output && ent.IsDead == false
+	if output && ent.get("Health") != null:
+		return output && ent.Health > 0
 	return output
 
 
@@ -123,11 +124,13 @@ func _on_DetectionRange_body_exited(body: Node):
 
 
 func engage_enemy(enemy: RigidBody2D):
-	if is_ent_valid(enemy) == false:
+	if is_ent_valid(enemy) == false || is_ent_valid(bb["enemy"]) || is_ent_valid(parent_node) == false:
 		return;
 	bb["enemy"] = enemy
-	level_node.set("PlayerEngaging", level_node.get("PlayerEngaging") + 1)
-	print("engage: " + str(level_node.get("PlayerEngaging")))
+	var arr: Array = level_node.get("PlayerEngaging")
+	if arr.has(parent_node.name) == false:
+		arr.append(parent_node.name)
+	print("engage: " + arr.size() as String)
 	_on_Tick_timeout()
 	tick.start()
 

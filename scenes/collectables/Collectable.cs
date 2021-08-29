@@ -20,7 +20,6 @@ public abstract class Collectable : Area2D, ISpawnable, ILevelObject
 
     public void InitLevelObject() {
         SwitchedOnSignal = nameof(SwitchedOn);
-        SwitchedOffSignal = nameof(SwitchedOff);
         TriggerAnim = (AnimationPlayer)GetNode("Anim");
     }
 
@@ -51,6 +50,11 @@ public abstract class Collectable : Area2D, ISpawnable, ILevelObject
 
     public void OnSwitchedOff() {
         Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnSwitchedOff));
+    }
+
+
+    public void OnAnimFinished(String animName) {
+        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnAnimFinished));
     }
 
 

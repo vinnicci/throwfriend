@@ -13,5 +13,11 @@ acts = {
 "spawn_charger": [ 8.0, 1.0 ]
 }
 
-[node name="Twisted_ModifierStack2D" parent="Sprite" index="5"]
-stack/execution_enabled = false
+[node name="Upper" parent="Sprite/Skeleton2D/Root" index="0"]
+rotation = 0.239686
+
+[node name="Upper2" parent="Sprite/Skeleton2D/Root/Upper" index="0"]
+rotation = -0.000118494
+
+[node name="Upper3" parent="Sprite/Skeleton2D/Root/Upper/Upper2" index="0"]
+rotation = -1.57106

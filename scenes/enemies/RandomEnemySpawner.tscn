@@ -4,6 +4,7 @@
 
 [node name="RandomEnemySpawner" type="Position2D"]
 script = ExtResource( 1 )
+BoundTriggers = [  ]
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 5.0

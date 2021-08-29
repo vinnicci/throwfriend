@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/enemies/AI.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/enemies/all rounder/ais/EliteMeleeShieldedBTREE.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/all rounder/ais/EliteRangedShieldedBTREE.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/enemies/all rounder/ais/AllRounderAI.gd" type="Script" id=3]
 
 [node name="AI" instance=ExtResource( 1 )]
@@ -4422,3 +4422,4 @@ tree = {
 "type": 0
 }
 }
+_tree_id = "1480398749177619"

@@ -10,31 +10,38 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
     [Export] public Godot.Collections.Dictionary<String, PackedScene> spawnScenes {get; set;}
     [Export] public bool Persist {get; set;}
 
-    Level levelNode;
-    public Level LevelNode {
+    public override Level LevelNode {
         get {
             return levelNode;
         }
         set{
-            levelNode = value;
-            ChangeEntityBaseStats((int)(health*levelNode.enemyHealthMult), (int)(speed*levelNode.enemySpeedMult));
+            base.LevelNode = value;
             if(HasNode("EnemyWeapon")) {
                 WeaponNode = (EnemyWeapon)GetNode("EnemyWeapon");
                 WeaponNode.ParentNode = this;
             }
+            //override AI
+            if(HasNode("AI2")) {
+                Node2D tempAI = (Node2D)GetNode("AI");
+                tempAI.GetParent().RemoveChild(tempAI);
+                tempAI.QueueFree();
+                Node2D newAI = (Node2D)GetNode("AI2");
+                newAI.Name = "AI";
+            }
             if(HasNode("AI")) {
                 aINode = (Node2D)GetNode("AI");
-                aINode.Call("init_properties", LevelNode, this, patrolPoints);
+                aINode.Call("init_properties", levelNode, this, patrolPoints);
             }
+            ChangeEntityBaseStats((int)(health*LevelNode.enemyHealthMult), (int)(speed*LevelNode.enemySpeedMult));
         }
     }
     public EnemyWeapon WeaponNode {get; protected set;}
     public String SwitchedOnSignal {get; set;}
-    public String SwitchedOffSignal {get; set;}
     [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
     
     //not implemented
     public AnimationPlayer TriggerAnim {get; set;}
+    public String SwitchedOffSignal {get; set;}
     
     protected Node2D aINode;
     protected Explosion ExplosionNode {get; private set;}    
@@ -67,30 +74,30 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
         SwitchedOffSignal = nameof(SwitchedOff);
         foreach(NodePath nodePath in BoundTriggers) {
             Node2D node = GetNodeOrNull<Node2D>(nodePath);
+            if(node.IsConnected("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers))) {
+                continue;
+            }
             Godot.Collections.Array arr = new Godot.Collections.Array();
             arr.Add(nodePath);
             arr.Add(true);
             node.Connect("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers), arr);
-            arr = new Godot.Collections.Array();
-            arr.Add(nodePath);
-            arr.Add(false);
-            node.Connect("SwitchedOff", this, nameof(OnTriggeredAllBoundTriggers), arr);
         }
     }
 
 
     public void OnSwitchedOn() {
-        if(IsDead == false) {
-            if(IsInstanceValid((RigidBody2D)((Godot.Collections.Dictionary)aINode.Get("bb"))["enemy"]) == false) {
-                GD.Print("non engaged died");
-                LevelNode.PlayerEngaging += 1;
-            }
+        if(Health > 0) {
             Die();
         }
     }
 
 
     public void OnSwitchedOff() {}
+
+
+    public void OnAnimFinished(String animName) {
+        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnAnimFinished));
+    }
 
 
     public void OnTriggeredAllBoundTriggers(NodePath path, bool triggered) {
@@ -101,9 +108,6 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
             BoundTriggers.Remove(path);
         }
         else {
-            if(BoundTriggers.Count == 0) {
-                OnSwitchedOff();
-            }
             BoundTriggers.Add(path);            
         }
         if(BoundTriggers.Count == 0) {
@@ -120,46 +124,6 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
         act["HPPercent"] = hpPercent;
         ActDict[actionName] = act;
     }
-
-
-    // public bool HasAct(String actionName) {
-    //     Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
-    //     if(keys.Contains(actionName) == false) {
-    //         return false;
-    //     }
-    //     return true;
-    // }
-
-
-    // public bool IsActActive(String actionName) {
-    //     Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
-    //     if(keys.Contains(actionName) == false) {
-    //         return false;
-    //     }
-    //     Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
-    //     return (bool)action["IsActive"];
-    // }
-
-
-    // public bool IsActCoolingDown(String actionName) {
-    //     Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
-    //     if(keys.Contains(actionName) == false) {
-    //         return false;
-    //     }
-    //     Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
-    //     return (float)action["TimeRemain"] > 0;
-    // }
-
-
-    // //some actions require health percentage, used for phases
-    // public bool IsHPPercentageOK(String actionName) {
-    //     Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
-    //     if(keys.Contains(actionName) == false) {
-    //         return false;
-    //     }
-    //     Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
-    //     return Health*(float)action["HPPercent"] <= health;
-    // }
 
 
     public bool IsActReady(String actionName) {
@@ -189,20 +153,21 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
 
 
     public virtual void OnEnemyBodyEntered(Godot.Object body) {
-        if(body is Weapon && IsInstanceValid(aINode)) {
-            Godot.Collections.Dictionary bbDict = (Godot.Collections.Dictionary)aINode.Get("bb");
+        if(Health <= 0) {
+            LevelNode.PlayerEngaging.Remove(Name);
+            GD.Print("die: " + LevelNode.PlayerEngaging.Count);
+        }
+        else if(body is Weapon && IsInstanceValid(aINode) &&
+        IsInstanceValid((Entity)((Godot.Collections.Dictionary)aINode.Get("bb"))["enemy"]) == false) {
             Weapon weap = (Weapon)body;
-            if(bbDict["enemy"] != weap.PlayerNode) {
-                aINode.Call("engage_enemy", weap.PlayerNode);
-            }
+            aINode.Call("engage_enemy", weap.PlayerNode);
         }
     }
 
 
     public virtual bool DoAction(String actionName) {
         Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
-        if(IsDead || IsActReady(actionName) == false) {
-        //if(IsDead) {
+        if(Health <= 0 || IsActReady(actionName) == false) {
             return false;
         }
         action["IsActive"] = true;
@@ -218,7 +183,7 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
     public override bool Hit(Vector2 knockback, int damage)
     {
         if(base.Hit(knockback, damage)) {
-            if(IsDead) {
+            if(Health <= 0) {
                 if(IsInstanceValid(WeaponNode)) {
                     WeaponNode.Disable();
                 }
@@ -230,6 +195,19 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
             return true;
         }
         return false;
+    }
+
+
+    public override void Die()
+    {
+        base.Die();
+        if(IsInstanceValid(aINode)) {
+            Godot.Collections.Dictionary bbDict = (Godot.Collections.Dictionary)aINode.Get("bb");
+            if(IsInstanceValid((RigidBody2D)bbDict["enemy"])) {
+                LevelNode.PlayerEngaging.Remove(Name);
+                GD.Print("die: " + LevelNode.PlayerEngaging.Count);
+            }
+        }
     }
 
 

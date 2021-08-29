@@ -13,4 +13,5 @@ public interface ILevelObject
     void OnTriggeredAllBoundTriggers(NodePath path, bool triggered);
     void OnSwitchedOn();
     void OnSwitchedOff();
+    void OnAnimFinished(String animName);
 }

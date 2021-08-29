@@ -27,8 +27,14 @@ public class LevelTiles: TileMap, ILevelObject
         SwitchedOnSignal = nameof(SwitchedOn);
         SwitchedOffSignal = nameof(SwitchedOff);
         TriggerAnim = (AnimationPlayer)GetNode("Anim");
+        if(TriggerAnim.IsConnected("animation_finished", this, nameof(OnAnimFinished)) == false) {
+            TriggerAnim.Connect("animation_finished", this, nameof(OnAnimFinished));
+        }
         foreach(NodePath nodePath in BoundTriggers) {
             Node2D node = GetNodeOrNull<Node2D>(nodePath);
+            if(node.IsConnected("SwitchedOn", this, nameof(OnTriggeredAllBoundTriggers))) {
+                continue;
+            }
             Godot.Collections.Array arr = new Godot.Collections.Array();
             arr.Add(nodePath);
             arr.Add(true);

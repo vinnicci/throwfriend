@@ -12,7 +12,7 @@ public abstract class Level : YSort
     Player playerNode;
     public Player PlayerNode {
         get {
-            if(IsInstanceValid(playerNode) && playerNode.IsDead == false) {
+            if(IsInstanceValid(playerNode) && playerNode.Health > 0) {
                 return playerNode;
             }
             return default;
@@ -30,6 +30,7 @@ public abstract class Level : YSort
     public override void _Ready()
     {
         base._Ready();
+        PlayerEngaging = new Godot.Collections.Array();
         mainNode = (Main)GetNode("/root/Main");
         enemies = (YSort)GetNode("Enemies");
         lvlObjects = (YSort)GetNode("Objects");
@@ -47,7 +48,6 @@ public abstract class Level : YSort
             else if(node == enemies) {
                 foreach(Enemy enemy in enemies.GetChildren()) {
                     enemy.LevelNode = this;
-                    enemy.Connect(nameof(Entity.Died), this, nameof(OnEnemyDead));
                 }
             }
             else if(node == lvlObjects) {
@@ -67,21 +67,11 @@ public abstract class Level : YSort
     }
 
 
-    public int PlayerEngaging {get; set;}
-
-
-    void OnEnemyDead() {
-        PlayerEngaging -= 1;
-        GD.Print("died: " + PlayerEngaging);
-    }
-
-
     public void Spawn(ISpawnable body, Vector2 pos, float rot = 0) {
         if(body is Enemy) {
             Enemy enemy = (Enemy)body;
-            enemy.LevelNode = this;
-            enemy.Connect(nameof(Entity.Died), this, nameof(OnEnemyDead));
             enemies.AddChild(enemy);
+            enemy.LevelNode = this;
         }
         else {
             AddChild((Node2D)body);
@@ -91,8 +81,11 @@ public abstract class Level : YSort
     }
 
 
+    public Godot.Collections.Array PlayerEngaging {get; set;}
+
+
     public Vector2 GetPlayerPos() {
-        if(playerNode.IsDead || IsInstanceValid(playerNode) == false) {
+        if(playerNode.Health <= 0 || IsInstanceValid(playerNode) == false) {
             return Vector2.Zero;
         }
         return playerNode.GlobalPosition;

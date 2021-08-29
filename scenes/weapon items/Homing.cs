@@ -42,7 +42,7 @@ public class Homing : WeaponItem
             }
         }
         else if(WeaponNode.CurrentState == Weapon.States.ACTIVE) {
-            if(IsInstanceValid(target) && target.IsDead == false) {
+            if(IsInstanceValid(target) && target.Health > 0) {
                 int mag;
                 if(WeaponNode.GlobalPosition.DistanceSquaredTo(target.GlobalPosition) <= DIST_HOME_ACCEL) {
                     mag = HOME_MAGNITUDE_CLOSE;
@@ -75,8 +75,8 @@ public class Homing : WeaponItem
             return;
         }
         Enemy enemy = enemies.Dequeue();
-        if((IsInstanceValid(target) && target.IsDead == false) ||
-        (IsInstanceValid(enemy) == false || enemy.IsDead)) {
+        if((IsInstanceValid(target) && target.Health > 0) ||
+        (IsInstanceValid(enemy) == false || enemy.Health <= 0)) {
             return;
         }
         ray.LookAt(enemy.GlobalPosition);

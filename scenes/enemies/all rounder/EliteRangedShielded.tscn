@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/enemies/all rounder/EliteRangedShielded.cs" type="Script" id=10]
 [ext_resource path="res://scenes/enemies/all rounder/anim/throw_blob.tres" type="Animation" id=11]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/EliteBlasterAndShield.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/enemies/all rounder/ais/EliteRangedShieldedAI.tscn" type="PackedScene" id=13]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -117,3 +118,5 @@ anims/shoot_back = ExtResource( 3 )
 anims/super_scatter = SubResource( 3 )
 anims/throw_blob = ExtResource( 11 )
 anims/triple_shot = SubResource( 4 )
+
+[node name="AI2" parent="." index="8" instance=ExtResource( 13 )]

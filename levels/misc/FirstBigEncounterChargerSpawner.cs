@@ -20,9 +20,7 @@ class FirstBigEncounterChargerSpawner : BaseChargerSpawner, IQuest
 
     public override bool Hit(Vector2 knockback, int damage) {
         if(base.Hit(knockback, damage)) {
-            if(IsDead) {
-                this.CallDeferred(nameof(SpawnInstance), "ability", 1);
-                this.CallDeferred(nameof(SpawnInstance), "dialogue", 1);
+            if(Health <= 0) {
                 UpdateQuest();
             }
             return true;
@@ -37,20 +35,6 @@ class FirstBigEncounterChargerSpawner : BaseChargerSpawner, IQuest
         if(arr.Contains(QuestKey) == false) {
             arr.Add(QuestKey);
             MainNode.Saver.Call("save_world_data");
-        }
-    }
-
-
-    public override void SpawnInstance(String packedSceneKey, int count = 1) {
-        base.SpawnInstance(packedSceneKey, count);
-        if(packedSceneKey == "ability") {
-            AbilityItem item = (AbilityItem)spawnScenes[packedSceneKey].Instance();
-            item.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
-        }
-        if(packedSceneKey == "dialogue") {
-            DialogueTrigger dialogue = (DialogueTrigger)spawnScenes[packedSceneKey].Instance();
-            LevelNode.AddChild(dialogue);
-            dialogue.GlobalPosition = GlobalPosition;
         }
     }
 

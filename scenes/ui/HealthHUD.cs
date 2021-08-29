@@ -12,7 +12,7 @@ public class HealthHUD : TextureProgress
          parentNode = value;
          MaxValue = parentNode.Health;
          Value = MaxValue;
-         UpdateHealth();
+         UpdateHealth(true);
       }
    }
 
@@ -26,9 +26,9 @@ public class HealthHUD : TextureProgress
    }
 
 
-   public void UpdateHealth() {
-      if(parentNode.IsDead) {
-         QueueFree();
+   public void UpdateHealth(bool updatedBaseHP = false) {
+      if(parentNode.Health <= 0 && updatedBaseHP == false) {
+         Visible = false;
       }
       tween.InterpolateProperty(this, "value", Value, parentNode.Health, 0.5f,
       Tween.TransitionType.Linear, Tween.EaseType.InOut);

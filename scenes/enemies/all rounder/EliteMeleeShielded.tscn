@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/melee_attack_back.tres" type="Animation" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/enemies/all rounder/weapons/BlasterProj.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/TeleBlob.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemies/all rounder/ais/EliteMeleeShieldedAI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/enemies/all rounder/EliteMeleeShielded.cs" type="Script" id=11]
 [ext_resource path="res://scenes/enemies/all rounder/anim/teleport.tres" type="Animation" id=12]
 [ext_resource path="res://scenes/enemies/all rounder/anim/throw_flyblob.tres" type="Animation" id=13]
@@ -68,3 +69,5 @@ anims/melee_attack_back = ExtResource( 1 )
 anims/run = ExtResource( 3 )
 anims/tele_attack = ExtResource( 12 )
 anims/throw_flyblob = ExtResource( 13 )
+
+[node name="AI2" parent="." index="8" instance=ExtResource( 10 )]

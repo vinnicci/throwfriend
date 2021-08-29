@@ -1,53 +1,32 @@
 using Godot;
 using System;
 
-public class NextLevel : Area2D, ILevelObject
+public class NextLevel : Area2D
 {
-    String nextLevel;
     bool proceeding = false;
     Player player;
 
     public Main MainNode {get; set;}
-    public String SwitchedOnSignal {get; set;}
-    public String SwitchedOffSignal {get; set;}
-    public AnimationPlayer TriggerAnim {get; set;}
-
-    [Export] public bool Persist {get; set;}
-    [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
+    public Level LevelNode {get; set;}
 
 
     public override void _Ready() {
         base._Ready();
         MainNode = (Main)GetNode("/root/Main");
-        InitLevelObject();
     }
-
-
-    public void InitLevelObject() {
-        SwitchedOnSignal = nameof(SwitchedOn);
-        SwitchedOffSignal = nameof(SwitchedOff);
-    }
-
-
-    public void OnTriggeredAllBoundTriggers(NodePath path, bool triggered) {
-        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnTriggeredAllBoundTriggers));
-    }
-
-
-    public Level LevelNode {get; set;}
 
 
     void OnNextLevelBodyEntered(Godot.Object body) {
         if(body is Player) {
             player = (Player)body;
             proceeding = true;
-            if(player.WeaponNode.CurrentState != Weapon.States.HELD) {
+            if(LevelNode.PlayerEngaging.Count > 0) {
+                player.WarnPlayer("ENEMIES ARE TRACKING YOU, CANNOT PROCEED");
+            }
+            else if(player.WeaponNode.CurrentState != Weapon.States.HELD) {
                 player.WarnPlayer("YOU MUST CARRY SNARK TO PROCEED");
             }
-            else if(LevelNode.PlayerEngaging > 0) {
-                player.WarnPlayer("CAN'T PROCEED WHILE ENEMIES ARE TRACKING YOU");
-            }
-            EmitSignal(nameof(SwitchedOn));
+            
         }
     }
 
@@ -62,7 +41,8 @@ public class NextLevel : Area2D, ILevelObject
     public override void _Process(float delta)
     {
         base._Process(delta);
-        if(proceeding && player.WeaponNode.CurrentState == Weapon.States.HELD && LevelNode.PlayerEngaging == 0) {
+        if(proceeding && player.WeaponNode.CurrentState == Weapon.States.HELD &&
+        LevelNode.PlayerEngaging.Count == 0) {
             MainNode.GoToLevel(GetRandomLevel(), GetEntrance(), (Player)player, false);
             SetProcess(false);
         }
@@ -78,13 +58,13 @@ public class NextLevel : Area2D, ILevelObject
         Godot.Collections.Dictionary posDict =
         (Godot.Collections.Dictionary)((Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("WorldCells"))[currentCell];
         String lvl = "";
-        String key = oldCell.ToString() + GetPath().ToString();
-        if(dict.Contains(key) && (String)dict[key] != "") {
-            return (String)dict[key];
-        }
-        if((WorldMarker.LevelType)posDict["type"] == WorldMarker.LevelType.Misc ||
-        (WorldMarker.LevelType)posDict["type"] == WorldMarker.LevelType.Start) {
+        String key = oldCell.ToString() + Name;
+        WorldMarker.LevelType levelType = (WorldMarker.LevelType)posDict["type"];
+        if((String)posDict["scn"] != "") {
             lvl = (String)posDict["scn"];
+        }
+        else if(dict.Contains(key) && (String)dict[key] != "") {
+            lvl = (String)dict[key];
         }
         else {
             Godot.Collections.Array arr =
@@ -95,8 +75,7 @@ public class NextLevel : Area2D, ILevelObject
                 arr.Shuffle();
                 lvl = (String)arr[0];
                 arr.RemoveAt(0);
-            }
-            while(usedLvls.Contains(lvl));
+            } while(usedLvls.Contains(lvl));
             usedLvls.Add(lvl);
         }
         LinkToLevel(lvl, oldCell.ToString());
@@ -294,20 +273,21 @@ public class NextLevel : Area2D, ILevelObject
     public void LinkToLevel(String lvl, String cell) {
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("NextLevels");
-        String key = cell + GetPath().ToString();
-        dict[key] = lvl;
+        String key = cell + Name;
+        if((String)dict[key] == "") {
+            dict[key] = lvl;
+        }
     }
 
 
     String GetEntrance() {
-        String ent = "";
         switch(Name) {
-            case "N": ent = "Objects/S/SpawnPos"; break;
-            case "E": ent = "Objects/W/SpawnPos"; break;
-            case "W": ent = "Objects/E/SpawnPos"; break;
-            case "S": ent = "Objects/N/SpawnPos"; break;
+            case "N": return "Objects/S/SpawnPos";
+            case "E": return "Objects/W/SpawnPos";
+            case "W": return "Objects/E/SpawnPos";
+            case "S": return "Objects/N/SpawnPos";
         }
-        return ent;
+        return default;
     }
 
 
@@ -321,24 +301,6 @@ public class NextLevel : Area2D, ILevelObject
         }
         Vector2 currentCell = (Vector2)MainNode.PlayerSaveFile.Get("CurrentCell");
         MainNode.PlayerSaveFile.Set("CurrentCell", currentCell + to);
-    }
-
-
-    [Signal] public delegate void SwitchedOn();
-    [Signal] public delegate void SwitchedOff();
-
-
-
-    public void OnSwitchedOn() {
-        Godot.Collections.Dictionary dict =
-        (Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("NextLevels");
-        String key = MainNode.PlayerSaveFile.Get("CurrentCell").ToString() + GetPath().ToString();
-        nextLevel = (String)dict[key];
-    }
-
-
-    public void OnSwitchedOff() {
-        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnSwitchedOff));
     }
 
 
