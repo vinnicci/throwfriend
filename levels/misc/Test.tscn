@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/triggers/SnarkPressurePlate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/triggers/PlayerPressurePlate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/enemies/blob/Blob.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/all rounder/DualRanged.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/collectables/AbilityItem.tscn" type="PackedScene" id=8]
 
 [node name="Test" instance=ExtResource( 1 )]
@@ -15,13 +15,24 @@
 visible = false
 tile_data = PoolIntArray( -327686, 0, 0, -327685, 0, 0, -327684, 0, 0, -327683, 0, 0, -327682, 0, 0, -327681, 0, 0, -393216, 0, 0, -393215, 0, 0, -393214, 0, 0, -393213, 0, 0, -393212, 0, 0, -393211, 0, 0, -262150, 0, 0, -262149, 0, 0, -262148, 0, 0, -262147, 0, 0, -262146, 0, 0, -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -196614, 0, 0, -196613, 0, 0, -196612, 0, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -131078, 0, 0, -131077, 0, 0, -131076, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -196606, 0, 0, -196605, 0, 0, -196604, 0, 0, -196603, 0, 0, -65542, 0, 0, -65541, 0, 0, -65540, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -6, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 131066, 0, 0, 131067, 0, 0, 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 196602, 0, 0, 196603, 0, 0, 196604, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131078, 0, 0, 131079, 0, 0, 262138, 0, 0, 262139, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 327674, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 458746, 0, 0, 458747, 0, 0, 458748, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0 )
 
-[node name="Blob" parent="Enemies" index="0" instance=ExtResource( 7 )]
-position = Vector2( 34.9228, -110.324 )
+[node name="DualRanged" parent="Enemies" index="0" instance=ExtResource( 7 )]
+position = Vector2( -369.864, -376.214 )
 spawnScenes = {
 "hp_drop": ExtResource( 6 )
 }
 acts = {
-"explode": [ 1.0, 1.0 ]
+"shoot": [ 2.0, 1.0 ],
+"shoot_back": [ 2.0, 1.0 ]
+}
+
+[node name="DualRanged2" parent="Enemies" index="1" instance=ExtResource( 7 )]
+position = Vector2( -247.635, -396.85 )
+spawnScenes = {
+"hp_drop": ExtResource( 6 )
+}
+acts = {
+"shoot": [ 2.0, 1.0 ],
+"shoot_back": [ 2.0, 1.0 ]
 }
 
 [node name="Walls" parent="Objects" index="0"]
@@ -35,7 +46,6 @@ BoundTriggers = [ NodePath("../PlayerPressurePlate"), NodePath("../SnarkPressure
 position = Vector2( 34.1258, -5.6377 )
 
 [node name="SnarkPressurePlate" parent="Objects" index="8" instance=ExtResource( 4 )]
-modulate = Color( 1, 0.466667, 0.466667, 1 )
 position = Vector2( 41.8723, 99.7807 )
 
 [node name="AbilityItem" parent="Objects" index="9" instance=ExtResource( 8 )]
@@ -43,3 +53,6 @@ position = Vector2( 60.7961, 250.337 )
 
 [node name="Player" parent="." index="5" instance=ExtResource( 3 )]
 position = Vector2( 56.7057, 371.524 )
+
+[editable path="Player"]
+[editable path="Player/Center/WeapPos/Weapon"]
