@@ -142,7 +142,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
 
 
     public virtual bool Hit(Vector2 knockback, int damage) {
-        if(Health <= 0 || (HitCooldown.IsStopped() == false && damage > 0 && Health > 0)) {
+        if(Health <= 0 || (HitCooldown.IsStopped() == false && (damage > 0 && Health > 0))) {
             return false;
         }
         ApplyCentralImpulse(knockback * knockbackMult);

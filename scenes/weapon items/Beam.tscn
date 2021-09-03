@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/weapon items/WeaponItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/weapon items/Beam.cs" type="Script" id=2]
+[ext_resource path="res://assets/items/tex_beam.png" type="Texture" id=3]
+
+[node name="Beam" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+itemDescription = "Active ability: Snark can now shoot beam from his mouth."
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource( 3 )
+
+[node name="Cooldown" parent="." index="1"]
+wait_time = 3.0

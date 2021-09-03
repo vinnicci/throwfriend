@@ -160,9 +160,13 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
         }
         else if(body is Weapon && IsInstanceValid(aINode) &&
         IsInstanceValid((Entity)((Godot.Collections.Dictionary)aINode.Get("bb"))["enemy"]) == false) {
-            Weapon weap = (Weapon)body;
-            aINode.Call("engage_enemy", weap.PlayerNode);
+            Engage();
         }
+    }
+
+
+    public void Engage() {
+        aINode.Call("engage_enemy", LevelNode.PlayerNode);
     }
 
 

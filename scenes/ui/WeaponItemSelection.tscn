@@ -6,13 +6,13 @@
 [ext_resource path="res://assets/items/tex_extra_damage.png" type="Texture" id=4]
 [ext_resource path="res://assets/items/tex_boost.png" type="Texture" id=5]
 [ext_resource path="res://assets/items/tex_homing.png" type="Texture" id=6]
-[ext_resource path="res://assets/items/tex_extra_large.png" type="Texture" id=7]
+[ext_resource path="res://assets/items/tex_beam.png" type="Texture" id=7]
 [ext_resource path="res://assets/items/tex_guided.png" type="Texture" id=8]
 [ext_resource path="res://scenes/ui/ItemSelection.cs" type="Script" id=9]
 [ext_resource path="res://scenes/weapon items/Explosive.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/weapon items/Boost.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/weapon items/Homing.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/weapon items/ExtraLarge.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/weapon items/Beam.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/weapon items/ExtraDamage.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/weapon items/Guided.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/weapon items/SplitToThree.tscn" type="PackedScene" id=16]
@@ -148,13 +148,13 @@ itemEx = ExtResource( 10 )
 [node name="TextureButton" parent="GridContainer/Explosive" index="1"]
 texture_normal = ExtResource( 2 )
 
-[node name="ExtraLarge" parent="GridContainer" instance=ExtResource( 1 )]
+[node name="Beam" parent="GridContainer" instance=ExtResource( 1 )]
 margin_left = 180.0
 margin_right = 180.0
 margin_bottom = 0.0
 itemEx = ExtResource( 13 )
 
-[node name="TextureButton" parent="GridContainer/ExtraLarge" index="1"]
+[node name="TextureButton" parent="GridContainer/Beam" index="1"]
 texture_normal = ExtResource( 7 )
 
 [node name="ExtraDamage" parent="GridContainer" instance=ExtResource( 1 )]
@@ -205,7 +205,7 @@ anims/show = SubResource( 2 )
 [editable path="GridContainer/Boost"]
 [editable path="GridContainer/Homing"]
 [editable path="GridContainer/Explosive"]
-[editable path="GridContainer/ExtraLarge"]
+[editable path="GridContainer/Beam"]
 [editable path="GridContainer/ExtraDamage"]
 [editable path="GridContainer/Guided"]
 [editable path="GridContainer/SplitToThree"]

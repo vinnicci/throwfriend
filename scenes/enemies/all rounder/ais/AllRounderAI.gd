@@ -6,12 +6,15 @@ func _try_interrupt_patrol(_task) -> bool:
 
 
 func _try_interrupt_seek(task) -> bool:
+	#default interruptor
 	return (._try_interrupt_seek(task) ||
+	#no dist condition
+	is_act_ready("tele_attack") ||
+	#has dist condition
 	((is_act_ready("throw_blob") || 
 	is_act_ready("shoot") || 
 	is_act_ready("shoot_back") ||
 	is_act_ready("throw_flyblob") || 
-	is_act_ready("tele_attack") ||
 	is_act_ready("super_scatter") ||
 	is_act_ready("triple_shot")) &&
 	bb[task.get_param(0) + "_dist"] <= bb["seek_dist"]))

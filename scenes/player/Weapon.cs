@@ -29,9 +29,10 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     public bool IsClone {get; set;}
     public AnimationPlayer TeleportAnim {get; set;}
 
-    [Export] Texture texture;
-    [Export] Texture activeTexture;
-    Sprite sprite;
+
+    Sprite inactiveSprite;
+    Sprite activeSprite;
+    AnimationPlayer anim;
 
 
     public override void _Notification(int what)
@@ -48,9 +49,10 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     public override void _Ready()
     {
         base._Ready();
-        sprite = (Sprite)GetNode("Sprite");
+        inactiveSprite = (Sprite)GetNode("Sprite");
+        activeSprite = (Sprite)GetNode("Sprite2");
+        anim = (AnimationPlayer)GetNode("Anim");
         TeleportAnim = (AnimationPlayer)GetNode("TeleAnim");
-        sprite.Texture = texture;
     }
 
 
@@ -134,29 +136,29 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
             SetCollisionMaskBit(Global.BIT_MASK_ENEMY, false);
             SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
             CurrentState = States.INACTIVE;
+            if(anim.IsPlaying() == false) {
+                inactiveSprite.Visible = true;
+                activeSprite.Visible = false;
+            }
         }
         else if(CurrentState == States.INACTIVE && lv > WEAP_MIN_LIN_VEL_LEN) {
             SetCollisionMaskBit(Global.BIT_MASK_ENEMY, true);
             SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
             CurrentState = States.ACTIVE;
-        }
-    }
-
-
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-        if(GetCollisionMaskBit(Global.BIT_MASK_ENEMY) && sprite.Texture == texture) {
-            sprite.Texture = activeTexture;
-        }
-        else if(GetCollisionMaskBit(Global.BIT_MASK_ENEMY) == false && sprite.Texture == activeTexture) {
-            sprite.Texture = texture;
+            if(anim.IsPlaying() == false) {
+                inactiveSprite.Visible = false;
+                activeSprite.Visible = true;
+            }
         }
     }
 
 
     public void Throw(int throwStrength, Vector2 globalPos, Vector2 destination, float globalRot) {
         CurrentState = States.ACTIVE;
+        if(anim.IsPlaying() == false) {
+            inactiveSprite.Visible = false;
+            activeSprite.Visible = true;
+        }
         Mode = RigidBody2D.ModeEnum.Rigid;
         SetCollisionMaskBit(Global.BIT_MASK_ENEMY, true);
         SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
@@ -235,6 +237,19 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         Position = Vector2.Zero;
         Mode = RigidBody2D.ModeEnum.Static;
         EmitSignal(nameof(PickedUp));
+    }
+
+
+    public void BeamAttack() {
+        anim.Play("beam");
+    }
+
+
+    void OnSnarkBeamBodyEntered(Godot.Object body) {
+        if(body is Enemy) {
+            ((Entity)body).Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), Damage * PlayerNode.SnarkDmgMult);
+            ((Enemy)body).Engage();
+        }
     }
 
 
