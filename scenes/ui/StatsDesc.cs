@@ -116,7 +116,7 @@ public class StatsDesc : Control
             break;
             case 2: {
                 currentTip = 3;
-                tipLabel.Text = "You can bind active abilities with the same key, allowing you to perform some interesting moves.";
+                tipLabel.Text = "You can bind active abilities with the same key. Some combination activate simultaneously while some activate one at a time.";
             }
             break;
             case 3: {

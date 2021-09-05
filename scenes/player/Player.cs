@@ -267,12 +267,16 @@ public class Player : Entity
             Item2.ApplyEffect();
         }
         if(IsInstanceValid(WeaponNode.Item1) && Input.IsActionJustPressed("hotkey_3")) {
+            if(WeaponNode.Item1.Cooldown.IsStopped()) {
+                EmitSignal(nameof(ActivatedWeaponItem), 1);
+            }
             WeaponNode.Item1.ApplyEffect();
-            EmitSignal(nameof(ActivatedWeaponItem), 1);
         }
         if(IsInstanceValid(WeaponNode.Item2) && Input.IsActionJustPressed("hotkey_4")) {
+            if(WeaponNode.Item2.Cooldown.IsStopped()) {
+                EmitSignal(nameof(ActivatedWeaponItem), 2);
+            }
             WeaponNode.Item2.ApplyEffect();
-            EmitSignal(nameof(ActivatedWeaponItem), 2);
         }
     }
 

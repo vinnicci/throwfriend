@@ -25,6 +25,8 @@ public abstract class Level : YSort
     YSort enemies;
     YSort lvlObjects;
     Main mainNode;
+    AnimationPlayer anim;
+    Label levelName;
 
 
     public override void _Ready()
@@ -39,7 +41,10 @@ public abstract class Level : YSort
             playerNode = (Player)GetNode("Player");
             playerNode.LevelNode = this;
         }
-        foreach(Node2D node in GetChildren()) {
+        foreach(Node node in GetChildren()) {
+            if(node is Node2D == false) {
+                continue;
+            }
             if(node.Name == "Blackboards") {
                 foreach(Blackboard blackboard in node.GetChildren()) {
                     blackboard.Init();
@@ -64,6 +69,14 @@ public abstract class Level : YSort
                 }
             }
         }
+        //show level name on enter
+        Vector2 currentCell = (Vector2)((Resource)mainNode.Saver.Get("player_save_file")).Get("CurrentCell");
+        Godot.Collections.Dictionary posDict =
+        (Godot.Collections.Dictionary)((Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("WorldCells"))[currentCell];
+        levelName = (Label)GetNode("CanvasLayer/LevelName");
+        levelName.Text = (String)posDict["name"];
+        anim = (AnimationPlayer)GetNode("Anim");
+        anim.Play("show_level_name");
     }
 
 

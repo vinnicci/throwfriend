@@ -11,11 +11,12 @@ public class TeleRetrieve : PlayerItem
         if(WeaponNode != PlayerNode.WeaponNode) {
             WeaponNode = PlayerNode.WeaponNode;
         }
-        if(WeaponNode.CurrentState != Weapon.States.INACTIVE || Cooldown.IsStopped() == false) {
+        if(WeaponNode.CurrentState != Weapon.States.INACTIVE || Cooldown.IsStopped() == false ||
+        PlayerNode.TeleportAnim.IsPlaying() || WeaponNode.TeleportAnim.IsPlaying()) {
             return;
         }
         base.ApplyEffect();
-        EmitSignal(nameof(Activated));
+        EmitSignal(nameof(Activated), Cooldown.WaitTime);
         Cooldown.Start();
         if(GD.RandRange(0, 100f) > FAILURE_CHANCE) {
             WeaponNode.Teleport(PlayerNode.LevelNode, PlayerNode.GlobalPosition);

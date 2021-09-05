@@ -6,7 +6,7 @@
 
 [node name="Beam" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Active ability: Snark can now shoot beam from his mouth."
+itemDescription = "Activate: Snark will shoot beam from his mouth."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

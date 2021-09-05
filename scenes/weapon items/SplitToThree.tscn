@@ -6,7 +6,7 @@
 
 [node name="SplitToThree" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Snark will now spawn another two copies of himself."
+itemDescription = "Snark will spawn two copies of himself."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

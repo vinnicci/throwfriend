@@ -21,6 +21,9 @@ public class AutoRetrieve : PlayerItem
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
+        if(active == false) {
+            return;
+        }
         if(WeaponNode != PlayerNode.WeaponNode) {
             WeaponNode = PlayerNode.WeaponNode;
         }
@@ -33,6 +36,23 @@ public class AutoRetrieve : PlayerItem
         }
         else if(weapIsReturning == false && WeaponNode.CurrentState == Weapon.States.INACTIVE) {
             weapIsReturning = true;
+        }
+    }
+
+
+    bool active = false;
+
+
+    public override void ApplyEffect()
+    {
+        base.ApplyEffect();
+        if(active == false) {
+            active = true;
+            EmitSignal(nameof(Activated), -1);
+        }
+        else if(active) {
+            active = false;
+            EmitSignal(nameof(Activated), 0);
         }
     }
 

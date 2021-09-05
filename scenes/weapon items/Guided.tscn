@@ -6,7 +6,7 @@
 
 [node name="Guided" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Snark thinks you know where the food's at. He will now follow wherever you point him to."
+itemDescription = "Switch on: Snark will fly towards the cursor."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

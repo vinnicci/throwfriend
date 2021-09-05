@@ -3,17 +3,12 @@ using System;
 
 public class WorldMarker : Position2D
 {
-    [Export] public LevelType levelType;
-    public enum LevelType {
-        None,
-        Start,
-        Checkpoint,
-        SecretN,
-        SecretW,
-        SecretE,
-        SecretS,
-        Secret,
-        Misc
-    }
-    [Export] public String miscLevelFile = "";
+    // [Export] public LevelType levelType;
+    // public enum LevelType {
+    //     None,
+    //     Misc
+    // }
+    [Export] public Godot.Collections.Array<String> levelFiles =
+    new Godot.Collections.Array<String>();
+    [Export] public String levelName = "";
 }

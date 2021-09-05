@@ -9,7 +9,7 @@ radius = 150.0
 
 [node name="Homing" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Snark will adjust his trajectory to wherever the food is."
+itemDescription = "Snark will adjust his trajectory to wherever the enemy is."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

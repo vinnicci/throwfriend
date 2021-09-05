@@ -3,38 +3,45 @@ using System;
 
 public class Explosive : WeaponItem
 {
-    Explosion explosionNode;
+    public Explosion ExplosionNode {get; private set;}
 
 
     public override void _Ready()
     {
         base._Ready();
-        incompatibilityList.Add("Explosive");
-        explosionNode = (Explosion)GetNode("Explosion");
+        ExplosionNode = (Explosion)GetNode("Explosion");
     }
 
 
     public override void InitEffect()
     {
         base.InitEffect();
+        if(this == WeaponNode.Item2 && WeaponNode.Item1 is Explosive) {
+            ((Explosive)WeaponNode.Item1).ExplosionNode.ExplosionRadius *= 2;
+        }
         if(WeaponNode.IsConnected("body_entered", this, nameof(Explode)) == false) {
             WeaponNode.Connect("body_entered", this, nameof(Explode));
         }
     }
 
 
+    public override void ApplyEffect()
+    {
+        base.ApplyEffect();
+        Explode(null);
+    }
+
+
     void Explode(Godot.Object body) {
-        if(body is Player || WeaponNode.CurrentState != Weapon.States.ACTIVE) {
+        if(IsInstanceValid(body) && (body is Player || WeaponNode.CurrentState != Weapon.States.ACTIVE) ||
+        (this == WeaponNode.Item2 && WeaponNode.Item1 is Explosive)) {
             return;
         }
         if(IsInstanceValid(PlayerNode) == false) {
             PlayerNode = WeaponNode.PlayerNode;
         }
-        explosionNode.Damage = WeaponNode.Damage * PlayerNode.SnarkDmgMult;
-        if(WeaponNode.Filename == Global.WEAP_LARGE_SCN) {
-            explosionNode.ExplosionRadius = explosionNode.explosionRadius * 2;
-        }
-        explosionNode.Explode();
+        ExplosionNode.Damage = WeaponNode.Damage * PlayerNode.SnarkDmgMult;
+        ExplosionNode.Explode();
     }
 
 

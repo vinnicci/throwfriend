@@ -29,20 +29,27 @@ public class HKHudSlot : ColorRect
             iconPos.AddChild(icon);
             icon.Visible = true;
             if(Item.IsConnected(nameof(Item.Activated), this, nameof(AnimateCooldown)) == false) {
-                Godot.Collections.Array arr = new Godot.Collections.Array();
-                arr.Add(Item.Cooldown.WaitTime);
-                Item.Connect(nameof(Item.Activated), this, nameof(AnimateCooldown), arr);
+                Item.Connect(nameof(Item.Activated), this, nameof(AnimateCooldown));
             }
         }
     }
 
 
     Color RED = new Color(1,0,0);
+    Color GREEN = new Color(0,1,0);
 
 
     void AnimateCooldown(float length) {
-        cooldown.Start(length - 0.2f);
-        Color = RED;
+        if(length == -1) {
+            Color = GREEN;
+        }
+        else if(length == 0) {
+            OnCooldownTimeout();
+        }
+        else {
+            cooldown.Start(length - 0.2f);
+            Color = RED;
+        }
     }
 
 

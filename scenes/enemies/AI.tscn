@@ -35,49 +35,49 @@ collision_mask = 6
 
 [node name="FleeRay0" type="RayCast2D" parent="FleeRays"]
 enabled = true
-collision_mask = 34
+collision_mask = 18
 
 [node name="Pos" type="Position2D" parent="FleeRays/FleeRay0"]
 
 [node name="FleeRay1" type="RayCast2D" parent="FleeRays"]
 enabled = true
-collision_mask = 34
+collision_mask = 18
 
 [node name="Pos" type="Position2D" parent="FleeRays/FleeRay1"]
 
 [node name="FleeRay2" type="RayCast2D" parent="FleeRays"]
 enabled = true
-collision_mask = 34
+collision_mask = 18
 
 [node name="Pos" type="Position2D" parent="FleeRays/FleeRay2"]
 
 [node name="FleeRay3" type="RayCast2D" parent="FleeRays"]
 enabled = true
-collision_mask = 34
+collision_mask = 18
 
 [node name="Pos" type="Position2D" parent="FleeRays/FleeRay3"]
 
 [node name="FleeRay4" type="RayCast2D" parent="FleeRays"]
 enabled = true
-collision_mask = 34
+collision_mask = 18
 
 [node name="Pos" type="Position2D" parent="FleeRays/FleeRay4"]
 
 [node name="FleeRay5" type="RayCast2D" parent="FleeRays"]
 enabled = true
-collision_mask = 34
+collision_mask = 18
 
 [node name="Pos" type="Position2D" parent="FleeRays/FleeRay5"]
 
 [node name="FleeRay6" type="RayCast2D" parent="FleeRays"]
 enabled = true
-collision_mask = 34
+collision_mask = 18
 
 [node name="Pos" type="Position2D" parent="FleeRays/FleeRay6"]
 
 [node name="FleeRay7" type="RayCast2D" parent="FleeRays"]
 enabled = true
-collision_mask = 34
+collision_mask = 18
 
 [node name="Pos" type="Position2D" parent="FleeRays/FleeRay7"]
 

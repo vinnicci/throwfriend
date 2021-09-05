@@ -248,7 +248,6 @@ public class Loadout : Control
                 UpdateSlotIcon(2);
             }
             playerItemSel.ShowItemSelection(false);
-            playerItemSel.SetIncompatibleItems(item.incompatibilityList);
         }
         else if(selectRef.Panel == "WeaponPanel") {
             if(selectRef.Slot == "ItemSlot1") {
@@ -264,8 +263,9 @@ public class Loadout : Control
                 UpdateSlotIcon(4);
             }
             weaponItemSel.ShowItemSelection(false);
-            weaponItemSel.SetIncompatibleItems(item.incompatibilityList);
         }
+        playerItemSel.SetIncompatibleItems(item.incompatibilityList);
+        weaponItemSel.SetIncompatibleItems(item.incompatibilityList);
         selectRef.UpgradeLabel.Visible = false;
         selectRef = new SelectRef("", "", null);
         PlayerNode.AvailableUpgrade -= 1;

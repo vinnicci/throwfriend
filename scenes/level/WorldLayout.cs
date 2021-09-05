@@ -3,8 +3,6 @@ using System;
 
 //  World Layout Rules:
 //  Secret levels must have THREE walls (IDs: 7, 11, 13, 14)
-//  Checkpoints max entrance of THREE (no ID 0)
-//  A level containing secret must only have ONE wall (3 entrances) (IDs: 1, 2, 4, 8)
 
 public class WorldLayout : Node2D
 {
@@ -46,6 +44,7 @@ public class WorldLayout : Node2D
     //         id: "tilemap id"
     //         set: "tileset"
     //         scn: "filename"
+    //         name: "lvl name"
     //         hpMult: "enemy hp multiplier"
     //         speedMult: "enemy speed multiplier"
     //     }
@@ -65,29 +64,29 @@ public class WorldLayout : Node2D
         foreach(Vector2 pos in worldTileMap.GetUsedCells()) {
             Godot.Collections.Dictionary posDict = new Godot.Collections.Dictionary();
             WorldMarker marker = GetLevelMarker(pos, marks);
-            WorldMarker.LevelType type;
-            if(IsInstanceValid(marker) == false) {
-                type = WorldMarker.LevelType.None;
-            }
-            else {
-                type = marker.levelType;
-            }
-            if(type == WorldMarker.LevelType.Start) {
+            if(marker.levelName == "Town Entrance") {
                 mainNode.PlayerSaveFile.Set("CurrentCell", pos);
             }
-            posDict.Add("type", type);
-            posDict.Add("id", worldTileMap.GetCellv(pos));
-            posDict.Add("set", setNum);
-            if(type == WorldMarker.LevelType.Misc) {
-                posDict.Add("scn", marker.miscLevelFile);
-            }
-            else {
-                posDict.Add("scn", "");
-            }
+            posDict.Add("name", marker.levelName);
+            posDict.Add("scn", SetLevelFile(marker.levelFiles));
             posDict.Add("hpMult", SetDifficulty(setNum, 0));
             posDict.Add("speedMult", SetDifficulty(setNum, 1));
             cells.Add(pos, posDict);
         }
+    }
+
+
+    String SetLevelFile(Godot.Collections.Array<String> arr) {
+        String lvl = "";
+        Godot.Collections.Array usedLvls =
+        (Godot.Collections.Array)mainNode.WorldSaveFile.Get("LevelsUsed");
+        do {
+            arr.Shuffle();
+            lvl = (String)arr[0];
+            arr.RemoveAt(0);
+        } while(usedLvls.Contains(lvl));
+        usedLvls.Add(lvl);
+        return lvl;
     }
 
 

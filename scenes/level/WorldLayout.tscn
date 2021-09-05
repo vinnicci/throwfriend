@@ -11,83 +11,80 @@ script = ExtResource( 1 )
 modulate = Color( 1, 0.658824, 0.278431, 1 )
 tile_data = PoolIntArray( -65541, 7, 0, -6, 11, 0, -5, 8, 0, -4, 1, 0, -3, 9, 0, -2, 5, 0, 65532, 2, 0, 65533, 9, 0, 65534, 8, 0, 65535, 0, 0, 131068, 14, 0, 131071, 10, 0, 65536, 1, 0, 65537, 9, 0, 131072, 14, 0 )
 
-[node name="Start" parent="." instance=ExtResource( 3 )]
+[node name="TownEntrance" parent="." instance=ExtResource( 3 )]
 position = Vector2( 74.6917, 75.8644 )
-levelType = 1
+levelFiles = [ "res://levels/misc/Tutorial.tscn" ]
+levelName = "Town Entrance"
 
-[node name="Label" type="Label" parent="Start"]
-margin_bottom = 14.0
-text = "Start"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SecretS1" parent="." instance=ExtResource( 3 )]
+[node name="1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 24.7835, 75.8965 )
-levelType = 6
+levelFiles = [ "res://levels/01/01_1SecretS1.tscn", "res://levels/01/01_1SecretS2.tscn" ]
+levelName = "Labyrinth 1-1"
 
 [node name="Secret1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 23.6502, 126.758 )
-levelType = 7
+levelFiles = [ "res://levels/14/14_1Secret1.tscn", "res://levels/14/14_1Secret2.tscn", "res://levels/14/14_1Secret3.tscn", "res://levels/14/14_1Secret4.tscn" ]
+levelName = "Secret Area"
 
-[node name="FirstEncounter" parent="." instance=ExtResource( 3 )]
+[node name="2 Encounter" parent="." instance=ExtResource( 3 )]
 position = Vector2( -25.4313, 73.9007 )
-levelType = 8
-miscLevelFile = "res://levels/misc/FirstBigEncounter.tscn"
+levelFiles = [ "res://levels/misc/FirstBigEncounter.tscn" ]
+levelName = "Labyrinth 1-2"
 
 [node name="Hub" parent="." instance=ExtResource( 3 )]
 position = Vector2( -24.7624, 25.0115 )
-levelType = 8
-miscLevelFile = "res://levels/misc/Hub.tscn"
+levelFiles = [ "res://levels/misc/Hub.tscn" ]
+levelName = "Hub"
 
-[node name="Label" type="Label" parent="Hub"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Hub"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="3" parent="." instance=ExtResource( 3 )]
+position = Vector2( -75, 26 )
+levelFiles = [ "res://levels/08/08_1None1.tscn", "res://levels/08/08_1None2.tscn" ]
+levelName = "Labyrinth 1-3"
+
+[node name="4-1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -75, -26 )
+levelFiles = [ "res://levels/05/05_1None1.tscn", "res://levels/05/05_1None2.tscn" ]
+levelName = "Labyrinth 1-4-1"
+
+[node name="4-2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -125, 27 )
+levelFiles = [ "res://levels/09/09_1None1.tscn", "res://levels/09/09_1None2.tscn", "res://levels/09/09_1None3.tscn", "res://levels/09/09_1None4.tscn" ]
+levelName = "Labyrinth 1-4-2"
+
+[node name="5-1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -124, -26 )
+levelFiles = [ "res://levels/09/09_1None1.tscn", "res://levels/09/09_1None2.tscn", "res://levels/09/09_1None3.tscn", "res://levels/09/09_1None4.tscn" ]
+levelName = "Labyrinth 1-5-1"
 
 [node name="Checkpoint1" parent="." instance=ExtResource( 3 )]
 position = Vector2( -173.982, -26.5418 )
-levelType = 2
+levelFiles = [ "res://levels/01/01_1Checkpoint1.tscn", "res://levels/01/01_1Checkpoint2.tscn" ]
+levelName = "Checkpoint"
 
-[node name="Label" type="Label" parent="Checkpoint1"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Checkpoint"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SecretS2" parent="." instance=ExtResource( 3 )]
+[node name="5-2" parent="." instance=ExtResource( 3 )]
 position = Vector2( -174, 24 )
-levelType = 6
+levelFiles = [ "res://levels/02/02_1SecretS1.tscn", "res://levels/02/02_1SecretS2.tscn" ]
+levelName = "Labyrinth 1-5-2"
 
 [node name="Secret2" parent="." instance=ExtResource( 3 )]
 position = Vector2( -174.926, 76.8404 )
-levelType = 7
+levelFiles = [ "res://levels/14/14_1Secret1.tscn", "res://levels/14/14_1Secret2.tscn", "res://levels/14/14_1Secret3.tscn", "res://levels/14/14_1Secret4.tscn" ]
+levelName = "Secret Area"
 
-[node name="SecretN1" parent="." instance=ExtResource( 3 )]
+[node name="5-3" parent="." instance=ExtResource( 3 )]
 position = Vector2( -225.969, -26.5418 )
-levelType = 3
+levelFiles = [ "res://levels/08/08_1SecretN1.tscn", "res://levels/08/08_1SecretN2.tscn" ]
+levelName = "Labyrinth 5-3"
 
 [node name="Secret3" parent="." instance=ExtResource( 3 )]
 position = Vector2( -225.969, -72.1286 )
-levelType = 7
+levelFiles = [ "res://levels/07/07_1Secret1.tscn", "res://levels/07/07_1Secret2.tscn" ]
+levelName = "Secret Area"
 
 [node name="Boss1" parent="." instance=ExtResource( 3 )]
 position = Vector2( -273.388, -24.3768 )
-levelType = 8
-miscLevelFile = "res://levels/misc/FirstBossArena.tscn"
-
-[node name="Label" type="Label" parent="Boss1"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Boss"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+levelFiles = [ "res://levels/misc/FirstBossArena.tscn" ]
+levelName = "Labyrinth Final"
 
 [node name="WorldTileMap2" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.427451, 1, 0.309804, 1 )

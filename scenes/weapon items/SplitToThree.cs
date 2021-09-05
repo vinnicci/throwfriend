@@ -53,10 +53,17 @@ public class SplitToThree : WeaponItem
             weaps[0].ActivateItem(2);
             weaps[1].ActivateItem(2);
         }
+        PlayerNode.AddChild(weaps[0]);
+        PlayerNode.AddChild(weaps[1]);
+        weaps[0].GetParent().RemoveChild(weaps[0]);
+        weaps[1].GetParent().RemoveChild(weaps[1]);
     }
 
 
     void ApplyEffectsToClones(int num) {
+        if(WeaponNode.CurrentState == Weapon.States.HELD) {
+            return;
+        }
         WeaponItem weap0Item = (WeaponItem)weaps[0].Get("Item" + num);
         WeaponItem weap1Item = (WeaponItem)weaps[1].Get("Item" + num);
         if((IsInstanceValid(weap0Item) && IsInstanceValid(weap1Item))) {

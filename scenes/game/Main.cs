@@ -205,7 +205,6 @@ public class Main : Node
             return;
         }
         String[] worldDataArr = {
-            "NextLevels",
             "EnemySpawns",
             "WorldCells",
             "Quests",
@@ -225,14 +224,6 @@ public class Main : Node
             } 
             else if(node is Trigger) {
                 InitLevelObject(node, "Triggers");
-            }
-            else if(node is NextLevel) {
-                //enlist to world data
-                Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)WorldSaveFile.Get("NextLevels");
-                String key = PlayerSaveFile.Get("CurrentCell").ToString() + node.Name;
-                if(dict.Contains(key) == false) {
-                    dict.Add(key, "");
-                }
             }
             if(node is IQuest) {
                 //add object quest ID to world save file
@@ -330,11 +321,6 @@ public class Main : Node
             LoadPlayerData(player);
         }
         InitLevelData();
-        //link entrance to current level
-        Node2D entrance = spawnPos.GetParentOrNull<Node2D>();
-        if(entrance is NextLevel) {
-            ((NextLevel)entrance).LinkToLevel(prevLvlPack, PlayerSaveFile.Get("CurrentCell").ToString());
-        }
         player.IsStopped = false;
         Saver.Call("save_level_data");
         Saver.Call("save_world_data");

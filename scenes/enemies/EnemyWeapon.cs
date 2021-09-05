@@ -60,13 +60,11 @@ public abstract class EnemyWeapon : Node2D, ISpawner
                 Area2D area = (Area2D)body;
                 area.SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
                 area.SetCollisionMaskBit(Global.BIT_MASK_WEAPON, false);
-                area.SetCollisionMaskBit(Global.BIT_MASK_WEAPON_LARGE, false);
             }
             else if(body is StaticBody2D) {
                 StaticBody2D staticBody = (StaticBody2D)body;
                 staticBody.SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
                 staticBody.SetCollisionMaskBit(Global.BIT_MASK_WEAPON, false);
-                staticBody.SetCollisionMaskBit(Global.BIT_MASK_WEAPON_LARGE, false);
             }
         }
         Anim.Stop();

@@ -1,10 +1,38 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/level/Level.cs" type="Script" id=1]
 [ext_resource path="res://scenes/level/NavTileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/level/Walls.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/level/Floors.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/level/Props.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "show_level_name"
+length = 2.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/LevelName:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/LevelName:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 2.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="Level" type="YSort"]
 script = ExtResource( 1 )
@@ -34,6 +62,26 @@ position = Vector2( -32, -32 )
 [node name="SeeThroughWalls" parent="Objects" instance=ExtResource( 4 )]
 position = Vector2( -32, -32 )
 cell_y_sort = true
-collision_layer = 32
+collision_layer = 16
 
 [node name="InvisibleWalls" parent="Objects" instance=ExtResource( 3 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelName" type="Label" parent="CanvasLayer"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 140.0
+margin_top = 58.0
+margin_right = 640.0
+margin_bottom = 72.0
+rect_scale = Vector2( 2, 2 )
+text = "LEVEL NAME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/show_level_name = SubResource( 1 )
