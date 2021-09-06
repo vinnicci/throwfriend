@@ -69,6 +69,9 @@ public abstract class Level : YSort
                 }
             }
         }
+        if(IsInstanceValid((Resource)mainNode.Saver.Get("player_save_file")) == false) {
+            return;
+        }
         //show level name on enter
         Vector2 currentCell = (Vector2)((Resource)mainNode.Saver.Get("player_save_file")).Get("CurrentCell");
         Godot.Collections.Dictionary posDict =

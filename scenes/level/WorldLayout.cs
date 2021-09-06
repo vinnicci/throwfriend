@@ -90,12 +90,18 @@ public class WorldLayout : Node2D
     }
 
 
+    const float HP_2 = 3f;
+    const float SPEED_2 = 1.25f;
+    const float HP_3 = 6f;
+    const float SPEED_3 = 1.5f;
+
+
     float SetDifficulty(int setNum, int type) {
         float rOut = 0;
         switch(setNum) {
             case 1: return 1f;
-            case 2: rOut = type == 0 ? 2f : 1.25f; break;
-            case 3: rOut = type == 0 ? 4f : 1.5f; break;
+            case 2: rOut = type == 0 ? HP_2 : SPEED_2; break;
+            case 3: rOut = type == 0 ? HP_3 : SPEED_3; break;
         }
         return rOut;
     }

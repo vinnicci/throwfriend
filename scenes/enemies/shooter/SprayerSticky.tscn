@@ -30,7 +30,7 @@ acts = {
 texture = ExtResource( 4 )
 
 [node name="Legs" parent="Sprite/Body" index="0"]
-modulate = Color( 0.145098, 0.0784314, 0.152941, 1 )
+modulate = Color( 0.101961, 0.0980392, 0.0431373, 1 )
 
 [node name="EnemyWeapon" parent="." index="1" instance=ExtResource( 7 )]
 position = Vector2( 0, -45 )

@@ -5,7 +5,7 @@ public class RigidCharger : BaseCharger
 {
     const int CHARGE_ROTATION = 100;
     const int DEFAULT_DAMP = 15;
-    const int MODIFIED_DAMP = 0;
+    const int MODIFIED_DAMP = 3;
 
 
     public override void OnEnemyBodyEntered(Godot.Object body) {

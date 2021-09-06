@@ -39,12 +39,12 @@ public static class Global
     public static readonly String[] MEDIUM_CHARGERS = {
         "res://scenes/enemies/charger/BlobCharger.tscn",
         "res://scenes/enemies/charger/TeleportingCharger.tscn",
-        "res://scenes/enemies/charger/RigidCharger.tscn",
+        "res://scenes/enemies/spawner/ChargerSpawner.tscn",
     };
     public static readonly String[] HARD_CHARGERS = {
         "res://scenes/enemies/spawner/BlobChargerSpawner.tscn",
-        "res://scenes/enemies/spawner/ChargerSpawner.tscn",
         "res://scenes/enemies/spawner/TeleportingChargerSpawner.tscn",
+        "res://scenes/enemies/charger/RigidCharger.tscn",
     };
     public static readonly String[] EASY_SHOOTERS = {
         "res://scenes/enemies/shooter/Shooter.tscn",

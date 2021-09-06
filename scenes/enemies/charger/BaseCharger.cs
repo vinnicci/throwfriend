@@ -10,7 +10,8 @@ public abstract class BaseCharger : Enemy
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
-        if(charging && LinearVelocity.LengthSquared() <= CHARGE_MIN_V) {
+        int lv = (int)LinearVelocity.LengthSquared();
+        if(charging && lv <= CHARGE_MIN_V) {
             charging = false;
             SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
         }

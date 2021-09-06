@@ -17,7 +17,7 @@ speed = 5
 damage = 0
 
 [node name="Sprite" parent="." index="0"]
-modulate = Color( 0.505882, 0, 1, 1 )
+modulate = Color( 0.737255, 0.729412, 0.482353, 1 )
 z_index = -3
 texture = ExtResource( 2 )
 

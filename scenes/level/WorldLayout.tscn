@@ -16,7 +16,7 @@ position = Vector2( 74.6917, 75.8644 )
 levelFiles = [ "res://levels/misc/Tutorial.tscn" ]
 levelName = "Town Entrance"
 
-[node name="1" parent="." instance=ExtResource( 3 )]
+[node name="1-1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 24.7835, 75.8965 )
 levelFiles = [ "res://levels/01/01_1SecretS1.tscn", "res://levels/01/01_1SecretS2.tscn" ]
 levelName = "Labyrinth 1-1"
@@ -26,7 +26,7 @@ position = Vector2( 23.6502, 126.758 )
 levelFiles = [ "res://levels/14/14_1Secret1.tscn", "res://levels/14/14_1Secret2.tscn", "res://levels/14/14_1Secret3.tscn", "res://levels/14/14_1Secret4.tscn" ]
 levelName = "Secret Area"
 
-[node name="2 Encounter" parent="." instance=ExtResource( 3 )]
+[node name="1-2 Encounter" parent="." instance=ExtResource( 3 )]
 position = Vector2( -25.4313, 73.9007 )
 levelFiles = [ "res://levels/misc/FirstBigEncounter.tscn" ]
 levelName = "Labyrinth 1-2"
@@ -36,22 +36,22 @@ position = Vector2( -24.7624, 25.0115 )
 levelFiles = [ "res://levels/misc/Hub.tscn" ]
 levelName = "Hub"
 
-[node name="3" parent="." instance=ExtResource( 3 )]
+[node name="1-3" parent="." instance=ExtResource( 3 )]
 position = Vector2( -75, 26 )
 levelFiles = [ "res://levels/08/08_1None1.tscn", "res://levels/08/08_1None2.tscn" ]
 levelName = "Labyrinth 1-3"
 
-[node name="4-1" parent="." instance=ExtResource( 3 )]
+[node name="1-4-1" parent="." instance=ExtResource( 3 )]
 position = Vector2( -75, -26 )
 levelFiles = [ "res://levels/05/05_1None1.tscn", "res://levels/05/05_1None2.tscn" ]
 levelName = "Labyrinth 1-4-1"
 
-[node name="4-2" parent="." instance=ExtResource( 3 )]
+[node name="1-4-2" parent="." instance=ExtResource( 3 )]
 position = Vector2( -125, 27 )
 levelFiles = [ "res://levels/09/09_1None1.tscn", "res://levels/09/09_1None2.tscn", "res://levels/09/09_1None3.tscn", "res://levels/09/09_1None4.tscn" ]
 levelName = "Labyrinth 1-4-2"
 
-[node name="5-1" parent="." instance=ExtResource( 3 )]
+[node name="1-5-1" parent="." instance=ExtResource( 3 )]
 position = Vector2( -124, -26 )
 levelFiles = [ "res://levels/09/09_1None1.tscn", "res://levels/09/09_1None2.tscn", "res://levels/09/09_1None3.tscn", "res://levels/09/09_1None4.tscn" ]
 levelName = "Labyrinth 1-5-1"
@@ -61,7 +61,7 @@ position = Vector2( -173.982, -26.5418 )
 levelFiles = [ "res://levels/01/01_1Checkpoint1.tscn", "res://levels/01/01_1Checkpoint2.tscn" ]
 levelName = "Checkpoint"
 
-[node name="5-2" parent="." instance=ExtResource( 3 )]
+[node name="1-5-2" parent="." instance=ExtResource( 3 )]
 position = Vector2( -174, 24 )
 levelFiles = [ "res://levels/02/02_1SecretS1.tscn", "res://levels/02/02_1SecretS2.tscn" ]
 levelName = "Labyrinth 1-5-2"
@@ -71,10 +71,10 @@ position = Vector2( -174.926, 76.8404 )
 levelFiles = [ "res://levels/14/14_1Secret1.tscn", "res://levels/14/14_1Secret2.tscn", "res://levels/14/14_1Secret3.tscn", "res://levels/14/14_1Secret4.tscn" ]
 levelName = "Secret Area"
 
-[node name="5-3" parent="." instance=ExtResource( 3 )]
+[node name="1-5-3" parent="." instance=ExtResource( 3 )]
 position = Vector2( -225.969, -26.5418 )
 levelFiles = [ "res://levels/08/08_1SecretN1.tscn", "res://levels/08/08_1SecretN2.tscn" ]
-levelName = "Labyrinth 5-3"
+levelName = "Labyrinth 1-5-3"
 
 [node name="Secret3" parent="." instance=ExtResource( 3 )]
 position = Vector2( -225.969, -72.1286 )
@@ -88,6 +88,22 @@ levelName = "Labyrinth Final"
 
 [node name="WorldTileMap2" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.427451, 1, 0.309804, 1 )
+tile_data = PoolIntArray( -131073, 1, 0, -65537, 6, 0, -1, 6, 0 )
+
+[node name="2-1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -26, -27 )
+levelFiles = [ "res://levels/misc/Level2Entrance.tscn" ]
+levelName = "Sewers 2-1"
+
+[node name="2-2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -25, -77 )
+levelFiles = [ "res://levels/06/06_2None1.tscn" ]
+levelName = "Sewers 2-2"
+
+[node name="Checkpoint2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -25, -126 )
+levelFiles = [ "res://levels/01/01_2Checkpoint1.tscn" ]
+levelName = "Checkpoint"
 
 [node name="WorldTileMap3" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.521569, 0.521569, 0.521569, 1 )
