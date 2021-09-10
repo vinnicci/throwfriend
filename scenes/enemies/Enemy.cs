@@ -32,6 +32,11 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
                 aINode = (Node2D)GetNode("AI");
                 aINode.Call("init_properties", levelNode, this, patrolPoints);
             }
+            //update explosion node damage
+            if(HasNode("Explosion")) {
+                Explosion explosion = (Explosion)GetNode("Explosion");
+                explosion.Damage *= (int)(levelNode.enemyHealthMult);
+            }
             ChangeEntityBaseStats((int)(health*LevelNode.enemyHealthMult), (int)(speed*LevelNode.enemySpeedMult));
         }
     }
@@ -86,14 +91,18 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
     }
 
 
-    public void OnSwitchedOn() {
+    public bool OnSwitchedOn() {
         if(Health > 0) {
             Die();
+            return true;
         }
+        return false;
     }
 
 
-    public void OnSwitchedOff() {}
+    public bool OnSwitchedOff() {
+        return false;
+    }
 
 
     public void OnAnimFinished(String animName) {

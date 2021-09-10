@@ -11,7 +11,7 @@ public interface ILevelObject
     Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
     void InitLevelObject();
     void OnTriggeredAllBoundTriggers(NodePath path, bool triggered);
-    void OnSwitchedOn();
-    void OnSwitchedOff();
+    bool OnSwitchedOn();
+    bool OnSwitchedOff();
     void OnAnimFinished(String animName);
 }

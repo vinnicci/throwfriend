@@ -21,7 +21,7 @@ public class AutoRetrieve : PlayerItem
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
-        if(active == false) {
+        if(Active == false) {
             return;
         }
         if(WeaponNode != PlayerNode.WeaponNode) {
@@ -40,20 +40,10 @@ public class AutoRetrieve : PlayerItem
     }
 
 
-    bool active = false;
-
-
     public override void ApplyEffect()
     {
         base.ApplyEffect();
-        if(active == false) {
-            active = true;
-            EmitSignal(nameof(Activated), -1);
-        }
-        else if(active) {
-            active = false;
-            EmitSignal(nameof(Activated), 0);
-        }
+        Switch(true, Active);
     }
 
 

@@ -9,6 +9,7 @@ extents = Vector2( 16, 16 )
 
 [node name="HealthPickup" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
+Persist = false
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )

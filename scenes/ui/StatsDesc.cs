@@ -104,37 +104,16 @@ public class StatsDesc : Control
 
     int currentTip;
     const String path = "StatsPanel/HelpDisp/Tip";
+    [Export] Godot.Collections.Array<String> tipsArr;
 
 
     void OnNextTipPressed() {
         ((Node2D)GetNode(path + currentTip)).Visible = false;
-        switch(currentTip) {
-            case 1: {
-                currentTip = 2;
-                tipLabel.Text = "Snark can only inflict damage when he's active. You will know he's active when his mouth is open.";
-            }
-            break;
-            case 2: {
-                currentTip = 3;
-                tipLabel.Text = "You can bind active abilities with the same key. Some combination activate simultaneously while some activate one at a time.";
-            }
-            break;
-            case 3: {
-                currentTip = 4;
-                tipLabel.Text = "Selecting an ability is permanent and irreversible. Choose wisely.";
-            }
-            break;
-            case 4: {
-                currentTip = 5;
-                tipLabel.Text = "Look out for any secret paths. These will lead you to areas with rewards at the end.";
-            }
-            break;
-            case 5: {
-                currentTip = 1;
-                tipLabel.Text = "Releasing Snark increases mobility.";
-            }
-            break;
+        currentTip += 1;
+        if(currentTip > 5) {
+            currentTip = 1;
         }
+        tipLabel.Text = tipsArr[currentTip - 1];
         ((Node2D)GetNode(path + currentTip)).Visible = true;
     }
 

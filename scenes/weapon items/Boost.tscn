@@ -6,7 +6,7 @@
 
 [node name="Boost" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Activate: Snark will throw himself off the ground."
+itemDescription = "Activate: Snark throws himself off the ground."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

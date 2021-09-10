@@ -76,7 +76,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
             Range = range;
         }
         Speed = speed;
-        Damage = damage;
+        Damage = (int)(damage * lvl.enemyHealthMult);
         levelNode = lvl;
         if(IsInstanceValid(explosion)) {
             explosion.Damage = Damage;

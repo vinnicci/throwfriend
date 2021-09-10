@@ -4,6 +4,7 @@ using System;
 public class SuperThrow : PlayerItem
 {
     const int EXTRA_STRENGTH = 50;
+    const int EXTRA_DMG = 2;
     bool done = false;
 
 
@@ -14,6 +15,7 @@ public class SuperThrow : PlayerItem
             return;
         }
         PlayerNode.ThrowStrength += EXTRA_STRENGTH;
+        PlayerNode.WeaponNode.Damage *= EXTRA_DMG;
         done = true;
     }
 

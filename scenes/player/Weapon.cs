@@ -155,6 +155,12 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
                 activeSprite.Visible = true;
             }
         }
+    }
+
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
         //unstuck from wall
         if((bool)stuckCondArr[0] == true) {
             if((float)stuckCondArr[1] > 0) {
@@ -211,6 +217,11 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         else if(body is IHealthModifiable) {
             IHealthModifiable hitBody = (IHealthModifiable)body;
             int dmg = Damage * PlayerNode.SnarkDmgMult;
+            //damage x2 if player has superthrow ability
+            if((IsInstanceValid(PlayerNode.Item1) && PlayerNode.Item1 is SuperThrow) ||
+            (IsInstanceValid(PlayerNode.Item2) && PlayerNode.Item2 is SuperThrow)) {
+                dmg *= 2;
+            }
             if(CurrentState == States.ACTIVE) {
                 hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), dmg);
             }

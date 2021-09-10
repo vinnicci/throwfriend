@@ -18,7 +18,7 @@ public class Guided : WeaponItem
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
-        if(active == false || IsInstanceValid(WeaponNode) == false) {
+        if(Active == false || IsInstanceValid(WeaponNode) == false) {
             return;
         }
         if(WeaponNode.Mode != RigidBody2D.ModeEnum.Rigid || IsInstanceValid(WeaponNode.PlayerNode) == false) {
@@ -29,20 +29,10 @@ public class Guided : WeaponItem
     }
 
 
-    bool active = false;
-
-
     public override void ApplyEffect()
     {
         base.ApplyEffect();
-        if(active == false) {
-            active = true;
-            EmitSignal(nameof(Activated), -1);
-        }
-        else if(active) {
-            active = false;
-            EmitSignal(nameof(Activated), 0);
-        }
+        Switch(true, Active);
     }
 
 

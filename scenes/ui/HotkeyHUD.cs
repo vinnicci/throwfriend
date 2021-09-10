@@ -54,7 +54,7 @@ public class HotkeyHUD : Control
     public override void _Process(float delta)
     {
         base._Process(delta);
-        if(Input.IsActionJustPressed("ui_accept") && Visible) {
+        if(Input.IsActionJustPressed("ui_accept") && dialogue.Visible) {
             NextDialogue();
         }
     }

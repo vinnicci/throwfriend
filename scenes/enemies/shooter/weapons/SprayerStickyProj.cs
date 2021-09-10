@@ -8,24 +8,20 @@ public class SprayerStickyProj : SprayerProj
 
     public override bool OnEnemyProjBodyEntered(Godot.Object body) {
         player = (Player)body;
+        if(IsInstanceValid(player) == false) {
+            return false;
+        }
+        player.CurrentStatusEffect[(int)Player.StatusEffect.SLOW] = true;
         return true;
     }
 
 
     public void OnSprayerAcidProjBodyExited(Godot.Object body) {
-        player = default;
-    }
-
-
-    const float SLOW_EFFECT = 0.3f;
-
-
-    public override void _PhysicsProcess(float delta)
-    {
-        base._PhysicsProcess(delta);
-        if(IsInstanceValid(player) && player.Velocity.Length() > SLOW_EFFECT) {
-            player.Velocity *= SLOW_EFFECT;
+        if(IsInstanceValid(player) == false) {
+            return;
         }
+        player.ClearStatusEffect(Player.StatusEffect.SLOW, default);
+        player = default;
     }
 
 

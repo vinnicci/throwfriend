@@ -27,6 +27,7 @@ region_enabled = true
 region_rect = Rect2( 1, 47, 35, 6 )
 
 [node name="Button" type="Sprite" parent="Sprite" index="1"]
+self_modulate = Color( 0.415686, 0.760784, 0.952941, 1 )
 show_behind_parent = true
 position = Vector2( 0, -2 )
 texture = ExtResource( 1 )

@@ -15,25 +15,21 @@ public class SecretTree : Trigger
     }
 
 
-    public override void OnSwitchedOn() {
-        if(Persist && triggered) {
-            return;
+    public override bool OnSwitchedOn() {
+        if(base.OnSwitchedOn() == false) {
+            return false;
         }
-        triggered = true;
-        TriggerAnim.Queue("trigger");
         staticBody.CollisionLayer = 0;
-        EmitSignal(SwitchedOnSignal);
+        return true;
     }
 
 
-    public override void OnSwitchedOff() {
-        if(Persist) {
-            return;
+    public override bool OnSwitchedOff() {
+        if(base.OnSwitchedOff() == false) {
+            return false;
         }
-        triggered = false;
-        TriggerAnim.Queue("trigger_back");
         staticBody.CollisionLayer = staticBodyDefaultCollisionLayer;
-        EmitSignal(SwitchedOffSignal);
+        return true;
     }
 
 

@@ -88,7 +88,7 @@ levelName = "Labyrinth Final"
 
 [node name="WorldTileMap2" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.427451, 1, 0.309804, 1 )
-tile_data = PoolIntArray( -131073, 1, 0, -65537, 6, 0, -1, 6, 0 )
+tile_data = PoolIntArray( -262145, 7, 0, -196611, 3, 0, -196610, 9, 0, -196609, 8, 0, -262144, 9, 0, -262143, 5, 0, -131075, 2, 0, -131074, 9, 0, -131073, 1, 0, -196608, 9, 0, -196607, 4, 0, -65539, 14, 0, -65537, 6, 0, -131071, 14, 0, -1, 6, 0 )
 
 [node name="2-1" parent="." instance=ExtResource( 3 )]
 position = Vector2( -26, -27 )
@@ -104,6 +104,54 @@ levelName = "Sewers 2-2"
 position = Vector2( -25, -126 )
 levelFiles = [ "res://levels/01/01_2Checkpoint1.tscn" ]
 levelName = "Checkpoint"
+
+[node name="2-3-1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -74, -126 )
+levelName = "Sewers 2-3-1"
+
+[node name="2-3-2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 26, -126 )
+levelName = "Sewers 2-3-2"
+
+[node name="2-4-1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -125, -126 )
+levelName = "Sewers 2-4-2"
+
+[node name="2-4-2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 76, -127 )
+levelName = "Sewers 2-4-2"
+
+[node name="Secret4" parent="." instance=ExtResource( 3 )]
+position = Vector2( -125, -78 )
+levelName = "Sewers 2-4-2"
+
+[node name="Secret5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 76, -76 )
+levelName = "Sewers 2-4-2"
+
+[node name="2-5-1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -126, -176 )
+levelName = "Sewers 2-5-1"
+
+[node name="2-5-2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 75, -176 )
+levelName = "Sewers 2-5-1"
+
+[node name="Checkpoint3-1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -74, -176 )
+levelName = "Sewers 2-5-1"
+
+[node name="Checkpoint3-2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 26, -175 )
+levelName = "Sewers 2-5-1"
+
+[node name="2-6" parent="." instance=ExtResource( 3 )]
+position = Vector2( -26, -178 )
+levelName = "Sewers 2-5-1"
+
+[node name="Boss2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -25, -223 )
+levelName = "Sewers 2-5-1"
 
 [node name="WorldTileMap3" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.521569, 0.521569, 0.521569, 1 )

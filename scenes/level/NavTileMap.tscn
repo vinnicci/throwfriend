@@ -4,9 +4,9 @@
 
 [node name="NavTileMap" type="TileMap"]
 modulate = Color( 1, 1, 1, 0.392157 )
+scale = Vector2( 0.5, 0.5 )
 z_index = 4
 tile_set = ExtResource( 1 )
-centered_textures = true
-collision_layer = 2
+collision_layer = 0
 collision_mask = 0
 format = 1

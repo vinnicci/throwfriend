@@ -16,6 +16,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+tipsArr = [ "Releasing Snark increases mobility.", "Snark can only inflict damage when he's active. You will know he's active when his mouth is open.", "You can bind active abilities with the same key. Some combination activate simultaneously while some activate one at a time.", "Selecting an ability is permanent and irreversible. Choose wisely.", "Look out for any secret paths. These will lead you to dangerous areas but grants you rewards at the end." ]
 
 [node name="StatsPanel" type="Panel" parent="."]
 self_modulate = Color( 1, 1, 1, 0.686275 )

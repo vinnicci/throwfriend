@@ -38,6 +38,7 @@ public abstract class Item : Node2D
         }
     }
     public Timer Cooldown {get; protected set;}
+    public bool Active {get; protected set;}
 
 
     public override void _Ready()
@@ -50,16 +51,29 @@ public abstract class Item : Node2D
     [Signal] public delegate void Activated();
 
 
-    /// <summary>
-    /// Apply effects during intialization
-    /// </summary>
-    public virtual void InitEffect() {}
+    //intialization
+    public virtual void InitEffect() {
+        if(Active == true) {
+            Switch(true, Active);
+        }
+    }
 
 
-    /// <summary>
-    /// Use this to apply effect anytime
-    /// </summary>
+    //this func is called when this item hotkey is pressed
     public virtual void ApplyEffect() {}
+
+
+    //used for switchable abilities
+    public virtual void Switch(bool thisInst, bool state) {
+        if(Active == false) {
+            Active = true;
+            EmitSignal(nameof(Activated), -1);
+        }
+        else {
+            Active = false;
+            EmitSignal(nameof(Activated), 0);
+        }
+    }
 
 
 }

@@ -290,7 +290,9 @@ public class Player : Entity
             CurrentStatusEffect[(int)StatusEffect.SLOW] = false;
             slowedIndicator.Visible = false;
         }
-        timer.QueueFree();
+        if(IsInstanceValid(timer)) {
+            timer.QueueFree();
+        }
     }
 
 
@@ -308,6 +310,8 @@ public class Player : Entity
 
     public override bool Hit(Vector2 knockback, int damage)
     {
+        //player always gets damage of 1, regardless of enemy or explosion damage output
+        damage = Mathf.Clamp(damage, -1, 1);
         if(base.Hit(knockback, damage)) {
             if(Health > 0 && damage > 0) {
                 HitCooldown.Start(1f);

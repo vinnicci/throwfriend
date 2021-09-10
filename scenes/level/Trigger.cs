@@ -9,6 +9,7 @@ public abstract class Trigger : Area2D, ILevelObject
     public String SwitchedOnSignal {get; set;}
     public String SwitchedOffSignal {get; set;}
     public AnimationPlayer TriggerAnim {get; set;}
+    public Level LevelNode {get; set;}
 
     protected uint defaultCollisionLayer;
     protected uint defaultCollisionMask;
@@ -83,23 +84,25 @@ public abstract class Trigger : Area2D, ILevelObject
     protected bool triggered = false;
 
 
-    public virtual void OnSwitchedOn() {
+    public virtual bool OnSwitchedOn() {
         if(triggered) {
-            return;
+            return false;
         }
         triggered = true;
         TriggerAnim.Queue("trigger");
         EmitSignal(SwitchedOnSignal);
+        return true;
     }
 
 
-    public virtual void OnSwitchedOff() {
+    public virtual bool OnSwitchedOff() {
         if(Persist || triggered == false) {
-            return;
+            return false;
         }
         triggered = false;
         TriggerAnim.Queue("trigger_back");
         EmitSignal(SwitchedOffSignal);
+        return true;
     }
 
 

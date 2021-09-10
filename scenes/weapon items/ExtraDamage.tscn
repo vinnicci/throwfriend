@@ -6,7 +6,7 @@
 
 [node name="ExtraDamage" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Snark will inflict 3x more damage."
+itemDescription = "Snark inflicts triple damage."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

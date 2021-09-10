@@ -43,13 +43,15 @@ public abstract class Collectable : Area2D, ISpawnable, ILevelObject
     }
 
 
-    public void OnSwitchedOn() {
+    public bool OnSwitchedOn() {
         QueueFree();
+        return true;
     }
 
 
-    public void OnSwitchedOff() {
+    public bool OnSwitchedOff() {
         Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnSwitchedOff));
+        return false;
     }
 
 

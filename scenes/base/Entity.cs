@@ -28,19 +28,21 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     HealthHUD healthHUD;
     
 
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-        if(what == NotificationInstanced) {
-            Health = health;
-            Speed = speed;
-        }
-    }
+    // public override void _Notification(int what)
+    // {
+    //     base._Notification(what);
+    //     if(what == NotificationInstanced) {
+    //         Health = health;
+    //         Speed = speed;
+    //     }
+    // }
 
 
     public override void _Ready()
     {
         base._Ready();
+        Health = health;
+        Speed = speed;
         hud = (Node2D)GetNode("HUD");
         spriteNode = (Node2D)GetNode("Sprite");
         TeleportAnim = (AnimationPlayer)GetNode("Anims/TeleAnim");

@@ -28,10 +28,10 @@ public class Swap : PlayerItem
         }
         WeaponNode.Teleport(PlayerNode.LevelNode, playerPos);
         if(IsInstanceValid(WeaponNode.Item1) && WeaponNode.Item1 is Explosive) {
-            WeaponNode.Item1.ApplyEffect();
+            ((Explosive)WeaponNode.Item1).Explode(null);
         }
         else if(IsInstanceValid(WeaponNode.Item2) && WeaponNode.Item2 is Explosive) {
-            WeaponNode.Item2.ApplyEffect();
+            ((Explosive)WeaponNode.Item2).Explode(null);
         }
     }
 

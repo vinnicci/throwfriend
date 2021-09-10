@@ -30,14 +30,20 @@ __meta__ = {
 }
 
 [node name="Button" type="Sprite" parent="Sprite" index="1"]
+self_modulate = Color( 1, 0.592157, 0.956863, 1 )
 show_behind_parent = true
 position = Vector2( 0, -2 )
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 83, 1, 35, 37 )
+region_rect = Rect2( 47, 1, 35, 37 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="Logo" type="Sprite" parent="Sprite/Button" index="0"]
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 47, 39, 31, 11 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )

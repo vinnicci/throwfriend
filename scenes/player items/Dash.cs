@@ -8,12 +8,12 @@ public class Dash : PlayerItem
 
     public override void ApplyEffect()
     {
-        if(Cooldown.IsStopped() == false) {
+        Vector2 playerVNorm = PlayerNode.Velocity;
+        if(Cooldown.IsStopped() == false || playerVNorm.LengthSquared() <= 0) {
             return;
         }
         base.ApplyEffect();
-        Vector2 mousePos = new Vector2(GetGlobalMousePosition());
-        Vector2 vec = (mousePos - PlayerNode.GlobalPosition).Clamped(1) * DASH_STRENGTH;
+        Vector2 vec = playerVNorm.Normalized() * DASH_STRENGTH;
         PlayerNode.ApplyCentralImpulse(vec);
         PlayerNode.HitCooldown.Start(0.3f);
         EmitSignal(nameof(Activated), Cooldown.WaitTime);

@@ -6,7 +6,7 @@
 
 [node name="Swap" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Activate: Swap positions with Snark. Also Snark will explode on swap if he has the explosion ability. This ability has a chance to fail however."
+itemDescription = "Activate: Swap position with Snark. Snark will also explode on swap if he has an active explosion ability. Teleportation has a chance to fail however."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

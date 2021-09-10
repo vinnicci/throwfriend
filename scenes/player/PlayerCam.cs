@@ -42,6 +42,10 @@ public class PlayerCam : Camera2D
     void OnRestartPressed() {
         ((Button)GetNode("CanvasLayer/Restart")).Visible = false;
         Main mainNode = (Main)GetNode("/root/Main");
+        if(IsInstanceValid(mainNode.PlayerSaveFile) == false) {
+            GetTree().ReloadCurrentScene();
+            return;
+        }
         mainNode.LoadGame();
     }
 

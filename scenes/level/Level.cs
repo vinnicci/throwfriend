@@ -66,6 +66,9 @@ public abstract class Level : YSort
                     else if(obj is RandomEnemySpawner) {
                         ((RandomEnemySpawner)obj).LevelNode = this;
                     }
+                    else if(obj is Trigger) {
+                        ((Trigger)obj).LevelNode = this;
+                    }
                 }
             }
         }
@@ -90,7 +93,7 @@ public abstract class Level : YSort
             enemy.LevelNode = this;
         }
         else {
-            AddChild((Node2D)body);
+            lvlObjects.AddChild((Node2D)body);
         }
         ((Node2D)body).GlobalPosition = pos;
         ((Node2D)body).GlobalRotation = rot;

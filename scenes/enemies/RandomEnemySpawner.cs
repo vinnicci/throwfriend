@@ -92,13 +92,15 @@ public class RandomEnemySpawner : Position2D, ILevelObject
     }
 
 
-    public virtual void OnSwitchedOn() {
+    public virtual bool OnSwitchedOn() {
         QueueFree();
+        return true;
     }
 
 
-    public virtual void OnSwitchedOff() {
+    public virtual bool OnSwitchedOff() {
         Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnSwitchedOff));
+        return false;
     }
 
 
@@ -111,9 +113,6 @@ public class RandomEnemySpawner : Position2D, ILevelObject
 
 
     void SpawnRandomEnemy() {
-        Main mainNode = (Main)GetNode("/root/Main");
-        Godot.Collections.Dictionary dict =
-        (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("EnemySpawns");
         Godot.Collections.Array arr = GetEnemySet();
         if(continuous) {
             arr.Shuffle();
@@ -122,19 +121,26 @@ public class RandomEnemySpawner : Position2D, ILevelObject
             return;
         }
         //else if not continuous
+        Godot.Collections.Array enemyArr = new Godot.Collections.Array();
+        for(int i = 0; i <= maxSpawnCount - 1; i++) {
+            arr.Shuffle();
+            String enemyFilePath = (String)arr[0];
+            enemyArr.Add(enemyFilePath);
+            SpawnEnemy(enemyFilePath);
+        }
+        //savefile access
+        Main mainNode = (Main)GetNode("/root/Main");
+        if(IsInstanceValid(mainNode.WorldSaveFile) == false) {
+            return;
+        }
+        Godot.Collections.Dictionary dict =
+        (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("EnemySpawns");
         String path = mainNode.PlayerSaveFile.Get("CurrentCell") + Name;
         if(dict.Contains(path) == false) {
-            Godot.Collections.Array enemyArr = new Godot.Collections.Array();
-            for(int i = 0; i <= maxSpawnCount - 1; i++) {
-                arr.Shuffle();
-                String enemyFilePath = (String)arr[0];
-                enemyArr.Add(enemyFilePath);
-                SpawnEnemy(enemyFilePath);
-            }
             dict.Add(path, enemyArr);
         }
         else {
-            Godot.Collections.Array enemyArr = (Godot.Collections.Array)dict[path];
+            enemyArr = (Godot.Collections.Array)dict[path];
             foreach(String enemyFilePath in enemyArr) {
                 SpawnEnemy(enemyFilePath);
             }

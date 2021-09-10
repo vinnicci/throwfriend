@@ -47,10 +47,13 @@ public class SecretNPC : Trigger, IQuest
     }
 
 
-    public override void OnSwitchedOn()
+    public override bool OnSwitchedOn()
     {
-        base.OnSwitchedOn();
+        if(base.OnSwitchedOn() == false) {
+            return false;
+        }
         UpdateQuest();
+        return true;
     }
 
 
