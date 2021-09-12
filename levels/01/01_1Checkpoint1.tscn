@@ -35,4 +35,4 @@ visible = false
 tile_data = PoolIntArray( 9, 1, 65538, 65545, 1, 65538, 262132, 1, 65538, 327668, 1, 65538, 524290, 1, 65538, 524291, 1, 65538 )
 
 [node name="HealthUpgrade" parent="Objects" index="10" instance=ExtResource( 4 )]
-position = Vector2( -63, -5 )
+position = Vector2( -66, -132 )

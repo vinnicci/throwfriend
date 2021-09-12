@@ -49,8 +49,8 @@ public abstract class Trigger : Area2D, ILevelObject
     }
 
 
-    public void OnTriggeredAllBoundTriggers(NodePath path, bool triggered) {
-        Global.PrintErrNotImplemented(GetType().ToString(), nameof(OnTriggeredAllBoundTriggers));
+    public virtual void OnTriggeredAllBoundTriggers(NodePath path, bool triggered) {
+        OnSwitchedOn();
     }
 
 

@@ -38,4 +38,4 @@ position = Vector2( -127, 598 )
 rotation = -1.5708
 
 [node name="HealthUpgrade" parent="Objects" index="10" instance=ExtResource( 4 )]
-position = Vector2( -93, 147 )
+position = Vector2( -93, 64 )

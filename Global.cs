@@ -5,9 +5,9 @@ public static class Global
 {
     public const short BIT_MASK_ENEMY = 0;
     public const short BIT_MASK_WALL = 1;
-    public const short BIT_MASK_SEETHROUGH_WALL = 5;
     public const short BIT_MASK_PLAYER = 2;
     public const short BIT_MASK_WEAPON = 3;
+    public const short BIT_MASK_SEETHROUGH_WALL = 4;
     public const int CCD_MAX = 1500000;
     public const String PLAYER_SCN = "res://scenes/player/Player.tscn";
     public const String SAVE_DIR = "user://save/";
@@ -35,17 +35,18 @@ public static class Global
     public static readonly String[] EASY_CHARGERS = {
         "res://scenes/enemies/blob/HostileBlob.tscn",
         "res://scenes/enemies/charger/Charger.tscn",
-    };
-    public static readonly String[] MEDIUM_CHARGERS = {
-        "res://scenes/enemies/charger/BlobCharger.tscn",
-        "res://scenes/enemies/charger/TeleportingCharger.tscn",
-        "res://scenes/enemies/spawner/ChargerSpawner.tscn",
+        "res://scenes/enemies/blob/TeleportingBlob.tscn",
         "res://scenes/enemies/blob/NukeBlob.tscn",
     };
+    public static readonly String[] MEDIUM_CHARGERS = {
+        "res://scenes/enemies/charger/RigidCharger.tscn",
+        "res://scenes/enemies/charger/TeleportingCharger.tscn",
+        "res://scenes/enemies/charger/BlobCharger.tscn",
+    };
     public static readonly String[] HARD_CHARGERS = {
+        "res://scenes/enemies/spawner/ChargerSpawner.tscn",
         "res://scenes/enemies/spawner/BlobChargerSpawner.tscn",
         "res://scenes/enemies/spawner/TeleportingChargerSpawner.tscn",
-        "res://scenes/enemies/charger/RigidCharger.tscn",
     };
     public static readonly String[] EASY_SHOOTERS = {
         "res://scenes/enemies/shooter/Shooter.tscn",
@@ -69,6 +70,8 @@ public static class Global
         "res://scenes/enemies/all rounder/BlobnadierShielded.tscn",
         "res://scenes/enemies/blob/HostileBlob.tscn",
         "res://scenes/enemies/charger/Charger.tscn",
+        "res://scenes/enemies/blob/TeleportingBlob.tscn",
+        "res://scenes/enemies/blob/NukeBlob.tscn",
         "res://scenes/enemies/shooter/Shooter.tscn",
         "res://scenes/enemies/shooter/SprayerSticky.tscn",
     };
@@ -78,9 +81,9 @@ public static class Global
         "res://scenes/enemies/all rounder/ParaBlobCarrier.tscn",
         "res://scenes/enemies/all rounder/SlowBlobCarrier.tscn",
         "res://scenes/enemies/all rounder/TeleBlobCarrier.tscn",
-        "res://scenes/enemies/charger/BlobCharger.tscn",
-        "res://scenes/enemies/charger/TeleportingCharger.tscn",
         "res://scenes/enemies/charger/RigidCharger.tscn",
+        "res://scenes/enemies/charger/TeleportingCharger.tscn",
+        "res://scenes/enemies/charger/BlobCharger.tscn",
         "res://scenes/enemies/shooter/LaserShooter.tscn",
         "res://scenes/enemies/shooter/LongRangeShooter.tscn",
         "res://scenes/enemies/shooter/SprayerSticky.tscn",
@@ -90,8 +93,8 @@ public static class Global
         "res://scenes/enemies/all rounder/DualRanged.tscn",
         "res://scenes/enemies/all rounder/RangedShielded.tscn",
         "res://scenes/enemies/all rounder/MeleeRanged.tscn",
-        "res://scenes/enemies/spawner/BlobChargerSpawner.tscn",
         "res://scenes/enemies/spawner/ChargerSpawner.tscn",
+        "res://scenes/enemies/spawner/BlobChargerSpawner.tscn",
         "res://scenes/enemies/spawner/TeleportingChargerSpawner.tscn",
         "res://scenes/enemies/shooter/LongRangeCannoneer.tscn",
         "res://scenes/enemies/shooter/ScatterShooter.tscn",
@@ -102,7 +105,8 @@ public static class Global
         "res://scenes/enemies/all rounder/EliteRangedShielded.tscn",
     };
     public static readonly String[] ELITE_CHARGERS = {
-
+        "res://scenes/enemies/charger/EliteBlobCharger.tscn",
+        "res://scenes/enemies/spawner/EliteChargerSpawner.tscn",
     };
     public static readonly String[] ELITE_SHOOTERS = {
 

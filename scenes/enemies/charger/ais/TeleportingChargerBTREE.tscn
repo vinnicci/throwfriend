@@ -17,11 +17,6 @@ tree = {
 "to_port": 0
 }, {
 "from": "selector",
-"from_port": 1,
-"to": "minim_node2",
-"to_port": 0
-}, {
-"from": "selector",
 "from_port": 3,
 "to": "minim_node5",
 "to_port": 0
@@ -30,6 +25,11 @@ tree = {
 "from_port": 2,
 "to": "minim_node3",
 "to_port": 0
+}, {
+"from": "selector",
+"from_port": 1,
+"to": "minim_node2",
+"to_port": 0
 } ],
 "nodes": [ {
 "child": [ {
@@ -186,7 +186,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 2,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 109, 87.75 )
 },
 "name": "sequence2",
@@ -195,7 +195,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "charge", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "charge" ]
@@ -206,7 +206,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -480 ),
+"offset": Vector2( 0, -460 ),
 "params": [ [ "charge", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "charge" ]
@@ -219,7 +219,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "charge", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "charge" ]
@@ -230,7 +230,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -480 ),
+"offset": Vector2( 0, -460 ),
 "params": [ [ "charge", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "charge" ]
@@ -240,7 +240,7 @@ tree = {
 } ],
 "data": {
 "count": 2,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 109, 87.75 )
 },
 "name": "sequence2",
@@ -642,7 +642,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 2,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 109, 87.75 )
 },
 "name": "sequence2",
@@ -651,7 +651,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "charge", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "charge" ]
@@ -662,7 +662,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -480 ),
+"offset": Vector2( 0, -460 ),
 "params": [ [ "charge", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "charge" ]
@@ -675,7 +675,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "charge", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "charge" ]
@@ -686,7 +686,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -480 ),
+"offset": Vector2( 0, -460 ),
 "params": [ [ "charge", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "charge" ]
@@ -696,7 +696,7 @@ tree = {
 } ],
 "data": {
 "count": 2,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 109, 87.75 )
 },
 "name": "sequence2",
@@ -1076,92 +1076,6 @@ tree = {
 "data": {
 "data": {
 "connection": [ {
-"from": "sequence2",
-"from_port": 0,
-"to": "task13",
-"to_port": 0
-}, {
-"from": "sequence2",
-"from_port": 1,
-"to": "task14",
-"to_port": 0
-} ],
-"nodes": [ {
-"child": [  ],
-"data": {
-"count": 2,
-"offset": Vector2( 200, -600 ),
-"size": Vector2( 109, 87.75 )
-},
-"name": "sequence2",
-"type": 2
-}, {
-"child": [  ],
-"data": {
-"fn": "task_is_act_ready",
-"offset": Vector2( 400, -600 ),
-"params": [ [ "charge", 1 ] ],
-"size": Vector2( 249, 87.75 ),
-"values": [ "charge" ]
-},
-"name": "task13",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_act",
-"offset": Vector2( 400, -480 ),
-"params": [ [ "charge", 1 ] ],
-"size": Vector2( 201, 87.75 ),
-"values": [ "charge" ]
-},
-"name": "task14",
-"type": 1
-} ],
-"root": {
-"child": [ {
-"child": [  ],
-"data": {
-"fn": "task_is_act_ready",
-"offset": Vector2( 400, -600 ),
-"params": [ [ "charge", 1 ] ],
-"size": Vector2( 249, 87.75 ),
-"values": [ "charge" ]
-},
-"name": "task13",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_act",
-"offset": Vector2( 400, -480 ),
-"params": [ [ "charge", 1 ] ],
-"size": Vector2( 201, 87.75 ),
-"values": [ "charge" ]
-},
-"name": "task14",
-"type": 1
-} ],
-"data": {
-"count": 2,
-"offset": Vector2( 200, -600 ),
-"size": Vector2( 109, 87.75 )
-},
-"name": "sequence2",
-"type": 2
-}
-},
-"label": "charge",
-"offset": Vector2( -200, -580 ),
-"size": Vector2( 236, 80 )
-},
-"name": "minim_node2",
-"type": 99
-}, {
-"child": [  ],
-"data": {
-"data": {
-"connection": [ {
 "from": "sequence6",
 "from_port": 0,
 "to": "task18",
@@ -1377,6 +1291,92 @@ tree = {
 },
 "name": "minim_node3",
 "type": 99
+}, {
+"child": [  ],
+"data": {
+"data": {
+"connection": [ {
+"from": "sequence2",
+"from_port": 0,
+"to": "task13",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 1,
+"to": "task14",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [  ],
+"data": {
+"count": 2,
+"offset": Vector2( -200, -580 ),
+"size": Vector2( 109, 87.75 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 0, -580 ),
+"params": [ [ "charge", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "charge" ]
+},
+"name": "task13",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 0, -460 ),
+"params": [ [ "charge", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "charge" ]
+},
+"name": "task14",
+"type": 1
+} ],
+"root": {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_act_ready",
+"offset": Vector2( 0, -580 ),
+"params": [ [ "charge", 1 ] ],
+"size": Vector2( 249, 87.75 ),
+"values": [ "charge" ]
+},
+"name": "task13",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 0, -460 ),
+"params": [ [ "charge", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "charge" ]
+},
+"name": "task14",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( -200, -580 ),
+"size": Vector2( 109, 87.75 )
+},
+"name": "sequence2",
+"type": 2
+}
+},
+"label": "charge",
+"offset": Vector2( -200, -580 ),
+"size": Vector2( 236, 80 )
+},
+"name": "minim_node2",
+"type": 99
 } ],
 "root": {
 "child": [ {
@@ -1533,7 +1533,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 2,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 109, 87.75 )
 },
 "name": "sequence2",
@@ -1542,7 +1542,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "charge", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "charge" ]
@@ -1553,7 +1553,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -480 ),
+"offset": Vector2( 0, -460 ),
 "params": [ [ "charge", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "charge" ]
@@ -1566,7 +1566,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "charge", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "charge" ]
@@ -1577,7 +1577,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -480 ),
+"offset": Vector2( 0, -460 ),
 "params": [ [ "charge", 1 ] ],
 "size": Vector2( 201, 87.75 ),
 "values": [ "charge" ]
@@ -1587,7 +1587,7 @@ tree = {
 } ],
 "data": {
 "count": 2,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 109, 87.75 )
 },
 "name": "sequence2",
@@ -1837,4 +1837,4 @@ tree = {
 "type": 0
 }
 }
-_tree_id = "4203114487177619"
+_tree_id = "984754468177619"

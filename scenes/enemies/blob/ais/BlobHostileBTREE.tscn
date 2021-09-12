@@ -17,12 +17,12 @@ tree = {
 "to_port": 0
 }, {
 "from": "selector",
-"from_port": 1,
+"from_port": 2,
 "to": "minim_node2",
 "to_port": 0
 }, {
 "from": "selector",
-"from_port": 2,
+"from_port": 1,
 "to": "minim_node3",
 "to_port": 0
 } ],
@@ -189,10 +189,10 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"fn": "task_is_target_close",
+"fn": "task_is_target_in_range",
 "offset": Vector2( 600, 40 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
-"size": Vector2( 262, 112.75 ),
+"size": Vector2( 282, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
 },
 "name": "task2",
@@ -213,10 +213,10 @@ tree = {
 "child": [ {
 "child": [  ],
 "data": {
-"fn": "task_is_target_close",
+"fn": "task_is_target_in_range",
 "offset": Vector2( 600, 40 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
-"size": Vector2( 262, 112.75 ),
+"size": Vector2( 282, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
 },
 "name": "task2",
@@ -246,7 +246,7 @@ tree = {
 "offset": Vector2( 400, 40 ),
 "size": Vector2( 236, 80 )
 },
-"name": "minim_node2",
+"name": "minim_node3",
 "type": 99
 }, {
 "child": [  ],
@@ -267,7 +267,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 2,
-"offset": Vector2( 400, 300 ),
+"offset": Vector2( 400, 160 ),
 "size": Vector2( 109, 87.75 )
 },
 "name": "sequence3",
@@ -276,7 +276,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_get_seek_point",
-"offset": Vector2( 600, 300 ),
+"offset": Vector2( 600, 160 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 264, 87.75 ),
 "values": [ "enemy" ]
@@ -287,7 +287,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_seek",
-"offset": Vector2( 600, 420 ),
+"offset": Vector2( 600, 280 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 209, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -300,7 +300,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_get_seek_point",
-"offset": Vector2( 600, 300 ),
+"offset": Vector2( 600, 160 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 264, 87.75 ),
 "values": [ "enemy" ]
@@ -311,7 +311,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_seek",
-"offset": Vector2( 600, 420 ),
+"offset": Vector2( 600, 280 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 209, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -321,7 +321,7 @@ tree = {
 } ],
 "data": {
 "count": 2,
-"offset": Vector2( 400, 300 ),
+"offset": Vector2( 400, 160 ),
 "size": Vector2( 109, 87.75 )
 },
 "name": "sequence3",
@@ -332,7 +332,7 @@ tree = {
 "offset": Vector2( 400, 160 ),
 "size": Vector2( 236, 80 )
 },
-"name": "minim_node3",
+"name": "minim_node2",
 "type": 99
 } ],
 "data": {
@@ -354,178 +354,6 @@ tree = {
 "data": {
 "data": {
 "connection": [ {
-"from": "sequence",
-"from_port": 0,
-"to": "task2",
-"to_port": 0
-}, {
-"from": "sequence",
-"from_port": 1,
-"to": "task3",
-"to_port": 0
-} ],
-"nodes": [ {
-"child": [  ],
-"data": {
-"count": 2,
-"offset": Vector2( 400, 40 ),
-"size": Vector2( 103, 87.75 )
-},
-"name": "sequence",
-"type": 2
-}, {
-"child": [  ],
-"data": {
-"fn": "task_is_target_close",
-"offset": Vector2( 600, 40 ),
-"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
-"size": Vector2( 262, 112.75 ),
-"values": [ "enemy", "seek_dist" ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_act",
-"offset": Vector2( 600, 180 ),
-"params": [ [ "explode", 1 ] ],
-"size": Vector2( 201, 87.75 ),
-"values": [ "explode" ]
-},
-"name": "task3",
-"type": 1
-} ],
-"root": {
-"child": [ {
-"child": [  ],
-"data": {
-"fn": "task_is_target_close",
-"offset": Vector2( 600, 40 ),
-"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
-"size": Vector2( 262, 112.75 ),
-"values": [ "enemy", "seek_dist" ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_act",
-"offset": Vector2( 600, 180 ),
-"params": [ [ "explode", 1 ] ],
-"size": Vector2( 201, 87.75 ),
-"values": [ "explode" ]
-},
-"name": "task3",
-"type": 1
-} ],
-"data": {
-"count": 2,
-"offset": Vector2( 400, 40 ),
-"size": Vector2( 103, 87.75 )
-},
-"name": "sequence",
-"type": 2
-}
-},
-"label": "explode",
-"offset": Vector2( 400, 40 ),
-"size": Vector2( 236, 80 )
-},
-"name": "minim_node2",
-"type": 99
-}, {
-"child": [  ],
-"data": {
-"data": {
-"connection": [ {
-"from": "sequence3",
-"from_port": 0,
-"to": "task7",
-"to_port": 0
-}, {
-"from": "sequence3",
-"from_port": 1,
-"to": "task8",
-"to_port": 0
-} ],
-"nodes": [ {
-"child": [  ],
-"data": {
-"count": 2,
-"offset": Vector2( 400, 300 ),
-"size": Vector2( 109, 87.75 )
-},
-"name": "sequence3",
-"type": 2
-}, {
-"child": [  ],
-"data": {
-"fn": "task_get_seek_point",
-"offset": Vector2( 600, 300 ),
-"params": [ [ "enemy", 1 ] ],
-"size": Vector2( 264, 87.75 ),
-"values": [ "enemy" ]
-},
-"name": "task7",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_seek",
-"offset": Vector2( 600, 420 ),
-"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
-"size": Vector2( 209, 112.75 ),
-"values": [ "enemy", "seek_dist" ]
-},
-"name": "task8",
-"type": 1
-} ],
-"root": {
-"child": [ {
-"child": [  ],
-"data": {
-"fn": "task_get_seek_point",
-"offset": Vector2( 600, 300 ),
-"params": [ [ "enemy", 1 ] ],
-"size": Vector2( 264, 87.75 ),
-"values": [ "enemy" ]
-},
-"name": "task7",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_seek",
-"offset": Vector2( 600, 420 ),
-"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
-"size": Vector2( 209, 112.75 ),
-"values": [ "enemy", "seek_dist" ]
-},
-"name": "task8",
-"type": 1
-} ],
-"data": {
-"count": 2,
-"offset": Vector2( 400, 300 ),
-"size": Vector2( 109, 87.75 )
-},
-"name": "sequence3",
-"type": 2
-}
-},
-"label": "seek",
-"offset": Vector2( 400, 160 ),
-"size": Vector2( 236, 80 )
-},
-"name": "minim_node3",
-"type": 99
-}, {
-"child": [  ],
-"data": {
-"data": {
-"connection": [ {
 "from": "sequence2",
 "from_port": 1,
 "to": "task4",
@@ -817,10 +645,10 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"fn": "task_is_target_close",
+"fn": "task_is_target_in_range",
 "offset": Vector2( 600, 40 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
-"size": Vector2( 262, 112.75 ),
+"size": Vector2( 282, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
 },
 "name": "task2",
@@ -841,10 +669,10 @@ tree = {
 "child": [ {
 "child": [  ],
 "data": {
-"fn": "task_is_target_close",
+"fn": "task_is_target_in_range",
 "offset": Vector2( 600, 40 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
-"size": Vector2( 262, 112.75 ),
+"size": Vector2( 282, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
 },
 "name": "task2",
@@ -874,7 +702,7 @@ tree = {
 "offset": Vector2( 400, 40 ),
 "size": Vector2( 236, 80 )
 },
-"name": "minim_node2",
+"name": "minim_node3",
 "type": 99
 }, {
 "child": [  ],
@@ -895,7 +723,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 2,
-"offset": Vector2( 400, 300 ),
+"offset": Vector2( 400, 160 ),
 "size": Vector2( 109, 87.75 )
 },
 "name": "sequence3",
@@ -904,7 +732,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_get_seek_point",
-"offset": Vector2( 600, 300 ),
+"offset": Vector2( 600, 160 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 264, 87.75 ),
 "values": [ "enemy" ]
@@ -915,7 +743,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_seek",
-"offset": Vector2( 600, 420 ),
+"offset": Vector2( 600, 280 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 209, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -928,7 +756,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_get_seek_point",
-"offset": Vector2( 600, 300 ),
+"offset": Vector2( 600, 160 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 264, 87.75 ),
 "values": [ "enemy" ]
@@ -939,7 +767,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_seek",
-"offset": Vector2( 600, 420 ),
+"offset": Vector2( 600, 280 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 209, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -949,7 +777,7 @@ tree = {
 } ],
 "data": {
 "count": 2,
-"offset": Vector2( 400, 300 ),
+"offset": Vector2( 400, 160 ),
 "size": Vector2( 109, 87.75 )
 },
 "name": "sequence3",
@@ -960,7 +788,7 @@ tree = {
 "offset": Vector2( 400, 160 ),
 "size": Vector2( 236, 80 )
 },
-"name": "minim_node3",
+"name": "minim_node2",
 "type": 99
 } ],
 "data": {
@@ -970,6 +798,178 @@ tree = {
 },
 "name": "selector",
 "type": 3
+}, {
+"child": [  ],
+"data": {
+"data": {
+"connection": [ {
+"from": "sequence3",
+"from_port": 0,
+"to": "task7",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 1,
+"to": "task8",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [  ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, 160 ),
+"size": Vector2( 109, 87.75 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_get_seek_point",
+"offset": Vector2( 600, 160 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 264, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek",
+"offset": Vector2( 600, 280 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 209, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task8",
+"type": 1
+} ],
+"root": {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_get_seek_point",
+"offset": Vector2( 600, 160 ),
+"params": [ [ "enemy", 1 ] ],
+"size": Vector2( 264, 87.75 ),
+"values": [ "enemy" ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_seek",
+"offset": Vector2( 600, 280 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 209, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, 160 ),
+"size": Vector2( 109, 87.75 )
+},
+"name": "sequence3",
+"type": 2
+}
+},
+"label": "seek",
+"offset": Vector2( 400, 160 ),
+"size": Vector2( 236, 80 )
+},
+"name": "minim_node2",
+"type": 99
+}, {
+"child": [  ],
+"data": {
+"data": {
+"connection": [ {
+"from": "sequence",
+"from_port": 0,
+"to": "task2",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 1,
+"to": "task3",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [  ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, 40 ),
+"size": Vector2( 103, 87.75 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_in_range",
+"offset": Vector2( 600, 40 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 282, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 600, 180 ),
+"params": [ [ "explode", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "explode" ]
+},
+"name": "task3",
+"type": 1
+} ],
+"root": {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_target_in_range",
+"offset": Vector2( 600, 40 ),
+"params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
+"size": Vector2( 282, 112.75 ),
+"values": [ "enemy", "seek_dist" ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_act",
+"offset": Vector2( 600, 180 ),
+"params": [ [ "explode", 1 ] ],
+"size": Vector2( 201, 87.75 ),
+"values": [ "explode" ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, 40 ),
+"size": Vector2( 103, 87.75 )
+},
+"name": "sequence",
+"type": 2
+}
+},
+"label": "explode",
+"offset": Vector2( 400, 40 ),
+"size": Vector2( 236, 80 )
+},
+"name": "minim_node3",
+"type": 99
 } ],
 "root": {
 "child": [ {
@@ -1134,10 +1134,10 @@ tree = {
 }, {
 "child": [  ],
 "data": {
-"fn": "task_is_target_close",
+"fn": "task_is_target_in_range",
 "offset": Vector2( 600, 40 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
-"size": Vector2( 262, 112.75 ),
+"size": Vector2( 282, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
 },
 "name": "task2",
@@ -1158,10 +1158,10 @@ tree = {
 "child": [ {
 "child": [  ],
 "data": {
-"fn": "task_is_target_close",
+"fn": "task_is_target_in_range",
 "offset": Vector2( 600, 40 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
-"size": Vector2( 262, 112.75 ),
+"size": Vector2( 282, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
 },
 "name": "task2",
@@ -1191,7 +1191,7 @@ tree = {
 "offset": Vector2( 400, 40 ),
 "size": Vector2( 236, 80 )
 },
-"name": "minim_node2",
+"name": "minim_node3",
 "type": 99
 }, {
 "child": [  ],
@@ -1212,7 +1212,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 2,
-"offset": Vector2( 400, 300 ),
+"offset": Vector2( 400, 160 ),
 "size": Vector2( 109, 87.75 )
 },
 "name": "sequence3",
@@ -1221,7 +1221,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_get_seek_point",
-"offset": Vector2( 600, 300 ),
+"offset": Vector2( 600, 160 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 264, 87.75 ),
 "values": [ "enemy" ]
@@ -1232,7 +1232,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_seek",
-"offset": Vector2( 600, 420 ),
+"offset": Vector2( 600, 280 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 209, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -1245,7 +1245,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_get_seek_point",
-"offset": Vector2( 600, 300 ),
+"offset": Vector2( 600, 160 ),
 "params": [ [ "enemy", 1 ] ],
 "size": Vector2( 264, 87.75 ),
 "values": [ "enemy" ]
@@ -1256,7 +1256,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_seek",
-"offset": Vector2( 600, 420 ),
+"offset": Vector2( 600, 280 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 209, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -1266,7 +1266,7 @@ tree = {
 } ],
 "data": {
 "count": 2,
-"offset": Vector2( 400, 300 ),
+"offset": Vector2( 400, 160 ),
 "size": Vector2( 109, 87.75 )
 },
 "name": "sequence3",
@@ -1277,7 +1277,7 @@ tree = {
 "offset": Vector2( 400, 160 ),
 "size": Vector2( 236, 80 )
 },
-"name": "minim_node3",
+"name": "minim_node2",
 "type": 99
 } ],
 "data": {

@@ -14,17 +14,11 @@ public class EliteBlasterAndShield : AllRounderWeapon
 
 
     public override void SpawnInstance(string packedSceneKey, int count = 1) {
-        if(packedSceneKey == "proj") {
-            if(count == 1) {
-                SpawnProj();
-            }
-            else if(count == 2) {
-                SpawnProj2();
-            }
+        if(packedSceneKey == "proj" && count == 2) {
+            SpawnProj2();
+            return;
         }
-        else {
-            base.SpawnInstance(packedSceneKey, count);
-        }
+        base.SpawnInstance(packedSceneKey, count);
     }
 
 

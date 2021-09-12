@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public abstract class Level : YSort
 {
-    //if true use provided mult
+    //by default the Main singleton modifies multiplers
+    //if true the Main singleton cannot modify multipliers
     [Export] public bool overrideableEnemyMults;
     [Export] public float enemyHealthMult = 1;
     [Export] public float enemySpeedMult = 1;

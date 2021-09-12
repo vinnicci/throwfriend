@@ -3,7 +3,7 @@ using System;
 
 public class Blob : Enemy
 {
-    public void Explode() {
+    public virtual void Explode() {
         if(Health <= 0) {
             return;
         }

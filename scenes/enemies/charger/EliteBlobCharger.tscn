@@ -1,0 +1,98 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://assets/enemies/charger/tex_en_blob_spawner_charger_upperbody.png" type="Texture" id=1]
+[ext_resource path="res://assets/enemies/charger/tex_en_blob_spawner_charger_lowerbody.png" type="Texture" id=2]
+[ext_resource path="res://scenes/enemies/blob/HostileBlob.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/enemies/charger/EliteBlobCharger.cs" type="Script" id=4]
+[ext_resource path="res://scenes/enemies/charger/anim/blob_charger_spawn_blob.tres" type="Animation" id=5]
+[ext_resource path="res://scenes/enemies/charger/anim/charger_charge.tres" type="Animation" id=6]
+[ext_resource path="res://scenes/enemies/charger/anim/elite_blob_charger_die.tres" type="Animation" id=7]
+[ext_resource path="res://scenes/enemies/charger/anim/elite_particles.tres" type="Material" id=8]
+[ext_resource path="res://scenes/enemies/charger/anim/charger_idle.tres" type="Animation" id=9]
+[ext_resource path="res://scenes/enemies/charger/anim/charger_run.tres" type="Animation" id=10]
+[ext_resource path="res://scenes/enemies/charger/BaseCharger.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/enemies/blob/NukeBlob.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/enemies/blob/TeleportingBlob.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/enemies/charger/anim/blob_charger_spawn_nuke_blob.tres" type="Animation" id=15]
+[ext_resource path="res://scenes/enemies/charger/anim/blob_charger_spawn_tele_blob.tres" type="Animation" id=16]
+[ext_resource path="res://scenes/enemies/charger/ais/EliteBlobChargerAI.tscn" type="PackedScene" id=17]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 25.02
+
+[sub_resource type="Animation" id=3]
+resource_name = "damaged"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.2 ), Vector2( 1, 1 ) ]
+}
+
+[node name="EliteBlobCharger" instance=ExtResource( 11 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 4 )
+speed = 565
+health = 25
+knockbackMult = 0.7
+spawnScenes = {
+"blob": ExtResource( 3 ),
+"hp_drop": ExtResource( 12 ),
+"nuke_blob": ExtResource( 13 ),
+"teleporting_blob": ExtResource( 14 )
+}
+acts = {
+"charge": [ 0.25, 1.0 ],
+"spawn_blob": [ 4.0, 1.0 ],
+"spawn_nuke_blob": [ 2.5, 0.25 ],
+"spawn_teleporting_blob": [ 1.0, 0.5 ]
+}
+
+[node name="Particles2D" type="Particles2D" parent="." index="0"]
+amount = 25
+local_coords = false
+process_material = ExtResource( 8 )
+
+[node name="Sprite" parent="." index="1"]
+modulate = Color( 0.431373, 0.890196, 0.760784, 1 )
+
+[node name="Lower" type="Sprite" parent="Sprite" index="0"]
+texture = ExtResource( 2 )
+
+[node name="Upper" type="Sprite" parent="Sprite/Lower" index="0"]
+position = Vector2( 0, -10 )
+texture = ExtResource( 1 )
+offset = Vector2( -6, 0 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource( 2 )
+
+[node name="Health" parent="HUD" index="0"]
+margin_top = -40.0
+margin_bottom = -34.0
+
+[node name="DamageAnim" parent="Anims" index="1"]
+anims/damaged = SubResource( 3 )
+
+[node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
+autoplay = "idle"
+anims/charge = ExtResource( 6 )
+anims/die = ExtResource( 7 )
+anims/idle = ExtResource( 9 )
+anims/run = ExtResource( 10 )
+anims/spawn_blob = ExtResource( 5 )
+anims/spawn_nuke_blob = ExtResource( 15 )
+anims/spawn_teleporting_blob = ExtResource( 16 )
+
+[node name="AI2" parent="." index="7" instance=ExtResource( 17 )]

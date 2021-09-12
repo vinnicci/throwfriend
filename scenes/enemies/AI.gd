@@ -268,8 +268,9 @@ func task_is_target_in_range(task):
 #move actions
 
 
+export var target_dist_margin_sq: int = 1250
 const ORIGIN_DIST: = 30000
-const TARGET_DIST: = 1250
+#const TARGET_DIST: = 1250
 
 
 #_try_interrupt overridable func - use custom conditions to stop seeking
@@ -277,7 +278,7 @@ const TARGET_DIST: = 1250
 #param 1: distance needed
 func task_seek(task):
 	is_moving = true
-	if parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
+	if parent_node.global_position.distance_squared_to(bb["target"]) <= target_dist_margin_sq:
 		get_seek_point(bb[task.get_param(0)])
 	if bb[task.get_param(0)].global_position.distance_squared_to(path_points.front()) > ORIGIN_DIST:
 		get_new_path(bb[task.get_param(0)])
@@ -295,7 +296,7 @@ func _try_interrupt_seek(task) -> bool:
 #param 0: distance needed
 func task_flee(task):
 	is_moving = true
-	if (parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST ||
+	if (parent_node.global_position.distance_squared_to(bb["target"]) <= target_dist_margin_sq ||
 	parent_node.global_position.distance_squared_to(bb["target"]) > ORIGIN_DIST):
 		get_flee_point()
 	if _try_interrupt_flee(task):
@@ -317,12 +318,12 @@ func task_patrol(task):
 		is_moving = false
 		bb["patrol_point"] = null
 		task.succeed()
-	elif parent_node.global_position.distance_squared_to(bb["target"]) <= TARGET_DIST:
+	elif parent_node.global_position.distance_squared_to(bb["target"]) <= target_dist_margin_sq:
 		get_seek_point(bb["patrol_point"])
 
 
 func _try_interrupt_patrol(_task) -> bool:
-	return parent_node.global_position.distance_squared_to(bb["patrol_point"].global_position) <= TARGET_DIST
+	return parent_node.global_position.distance_squared_to(bb["patrol_point"].global_position) <= target_dist_margin_sq
 
 
 #ai actions

@@ -84,7 +84,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="0"]
 position = Vector2( 2, -21 )
-rotation = 0.239499
+rotation = 0.239524
 rest = Transform2D( 1, 0, 0, 1, 2, -21 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -100,6 +100,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper2" type="Bone2D" parent="Sprite/Skeleton2D/Root/Upper" index="0"]
 position = Vector2( 0, -23 )
+rotation = -9.25064e-05
 rest = Transform2D( 1, 0, 0, 1, 0, -23 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -115,7 +116,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper3" type="Bone2D" parent="Sprite/Skeleton2D/Root/Upper/Upper2" index="0"]
 position = Vector2( 0, -26 )
-rotation = -1.5708
+rotation = -1.57079
 rest = Transform2D( 1, 0, 0, 1, 0, -26 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -219,7 +220,6 @@ margin_top = -107.0
 margin_bottom = -101.0
 
 [node name="AI" parent="." index="4" instance=ExtResource( 12 )]
-detection_range = 750
 flee_ray_len = 100
 
 [node name="DamageAnim" parent="Anims" index="1"]
