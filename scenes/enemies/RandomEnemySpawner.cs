@@ -114,29 +114,34 @@ public class RandomEnemySpawner : Position2D, ILevelObject
 
     void SpawnRandomEnemy() {
         Godot.Collections.Array arr = GetEnemySet();
-        if(continuous) {
-            arr.Shuffle();
-            String enemyFilePath = (String)arr[0];
-            SpawnEnemy(enemyFilePath);
-            return;
-        }
-        //else if not continuous
         Godot.Collections.Array enemyArr = new Godot.Collections.Array();
         for(int i = 0; i <= maxSpawnCount - 1; i++) {
             arr.Shuffle();
             String enemyFilePath = (String)arr[0];
             enemyArr.Add(enemyFilePath);
-            SpawnEnemy(enemyFilePath);
         }
-        //savefile access
-        Main mainNode = (Main)GetNode("/root/Main");
-        if(IsInstanceValid(mainNode.WorldSaveFile) == false) {
+        if(continuous) {
+            foreach(String enemyFilePath in enemyArr) {
+                SpawnEnemy(enemyFilePath);
+            }
             return;
         }
+        //else if not continuous
+        Main mainNode = (Main)GetNode("/root/Main");
+        if(IsInstanceValid(mainNode.WorldSaveFile) == false) {
+            foreach(String enemyFilePath in enemyArr) {
+                SpawnEnemy(enemyFilePath);
+            }
+            return;
+        }
+        //else if savefile valide
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("EnemySpawns");
         String path = mainNode.PlayerSaveFile.Get("CurrentCell") + Name;
         if(dict.Contains(path) == false) {
+            foreach(String enemyFilePath in enemyArr) {
+                SpawnEnemy(enemyFilePath);
+            }
             dict.Add(path, enemyArr);
         }
         else {

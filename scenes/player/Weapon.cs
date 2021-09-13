@@ -122,7 +122,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     }
 
 
-    const int WEAP_MIN_LIN_VEL_LEN = 15625;
+    const int WEAP_MIN_LIN_VEL_LEN = 22500;
 
 
     public override void _PhysicsProcess(float delta)

@@ -171,8 +171,8 @@ public class Main : Node
         LoadPlayerItems(player, "WeapItem", 1);
         //weap item 2
         LoadPlayerItems(player, "WeapItem", 2);
-        player.UpdateUpgrade();
         player.UpdateSlotsIcon();
+        player.UpdateUpgrade();
         player.UpdateStatsDisp();
     }
 

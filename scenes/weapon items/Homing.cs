@@ -15,14 +15,15 @@ public class Homing : WeaponItem
         base._Ready();
         incompatibilityList.Add("Homing");
         incompatibilityList.Add("Guided");
+        incompatibilityList.Add("AutoRetrieve");
         range = (Area2D)GetNode("DetectionRange");
         ray = (RayCast2D)GetNode("DetectionRay");
         tick = (Timer)GetNode("Tick");
     }
 
 
-    const int HOME_MAGNITUDE = 150;
-    const int HOME_MAGNITUDE_CLOSE = 500;
+    const int HOME_MAGNITUDE = 250;
+    const int HOME_MAGNITUDE_CLOSE = 750;
     const int DIST_HOME_ACCEL = 2500;
     Queue<Enemy> enemies = new Queue<Enemy>();
 

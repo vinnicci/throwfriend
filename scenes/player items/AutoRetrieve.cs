@@ -12,10 +12,8 @@ public class AutoRetrieve : PlayerItem
         base._Ready();
         incompatibilityList.Add("AutoRetrieve");
         incompatibilityList.Add("Guided");
+        incompatibilityList.Add("Homing");
     }
-
-
-    const int STOP_RETURN_DIST = 10000;
 
 
     public override void _PhysicsProcess(float delta)
