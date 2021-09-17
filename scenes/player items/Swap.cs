@@ -8,9 +8,6 @@ public class Swap : PlayerItem
 
     public override void ApplyEffect()
     {
-        if(WeaponNode != PlayerNode.WeaponNode) {
-            WeaponNode = PlayerNode.WeaponNode;
-        }
         if(WeaponNode.CurrentState == Weapon.States.HELD || Cooldown.IsStopped() == false ||
         PlayerNode.TeleportAnim.IsPlaying() || WeaponNode.TeleportAnim.IsPlaying()) {
             return;
@@ -27,6 +24,12 @@ public class Swap : PlayerItem
             WeaponNode = PlayerNode.WeaponNode;
         }
         WeaponNode.Teleport(PlayerNode.LevelNode, playerPos);
+        Explode();
+    }
+
+
+    async void Explode() {
+        await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
         if(IsInstanceValid(WeaponNode.Item1) && WeaponNode.Item1 is Explosive) {
             ((Explosive)WeaponNode.Item1).Explode(null);
         }

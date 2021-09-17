@@ -8,9 +8,6 @@ public class TeleRetrieve : PlayerItem
 
     public override void ApplyEffect()
     {
-        if(WeaponNode != PlayerNode.WeaponNode) {
-            WeaponNode = PlayerNode.WeaponNode;
-        }
         if(WeaponNode.CurrentState != Weapon.States.INACTIVE || Cooldown.IsStopped() == false ||
         PlayerNode.TeleportAnim.IsPlaying() || WeaponNode.TeleportAnim.IsPlaying()) {
             return;

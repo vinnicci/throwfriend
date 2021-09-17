@@ -46,7 +46,7 @@ public abstract class Level : YSort
             if(node is Node2D == false) {
                 continue;
             }
-            if(node.Name == "Blackboards") {
+            else if(node.Name == "Blackboards") {
                 foreach(Blackboard blackboard in node.GetChildren()) {
                     blackboard.Init();
                 }
@@ -87,18 +87,61 @@ public abstract class Level : YSort
     }
 
 
-    public void Spawn(ISpawnable body, Vector2 pos, float rot = 0) {
+    public void Spawn(Node2D body, Vector2 pos, float rot = 0) {
         if(body is Enemy) {
             Enemy enemy = (Enemy)body;
             enemies.AddChild(enemy);
             enemy.LevelNode = this;
         }
-        else {
+        else if(body is ISpawnable) {
             lvlObjects.AddChild((Node2D)body);
         }
         ((Node2D)body).GlobalPosition = pos;
         ((Node2D)body).GlobalRotation = rot;
     }
+
+
+    // Godot.Collections.Dictionary poolDict = new Godot.Collections.Dictionary();
+
+
+    // public Node2D GetPooledObj(PackedScene scn) {
+    //     Godot.Collections.Array poolArr;
+    //     if(poolDict.Contains(scn) == false) {
+    //         Godot.Collections.Dictionary dict = new Godot.Collections.Dictionary();
+    //         dict.Add("obj", null);
+    //         poolArr = new Godot.Collections.Array();
+    //         dict.Add("pool", poolArr);
+    //         poolDict.Add(scn, dict);
+    //     }
+    //     else {
+    //         poolArr = (Godot.Collections.Array)((Godot.Collections.Dictionary)poolDict[scn])["pool"];
+    //     }
+    //     Node2D obj;
+    //     if(poolArr.Count > 0) {
+    //         obj = (Node2D)poolArr[poolArr.Count - 1];
+    //         poolArr.RemoveAt(poolArr.Count - 1);
+    //     }
+    //     else {
+    //         obj = (Node2D)((PackedScene)scn).Instance();
+    //         if((Node2D)((Godot.Collections.Dictionary)poolDict[scn])["obj"] == null) {
+    //             ((Godot.Collections.Dictionary)poolDict[scn])["obj"] = ((PackedScene)scn).Instance();
+    //         }
+    //     }
+    //     GD.Print("pool ya: " + poolArr.Count);
+    //     return obj;
+    // }
+
+
+    // public void ReturnToPool(Node2D obj) {
+    //     PackedScene scn = (PackedScene)ResourceLoader.Load(obj.Filename);
+    //     Godot.Collections.Array poolArr = (Godot.Collections.Array)((Godot.Collections.Dictionary)poolDict[scn])["pool"];
+    //     poolArr.Add(obj);
+    //     Node2D node = (Node2D)((Godot.Collections.Dictionary)poolDict[scn])["obj"];
+    //     obj.SetScript(node.GetScript());
+    //     obj.Call("_init");
+    //     obj.GetParent().RemoveChild(obj);
+    //     GD.Print("success return, pool size: " + poolArr.Count);
+    // }
 
 
     public Godot.Collections.Array PlayerEngaging {get; set;}

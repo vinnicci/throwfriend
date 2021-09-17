@@ -50,7 +50,9 @@ public class EliteChargerSpawner : BaseChargerSpawner
         for(int i = 0; i <= count - 1; i++) {
             ISpawnable bInstance = (ISpawnable)spawnScenes[packedSceneKey].Instance();
             bInstance.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
-            ((RigidBody2D)bInstance).ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
+            ((RigidBody2D)bInstance).ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) *
+            (float)GD.RandRange(500, 1000));
+            ((RigidBody2D)bInstance).ContinuousCd = RigidBody2D.CCDMode.CastRay;
         }
     }
     

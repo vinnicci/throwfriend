@@ -192,6 +192,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         Spawn(PlayerNode.LevelNode, globalPos, Vector2.Zero, globalRot);
         Vector2 throwVector = new Vector2(throwStrength, 0);
         ApplyCentralImpulse(throwVector.Rotated(GlobalRotation));
+        ContinuousCd = RigidBody2D.CCDMode.CastRay;
     }
 
 
@@ -217,16 +218,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         else if(body is IHealthModifiable) {
             IHealthModifiable hitBody = (IHealthModifiable)body;
             int dmg = Damage * PlayerNode.SnarkDmgMult;
-            //damage x2 if player has superthrow ability
-            if((IsInstanceValid(PlayerNode.Item1) && PlayerNode.Item1 is SuperThrow) ||
-            (IsInstanceValid(PlayerNode.Item2) && PlayerNode.Item2 is SuperThrow)) {
-                dmg *= 2;
-            }
             if(CurrentState == States.ACTIVE) {
-                hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), dmg);
-            }
-            else if(CurrentState == States.INACTIVE &&
-            (PlayerNode.Item1 is AutoRetrieve || PlayerNode.Item2 is AutoRetrieve)) {
                 hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), dmg);
             }
         }

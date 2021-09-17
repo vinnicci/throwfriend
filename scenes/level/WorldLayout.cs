@@ -1,9 +1,6 @@
 using Godot;
 using System;
 
-//  World Layout Rules:
-//  Secret levels must have THREE walls (IDs: 7, 11, 13, 14)
-
 public class WorldLayout : Node2D
 {
     TileMap worldTileMap1;

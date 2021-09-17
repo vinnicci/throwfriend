@@ -13,6 +13,11 @@ public class SprayerProj : EnemyProj
         base.StopProjectile();
         sprite.GlobalRotationDegrees = (float)GD.RandRange(0,360);
     }
+
+
+    public override void ReturnToPool() {
+        base.ReturnToPool();
+    }
     
 
 }

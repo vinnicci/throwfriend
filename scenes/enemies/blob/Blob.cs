@@ -15,4 +15,9 @@ public class Blob : Enemy
     }
 
 
+    public virtual void ReturnToPool() {
+        QueueFree();
+    }
+
+
 }

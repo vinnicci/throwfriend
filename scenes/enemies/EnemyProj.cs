@@ -14,7 +14,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
     public int Range {get; set;}
     public int Speed {get; set;}
     
-    protected Level levelNode;
+    public Level LevelNode {get; set;}
     protected Sprite sprite;
     Explosion explosion;
     AnimationPlayer anim;
@@ -57,7 +57,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
 
     void SeekPlayer() {
         Vector2 v = GlobalPosition + Velocity;
-        Vector2 home_target = (levelNode.GetPlayerPos() - v).Normalized() * homing_magnitude;
+        Vector2 home_target = (LevelNode.GetPlayerPos() - v).Normalized() * homing_magnitude;
         Velocity += home_target;
         Velocity = Velocity.Clamped(Speed);
     }
@@ -77,13 +77,13 @@ public abstract class EnemyProj : Area2D, ISpawnable
         }
         Speed = speed;
         Damage = (int)(damage * lvl.enemyHealthMult);
-        levelNode = lvl;
+        LevelNode = lvl;
         if(IsInstanceValid(explosion)) {
             explosion.Damage = Damage;
         }
         currentRange = Range;
-        Velocity = new Vector2(Speed, 0).Rotated(Godot.Mathf.Deg2Rad(globalRotDeg));
-        lvl.Spawn(this, globalPos, Godot.Mathf.Deg2Rad(globalRotDeg));
+        Velocity = new Vector2(Speed, 0).Rotated(Mathf.Deg2Rad(globalRotDeg));
+        lvl.Spawn(this, globalPos, Mathf.Deg2Rad(globalRotDeg));
     }
 
 
@@ -128,6 +128,11 @@ public abstract class EnemyProj : Area2D, ISpawnable
             explosion.Explode();
             sprite.Visible = false;
         }
+    }
+
+
+    public virtual void ReturnToPool() {
+        QueueFree();
     }
 
 

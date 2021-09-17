@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/enemies/blob/tex_en_teleporting_blob.png" type="Texture" id=4]
 [ext_resource path="res://scenes/enemies/blob/anim/act_explode_teleport.tres" type="Animation" id=5]
-[ext_resource path="res://scenes/base/anim/entity_die.tres" type="Animation" id=6]
+[ext_resource path="res://scenes/enemies/blob/anim/blob_die.tres" type="Animation" id=6]
 [ext_resource path="res://scenes/enemies/blob/anim/idle.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/blob/anim/run.tres" type="Animation" id=8]
 [ext_resource path="res://scenes/enemies/blob/TeleportingBlob.cs" type="Script" id=9]
@@ -21,9 +21,7 @@ acts = {
 }
 
 [node name="Blob" parent="Sprite" index="0"]
-modulate = Color( 1, 0.973895, 0.973895, 1 )
-position = Vector2( 0, 3.6 )
-scale = Vector2( 1.02, 1.08 )
+modulate = Color( 1, 1, 1, 1 )
 texture = ExtResource( 4 )
 
 [node name="Anim" parent="Explosion" index="3"]

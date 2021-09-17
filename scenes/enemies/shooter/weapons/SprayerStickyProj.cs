@@ -25,4 +25,9 @@ public class SprayerStickyProj : SprayerProj
     }
 
 
+    public override void ReturnToPool() {
+        base.ReturnToPool();
+    }
+
+
 }

@@ -137,20 +137,20 @@ margin_bottom = 16.0
 text = "Tab"
 
 [node name="Back" type="Button" parent="Panel"]
-margin_left = 5.0
-margin_top = 335.0
-margin_right = 59.0
-margin_bottom = 355.0
+margin_left = 10.0
+margin_top = 330.0
+margin_right = 64.0
+margin_bottom = 350.0
 text = "<BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Default" type="Button" parent="Panel"]
-margin_left = 503.0
-margin_top = 334.0
-margin_right = 634.0
-margin_bottom = 354.0
+margin_left = 500.0
+margin_top = 330.0
+margin_right = 631.0
+margin_bottom = 350.0
 text = "RESET TO DEFAULT"
 __meta__ = {
 "_edit_use_anchors_": false

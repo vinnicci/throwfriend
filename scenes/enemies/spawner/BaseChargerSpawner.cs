@@ -8,9 +8,6 @@ public abstract class BaseChargerSpawner : Enemy, ISpawner
     }
 
 
-    protected const int BLOB_SPAWN_FORCE = 1000;
-
-
     public override void SpawnInstance(String packedSceneKey, int count = 1) {
         base.SpawnInstance(packedSceneKey);
         if(packedSceneKey == "charger") {
@@ -24,7 +21,9 @@ public abstract class BaseChargerSpawner : Enemy, ISpawner
     public virtual void SpawnChargerInstance(String packedSceneKey) {
         ISpawnable bInstance = (ISpawnable)spawnScenes[packedSceneKey].Instance();
         bInstance.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
-        ((RigidBody2D)bInstance).ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
+        ((RigidBody2D)bInstance).ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) *
+        (float)GD.RandRange(500, 1000));
+        ((RigidBody2D)bInstance).ContinuousCd = RigidBody2D.CCDMode.CastRay;
     }
 
 

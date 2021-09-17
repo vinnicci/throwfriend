@@ -6,38 +6,9 @@
 [ext_resource path="res://scenes/enemies/charger/Charger.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemies/spawner/BaseChargerSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/spawner/anim/spawn_two_chargers.tres" type="Animation" id=6]
+[ext_resource path="res://scenes/base/anim/entity_die.tres" type="Animation" id=7]
 
 [sub_resource type="Animation" id=1]
-resource_name = "die"
-length = 0.2
-tracks/0/type = "method"
-tracks/0/path = NodePath("..")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "queue_free"
-} ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("..:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-
-[sub_resource type="Animation" id=2]
 resource_name = "idle"
 length = 2.0
 loop = true
@@ -82,17 +53,17 @@ texture = ExtResource( 2 )
 texture = ExtResource( 1 )
 
 [node name="Upper" parent="Sprite/Skeleton2D/Root" index="0"]
-rotation = 0.239575
+rotation = 0.213729
 scale = Vector2( 1, 1 )
 
 [node name="Upper2" parent="Sprite/Skeleton2D/Root/Upper" index="0"]
-rotation = -4.44651e-05
+rotation = 0.0205874
 
 [node name="Upper3" parent="Sprite/Skeleton2D/Root/Upper/Upper2" index="0"]
-rotation = -1.57095
+rotation = -1.55621
 
 [node name="Anim" parent="Anims" index="2"]
-anims/die = SubResource( 1 )
-anims/idle = SubResource( 2 )
-anims/run = SubResource( 2 )
+anims/entity_die = ExtResource( 7 )
+anims/idle = SubResource( 1 )
+anims/run = SubResource( 1 )
 anims/spawn_charger = ExtResource( 6 )

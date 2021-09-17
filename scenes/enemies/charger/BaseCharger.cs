@@ -40,6 +40,7 @@ public abstract class BaseCharger : Enemy
             return;
         }
         ApplyCentralImpulse((vec - GlobalPosition).Clamped(1) * CHARGE_STRENGTH);
+        ContinuousCd = RigidBody2D.CCDMode.CastRay;
         charging = true;
         SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
     }

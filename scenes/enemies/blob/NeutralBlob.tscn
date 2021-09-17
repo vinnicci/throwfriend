@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/enemies/blob/ais/BlobNeutralAI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/enemies/blob/anim/act_explode.tres" type="Animation" id=4]
-[ext_resource path="res://scenes/base/anim/entity_die.tres" type="Animation" id=5]
+[ext_resource path="res://scenes/enemies/blob/anim/blob_die.tres" type="Animation" id=5]
 [ext_resource path="res://scenes/enemies/blob/anim/idle.tres" type="Animation" id=6]
 [ext_resource path="res://scenes/enemies/blob/anim/run.tres" type="Animation" id=7]
 
@@ -17,7 +17,7 @@ acts = {
 }
 
 [node name="Blob" parent="Sprite" index="0"]
-modulate = Color( 1, 0.976419, 0.976419, 1 )
+modulate = Color( 1, 0.977235, 0.977235, 1 )
 
 [node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"

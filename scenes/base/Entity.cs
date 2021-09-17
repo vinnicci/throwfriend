@@ -28,16 +28,6 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     HealthHUD healthHUD;
     
 
-    // public override void _Notification(int what)
-    // {
-    //     base._Notification(what);
-    //     if(what == NotificationInstanced) {
-    //         Health = health;
-    //         Speed = speed;
-    //     }
-    // }
-
-
     public override void _Ready()
     {
         base._Ready();
@@ -148,6 +138,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
             return false;
         }
         ApplyCentralImpulse(knockback * knockbackMult);
+        ContinuousCd = CCDMode.CastRay;
         if(damage > 0) {
             DamageAnim.Play("damaged");
         }
@@ -155,7 +146,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         if(Health <= 0) {
             Die();
         }
-        Health = Godot.Mathf.Clamp(Health, 0, health);
+        Health = Mathf.Clamp(Health, 0, health);
         healthHUD.UpdateHealth();
         return true;
     }
@@ -191,7 +182,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
     
 
-    public void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0) {
+    public virtual void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0) {
         lvl.Spawn(this, globalPos, globalRot);
     }
 

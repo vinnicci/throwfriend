@@ -264,13 +264,11 @@ func task_is_target_in_range(task):
 		task.failed()
 
 
-
 #move actions
 
 
 export var target_dist_margin_sq: int = 1250
 const ORIGIN_DIST: = 30000
-#const TARGET_DIST: = 1250
 
 
 #_try_interrupt overridable func - use custom conditions to stop seeking
@@ -293,6 +291,7 @@ func _try_interrupt_seek(task) -> bool:
 
 
 #_try_interrupt overridable func - use custom conditions to stop fleeing
+#inverted return value is also used as precondition
 #param 0: distance needed
 func task_flee(task):
 	is_moving = true
@@ -302,6 +301,15 @@ func task_flee(task):
 	if _try_interrupt_flee(task):
 		is_moving = false
 		task.succeed()
+
+
+#precondition for fleeing
+#param 0: distance needed
+func task_should_flee(task):
+	if(_try_interrupt_flee(task) == false):
+		task.succeed()
+	else:
+		task.failed()
 
 
 func _try_interrupt_flee(task) -> bool:
@@ -323,7 +331,8 @@ func task_patrol(task):
 
 
 func _try_interrupt_patrol(_task) -> bool:
-	return parent_node.global_position.distance_squared_to(bb["patrol_point"].global_position) <= target_dist_margin_sq
+	return (parent_node.global_position.distance_squared_to(bb["patrol_point"].global_position) <= 
+	target_dist_margin_sq)
 
 
 #ai actions
@@ -346,7 +355,6 @@ func task_aim_weapon(task):
 #param 0: enemy action name
 func task_act(task):
 	parent_node.call("DoAction", task.get_param(0))
-	#is act active?
 	var dict: Dictionary = parent_node.ActDict[task.get_param(0)]
 	if dict["IsActive"] == false:
 		task.succeed()

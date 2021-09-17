@@ -15,6 +15,7 @@ public class Dash : PlayerItem
         base.ApplyEffect();
         Vector2 vec = playerVNorm.Normalized() * DASH_STRENGTH;
         PlayerNode.ApplyCentralImpulse(vec);
+        PlayerNode.ContinuousCd = RigidBody2D.CCDMode.CastRay;
         PlayerNode.HitCooldown.Start(0.3f);
         EmitSignal(nameof(Activated), Cooldown.WaitTime);
         Cooldown.Start();

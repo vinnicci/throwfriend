@@ -46,10 +46,10 @@ position = Vector2( 0.5, 27 )
 texture = ExtResource( 8 )
 
 [node name="LoadoutName" type="Label" parent="PlayerPanel"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 62.0
-margin_bottom = 19.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 67.0
+margin_bottom = 24.0
 text = "Guardian"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -94,10 +94,10 @@ position = Vector2( 70, 82 )
 texture = ExtResource( 7 )
 
 [node name="LoadoutName" type="Label" parent="WeaponPanel"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 39.0
-margin_bottom = 19.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 44.0
+margin_bottom = 24.0
 text = "Snark"
 __meta__ = {
 "_edit_use_anchors_": false

@@ -3,7 +3,17 @@ using System;
 
 public class SplitToThree : WeaponItem
 {
-    Weapon[] weaps = new Weapon[2];
+    public Weapon[] Weaps {get; private set;}
+
+
+
+    public override void _Notification(int what)
+    {
+        base._Notification(what);
+        if(what == NotificationInstanced) {
+            Weaps = new Weapon[2];
+        }
+    }
 
 
     public override void _PhysicsProcess(float delta)
@@ -12,12 +22,12 @@ public class SplitToThree : WeaponItem
         if(IsInstanceValid(WeaponNode) == false) {
             return;
         }
-        else if(WeaponNode.CurrentState == Weapon.States.ACTIVE && weaps[0].CurrentState == Weapon.States.HELD) {
+        else if(WeaponNode.CurrentState == Weapon.States.ACTIVE && Weaps[0].CurrentState == Weapon.States.HELD) {
             Split();
         }
-        else if(WeaponNode.CurrentState == Weapon.States.HELD && weaps[0].CurrentState != Weapon.States.HELD) {
-            weaps[0].OnPickedUp();
-            weaps[1].OnPickedUp();
+        else if(WeaponNode.CurrentState == Weapon.States.HELD && Weaps[0].CurrentState != Weapon.States.HELD) {
+            Weaps[0].OnPickedUp();
+            Weaps[1].OnPickedUp();
         }
     }
 
@@ -29,41 +39,39 @@ public class SplitToThree : WeaponItem
         if(PlayerNode.IsConnected(nameof(Player.ActivatedWeaponItem), this, nameof(ApplyEffectsToClones)) == false) {
             PlayerNode.Connect(nameof(Player.ActivatedWeaponItem), this, nameof(ApplyEffectsToClones));
         }
-        PackedScene res = (PackedScene)ResourceLoader.Load(WeaponNode.Filename);
-        if(IsInstanceValid(weaps[0]) == false) {
-            weaps[0] = (Weapon)res.Instance();
-            weaps[0].PlayerNode = PlayerNode;
-            weaps[0].IsClone = true;
-            weaps[0].Damage = WeaponNode.Damage;
+        if(IsInstanceValid(Weaps[0]) == false) {
+            PackedScene res = (PackedScene)ResourceLoader.Load(WeaponNode.Filename);
+            Weaps[0] = (Weapon)res.Instance();
+            Weaps[0].PlayerNode = PlayerNode;
+            Weaps[0].IsClone = true;
+            Weaps[0].Damage = WeaponNode.Damage;
+            Weaps[1] = (Weapon)res.Instance();
+            Weaps[1].PlayerNode = PlayerNode;
+            Weaps[1].IsClone = true;
+            Weaps[1].Damage = WeaponNode.Damage;
         }
-        if(IsInstanceValid(weaps[1]) == false) {
-            weaps[1] = (Weapon)res.Instance();
-            weaps[1].PlayerNode = PlayerNode;
-            weaps[1].IsClone = true;
-            weaps[1].Damage = WeaponNode.Damage;
-        }
-        PlayerNode.AddChild(weaps[0]);
-        PlayerNode.AddChild(weaps[1]);
+        PlayerNode.AddChild(Weaps[0]);
+        PlayerNode.AddChild(Weaps[1]);
         if(IsInstanceValid(WeaponNode.Item1) && WeaponNode.Item1 is SplitToThree == false) {
-            weaps[0].ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
-            weaps[1].ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
-            weaps[0].ActivateItem(1);
-            weaps[1].ActivateItem(1);
+            Weaps[0].ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
+            Weaps[1].ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
+            Weaps[0].ActivateItem(1);
+            Weaps[1].ActivateItem(1);
         }
         if(IsInstanceValid(WeaponNode.Item2) && WeaponNode.Item2 is SplitToThree == false) {
-            weaps[0].ItemSlot2Node.AddChild(WeaponNode.Item2.Duplicate());
-            weaps[1].ItemSlot2Node.AddChild(WeaponNode.Item2.Duplicate());
-            weaps[0].ActivateItem(2);
-            weaps[1].ActivateItem(2);
+            Weaps[0].ItemSlot2Node.AddChild(WeaponNode.Item2.Duplicate());
+            Weaps[1].ItemSlot2Node.AddChild(WeaponNode.Item2.Duplicate());
+            Weaps[0].ActivateItem(2);
+            Weaps[1].ActivateItem(2);
         }
-        weaps[0].GetParent().RemoveChild(weaps[0]);
-        weaps[1].GetParent().RemoveChild(weaps[1]);
+        Weaps[0].GetParent().RemoveChild(Weaps[0]);
+        Weaps[1].GetParent().RemoveChild(Weaps[1]);
     }
 
 
     void ApplyEffectsToClones(int num) {
-        WeaponItem weap0Item = (WeaponItem)weaps[0].Get("Item" + num);
-        WeaponItem weap1Item = (WeaponItem)weaps[1].Get("Item" + num);
+        WeaponItem weap0Item = (WeaponItem)Weaps[0].Get("Item" + num);
+        WeaponItem weap1Item = (WeaponItem)Weaps[1].Get("Item" + num);
         if(IsInstanceValid(weap0Item)) {
             if(WeaponNode.CurrentState == Weapon.States.HELD) {
                 weap0Item.Switch(true, weap0Item.Active);
@@ -79,10 +87,10 @@ public class SplitToThree : WeaponItem
 
     void Split() {
         int strength = PlayerNode.ThrowStrength;
-        weaps[0].Throw(strength, WeaponNode.GlobalPosition, Vector2.Zero,
-        Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees + (float)GD.RandRange(0,30)));
-        weaps[1].Throw(strength, WeaponNode.GlobalPosition, Vector2.Zero,
-        Godot.Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees - (float)GD.RandRange(0,30)));
+        Weaps[0].Throw(strength, WeaponNode.GlobalPosition, Vector2.Zero,
+        Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees + (float)GD.RandRange(0,30)));
+        Weaps[1].Throw(strength, WeaponNode.GlobalPosition, Vector2.Zero,
+        Mathf.Deg2Rad(WeaponNode.GlobalRotationDegrees - (float)GD.RandRange(0,30)));
     }
 
 

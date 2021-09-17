@@ -57,7 +57,7 @@ tracks/3/keys = {
 "method": "Explode"
 }, {
 "args": [  ],
-"method": "queue_free"
+"method": "ReturnToPool"
 } ]
 }
 tracks/4/type = "value"

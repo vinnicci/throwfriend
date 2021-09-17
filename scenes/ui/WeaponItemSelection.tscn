@@ -186,9 +186,9 @@ texture_normal = ExtResource( 3 )
 
 [node name="Description" type="Label" parent="."]
 margin_left = 10.0
-margin_top = 75.0
+margin_top = 70.0
 margin_right = 420.0
-margin_bottom = 110.0
+margin_bottom = 105.0
 align = 1
 valign = 1
 autowrap = true

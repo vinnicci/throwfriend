@@ -4,6 +4,7 @@
 [ext_resource path="res://scenes/enemies/shooter/anim/cannonproj_explode.tres" type="Animation" id=2]
 
 [node name="Explosion" instance=ExtResource( 1 )]
+visible = false
 explosionRadius = 125
 
 [node name="Anim" parent="." index="3"]

@@ -29,7 +29,7 @@ public abstract class Explosion : Area2D
         int circleCountPtCount = 24;
         Godot.Vector2[] circArr = new Vector2[circleCountPtCount];
         for(int i = 0; i <= circleCountPtCount - 1; i++) {
-            Vector2 vec = new Vector2(ExplosionRadius,0).Rotated(Godot.Mathf.Deg2Rad(i*(360/circleCountPtCount)));
+            Vector2 vec = new Vector2(ExplosionRadius,0).Rotated(Mathf.Deg2Rad(i*(360/circleCountPtCount)));
             circArr[i] = vec;
         }
         poly.Polygon = circArr;
@@ -62,6 +62,7 @@ public abstract class Explosion : Area2D
                 Weapon weap = (Weapon)body;
                 ray.LookAt(weap.GlobalPosition);
                 weap.ApplyCentralImpulse(new Vector2(KNOCKBACK, 0).Rotated(ray.GlobalRotation));
+                weap.ContinuousCd = RigidBody2D.CCDMode.CastRay;
             }
         }
         Godot.Collections.Array areas = GetOverlappingAreas();

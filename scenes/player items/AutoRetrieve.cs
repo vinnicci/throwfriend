@@ -22,12 +22,20 @@ public class AutoRetrieve : PlayerItem
         if(Active == false) {
             return;
         }
-        if(WeaponNode != PlayerNode.WeaponNode) {
-            WeaponNode = PlayerNode.WeaponNode;
-        }
         if(weapIsReturning) {
-            Vector2 vec = (PlayerNode.GlobalPosition - WeaponNode.GlobalPosition).Normalized() * RETRIEVE_SPEED;
-            WeaponNode.Velocity = vec;
+            WeaponNode.Velocity = CalcReturnVec(WeaponNode.GlobalPosition);
+            if(WeaponNode.Item1 is SplitToThree) {
+                Weapon w = ((SplitToThree)WeaponNode.Item1).Weaps[0];
+                w.Velocity = CalcReturnVec(w.GlobalPosition);
+                w = ((SplitToThree)WeaponNode.Item1).Weaps[1];
+                w.Velocity = CalcReturnVec(w.GlobalPosition);
+            }
+            if(WeaponNode.Item2 is SplitToThree) {
+                Weapon w = ((SplitToThree)WeaponNode.Item2).Weaps[0];
+                w.Velocity = CalcReturnVec(w.GlobalPosition);
+                w = ((SplitToThree)WeaponNode.Item2).Weaps[1];
+                w.Velocity = CalcReturnVec(w.GlobalPosition);
+            }
             if(WeaponNode.CurrentState == Weapon.States.HELD) {
                 weapIsReturning = false;
             }
@@ -35,6 +43,11 @@ public class AutoRetrieve : PlayerItem
         else if(weapIsReturning == false && WeaponNode.CurrentState == Weapon.States.INACTIVE) {
             weapIsReturning = true;
         }
+    }
+
+
+    Vector2 CalcReturnVec(Vector2 gPos) {
+        return (PlayerNode.GlobalPosition - gPos).Normalized() * RETRIEVE_SPEED;
     }
 
 

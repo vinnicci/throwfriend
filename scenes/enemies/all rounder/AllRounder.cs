@@ -19,6 +19,7 @@ public abstract class AllRounder: Enemy
 
     public virtual void AttackImpulse() {
         ApplyCentralImpulse(new Vector2(1,0).Rotated(WeaponNode.GlobalRotation) * FORWARD_IMPULSE);
+        ContinuousCd = RigidBody2D.CCDMode.CastRay;
     }
 
 
@@ -38,6 +39,7 @@ public abstract class AllRounder: Enemy
 
     public virtual void Recoil() {
         ApplyCentralImpulse(new Vector2(-1,0).Rotated(WeaponNode.GlobalRotation) * BLASTER_RECOIL);
+        ContinuousCd = RigidBody2D.CCDMode.CastRay;
     }
 
 

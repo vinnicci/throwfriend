@@ -8,9 +8,6 @@ public class TeleportToWeapon : PlayerItem
 
     public override void ApplyEffect()
     {
-        if(WeaponNode != PlayerNode.WeaponNode) {
-            WeaponNode = PlayerNode.WeaponNode;
-        }
         if(WeaponNode.Mode != RigidBody2D.ModeEnum.Rigid || Cooldown.IsStopped() == false ||
         PlayerNode.TeleportAnim.IsPlaying() || WeaponNode.TeleportAnim.IsPlaying()) {
             return;

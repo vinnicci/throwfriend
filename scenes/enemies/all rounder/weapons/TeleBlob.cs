@@ -17,7 +17,7 @@ public class TeleBlob : EnemyProj
             return false;
         }
         Player player = (Player)body;
-        player.Teleport(levelNode, teleDest);
+        player.Teleport(LevelNode, teleDest);
         return true;        
     }
 

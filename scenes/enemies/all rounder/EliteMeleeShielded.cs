@@ -16,7 +16,7 @@ public class EliteMeleeShielded : AllRounder
 
     public void TeleAttack() {
         Vector2 vec = LevelNode.GetPlayerPos() -
-        new Vector2(50,0).Rotated(Godot.Mathf.Deg2Rad((float)GD.RandRange(0, 360)));
+        new Vector2(50,0).Rotated(Mathf.Deg2Rad((float)GD.RandRange(0, 360)));
         Teleport(LevelNode, vec);
     }
 

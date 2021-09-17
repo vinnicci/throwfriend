@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/enemies/blob/anim/nuke_explosion.tres" type="Animation" id=4]
 [ext_resource path="res://scenes/enemies/blob/anim/act_explode_nuke.tres" type="Animation" id=5]
 [ext_resource path="res://scenes/enemies/blob/ais/BlobHostileAI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/base/anim/entity_die.tres" type="Animation" id=7]
+[ext_resource path="res://scenes/enemies/blob/anim/blob_die.tres" type="Animation" id=7]
 [ext_resource path="res://scenes/enemies/blob/anim/idle.tres" type="Animation" id=8]
 [ext_resource path="res://scenes/enemies/blob/anim/run.tres" type="Animation" id=9]
 
@@ -19,7 +19,7 @@ acts = {
 }
 
 [node name="Blob" parent="Sprite" index="0"]
-modulate = Color( 1, 0.994125, 0.994125, 1 )
+modulate = Color( 1, 0.995414, 0.995414, 1 )
 texture = ExtResource( 2 )
 
 [node name="Explosion" parent="." index="4"]

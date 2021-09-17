@@ -31,9 +31,6 @@ public class EliteBlobCharger : BaseCharger
     }
 
 
-    const int BLOB_SPAWN_FORCE = 1000;
-
-
     public override void SpawnInstance(String packedSceneKey, int count = 1) {
         base.SpawnInstance(packedSceneKey, count);
         if(packedSceneKey == "blob" || packedSceneKey == "teleporting_blob" || packedSceneKey == "nuke_blob") {
@@ -47,7 +44,9 @@ public class EliteBlobCharger : BaseCharger
     void SpawnBlobInstance(String packedSceneKey) {
         Blob blobInstance = (Blob)spawnScenes[packedSceneKey].Instance();
         blobInstance.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
-        blobInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) * BLOB_SPAWN_FORCE);
+        blobInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) *
+        (float)GD.RandRange(500, 1000));
+        blobInstance.ContinuousCd = RigidBody2D.CCDMode.CastRay;
     }
 
 
