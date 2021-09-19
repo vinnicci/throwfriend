@@ -101,20 +101,18 @@ public abstract class Level : YSort
     }
 
 
+    //pooling
     // Godot.Collections.Dictionary poolDict = new Godot.Collections.Dictionary();
 
 
     // public Node2D GetPooledObj(PackedScene scn) {
     //     Godot.Collections.Array poolArr;
     //     if(poolDict.Contains(scn) == false) {
-    //         Godot.Collections.Dictionary dict = new Godot.Collections.Dictionary();
-    //         dict.Add("obj", null);
     //         poolArr = new Godot.Collections.Array();
-    //         dict.Add("pool", poolArr);
-    //         poolDict.Add(scn, dict);
+    //         poolDict.Add(scn, poolArr);
     //     }
     //     else {
-    //         poolArr = (Godot.Collections.Array)((Godot.Collections.Dictionary)poolDict[scn])["pool"];
+    //         poolArr = (Godot.Collections.Array)poolDict[scn];
     //     }
     //     Node2D obj;
     //     if(poolArr.Count > 0) {
@@ -123,22 +121,16 @@ public abstract class Level : YSort
     //     }
     //     else {
     //         obj = (Node2D)((PackedScene)scn).Instance();
-    //         if((Node2D)((Godot.Collections.Dictionary)poolDict[scn])["obj"] == null) {
-    //             ((Godot.Collections.Dictionary)poolDict[scn])["obj"] = ((PackedScene)scn).Instance();
-    //         }
     //     }
     //     GD.Print("pool ya: " + poolArr.Count);
     //     return obj;
     // }
 
 
-    // public void ReturnToPool(Node2D obj) {
+    // public void ReturnObjToPool(Node2D obj) {
     //     PackedScene scn = (PackedScene)ResourceLoader.Load(obj.Filename);
-    //     Godot.Collections.Array poolArr = (Godot.Collections.Array)((Godot.Collections.Dictionary)poolDict[scn])["pool"];
-    //     poolArr.Add(obj);
-    //     Node2D node = (Node2D)((Godot.Collections.Dictionary)poolDict[scn])["obj"];
-    //     obj.SetScript(node.GetScript());
-    //     obj.Call("_init");
+    //     Godot.Collections.Array poolArr = (Godot.Collections.Array)poolDict[scn];
+    //     poolArr.Insert(0, obj);
     //     obj.GetParent().RemoveChild(obj);
     //     GD.Print("success return, pool size: " + poolArr.Count);
     // }
@@ -161,7 +153,6 @@ public abstract class Level : YSort
     public Vector2[] GetPath(Vector2 to, Vector2 from) {
         Vector2[] vec;
         vec = nav.GetSimplePath(to, from);
-        //ShowLine(vec);
         return vec;
     }
 
@@ -180,21 +171,21 @@ public abstract class Level : YSort
 
 
     //for debugging: show ai path
-    void ShowLine(Vector2[] vec) {
-        Line2D line = new Line2D();
-        Tween tween = new Tween();
-        line.Points = vec;
-        AddChild(line);
-        Godot.Collections.Array arr = new Godot.Collections.Array();
-        arr.Add(line);
-        tween.InterpolateProperty(line, "modulate", line.Modulate, new Color(1,1,1,0), 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-        if(tween.IsConnected("tween_all_completed", this, nameof(OnTweenCompleted)) == false) {
-            tween.Connect("tween_all_completed", this, nameof(OnTweenCompleted));
-        }
-        line.AddChild(tween);
-        lines.Enqueue(line);
-        tween.Start();
-    }
+    // void ShowLine(Vector2[] vec) {
+    //     Line2D line = new Line2D();
+    //     Tween tween = new Tween();
+    //     line.Points = vec;
+    //     AddChild(line);
+    //     Godot.Collections.Array arr = new Godot.Collections.Array();
+    //     arr.Add(line);
+    //     tween.InterpolateProperty(line, "modulate", line.Modulate, new Color(1,1,1,0), 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+    //     if(tween.IsConnected("tween_all_completed", this, nameof(OnTweenCompleted)) == false) {
+    //         tween.Connect("tween_all_completed", this, nameof(OnTweenCompleted));
+    //     }
+    //     line.AddChild(tween);
+    //     lines.Enqueue(line);
+    //     tween.Start();
+    // }
 
 
     void OnTweenCompleted() {

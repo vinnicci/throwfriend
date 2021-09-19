@@ -31,7 +31,7 @@ public class StatsDesc : Control
         snarkDmgStat = (Label)GetNode("StatsPanel/StatsDisp/SnarkDmg");
         helpDisp = (Control)GetNode("StatsPanel/HelpDisp");
         tipLabel = (Label)GetNode("StatsPanel/HelpDisp/Tip");
-        currentTip = 5;
+        currentTip = tipsArr.Count;
         OnNextTipPressed();
     }
 
@@ -110,7 +110,7 @@ public class StatsDesc : Control
     void OnNextTipPressed() {
         ((Node2D)GetNode(path + currentTip)).Visible = false;
         currentTip += 1;
-        if(currentTip > 5) {
+        if(currentTip > tipsArr.Count) {
             currentTip = 1;
         }
         tipLabel.Text = tipsArr[currentTip - 1];

@@ -129,12 +129,14 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     {
         base._PhysicsProcess(delta);
         int lv = (int)LinearVelocity.LengthSquared();
+        //ccd
         if(ContinuousCd == RigidBody2D.CCDMode.Disabled && lv > Global.CCD_MAX) {
             ContinuousCd = RigidBody2D.CCDMode.CastRay;
         }
         else if(ContinuousCd == RigidBody2D.CCDMode.CastRay && lv <= Global.CCD_MAX) {
             ContinuousCd = RigidBody2D.CCDMode.Disabled;
         }
+        //state - active or inactive
         if(CurrentState == States.ACTIVE && lv <= WEAP_MIN_LIN_VEL_LEN) {
             SetCollisionMaskBit(Global.BIT_MASK_ENEMY, false);
             if(IsClone == false) {

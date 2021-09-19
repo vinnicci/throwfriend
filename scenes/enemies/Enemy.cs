@@ -136,15 +136,15 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
     }
 
 
-    public bool IsActReady(String actionName) {
+    public virtual bool IsActReady(String actionName) {
         Godot.Collections.Array keys = (Godot.Collections.Array)ActDict.Keys;
         if(keys.Contains(actionName) == false) {
             return false;
         }
         Godot.Collections.Dictionary action = (Godot.Collections.Dictionary)ActDict[actionName];
         return (bool)action["IsActive"] == false && //action not animating
-            (float)action["TimeRemain"] <= 0 && //cooling down
-            Health <= health*(float)action["HPPercent"]; //hp requirement 
+        (float)action["TimeRemain"] <= 0 && //cooling down
+        Health <= health*(float)action["HPPercent"]; //hp requirement
     }
 
 
@@ -191,7 +191,7 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
     }
 
 
-    const float CHANCE_HP_DROP = 10f;
+    const float CHANCE_HP_DROP = 5f;
 
 
     public override bool Hit(Vector2 knockback, int damage)

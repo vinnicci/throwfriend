@@ -6,7 +6,8 @@ func _try_interrupt_flee(_task) -> bool:
 
 
 func _try_interrupt_seek(task) -> bool:
-	return (._try_interrupt_seek(task) ||
+	return (._try_interrupt_seek(task) || 
+	is_act_ready("invisible") ||
 	((is_act_ready("spawn_blob") ||
 	is_act_ready("spawn_teleporting_blob") ||
 	is_act_ready("spawn_nuke_blob")) &&

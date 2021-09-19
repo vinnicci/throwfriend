@@ -28,7 +28,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Palette Swap/plugin.cfg", "res://addons/TwistedIK2/plugin.cfg", "res://addons/btree/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/TwistedIK2/plugin.cfg", "res://addons/btree/plugin.cfg" )
 
 [importer_defaults]
 
@@ -117,11 +117,6 @@ hotkey_4={
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Weapon"
 2d_physics/layer_5="SeeThroughWall"
-
-[network]
-
-limits/websocket_server/max_in_buffer_kb=4096
-limits/websocket_server/max_out_buffer_kb=4096
 
 [physics]
 

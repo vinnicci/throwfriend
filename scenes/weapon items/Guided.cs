@@ -13,7 +13,6 @@ public class Guided : WeaponItem
 
 
     const int HOME_MAGNITUDE = 125;
-    const int PLAYER_DIST_MARGIN_SQ = 2500;
 
 
     public override void _PhysicsProcess(float delta)

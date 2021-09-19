@@ -13,11 +13,6 @@ public class BlobCharger : BaseCharger
     }
 
 
-    public void SpawnBlob() {
-        anim.Play("spawn_blob");
-    }
-
-
     public override void SpawnInstance(String packedSceneKey, int count = 1) {
         base.SpawnInstance(packedSceneKey);
         if(packedSceneKey == "blob") {

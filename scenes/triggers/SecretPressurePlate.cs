@@ -1,24 +1,17 @@
 using Godot;
 using System;
 
-public class SecretNPC : Trigger, IQuest
+public class SecretPressurePlate : Trigger, IQuest
 {
     public Main MainNode {get; set;}
     [Export] public String QuestID {get; set;}
     [Export] public String QuestKey {get; set;}
-    
 
 
     public override void _Ready()
     {
         base._Ready();
         MainNode = (Main)GetNode("/root/Main");
-        CheckQuest();
-        if(IsQueuedForDeletion()) {
-            return;
-        }
-        MainNode.InitLevelObject(this, "Triggers");
-        
     }
 
 
@@ -30,20 +23,21 @@ public class SecretNPC : Trigger, IQuest
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)MainNode.LevelSaveFile.Get("Triggers");
         if(dict.Contains(key) && (bool)dict[key] == false) {
-            QueueFree();
+            OnSwitchedOn();
         }
     }
 
 
     public void UpdateQuest() {
+        if(IsInstanceValid(MainNode.WorldSaveFile) == false) {
+            return;
+        }
         Godot.Collections.Array arr =
         (Godot.Collections.Array)((Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("Quests"))[QuestID];
         if(arr.Contains(QuestKey) == false) {
             arr.Add(QuestKey);
             MainNode.Saver.Call("save_world_data");
         }
-        //play idle after trigger anim is done playing
-        TriggerAnim.Play("idle");
     }
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/enemies/charger/tex_en_blob_spawner_charger_upperbody.png" type="Texture" id=1]
 [ext_resource path="res://assets/enemies/charger/tex_en_blob_spawner_charger_lowerbody.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://scenes/enemies/charger/anim/blob_charger_spawn_nuke_blob.tres" type="Animation" id=15]
 [ext_resource path="res://scenes/enemies/charger/anim/blob_charger_spawn_tele_blob.tres" type="Animation" id=16]
 [ext_resource path="res://scenes/enemies/charger/ais/EliteBlobChargerAI.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/enemies/charger/anim/elite_blob_charger_invisible.tres" type="Animation" id=18]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -54,9 +55,10 @@ spawnScenes = {
 }
 acts = {
 "charge": [ 0.25, 1.0 ],
-"spawn_blob": [ 4.0, 1.0 ],
-"spawn_nuke_blob": [ 2.5, 0.25 ],
-"spawn_teleporting_blob": [ 1.0, 0.5 ]
+"invisible": [ 1.0, 0.5 ],
+"spawn_blob": [ 3.0, 1.0 ],
+"spawn_nuke_blob": [ 3.0, 0.25 ],
+"spawn_teleporting_blob": [ 3.0, 0.5 ]
 }
 
 [node name="Particles2D" type="Particles2D" parent="." index="0"]
@@ -90,6 +92,7 @@ autoplay = "idle"
 anims/charge = ExtResource( 6 )
 anims/die = ExtResource( 7 )
 anims/idle = ExtResource( 9 )
+anims/invisible = ExtResource( 18 )
 anims/run = ExtResource( 10 )
 anims/spawn_blob = ExtResource( 5 )
 anims/spawn_nuke_blob = ExtResource( 15 )

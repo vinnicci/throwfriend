@@ -9,25 +9,36 @@ public class EliteBlobCharger : BaseCharger
 
 
     public override void Charge() {
+        if(Modulate.a < 1) {
+            Modulate = new Color(1,1,1,1);
+        }
         base.Charge();
     }
 
 
-    //normal blobs
-    public void SpawnBlob() {
-        anim.Play("spawn_blob");
+    public override bool IsActReady(string actionName)
+    {
+        if(base.IsActReady(actionName)) {
+            if(actionName == "invisible") {
+                if(Visible) {
+                    return true;
+                }
+                return false;
+            }
+            if(actionName == "charge") {
+                if(Visible == false) {
+                    Modulate = new Color(1,1,1,1);
+                    Visible = true;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
 
-    //teleporting blobs, 50% hp
-    public void SpawnTeleportingBlob() {
-        anim.Play("spawn_teleporting_blob");
-    }
-
-
-    //nuke blobs, 25% hp
-    public void SpawnNukeBlob() {
-        anim.Play("spawn_nuke_blob");
+    public void Invisible() {
+        anim.Play("invisible");
     }
 
 
