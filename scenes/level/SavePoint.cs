@@ -43,6 +43,11 @@ public class SavePoint : Area2D
             return;
         }
         Main mainNode = (Main)GetNode("/root/Main");
+        if(IsInstanceValid(mainNode.PlayerSaveFile) == false) {
+            saving = false;
+            SetProcess(false);
+            return;
+        }
         mainNode.SavePlayerData(true);
         player.WarnPlayer("GAME SAVED");
         SetProcess(false);

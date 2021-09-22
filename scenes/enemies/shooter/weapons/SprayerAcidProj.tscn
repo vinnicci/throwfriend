@@ -28,6 +28,7 @@ color_ramp = SubResource( 3 )
 [node name="SprayerAcidProj" instance=ExtResource( 1 )]
 visible = false
 z_index = -1
+collision_mask = 0
 script = ExtResource( 3 )
 range = 300
 speed = 5

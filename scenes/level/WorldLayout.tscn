@@ -167,3 +167,14 @@ levelName = "Underground Canals Final"
 
 [node name="WorldTileMap3" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.521569, 0.521569, 0.521569, 1 )
+tile_data = PoolIntArray( 0, 9, 0, 1, 9, 0, 2, 1610612737, 0 )
+
+[node name="3-1" parent="." instance=ExtResource( 3 )]
+position = Vector2( 25, 25 )
+levelFiles = [ "res://levels/misc/Level3Entrance.tscn" ]
+
+[node name="3-2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 76, 25 )
+
+[node name="Checkpoint4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 126, 26 )

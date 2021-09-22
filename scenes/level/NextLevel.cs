@@ -41,6 +41,11 @@ public class NextLevel : Area2D
     public override void _Process(float delta)
     {
         base._Process(delta);
+        if(IsInstanceValid(MainNode.WorldSaveFile) == false) {
+            proceeding = false;
+            SetProcess(false);
+            return;
+        }
         if(proceeding && player.WeaponNode.CurrentState == Weapon.States.HELD &&
         LevelNode.PlayerEngaging.Count == 0) {
             MainNode.GoToLevel(GetLevel(), GetEntrance(), (Player)player, false);

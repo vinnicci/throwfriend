@@ -15,6 +15,9 @@ public class SecretNPCSpawn : Position2D
 
 
     public void SpawnNPC() {
+        if(IsInstanceValid(MainNode.WorldSaveFile) == false) {
+            return;
+        }
         Godot.Collections.Array qArr =
         (Godot.Collections.Array)((Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("Quests"))["SECRET"];
         if(qArr.Count == 0) {

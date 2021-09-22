@@ -72,15 +72,14 @@ public class LevelTiles: TileMap, ILevelObject
 
     [Signal] public delegate void SwitchedOn();
     [Signal] public delegate void SwitchedOff();
+    bool triggered = false;
 
-    bool isOn = false;
 
-
-    public bool OnSwitchedOn() {
-        if(isOn) {
+    public virtual bool OnSwitchedOn() {
+        if(triggered) {
             return false;
         }
-        isOn = true;
+        triggered = true;
         TriggerAnim.Queue("trigger");
         EmitSignal(SwitchedOnSignal);
         return true;
@@ -88,10 +87,10 @@ public class LevelTiles: TileMap, ILevelObject
 
 
     public virtual bool OnSwitchedOff() {
-        if(Persist || isOn == false) {
+        if(Persist || triggered == false) {
             return false;
         }
-        isOn = false;
+        triggered = false;
         TriggerAnim.Queue("trigger_back");
         EmitSignal(SwitchedOffSignal);
         return true;
