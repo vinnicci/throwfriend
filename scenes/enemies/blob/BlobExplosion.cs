@@ -10,7 +10,7 @@ public class BlobExplosion : Explosion
         Godot.Collections.Array areas = GetOverlappingAreas();
         foreach(Godot.Object area in areas) {
             if(((Area2D)area).Filename == "res://scenes/triggers/BlobExplosionDetector.tscn") {
-                ((Trigger)area).OnSwitchedOn();
+                ((ExplosionDetector)area).OnSwitchedOn();
             }
         }
         return true;

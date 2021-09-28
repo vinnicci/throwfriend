@@ -36,6 +36,9 @@ public class SecretPressurePlate : Trigger, IQuest
         (Godot.Collections.Array)((Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("Quests"))[QuestID];
         if(arr.Contains(QuestKey) == false) {
             arr.Add(QuestKey);
+            if(IsInstanceValid(LevelNode.PlayerNode)) {
+                LevelNode.PlayerNode.WarnPlayer("WHAT'S THIS BUTTON FOR? (" + arr.Count + "/7)");
+            }
             MainNode.Saver.Call("save_world_data");
         }
     }

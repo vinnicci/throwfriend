@@ -1,53 +1,81 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/level/tex_laser_detector.png" type="Texture" id=1]
 [ext_resource path="res://scenes/level/Trigger.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/triggers/LaserDetector.cs" type="Script" id=3]
 
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.11976, 0.479042, 0.856287, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.627451, 1, 0.592157, 1, 0.0784314, 1, 0, 1, 0.627451, 1, 0.592157, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+max_value = 5.0
+_data = [ Vector2( 0, 5 ), 0.0, 1.99078, 0, 0, Vector2( 0.448611, 2.83871 ), -7.59305, -7.59305, 0, 0, Vector2( 1, 1.48387 ), 0.180045, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 15.0
+initial_velocity_random = 1.0
+angular_velocity = 300.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.3
+orbit_velocity_random = 0.0
+radial_accel = -50.0
+scale = 0.75
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+
 [sub_resource type="CircleShape2D" id=1]
-radius = 31.3166
+radius = 30.0
 
 [sub_resource type="Animation" id=2]
 length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.25098, 0.25098, 1 ) ]
-}
 
 [sub_resource type="Animation" id=3]
 length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 0.25098, 0.25098, 1 ), Color( 1, 1, 1, 1 ) ]
-}
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 7.49742
 
 [node name="LaserDetector" instance=ExtResource( 2 )]
+z_index = 0
 collision_layer = 4
 script = ExtResource( 3 )
 Persist = false
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )
+offset = Vector2( 0, -32 )
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="Particles2D" type="Particles2D" parent="." index="1"]
+position = Vector2( 0, -61 )
+emitting = false
+amount = 150
+local_coords = false
+process_material = SubResource( 8 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 0, -61 )
 shape = SubResource( 1 )
 
-[node name="Anim" type="AnimationPlayer" parent="." index="2"]
+[node name="Anim" type="AnimationPlayer" parent="." index="3"]
 anims/trigger = SubResource( 2 )
 anims/trigger_back = SubResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="4"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+rotation = -1.5708
+shape = SubResource( 9 )

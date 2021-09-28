@@ -134,7 +134,7 @@ public class RandomEnemySpawner : Position2D, ILevelObject
             }
             return;
         }
-        //else if savefile valide
+        //if savefile valide
         Godot.Collections.Dictionary dict =
         (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("EnemySpawns");
         String path = mainNode.PlayerSaveFile.Get("CurrentCell") + Name;

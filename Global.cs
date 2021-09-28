@@ -8,7 +8,7 @@ public static class Global
     public const short BIT_MASK_PLAYER = 2;
     public const short BIT_MASK_WEAPON = 3;
     public const short BIT_MASK_SEETHROUGH_WALL = 4;
-    public const int CCD_MAX = 1500000;
+    public const int CCD_MAX = 1000000;
     public const String PLAYER_SCN = "res://scenes/player/Player.tscn";
     public const String SAVE_DIR = "user://save/";
 

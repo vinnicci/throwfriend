@@ -5,10 +5,12 @@ public class LevelTiles: TileMap, ILevelObject
 {
     [Export] public bool Persist {get; set;}
     [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
+    [Export] String warningText = "";
 
     public String SwitchedOnSignal {get; set;}
     public String SwitchedOffSignal {get; set;}
     public AnimationPlayer TriggerAnim {get; set;}
+    public Level LevelNode {get; set;}
 
     protected uint defaultCollisionLayer;
     protected uint defaultCollisionMask;
@@ -81,6 +83,9 @@ public class LevelTiles: TileMap, ILevelObject
         }
         triggered = true;
         TriggerAnim.Queue("trigger");
+        if(IsInstanceValid(LevelNode.PlayerNode)) {
+            LevelNode.PlayerNode.WarnPlayer(warningText);
+        }
         EmitSignal(SwitchedOnSignal);
         return true;
     }

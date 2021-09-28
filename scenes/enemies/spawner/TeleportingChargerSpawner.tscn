@@ -22,11 +22,11 @@ texture = ExtResource( 2 )
 texture = ExtResource( 1 )
 
 [node name="Upper" parent="Sprite/Skeleton2D/Root" index="0"]
-rotation = 0.36232
+rotation = 0.239499
 scale = Vector2( 1, 1 )
 
 [node name="Upper2" parent="Sprite/Skeleton2D/Root/Upper" index="0"]
-rotation = -0.0834994
+rotation = 0.0
 
 [node name="Upper3" parent="Sprite/Skeleton2D/Root/Upper/Upper2" index="0"]
-rotation = -1.66612
+rotation = -1.5708

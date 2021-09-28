@@ -14,11 +14,11 @@ acts = {
 }
 
 [node name="Upper" parent="Sprite/Skeleton2D/Root" index="0"]
-rotation = 0.239499
+rotation = 0.2395
 scale = Vector2( 1, 1 )
 
 [node name="Upper2" parent="Sprite/Skeleton2D/Root/Upper" index="0"]
-rotation = 0.0
+rotation = -7.15256e-07
 
 [node name="Upper3" parent="Sprite/Skeleton2D/Root/Upper/Upper2" index="0"]
-scale = Vector2( 1, 1 )
+rotation = -1.5708

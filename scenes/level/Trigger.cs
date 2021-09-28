@@ -5,6 +5,7 @@ public abstract class Trigger : Area2D, ILevelObject
 {
     [Export] public bool Persist {get; set;}
     [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
+    [Export] String warningText = "";
 
     public String SwitchedOnSignal {get; set;}
     public String SwitchedOffSignal {get; set;}
@@ -50,7 +51,21 @@ public abstract class Trigger : Area2D, ILevelObject
 
 
     public virtual void OnTriggeredAllBoundTriggers(NodePath path, bool triggered) {
-        OnSwitchedOn();
+        if(Persist && BoundTriggers.Count == 0) {
+            return;
+        }
+        if(triggered) {
+            BoundTriggers.Remove(path);
+        }
+        else {
+            if(BoundTriggers.Count == 0) {
+                OnSwitchedOff();
+            }
+            BoundTriggers.Add(path);            
+        }
+        if(BoundTriggers.Count == 0) {
+            OnSwitchedOn();
+        }
     }
 
 
@@ -90,6 +105,9 @@ public abstract class Trigger : Area2D, ILevelObject
         }
         triggered = true;
         TriggerAnim.Queue("trigger");
+        if(IsInstanceValid(LevelNode.PlayerNode)) {
+            LevelNode.PlayerNode.WarnPlayer(warningText);
+        }
         EmitSignal(SwitchedOnSignal);
         return true;
     }

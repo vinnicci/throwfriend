@@ -9,6 +9,7 @@ public class Guided : WeaponItem
         incompatibilityList.Add("Homing");
         incompatibilityList.Add("Guided");
         incompatibilityList.Add("AutoRetrieve");
+        incompatibilityList.Add("Boost");
     }
 
 

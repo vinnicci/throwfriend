@@ -180,6 +180,9 @@ public class Player : Entity
 
 
     public void WarnPlayer(String warning) {
+        if(warning == "") {
+            return;
+        }
         uiWarning.Text = warning;
         uiWarning.ShowWarning();
     }

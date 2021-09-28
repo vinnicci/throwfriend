@@ -35,6 +35,8 @@ func _ready() -> void:
 	bb["seek_dist"] = seek_dist
 	bb["too_far_dist"] = too_far_dist
 	bb["too_close_dist"] = too_close_dist
+	bb["enemy_dist"] = -1
+	bb["enemy_range_sq"] = -1
 	bb["enemy"] = null
 	bb["patrol_point"] = null
 
@@ -47,8 +49,8 @@ var player_node: RigidBody2D
 
 func init_properties(new_lvl: Node2D, new_parent: RigidBody2D, patrol_pts: Array = []):
 	level_node = new_lvl
-	if is_ent_valid(level_node.get_node_or_null("Player")):
-		player_node = level_node.get_node("Player")
+	if is_ent_valid(level_node.get("PlayerNode")):
+		player_node = level_node.get("PlayerNode")
 	parent_node = new_parent
 	if is_instance_valid(parent_node.WeaponNode):
 		weapon_node = parent_node.WeaponNode
@@ -86,10 +88,7 @@ func separate_from_allies(velocity: Vector2 = Vector2.ZERO) -> Vector2:
 
 
 func is_ent_valid(ent: Node2D):
-	var output: bool = is_instance_valid(ent)
-	if output && ent.get("Health") != null:
-		return output && ent.Health > 0
-	return output
+	return is_instance_valid(ent) && ent.get("Health") != null && ent.Health > 0
 
 
 func get_new_path(target):
@@ -114,12 +113,12 @@ func _on_FriendlyRange_body_exited(body: Node):
 
 
 func _on_DetectionRange_body_entered(body: Node):
-	if body is RigidBody2D && body == player_node:
+	if body == player_node:
 		tick.start()
 
 
 func _on_DetectionRange_body_exited(body: Node):
-	if body is RigidBody2D && body == player_node && bb["enemy"] != player_node:
+	if body == player_node && bb["enemy"] != player_node:
 		tick.stop()
 
 
@@ -143,7 +142,17 @@ func _on_Tick_timeout():
 		if ray.get_collider() == player_node:
 			engage_enemy(player_node)
 	elif is_ent_valid(bb["enemy"]):
-		bb["enemy_dist"] = level_node.call("GetDist", bb["enemy"].global_position, parent_node.global_position)
+		var e = bb["enemy"]
+		#ray look at for weapon aim
+		ray.look_at(e.global_position)
+		#range distance - used by turrets
+		bb["enemy_range_sq"] = parent_node.global_position.distance_squared_to(e.global_position)
+		#path distance
+		level_node.call("GetDist", e.global_position, parent_node.global_position, self, "enemy_dist")
+
+
+func update_dist(key: String, dist: int):
+	bb[key] = dist
 
 
 #btree tasks
@@ -240,7 +249,10 @@ func get_patrol_point():
 #param 0: target
 #param 1: distance required
 func task_is_target_close(task):
-	if get_target_dist(task.get_param(0)) <= bb[task.get_param(1)]:
+	var dist: int = get_target_dist(task.get_param(0))
+	if dist == -1:
+		task.failed()
+	elif dist <= bb[task.get_param(1)]:
 		task.succeed()
 	else:
 		task.failed()
@@ -255,10 +267,10 @@ func get_target_dist(target_bb_name: String) -> int:
 #param 0: target
 #param 1: distance required
 func task_is_target_in_range(task):
-	if bb.has(task.get_param(1) + "_sq") == false:
-		bb[task.get_param(1) + "_sq"] = bb[task.get_param(1)] * bb[task.get_param(1)]
-	if (global_position.distance_squared_to(bb[task.get_param(0)].global_position) <=
-	bb[task.get_param(1) + "_sq"]):
+	var dist = task.get_param(1)
+	if bb.has(dist + "_sq") == false:
+		bb[dist + "_sq"] = bb[dist] * bb[dist]
+	if (bb[task.get_param(0) + "_range_sq"] <= bb[dist + "_sq"]):
 		task.succeed()
 	else:
 		task.failed()
@@ -276,10 +288,11 @@ const ORIGIN_DIST: = 30000
 #param 1: distance needed
 func task_seek(task):
 	is_moving = true
+	var target = task.get_param(0)
 	if parent_node.global_position.distance_squared_to(bb["target"]) <= target_dist_margin_sq:
-		get_seek_point(bb[task.get_param(0)])
-	if bb[task.get_param(0)].global_position.distance_squared_to(path_points.front()) > ORIGIN_DIST:
-		get_new_path(bb[task.get_param(0)])
+		get_seek_point(bb[target])
+	if bb[target].global_position.distance_squared_to(path_points.front()) > ORIGIN_DIST:
+		get_new_path(bb[target])
 	if _try_interrupt_seek(task):
 		is_moving = false
 		path_points.clear()
@@ -340,9 +353,7 @@ func _try_interrupt_patrol(_task) -> bool:
 
 #param 0: target
 func task_aim_weapon(task):
-	var target_pos: Vector2 = bb[task.get_param(0)].global_position
-	ray.look_at(target_pos)
-	ray.force_raycast_update()
+	#var target = task.get_param(0)
 	if ray.get_collider() == bb[task.get_param(0)]:
 		weapon_node.look_at(bb[task.get_param(0)].global_position)
 		parent_node.Velocity = Vector2(1,0).rotated(weapon_node.global_rotation)
@@ -354,8 +365,9 @@ func task_aim_weapon(task):
 
 #param 0: enemy action name
 func task_act(task):
-	parent_node.call("DoAction", task.get_param(0))
-	var dict: Dictionary = parent_node.ActDict[task.get_param(0)]
+	var action = task.get_param(0)
+	parent_node.call("DoAction", action)
+	var dict: Dictionary = parent_node.ActDict[action]
 	if dict["IsActive"] == false:
 		task.succeed()
 

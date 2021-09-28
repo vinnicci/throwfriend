@@ -70,6 +70,9 @@ public abstract class Level : YSort
                     else if(obj is Trigger) {
                         ((Trigger)obj).LevelNode = this;
                     }
+                    else if(obj is LevelTiles) {
+                        ((LevelTiles)obj).LevelNode = this;
+                    }
                 }
             }
         }
@@ -93,7 +96,7 @@ public abstract class Level : YSort
             enemies.AddChild(enemy);
             enemy.LevelNode = this;
         }
-        else if(body is ISpawnable) {
+        else {
             lvlObjects.AddChild((Node2D)body);
         }
         ((Node2D)body).GlobalPosition = pos;
@@ -157,16 +160,38 @@ public abstract class Level : YSort
     }
 
 
-    public int GetDist(Vector2 to, Vector2 from) {
+    Queue<Godot.Collections.Array> distCalcQueue = new Queue<Godot.Collections.Array>();
+
+
+    public void GetDist(Vector2 to, Vector2 from, Node2D aiNode, String key) {
         Stack<Vector2> arr = new Stack<Vector2>(GetPath(to, from));
+        int dist = 0;
         if(arr.Count == 0) {
-            return -1;
+            dist = -1;
         }
-        int dist = (int)arr.Pop().DistanceTo(arr.Peek());
-        while(arr.Count > 1) {
-            dist += (int)arr.Pop().DistanceTo(arr.Peek());
+        else {
+            dist = (int)arr.Pop().DistanceTo(arr.Peek());
+            while(arr.Count > 1) {
+                dist += (int)arr.Pop().DistanceTo(arr.Peek());
+            }
         }
-        return dist;
+        Godot.Collections.Array arrQ = new Godot.Collections.Array();
+        arrQ.Add(aiNode);
+        arrQ.Add(key);
+        arrQ.Add(dist);
+        distCalcQueue.Enqueue(arrQ);
+    }
+
+
+    public override void _PhysicsProcess(float delta)
+    {
+        base._PhysicsProcess(delta);
+        if(distCalcQueue.Count > 0) {
+            Godot.Collections.Array arrQ = distCalcQueue.Dequeue();
+            if(IsInstanceValid((Node2D)arrQ[0])) {
+                ((Node2D)arrQ[0]).Call("update_dist", arrQ[1], arrQ[2]);
+            }
+        }
     }
 
 

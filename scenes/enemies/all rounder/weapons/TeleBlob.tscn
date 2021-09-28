@@ -13,7 +13,6 @@ radius = 15.1327
 script = ExtResource( 3 )
 range = 1500
 speed = 3
-damage = 0
 homing_magnitude = 100
 
 [node name="Sprite" parent="." index="0"]

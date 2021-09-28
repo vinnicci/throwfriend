@@ -13,6 +13,7 @@ public class AutoRetrieve : PlayerItem
         incompatibilityList.Add("AutoRetrieve");
         incompatibilityList.Add("Guided");
         incompatibilityList.Add("Homing");
+        incompatibilityList.Add("Boost");
     }
 
 
@@ -25,16 +26,10 @@ public class AutoRetrieve : PlayerItem
         if(weapIsReturning) {
             WeaponNode.Velocity = CalcReturnVec(WeaponNode.GlobalPosition);
             if(WeaponNode.Item1 is SplitToThree) {
-                Weapon w = ((SplitToThree)WeaponNode.Item1).Weaps[0];
-                w.Velocity = CalcReturnVec(w.GlobalPosition);
-                w = ((SplitToThree)WeaponNode.Item1).Weaps[1];
-                w.Velocity = CalcReturnVec(w.GlobalPosition);
+                ApplyEffectToClones((SplitToThree)WeaponNode.Item1);
             }
             if(WeaponNode.Item2 is SplitToThree) {
-                Weapon w = ((SplitToThree)WeaponNode.Item2).Weaps[0];
-                w.Velocity = CalcReturnVec(w.GlobalPosition);
-                w = ((SplitToThree)WeaponNode.Item2).Weaps[1];
-                w.Velocity = CalcReturnVec(w.GlobalPosition);
+                ApplyEffectToClones((SplitToThree)WeaponNode.Item2);
             }
             if(WeaponNode.CurrentState == Weapon.States.HELD) {
                 weapIsReturning = false;
@@ -43,6 +38,14 @@ public class AutoRetrieve : PlayerItem
         else if(weapIsReturning == false && WeaponNode.CurrentState == Weapon.States.INACTIVE) {
             weapIsReturning = true;
         }
+    }
+
+
+    void ApplyEffectToClones(SplitToThree item) {
+        Weapon w = item.Weaps[0];
+        w.Velocity = CalcReturnVec(w.GlobalPosition);
+        w = item.Weaps[1];
+        w.Velocity = CalcReturnVec(w.GlobalPosition);
     }
 
 
