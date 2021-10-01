@@ -55,7 +55,7 @@ public class Explosive : WeaponItem
         if(IsInstanceValid(PlayerNode) == false) {
             PlayerNode = WeaponNode.PlayerNode;
         }
-        ExplosionNode.Damage = WeaponNode.Damage * PlayerNode.SnarkDmgMult;
+        ExplosionNode.Damage = PlayerNode.SnarkDmg * PlayerNode.SnarkDmgMult;
         ExplosionNode.Explode();
     }
 

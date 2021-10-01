@@ -14,13 +14,16 @@ public class StatsDesc : Control
     Label throwStrengthStat;
     Label snarkDmgStat;
     Control helpDisp;
+    Control fasttravelDisp;
     Label tipLabel;
     Button settingsButton;
+    Main mainNode;
 
 
     public override void _Ready()
     {
         base._Ready();
+        mainNode = (Main)GetNode("/root/Main");
         DescriptionLabel = (Label)GetNode("DescPanel/Description");
         settingsButton = (Button)GetNode("DescPanel/SettingsButton");
         statsDisp = (VBoxContainer)GetNode("StatsPanel/StatsDisp");
@@ -32,7 +35,18 @@ public class StatsDesc : Control
         helpDisp = (Control)GetNode("StatsPanel/HelpDisp");
         tipLabel = (Label)GetNode("StatsPanel/HelpDisp/Tip");
         currentTip = tipsArr.Count;
+        fasttravelDisp = (Control)GetNode("FastTravelDisp");
+        //connect fast travel buttons
+        foreach(Button button in fasttravelDisp.GetChildren()) {
+            if(button.IsConnected("pressed", this, nameof(OnFastTravePointPressed))) {
+                break;
+            }
+            Godot.Collections.Array arr = new Godot.Collections.Array();
+            arr.Add(button.Name);
+            button.Connect("pressed", this, nameof(OnFastTravePointPressed), arr);
+        }
         OnNextTipPressed();
+        UpdateFastTravelPoints();
     }
 
 
@@ -41,7 +55,7 @@ public class StatsDesc : Control
             InGameUIAnim.Play("settings_enter");
         }
     }
-    
+
 
     void OnExitPressed() {
         if(InGameUIAnim.IsPlaying() == false) {
@@ -50,6 +64,36 @@ public class StatsDesc : Control
     }
 
 
+    void OnMainMenuButtonPressed() {
+        mainNode.GoToMainMenu();
+    }
+
+
+    void OnStatsPressed() {
+        statsDisp.Visible = true;
+        helpDisp.Visible = false;
+        fasttravelDisp.Visible = false;
+    }
+
+
+    void OnHelpPressed() {
+        helpDisp.Visible = true;
+        statsDisp.Visible = false;
+        fasttravelDisp.Visible = false;
+    }
+
+
+    void OnFastTravelPressed() {
+        if(IsInstanceValid(mainNode.WorldSaveFile) == false) {
+            return;
+        }
+        fasttravelDisp.Visible = true;
+        statsDisp.Visible = false;
+        helpDisp.Visible = false;
+    }
+
+
+    //stats and description
     public void UpdateStatsDisp() {
         healthStat.Text = "Current HP: " + PlayerNode.Health;
         maxHealthStat.Text = "Max HP: " + PlayerNode.health;
@@ -58,7 +102,7 @@ public class StatsDesc : Control
         GetDescriptive(PlayerNode.Speed, 0) :
         GetDescriptive(PlayerNode.Speed - Player.EXTRA_SPEED_WITHOUT_WEAPON, 0));
         throwStrengthStat.Text = "Throw Strength: " + GetDescriptive(PlayerNode.ThrowStrength, 1);
-        snarkDmgStat.Text = "Snark Damage: " + (PlayerNode.WeaponNode.Damage * PlayerNode.SnarkDmgMult);
+        snarkDmgStat.Text = "Snark Damage: " + (PlayerNode.SnarkDmg * PlayerNode.SnarkDmgMult);
     }
 
 
@@ -90,18 +134,7 @@ public class StatsDesc : Control
     }
 
 
-    void OnStatsPressed() {
-        statsDisp.Visible = true;
-        helpDisp.Visible = false;
-    }
-
-
-    void OnHelpPressed() {
-        helpDisp.Visible = true;
-        statsDisp.Visible = false;
-    }
-
-
+    //help and tips
     int currentTip;
     const String path = "StatsPanel/HelpDisp/Tip";
     [Export] Godot.Collections.Array<String> tipsArr;
@@ -118,9 +151,31 @@ public class StatsDesc : Control
     }
 
 
-    void OnMainMenuButtonPressed() {
-        Main mainNode = (Main)GetNode("/root/Main");
-        mainNode.GoToMainMenu();
+    //fast travel
+    void OnFastTravePointPressed(String name) {
+        Vector2 cell = (Vector2)GD.Str2Var(name);
+        if(cell == (Vector2)mainNode.PlayerSaveFile.Get("CurrentCell")) {
+            return;
+        }
+        else if(PlayerNode.LevelNode.PlayerEngaging.Count != 0) {
+            PlayerNode.WarnPlayer("CANNOT PROCEED WHILE ENGAGING ENEMIES");
+            return;
+        }
+        statsDisp.Visible = true;
+        fasttravelDisp.Visible = false;
+        mainNode.PlayerSaveFile.Set("CurrentCell", cell);
+        Godot.Collections.Dictionary dict = (Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("WorldCells");
+        String lvlScn = (String)((Godot.Collections.Dictionary)dict[cell])["scn"];
+        mainNode.GoToLevel(lvlScn, "Objects/SavePoint/Pos", PlayerNode, false);
+    }
+
+
+    public void UpdateFastTravelPoints() {
+        Godot.Collections.Array arr = (Godot.Collections.Array)mainNode.WorldSaveFile.Get("SavePoints");
+        foreach(Vector2 cell in arr) {
+            String buttonName = GD.Var2Str(cell);
+            ((Button)fasttravelDisp.GetNode(buttonName)).Visible = true;
+        }
     }
 
 

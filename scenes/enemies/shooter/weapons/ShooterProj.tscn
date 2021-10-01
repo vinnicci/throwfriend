@@ -9,7 +9,7 @@ radius = 5.0
 
 [node name="ShooterProj" instance=ExtResource( 2 )]
 range = 2000
-speed = 10
+speed = 7
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )

@@ -6,8 +6,6 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 {
     public WeaponItem Item1 {get; set;}
     public WeaponItem Item2 {get; set;}
-    public int Damage {get; set;}
-
     Player playerNode;
     public Player PlayerNode {
         get {
@@ -40,7 +38,6 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     {
         base._Notification(what);
         if(what == NotificationInstanced) {
-            Damage = 1;
             ItemSlot1Node = (Node2D)GetNode("ItemSlot1");
             ItemSlot2Node = (Node2D)GetNode("ItemSlot2");
         }
@@ -219,7 +216,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         }
         else if(body is IHealthModifiable) {
             IHealthModifiable hitBody = (IHealthModifiable)body;
-            int dmg = Damage * PlayerNode.SnarkDmgMult;
+            int dmg = PlayerNode.SnarkDmg * PlayerNode.SnarkDmgMult;
             if(CurrentState == States.ACTIVE) {
                 hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), dmg);
             }
@@ -270,7 +267,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 
     void OnSnarkBeamBodyEntered(Godot.Object body) {
         if(body is Enemy) {
-            ((Entity)body).Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), Damage * PlayerNode.SnarkDmgMult);
+            ((Entity)body).Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), PlayerNode.SnarkDmg * PlayerNode.SnarkDmgMult);
             ((Enemy)body).Engage();
         }
     }

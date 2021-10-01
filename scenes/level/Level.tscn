@@ -8,7 +8,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "show_level_name"
-length = 2.3
+length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("CanvasLayer/LevelName:visible")
 tracks/0/interp = 1
@@ -16,7 +16,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.3 ),
+"times": PoolRealArray( 0, 3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -28,7 +28,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2, 2.3 ),
+"times": PoolRealArray( 0, 2.7, 3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -62,7 +62,6 @@ position = Vector2( -32, -32 )
 [node name="SeeThroughWalls" parent="Objects" instance=ExtResource( 4 )]
 position = Vector2( -32, -32 )
 cell_y_sort = true
-collision_layer = 16
 
 [node name="SeeThroughWallsLower" parent="Objects" instance=ExtResource( 4 )]
 position = Vector2( -32, -32 )

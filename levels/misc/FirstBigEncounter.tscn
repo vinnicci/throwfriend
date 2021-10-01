@@ -57,32 +57,29 @@ position = Vector2( -1278, -539 )
 rotation = 1.5708
 
 [node name="HealthPickup" parent="Objects" index="7" instance=ExtResource( 5 )]
-position = Vector2( 130, -469 )
+position = Vector2( 289, -2 )
 
 [node name="HealthPickup2" parent="Objects" index="8" instance=ExtResource( 5 )]
-position = Vector2( -593, 449 )
+position = Vector2( -225, -479 )
 
 [node name="HealthPickup3" parent="Objects" index="9" instance=ExtResource( 5 )]
-position = Vector2( -860, 718 )
+position = Vector2( -223, 485 )
 
-[node name="HealthPickup4" parent="Objects" index="10" instance=ExtResource( 5 )]
-position = Vector2( 418, -670 )
-
-[node name="InvisibleWalls" parent="Objects" index="11"]
-visible = false
-tile_data = PoolIntArray( -589845, 1, 65538, -589844, 1, 65538, -65525, 1, 65538, 11, 1, 65538 )
-
-[node name="SecretProp" parent="Objects" index="12" instance=ExtResource( 9 )]
+[node name="SecretProp" parent="Objects" index="11" instance=ExtResource( 9 )]
 tile_data = PoolIntArray( -131091, 9, 0 )
 Persist = true
 BoundTriggers = [ NodePath("../../Enemies/ChargerSpawner") ]
 
-[node name="AbilityItem" parent="Objects" index="13" instance=ExtResource( 6 )]
+[node name="AbilityItem" parent="Objects" index="12" instance=ExtResource( 6 )]
 position = Vector2( -1279, -97 )
 
-[node name="DialogueTrigger" parent="Objects" index="14" instance=ExtResource( 11 )]
+[node name="DialogueTrigger" parent="Objects" index="13" instance=ExtResource( 11 )]
 position = Vector2( -1279, -96 )
 portrait = ExtResource( 10 )
 name = "Ability"
 stringArr = [ "Press TAB to open the in-game menu.", "Some abilities require activation. You can change its keybinding by pressing the hotkey button in the corresponding ability slot." ]
 portraitScale = 4.0
+
+[node name="InvisibleWalls" parent="Objects" index="14"]
+visible = false
+tile_data = PoolIntArray( -589845, 1, 65538, -589844, 1, 65538, -65525, 1, 65538, 11, 1, 65538 )

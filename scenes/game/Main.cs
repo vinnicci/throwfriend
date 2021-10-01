@@ -206,6 +206,7 @@ public class Main : Node
         }
         String[] worldDataArr = {
             "EnemySpawns",
+            "SavePoints",
             "WorldCells",
             "Quests",
             "LevelsUsed",

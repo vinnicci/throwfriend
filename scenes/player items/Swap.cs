@@ -28,9 +28,7 @@ public class Swap : PlayerItem
         }
         var playerPos = PlayerNode.GlobalPosition;
         PlayerNode.Teleport(PlayerNode.LevelNode, WeaponNode.GlobalPosition);
-        //if(PlayerNode.WeaponNode != WeaponNode) {
         WeaponNode = PlayerNode.WeaponNode;
-        //}
         WeaponNode.Teleport(PlayerNode.LevelNode, playerPos);
         if(WeaponNode.Item1 is SplitToThree) {
             TeleportClones((SplitToThree)WeaponNode.Item1, playerPos);

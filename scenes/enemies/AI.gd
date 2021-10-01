@@ -68,12 +68,14 @@ func _physics_process(_delta: float) -> void:
 		set_physics_process(false)
 		return
 	if is_moving:
+		var e = bb["enemy"]
+		var t = bb["target"]
 		if is_instance_valid(weapon_node):
-			if is_ent_valid(bb["enemy"]):
-				weapon_node.look_at(bb["enemy"].global_position)
+			if is_ent_valid(e):
+				weapon_node.look_at(e.global_position)
 			else:
-				weapon_node.look_at(bb["target"])
-		parent_node.Velocity = (separate_from_allies(bb["target"] - parent_node.global_position)).normalized()
+				weapon_node.look_at(t)
+		parent_node.Velocity = (separate_from_allies(t - parent_node.global_position)).normalized()
 	elif is_moving == false:
 		parent_node.Velocity = (separate_from_allies()).normalized()
 
@@ -134,20 +136,28 @@ func engage_enemy(enemy: RigidBody2D):
 	tick.start()
 
 
+var turret_types: Array = [
+	"res://scenes/enemies/all rounder/ais/TurretAllRounderAI.tscn",
+	"res://scenes/enemies/shooter/ais/TurretShooterAI.tscn"
+]
+
+
 #periodic distance calculator for enemy/master
 func _on_Tick_timeout():
-	if is_ent_valid(bb["enemy"]) == false && is_ent_valid(player_node):
+	var e = bb["enemy"]
+	if is_ent_valid(e) == false && is_ent_valid(player_node):
 		ray.look_at(player_node.global_position)
 		ray.force_raycast_update()
 		if ray.get_collider() == player_node:
 			engage_enemy(player_node)
-	elif is_ent_valid(bb["enemy"]):
-		var e = bb["enemy"]
+	elif is_ent_valid(e):
 		#ray look at for weapon aim
 		ray.look_at(e.global_position)
 		#range distance - used by turrets
 		bb["enemy_range_sq"] = parent_node.global_position.distance_squared_to(e.global_position)
 		#path distance
+		if turret_types.has(filename):
+			return
 		level_node.call("GetDist", e.global_position, parent_node.global_position, self, "enemy_dist")
 
 
@@ -214,19 +224,20 @@ func task_get_flee_point(task):
 
 
 func get_flee_point():
-	if is_ent_valid(bb["enemy"]) == false:
+	var e = bb["enemy"]
+	if is_ent_valid(e) == false:
 		return
 	var flee_routes: Dictionary = {}
 	for flee_ray in flee_rays_dict:
 		if is_instance_valid(flee_ray.get_collider()):
 			continue
 		var pos = flee_rays_dict[flee_ray].global_position
-		var flee_points: int = bb["enemy"].global_position.distance_squared_to(pos) as int
+		var flee_points: int = e.global_position.distance_squared_to(pos) as int
 		flee_routes[flee_points] = pos
 	if flee_routes.keys().size() != 0:
 		bb["target"] = flee_routes[flee_routes.keys().max()]
 	else:
-		bb["target"] = -bb["enemy"].global_position
+		bb["target"] = -e.global_position
 
 
 func task_get_patrol_point(task):
@@ -268,9 +279,10 @@ func get_target_dist(target_bb_name: String) -> int:
 #param 1: distance required
 func task_is_target_in_range(task):
 	var dist = task.get_param(1)
-	if bb.has(dist + "_sq") == false:
-		bb[dist + "_sq"] = bb[dist] * bb[dist]
-	if (bb[task.get_param(0) + "_range_sq"] <= bb[dist + "_sq"]):
+	var dist_sq = task.get_param(1) + "sq"
+	if bb.has(dist_sq) == false:
+		bb[dist_sq] = bb[dist] * bb[dist]
+	if (bb[task.get_param(0) + "_range_sq"] <= bb[dist_sq]):
 		task.succeed()
 	else:
 		task.failed()
@@ -288,11 +300,11 @@ const ORIGIN_DIST: = 30000
 #param 1: distance needed
 func task_seek(task):
 	is_moving = true
-	var target = task.get_param(0)
+	var t = bb[task.get_param(0)]
 	if parent_node.global_position.distance_squared_to(bb["target"]) <= target_dist_margin_sq:
-		get_seek_point(bb[target])
-	if bb[target].global_position.distance_squared_to(path_points.front()) > ORIGIN_DIST:
-		get_new_path(bb[target])
+		get_seek_point(t)
+	if t.global_position.distance_squared_to(path_points.front()) > ORIGIN_DIST:
+		get_new_path(t)
 	if _try_interrupt_seek(task):
 		is_moving = false
 		path_points.clear()
@@ -353,9 +365,9 @@ func _try_interrupt_patrol(_task) -> bool:
 
 #param 0: target
 func task_aim_weapon(task):
-	#var target = task.get_param(0)
-	if ray.get_collider() == bb[task.get_param(0)]:
-		weapon_node.look_at(bb[task.get_param(0)].global_position)
+	var t = bb[task.get_param(0)]
+	if ray.get_collider() == t:
+		weapon_node.look_at(t.global_position)
 		parent_node.Velocity = Vector2(1,0).rotated(weapon_node.global_rotation)
 		parent_node.call("AdjustSprites")
 		task.succeed()

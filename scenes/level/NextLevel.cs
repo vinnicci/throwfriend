@@ -21,7 +21,7 @@ public class NextLevel : Area2D
             player = (Player)body;
             proceeding = true;
             if(LevelNode.PlayerEngaging.Count > 0) {
-                player.WarnPlayer("ENEMIES ARE TRACKING YOU, CANNOT PROCEED");
+                player.WarnPlayer("CANNOT PROCEED WHILE ENGAGING ENEMIES");
             }
             else if(player.WeaponNode.CurrentState != Weapon.States.HELD) {
                 player.WarnPlayer("YOU MUST CARRY SNARK TO PROCEED");

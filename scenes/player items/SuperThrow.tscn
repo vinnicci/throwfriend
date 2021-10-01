@@ -6,7 +6,7 @@
 
 [node name="SuperThrow" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Throw Snark even further. With his increased velocity, Snark will deal extra damage."
+itemDescription = "Throw Snark even further. With your stronger throw, Snark will deal extra damage."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

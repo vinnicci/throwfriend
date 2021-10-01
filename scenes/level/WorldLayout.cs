@@ -88,9 +88,9 @@ public class WorldLayout : Node2D
 
 
     const float HP_2 = 3f;
-    const float SPEED_2 = 1.1f;
+    const float SPEED_2 = 1.15f;
     const float HP_3 = 6f;
-    const float SPEED_3 = 1.2f;
+    const float SPEED_3 = 1.3f;
 
 
     float SetDifficulty(int setNum, int type) {

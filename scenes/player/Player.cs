@@ -9,6 +9,7 @@ public class Player : Entity
     public PlayerItem Item2 {get; set;}
     public int AvailableUpgrade {get; set;}
     public int SnarkDmgMult {get; set;}
+    public int SnarkDmg {get; set;}
     public Node2D Center {get; set;}
     public Weapon WeaponNode {get; set;}
     public override Level LevelNode {
@@ -52,6 +53,7 @@ public class Player : Entity
     {
         base._Notification(what);
         if(what == NotificationInstanced) {
+            SnarkDmg = 1;
             ThrowStrength = throwStrength;
             AvailableUpgrade = 0;
             SnarkDmgMult = 1;
@@ -197,6 +199,9 @@ public class Player : Entity
 
     public void GetInput() {
         if(IsStopped || Health <= 0) {
+            if(inGameUI.Visible) {
+                inGameUIAnim.Play("exit");
+            }
             return;
         }
         bool hasWeap = Center.HasNode("WeapPos/Weapon");
@@ -364,6 +369,28 @@ public class Player : Entity
         else {
             hotkeyHUD.HideDialogue();
         }
+    }
+
+
+    public void UpdateSnarkDmg() {
+        Item[] arr = {
+            Item1, Item2, WeaponNode.Item1, WeaponNode.Item2
+        };
+        int dmg = 1;
+        foreach(Item item in arr) {
+            if(item is SuperThrow) {
+                dmg += 1;
+            }
+            else if(item is ExtraDamage) {
+                dmg *= 3;
+            }
+        }
+        SnarkDmg = dmg;
+    }
+
+
+    public void UpdateFastTravelPoints() {
+        statsDesc.UpdateFastTravelPoints();
     }
 
 

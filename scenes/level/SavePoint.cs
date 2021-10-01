@@ -7,6 +7,7 @@ public class SavePoint : Area2D
 {    
     bool saving = false;
     Player player;
+    Main mainNode;
 
     public Level LevelNode {get; set;}
 
@@ -14,6 +15,7 @@ public class SavePoint : Area2D
     public override void _Ready()
     {
         base._Ready();
+        mainNode = (Main)GetNode("/root/Main");
         SetProcess(false);
     }
 
@@ -42,14 +44,19 @@ public class SavePoint : Area2D
         if(saving == false || player.WeaponNode.CurrentState != Weapon.States.HELD || player.Health <= 0) {
             return;
         }
-        Main mainNode = (Main)GetNode("/root/Main");
         if(IsInstanceValid(mainNode.PlayerSaveFile) == false) {
             saving = false;
             SetProcess(false);
             return;
         }
-        mainNode.SavePlayerData(true);
         player.WarnPlayer("GAME SAVED");
+        Vector2 currentCell = (Vector2)mainNode.PlayerSaveFile.Get("CurrentCell");
+        Godot.Collections.Array arr = (Godot.Collections.Array)mainNode.WorldSaveFile.Get("SavePoints");
+        if(arr.Contains(currentCell) == false) {
+            arr.Add(currentCell);
+            player.UpdateFastTravelPoints();
+        }
+        mainNode.SavePlayerData(true);
         SetProcess(false);
     }
 

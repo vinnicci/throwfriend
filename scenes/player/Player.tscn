@@ -82,11 +82,11 @@ margin_bottom = -15.0
 theme = ExtResource( 14 )
 
 [node name="UIWarning" parent="CanvasLayer" index="2" instance=ExtResource( 16 )]
-modulate = Color( 1, 1, 1, 0 )
-margin_left = 390.0
-margin_top = 570.0
-margin_right = -390.0
-margin_bottom = -136.0
+margin_left = 315.0
+margin_top = 560.0
+margin_right = -465.0
+margin_bottom = -146.0
+rect_scale = Vector2( 1.3, 1.3 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "PICKUP SNARK BEFORE OPENING THE MENU"
 
