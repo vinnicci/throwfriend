@@ -28,6 +28,7 @@ public class ItemSelection : Panel
     {
         base._Ready();
         anim = (AnimationPlayer)GetNode("Anim");
+        incompatibleItems = new List<String>();
     }
 
 
@@ -40,12 +41,25 @@ public class ItemSelection : Panel
                 anim.Play("hide");
             }
         }
+        SetIncompatibleItems();
     }
 
 
-    public void SetIncompatibleItems(List<String> incompatibilityList) {
+    List<String> incompatibleItems = new List<String>();
+
+
+    public void AddIncompatibleItem(List<String> incompatibilityList) {
+        foreach(String itemName in incompatibilityList) {
+            if(incompatibleItems.Contains(itemName) == false) {
+                incompatibleItems.Add(itemName);
+            }
+        }
+    }
+
+
+    public void SetIncompatibleItems() {
         foreach(ItemSelect itemselect in GetNode("GridContainer").GetChildren()) {
-            if(incompatibilityList.Contains(itemselect.Name)) {
+            if(incompatibleItems.Contains(itemselect.Name)) {
                 ColorRect color = (ColorRect)itemselect.GetNode("ColorRect");
                 TextureButton button = (TextureButton)itemselect.GetNode("TextureButton");
                 color.Modulate = RED;

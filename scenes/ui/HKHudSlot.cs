@@ -40,6 +40,7 @@ public class HKHudSlot : ColorRect
 
 
     void AnimateCooldown(float length) {
+        anim.Stop();
         if(length == -1) {
             Color = GREEN;
         }
@@ -54,6 +55,7 @@ public class HKHudSlot : ColorRect
 
 
     void OnCooldownTimeout() {
+        anim.Stop();
         anim.Play("cooldown_flash");
     }
 

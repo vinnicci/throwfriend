@@ -172,10 +172,12 @@ tile_data = PoolIntArray( -196606, 7, 0, -196605, 3, 0, -196604, -1073741812, 0,
 [node name="Level3Entrance" parent="." instance=ExtResource( 3 )]
 position = Vector2( 25, 25 )
 levelFiles = [ "res://levels/misc/Level3Entrance.tscn" ]
+levelName = "Lab 3-1"
 
 [node name="09_3None" parent="." instance=ExtResource( 3 )]
-position = Vector2( 76, 25 )
+position = Vector2( 75, 25 )
 levelFiles = [ "res://levels/09/09_3None1.tscn", "res://levels/09/09_3None2.tscn" ]
+levelName = "Lab 3-2"
 
 [node name="08_3Checkpoint" parent="." instance=ExtResource( 3 )]
 position = Vector2( 126, 26 )
@@ -185,35 +187,42 @@ levelName = "Checkpoint 3-1"
 [node name="02_3None" parent="." instance=ExtResource( 3 )]
 position = Vector2( 124, -28 )
 levelFiles = [ "res://levels/02/02_3None1.tscn", "res://levels/02/02_3None2.tscn" ]
+levelName = "Lab 3-3-1"
 
 [node name="12_3None" parent="." instance=ExtResource( 3 )]
 position = Vector2( 175, 23 )
 levelFiles = [ "res://levels/12/12_3None1.tscn", "res://levels/12/12_3None2.tscn" ]
+levelName = "Lab 3-3-2"
 
 [node name="02_3SecretN" parent="." instance=ExtResource( 3 )]
 position = Vector2( 125, -77 )
 levelFiles = [ "res://levels/02/02_3SecretN1.tscn", "res://levels/02/02_3SecretN2.tscn" ]
+levelName = "Lab 3-4-1"
 
 [node name="00_3None" parent="." instance=ExtResource( 3 )]
 position = Vector2( 176, -25 )
 levelFiles = [ "res://levels/00/00_3None1.tscn", "res://levels/00/00_3None2.tscn" ]
+levelName = "Lab 3-4-2"
 
 [node name="00_3Checkpoint" parent="." instance=ExtResource( 3 )]
 position = Vector2( 174, -76 )
 levelFiles = [ "res://levels/00/00_3Checkpoint1.tscn", "res://levels/00/00_3Checkpoint2.tscn" ]
 levelName = "Checkpoint 3-2"
 
-[node name="04_3SecretS" parent="." instance=ExtResource( 3 )]
-position = Vector2( 224, -26 )
-levelFiles = [ "res://levels/04/04_3SecretS1.tscn", "res://levels/04/04_3SecretS2.tscn" ]
+[node name="03_3None" parent="." instance=ExtResource( 3 )]
+position = Vector2( 176, -126 )
+levelFiles = [ "res://levels/03/03_3None1.tscn", "res://levels/03/03_3None2.tscn" ]
+levelName = "Lab 3-5-1"
 
 [node name="04_3None" parent="." instance=ExtResource( 3 )]
 position = Vector2( 225, -78 )
 levelFiles = [ "res://levels/04/04_3None1.tscn", "res://levels/04/04_3None2.tscn" ]
+levelName = "Lab 3-5-3"
 
-[node name="03_3None" parent="." instance=ExtResource( 3 )]
-position = Vector2( 176, -126 )
-levelFiles = [ "res://levels/03/03_3None1.tscn", "res://levels/03/03_3None2.tscn" ]
+[node name="04_3SecretS" parent="." instance=ExtResource( 3 )]
+position = Vector2( 224, -26 )
+levelFiles = [ "res://levels/04/04_3SecretS1.tscn", "res://levels/04/04_3SecretS2.tscn" ]
+levelName = "Lab 3-5-2"
 
 [node name="07_3Secret" parent="." instance=ExtResource( 3 )]
 position = Vector2( 126, -125 )
@@ -228,3 +237,4 @@ levelName = "Secret Area"
 [node name="ThirdBossArena" parent="." instance=ExtResource( 3 )]
 position = Vector2( 225, -125 )
 levelFiles = [ "res://levels/misc/ThirdBossArena.tscn" ]
+levelName = "Lab Final"

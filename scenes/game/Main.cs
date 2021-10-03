@@ -173,7 +173,6 @@ public class Main : Node
         LoadPlayerItems(player, "WeapItem", 2);
         player.UpdateSlotsIcon();
         player.UpdateUpgrade();
-        player.UpdateStatsDisp();
     }
 
 

@@ -53,7 +53,6 @@ public static class Global
         "res://scenes/enemies/shooter/SprayerSticky.tscn",
     };
     public static readonly String[] MEDIUM_SHOOTERS = {
-        "res://scenes/enemies/shooter/LaserShooter.tscn",
         "res://scenes/enemies/shooter/LongRangeShooter.tscn",
         "res://scenes/enemies/shooter/SprayerSticky.tscn",
         "res://scenes/enemies/shooter/SprayerAcid.tscn",
@@ -61,7 +60,7 @@ public static class Global
     public static readonly String[] HARD_SHOOTERS = {
         "res://scenes/enemies/shooter/LongRangeCannoneer.tscn",
         "res://scenes/enemies/shooter/ScatterShooter.tscn",
-        "res://scenes/enemies/shooter/SprayerAcid.tscn",
+        "res://scenes/enemies/shooter/LaserShooter.tscn",
     };
     public static readonly String[] EASY_RANDOM = {
         "res://scenes/enemies/all rounder/Melee.tscn",

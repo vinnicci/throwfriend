@@ -195,6 +195,8 @@ public class Loadout : Control
             ItemSlot itemSlot = (ItemSlot)Get("Slot" + i);
             Label upgradeLabel = (Label)itemSlot.GetNode("UpgradeLabel");
             if(IsInstanceValid((Item)itemSlot.Item)) {
+                playerItemSel.AddIncompatibleItem(itemSlot.Item.incompatibilityList);
+                weaponItemSel.AddIncompatibleItem(itemSlot.Item.incompatibilityList);
                 continue;
             }
             if(PlayerNode.AvailableUpgrade > 0) {
@@ -264,8 +266,6 @@ public class Loadout : Control
             }
             weaponItemSel.ShowItemSelection(false);
         }
-        playerItemSel.SetIncompatibleItems(item.incompatibilityList);
-        weaponItemSel.SetIncompatibleItems(item.incompatibilityList);
         selectRef.UpgradeLabel.Visible = false;
         selectRef = new SelectRef("", "", null);
         PlayerNode.AvailableUpgrade -= 1;
