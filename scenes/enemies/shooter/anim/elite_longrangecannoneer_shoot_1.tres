@@ -1,0 +1,28 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "shoot_1"
+length = 3.6
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 1.5, 2.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "Shoot1"
+}, {
+"args": [  ],
+"method": "AimToEnemy"
+}, {
+"args": [  ],
+"method": "AimToEnemy"
+}, {
+"args": [  ],
+"method": "AimToEnemy"
+} ]
+}

@@ -6,6 +6,11 @@ public class Laser : EnemyWeapon
     const int KNOCKBACK = 250;
 
 
+    public override void Shoot() {
+        base.Shoot();
+    }
+
+
     void OnBeamBodyEntered(Godot.Object body) {
         if(body is Player) {
             Player player = (Player)body;

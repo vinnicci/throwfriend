@@ -66,7 +66,7 @@ public class EliteBlobCharger : BaseCharger
         arr.Add("blob");
         arr.Add("teleporting_blob");
         arr.Add("nuke_blob");
-        for(int i = 0; i <= 2; i++) {
+        for(int i = 0; i <= 4; i++) {
             arr.Shuffle();
             SpawnBlobInstance((String)arr[0]);
         }

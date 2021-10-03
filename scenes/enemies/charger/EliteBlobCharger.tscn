@@ -55,10 +55,10 @@ spawnScenes = {
 }
 acts = {
 "charge": [ 0.25, 1.0 ],
-"invisible": [ 1.0, 0.5 ],
+"invisible": [ 0.2, 0.5 ],
 "spawn_blob": [ 3.0, 1.0 ],
 "spawn_nuke_blob": [ 3.0, 0.25 ],
-"spawn_teleporting_blob": [ 3.0, 0.5 ]
+"spawn_teleporting_blob": [ 0.5, 0.5 ]
 }
 
 [node name="Particles2D" type="Particles2D" parent="." index="0"]
@@ -73,7 +73,7 @@ modulate = Color( 0.431373, 0.890196, 0.760784, 1 )
 texture = ExtResource( 2 )
 
 [node name="Upper" type="Sprite" parent="Sprite/Lower" index="0"]
-position = Vector2( 0, -10 )
+position = Vector2( 0, -8.83333 )
 texture = ExtResource( 1 )
 offset = Vector2( -6, 0 )
 

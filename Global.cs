@@ -109,7 +109,8 @@ public static class Global
         "res://scenes/enemies/spawner/EliteChargerSpawner.tscn",
     };
     public static readonly String[] ELITE_SHOOTERS = {
-
+        "res://scenes/enemies/shooter/EliteLaserShooter.tscn",
+        "res://scenes/enemies/shooter/EliteLongRangeCannoneer.tscn",
     };
 
     

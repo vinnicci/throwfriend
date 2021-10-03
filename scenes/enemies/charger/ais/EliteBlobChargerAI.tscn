@@ -6,7 +6,7 @@
 
 [node name="AI" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-seek_dist = 200
+seek_dist = 300
 too_close_dist = 100
 
 [node name="BTREE" parent="." index="5" instance=ExtResource( 2 )]

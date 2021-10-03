@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/enemies/EnemyWeapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/enemies/shooter/weapons/LongRangeCannonProj.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/shooter/weapons/LongRangeCannon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/enemies/shooter/weapons/anim/elite_idle.tres" type="Animation" id=4]
+[ext_resource path="res://scenes/enemies/shooter/weapons/EliteLongRangeCannon.cs" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/shooter/weapons/anim/elite_long_range_cannon_shoot_1.tres" type="Animation" id=6]
+[ext_resource path="res://scenes/enemies/shooter/weapons/anim/elite_long_range_cannon_shoot_2.tres" type="Animation" id=7]
+
+[node name="EnemyWeapon" instance=ExtResource( 1 )]
+script = ExtResource( 5 )
+
+[node name="Sprites" parent="." index="0"]
+rotation = 3.92699
+
+[node name="EnemyWeapon" parent="Sprites" index="0" instance=ExtResource( 3 )]
+position = Vector2( 8, 0 )
+spawnScenes = {
+"proj": ExtResource( 2 )
+}
+
+[node name="EnemyWeapon2" parent="Sprites" index="1" instance=ExtResource( 3 )]
+position = Vector2( 0, 8 )
+rotation = 1.5708
+spawnScenes = {
+"proj": ExtResource( 2 )
+}
+
+[node name="EnemyWeapon3" parent="Sprites" index="2" instance=ExtResource( 3 )]
+position = Vector2( -8, 0 )
+rotation = 3.14159
+spawnScenes = {
+"proj": ExtResource( 2 )
+}
+
+[node name="EnemyWeapon4" parent="Sprites" index="3" instance=ExtResource( 3 )]
+position = Vector2( 0, -8 )
+rotation = 4.71239
+spawnScenes = {
+"proj": ExtResource( 2 )
+}
+
+[node name="Anim" type="AnimationPlayer" parent="." index="1"]
+anims/idle = ExtResource( 4 )
+anims/shoot_1 = ExtResource( 6 )
+anims/shoot_2 = ExtResource( 7 )

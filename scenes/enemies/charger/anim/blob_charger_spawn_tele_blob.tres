@@ -25,7 +25,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "teleporting_blob", 1 ],
+"args": [ "teleporting_blob", 2 ],
 "method": "SpawnInstance"
 } ]
 }

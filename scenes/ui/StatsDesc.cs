@@ -23,7 +23,6 @@ public class StatsDesc : Control
     public override void _Ready()
     {
         base._Ready();
-        mainNode = (Main)GetNode("/root/Main");
         DescriptionLabel = (Label)GetNode("DescPanel/Description");
         settingsButton = (Button)GetNode("DescPanel/SettingsButton");
         statsDisp = (VBoxContainer)GetNode("StatsPanel/StatsDisp");
@@ -46,7 +45,10 @@ public class StatsDesc : Control
             button.Connect("pressed", this, nameof(OnFastTravePointPressed), arr);
         }
         OnNextTipPressed();
-        UpdateFastTravelPoints();
+        mainNode = (Main)GetNode("/root/Main");
+        if(IsInstanceValid(mainNode.WorldSaveFile)) {
+            UpdateFastTravelPoints();
+        }
     }
 
 
