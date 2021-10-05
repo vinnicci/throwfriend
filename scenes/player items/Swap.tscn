@@ -14,9 +14,6 @@ itemDescription = "Activate: Swap positions with Snark. Once swapped, Snark will
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )
 
-[node name="Cooldown" parent="." index="1"]
-wait_time = 3.0
-
 [node name="AttackRange" type="Area2D" parent="." index="2"]
 collision_layer = 0
 

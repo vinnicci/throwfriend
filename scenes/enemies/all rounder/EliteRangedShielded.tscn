@@ -73,7 +73,7 @@ modulate = Color( 1, 1, 1, 0.987597 )
 physics_material_override = SubResource( 1 )
 script = ExtResource( 10 )
 speed = 375
-health = 25
+health = 30
 knockbackMult = 0.7
 spawnScenes = {
 "hp_drop": ExtResource( 9 )

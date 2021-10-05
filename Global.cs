@@ -99,6 +99,41 @@ public static class Global
         "res://scenes/enemies/shooter/ScatterShooter.tscn",
         "res://scenes/enemies/shooter/SprayerAcid.tscn",
     };
+    public static readonly String[] ALL_ROUNDERS_RANDOM = {
+        "res://scenes/enemies/all rounder/Melee.tscn",
+        "res://scenes/enemies/all rounder/MeleeShielded.tscn",
+        "res://scenes/enemies/all rounder/MeleeBlobnadier.tscn",
+        "res://scenes/enemies/all rounder/BlobnadierShielded.tscn",
+        "res://scenes/enemies/all rounder/Ranged.tscn",
+        "res://scenes/enemies/all rounder/RangedBlobnadier.tscn",
+        "res://scenes/enemies/all rounder/ParaBlobCarrier.tscn",
+        "res://scenes/enemies/all rounder/SlowBlobCarrier.tscn",
+        "res://scenes/enemies/all rounder/TeleBlobCarrier.tscn",
+        "res://scenes/enemies/all rounder/DualRanged.tscn",
+        "res://scenes/enemies/all rounder/RangedShielded.tscn",
+        "res://scenes/enemies/all rounder/MeleeRanged.tscn",
+    };
+    public static readonly String[] CHARGERS_RANDOM = {
+        "res://scenes/enemies/blob/HostileBlob.tscn",
+        "res://scenes/enemies/charger/Charger.tscn",
+        "res://scenes/enemies/blob/TeleportingBlob.tscn",
+        "res://scenes/enemies/blob/NukeBlob.tscn",
+        "res://scenes/enemies/charger/RigidCharger.tscn",
+        "res://scenes/enemies/charger/TeleportingCharger.tscn",
+        "res://scenes/enemies/charger/BlobCharger.tscn",
+        "res://scenes/enemies/spawner/ChargerSpawner.tscn",
+        "res://scenes/enemies/spawner/BlobChargerSpawner.tscn",
+        "res://scenes/enemies/spawner/TeleportingChargerSpawner.tscn",
+    };
+    public static readonly String[] SHOOTERS_RANDOM = {
+        "res://scenes/enemies/shooter/Shooter.tscn",
+        "res://scenes/enemies/shooter/SprayerSticky.tscn",
+        "res://scenes/enemies/shooter/LongRangeShooter.tscn",
+        "res://scenes/enemies/shooter/SprayerAcid.tscn",
+        "res://scenes/enemies/shooter/LongRangeCannoneer.tscn",
+        "res://scenes/enemies/shooter/ScatterShooter.tscn",
+        "res://scenes/enemies/shooter/LaserShooter.tscn",
+    };
     public static readonly String[] ELITE_ALL_ROUNDERS = {
         "res://scenes/enemies/all rounder/EliteMeleeShielded.tscn",
         "res://scenes/enemies/all rounder/EliteRangedShielded.tscn",

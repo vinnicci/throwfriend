@@ -19,7 +19,7 @@ radius = 22.0
 [node name="EliteLongRangeCannoneer" instance=ExtResource( 1 )]
 script = ExtResource( 10 )
 speed = 563
-health = 25
+health = 30
 knockbackMult = 0.7
 spawnScenes = {
 "hp_drop": ExtResource( 6 )

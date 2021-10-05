@@ -13,7 +13,7 @@ public class ExtraDamage : WeaponItem
         if(done || WeaponNode.IsClone) {
             return;
         }
-        PlayerNode.UpdateSnarkDmg();
+        PlayerNode.SnarkDmg *= EXTRA_DMG;
         done = true;
     }
 

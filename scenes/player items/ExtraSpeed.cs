@@ -3,7 +3,7 @@ using System;
 
 public class ExtraSpeed : PlayerItem
 {
-    const int EXTRA_SPEED = 150;
+    const int EXTRA_SPEED = 100;
     bool done = false;
     
 
@@ -13,7 +13,8 @@ public class ExtraSpeed : PlayerItem
         if(done) {
             return;
         }
-        PlayerNode.Speed += EXTRA_SPEED;
+        PlayerNode.ChangeEntityBaseStats(-1, PlayerNode.speed + EXTRA_SPEED);
+        PlayerNode.Speed = (int)(PlayerNode.speed - PlayerNode.speed * PlayerNode.SnarkCarrySpeedReduction);
         done = true;
     }
 

@@ -30,6 +30,9 @@ public class RandomEnemySpawner : Position2D, ILevelObject
         EASY_RANDOM,
         MEDIUM_RANDOM,
         HARD_RANDOM,
+        ALL_ROUNDERS_RANDOM,
+        CHARGERS_RANDOM,
+        SHOOTERS_RANDOM,
         ELITE_ALL_ROUNDERS,
         ELITE_CHARGERS,
         ELITE_SHOOTERS,
@@ -217,6 +220,9 @@ public class RandomEnemySpawner : Position2D, ILevelObject
             case EnemySet.EASY_RANDOM: return new Godot.Collections.Array(Global.EASY_RANDOM);
             case EnemySet.MEDIUM_RANDOM: return new Godot.Collections.Array(Global.MEDIUM_RANDOM);
             case EnemySet.HARD_RANDOM: return new Godot.Collections.Array(Global.HARD_RANDOM);
+            case EnemySet.ALL_ROUNDERS_RANDOM: return new Godot.Collections.Array(Global.ALL_ROUNDERS_RANDOM);
+            case EnemySet.CHARGERS_RANDOM: return new Godot.Collections.Array(Global.CHARGERS_RANDOM);
+            case EnemySet.SHOOTERS_RANDOM: return new Godot.Collections.Array(Global.SHOOTERS_RANDOM);
             case EnemySet.ELITE_ALL_ROUNDERS: return new Godot.Collections.Array(Global.ELITE_ALL_ROUNDERS);
             case EnemySet.ELITE_CHARGERS: return new Godot.Collections.Array(Global.ELITE_CHARGERS);
             case EnemySet.ELITE_SHOOTERS: return new Godot.Collections.Array(Global.ELITE_SHOOTERS);

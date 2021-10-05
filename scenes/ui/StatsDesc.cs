@@ -13,6 +13,7 @@ public class StatsDesc : Control
     Label speedStat;
     Label throwStrengthStat;
     Label snarkDmgStat;
+    Label snarkCarrySpeedReduction;
     Control helpDisp;
     Control fasttravelDisp;
     Label tipLabel;
@@ -31,6 +32,7 @@ public class StatsDesc : Control
         speedStat = (Label)GetNode("StatsPanel/StatsDisp/Speed");
         throwStrengthStat = (Label)GetNode("StatsPanel/StatsDisp/ThrowStrength");
         snarkDmgStat = (Label)GetNode("StatsPanel/StatsDisp/SnarkDmg");
+        snarkCarrySpeedReduction = (Label)GetNode("StatsPanel/StatsDisp/SnarkCarrySpeedReduction");
         helpDisp = (Control)GetNode("StatsPanel/HelpDisp");
         tipLabel = (Label)GetNode("StatsPanel/HelpDisp/Tip");
         currentTip = tipsArr.Count;
@@ -99,16 +101,15 @@ public class StatsDesc : Control
     public void UpdateStatsDisp() {
         healthStat.Text = "Current HP: " + PlayerNode.Health;
         maxHealthStat.Text = "Max HP: " + PlayerNode.health;
-        speedStat.Text = "Speed: " +
-        (PlayerNode.WeaponNode.CurrentState == Weapon.States.HELD ?
-        GetDescriptive(PlayerNode.Speed, 0) :
-        GetDescriptive(PlayerNode.Speed - Player.EXTRA_SPEED_WITHOUT_WEAPON, 0));
+        speedStat.Text = "Speed: " + GetDescriptive(PlayerNode.speed, 0);
         throwStrengthStat.Text = "Throw Strength: " + GetDescriptive(PlayerNode.ThrowStrength, 1);
-        snarkDmgStat.Text = "Snark Damage: " + (PlayerNode.SnarkDmg * PlayerNode.SnarkDmgMult);
+        snarkDmgStat.Text = "Snark Damage: " + (int)(PlayerNode.SnarkDmg * PlayerNode.SnarkDmgMult);
+        snarkCarrySpeedReduction.Text =
+        "Snark Carry Speed Reduction: " + (int)(PlayerNode.speed * PlayerNode.SnarkCarrySpeedReduction);
     }
 
 
-    const int BASE_SPEED = 90;
+    const int BASE_SPEED = 340;
     const int SPEED_INCREMENT = 125;
     const int BASE_THROW = 100;
     const int THROW_INCREMENT = 50;

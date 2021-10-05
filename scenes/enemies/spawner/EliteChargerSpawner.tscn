@@ -19,7 +19,7 @@
 [node name="EliteChargerSpawner" instance=ExtResource( 5 )]
 script = ExtResource( 8 )
 speed = 195
-health = 35
+health = 40
 knockbackMult = 0.1
 spawnScenes = {
 "charger01": ExtResource( 11 ),

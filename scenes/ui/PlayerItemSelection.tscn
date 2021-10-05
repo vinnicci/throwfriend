@@ -14,7 +14,7 @@
 [ext_resource path="res://scenes/player items/AutoRetrieve.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/player items/TeleRetrieve.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/player items/ExtraSpeed.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/player items/SuperThrow.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/player items/Strength.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/player items/TeleportToWeapon.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=1]
@@ -148,13 +148,13 @@ itemEx = ExtResource( 11 )
 [node name="TextureButton" parent="GridContainer/Swap" index="1"]
 texture_normal = ExtResource( 2 )
 
-[node name="SuperThrow" parent="GridContainer" instance=ExtResource( 7 )]
+[node name="Strength" parent="GridContainer" instance=ExtResource( 7 )]
 margin_left = 180.0
 margin_right = 180.0
 margin_bottom = 0.0
 itemEx = ExtResource( 15 )
 
-[node name="TextureButton" parent="GridContainer/SuperThrow" index="1"]
+[node name="TextureButton" parent="GridContainer/Strength" index="1"]
 texture_normal = ExtResource( 6 )
 
 [node name="TeleRetrieve" parent="GridContainer" instance=ExtResource( 7 )]
@@ -205,7 +205,7 @@ anims/show = SubResource( 2 )
 [editable path="GridContainer/AutoRetrieve"]
 [editable path="GridContainer/Dash"]
 [editable path="GridContainer/Swap"]
-[editable path="GridContainer/SuperThrow"]
+[editable path="GridContainer/Strength"]
 [editable path="GridContainer/TeleRetrieve"]
 [editable path="GridContainer/ExtraSpeed"]
 [editable path="GridContainer/TeleportToWeapon"]

@@ -15,7 +15,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-tipsArr = [ "Releasing Snark increases mobility.", "Snark can only inflict damage when his mouth is open. At the same time however, you cannot pick up Snark.", "Selecting an ability is permanent and irreversible. Choose wisely.", "Look out for any secret paths. These will lead you to challenging areas that grants you reward at the end." ]
+tipsArr = [ "Releasing Snark increases mobility.", "Snark can only inflict damage when his mouth is open. At the same time however, you cannot pick up Snark.", "Selecting an ability is permanent and irreversible. Choose wisely.", "Look out for any secret paths. These will lead you to challenging areas that grant you reward at the end." ]
 
 [node name="StatsPanel" type="Panel" parent="."]
 self_modulate = Color( 1, 1, 1, 0.686275 )
@@ -53,33 +53,39 @@ __meta__ = {
 }
 
 [node name="Health" type="Label" parent="StatsPanel/StatsDisp"]
-margin_right = 103.0
+margin_right = 185.0
 margin_bottom = 14.0
 text = "Current HP:"
 
 [node name="MaxHealth" type="Label" parent="StatsPanel/StatsDisp"]
 margin_top = 19.0
-margin_right = 103.0
+margin_right = 185.0
 margin_bottom = 33.0
 text = "Max HP:"
 
 [node name="Speed" type="Label" parent="StatsPanel/StatsDisp"]
 margin_top = 38.0
-margin_right = 103.0
+margin_right = 185.0
 margin_bottom = 52.0
 text = "Speed:"
 
 [node name="ThrowStrength" type="Label" parent="StatsPanel/StatsDisp"]
 margin_top = 57.0
-margin_right = 103.0
+margin_right = 185.0
 margin_bottom = 71.0
 text = "Throw Strength: "
 
 [node name="SnarkDmg" type="Label" parent="StatsPanel/StatsDisp"]
 margin_top = 76.0
-margin_right = 103.0
+margin_right = 185.0
 margin_bottom = 90.0
 text = "Snark Damage:"
+
+[node name="SnarkCarrySpeedReduction" type="Label" parent="StatsPanel/StatsDisp"]
+margin_top = 95.0
+margin_right = 185.0
+margin_bottom = 109.0
+text = "Snark Carry Speed Reduction:"
 
 [node name="Help" type="Button" parent="StatsPanel"]
 margin_left = 65.0

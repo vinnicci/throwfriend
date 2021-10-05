@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/player items/Strength.cs" type="Script" id=1]
+[ext_resource path="res://assets/items/tex_throw_strength.png" type="Texture" id=2]
+[ext_resource path="res://scenes/player items/PlayerItem.tscn" type="PackedScene" id=3]
+
+[node name="Strength" instance=ExtResource( 3 )]
+script = ExtResource( 1 )
+itemDescription = "Increase your strength. More strength means less speed reduction while carrying Snark, and you can throw him even further."
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource( 2 )

@@ -10,6 +10,7 @@ public class Player : Entity
     public int AvailableUpgrade {get; set;}
     public int SnarkDmgMult {get; set;}
     public int SnarkDmg {get; set;}
+    public float SnarkCarrySpeedReduction {get; set;}
     public Node2D Center {get; set;}
     public Weapon WeaponNode {get; set;}
     public override Level LevelNode {
@@ -30,7 +31,6 @@ public class Player : Entity
         CONFUSE, SLOW
     }
     public bool[] CurrentStatusEffect {get; set;}
-    public const int EXTRA_SPEED_WITHOUT_WEAPON = 250;
     
     Position2D weapPos;
     PlayerCam camera;
@@ -57,6 +57,7 @@ public class Player : Entity
             ThrowStrength = throwStrength;
             AvailableUpgrade = 0;
             SnarkDmgMult = 1;
+            SnarkCarrySpeedReduction = 0.9f;
             ItemSlot1Node = (Node2D)GetNode("ItemSlot1");
             ItemSlot2Node = (Node2D)GetNode("ItemSlot2");
         }
@@ -89,6 +90,7 @@ public class Player : Entity
         CurrentStatusEffect = new bool[2];
         Center.LookAt(GetGlobalMousePosition());
         Center.LookAt(GetGlobalMousePosition());
+        Speed = (int)(speed - speed * SnarkCarrySpeedReduction);
     }
 
 
@@ -266,7 +268,8 @@ public class Player : Entity
                 throwAnim.PlayBackwards("throw");
             }
             snarkPointer.Visible = true;
-            Speed += EXTRA_SPEED_WITHOUT_WEAPON;
+            //Speed += (int)(EXTRA_SPEED_WITHOUT_WEAPON*SnarkCarrySpeedReduction);
+            Speed = speed;
         }
         if(IsInstanceValid(Item1) && Input.IsActionJustPressed("hotkey_1")) {
             Item1.ApplyEffect();
@@ -308,7 +311,7 @@ public class Player : Entity
         weapPos.AddChild(WeaponNode);
         float rot = Center.GlobalRotation;
         WeaponNode.GlobalRotation = rot;
-        Speed -= EXTRA_SPEED_WITHOUT_WEAPON;
+        Speed = (int)(speed - speed*SnarkCarrySpeedReduction);
         snarkPointer.Visible = false;
     }
 
@@ -369,23 +372,6 @@ public class Player : Entity
         else {
             hotkeyHUD.HideDialogue();
         }
-    }
-
-
-    public void UpdateSnarkDmg() {
-        Item[] arr = {
-            Item1, Item2, WeaponNode.Item1, WeaponNode.Item2
-        };
-        int dmg = 1;
-        foreach(Item item in arr) {
-            if(item is SuperThrow) {
-                dmg += 1;
-            }
-            else if(item is ExtraDamage) {
-                dmg *= 3;
-            }
-        }
-        SnarkDmg = dmg;
     }
 
 

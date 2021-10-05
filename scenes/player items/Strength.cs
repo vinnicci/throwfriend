@@ -1,9 +1,10 @@
 using Godot;
 using System;
 
-public class SuperThrow : PlayerItem
+public class Strength : PlayerItem
 {
     const int EXTRA_STRENGTH = 50;
+    const float SPEED_REDUCTION_BONUS = 0.35f;
     bool done = false;
 
 
@@ -14,7 +15,8 @@ public class SuperThrow : PlayerItem
             return;
         }
         PlayerNode.ThrowStrength += EXTRA_STRENGTH;
-        PlayerNode.UpdateSnarkDmg();
+        PlayerNode.SnarkCarrySpeedReduction -= SPEED_REDUCTION_BONUS;
+        PlayerNode.Speed = (int)(PlayerNode.speed - PlayerNode.speed * PlayerNode.SnarkCarrySpeedReduction);
         done = true;
     }
 
