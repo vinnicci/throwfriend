@@ -1,28 +1,71 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/items/tex_homing.png" type="Texture" id=1]
-[ext_resource path="res://assets/items/tex_split_to_three.png" type="Texture" id=2]
-[ext_resource path="res://assets/items/tex_dash.png" type="Texture" id=3]
-[ext_resource path="res://assets/items/tex_tele_to_weap.png" type="Texture" id=4]
-[ext_resource path="res://assets/items/tex_autretrieve.png" type="Texture" id=5]
-[ext_resource path="res://assets/items/tex_pickup_ability.png" type="Texture" id=6]
+[ext_resource path="res://assets/level/tex_pressure_plate.png" type="Texture" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "trigger"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -2 ), Vector2( 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Button:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.478431, 0.478431, 0.478431, 1 ) ]
+}
 
 [node name="Tip4" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 5 )
-
-[node name="Sprite2" type="Sprite" parent="."]
-texture = ExtResource( 3 )
-
-[node name="Sprite3" type="Sprite" parent="."]
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1, 1, 45, 45 )
 
-[node name="Sprite4" type="Sprite" parent="."]
-texture = ExtResource( 4 )
+[node name="Back" type="Sprite" parent="Sprite"]
+show_behind_parent = true
+position = Vector2( 0, -18 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, 0.5 )
+region_enabled = true
+region_rect = Rect2( 1, 47, 35, 6 )
 
-[node name="Sprite5" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="Button" type="Sprite" parent="Sprite"]
+self_modulate = Color( 0.968627, 0.941176, 0.627451, 1 )
+show_behind_parent = true
+position = Vector2( 0, -2 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 47, 1, 35, 37 )
 
-[node name="Sprite6" type="Sprite" parent="."]
-texture = ExtResource( 6 )
+[node name="Logo" type="Sprite" parent="Sprite/Button"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 109, 1, 12, 21 )
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/trigger = SubResource( 1 )
+
+[node name="SecretButton" type="Button" parent="."]
+margin_right = 12.0
+margin_bottom = 20.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

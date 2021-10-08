@@ -9,7 +9,7 @@
 [ext_resource path="res://scenes/enemies/charger/Charger.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/level/Props.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/items/tex_pickup_ability.png" type="Texture" id=10]
-[ext_resource path="res://scenes/level/DialogueTrigger.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/triggers/DialogueTrigger.tscn" type="PackedScene" id=11]
 
 [node name="FirstBigEncounter" instance=ExtResource( 1 )]
 overrideableEnemyMults = true

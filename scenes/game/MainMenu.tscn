@@ -105,30 +105,34 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Creator" type="Label" parent="Credits"]
+margin_top = 10.0
 margin_right = 124.0
-margin_bottom = 31.0
-rect_scale = Vector2( 4, 4 )
+margin_bottom = 41.0
+rect_scale = Vector2( 3, 3 )
 text = "Created by: Vic Ben
 "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Plugin" type="Label" parent="Credits"]
-margin_top = 119.0
+[node name="Plugins" type="Label" parent="Credits"]
+margin_top = 120.0
 margin_right = 239.0
-margin_bottom = 133.0
-rect_scale = Vector2( 4, 4 )
-text = "Plugin: Visual Behavior Tree by fian46"
+margin_bottom = 185.0
+rect_scale = Vector2( 3, 3 )
+text = "Plugins:
+    Visual Behavior Tree by fian46
+	    TwistedIK by TwistedTwigLeg
+	"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Tools" type="Label" parent="Credits"]
-margin_top = 241.0
+margin_top = 320.0
 margin_right = 228.0
-margin_bottom = 289.0
-rect_scale = Vector2( 4, 4 )
+margin_bottom = 368.0
+rect_scale = Vector2( 3, 3 )
 text = "Tools:
     Godot Engine
     Krita"
@@ -137,9 +141,9 @@ __meta__ = {
 }
 
 [node name="LinkYT" type="Button" parent="Credits"]
-margin_left = 573.169
+margin_left = 430.169
 margin_top = 6.51279
-margin_right = 599.169
+margin_right = 518.169
 margin_bottom = 26.5128
 rect_scale = Vector2( 2, 2 )
 text = "Youtube Ch."
@@ -148,9 +152,9 @@ __meta__ = {
 }
 
 [node name="LinkItch" type="Button" parent="Credits"]
-margin_left = 785.651
+margin_left = 642.651
 margin_top = 7.08057
-margin_right = 856.651
+margin_right = 713.651
 margin_bottom = 27.0806
 rect_scale = Vector2( 2, 2 )
 text = "Itch Page"

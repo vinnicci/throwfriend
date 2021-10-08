@@ -35,7 +35,6 @@ public class StatsDesc : Control
         snarkCarrySpeedReduction = (Label)GetNode("StatsPanel/StatsDisp/SnarkCarrySpeedReduction");
         helpDisp = (Control)GetNode("StatsPanel/HelpDisp");
         tipLabel = (Label)GetNode("StatsPanel/HelpDisp/Tip");
-        currentTip = tipsArr.Count;
         fasttravelDisp = (Control)GetNode("FastTravelDisp");
         //connect fast travel buttons
         foreach(Button button in fasttravelDisp.GetChildren()) {
@@ -46,8 +45,8 @@ public class StatsDesc : Control
             arr.Add(button.Name);
             button.Connect("pressed", this, nameof(OnFastTravePointPressed), arr);
         }
-        OnNextTipPressed();
         mainNode = (Main)GetNode("/root/Main");
+        OnNextTipPressed();
         if(IsInstanceValid(mainNode.WorldSaveFile)) {
             UpdateFastTravelPoints();
         }
@@ -138,7 +137,7 @@ public class StatsDesc : Control
 
 
     //help and tips
-    int currentTip;
+    int currentTip = 3;
     const String path = "StatsPanel/HelpDisp/Tip";
     [Export] Godot.Collections.Array<String> tipsArr;
 
@@ -146,11 +145,38 @@ public class StatsDesc : Control
     void OnNextTipPressed() {
         ((Node2D)GetNode(path + currentTip)).Visible = false;
         currentTip += 1;
-        if(currentTip > tipsArr.Count) {
-            currentTip = 1;
+        if(currentTip == 4 && IsInstanceValid(mainNode.WorldSaveFile) &&
+        ((Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("Quests")).Contains("SECRET")) {
+            Godot.Collections.Array qArr =
+            (Godot.Collections.Array)((Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("Quests"))["SECRET"];
+            if(qArr.Count == 7) {
+                System.Text.StringBuilder txt = new System.Text.StringBuilder();
+                foreach(String s in qArr) {
+                    txt.Append(s + " ");
+                }
+                tipLabel.Text = txt.ToString();
+                ((Node2D)GetNode(path + currentTip)).Visible = true;
+                return;
+            }
+            currentTip = 0;
         }
-        tipLabel.Text = tipsArr[currentTip - 1];
+        else if(currentTip > 3) {
+            currentTip = 0;
+        }
+        tipLabel.Text = tipsArr[currentTip];
         ((Node2D)GetNode(path + currentTip)).Visible = true;
+    }
+
+
+    void OnSecretButtonPressed() {
+        Godot.Collections.Array qArr =
+        (Godot.Collections.Array)((Godot.Collections.Dictionary)mainNode.WorldSaveFile.Get("Quests"))["SECRET"];
+        if(qArr.Count != 7) {
+            return;
+        }
+        ((AnimationPlayer)GetNode("StatsPanel/HelpDisp/Tip4/Anim")).Play("trigger");
+        qArr.Add("NOT SPECIAL");
+        mainNode.Saver.Call("save_world_data");
     }
 
 

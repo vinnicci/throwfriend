@@ -90,7 +90,7 @@ public class Player : Entity
         CurrentStatusEffect = new bool[2];
         Center.LookAt(GetGlobalMousePosition());
         Center.LookAt(GetGlobalMousePosition());
-        Speed = (int)(speed - speed * SnarkCarrySpeedReduction);
+        Speed = (int)(speed - (speed * SnarkCarrySpeedReduction));
     }
 
 
@@ -268,7 +268,6 @@ public class Player : Entity
                 throwAnim.PlayBackwards("throw");
             }
             snarkPointer.Visible = true;
-            //Speed += (int)(EXTRA_SPEED_WITHOUT_WEAPON*SnarkCarrySpeedReduction);
             Speed = speed;
         }
         if(IsInstanceValid(Item1) && Input.IsActionJustPressed("hotkey_1")) {
@@ -311,7 +310,7 @@ public class Player : Entity
         weapPos.AddChild(WeaponNode);
         float rot = Center.GlobalRotation;
         WeaponNode.GlobalRotation = rot;
-        Speed = (int)(speed - speed*SnarkCarrySpeedReduction);
+        Speed = (int)(speed - (speed*SnarkCarrySpeedReduction));
         snarkPointer.Visible = false;
     }
 
@@ -365,9 +364,9 @@ public class Player : Entity
 
 
     public void TriggerDialogue(Texture portrait, String name, Godot.Collections.Array stringArr,
-    float portraitScale, bool show) {
+    float portraitScale, DialogueTrigger dialogueInst = null, bool show = false) {
         if(show) {
-            hotkeyHUD.ShowDialogue(portrait, name, stringArr, portraitScale);
+            hotkeyHUD.ShowDialogue(portrait, name, stringArr, portraitScale, dialogueInst);
         }
         else {
             hotkeyHUD.HideDialogue();

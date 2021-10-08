@@ -36,18 +36,21 @@ public class HotkeyHUD : Control
     }
 
 
-    public void ShowDialogue(Texture portrait, String name, Godot.Collections.Array stringArr, float portraitScale) {
+    public void ShowDialogue(Texture portrait, String name, Godot.Collections.Array stringArr, float portraitScale,
+    DialogueTrigger dialogueInst) {
         anim.Queue("show_dialogue");
         dialoguePortrait.Texture = portrait;
         dialoguePortrait.Scale = new Vector2(portraitScale, portraitScale);
         dialogueSpeaker.Text = name;
         dialogueArr = stringArr;
         currentDialogueSlot = 0;
+        this.dialogueInst = dialogueInst;
         NextDialogue();
     }
 
 
     Godot.Collections.Array dialogueArr;
+    DialogueTrigger dialogueInst;
     int currentDialogueSlot;
 
 
@@ -68,7 +71,12 @@ public class HotkeyHUD : Control
             currentDialogueSlot = 0;
         }
         dialogueText.PercentVisible = 0;
-        dialogueText.Text = (String)dialogueArr[currentDialogueSlot];
+        if((String)dialogueArr[currentDialogueSlot] == "EXEC_FUNC") {
+            dialogueText.Text = dialogueInst.ExecFunc(currentDialogueSlot);
+        }
+        else {
+            dialogueText.Text = (String)dialogueArr[currentDialogueSlot];
+        }
         tween.StopAll();
         tween.InterpolateProperty(dialogueText, "percent_visible",
             0, 1f, dialogueText.Text.Length/TEXT_SPEED, Tween.TransitionType.Linear);

@@ -23,10 +23,6 @@ tile_data = PoolIntArray( -917506, 9, 196609, -917505, 9, 3, -983040, 9, 3, -983
 z_index = -2
 cell_y_sort = false
 
-[node name="InvisibleWalls" parent="Objects" index="5"]
-visible = false
-tile_data = PoolIntArray( -589807, 2, 65538, -524271, 2, 65538, 1179660, 2, 65538, 1179661, 2, 65538 )
-
 [node name="E" parent="Objects" index="6" instance=ExtResource( 2 )]
 position = Vector2( 1050, -517 )
 rotation = 3.14159
@@ -46,41 +42,45 @@ maxSpawnCount = 2
 enemySet = 2
 
 [node name="RandomEnemySpawner3" parent="Objects" index="10" instance=ExtResource( 3 )]
-position = Vector2( 229, 409 )
+position = Vector2( 105, 326 )
 maxSpawnCount = 3
 enemySet = 4
 
 [node name="RandomEnemySpawner4" parent="Objects" index="11" instance=ExtResource( 3 )]
-position = Vector2( 806, 462 )
+position = Vector2( 825, 602 )
 maxSpawnCount = 3
 enemySet = 4
 
 [node name="RandomEnemySpawner5" parent="Objects" index="12" instance=ExtResource( 3 )]
-position = Vector2( 607, -98 )
+position = Vector2( 573, 21 )
 maxSpawnCount = 3
 enemySet = 4
 
 [node name="RandomEnemySpawner6" parent="Objects" index="13" instance=ExtResource( 3 )]
-position = Vector2( 132, -309 )
+position = Vector2( 83, -11 )
 maxSpawnCount = 3
 enemySet = 4
 
 [node name="RandomEnemySpawner7" parent="Objects" index="14" instance=ExtResource( 3 )]
-position = Vector2( 130, -358 )
+position = Vector2( 81, -60 )
 maxSpawnCount = 1
 enemySet = 7
 
 [node name="RandomEnemySpawner8" parent="Objects" index="15" instance=ExtResource( 3 )]
-position = Vector2( 565, -108 )
+position = Vector2( 531, 11 )
 maxSpawnCount = 1
 enemySet = 7
 
 [node name="RandomEnemySpawner9" parent="Objects" index="16" instance=ExtResource( 3 )]
-position = Vector2( 230, 469 )
+position = Vector2( 106, 386 )
 maxSpawnCount = 1
 enemySet = 7
 
 [node name="RandomEnemySpawner10" parent="Objects" index="17" instance=ExtResource( 3 )]
-position = Vector2( 808, 403 )
+position = Vector2( 827, 543 )
 maxSpawnCount = 1
 enemySet = 7
+
+[node name="InvisibleWalls" parent="Objects" index="18"]
+visible = false
+tile_data = PoolIntArray( -589807, 2, 65538, -524271, 2, 65538, 1179660, 2, 65538, 1179661, 2, 65538 )

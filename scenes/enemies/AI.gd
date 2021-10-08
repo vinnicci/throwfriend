@@ -32,11 +32,16 @@ func _ready() -> void:
 		pos.position = Vector2(flee_ray_len, 0)
 		flee_rays_dict[flee_ray] = pos
 	btree = get_node("BTREE")
+	#init local blackboard
+	bb["detection_range_sq"] = detection_range * detection_range
 	bb["seek_dist"] = seek_dist
+	bb["seek_dist_sq"] = seek_dist * seek_dist
 	bb["too_far_dist"] = too_far_dist
+	bb["too_far_dist_sq"] = too_far_dist * too_far_dist
 	bb["too_close_dist"] = too_close_dist
-	bb["enemy_dist"] = -1
-	bb["enemy_range_sq"] = -1
+	bb["too_close_dist_sq"] = too_close_dist * too_close_dist
+	bb["enemy_dist"] = -1 #represents path distance
+	bb["enemy_range_sq"] = -1 #straight line distance, disregarding walls, always a squared value
 	bb["enemy"] = null
 	bb["patrol_point"] = null
 
@@ -99,7 +104,8 @@ func get_new_path(target):
 	path_points.clear()
 	path_points = level_node.call("GetPath", target.global_position, parent_node.global_position)
 	path_points.pop_back()
-	bb["target"] = path_points.back()
+	if path_points.size() != 0:
+		bb["target"] = path_points.back()
 
 
 func _on_FriendlyRange_body_entered(body: Node):
@@ -151,13 +157,12 @@ func _on_Tick_timeout():
 		if ray.get_collider() == player_node:
 			engage_enemy(player_node)
 	elif is_ent_valid(e):
-		#ray look at for weapon aim
-		ray.look_at(e.global_position)
 		#range distance - used by turrets
 		bb["enemy_range_sq"] = parent_node.global_position.distance_squared_to(e.global_position)
-		#path distance
+		ray.look_at(e.global_position)
 		if turret_types.has(filename):
 			return
+		#path distance
 		level_node.call("GetDist", e.global_position, parent_node.global_position, self, "enemy_dist")
 
 
@@ -279,10 +284,10 @@ func get_target_dist(target_bb_name: String) -> int:
 #param 1: distance required
 func task_is_target_in_range(task):
 	var dist = task.get_param(1)
-	var dist_sq = task.get_param(1) + "sq"
+	var dist_sq = dist + "_sq"
 	if bb.has(dist_sq) == false:
 		bb[dist_sq] = bb[dist] * bb[dist]
-	if (bb[task.get_param(0) + "_range_sq"] <= bb[dist_sq]):
+	if bb[task.get_param(0) + "_range_sq"] <= bb[dist_sq]:
 		task.succeed()
 	else:
 		task.failed()

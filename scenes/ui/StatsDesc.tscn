@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/ui/StatsDesc.cs" type="Script" id=1]
-[ext_resource path="res://scenes/ui/Tip1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/ui/Tip2.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/ui/Tip4.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/ui/Tip5.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/ui/Tip0.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/ui/Tip1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ui/Tip4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ui/Tip2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ui/Tip3.tscn" type="PackedScene" id=6]
 
 [node name="StatsDesc" type="Control"]
 anchor_right = 1.0
@@ -110,59 +111,72 @@ margin_bottom = 31.0
 text = "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
 autowrap = true
 
-[node name="Tip1" parent="StatsPanel/HelpDisp" instance=ExtResource( 2 )]
+[node name="Tip0" parent="StatsPanel/HelpDisp" instance=ExtResource( 2 )]
+visible = false
 
-[node name="Guy2" parent="StatsPanel/HelpDisp/Tip1" index="0"]
+[node name="Guy2" parent="StatsPanel/HelpDisp/Tip0" index="0"]
 position = Vector2( 136, 81 )
 
-[node name="Guy3" parent="StatsPanel/HelpDisp/Tip1" index="1"]
+[node name="Guy3" parent="StatsPanel/HelpDisp/Tip0" index="1"]
 position = Vector2( 147, 76 )
 
-[node name="Guy" parent="StatsPanel/HelpDisp/Tip1" index="2"]
+[node name="Guy" parent="StatsPanel/HelpDisp/Tip0" index="2"]
 position = Vector2( 156, 74 )
 
-[node name="Sprite" parent="StatsPanel/HelpDisp/Tip1" index="3"]
+[node name="Sprite" parent="StatsPanel/HelpDisp/Tip0" index="3"]
 position = Vector2( 288, 60 )
 
-[node name="Tip2" parent="StatsPanel/HelpDisp" instance=ExtResource( 3 )]
+[node name="Tip1" parent="StatsPanel/HelpDisp" instance=ExtResource( 3 )]
+visible = false
+
+[node name="Sprite" parent="StatsPanel/HelpDisp/Tip1" index="0"]
+position = Vector2( 130, 69 )
+
+[node name="Sprite2" parent="StatsPanel/HelpDisp/Tip1" index="1"]
+position = Vector2( 268, 65 )
+
+[node name="Tip2" parent="StatsPanel/HelpDisp" instance=ExtResource( 5 )]
 visible = false
 
 [node name="Sprite" parent="StatsPanel/HelpDisp/Tip2" index="0"]
-position = Vector2( 130, 69 )
-
-[node name="Sprite2" parent="StatsPanel/HelpDisp/Tip2" index="1"]
-position = Vector2( 268, 65 )
-
-[node name="Tip3" parent="StatsPanel/HelpDisp" instance=ExtResource( 5 )]
-visible = false
-
-[node name="Sprite" parent="StatsPanel/HelpDisp/Tip3" index="0"]
 position = Vector2( 206, 49 )
 
-[node name="Sprite2" parent="StatsPanel/HelpDisp/Tip3" index="1"]
+[node name="Sprite2" parent="StatsPanel/HelpDisp/Tip2" index="1"]
 position = Vector2( 154, 65 )
 
-[node name="Sprite3" parent="StatsPanel/HelpDisp/Tip3" index="2"]
+[node name="Sprite3" parent="StatsPanel/HelpDisp/Tip2" index="2"]
 position = Vector2( 130, 97 )
 
-[node name="Sprite4" parent="StatsPanel/HelpDisp/Tip3" index="3"]
+[node name="Sprite4" parent="StatsPanel/HelpDisp/Tip2" index="3"]
 position = Vector2( 254, 58 )
 
-[node name="Sprite5" parent="StatsPanel/HelpDisp/Tip3" index="4"]
+[node name="Sprite5" parent="StatsPanel/HelpDisp/Tip2" index="4"]
 position = Vector2( 281, 96 )
 
-[node name="Sprite6" parent="StatsPanel/HelpDisp/Tip3" index="5"]
+[node name="Sprite6" parent="StatsPanel/HelpDisp/Tip2" index="5"]
 position = Vector2( 206, 96 )
 scale = Vector2( 2, 2 )
 
-[node name="Tip4" parent="StatsPanel/HelpDisp" instance=ExtResource( 6 )]
+[node name="Tip3" parent="StatsPanel/HelpDisp" instance=ExtResource( 6 )]
+visible = false
+
+[node name="Sprite" parent="StatsPanel/HelpDisp/Tip3" index="0"]
+position = Vector2( 162, 80 )
+
+[node name="Sprite2" parent="StatsPanel/HelpDisp/Tip3" index="1"]
+position = Vector2( 245, 79 )
+
+[node name="Tip4" parent="StatsPanel/HelpDisp" instance=ExtResource( 4 )]
 visible = false
 
 [node name="Sprite" parent="StatsPanel/HelpDisp/Tip4" index="0"]
-position = Vector2( 136, 80 )
+position = Vector2( 201, 77 )
 
-[node name="Sprite2" parent="StatsPanel/HelpDisp/Tip4" index="1"]
-position = Vector2( 219, 79 )
+[node name="SecretButton" parent="StatsPanel/HelpDisp/Tip4" index="2"]
+margin_left = 174.0
+margin_top = 49.0
+margin_right = 227.0
+margin_bottom = 102.0
 
 [node name="NextTip" type="Button" parent="StatsPanel/HelpDisp"]
 margin_left = 355.0
@@ -287,11 +301,13 @@ __meta__ = {
 [connection signal="pressed" from="StatsPanel/Exit" to="." method="OnExitPressed"]
 [connection signal="pressed" from="StatsPanel/Stats" to="." method="OnStatsPressed"]
 [connection signal="pressed" from="StatsPanel/Help" to="." method="OnHelpPressed"]
+[connection signal="pressed" from="StatsPanel/HelpDisp/Tip4/SecretButton" to="." method="OnSecretButtonPressed"]
 [connection signal="pressed" from="StatsPanel/HelpDisp/NextTip" to="." method="OnNextTipPressed"]
 [connection signal="pressed" from="FastTravel" to="." method="OnFastTravelPressed"]
 [connection signal="pressed" from="DescPanel/SettingsButton" to="." method="OnSettingsButtonPressed"]
 [connection signal="pressed" from="DescPanel/MainMenuButton" to="." method="OnMainMenuButtonPressed"]
 
+[editable path="StatsPanel/HelpDisp/Tip0"]
 [editable path="StatsPanel/HelpDisp/Tip1"]
 [editable path="StatsPanel/HelpDisp/Tip2"]
 [editable path="StatsPanel/HelpDisp/Tip3"]
