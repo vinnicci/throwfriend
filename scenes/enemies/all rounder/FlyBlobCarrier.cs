@@ -8,7 +8,6 @@ public class FlyBlobCarrier : AllRounder
             return;
         }
         LevelNode.PlayerEngaging.Remove(Name);
-        GD.Print("die: " + LevelNode.PlayerEngaging.Count);
         EmitSignal(nameof(Died));
         Health = 0;
         EnemyProj flyblob = (EnemyProj)spawnScenes["flyblob"].Instance();

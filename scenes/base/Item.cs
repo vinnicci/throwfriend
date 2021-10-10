@@ -55,8 +55,8 @@ public abstract class Item : Node2D
 
     //intialization
     public virtual void InitEffect() {
-        if(Active == true) {
-            Switch(true, Active);
+        if(Active) {
+            Switch(true, Active == false);
         }
     }
 
@@ -66,15 +66,14 @@ public abstract class Item : Node2D
 
 
     //used for switchable abilities
-    public virtual void Switch(bool thisInst, bool state) {
+    public virtual void Switch(bool thisInst, bool active) {
         if(Active == false) {
-            Active = true;
             EmitSignal(nameof(Activated), -1);
         }
         else {
-            Active = false;
             EmitSignal(nameof(Activated), 0);
         }
+        Active = active;
     }
 
 

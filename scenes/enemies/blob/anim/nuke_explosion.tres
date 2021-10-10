@@ -2,7 +2,8 @@
 
 [resource]
 resource_name = "explode"
-length = 0.5
+length = 0.75
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Polygon2D:modulate")
 tracks/0/interp = 1
@@ -10,20 +11,32 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.5 ),
+"times": PoolRealArray( 0, 0.1, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.666667, 0.145098, 1 ), Color( 1, 0.666667, 0.145098, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.819608, 0, 1 ), Color( 1, 0.819608, 0, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:visible")
+tracks/1/path = NodePath("ParticlesTop:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"times": PoolRealArray( 0, 0.1, 0.2, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.819608, 0, 1 ), Color( 0.643137, 0.584314, 0.309804, 1 ), Color( 0.643137, 0.584314, 0.309804, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ParticlesBase:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.7, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.933333, 0.847059, 0.45098, 1 ), Color( 0.607843, 0.607843, 0.607843, 1 ), Color( 0.607843, 0.607843, 0.607843, 0 ) ]
 }

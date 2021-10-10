@@ -24,7 +24,16 @@ acts = {
 modulate = Color( 1, 1, 1, 1 )
 texture = ExtResource( 4 )
 
-[node name="Anim" parent="Explosion" index="3"]
+[node name="Polygon2D" parent="Explosion" index="1"]
+modulate = Color( 1, 0, 0.984314, 0 )
+
+[node name="ParticlesBase" parent="Explosion" index="3"]
+modulate = Color( 0.596078, 0.596078, 0.596078, 0 )
+
+[node name="ParticlesTop" parent="Explosion" index="4"]
+modulate = Color( 0.658824, 0.337255, 0.654902, 0 )
+
+[node name="Anim" parent="Explosion" index="6"]
 anims/explode = ExtResource( 10 )
 
 [node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]

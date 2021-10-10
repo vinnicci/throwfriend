@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "explode"
-length = 1.75
+length = 2.25
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprite/Blob:scale")
@@ -47,7 +47,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 1.25, 1.75 ),
+"times": PoolRealArray( 1.25, 2.25 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],

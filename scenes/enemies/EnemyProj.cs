@@ -16,7 +16,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
     
     public Level LevelNode {get; set;}
     protected Sprite sprite;
-    Explosion explosion;
+    Explosion explosionNode;
     AnimationPlayer anim;
     const int KNOCKBACK = 250;
 
@@ -26,9 +26,6 @@ public abstract class EnemyProj : Area2D, ISpawnable
         base._Ready();
         sprite = (Sprite)GetNode("Sprite");
         anim = (AnimationPlayer)GetNode("Anim");
-        if(HasNode("Explosion")) {
-            explosion = (Explosion)GetNode("Explosion");
-        }
     }
 
 
@@ -78,8 +75,10 @@ public abstract class EnemyProj : Area2D, ISpawnable
         Speed = speed;
         Damage = (int)(damage * lvl.enemyHealthMult);
         LevelNode = lvl;
-        if(IsInstanceValid(explosion)) {
-            explosion.Damage = Damage;
+        if(HasNode("Explosion")) {
+            explosionNode = (Explosion)GetNode("Explosion");
+            explosionNode.Damage = Damage;
+            explosionNode.LevelNode = LevelNode;
         }
         currentRange = Range;
         Velocity = new Vector2(Speed, 0).Rotated(Mathf.Deg2Rad(globalRotDeg));
@@ -124,8 +123,8 @@ public abstract class EnemyProj : Area2D, ISpawnable
         else {
             anim.Play("hit");
         }
-        if(IsInstanceValid(explosion)) {
-            explosion.Explode();
+        if(IsInstanceValid(explosionNode)) {
+            explosionNode.Explode();
             sprite.Visible = false;
         }
     }

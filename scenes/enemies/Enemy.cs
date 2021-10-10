@@ -36,6 +36,7 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
             if(HasNode("Explosion")) {
                 Explosion explosion = (Explosion)GetNode("Explosion");
                 explosion.Damage *= (int)(levelNode.enemyHealthMult);
+                explosion.LevelNode = levelNode;
             }
             ChangeEntityBaseStats((int)(health*LevelNode.enemyHealthMult), (int)(speed*LevelNode.enemySpeedMult));
         }
@@ -165,7 +166,6 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
     public virtual void OnEnemyBodyEntered(Godot.Object body) {
         if(Health <= 0) {
             LevelNode.PlayerEngaging.Remove(Name);
-            GD.Print("die: " + LevelNode.PlayerEngaging.Count);
         }
         else if(body is Weapon && IsInstanceValid(aINode) &&
         IsInstanceValid((Entity)((Godot.Collections.Dictionary)aINode.Get("bb"))["enemy"]) == false) {
@@ -219,7 +219,6 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
             Godot.Collections.Dictionary bbDict = (Godot.Collections.Dictionary)aINode.Get("bb");
             if(IsInstanceValid((RigidBody2D)bbDict["enemy"])) {
                 LevelNode.PlayerEngaging.Remove(Name);
-                GD.Print("die: " + LevelNode.PlayerEngaging.Count);
             }
         }
     }

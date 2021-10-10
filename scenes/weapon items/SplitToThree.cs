@@ -72,8 +72,8 @@ public class SplitToThree : WeaponItem
         WeaponItem weap1Item = (WeaponItem)Weaps[1].Get("Item" + num);
         if(IsInstanceValid(weap0Item)) {
             if(WeaponNode.CurrentState == Weapon.States.HELD) {
-                weap0Item.Switch(true, weap0Item.Active);
-                weap1Item.Switch(true, weap1Item.Active);
+                weap0Item.Switch(true, weap0Item.Active == false);
+                weap1Item.Switch(true, weap1Item.Active == false);
             }
             else {
                 weap0Item.ApplyEffect();

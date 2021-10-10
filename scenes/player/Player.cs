@@ -31,9 +31,9 @@ public class Player : Entity
         CONFUSE, SLOW
     }
     public bool[] CurrentStatusEffect {get; set;}
+    public PlayerCam Camera {get; set;}
     
     Position2D weapPos;
-    PlayerCam camera;
     Sprite head;
     Sprite arms;
     InGame inGameUI;
@@ -68,8 +68,8 @@ public class Player : Entity
     {
         base._Ready();
         Center = (Node2D)GetNode("Center");
-        camera = (PlayerCam)GetNode("PlayerCam");
-        camera.ParentNode = this;
+        Camera = (PlayerCam)GetNode("PlayerCam");
+        Camera.ParentNode = this;
         weapPos = (Position2D)Center.GetNode("WeapPos");
         WeaponNode = (Weapon)Center.GetNode("WeapPos/Weapon");
         WeaponNode.Connect(nameof(Weapon.PickedUp), this, nameof(PickedUpWeapon));
@@ -325,6 +325,7 @@ public class Player : Entity
         if(base.Hit(knockback, damage)) {
             if(Health > 0 && damage > 0) {
                 HitCooldown.Start(1f);
+                Camera.ShakeCamera(10, 0.05f, 0.1f, 0);
             }
             else if(Health <= 0) {
                 DamageAnim.Stop();
@@ -337,11 +338,11 @@ public class Player : Entity
 
 
     void TransferCamera() {
-        camera.GetParent().RemoveChild(camera);
-        LevelNode.AddChild(camera);
-        camera.ParentNode = LevelNode;
-        camera.GlobalPosition = GlobalPosition;
-        camera.ShowRestart();
+        Camera.GetParent().RemoveChild(Camera);
+        LevelNode.AddChild(Camera);
+        Camera.ParentNode = LevelNode;
+        Camera.GlobalPosition = GlobalPosition;
+        Camera.ShowRestart();
     }
 
 
@@ -376,6 +377,24 @@ public class Player : Entity
 
     public void UpdateFastTravelPoints() {
         statsDesc.UpdateFastTravelPoints();
+    }
+
+
+    public void LeaveTrail() {
+        Node2D teleSprite = (Node2D)GetNode("Sprite").Duplicate();
+        LevelNode.AddChild(teleSprite);
+        Tween tween = new Tween();
+        teleSprite.AddChild(tween);
+        teleSprite.GlobalPosition = new Vector2(GlobalPosition.x, GlobalPosition.y - 11);
+        teleSprite.GlobalRotation = GlobalRotation;
+        Godot.Collections.Array arr = new Godot.Collections.Array();
+        arr.Add(teleSprite);
+        if(tween.IsConnected("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject)) == false) {
+            tween.Connect("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject), arr);
+        }
+        tween.InterpolateProperty(teleSprite, "modulate", teleSprite.Modulate, new Color(1,1,1,0), 0.25f,
+        Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        tween.Start();
     }
 
 

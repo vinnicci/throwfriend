@@ -6,7 +6,6 @@ public class RandomEnemySpawner : Position2D, ILevelObject
     [Export] int maxSpawnCount;
     [Export] EnemySet enemySet;
     [Export] Godot.Collections.Array customSet = new Godot.Collections.Array();
-    //[Export] Godot.Collections.Array<NodePath> triggers = new Godot.Collections.Array<NodePath>();
     [Export] bool continuous = false;
     [Export] public Godot.Collections.Array<NodePath> BoundTriggers {get; set;}
 
@@ -45,9 +44,7 @@ public class RandomEnemySpawner : Position2D, ILevelObject
         }
         set {
             levelNode = value;
-            //if(continuous == false) {
             InitLevelObject();
-            //}
             SpawnRandomEnemy();
         }
     }
@@ -174,15 +171,6 @@ public class RandomEnemySpawner : Position2D, ILevelObject
         PackedScene enemyPack = (PackedScene)ResourceLoader.Load(enemyFilePath);
         Enemy enemy = (Enemy)enemyPack.Instance();
         enemy.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
-        //make enemy node as one of bound triggers
-        // foreach(NodePath triggerPath in triggers) {
-        //     Node2D trigger = GetNodeOrNull<Node2D>(triggerPath);
-        //     if(((ILevelObject)trigger).BoundTriggers.Contains(enemy.GetPath()) == false) {
-        //         ((ILevelObject)trigger).BoundTriggers.Add(enemy.GetPath());
-        //     }
-        //     ((ILevelObject)trigger).InitLevelObject();
-        //     GD.Print(trigger.Name + ((ILevelObject)trigger).BoundTriggers.Count);
-        // }
         //fade in effect
         enemy.Modulate = new Color(1,1,1,0);
         tween.InterpolateProperty(enemy, "modulate", new Color(1,1,1,0), new Color(1,1,1,1),

@@ -19,4 +19,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Frequency" type="Timer" parent="."]
+
+[node name="Duration" type="Timer" parent="."]
+
+[node name="ShakeTween" type="Tween" parent="."]
+
 [connection signal="pressed" from="CanvasLayer/Restart" to="." method="OnRestartPressed"]
+[connection signal="timeout" from="Frequency" to="." method="OnFrequencyTimeout"]
+[connection signal="timeout" from="Duration" to="." method="OnDurationTimeout"]

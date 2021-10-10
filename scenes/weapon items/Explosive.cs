@@ -22,26 +22,27 @@ public class Explosive : WeaponItem
         if(WeaponNode.IsConnected("body_entered", this, nameof(Explode)) == false) {
             WeaponNode.Connect("body_entered", this, nameof(Explode));
         }
+        ExplosionNode.LevelNode = PlayerNode.LevelNode;
     }
 
 
     public override void ApplyEffect()
     {
         base.ApplyEffect();
-        Switch(true, Active);
+        Switch(true, Active == false);
     }
 
 
-    public override void Switch(bool thisInst, bool state) {
-        base.Switch(thisInst, state);
+    public override void Switch(bool thisInst, bool active) {
+        base.Switch(thisInst, active);
         if(thisInst == false) {
             return;
         }
         else if(this == WeaponNode.Item1 && WeaponNode.Item2 is Explosive) {
-            ((Explosive)WeaponNode.Item2).Switch(false, state);
+            ((Explosive)WeaponNode.Item2).Switch(false, active);
         }
         else if(this == WeaponNode.Item2 && WeaponNode.Item1 is Explosive) {
-            ((Explosive)WeaponNode.Item1).Switch(false, state);
+            ((Explosive)WeaponNode.Item1).Switch(false, active);
         }
     }
 

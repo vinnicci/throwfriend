@@ -1,13 +1,21 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/base/Explosion.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/enemies/shooter/anim/cannonproj_explode.tres" type="Animation" id=2]
+[ext_resource path="res://scenes/enemies/shooter/weapons/anim/cannon_proj_explode.tres" type="Animation" id=2]
 [ext_resource path="res://scenes/enemies/shooter/weapons/LongRangeCannonExplosion.cs" type="Script" id=3]
 
 [node name="Explosion" instance=ExtResource( 1 )]
-visible = false
 script = ExtResource( 3 )
 explosionRadius = 125
 
-[node name="Anim" parent="." index="3"]
+[node name="Polygon2D" parent="." index="1"]
+modulate = Color( 0.996078, 0.952941, 0.6, 0 )
+
+[node name="ParticlesBase" parent="." index="3"]
+modulate = Color( 0.435294, 0.435294, 0.435294, 0 )
+
+[node name="ParticlesTop" parent="." index="4"]
+modulate = Color( 0.521569, 0.494118, 0.247059, 0 )
+
+[node name="Anim" type="AnimationPlayer" parent="." index="6"]
 anims/explode = ExtResource( 2 )

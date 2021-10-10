@@ -57,7 +57,7 @@ public class AutoRetrieve : PlayerItem
     public override void ApplyEffect()
     {
         base.ApplyEffect();
-        Switch(true, Active);
+        Switch(true, Active == false);
     }
 
 

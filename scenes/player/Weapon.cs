@@ -30,6 +30,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 
     Sprite inactiveSprite;
     Sprite activeSprite;
+    Particles2D particles;
     //used for stuck in a wall bug
     Godot.Collections.Array stuckCondArr = new Godot.Collections.Array();
     
@@ -51,6 +52,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         activeSprite = (Sprite)GetNode("Sprite2");
         Anim = (AnimationPlayer)GetNode("Anim");        
         TeleportAnim = (AnimationPlayer)GetNode("TeleAnim");
+        particles = (Particles2D)GetNode("Particles2D");
         stuckCondArr.Add(false);
         stuckCondArr.Add(0);
     }
@@ -161,7 +163,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     {
         base._Process(delta);
         //unstuck from wall
-        if((bool)stuckCondArr[0] == true) {
+        if((bool)stuckCondArr[0]) {
             if((float)stuckCondArr[1] > 0) {
                 stuckCondArr[1] = (float)stuckCondArr[1] - delta;
             }
@@ -211,6 +213,9 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         if(CurrentState == States.HELD) {
             return;
         }
+        if(CurrentState == States.ACTIVE) {
+            LeaveParticles();
+        }
         if(body is Player && CurrentState == States.INACTIVE && PlayerNode.WeaponNode == this) {
             OnPickedUp();
         }
@@ -230,6 +235,28 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
             i *= -1;
         }
         AngularVelocity = i * BOUNCE_ROTATION;
+    }
+
+
+    void LeaveParticles() {
+        Particles2D particles2 = (Particles2D)particles.Duplicate();
+        if(IsInstanceValid(PlayerNode) == false) {
+            return;
+        }
+        Level lvl = PlayerNode.LevelNode;
+        Timer timer = new Timer();
+        particles2.GlobalPosition = particles.GlobalPosition;
+        particles2.GlobalRotation = 0;
+        particles2.AddChild(timer);
+        lvl.AddChild(particles2);
+        Godot.Collections.Array arr = new Godot.Collections.Array();
+        arr.Add(particles2);
+        if(timer.IsConnected("timeout", lvl, nameof(Level.QueueFreeObject)) == false) {
+            timer.Connect("timeout", lvl, nameof(Level.QueueFreeObject), arr);
+        }
+        particles2.Amount = 50;
+        particles2.Emitting = true;
+        timer.Start();
     }
 
 

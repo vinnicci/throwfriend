@@ -8,7 +8,6 @@ public class Blob : Enemy
             return;
         }
         LevelNode.PlayerEngaging.Remove(Name);
-        GD.Print("die: " + LevelNode.PlayerEngaging.Count);
         EmitSignal(nameof(Died));
         Health = 0;
         ExplosionNode.Explode();

@@ -137,7 +137,6 @@ func engage_enemy(enemy: RigidBody2D):
 	var arr: Array = level_node.get("PlayerEngaging")
 	if arr.has(parent_node.name) == false:
 		arr.append(parent_node.name)
-	print("engage: " + arr.size() as String)
 	_on_Tick_timeout()
 	tick.start()
 

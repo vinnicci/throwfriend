@@ -14,7 +14,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0.984314, 1 ), Color( 1, 0, 0.984314, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.996078, 0.788235, 0.6, 1 ), Color( 0.992157, 0.470588, 0, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("ParticlesTop:modulate")
@@ -26,7 +26,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.7, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0.984314, 1 ), Color( 0.658824, 0.337255, 0.654902, 1 ), Color( 0.658824, 0.337255, 0.654902, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.552941, 0.141176, 1 ), Color( 0.529412, 0.388235, 0.254902, 1 ), Color( 0.529412, 0.388235, 0.254902, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("ParticlesBase:modulate")
@@ -38,5 +38,5 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.7, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.933333, 0.470588, 0.92549, 1 ), Color( 0.596078, 0.596078, 0.596078, 1 ), Color( 0.596078, 0.596078, 0.596078, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.72549, 0.47451, 1 ), Color( 0.580392, 0.580392, 0.580392, 1 ), Color( 0.435294, 0.435294, 0.435294, 0 ) ]
 }
