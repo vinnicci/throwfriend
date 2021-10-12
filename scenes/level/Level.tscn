@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/level/Level.cs" type="Script" id=1]
 [ext_resource path="res://scenes/level/NavTileMap.tscn" type="PackedScene" id=2]
@@ -33,6 +33,15 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+
+[sub_resource type="Environment" id=2]
+background_mode = 4
+glow_enabled = true
+glow_levels/3 = false
+glow_intensity = 1.0
+glow_strength = 0.8
+glow_blend_mode = 1
+glow_bicubic_upscale = true
 
 [node name="Level" type="YSort"]
 script = ExtResource( 1 )
@@ -89,3 +98,6 @@ __meta__ = {
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/show_level_name = SubResource( 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )

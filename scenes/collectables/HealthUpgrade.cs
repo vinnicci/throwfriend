@@ -9,6 +9,7 @@ public class HealthUpgrade : Collectable
         Player player = (Player)body;
         player.ChangeEntityBaseStats(player.health + 1, -1);
         player.UpdateStatsDisp();
+        player.WarnPlayer("MAX HP INCREASED");
     }
 
 

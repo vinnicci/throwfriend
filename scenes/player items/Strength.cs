@@ -15,6 +15,7 @@ public class Strength : PlayerItem
             return;
         }
         PlayerNode.ThrowStrength += EXTRA_STRENGTH;
+        PlayerNode.knockbackMult -= 0.5f;
         PlayerNode.SnarkCarrySpeedReduction -= SPEED_REDUCTION_BONUS;
         PlayerNode.Speed = (int)(PlayerNode.speed - PlayerNode.speed * PlayerNode.SnarkCarrySpeedReduction);
         done = true;

@@ -6,6 +6,7 @@
 
 [resource]
 resource_name = "die"
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprite:rotation_degrees")
 tracks/0/interp = 1
@@ -54,7 +55,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2 ),
+"times": PoolRealArray( 0, 0.01 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 2 ), ExtResource( 3 ) ]

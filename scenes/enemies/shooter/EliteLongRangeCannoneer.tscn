@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/enemies/shooter/BaseShooter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/base/anim/entity_die.tres" type="Animation" id=2]
@@ -13,7 +13,10 @@
 [ext_resource path="res://scenes/enemies/shooter/anim/elite_particles.tres" type="Material" id=11]
 [ext_resource path="res://scenes/enemies/shooter/ais/EliteShooterAI.tscn" type="PackedScene" id=12]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="CircleShape2D" id=2]
 radius = 22.0
 
 [node name="EliteLongRangeCannoneer" instance=ExtResource( 1 )]
@@ -39,6 +42,7 @@ modulate = Color( 0.0588235, 0.101961, 0.0627451, 1 )
 position = Vector2( 0, -45 )
 
 [node name="Particles2D" type="Particles2D" parent="." index="2"]
+material = SubResource( 1 )
 amount = 25
 local_coords = false
 process_material = ExtResource( 11 )
@@ -48,7 +52,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" parent="." index="3"]
 position = Vector2( 0, -5 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Health" parent="HUD" index="0"]
 margin_top = -83.0

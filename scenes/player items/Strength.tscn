@@ -6,7 +6,7 @@
 
 [node name="Strength" instance=ExtResource( 3 )]
 script = ExtResource( 1 )
-itemDescription = "Increase your strength. More strength means less speed reduction while carrying Snark, and you can throw him even further."
+itemDescription = "Increases your throw strength, knockback resistance and speed while carrying Snark."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 2 )

@@ -15,6 +15,7 @@ public class EliteBlasterAndShield : AllRounderWeapon
 
     public override void SpawnInstance(string packedSceneKey, int count = 1) {
         if(packedSceneKey == "proj" && count == 2) {
+            EmitParticles();
             SpawnProj2();
             return;
         }

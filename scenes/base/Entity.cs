@@ -129,7 +129,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
 
 
-    [Export] float knockbackMult = 1f;
+    [Export] public float knockbackMult = 1f;
     [Signal] public delegate void Died();
 
 
@@ -163,6 +163,13 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
 
 
+    public async void SlowEffect(float timeScale, float duration) {
+        Engine.TimeScale = timeScale;
+        await ToSignal(GetTree().CreateTimer(duration), "timeout");
+        Engine.TimeScale = 1;
+    }
+
+
     ///<summary>Enter -1 as argument to ignore stat change</summary>
     public void ChangeEntityBaseStats(int newHealth = -1, int newSpeed = -1) {
         if(newHealth != -1) {
@@ -184,6 +191,26 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
 
     public virtual void Spawn(Level lvl, Vector2 globalPos, Vector2 destination, float globalRot = 0) {
         lvl.Spawn(this, globalPos, globalRot);
+    }
+
+
+    public void LeaveTrail() {
+        //Node2D trailSprite = (Node2D)GetNode("Sprite").Duplicate();
+        Node2D trailSprite = (Node2D)spriteNode.Duplicate();
+        LevelNode.AddChild(trailSprite);
+        Tween tween = new Tween();
+        trailSprite.AddChild(tween);
+        //trailSprite.GlobalPosition = new Vector2(GlobalPosition.x, GlobalPosition.y - 11);
+        trailSprite.GlobalPosition = spriteNode.GlobalPosition;
+        trailSprite.GlobalRotation = GlobalRotation;
+        Godot.Collections.Array arr = new Godot.Collections.Array();
+        arr.Add(trailSprite);
+        if(tween.IsConnected("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject)) == false) {
+            tween.Connect("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject), arr);
+        }
+        tween.InterpolateProperty(trailSprite, "modulate", trailSprite.Modulate, new Color(1,1,1,0), 0.25f,
+        Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        tween.Start();
     }
 
 

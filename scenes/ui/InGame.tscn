@@ -5,194 +5,10 @@
 [ext_resource path="res://scenes/ui/InGame.cs" type="Script" id=3]
 [ext_resource path="res://scenes/ui/StatsDesc.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/ui/Settings.tscn" type="PackedScene" id=5]
-
-[sub_resource type="Animation" id=1]
-resource_name = "enter"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Loadout:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -560, 150 ), Vector2( 140, 150 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("StatsDesc:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1390, 150 ), Vector2( 690, 150 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "exit"
-length = 0.25
-step = 0.025
-tracks/0/type = "value"
-tracks/0/path = NodePath("Loadout:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 140, 150 ), Vector2( -560, 150 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("StatsDesc:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 690, 150 ), Vector2( 1390, 150 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.25 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "settings_enter"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Settings:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 320, -400 ), Vector2( 320, 180 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Settings:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Loadout:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 140, 150 ), Vector2( -560, 150 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("StatsDesc:rect_position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 690, 150 ), Vector2( 1390, 150 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "settings_exit"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Loadout:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -560, 150 ), Vector2( 140, 150 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("StatsDesc:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1390, 150 ), Vector2( 690, 150 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Settings:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 320, 180 ), Vector2( 320, -400 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Settings:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.25 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
+[ext_resource path="res://scenes/ui/anim/in_game_ui_enter.tres" type="Animation" id=6]
+[ext_resource path="res://scenes/ui/anim/in_game_ui_exit.tres" type="Animation" id=7]
+[ext_resource path="res://scenes/ui/anim/settings_enter.tres" type="Animation" id=8]
+[ext_resource path="res://scenes/ui/anim/settings_exit.tres" type="Animation" id=9]
 
 [node name="InGame" type="Control"]
 visible = false
@@ -212,19 +28,19 @@ margin_right = -320.0
 margin_bottom = -760.0
 
 [node name="Loadout" parent="." instance=ExtResource( 1 )]
-margin_left = 140.0
+margin_left = -560.0
 margin_top = 150.0
-margin_right = -690.0
+margin_right = -1390.0
 margin_bottom = -195.0
 
 [node name="StatsDesc" parent="." instance=ExtResource( 4 )]
-margin_left = 690.0
+margin_left = 1390.0
 margin_top = 150.0
-margin_right = -140.0
+margin_right = 560.0
 margin_bottom = -195.0
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-anims/enter = SubResource( 1 )
-anims/exit = SubResource( 2 )
-anims/settings_enter = SubResource( 3 )
-anims/settings_exit = SubResource( 4 )
+anims/enter = ExtResource( 6 )
+anims/exit = ExtResource( 7 )
+anims/settings_enter = ExtResource( 8 )
+anims/settings_exit = ExtResource( 9 )

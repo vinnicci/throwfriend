@@ -6,7 +6,7 @@
 
 [node name="ExtraSpeed" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Increase your speed."
+itemDescription = "Increases your speed."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )

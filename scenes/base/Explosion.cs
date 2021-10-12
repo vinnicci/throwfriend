@@ -22,6 +22,7 @@ public abstract class Explosion : Area2D
     Particles2D particlesBase;
     const float CAM_DIST_MULT = 2;
     protected Godot.Collections.Dictionary calcDict = new Godot.Collections.Dictionary();
+    const int CIRCLE_PT_COUNT = 24;
 
 
     public override void _Ready()
@@ -36,20 +37,7 @@ public abstract class Explosion : Area2D
         particlesBase = (Particles2D)GetNode("ParticlesBase");
         Damage = damage;
         ExplosionRadius = explosionRadius;
-        CircleShape2D circle = new CircleShape2D();
-        circle.Radius = ExplosionRadius;
-        collision.Shape = circle;
-        int circleCountPtCount = 24;
-        Godot.Vector2[] circArr = new Vector2[circleCountPtCount];
-        for(int i = 0; i <= circleCountPtCount - 1; i++) {
-            Vector2 vec = new Vector2(ExplosionRadius,0).Rotated(Mathf.Deg2Rad(i*(360/circleCountPtCount)));
-            circArr[i] = vec;
-        }
-        poly.Polygon = circArr;
-        calcDict.Add("particlesAmountTop", ExplosionRadius * TOP_PARTICLES_MULT);
-        calcDict.Add("particlesAmountBase", ExplosionRadius * BASE_PARTICLES_MULT);
-        calcDict.Add("camDistSq", (int)(ExplosionRadius*ExplosionRadius*CAM_DIST_MULT*CAM_DIST_MULT));
-        calcDict.Add("polyScale", 1f);
+        UpdateRadius();
     }
 
 
@@ -71,24 +59,14 @@ public abstract class Explosion : Area2D
         if(anim.IsPlaying()) {
             return false;
         }
-        poly.Scale = new Vector2(1,1) * (float)calcDict["polyScale"];
+        poly.Scale = new Vector2(1,1);
         if(explosionRadius != ExplosionRadius) {
-            float scale = ExplosionRadius/explosionRadius;
-            collision.Scale = new Vector2(1,1)*scale;
-            poly.Scale = new Vector2(1,1)*scale;
-            explosionRadius = ExplosionRadius;
-            calcDict["polyScale"] = scale;
-            calcDict["particlesAmountTop"] = ExplosionRadius * TOP_PARTICLES_MULT;
-            calcDict["particlesAmountBase"] = ExplosionRadius * BASE_PARTICLES_MULT;
-            calcDict["camDistSq"] = (int)(ExplosionRadius*ExplosionRadius*CAM_DIST_MULT*CAM_DIST_MULT);
-            cameraShakeIntensity *= 2;
-            cameraShakeDuration *= 2;
-            cameraShakePriority = 1;
+            UpdateRadius();
         }
         if(IsInstanceValid(LevelNode.PlayerNode) &&
         GlobalPosition.DistanceSquaredTo(LevelNode.PlayerNode.GlobalPosition) <= (int)calcDict["camDistSq"]) {
-            LevelNode.PlayerNode.Camera.ShakeCamera(cameraShakeIntensity, cameraShakeFrequency,
-            cameraShakeDuration, cameraShakePriority);
+            LevelNode.PlayerNode.Camera.ShakeCamera(new Vector2(cameraShakeIntensity, cameraShakeIntensity),
+            cameraShakeFrequency, cameraShakeDuration, cameraShakePriority);
         }
         particlesTop.Amount = (int)calcDict["particlesAmountTop"];
         particlesBase.Amount = (int)calcDict["particlesAmountBase"];
@@ -123,6 +101,44 @@ public abstract class Explosion : Area2D
             }
         }
         return true;
+    }
+
+
+    public void UpdateRadius() {
+        CircleShape2D circle = new CircleShape2D();
+        circle.Radius = ExplosionRadius;
+        collision.Shape = circle;
+        Godot.Vector2[] circArr = new Vector2[CIRCLE_PT_COUNT];
+        for(int i = 0; i <= CIRCLE_PT_COUNT - 1; i++) {
+            Vector2 vec = new Vector2(ExplosionRadius,0).Rotated(Mathf.Deg2Rad(i*(360/CIRCLE_PT_COUNT)));
+            circArr[i] = vec;
+        }
+        poly.Polygon = circArr;
+        if(calcDict.Contains("particlesAmountTop")) {
+            calcDict["particlesAmountTop"] = ExplosionRadius * TOP_PARTICLES_MULT;
+        }
+        else {
+            calcDict.Add("particlesAmountTop", ExplosionRadius * TOP_PARTICLES_MULT);
+        }
+        if(calcDict.Contains("particlesAmountBase")) {
+            calcDict["particlesAmountBase"] = ExplosionRadius * BASE_PARTICLES_MULT;    
+        }
+        else {
+            calcDict.Add("particlesAmountBase", ExplosionRadius * BASE_PARTICLES_MULT);
+        }
+        if(calcDict.Contains("camDistSq")) {
+            calcDict["camDistSq"] = (int)(ExplosionRadius*ExplosionRadius*CAM_DIST_MULT*CAM_DIST_MULT);
+        }
+        else {
+            calcDict.Add("camDistSq", (int)(ExplosionRadius*ExplosionRadius*CAM_DIST_MULT*CAM_DIST_MULT));
+        }
+        float expScale = ExplosionRadius/explosionRadius;
+        cameraShakeIntensity = (int)(cameraShakeIntensity*expScale);
+        cameraShakeDuration *= expScale;
+        if(expScale > 2) {
+            cameraShakePriority = 1;
+        }
+        explosionRadius = ExplosionRadius;
     }
 
 

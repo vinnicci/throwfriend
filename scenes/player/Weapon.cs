@@ -219,12 +219,8 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         if(body is Player && CurrentState == States.INACTIVE && PlayerNode.WeaponNode == this) {
             OnPickedUp();
         }
-        else if(body is IHealthModifiable) {
-            IHealthModifiable hitBody = (IHealthModifiable)body;
-            int dmg = PlayerNode.SnarkDmg * PlayerNode.SnarkDmgMult;
-            if(CurrentState == States.ACTIVE) {
-                hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), dmg);
-            }
+        else if(body is IHealthModifiable && CurrentState == States.ACTIVE) {
+            ApplyDmg(body);
         }
         if(body is LevelTiles) {
             stuckCondArr[0] = true;
@@ -238,14 +234,19 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     }
 
 
-    void LeaveParticles() {
+    void LeaveParticles(Vector2 globalPos = default) {
         Particles2D particles2 = (Particles2D)particles.Duplicate();
         if(IsInstanceValid(PlayerNode) == false) {
             return;
         }
         Level lvl = PlayerNode.LevelNode;
         Timer timer = new Timer();
-        particles2.GlobalPosition = particles.GlobalPosition;
+        if(globalPos == default) {
+            particles2.GlobalPosition = particles.GlobalPosition;
+        }
+        else {
+            particles2.GlobalPosition = globalPos;
+        }
         particles2.GlobalRotation = 0;
         particles2.AddChild(timer);
         lvl.AddChild(particles2);
@@ -258,6 +259,10 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         particles2.Emitting = true;
         timer.Start();
     }
+
+
+    const float TRAIL_INTERVAL = 0.025f;
+    float trailReady;
 
 
     void OnWeaponBodyExited(Godot.Object body) {
@@ -293,9 +298,26 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 
 
     void OnSnarkBeamBodyEntered(Godot.Object body) {
-        if(body is Enemy) {
-            ((Entity)body).Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), PlayerNode.SnarkDmg * PlayerNode.SnarkDmgMult);
-            ((Enemy)body).Engage();
+        if(body is IHealthModifiable) {
+            ApplyDmg(body);
+            LeaveParticles(((Node2D)body).GlobalPosition);
+            if(body is Enemy) {
+                ((Enemy)body).Engage();
+            }
+        }
+    }
+
+
+    const float ENEMY_KILL_SLOW_SCALE = 0.1f;
+    const float ENEMY_KILL_SLOW_DURATION = 0.05f;
+
+
+    void ApplyDmg(Godot.Object body) {
+        IHealthModifiable hitBody = (IHealthModifiable)body;
+        int dmg = PlayerNode.SnarkDmg * PlayerNode.SnarkDmgMult;
+        hitBody.Hit(new Vector2(KNOCKBACK, 0).Rotated(GlobalRotation), dmg);
+        if(hitBody.Health <= 0) {
+            ((Entity)body).SlowEffect(ENEMY_KILL_SLOW_SCALE, ENEMY_KILL_SLOW_DURATION);
         }
     }
 

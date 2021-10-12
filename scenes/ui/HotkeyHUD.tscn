@@ -3,87 +3,8 @@
 [ext_resource path="res://scenes/ui/HKHudSlot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ui/HotkeyHUD.cs" type="Script" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
-
-[sub_resource type="Animation" id=1]
-resource_name = "hide_dialogue"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("DialoguePanel:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -305, -65 ), Vector2( -305, 200 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Panel:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 250 ), Vector2( 0, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("DialoguePanel:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
-[sub_resource type="Animation" id=2]
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("DialoguePanel:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("DialoguePanel:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -305, 200 ), Vector2( -305, -65 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Panel:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 250 ) ]
-}
+[ext_resource path="res://scenes/ui/anim/hide_dialogue.tres" type="Animation" id=4]
+[ext_resource path="res://scenes/ui/anim/show_dialogue.tres" type="Animation" id=5]
 
 [node name="HotkeyHUD" type="Control"]
 anchor_right = 1.0
@@ -174,8 +95,8 @@ __meta__ = {
 }
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-anims/hide_dialogue = SubResource( 1 )
-anims/show_dialogue = SubResource( 2 )
+anims/hide_dialogue = ExtResource( 4 )
+anims/show_dialogue = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="."]
 

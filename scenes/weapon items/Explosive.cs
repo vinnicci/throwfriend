@@ -18,6 +18,7 @@ public class Explosive : WeaponItem
         base.InitEffect();
         if(this == WeaponNode.Item2 && WeaponNode.Item1 is Explosive) {
             ((Explosive)WeaponNode.Item1).ExplosionNode.ExplosionRadius *= 2;
+            ((Explosive)WeaponNode.Item1).ExplosionNode.UpdateRadius();
         }
         if(WeaponNode.IsConnected("body_entered", this, nameof(Explode)) == false) {
             WeaponNode.Connect("body_entered", this, nameof(Explode));

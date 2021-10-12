@@ -8,16 +8,22 @@ public abstract class EnemyWeapon : Node2D, ISpawner
     
     public virtual Enemy ParentNode {get; set;}
 
-    protected Position2D spawnPoint;
+    protected Particles2D spawnPoint;
     public AnimationPlayer Anim {get; set;}
 
 
     public override void _Ready()
     {
         base._Ready();
-        spawnPoint = (Position2D)GetNode("Sprites/ProjSpawn");
+        spawnPoint = (Particles2D)GetNode("Sprites/ProjSpawn");
         Anim = (AnimationPlayer)GetNode("Anim");
         Anim.Connect("animation_finished", this, nameof(FinishShooting));
+    }
+
+
+    protected void EmitParticles() {
+        spawnPoint.Amount = 50;
+        spawnPoint.Emitting = true;
     }
 
 
@@ -35,6 +41,7 @@ public abstract class EnemyWeapon : Node2D, ISpawner
 
     public virtual void SpawnInstance(String packedSceneKey, int count = 1) {
         if(packedSceneKey == "proj") {
+            EmitParticles();
             SpawnProj();
         }
     }

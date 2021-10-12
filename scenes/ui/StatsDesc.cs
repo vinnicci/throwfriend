@@ -7,13 +7,14 @@ public class StatsDesc : Control
     public Settings SettingsNode {get; set;}
     public Label DescriptionLabel {get; private set;}
     public Player PlayerNode {get; set;}
-    VBoxContainer statsDisp;
+    Control statsDisp;
     Label healthStat;
     Label maxHealthStat;
     Label speedStat;
     Label throwStrengthStat;
     Label snarkDmgStat;
     Label snarkCarrySpeedReduction;
+    Label knockbackResist;
     Control helpDisp;
     Control fasttravelDisp;
     Label tipLabel;
@@ -26,13 +27,14 @@ public class StatsDesc : Control
         base._Ready();
         DescriptionLabel = (Label)GetNode("DescPanel/Description");
         settingsButton = (Button)GetNode("DescPanel/SettingsButton");
-        statsDisp = (VBoxContainer)GetNode("StatsPanel/StatsDisp");
+        statsDisp = (Control)GetNode("StatsPanel/StatsDisp");
         healthStat = (Label)GetNode("StatsPanel/StatsDisp/Health");
         maxHealthStat = (Label)GetNode("StatsPanel/StatsDisp/MaxHealth");
         speedStat = (Label)GetNode("StatsPanel/StatsDisp/Speed");
         throwStrengthStat = (Label)GetNode("StatsPanel/StatsDisp/ThrowStrength");
         snarkDmgStat = (Label)GetNode("StatsPanel/StatsDisp/SnarkDmg");
         snarkCarrySpeedReduction = (Label)GetNode("StatsPanel/StatsDisp/SnarkCarrySpeedReduction");
+        knockbackResist = (Label)GetNode("StatsPanel/StatsDisp/KnockbackResist");
         helpDisp = (Control)GetNode("StatsPanel/HelpDisp");
         tipLabel = (Label)GetNode("StatsPanel/HelpDisp/Tip");
         fasttravelDisp = (Control)GetNode("FastTravelDisp");
@@ -105,6 +107,8 @@ public class StatsDesc : Control
         snarkDmgStat.Text = "Snark Damage: " + (int)(PlayerNode.SnarkDmg * PlayerNode.SnarkDmgMult);
         snarkCarrySpeedReduction.Text =
         "Snark Carry Speed Reduction: " + (int)(PlayerNode.speed * PlayerNode.SnarkCarrySpeedReduction);
+        knockbackResist.Text = "Knockback Resistance: " + (float)(-(PlayerNode.knockbackMult - 1)*100) + ("%");
+
     }
 
 

@@ -1,18 +1,17 @@
 [gd_resource type="Animation" format=2]
 
 [resource]
-resource_name = "damaged"
-length = 0.25
-step = 0.05
+resource_name = "show_warning"
+length = 4.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:scale")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.05, 0.1, 0.25 ),
+"times": PoolRealArray( 0, 3.5, 4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 0.2 ), Vector2( 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }

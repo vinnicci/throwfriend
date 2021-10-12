@@ -22,10 +22,6 @@ public class Dash : PlayerItem
     }
 
 
-    const float TRAIL_INTERVAL = 0.05f;
-    float trailReady;
-
-
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);

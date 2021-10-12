@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/enemies/shooter/weapons/ShooterWeapon.cs" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/shooter/weapons/anim/idle.tres" type="Animation" id=2]
@@ -8,21 +8,24 @@
 [ext_resource path="res://scenes/enemies/shooter/weapons/SprayerAcidProj.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/EnemyWeapon.tscn" type="PackedScene" id=7]
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.151515 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.131241, 1, 0.078125, 1 )
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=4]
 max_value = 100.0
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.476124, 100 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=6]
 flag_disable_z = true
 spread = 5.0
 gravity = Vector3( 0, 0, 0 )
@@ -32,10 +35,10 @@ angular_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 100.0
-damping_curve = SubResource( 4 )
+damping_curve = SubResource( 5 )
 scale = 20.0
 scale_random = 0.5
-color_ramp = SubResource( 2 )
+color_ramp = SubResource( 3 )
 
 [node name="EnemyWeapon" instance=ExtResource( 7 )]
 script = ExtResource( 1 )
@@ -44,13 +47,14 @@ spawnScenes = {
 }
 
 [node name="Particles2D" type="Particles2D" parent="Sprites" index="0"]
+material = SubResource( 1 )
 position = Vector2( 13, 1.21715e-05 )
 z_index = 1
 emitting = false
 amount = 100
 visibility_rect = Rect2( -300, -300, 600, 600 )
 local_coords = false
-process_material = SubResource( 5 )
+process_material = SubResource( 6 )
 
 [node name="Sprite2" type="Sprite" parent="Sprites" index="1"]
 position = Vector2( 0, 2 )

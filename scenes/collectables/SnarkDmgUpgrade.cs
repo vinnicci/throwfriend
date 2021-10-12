@@ -9,6 +9,7 @@ public class SnarkDmgUpgrade : Collectable
         Player player = (Player)body;
         player.SnarkDmgMult += 1;
         player.UpdateStatsDisp();
+        player.WarnPlayer("SNARK DAMAGE INCREASED");
     }
 
 

@@ -15,11 +15,12 @@ public class ItemSelection : Panel
             foreach(ItemSelect itemSelect in GetNode("GridContainer").GetChildren()) {
                 itemSelect.DescriptionNode = description;
                 itemSelect.LoadoutNode = LoadoutNode;
+                itemSelect.ItemSelectionNode = this;
             }
         }
     }
 
-    AnimationPlayer anim;
+    public AnimationPlayer Anim {get; private set;}
     Label description;
     Color RED = new Color(0.6f, 0.3f, 0.3f);
 
@@ -27,18 +28,18 @@ public class ItemSelection : Panel
     public override void _Ready()
     {
         base._Ready();
-        anim = (AnimationPlayer)GetNode("Anim");
+        Anim = (AnimationPlayer)GetNode("Anim");
         incompatibleItems = new List<String>();
     }
 
 
     public void ShowItemSelection(bool visibility) {
-        if(anim.IsPlaying() == false) {
+        if(Anim.IsPlaying() == false) {
             if(visibility && Visible == false) {
-                anim.Play("show");
+                Anim.Play("show");
             }
             else if(visibility == false && Visible) {
-                anim.Play("hide");
+                Anim.Play("hide");
             }
         }
         SetIncompatibleItems();

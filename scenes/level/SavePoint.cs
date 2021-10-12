@@ -8,6 +8,7 @@ public class SavePoint : Area2D
     bool saving = false;
     Player player;
     Main mainNode;
+    Particles2D particles;
 
     public Level LevelNode {get; set;}
 
@@ -16,6 +17,7 @@ public class SavePoint : Area2D
     {
         base._Ready();
         mainNode = (Main)GetNode("/root/Main");
+        particles = (Particles2D)GetNode("Particles2D");
         SetProcess(false);
     }
 
@@ -50,6 +52,9 @@ public class SavePoint : Area2D
             return;
         }
         player.WarnPlayer("GAME SAVED");
+        particles.GlobalPosition = player.GlobalPosition;
+        particles.Amount = 100;
+        particles.Emitting = true;
         Vector2 currentCell = (Vector2)mainNode.PlayerSaveFile.Get("CurrentCell");
         Godot.Collections.Array arr = (Godot.Collections.Array)mainNode.WorldSaveFile.Get("SavePoints");
         if(arr.Contains(currentCell) == false) {

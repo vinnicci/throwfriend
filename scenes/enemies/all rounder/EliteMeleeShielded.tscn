@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/melee_attack_back.tres" type="Animation" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/anim/idle.tres" type="Animation" id=2]
@@ -18,7 +18,10 @@
 [ext_resource path="res://scenes/enemies/all rounder/weapons/SlowBlob.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/EliteSwordAndShield.tscn" type="PackedScene" id=17]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="CircleShape2D" id=2]
 radius = 22.0
 
 [node name="EliteMeleeShielded" instance=ExtResource( 6 )]
@@ -46,12 +49,13 @@ spawnScenes = {
 }
 
 [node name="Particles2D" type="Particles2D" parent="." index="1"]
+material = SubResource( 1 )
 amount = 25
 local_coords = false
 process_material = ExtResource( 14 )
 
 [node name="CollisionShape2D" parent="." index="3"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Health" parent="HUD" index="0"]
 margin_top = -50.0

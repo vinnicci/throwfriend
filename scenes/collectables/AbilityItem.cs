@@ -11,6 +11,7 @@ public class AbilityItem : Collectable
         Player player = (Player)body;
         player.AvailableUpgrade += 1;
         player.UpdateUpgrade();
+        player.WarnPlayer("NEW ABILITY AVAILABLE");
     }
 
 

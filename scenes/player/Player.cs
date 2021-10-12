@@ -194,6 +194,8 @@ public class Player : Entity
 
     [Signal] public delegate void ActivatedWeaponItem();
     const float SLOW_EFFECT = 0.3f;
+    const float PLAYER_THROW_SHAKE_INTENSITY = 5;
+    const float PLAYER_THROW_SHAKE_DURATION = 0.075f;
 
 
     public bool IsStopped {get; set;}
@@ -261,6 +263,8 @@ public class Player : Entity
         //throw
         if(Input.IsActionJustReleased("throw_weap") && hasWeap) {
             WeaponNode.Throw(ThrowStrength, GlobalPosition, Vector2.Zero, Center.GlobalRotation);
+            Camera.ShakeCamera((GetGlobalMousePosition() - GlobalPosition).Normalized()*PLAYER_THROW_SHAKE_INTENSITY,
+            PLAYER_THROW_SHAKE_DURATION, PLAYER_THROW_SHAKE_DURATION, 0, false);
             if(arms.FlipH == false) {
                 throwAnim.Play("throw");
             }
@@ -316,6 +320,9 @@ public class Player : Entity
 
 
     const float PLAYER_HIT_COOLDOWN = 1f;
+    readonly Vector2 PLAYER_HIT_SHAKE_INTENSITY = new Vector2(10, 10);
+    const float PLAYER_HIT_SHAKE_FREQ = 0.05f;
+    const float PLAYER_HIT_SHAKE_DURATION = 0.1f;
 
 
     public override bool Hit(Vector2 knockback, int damage)
@@ -325,7 +332,7 @@ public class Player : Entity
         if(base.Hit(knockback, damage)) {
             if(Health > 0 && damage > 0) {
                 HitCooldown.Start(1f);
-                Camera.ShakeCamera(10, 0.05f, 0.1f, 0);
+                Camera.ShakeCamera(PLAYER_HIT_SHAKE_INTENSITY, PLAYER_HIT_SHAKE_FREQ, PLAYER_HIT_SHAKE_DURATION, 0);
             }
             else if(Health <= 0) {
                 DamageAnim.Stop();
@@ -334,6 +341,17 @@ public class Player : Entity
             return true;
         }
         return false;
+    }
+
+
+    const float PLAYER_DIE_SLOW_SCALE = 0.1f;
+    const float PLAYER_DIE_SLOW_DURATION = 0.075f;
+
+
+    public override void Die()
+    {
+        base.Die();
+        SlowEffect(PLAYER_DIE_SLOW_SCALE, PLAYER_DIE_SLOW_DURATION);
     }
 
 
@@ -377,24 +395,6 @@ public class Player : Entity
 
     public void UpdateFastTravelPoints() {
         statsDesc.UpdateFastTravelPoints();
-    }
-
-
-    public void LeaveTrail() {
-        Node2D teleSprite = (Node2D)GetNode("Sprite").Duplicate();
-        LevelNode.AddChild(teleSprite);
-        Tween tween = new Tween();
-        teleSprite.AddChild(tween);
-        teleSprite.GlobalPosition = new Vector2(GlobalPosition.x, GlobalPosition.y - 11);
-        teleSprite.GlobalRotation = GlobalRotation;
-        Godot.Collections.Array arr = new Godot.Collections.Array();
-        arr.Add(teleSprite);
-        if(tween.IsConnected("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject)) == false) {
-            tween.Connect("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject), arr);
-        }
-        tween.InterpolateProperty(teleSprite, "modulate", teleSprite.Modulate, new Color(1,1,1,0), 0.25f,
-        Tween.TransitionType.Linear, Tween.EaseType.InOut);
-        tween.Start();
     }
 
 

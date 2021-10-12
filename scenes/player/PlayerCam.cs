@@ -45,15 +45,17 @@ public class PlayerCam : Camera2D
     }
 
 
-    float amp;
+    Vector2 amp;
+    bool rand;
     int currentPriority;
 
 
-    public void ShakeCamera(float amp, float frequency, float duration, int priority = 0) {
+    public void ShakeCamera(Vector2 amp, float frequency, float duration, int priority = 0, bool randomized = true) {
         if(ParentNode is Player == false || priority < currentPriority) {
             return;
         }
         this.amp = amp;
+        rand = randomized;
         IsShaking = true;
         currentPriority = priority;
         freqTimer.WaitTime = frequency;
@@ -65,10 +67,14 @@ public class PlayerCam : Camera2D
 
 
     void Shake() {
-        float randX = (float)GD.RandRange(-amp, amp);
-        float randY = (float)GD.RandRange(-amp, amp);
-        Vector2 ampVector = new Vector2(randX, randY + Offset.y);
-        shakeTween.InterpolateProperty(this, "offset", Offset, ampVector, freqTimer.WaitTime,
+        Vector2 dirShake = Vector2.Zero;
+        if(rand) {
+            dirShake = new Vector2((float)GD.RandRange(-amp.x, amp.x), (float)GD.RandRange(-amp.y, amp.y) + Offset.y);
+        }
+        else {
+            dirShake = new Vector2(amp.x, amp.y + Offset.y);
+        }
+        shakeTween.InterpolateProperty(this, "offset", Offset, dirShake, freqTimer.WaitTime,
         Tween.TransitionType.Sine, Tween.EaseType.InOut);
         shakeTween.Start();
     }

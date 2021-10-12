@@ -15,6 +15,9 @@ public abstract class BaseCharger : Enemy
             charging = false;
             SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
         }
+        else if(charging) {
+            LeaveTrail();
+        }
     }
 
 
