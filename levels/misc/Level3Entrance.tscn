@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/level/Walls.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/level/Props.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/RandomEnemySpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/level/LabLight.tscn" type="PackedScene" id=9]
 
 [node name="Level3Entrance" instance=ExtResource( 2 )]
 
@@ -133,6 +134,18 @@ maxSpawnCount = 2
 [node name="InvisibleWalls" parent="Objects" index="27"]
 visible = false
 tile_data = PoolIntArray( -786400, 1, 65538, -720864, 1, 65538, -65553, 1, 65538, -17, 1, 65538 )
+
+[node name="LabLight" parent="Objects" index="28" instance=ExtResource( 9 )]
+position = Vector2( 32.7579, -1118.81 )
+
+[node name="LabLight2" parent="Objects" index="29" instance=ExtResource( 9 )]
+position = Vector2( 34.5834, -284.185 )
+
+[node name="LabLight3" parent="Objects" index="30" instance=ExtResource( 9 )]
+position = Vector2( 33.0797, 159.384 )
+
+[node name="LabLight4" parent="Objects" index="31" instance=ExtResource( 9 )]
+position = Vector2( 32.1938, 928.8 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer" index="0"]
 

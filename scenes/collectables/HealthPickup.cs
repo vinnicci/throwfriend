@@ -13,6 +13,7 @@ public class HealthPickup : Collectable
         TriggerAnim.Play("pickup");
         player.Hit(new Vector2(0,0), -1);
         player.UpdateStatsDisp();
+        player.PlaySoundEffect("HealthPickup");
     }
 
 

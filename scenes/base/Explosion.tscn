@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/base/Explosion.cs" type="Script" id=1]
+[ext_resource path="res://assets/misc/snd_explosion.wav" type="AudioStream" id=2]
 [ext_resource path="res://scenes/base/anim/explosion_particles_top.tres" type="Material" id=4]
 [ext_resource path="res://scenes/base/anim/explosion_particles_base.tres" type="Material" id=5]
 
@@ -46,3 +47,7 @@ local_coords = false
 process_material = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = 1.0

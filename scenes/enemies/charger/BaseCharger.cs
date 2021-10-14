@@ -4,7 +4,7 @@ using System;
 public abstract class BaseCharger : Enemy
 {
     protected bool charging = false;
-    protected const int CHARGE_MIN_V = 3000;
+    protected const int CHARGE_MIN_V = 100000;
 
 
     public override void _PhysicsProcess(float delta)
@@ -16,7 +16,7 @@ public abstract class BaseCharger : Enemy
             SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
         }
         else if(charging) {
-            LeaveTrail();
+            LeaveTrail(2);
         }
     }
 

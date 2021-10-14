@@ -10,6 +10,7 @@ public class HealthUpgrade : Collectable
         player.ChangeEntityBaseStats(player.health + 1, -1);
         player.UpdateStatsDisp();
         player.WarnPlayer("MAX HP INCREASED");
+        player.PlaySoundEffect("HealthUpgrade");
     }
 
 

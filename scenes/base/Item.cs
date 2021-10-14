@@ -9,7 +9,7 @@ using System.Collections.Generic;
 ///     2. Add Item as child
 ///     3. Activate()
 ///</summary>
-public abstract class Item : Node2D
+public abstract class Item : Node2D, ISoundEmitter
 {
     public List<String> incompatibilityList = new List<string>();
     [Export] public String itemDescription = "";
@@ -41,12 +41,15 @@ public abstract class Item : Node2D
     }
     public Timer Cooldown {get; protected set;}
     public bool Active {get; protected set;}
+    public Node2D SoundsNode {get; set;}
 
 
     public override void _Ready()
     {
         base._Ready();
         Cooldown = (Timer)GetNode("Cooldown");
+        SoundsNode = (Node2D)GetNode("Sounds");
+        SoundsDict = new Godot.Collections.Dictionary<String, AudioStreamPlayer2D>();
     }
 
 
@@ -74,6 +77,21 @@ public abstract class Item : Node2D
             EmitSignal(nameof(Activated), 0);
         }
         Active = active;
+    }
+
+
+    public Godot.Collections.Dictionary<String, AudioStreamPlayer2D> SoundsDict {get; set;}
+
+
+    public void PlaySoundEffect(string soundName) {
+        if(SoundsNode.HasNode(soundName) == false) {
+            return;
+        }
+        if(SoundsDict.ContainsKey(soundName) == false) {
+            SoundsDict.Add(soundName, (AudioStreamPlayer2D)SoundsNode.GetNode(soundName));
+        }
+        AudioStreamPlayer2D soundNode = SoundsDict[soundName];
+        soundNode.Play();
     }
 
 

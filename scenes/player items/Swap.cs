@@ -24,6 +24,7 @@ public class Swap : PlayerItem
         EmitSignal(nameof(Activated), Cooldown.WaitTime);
         Cooldown.Start();
         if(GD.RandRange(0, 100f) <= FAILURE_CHANCE) {
+            PlaySoundEffect("TeleportFailed");
             return;
         }
         var playerPos = PlayerNode.GlobalPosition;

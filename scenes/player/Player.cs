@@ -265,6 +265,7 @@ public class Player : Entity
             WeaponNode.Throw(ThrowStrength, GlobalPosition, Vector2.Zero, Center.GlobalRotation);
             Camera.ShakeCamera((GetGlobalMousePosition() - GlobalPosition).Normalized()*PLAYER_THROW_SHAKE_INTENSITY,
             PLAYER_THROW_SHAKE_DURATION, PLAYER_THROW_SHAKE_DURATION, 0, false);
+            PlaySoundEffect("Throw");
             if(arms.FlipH == false) {
                 throwAnim.Play("throw");
             }

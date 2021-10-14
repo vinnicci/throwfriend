@@ -10,6 +10,7 @@ public class SnarkDmgUpgrade : Collectable
         player.SnarkDmgMult += 1;
         player.UpdateStatsDisp();
         player.WarnPlayer("SNARK DAMAGE INCREASED");
+        player.PlaySoundEffect("SnarkDmgUpgrade");
     }
 
 

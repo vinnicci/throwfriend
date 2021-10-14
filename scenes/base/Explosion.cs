@@ -20,6 +20,7 @@ public abstract class Explosion : Area2D
     Tween tween;
     Particles2D particlesTop;
     Particles2D particlesBase;
+    AudioStreamPlayer2D sound;
     const float CAM_DIST_MULT = 2;
     protected Godot.Collections.Dictionary calcDict = new Godot.Collections.Dictionary();
     const int CIRCLE_PT_COUNT = 24;
@@ -37,6 +38,7 @@ public abstract class Explosion : Area2D
         particlesBase = (Particles2D)GetNode("ParticlesBase");
         Damage = damage;
         ExplosionRadius = explosionRadius;
+        sound = (AudioStreamPlayer2D)GetNode("Sound");
         UpdateRadius();
     }
 
@@ -100,6 +102,7 @@ public abstract class Explosion : Area2D
                 ((Trigger)area).OnSwitchedOn();
             }
         }
+        sound.Play();
         return true;
     }
 
@@ -135,8 +138,9 @@ public abstract class Explosion : Area2D
         float expScale = ExplosionRadius/explosionRadius;
         cameraShakeIntensity = (int)(cameraShakeIntensity*expScale);
         cameraShakeDuration *= expScale;
-        if(expScale > 2) {
+        if(expScale >= 2) {
             cameraShakePriority = 1;
+            sound.VolumeDb = 5*expScale;
         }
         explosionRadius = ExplosionRadius;
     }

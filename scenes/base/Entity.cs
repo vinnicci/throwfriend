@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, ISpawnable
+public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, ISpawnable, ISoundEmitter
 {
     [Export] public int speed = 250;
     public int Speed {get; set;}
@@ -12,6 +12,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     public Timer HitCooldown {get; set;}
     public AnimationPlayer TeleportAnim {get; set;}
     public AnimationPlayer DamageAnim {get; set;}
+    public Node2D SoundsNode {get; set;}
 
     protected Level levelNode;
     public virtual Level LevelNode {
@@ -40,6 +41,8 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         anim = (AnimationPlayer)GetNode("Anims/Anim");
         HitCooldown = (Timer)GetNode("HitCooldown");
         healthHUD = (HealthHUD)hud.GetNode("Health");
+        SoundsNode = (Node2D)GetNode("Sounds");
+        SoundsDict = new Godot.Collections.Dictionary<String, AudioStreamPlayer2D>();
         healthHUD.ParentNode = this;
     }
 
@@ -87,6 +90,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         teleportPos = global_pos;
         TeleportAnim.Stop();
         TeleportAnim.Play("teleported");
+        PlaySoundEffect("Teleport");
     }
 
 
@@ -140,6 +144,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         ApplyCentralImpulse(knockback * knockbackMult);
         ContinuousCd = CCDMode.CastRay;
         if(damage > 0) {
+            PlaySoundEffect("Hit");
             DamageAnim.Play("damaged");
         }
         Health -= damage;
@@ -158,6 +163,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         healthHUD.Visible = false;
         anim.Stop();
         anim.Play("die");
+        PlaySoundEffect("Died");
         SetCollisionLayerBit(Global.BIT_MASK_ENEMY, false);
         SetCollisionLayerBit(Global.BIT_MASK_PLAYER, false);
     }
@@ -194,13 +200,38 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
     }
 
 
-    public void LeaveTrail() {
-        //Node2D trailSprite = (Node2D)GetNode("Sprite").Duplicate();
+    public Godot.Collections.Dictionary<String, AudioStreamPlayer2D> SoundsDict {get; set;}
+
+
+    public void PlaySoundEffect(string soundName) {
+        if(SoundsNode.HasNode(soundName) == false) {
+            return;
+        }
+        if(SoundsDict.ContainsKey(soundName) == false) {
+            SoundsDict.Add(soundName, (AudioStreamPlayer2D)SoundsNode.GetNode(soundName));
+        }
+        AudioStreamPlayer2D soundNode = SoundsDict[soundName];
+        soundNode.Play();
+    }
+
+
+    //0 frame counter
+    //1 frames count
+    int trailFrames;
+
+
+    public void LeaveTrail(int frames) {
+        if(trailFrames == 0) {
+            trailFrames = frames;
+        }
+        else if(trailFrames > 0) {
+            trailFrames -= 1;
+            return;
+        }
         Node2D trailSprite = (Node2D)spriteNode.Duplicate();
         LevelNode.AddChild(trailSprite);
         Tween tween = new Tween();
         trailSprite.AddChild(tween);
-        //trailSprite.GlobalPosition = new Vector2(GlobalPosition.x, GlobalPosition.y - 11);
         trailSprite.GlobalPosition = spriteNode.GlobalPosition;
         trailSprite.GlobalRotation = GlobalRotation;
         Godot.Collections.Array arr = new Godot.Collections.Array();

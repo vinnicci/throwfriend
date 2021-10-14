@@ -59,6 +59,15 @@ Persist = false
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )
 offset = Vector2( 0, -32 )
+region_enabled = true
+region_rect = Rect2( 1, 1, 36, 81 )
+
+[node name="Light" type="Sprite" parent="Sprite" index="0"]
+modulate = Color( 0.164706, 1, 0, 0.517647 )
+position = Vector2( 0, -61 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1, 83, 28, 22 )
 
 [node name="Particles2D" type="Particles2D" parent="." index="1"]
 material = SubResource( 1 )

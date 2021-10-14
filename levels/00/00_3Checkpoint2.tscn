@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/level/Walls.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/level/SavePoint.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/level/LabLight.tscn" type="PackedScene" id=5]
 
 [node name="00_3Checkpoint2" instance=ExtResource( 2 )]
 
@@ -55,3 +56,9 @@ rotation = -1.5708
 
 [node name="SavePoint" parent="Objects" index="12" instance=ExtResource( 3 )]
 position = Vector2( 318, -192 )
+
+[node name="LabLight" parent="Objects" index="13" instance=ExtResource( 5 )]
+position = Vector2( 1024, -643 )
+
+[node name="LabLight2" parent="Objects" index="14" instance=ExtResource( 5 )]
+position = Vector2( -384, 319 )

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/player items/PlayerItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player items/TeleRetrieve.cs" type="Script" id=2]
 [ext_resource path="res://assets/items/tex_teleretrieve.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/snd_teleport_fail.wav" type="AudioStream" id=4]
 
 [node name="TeleRetrieve" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -10,3 +11,6 @@ itemDescription = "Activate: Teleport Snark back to you. This ability has a chan
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )
+
+[node name="TeleportFailed" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
+stream = ExtResource( 4 )

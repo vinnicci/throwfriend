@@ -12,6 +12,7 @@ public class AbilityItem : Collectable
         player.AvailableUpgrade += 1;
         player.UpdateUpgrade();
         player.WarnPlayer("NEW ABILITY AVAILABLE");
+        player.PlaySoundEffect("AbilityPickup");
     }
 
 

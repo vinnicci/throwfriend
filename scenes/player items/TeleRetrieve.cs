@@ -3,7 +3,7 @@ using System;
 
 public class TeleRetrieve : PlayerItem
 {
-    const float FAILURE_CHANCE = 10;
+    const float FAILURE_CHANCE = 5;
 
 
     public override void ApplyEffect()
@@ -17,6 +17,9 @@ public class TeleRetrieve : PlayerItem
         Cooldown.Start();
         if(GD.RandRange(0, 100f) > FAILURE_CHANCE) {
             WeaponNode.Teleport(PlayerNode.LevelNode, PlayerNode.GlobalPosition);
+        }
+        else {
+            PlaySoundEffect("TeleportFailed");
         }
     }
 

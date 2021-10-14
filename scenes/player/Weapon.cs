@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 
-public class Weapon : RigidBody2D, ITeleportable, ISpawnable
+public class Weapon : RigidBody2D, ITeleportable, ISpawnable, ISoundEmitter
 {
     public WeaponItem Item1 {get; set;}
     public WeaponItem Item2 {get; set;}
@@ -33,6 +33,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
     Particles2D particles;
     //used for stuck in a wall bug
     Godot.Collections.Array stuckCondArr = new Godot.Collections.Array();
+    public Node2D SoundsNode {get; set;}
     
 
     public override void _Notification(int what)
@@ -53,6 +54,8 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         Anim = (AnimationPlayer)GetNode("Anim");        
         TeleportAnim = (AnimationPlayer)GetNode("TeleAnim");
         particles = (Particles2D)GetNode("Particles2D");
+        SoundsNode = (Node2D)GetNode("Sounds");
+        SoundsDict = new Godot.Collections.Dictionary<String, AudioStreamPlayer2D>();
         stuckCondArr.Add(false);
         stuckCondArr.Add(0);
     }
@@ -102,6 +105,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         //teleport
         teleportPos = global_pos;
         TeleportAnim.Play("teleported");
+        PlaySoundEffect("Teleport");
     }
 
 
@@ -214,6 +218,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
             return;
         }
         if(CurrentState == States.ACTIVE) {
+            PlaySoundEffect("Hit");
             LeaveParticles();
         }
         if(body is Player && CurrentState == States.INACTIVE && PlayerNode.WeaponNode == this) {
@@ -294,6 +299,7 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
 
     public void BeamAttack() {
         Anim.Play("beam");
+        PlaySoundEffect("Beam");
     }
 
 
@@ -319,6 +325,21 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable
         if(hitBody.Health <= 0) {
             ((Entity)body).SlowEffect(ENEMY_KILL_SLOW_SCALE, ENEMY_KILL_SLOW_DURATION);
         }
+    }
+
+
+    public Godot.Collections.Dictionary<String, AudioStreamPlayer2D> SoundsDict {get; set;}
+
+
+    public void PlaySoundEffect(string soundName) {
+        if(SoundsNode.HasNode(soundName) == false) {
+            return;
+        }
+        if(SoundsDict.ContainsKey(soundName) == false) {
+            SoundsDict.Add(soundName, (AudioStreamPlayer2D)SoundsNode.GetNode(soundName));
+        }
+        AudioStreamPlayer2D soundNode = SoundsDict[soundName];
+        soundNode.Play();
     }
 
 

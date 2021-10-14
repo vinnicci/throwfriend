@@ -26,7 +26,7 @@ public class Dash : PlayerItem
     {
         base._PhysicsProcess(delta);
         if(Cooldown.IsStopped() == false && PlayerNode.HitCooldown.IsStopped() == false) {
-            PlayerNode.LeaveTrail();
+            PlayerNode.LeaveTrail(2);
         }
     }
 

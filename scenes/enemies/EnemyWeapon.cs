@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract class EnemyWeapon : Node2D, ISpawner
+public abstract class EnemyWeapon : Node2D, ISpawner, ISoundEmitter
 {
     [Export] public Godot.Collections.Dictionary<String, PackedScene> spawnScenes {get; set;}
     [Export] Godot.Collections.Array<NodePath> bodies = new Godot.Collections.Array<NodePath>();
@@ -10,6 +10,7 @@ public abstract class EnemyWeapon : Node2D, ISpawner
 
     protected Particles2D spawnPoint;
     public AnimationPlayer Anim {get; set;}
+    public Node2D SoundsNode {get; set;}
 
 
     public override void _Ready()
@@ -18,6 +19,8 @@ public abstract class EnemyWeapon : Node2D, ISpawner
         spawnPoint = (Particles2D)GetNode("Sprites/ProjSpawn");
         Anim = (AnimationPlayer)GetNode("Anim");
         Anim.Connect("animation_finished", this, nameof(FinishShooting));
+        SoundsNode = (Node2D)GetNode("Sounds");
+        SoundsDict = new Godot.Collections.Dictionary<String, AudioStreamPlayer2D>();
     }
 
 
@@ -30,12 +33,14 @@ public abstract class EnemyWeapon : Node2D, ISpawner
     //generic melee action
     public virtual void MeleeAttack() {
         Anim.Play("melee_attack");
+        PlaySoundEffect("MeleeAttack");
     }
 
 
     //generic ranged action
     public virtual void Shoot() {
         Anim.Play("shoot");
+        PlaySoundEffect("Shoot");
     }
 
 
@@ -75,6 +80,21 @@ public abstract class EnemyWeapon : Node2D, ISpawner
             }
         }
         Anim.Stop();
+    }
+
+
+    public Godot.Collections.Dictionary<String, AudioStreamPlayer2D> SoundsDict {get; set;}
+
+
+    public void PlaySoundEffect(string soundName) {
+        if(SoundsNode.HasNode(soundName) == false) {
+            return;
+        }
+        if(SoundsDict.ContainsKey(soundName) == false) {
+            SoundsDict.Add(soundName, (AudioStreamPlayer2D)SoundsNode.GetNode(soundName));
+        }
+        AudioStreamPlayer2D soundNode = SoundsDict[soundName];
+        soundNode.Play();
     }
 
 
