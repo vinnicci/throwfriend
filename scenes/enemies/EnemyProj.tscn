@@ -12,4 +12,6 @@ script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="OnEnemyProjBodyEntered"]

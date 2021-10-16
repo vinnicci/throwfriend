@@ -29,10 +29,12 @@ acts = {
 }
 
 [node name="Lower" type="Sprite" parent="Sprite" index="0"]
+position = Vector2( 0, -5.5 )
+scale = Vector2( 0.9, 1.25 )
 texture = ExtResource( 4 )
 
 [node name="Upper" type="Sprite" parent="Sprite/Lower" index="0"]
-position = Vector2( 0, -10 )
+position = Vector2( 0, -8.83333 )
 texture = ExtResource( 5 )
 offset = Vector2( -6, 0 )
 

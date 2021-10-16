@@ -38,3 +38,5 @@ local_coords = false
 process_material = SubResource( 3 )
 
 [node name="Sounds" type="Node2D" parent="."]
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="Sounds"]

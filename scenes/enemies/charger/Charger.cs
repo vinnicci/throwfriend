@@ -13,4 +13,9 @@ public class Charger : BaseCharger
     }
 
 
+    public new void PlaySoundEffect(String soundName) {
+        base.PlaySoundEffect(soundName);
+    }
+
+
 }

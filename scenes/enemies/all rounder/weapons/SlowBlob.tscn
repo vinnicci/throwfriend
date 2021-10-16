@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/weapons/anim/blob_fly.tres" type="Animation" id=1]
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder2.png" type="Texture" id=2]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/SlowBlob.cs" type="Script" id=3]
 [ext_resource path="res://scenes/enemies/EnemyProj.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemies/shooter/weapons/anim/proj_hit.tres" type="Animation" id=5]
+[ext_resource path="res://assets/player/snd_slowed.wav" type="AudioStream" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.1327
@@ -31,3 +32,6 @@ anims/hit = ExtResource( 5 )
 [node name="SlowTimer" type="Timer" parent="." index="3"]
 wait_time = 3.0
 one_shot = true
+
+[node name="Sound" parent="." index="4"]
+stream = ExtResource( 6 )

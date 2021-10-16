@@ -3,6 +3,11 @@ using System;
 
 public class FlyBlobCarrier : AllRounder
 {
+    public new void PlaySoundEffect(String soundName) {
+        base.PlaySoundEffect(soundName);
+    }
+
+
     public void SpawnFlyBlob() {
         if(Health <= 0) {
             return;

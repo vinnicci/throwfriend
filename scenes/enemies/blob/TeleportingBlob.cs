@@ -16,6 +16,11 @@ public class TeleportingBlob : Blob
     }
 
 
+    public new void PlaySoundEffect(String soundName) {
+        base.PlaySoundEffect(soundName);
+    }
+
+
     public override void ReturnToPool()
     {
         base.ReturnToPool();

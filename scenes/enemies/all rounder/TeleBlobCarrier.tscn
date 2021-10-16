@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/blob_fly_3.tres" type="Animation" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/enemies/all rounder/AllRounder.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/TeleBlob.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/enemies/all rounder/anim/blobcarrier_damaged.tres" type="Animation" id=10]
+[ext_resource path="res://assets/enemies/all rounder/snd_flyblob_carrier.wav" type="AudioStream" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
@@ -47,3 +48,6 @@ anims/blob_fly = ExtResource( 1 )
 anims/die = ExtResource( 4 )
 anims/idle = ExtResource( 3 )
 anims/run = ExtResource( 2 )
+
+[node name="FlyBlob" type="AudioStreamPlayer2D" parent="Sounds" index="3"]
+stream = ExtResource( 11 )

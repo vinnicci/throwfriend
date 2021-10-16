@@ -15,4 +15,9 @@ public class ShooterWeapon : EnemyWeapon
     }
 
 
+    public new void PlaySoundEffect(String soundName) {
+        base.PlaySoundEffect(soundName);
+    }
+
+
 }

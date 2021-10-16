@@ -14,7 +14,7 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "ReturnToPool"
+"method": "queue_free"
 } ]
 }
 tracks/1/type = "value"

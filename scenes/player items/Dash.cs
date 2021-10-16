@@ -18,6 +18,7 @@ public class Dash : PlayerItem
         PlayerNode.ContinuousCd = RigidBody2D.CCDMode.CastRay;
         PlayerNode.HitCooldown.Start(0.3f);
         EmitSignal(nameof(Activated), Cooldown.WaitTime);
+        PlaySoundEffect("Dash");
         Cooldown.Start();
     }
 

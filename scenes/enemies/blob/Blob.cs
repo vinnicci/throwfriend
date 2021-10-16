@@ -14,6 +14,11 @@ public class Blob : Enemy
     }
 
 
+    public new void PlaySoundEffect(String soundName) {
+        base.PlaySoundEffect(soundName);
+    }
+
+
     public virtual void ReturnToPool() {
         QueueFree();
     }

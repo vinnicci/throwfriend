@@ -22,24 +22,23 @@ public abstract class Explosion : Area2D
     Particles2D particlesBase;
     AudioStreamPlayer2D sound;
     const float CAM_DIST_MULT = 2;
-    protected Godot.Collections.Dictionary calcDict = new Godot.Collections.Dictionary();
     const int CIRCLE_PT_COUNT = 24;
 
 
     public override void _Ready()
     {
         base._Ready();
+        Damage = damage;
+        ExplosionRadius = explosionRadius;
         poly = (Polygon2D)GetNode("Polygon2D");
         collision = (CollisionShape2D)GetNode("CollisionShape2D");
+        UpdateRadius();
         ray = (RayCast2D)GetNode("RayCast2D");
         tween = (Tween)GetNode("Tween");
         anim = (AnimationPlayer)GetNode("Anim");
         particlesTop = (Particles2D)GetNode("ParticlesTop");
         particlesBase = (Particles2D)GetNode("ParticlesBase");
-        Damage = damage;
-        ExplosionRadius = explosionRadius;
         sound = (AudioStreamPlayer2D)GetNode("Sound");
-        UpdateRadius();
     }
 
 
@@ -55,31 +54,36 @@ public abstract class Explosion : Area2D
     const int KNOCKBACK = 250;
     const int BASE_PARTICLES_MULT = 5;
     const int TOP_PARTICLES_MULT = 10;
+    static protected Godot.Collections.Dictionary calcDict = new Godot.Collections.Dictionary();
 
 
-    public virtual bool Explode() {
+    public virtual bool Explode(bool detachSoundNode = true) {
         if(anim.IsPlaying()) {
             return false;
         }
         poly.Scale = new Vector2(1,1);
-        if(explosionRadius != ExplosionRadius) {
-            UpdateRadius();
-        }
+        String pAmountTop = STR_PARTICLES_AMOUNT_TOP + Filename;
+        String pAmountBase = STR_PARTICLES_AMOUNT_BASE + Filename;
+        String pCamDist = STR_CAM_DIST + Filename;
+        //shake camera
         if(IsInstanceValid(LevelNode.PlayerNode) &&
-        GlobalPosition.DistanceSquaredTo(LevelNode.PlayerNode.GlobalPosition) <= (int)calcDict["camDistSq"]) {
+        GlobalPosition.DistanceSquaredTo(LevelNode.PlayerNode.GlobalPosition) <= (int)calcDict[pCamDist]) {
             LevelNode.PlayerNode.Camera.ShakeCamera(new Vector2(cameraShakeIntensity, cameraShakeIntensity),
             cameraShakeFrequency, cameraShakeDuration, cameraShakePriority);
         }
-        particlesTop.Amount = (int)calcDict["particlesAmountTop"];
-        particlesBase.Amount = (int)calcDict["particlesAmountBase"];
+        //reapply particles amount to avoid particle remnants
+        particlesTop.Amount = (int)calcDict[pAmountTop];
+        particlesBase.Amount = (int)calcDict[pAmountBase];
         particlesTop.ProcessMaterial.Set("emission_sphere_radius", ExplosionRadius);
         particlesBase.ProcessMaterial.Set("emission_sphere_radius", ExplosionRadius);
         particlesTop.Emitting = true;
         particlesBase.Emitting = true;
+        //poly anim
         anim.Play("explode");
         tween.InterpolateProperty(poly, "scale", poly.Scale, poly.Scale*2, 0.75f, Tween.TransitionType.Linear,
         Tween.EaseType.InOut);
         tween.Start();
+        //hit entities
         Godot.Collections.Array bodies = GetOverlappingBodies();
         foreach(Godot.Object body in bodies) {
             if(body == GetParent()) {
@@ -102,9 +106,41 @@ public abstract class Explosion : Area2D
                 ((Trigger)area).OnSwitchedOn();
             }
         }
-        sound.Play();
+        //play sounds
+        Node2D soundC = default;
+        if(detachSoundNode) {
+            soundC = (Node2D)sound.Duplicate();
+            LeaveObj(soundC, 2f);
+        }
+        else {
+            soundC = sound;
+        }
+        ((AudioStreamPlayer2D)soundC).Play();
         return true;
     }
+
+
+    void LeaveObj(Node2D obj, float duration) {
+        LevelNode.AddChild(obj);
+        Tween tween = new Tween();
+        obj.AddChild(tween);
+        obj.GlobalPosition = GlobalPosition;
+        obj.GlobalRotation = GlobalRotation;
+        Godot.Collections.Array arr = new Godot.Collections.Array();
+        arr.Add(obj);
+        if(tween.IsConnected("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject)) == false) {
+            tween.Connect("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject), arr);
+        }
+        tween.InterpolateProperty(obj, "modulate", obj.Modulate, new Color(1,1,1,0), duration,
+        Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        tween.Start();
+    }
+
+
+    const String STR_PARTICLES_AMOUNT_TOP = "particlesAmountTop ";
+    const String STR_PARTICLES_AMOUNT_BASE = "particlesAmountBase ";
+    const String STR_CAM_DIST = "camDistSq ";
+
 
 
     public void UpdateRadius() {
@@ -117,24 +153,12 @@ public abstract class Explosion : Area2D
             circArr[i] = vec;
         }
         poly.Polygon = circArr;
-        if(calcDict.Contains("particlesAmountTop")) {
-            calcDict["particlesAmountTop"] = ExplosionRadius * TOP_PARTICLES_MULT;
-        }
-        else {
-            calcDict.Add("particlesAmountTop", ExplosionRadius * TOP_PARTICLES_MULT);
-        }
-        if(calcDict.Contains("particlesAmountBase")) {
-            calcDict["particlesAmountBase"] = ExplosionRadius * BASE_PARTICLES_MULT;    
-        }
-        else {
-            calcDict.Add("particlesAmountBase", ExplosionRadius * BASE_PARTICLES_MULT);
-        }
-        if(calcDict.Contains("camDistSq")) {
-            calcDict["camDistSq"] = (int)(ExplosionRadius*ExplosionRadius*CAM_DIST_MULT*CAM_DIST_MULT);
-        }
-        else {
-            calcDict.Add("camDistSq", (int)(ExplosionRadius*ExplosionRadius*CAM_DIST_MULT*CAM_DIST_MULT));
-        }
+        String pAmountTop = STR_PARTICLES_AMOUNT_TOP + Filename;
+        UpdateExpValues(pAmountTop, ExplosionRadius * TOP_PARTICLES_MULT);
+        String pAmountBase = STR_PARTICLES_AMOUNT_BASE + Filename;
+        UpdateExpValues(pAmountBase, ExplosionRadius * BASE_PARTICLES_MULT);
+        String pCamDist = STR_CAM_DIST + Filename;
+        UpdateExpValues(pCamDist, (int)(ExplosionRadius*ExplosionRadius*CAM_DIST_MULT*CAM_DIST_MULT));
         float expScale = ExplosionRadius/explosionRadius;
         cameraShakeIntensity = (int)(cameraShakeIntensity*expScale);
         cameraShakeDuration *= expScale;
@@ -143,6 +167,16 @@ public abstract class Explosion : Area2D
             sound.VolumeDb = 5*expScale;
         }
         explosionRadius = ExplosionRadius;
+    }
+
+
+    void UpdateExpValues(String pName, int val) {
+        if(calcDict.Contains(pName) == false) {
+            calcDict.Add(pName, val);
+        }
+        // else {
+        //      calcDict[pName] = val;   
+        // }
     }
 
 

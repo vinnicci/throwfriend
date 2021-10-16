@@ -16,6 +16,7 @@ public class EliteSwordAndShield : AllRounderWeapon
     public override void SpawnInstance(String packedSceneKey, int count = 1) {
         base.SpawnInstance(packedSceneKey);
         if(packedSceneKey == "flyblob") {
+            PlaySoundEffect("ThrowBlob");
             Godot.Collections.Array arr = new Godot.Collections.Array(flyBlobs);
             arr.Shuffle();
             EnemyProj flyblob = (EnemyProj)spawnScenes[(String)arr[0]].Instance();

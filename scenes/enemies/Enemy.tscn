@@ -17,4 +17,6 @@ acts = {
 [node name="CollisionShape2D" parent="." index="1"]
 visible = true
 
+[node name="Alert" type="AudioStreamPlayer2D" parent="Sounds" index="3"]
+
 [connection signal="body_entered" from="." to="." method="OnEnemyBodyEntered"]

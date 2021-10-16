@@ -144,8 +144,8 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         ApplyCentralImpulse(knockback * knockbackMult);
         ContinuousCd = CCDMode.CastRay;
         if(damage > 0) {
-            PlaySoundEffect("Hit");
             DamageAnim.Play("damaged");
+            PlaySoundEffect("Hit");
         }
         Health -= damage;
         if(Health <= 0) {
@@ -163,6 +163,9 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         healthHUD.Visible = false;
         anim.Stop();
         anim.Play("die");
+        //remove sounds as child and move to level
+        SoundsNode.GetParent().RemoveChild(SoundsNode);
+        LeaveObj(SoundsNode, 1f);
         PlaySoundEffect("Died");
         SetCollisionLayerBit(Global.BIT_MASK_ENEMY, false);
         SetCollisionLayerBit(Global.BIT_MASK_PLAYER, false);
@@ -229,17 +232,22 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
             return;
         }
         Node2D trailSprite = (Node2D)spriteNode.Duplicate();
-        LevelNode.AddChild(trailSprite);
+        LeaveObj(trailSprite, 0.25f);
+    }
+
+
+    void LeaveObj(Node2D obj, float duration) {
+        LevelNode.AddChild(obj);
         Tween tween = new Tween();
-        trailSprite.AddChild(tween);
-        trailSprite.GlobalPosition = spriteNode.GlobalPosition;
-        trailSprite.GlobalRotation = GlobalRotation;
+        obj.AddChild(tween);
+        obj.GlobalPosition = spriteNode.GlobalPosition;
+        obj.GlobalRotation = GlobalRotation;
         Godot.Collections.Array arr = new Godot.Collections.Array();
-        arr.Add(trailSprite);
+        arr.Add(obj);
         if(tween.IsConnected("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject)) == false) {
             tween.Connect("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject), arr);
         }
-        tween.InterpolateProperty(trailSprite, "modulate", trailSprite.Modulate, new Color(1,1,1,0), 0.25f,
+        tween.InterpolateProperty(obj, "modulate", obj.Modulate, new Color(1,1,1,0), duration,
         Tween.TransitionType.Linear, Tween.EaseType.InOut);
         tween.Start();
     }

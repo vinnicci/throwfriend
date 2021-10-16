@@ -64,7 +64,7 @@ autoplay = "idle"
 anims/idle = ExtResource( 7 )
 anims/shoot = ExtResource( 6 )
 
-[node name="Shoot" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
+[node name="Shoot" parent="Sounds" index="0"]
 stream = ExtResource( 9 )
 
 [connection signal="body_entered" from="Beam" to="." method="OnBeamBodyEntered"]

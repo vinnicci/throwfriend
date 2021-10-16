@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/enemies/blob/tex_en_blob.png" type="Texture" id=2]
 [ext_resource path="res://scenes/enemies/blob/Blob.cs" type="Script" id=3]
 [ext_resource path="res://scenes/enemies/blob/BlobExplosion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/enemies/blob/snd_blob_exploding.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/enemies/blob/snd_blob_alert.wav" type="AudioStream" id=6]
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -53,3 +55,9 @@ margin_bottom = -29.0
 
 [node name="DamageAnim" parent="Anims" index="1"]
 anims/damaged = SubResource( 2 )
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="Sounds" index="3"]
+stream = ExtResource( 5 )
+
+[node name="Alert" parent="Sounds" index="4"]
+stream = ExtResource( 6 )

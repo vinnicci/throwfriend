@@ -16,7 +16,9 @@ public abstract class AllRounderWeapon: EnemyWeapon
 
 
     public void MeleeAttackBack() {
+        PlaySoundEffect("MeleeAttack");
         Anim.Play("melee_attack_back");
+
     }
 
 
@@ -35,6 +37,7 @@ public abstract class AllRounderWeapon: EnemyWeapon
     public override void SpawnInstance(String packedSceneKey, int count = 1) {
         base.SpawnInstance(packedSceneKey);
         if(packedSceneKey == "blob") {
+            PlaySoundEffect("ThrowBlob");
             for(int i = 0; i <= count; i++) {
                 Blob blobInstance = (Blob)spawnScenes["blob"].Instance();
                 blobInstance.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition, Vector2.Zero);

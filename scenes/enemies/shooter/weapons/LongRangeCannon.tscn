@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/enemies/EnemyWeapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enemies/shooter/weapons/LongRangeCannonProj.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/enemies/shooter/weapons/LongRangeCannon.cs" type="Script" id=5]
 [ext_resource path="res://assets/enemies/shooter/tex_en_long_range_mouth_cannon.png" type="Texture" id=6]
 [ext_resource path="res://scenes/enemies/shooter/weapons/anim/idle.tres" type="Animation" id=7]
+[ext_resource path="res://assets/enemies/shooter/snd_cannon.wav" type="AudioStream" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "shoot"
@@ -138,3 +139,6 @@ position = Vector2( 25, 0 )
 autoplay = "idle"
 anims/idle = ExtResource( 7 )
 anims/shoot = SubResource( 1 )
+
+[node name="Shoot" parent="Sounds" index="0"]
+stream = ExtResource( 8 )

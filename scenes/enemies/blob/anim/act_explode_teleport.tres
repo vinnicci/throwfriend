@@ -47,11 +47,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 1.5, 2.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.25, 1.5, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "TeleportToEnemy"
+}, {
+"args": [ "Explode" ],
+"method": "PlaySoundEffect"
 }, {
 "args": [  ],
 "method": "Explode"

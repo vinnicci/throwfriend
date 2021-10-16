@@ -85,9 +85,12 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 1.5 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [ "FlyBlob" ],
+"method": "PlaySoundEffect"
+}, {
 "args": [  ],
 "method": "SpawnFlyBlob"
 } ]

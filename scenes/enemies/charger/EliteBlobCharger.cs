@@ -73,4 +73,9 @@ public class EliteBlobCharger : BaseCharger
     }
 
 
+    public new void PlaySoundEffect(String soundName) {
+        base.PlaySoundEffect(soundName);
+    }
+
+
 }

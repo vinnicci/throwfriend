@@ -3,6 +3,13 @@ using System;
 
 public class Test : Level
 {
+    public override void _Ready()
+    {
+        base._Ready();
+        //Engine.TimeScale = 0.3f;
+    }
+
+
     public override void _Process(float delta)
     {
         base._Process(delta);

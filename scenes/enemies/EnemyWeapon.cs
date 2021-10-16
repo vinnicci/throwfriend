@@ -32,21 +32,21 @@ public abstract class EnemyWeapon : Node2D, ISpawner, ISoundEmitter
 
     //generic melee action
     public virtual void MeleeAttack() {
-        Anim.Play("melee_attack");
         PlaySoundEffect("MeleeAttack");
+        Anim.Play("melee_attack");
     }
 
 
     //generic ranged action
     public virtual void Shoot() {
         Anim.Play("shoot");
-        PlaySoundEffect("Shoot");
     }
 
 
     public virtual void SpawnInstance(String packedSceneKey, int count = 1) {
         if(packedSceneKey == "proj") {
             EmitParticles();
+            PlaySoundEffect("Shoot");
             SpawnProj();
         }
     }

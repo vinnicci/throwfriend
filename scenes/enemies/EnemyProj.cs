@@ -12,12 +12,13 @@ public abstract class EnemyProj : Area2D, ISpawnable
     public Vector2 Velocity {get; private set;}
     public int Damage {get; set;}
     public int Range {get; set;}
-    public int Speed {get; set;}
-    
+    public int Speed {get; set;}    
     public Level LevelNode {get; set;}
+
     protected Sprite sprite;
     Explosion explosionNode;
     AnimationPlayer anim;
+    protected AudioStreamPlayer2D sound;
     const int KNOCKBACK = 250;
 
 
@@ -26,6 +27,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
         base._Ready();
         sprite = (Sprite)GetNode("Sprite");
         anim = (AnimationPlayer)GetNode("Anim");
+        sound = (AudioStreamPlayer2D)GetNode("Sound");
     }
 
 
@@ -123,6 +125,11 @@ public abstract class EnemyProj : Area2D, ISpawnable
         else {
             anim.Play("hit");
         }
+        if(IsInstanceValid(sound)) {
+            sound.GetParent().RemoveChild(sound);
+            LeaveObj(sound, 2f);
+            sound.Play();
+        }
         if(IsInstanceValid(explosionNode)) {
             explosionNode.Explode();
             sprite.Visible = false;
@@ -132,6 +139,23 @@ public abstract class EnemyProj : Area2D, ISpawnable
 
     public virtual void ReturnToPool() {
         QueueFree();
+    }
+
+
+    protected void LeaveObj(Node2D obj, float duration) {
+        LevelNode.AddChild(obj);
+        Tween tween = new Tween();
+        obj.AddChild(tween);
+        obj.GlobalPosition = GlobalPosition;
+        obj.GlobalRotation = GlobalRotation;
+        Godot.Collections.Array arr = new Godot.Collections.Array();
+        arr.Add(obj);
+        if(tween.IsConnected("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject)) == false) {
+            tween.Connect("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject), arr);
+        }
+        tween.InterpolateProperty(obj, "modulate", obj.Modulate, new Color(1,1,1,0), duration,
+        Tween.TransitionType.Linear, Tween.EaseType.InOut);
+        tween.Start();
     }
 
 

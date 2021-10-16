@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/enemies/shooter/weapons/ShooterWeapon.cs" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/shooter/weapons/anim/idle.tres" type="Animation" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/enemies/shooter/tex_en_sprayer_acid_pincer1.png" type="Texture" id=5]
 [ext_resource path="res://scenes/enemies/shooter/weapons/SprayerAcidProj.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/EnemyWeapon.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/enemies/shooter/snd_sprayer.wav" type="AudioStream" id=8]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -72,3 +73,6 @@ offset = Vector2( 8, -8 )
 autoplay = "idle"
 anims/idle = ExtResource( 2 )
 anims/shoot = ExtResource( 3 )
+
+[node name="Spray" type="AudioStreamPlayer2D" parent="Sounds" index="1"]
+stream = ExtResource( 8 )

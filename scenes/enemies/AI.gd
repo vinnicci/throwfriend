@@ -133,6 +133,7 @@ func _on_DetectionRange_body_exited(body: Node):
 func engage_enemy(enemy: RigidBody2D):
 	if is_ent_valid(enemy) == false || is_ent_valid(bb["enemy"]) || is_ent_valid(parent_node) == false:
 		return;
+	parent_node.call("PlaySoundEffect", "Alert")
 	bb["enemy"] = enemy
 	var arr: Array = level_node.get("PlayerEngaging")
 	if arr.has(parent_node.name) == false:

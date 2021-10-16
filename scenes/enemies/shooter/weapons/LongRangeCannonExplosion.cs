@@ -3,8 +3,8 @@ using System;
 
 public class LongRangeCannonExplosion : Explosion
 {
-    public override bool Explode() {
-        if(base.Explode() == false) {
+    public override bool Explode(bool detachSoundNode = true) {
+        if(base.Explode(detachSoundNode) == false) {
             return false;
         }
         Godot.Collections.Array areas = GetOverlappingAreas();

@@ -14,7 +14,7 @@
 radius = 22.0
 
 [node name="BlobnadierShielded" instance=ExtResource( 6 )]
-modulate = Color( 1, 1, 1, 0.948325 )
+modulate = Color( 1, 1, 1, 0.985709 )
 speed = 125
 spawnScenes = {
 "hp_drop": ExtResource( 9 )
@@ -24,10 +24,14 @@ acts = {
 }
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 8 )]
+visible = false
 spawnScenes = {
 "blob": ExtResource( 5 ),
 "proj": ExtResource( 7 )
 }
+
+[node name="Sprite" parent="." index="1"]
+rotation = -0.0050815
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( 1 )
