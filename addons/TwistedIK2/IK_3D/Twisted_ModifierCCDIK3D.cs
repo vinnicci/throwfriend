@@ -300,7 +300,7 @@ public class Twisted_ModifierCCDIK3D : Twisted_Modifier3D
 
         if (target_node == null || tip_node == null) {
             GD.PrintErr("Cannot execute CCDIK: No target or tip found!");
-            return; // TODO: print an error!
+            return;
         }
 
         if (high_quality_solve == false) {

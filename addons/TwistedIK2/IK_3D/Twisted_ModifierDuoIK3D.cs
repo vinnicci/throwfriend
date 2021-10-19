@@ -257,10 +257,7 @@ public class Twisted_ModifierDuoIK3D : Twisted_Modifier3D
 
         // The IK algorithm
         // =================
-        // NOTE - currently does not support scaling very well! This will be fixed in a future update!
-
-        Vector3 bone_one_scale = twisted_bone_one.Scale;
-        Vector3 bone_two_scale = twisted_bone_two.Scale;
+        // NOTE - currently does not support non-uniform scaling very well
 
         // Needed to avoid twisting bones (CREDIT: https://forum.unity.com/threads/lookrotation-lookat-problem.122378/)
         Vector3 bone_one_original_up = twisted_bone_one.GlobalTransform.basis.y.Normalized();
@@ -348,8 +345,9 @@ public class Twisted_ModifierDuoIK3D : Twisted_Modifier3D
             twisted_bone_two.Rotate(twisted_bone_two.Transform.basis.z.Normalized(), bone_two_additional_rotation.z);
         }
 
-        twisted_bone_one.Scale = bone_one_scale;
-        twisted_bone_two.Scale = bone_two_scale;
+        // Keep the scale consistent with the global pose
+        twisted_bone_one.Scale = twisted_bone_one.get_reset_bone_global_pose(false).basis.Scale;
+        twisted_bone_two.Scale = twisted_bone_two.get_reset_bone_global_pose(false).basis.Scale;
 
         if (force_bone_application) {
             twisted_bone_one.force_apply_transform();

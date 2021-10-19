@@ -433,7 +433,18 @@ public class Twisted_Bone3D : Spatial
         GlobalTransform = get_bone_global_pose(true);
     }
 
+    /// <summary>
+    /// Gets the global pose without overrides Transform of the bone and returns it.
+    /// Note: If there is no skeleton or TwistedSkeleton3D, it will just return it's own transform/global-transform.
+    /// </summary>
     public Transform get_reset_bone_global_pose(bool convert_to_world_space=true) {
+        if (twisted_skeleton3d.current_skeleton == null || twisted_skeleton3d == null) {
+            if (convert_to_world_space == true) {
+                return GlobalTransform;
+            }
+            return Transform;
+        }
+
         Transform bone_transform = twisted_skeleton3d.current_skeleton.GetBoneGlobalPoseNoOverride(bone_id);
         if (convert_to_world_space == true) {
             bone_transform = twisted_skeleton3d.global_pose_to_world_transform(bone_transform);
@@ -445,10 +456,18 @@ public class Twisted_Bone3D : Spatial
     /// <summary>
     /// Gets the global pose transform of the bone linked to this Twisted_Bone3D and returns it.
     /// Optionally converts the transform to world-space from global-bone space
+    /// Note: If there is no skeleton or TwistedSkeleton3D, it will just return it's own transform/global-transform.
     /// </summary>
     /// <param name="convert_to_world_space">If true, will convert the transform from global-pose space to world-space</param>
     /// <returns>The global pose transform</returns>
     public Transform get_bone_global_pose(bool convert_to_world_space=true) {
+        if (twisted_skeleton3d.current_skeleton == null || twisted_skeleton3d == null) {
+            if (convert_to_world_space == true) {
+                return GlobalTransform;
+            }
+            return Transform;
+        }
+
         Transform bone_transform = twisted_skeleton3d.current_skeleton.GetBoneGlobalPose(bone_id);
         if (convert_to_world_space == true) {
             bone_transform = twisted_skeleton3d.global_pose_to_world_transform(bone_transform);
@@ -515,10 +534,15 @@ public class Twisted_Bone3D : Spatial
     /// Returns the bone length, but relative to the global pose transform rather than relative to the world transform.
     /// Use this function for bone length if you are operating in the global pose space and need the bone's length instead
     /// of directly using the bone_length variable!
+    /// NOTE: will return the bone_length if there is no skeleton or TwistedSkeleton3D set.
     /// </summary>
     /// <param name="force_recalculate"></param>
     /// <returns></returns>
     public float get_global_pose_length() {
+        if (twisted_skeleton3d.current_skeleton == null || twisted_skeleton3d == null) {
+            return bone_length;
+        }
+
         float scale_to_use = twisted_skeleton3d.GlobalTransform.basis.Scale.x;
         if (scale_to_use > 0) {
             return bone_length * (1 / scale_to_use);

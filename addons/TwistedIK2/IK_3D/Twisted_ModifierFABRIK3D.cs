@@ -399,8 +399,9 @@ public class Twisted_ModifierFABRIK3D : Twisted_Modifier3D
                     bone_trans.basis = target_transform.basis.Orthonormalized();
                 } else {
                     if (use_lookat == true) {
+                        Vector3 bone_up_dir = fabrik_joints[i].twisted_bone.get_reset_bone_global_pose().basis.y.Normalized();
                         Vector3 bone_dir = bone_trans.origin.DirectionTo(target_transform.origin);
-                        bone_trans = bone_trans.LookingAt(bone_trans.origin + bone_dir, Vector3.Up);
+                        bone_trans = bone_trans.LookingAt(bone_trans.origin + bone_dir, bone_up_dir);
                     }
                     else {
                         bone_trans = Twisted_3DFunctions.quat_based_lookat(bone_trans, target_transform.origin);
@@ -410,8 +411,9 @@ public class Twisted_ModifierFABRIK3D : Twisted_Modifier3D
             else {
                 if (use_lookat == true) {
                     Transform next_bone_trans = fabrik_transfroms[i+1];
+                    Vector3 bone_up_dir = fabrik_joints[i].twisted_bone.get_reset_bone_global_pose().basis.y.Normalized();
                     Vector3 bone_dir = bone_trans.origin.DirectionTo(next_bone_trans.origin);
-                    bone_trans = bone_trans.LookingAt(bone_trans.origin + bone_dir, Vector3.Up);
+                    bone_trans = bone_trans.LookingAt(bone_trans.origin + bone_dir, bone_up_dir);
                 }
                 else {
                     Transform next_bone_trans = fabrik_transfroms[i+1];
@@ -422,10 +424,8 @@ public class Twisted_ModifierFABRIK3D : Twisted_Modifier3D
         }
 
         for (int i = 0; i < fabrik_joints.Length; i++) {
-            // We only care about rotation
-            Vector3 tmp_scale = fabrik_joints[i].twisted_bone.Scale;
+            // Get the transform
             fabrik_joints[i].twisted_bone.GlobalTransform = fabrik_skeleton.global_pose_to_world_transform(fabrik_transfroms[i]);
-            fabrik_joints[i].twisted_bone.Scale = tmp_scale;
 
             // Apply additional rotation (only supported in LookAt currently)
             if (use_lookat == true) {
@@ -433,6 +433,9 @@ public class Twisted_ModifierFABRIK3D : Twisted_Modifier3D
                 fabrik_joints[i].twisted_bone.RotateObjectLocal(Vector3.Up, fabrik_joints[i].additional_rotation.y);
                 fabrik_joints[i].twisted_bone.RotateObjectLocal(Vector3.Forward, fabrik_joints[i].additional_rotation.z);
             }
+
+            // Keep the scale consistent with the global pose
+            fabrik_joints[i].twisted_bone.Scale = fabrik_joints[i].twisted_bone.get_reset_bone_global_pose(false).basis.Scale;
 
             if (force_bone_application == true) {
                 fabrik_joints[i].twisted_bone.force_apply_transform();

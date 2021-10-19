@@ -306,15 +306,22 @@ public class Twisted_ModifierCurveIK3D : Twisted_Modifier3D
             }
             // Rotation
             Vector3 rotation_position = curve_node.ToGlobal(curve_to_use.InterpolateBaked(position_on_curve));
-            current_transform = current_transform.LookingAt(rotation_position, Vector3.Up);
+            Vector3 bone_up_dir = current_joint.twisted_bone.get_reset_bone_global_pose().basis.y.Normalized();
+            current_transform = current_transform.LookingAt(rotation_position, bone_up_dir);
 
             current_joint.twisted_bone.GlobalTransform = current_transform;
-            current_joint.twisted_bone.Scale = tmp_scale;
 
             // Apply additional rotation
             current_joint.twisted_bone.RotateObjectLocal(Vector3.Right, current_joint.additional_rotation.x);
             current_joint.twisted_bone.RotateObjectLocal(Vector3.Up, current_joint.additional_rotation.y);
             current_joint.twisted_bone.RotateObjectLocal(Vector3.Forward, current_joint.additional_rotation.z);
+
+            // Keep the scale consistent with the global pose
+            if (scale_bones_to_fit_curve == false) {
+                current_joint.twisted_bone.Scale = current_joint.twisted_bone.get_reset_bone_global_pose(false).basis.Scale;
+            } else {
+                current_joint.twisted_bone.Scale = tmp_scale;
+            }
 
             if (force_bone_application == true) {
                 current_joint.twisted_bone.force_apply_transform();

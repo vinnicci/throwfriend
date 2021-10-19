@@ -770,13 +770,15 @@ public class Twisted_ModifierJiggle3D : Twisted_Modifier3D
         }
 
         // Rotate the bone to look at the new position
-        Vector3 tmp_scale = current_joint.twisted_bone.Scale;
-
         if (use_lookat == true) {
             // Works surprisingly well!
+            Vector3 bone_up_dir = current_joint.twisted_bone.get_reset_bone_global_pose().basis.y.Normalized();
+            /*
             current_joint.twisted_bone.LookAt(current_joint.dynamic_pos,
                 current_joint.twisted_bone.get_bone_global_pose().basis.Xform(Vector3.Up)
             );
+            */
+            current_joint.twisted_bone.LookAt(current_joint.dynamic_pos, bone_up_dir);
             
             // Apply additional rotation
             current_joint.twisted_bone.RotateObjectLocal(Vector3.Right, current_joint.additional_rotation.x);
@@ -788,8 +790,9 @@ public class Twisted_ModifierJiggle3D : Twisted_Modifier3D
                 current_joint.twisted_bone.GlobalTransform, current_joint.dynamic_pos);
         }
 
-        // Adjust for scale
-        current_joint.twisted_bone.Scale = tmp_scale;
+        // Keep the scale consistent with the global pose
+        current_joint.twisted_bone.Scale = current_joint.twisted_bone.get_reset_bone_global_pose(false).basis.Scale;
+        
         // Force apply (if needed)
         if (force_bone_application == true) {
             current_joint.twisted_bone.force_apply_transform();

@@ -142,8 +142,8 @@ public class Twisted_Skeleton3D : Spatial
     {
         base._Process(delta);
         if (current_skeleton != null) {
-                GlobalTransform = current_skeleton.GlobalTransform;
-            }
+            GlobalTransform = current_skeleton.GlobalTransform;
+        }
     }
 
     /// <summary>

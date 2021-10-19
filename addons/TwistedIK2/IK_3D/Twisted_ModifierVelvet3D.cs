@@ -433,6 +433,9 @@ public class Twisted_ModifierVelvet3D : Twisted_Modifier3D
 				if (direction_to_new_pos.LengthSquared() > minimum_required_velocity) {
                     Vector3 bone_up_dir = current_joint.twisted_bone.get_reset_bone_global_pose().basis.y.Normalized();
 					current_joint.twisted_bone.LookAt(current_transform.origin + direction_to_new_pos, bone_up_dir);
+
+					// Keep the scale consistent with the global pose
+            		current_joint.twisted_bone.Scale = current_joint.twisted_bone.get_reset_bone_global_pose(false).basis.Scale;
 				}
 
 				current_joint.velvet_velocity = new_vel;

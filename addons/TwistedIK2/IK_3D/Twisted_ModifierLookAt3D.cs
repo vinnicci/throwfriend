@@ -147,11 +147,15 @@ public class Twisted_ModifierLookAt3D : Twisted_Modifier3D
             }
         }
 
-        twisted_bone.LookAt(target_node.GlobalTransform.origin, Vector3.Up);
+        Vector3 bone_up_dir = twisted_bone.get_reset_bone_global_pose().basis.y.Normalized();
+        twisted_bone.LookAt(target_node.GlobalTransform.origin, bone_up_dir);
 
         twisted_bone.Rotate(twisted_bone.Transform.basis.x.Normalized(), tweak_additional_rotation.x);
         twisted_bone.Rotate(twisted_bone.Transform.basis.y.Normalized(), tweak_additional_rotation.y);
         twisted_bone.Rotate(twisted_bone.Transform.basis.z.Normalized(), tweak_additional_rotation.z);
+
+        // Keep the scale consistent with the global pose
+        twisted_bone.Scale = twisted_bone.get_reset_bone_global_pose(false).basis.Scale;
 
         if (force_bone_application) {
             twisted_bone.force_apply_transform();
