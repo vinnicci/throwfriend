@@ -10,6 +10,9 @@ public class RigidCharger : BaseCharger
 
     public override void OnEnemyBodyEntered(Godot.Object body) {
         base.OnEnemyBodyEntered(body);
+        if(charging) {
+            PlaySoundEffect("ChargeCollide");
+        }
     }
 
 

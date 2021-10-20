@@ -16,7 +16,7 @@ public class FlyBlobCarrier : AllRounder
         EmitSignal(nameof(Died));
         Health = 0;
         EnemyProj flyblob = (EnemyProj)spawnScenes["flyblob"].Instance();
-        flyblob.Spawn(LevelNode, ((Node2D)GetNode("Sprite/Head")).GlobalPosition, Vector2.Zero);
+        flyblob.Spawn(LevelNode, ((Node2D)GetNode("Sprite/Torso/Head")).GlobalPosition, Vector2.Zero);
     }
 
 

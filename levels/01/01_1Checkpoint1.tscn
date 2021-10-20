@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/level/SavePoint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/collectables/HealthUpgrade.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/collectables/SnarkDmgUpgrade.tscn" type="PackedScene" id=5]
 
 [node name="01_1Checkpoint1" instance=ExtResource( 1 )]
 
@@ -30,9 +31,12 @@ position = Vector2( -661, 258 )
 position = Vector2( 192, 471 )
 rotation = -1.5708
 
-[node name="InvisibleWalls" parent="Objects" index="9"]
+[node name="HealthUpgrade" parent="Objects" index="10" instance=ExtResource( 4 )]
+position = Vector2( -29, -130 )
+
+[node name="InvisibleWalls" parent="Objects" index="11"]
 visible = false
 tile_data = PoolIntArray( 9, 1, 65538, 65545, 1, 65538, 262132, 1, 65538, 327668, 1, 65538, 524290, 1, 65538, 524291, 1, 65538 )
 
-[node name="HealthUpgrade" parent="Objects" index="10" instance=ExtResource( 4 )]
-position = Vector2( -66, -132 )
+[node name="SnarkDmgUpgrade" parent="Objects" index="12" instance=ExtResource( 5 )]
+position = Vector2( -107, -134 )

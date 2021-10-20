@@ -30,7 +30,7 @@ spawnScenes = {
 "proj": ExtResource( 9 )
 }
 
-[node name="Head" parent="Sprite" index="2"]
+[node name="Head" parent="Sprite/Torso" index="1"]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="2"]

@@ -33,6 +33,7 @@ acts = {
 }
 
 [node name="Body" parent="Sprite" index="0"]
+scale = Vector2( 1, 1 )
 texture = ExtResource( 3 )
 
 [node name="Legs" parent="Sprite/Body" index="0"]

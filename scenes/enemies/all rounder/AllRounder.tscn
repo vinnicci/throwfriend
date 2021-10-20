@@ -24,29 +24,28 @@ spawnScenes = {
 acts = {
 }
 
-[node name="Arms" type="Sprite" parent="Sprite" index="0"]
-visible = false
-z_index = -1
-texture = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="Torso" type="Sprite" parent="Sprite" index="1"]
-z_index = -1
+[node name="Torso" type="Sprite" parent="Sprite" index="0"]
 texture = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Head" type="Sprite" parent="Sprite" index="2"]
+[node name="Arms" type="Sprite" parent="Sprite/Torso" index="0"]
+visible = false
+show_behind_parent = true
+texture = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Head" type="Sprite" parent="Sprite/Torso" index="1"]
 position = Vector2( 0, -11 )
 texture = ExtResource( 4 )
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Legs" type="Sprite" parent="Sprite" index="3"]
+[node name="Legs" type="Sprite" parent="Sprite/Torso" index="2"]
 position = Vector2( 0, 14 )
 z_index = -1
 texture = ExtResource( 5 )

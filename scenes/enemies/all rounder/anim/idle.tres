@@ -6,7 +6,7 @@
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite/Head:scale")
+tracks/0/path = NodePath("../Sprite/Torso/Head:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -18,7 +18,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1.25 ), Vector2( 1.25, 1 ), Vector2( 1, 1.25 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../Sprite/Head:position")
+tracks/1/path = NodePath("../Sprite/Torso/Head:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -30,7 +30,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -13 ), Vector2( 0, -11 ), Vector2( 0, -13 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../Sprite/Legs:texture")
+tracks/2/path = NodePath("../Sprite/Torso/Legs:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false

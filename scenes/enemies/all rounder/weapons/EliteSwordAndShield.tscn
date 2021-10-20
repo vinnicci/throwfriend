@@ -39,13 +39,11 @@ bodies = [ NodePath("Sprites/Hand/Sword/Hitbox"), NodePath("Sprites/Hand/Shield/
 
 [node name="Hand" type="Sprite" parent="Sprites" index="0"]
 rotation = -0.349066
-z_index = -1
 texture = ExtResource( 1 )
 
 [node name="Sword" type="Sprite" parent="Sprites/Hand" index="0"]
 position = Vector2( -53.9943, -3.68967 )
 rotation = 3.14159
-z_index = 1
 texture = ExtResource( 3 )
 
 [node name="Hitbox" type="Area2D" parent="Sprites/Hand/Sword" index="0"]
@@ -60,7 +58,6 @@ shape = SubResource( 1 )
 [node name="Shield" type="Sprite" parent="Sprites/Hand" index="1"]
 position = Vector2( 22, 7.5 )
 rotation = 0.174533
-z_index = 1
 texture = ExtResource( 5 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprites/Hand/Shield" index="0"]
@@ -80,5 +77,11 @@ autoplay = "idle"
 anims/idle = ExtResource( 4 )
 anims/melee_attack_back = ExtResource( 6 )
 anims/throw_flyblob = ExtResource( 8 )
+
+[node name="Shoot" parent="Sounds" index="0"]
+stream = null
+
+[node name="Shoot" parent="Sounds" index="3"]
+stream = null
 
 [connection signal="body_entered" from="Sprites/Hand/Sword/Hitbox" to="." method="OnHitboxBodyEntered"]

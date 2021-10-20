@@ -9,6 +9,7 @@ public class SavePoint : Area2D
     Player player;
     Main mainNode;
     Particles2D particles;
+    AudioStreamPlayer2D sound;
 
     public Level LevelNode {get; set;}
 
@@ -18,6 +19,7 @@ public class SavePoint : Area2D
         base._Ready();
         mainNode = (Main)GetNode("/root/Main");
         particles = (Particles2D)GetNode("Particles2D");
+        sound = (AudioStreamPlayer2D)GetNode("Sound");
         SetProcess(false);
     }
 
@@ -61,6 +63,7 @@ public class SavePoint : Area2D
             arr.Add(currentCell);
             player.UpdateFastTravelPoints();
         }
+        sound.Play();
         mainNode.SavePlayerData(true);
         SetProcess(false);
     }

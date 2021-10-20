@@ -43,14 +43,14 @@ polygon = PoolVector2Array( 55.4861, 1.73611, 63.8675, 3.62095, 71.7257, 7.24191
 uv = PoolVector2Array( 55.4861, 1.73611, 63.8675, 3.62095, 71.7257, 7.24191, 76.8875, 12.0185, 83.4361, 23.1125, 93.3125, 28.625, 102.5, 37.625, 115.188, 48.125, 115.242, 60.8889, 108.625, 70.1875, 97.875, 77.25, 84.5, 77.8125, 68.4375, 83.25, 50.4375, 83.5, 39.4375, 77.5625, 23, 77.1875, 11.1875, 73.6875, 0.694445, 67.7778, 0.277778, 59.2361, 15.9375, 49.0625, 27.2727, 42.9892, 30.8937, 27.1186, 34.2835, 19.4915, 40, 11.1111, 47.9861, 5.13889, 86.4407, 28.8906, 83.2279, 32.3299, 80.9951, 41.2613, 74.137, 49.3953, 67.1195, 41.5005, 57.8691, 34.8817, 50.4528, 42.0587, 45.9871, 51.6281, 38.9696, 57.928, 31.3938, 52.2661, 21.8028, 57.7042, 20.6875, 54.8125, 99.4772, 46.1724, 91.6032, 53.9479, 81.418, 61.7078, 68.0433, 64.8964, 54.3143, 67.1993, 37.0424, 66.9336, 22.5087, 59.755 )
 bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Upper"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Upper/Upper2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Upper/Upper2/Upper3"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower"), PoolRealArray( 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1 ), NodePath("Root/Lower/Lower2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
 
-[node name="Upper" parent="Sprite" index="1" instance=ExtResource( 3 )]
+[node name="Upper" parent="Sprite/Lower" index="0" instance=ExtResource( 3 )]
 position = Vector2( -46, -91 )
-skeleton = NodePath("../Skeleton2D")
+skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 42.5625, -0.5, 54.875, 3.375, 65.5, 9.5, 72.5, 16.125, 70.9375, 28, 73.25, 37.75, 77.75, 46.25, 78.4375, 55.625, 74.625, 65.5, 70.5, 73.9375, 65.3125, 80, 58.625, 77.5, 55.5, 70.1875, 49.9375, 64.75, 43.4375, 68.8125, 39.25, 77.1875, 34.2361, 83.6806, 27.7778, 85.625, 17.9167, 83.4028, 11.0625, 81.25, 1.625, 76.0625, 1.17892, 67.8918, 9.5, 62.0625, 13.6806, 54.375, 16.3889, 45.2778, 16.1806, 36.4583, 12.375, 30.625, 15.1389, 20.9722, 24.5625, 15.3125, 30.3125, 12.5, 34.1875, 5, 44.3279, 7.14967, 46.4252, 21.163, 47.0925, 36.3203, 48.3317, 52.7169, 30.9819, 23.0696, 29.266, 36.511, 29.552, 51.5729, 21.5443, 67.3022, 56.816, 20.6864, 59.8665, 36.511, 63.8704, 52.6216 )
 uv = PoolVector2Array( 42.5625, -0.5, 54.875, 3.375, 65.5, 9.5, 72.5, 16.125, 70.9375, 28, 73.25, 37.75, 77.75, 46.25, 78.4375, 55.625, 74.625, 65.5, 70.5, 73.9375, 65.3125, 80, 58.625, 77.5, 55.5, 70.1875, 49.9375, 64.75, 43.4375, 68.8125, 39.25, 77.1875, 34.2361, 83.6806, 27.7778, 85.625, 17.9167, 83.4028, 11.0625, 81.25, 1.625, 76.0625, 1.17892, 67.8918, 9.5, 62.0625, 13.6806, 54.375, 16.3889, 45.2778, 16.1806, 36.4583, 12.375, 30.625, 15.1389, 20.9722, 24.5625, 15.3125, 30.3125, 12.5, 34.1875, 5, 44.3279, 7.14967, 46.4252, 21.163, 47.0925, 36.3203, 48.3317, 52.7169, 30.9819, 23.0696, 29.266, 36.511, 29.552, 51.5729, 21.5443, 67.3022, 56.816, 20.6864, 59.8665, 36.511, 63.8704, 52.6216 )
 bones = [ NodePath("Root"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Upper"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0.51, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0.49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.51, 0, 0, 0.51, 1, 0, 0, 0.51 ), NodePath("Root/Upper/Upper2"), PoolRealArray( 1, 1, 1, 1, 1, 1, 0.49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.49, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.49, 1, 1, 0.49, 0, 1, 1, 0.49 ), NodePath("Root/Upper/Upper2/Upper3"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), NodePath("Root/Lower/Lower2"), PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
 
-[node name="Skeleton2D" type="Skeleton2D" parent="Sprite" index="2"]
+[node name="Skeleton2D" type="Skeleton2D" parent="Sprite" index="1"]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -71,7 +71,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="0"]
 position = Vector2( 2, -21 )
-rotation = 0.239499
+rotation = 0.239526
 rest = Transform2D( 1, 0, 0, 1, 2, -21 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -87,6 +87,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper2" type="Bone2D" parent="Sprite/Skeleton2D/Root/Upper" index="0"]
 position = Vector2( 0, -23 )
+rotation = -7.15256e-06
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, 0, -23 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -102,7 +104,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Upper3" type="Bone2D" parent="Sprite/Skeleton2D/Root/Upper/Upper2" index="0"]
 position = Vector2( 0, -26 )
-rotation = -1.5708
+rotation = -1.57075
 rest = Transform2D( 1, 0, 0, 1, 0, -26 )
 script = ExtResource( 4 )
 settings/auto_get_skeleton = true
@@ -146,18 +148,18 @@ gizmo/gizmo_bone_shape_index = 2
 gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
 gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
-[node name="UpperTC" parent="Sprite" index="3" instance=ExtResource( 14 )]
-Targets = [ NodePath("../Skeleton2D/Root/Upper") ]
+[node name="UpperTC" parent="Sprite" index="2" instance=ExtResource( 14 )]
 Enabled = true
+Targets = [ NodePath("../Skeleton2D/Root/Upper") ]
 Position/ClampedX = false
 Position/ClampedY = false
 Scale/ClampedX = false
 Scale/ClampedY = false
 
-[node name="UpperTarget" type="Position2D" parent="Sprite" index="4"]
+[node name="UpperTarget" type="Position2D" parent="Sprite" index="3"]
 position = Vector2( 23, -107 )
 
-[node name="Twisted_ModifierStack2D" type="Node2D" parent="Sprite" index="5"]
+[node name="Twisted_ModifierStack2D" type="Node2D" parent="Sprite" index="4"]
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true

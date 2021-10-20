@@ -39,4 +39,9 @@ class FirstBigEncounterChargerSpawner : BaseChargerSpawner, IQuest
     }
 
 
+    public new void PlaySoundEffect(String soundName) {
+        base.PlaySoundEffect(soundName);
+    }
+
+
 }

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/level/SavePoint.cs" type="Script" id=1]
 [ext_resource path="res://assets/level/tex_savepoint.png" type="Texture" id=2]
+[ext_resource path="res://assets/level/snd_save.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 100.0
@@ -64,6 +65,9 @@ one_shot = true
 explosiveness = 0.7
 local_coords = false
 process_material = SubResource( 5 )
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="OnSavePointBodyEntered"]
 [connection signal="body_exited" from="." to="." method="OnSavePointBodyExited"]

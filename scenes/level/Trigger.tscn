@@ -14,6 +14,8 @@ BoundTriggers = [  ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="area_entered" from="." to="." method="OnTriggerAreaEntered"]
 [connection signal="area_exited" from="." to="." method="OnTriggerAreaExited"]
 [connection signal="body_entered" from="." to="." method="OnTriggerBodyEntered"]

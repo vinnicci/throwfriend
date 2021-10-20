@@ -28,12 +28,14 @@ acts = {
 }
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 9 )]
+rotation = -3.03333
+scale = Vector2( 1, 1 )
 spawnScenes = {
 "blob": ExtResource( 10 ),
 "proj": ExtResource( 11 )
 }
 
-[node name="Head" parent="Sprite" index="2"]
+[node name="Head" parent="Sprite/Torso" index="1"]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="2"]

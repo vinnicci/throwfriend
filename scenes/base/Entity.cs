@@ -169,6 +169,8 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         PlaySoundEffect("Died");
         SetCollisionLayerBit(Global.BIT_MASK_ENEMY, false);
         SetCollisionLayerBit(Global.BIT_MASK_PLAYER, false);
+        SetProcess(false);
+        SetPhysicsProcess(false);
     }
 
 

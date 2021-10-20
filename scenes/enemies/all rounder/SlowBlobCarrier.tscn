@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/enemies/all rounder/anim/blob_fly_2.tres" type="Animation" id=1]
 [ext_resource path="res://scenes/enemies/all rounder/anim/run.tres" type="Animation" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://assets/enemies/all rounder/tex_en_all_rounder2.png" type="Texture" id=7]
 [ext_resource path="res://scenes/enemies/all rounder/AllRounder.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/all rounder/weapons/SlowBlob.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/enemies/all rounder/anim/blobcarrier_damaged.tres" type="Animation" id=10]
 [ext_resource path="res://assets/enemies/all rounder/snd_flyblob_carrier.wav" type="AudioStream" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -27,10 +26,10 @@ acts = {
 "blob_fly": [ 1.0, 1.0 ]
 }
 
-[node name="Arms" parent="Sprite" index="0"]
+[node name="Arms" parent="Sprite/Torso" index="0"]
 visible = true
 
-[node name="Head" parent="Sprite" index="2"]
+[node name="Head" parent="Sprite/Torso" index="1"]
 texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" parent="." index="1"]
@@ -38,9 +37,6 @@ shape = SubResource( 1 )
 
 [node name="AI" parent="." index="4"]
 seek_dist = 300
-
-[node name="DamageAnim" parent="Anims" index="1"]
-anims/damaged = ExtResource( 10 )
 
 [node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"

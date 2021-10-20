@@ -52,11 +52,18 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
     protected Node2D aINode;
     protected Explosion ExplosionNode {get; private set;}    
     protected Godot.Collections.Dictionary ActDict {get; private set;}
+    
+    AnimationTree animTree;
+    AnimationNodeStateMachinePlayback animStateMachine;
 
 
     public override void _Ready()
     {
         base._Ready();
+        if(HasNode("AnimTree")) {
+            animTree = (AnimationTree)GetNode("AnimTree");
+            animStateMachine = (AnimationNodeStateMachinePlayback)animTree.Get("parameters/playback");
+        }
         if(HasNode("Explosion")) {
             ExplosionNode = (Explosion)GetNode("Explosion");
         }
@@ -186,7 +193,12 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
         }
         action["IsActive"] = true;
         anim.Stop();
-        anim.Play(actionName);
+        if(IsInstanceValid(animStateMachine) == false) {
+            anim.Play(actionName);
+        }
+        else {
+            animStateMachine.Travel(actionName);
+        }
         return true;
     }
 

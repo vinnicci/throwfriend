@@ -15,6 +15,8 @@ public abstract class Trigger : Area2D, ILevelObject
     protected uint defaultCollisionLayer;
     protected uint defaultCollisionMask;
 
+    AudioStreamPlayer2D sound;
+
 
     public override void _Ready()
     {
@@ -29,6 +31,7 @@ public abstract class Trigger : Area2D, ILevelObject
         SwitchedOnSignal = nameof(SwitchedOn);
         SwitchedOffSignal = nameof(SwitchedOff);
         TriggerAnim = (AnimationPlayer)GetNode("Anim");
+        sound = (AudioStreamPlayer2D)GetNode("Sound");
         if(TriggerAnim.IsConnected("animation_finished", this, nameof(OnAnimFinished)) == false) {
             TriggerAnim.Connect("animation_finished", this, nameof(OnAnimFinished));
         }
@@ -107,6 +110,9 @@ public abstract class Trigger : Area2D, ILevelObject
         TriggerAnim.Queue("trigger");
         if(IsInstanceValid(LevelNode.PlayerNode)) {
             LevelNode.PlayerNode.WarnPlayer(warningText);
+            if(warningText != "") {
+                LevelNode.PlayerNode.PlaySoundEffect("SecretFound");
+            }
         }
         EmitSignal(SwitchedOnSignal);
         return true;
@@ -124,7 +130,12 @@ public abstract class Trigger : Area2D, ILevelObject
     }
 
 
-    public virtual void OnAnimFinished(String animName) {}
+    public virtual void OnAnimFinished(String animName) {
+        if(IsInstanceValid(sound.Stream)) {
+            sound.Stop();
+            sound.Play();
+        }
+    }
 
 
 }

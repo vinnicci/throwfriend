@@ -85,6 +85,9 @@ public class LevelTiles: TileMap, ILevelObject
         TriggerAnim.Queue("trigger");
         if(IsInstanceValid(LevelNode.PlayerNode)) {
             LevelNode.PlayerNode.WarnPlayer(warningText);
+            if(warningText != "") {
+                LevelNode.PlayerNode.PlaySoundEffect("SecretFound");
+            }
         }
         EmitSignal(SwitchedOnSignal);
         return true;

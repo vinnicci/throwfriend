@@ -24,14 +24,13 @@ acts = {
 }
 
 [node name="EnemyWeapon" parent="." index="0" instance=ExtResource( 8 )]
-visible = false
 spawnScenes = {
 "blob": ExtResource( 5 ),
 "proj": ExtResource( 7 )
 }
 
-[node name="Sprite" parent="." index="1"]
-rotation = -0.0050815
+[node name="Arms" parent="Sprite/Torso" index="0"]
+visible = false
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( 1 )
