@@ -87,7 +87,7 @@ public abstract class Trigger : Area2D, ILevelObject
 
 
     public virtual void OnTriggerBodyEntered(Godot.Object body) {
-        if(body is Weapon && ((Weapon)body).CurrentState == Weapon.States.HELD) {
+        if(body is Weapon && (((Weapon)body).IsClone || ((Weapon)body).CurrentState == Weapon.States.HELD)) {
             return;
         }
         OnSwitchedOn();

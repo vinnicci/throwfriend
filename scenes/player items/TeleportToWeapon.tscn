@@ -7,10 +7,14 @@
 
 [node name="TeleportToWeapon" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-itemDescription = "Activate: Teleport to Snark's position. This ability has a chance to fail however."
+itemDescription = "Activate: Quick tap to teleport to cursor. Press longer to teleport to Snark's position. This ability has a chance to fail however."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 3 )
 
 [node name="TeleportFailed" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
 stream = ExtResource( 4 )
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="3"]
+enabled = true
+collision_mask = 18

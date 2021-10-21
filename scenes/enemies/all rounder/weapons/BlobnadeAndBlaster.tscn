@@ -40,9 +40,3 @@ autoplay = "idle"
 anims/idle = ExtResource( 11 )
 anims/shoot = ExtResource( 8 )
 anims/throw_blob = ExtResource( 10 )
-
-[node name="Shoot" parent="Sounds" index="0"]
-stream = null
-
-[node name="Shoot" parent="Sounds" index="3"]
-stream = null

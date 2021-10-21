@@ -163,33 +163,46 @@ public abstract class Level : YSort
     Queue<Godot.Collections.Array> distCalcQueue = new Queue<Godot.Collections.Array>();
 
 
-    public void GetDist(Vector2 to, Vector2 from, Node2D aiNode, String key) {
-        Stack<Vector2> arr = new Stack<Vector2>(GetPath(to, from));
+    public void GetDist(Vector2 to, Vector2 from, Node2D aiNode, String key, bool calculatePath) {
+        Godot.Collections.Array arrQ = new Godot.Collections.Array();
+        arrQ.Add(aiNode); //0
+        arrQ.Add(key); //1
+        arrQ.Add(to); //2
+        arrQ.Add(from); //3
+        arrQ.Add(calculatePath); //4
+        distCalcQueue.Enqueue(arrQ);
+    }
+
+
+    int CalcDist(Vector2 to, Vector2 from, bool calculatePath) {
         int dist = 0;
-        if(arr.Count == 0) {
-            dist = -1;
-        }
-        else {
-            dist = (int)arr.Pop().DistanceTo(arr.Peek());
-            while(arr.Count > 1) {
-                dist += (int)arr.Pop().DistanceTo(arr.Peek());
+        if(calculatePath) {
+            Stack<Vector2> arr = new Stack<Vector2>(GetPath(to, from));
+            if(arr.Count == 0) {
+                dist = -1;
+            }
+            else {
+                dist = (int)arr.Pop().DistanceTo(arr.Peek());
+                while(arr.Count > 1) {
+                    dist += (int)arr.Pop().DistanceTo(arr.Peek());
+                }
             }
         }
-        Godot.Collections.Array arrQ = new Godot.Collections.Array();
-        arrQ.Add(aiNode);
-        arrQ.Add(key);
-        arrQ.Add(dist);
-        distCalcQueue.Enqueue(arrQ);
+        else {
+            dist = (int)from.DistanceSquaredTo(to);
+        }
+        return dist;
     }
 
 
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
+        //processing distance calculations one frame at a time to reduce frame time?? who knows
         if(distCalcQueue.Count > 0) {
             Godot.Collections.Array arrQ = distCalcQueue.Dequeue();
             if(IsInstanceValid((Node2D)arrQ[0])) {
-                ((Node2D)arrQ[0]).Call("update_dist", arrQ[1], arrQ[2]);
+                ((Node2D)arrQ[0]).Call("update_dist", arrQ[1], CalcDist((Vector2)arrQ[2], (Vector2)arrQ[3], (bool)arrQ[4]));
             }
         }
     }

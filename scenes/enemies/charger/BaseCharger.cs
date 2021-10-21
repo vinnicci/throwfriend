@@ -12,11 +12,11 @@ public abstract class BaseCharger : Enemy
         base._PhysicsProcess(delta);
         int lv = (int)LinearVelocity.LengthSquared();
         if(charging && lv <= CHARGE_MIN_V) {
-            charging = false;
-            SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
-        }
-        else if(charging) {
             LeaveTrail(2);
+            if(lv <= CHARGE_MIN_V) {
+                charging = false;
+                SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);
+            }
         }
     }
 

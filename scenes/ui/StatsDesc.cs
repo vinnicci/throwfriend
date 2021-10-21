@@ -141,7 +141,7 @@ public class StatsDesc : Control
 
 
     //help and tips
-    int currentTip = 3;
+    int currentTip = 0;
     const String path = "StatsPanel/HelpDisp/Tip";
     [Export] Godot.Collections.Array<String> tipsArr;
 
@@ -179,6 +179,7 @@ public class StatsDesc : Control
             return;
         }
         ((AnimationPlayer)GetNode("StatsPanel/HelpDisp/Tip4/Anim")).Play("trigger");
+        ((Control)GetNode("StatsPanel/HelpDisp/Tip4/Label")).Visible = true;
         qArr.Add("NOT SPECIAL");
         mainNode.Saver.Call("save_world_data");
     }

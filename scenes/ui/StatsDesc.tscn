@@ -174,10 +174,18 @@ position = Vector2( 245, 79 )
 [node name="Tip4" parent="StatsPanel/HelpDisp" instance=ExtResource( 4 )]
 visible = false
 
-[node name="Sprite" parent="StatsPanel/HelpDisp/Tip4" index="0"]
+[node name="Label" parent="StatsPanel/HelpDisp/Tip4" index="0"]
+margin_left = 19.0
+margin_top = 45.0
+margin_right = 164.0
+margin_bottom = 59.0
+text = "INITIATION COMPLETE                   THE ENTRANCE WILL BE 
+                                                       REVEALED SOON"
+
+[node name="Sprite" parent="StatsPanel/HelpDisp/Tip4" index="1"]
 position = Vector2( 201, 77 )
 
-[node name="SecretButton" parent="StatsPanel/HelpDisp/Tip4" index="2"]
+[node name="SecretButton" parent="StatsPanel/HelpDisp/Tip4" index="3"]
 margin_left = 174.0
 margin_top = 49.0
 margin_right = 227.0

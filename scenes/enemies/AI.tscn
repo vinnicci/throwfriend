@@ -12,7 +12,7 @@ script = ExtResource( 1 )
 one_shot = true
 
 [node name="Tick" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.25
 
 [node name="DetectionRange" type="Area2D" parent="."]
 visible = false

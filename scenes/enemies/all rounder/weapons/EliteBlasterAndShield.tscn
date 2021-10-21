@@ -59,9 +59,3 @@ anims/shoot_back = ExtResource( 4 )
 anims/super_scatter = ExtResource( 11 )
 anims/throw_blob = ExtResource( 10 )
 anims/triple_shot = ExtResource( 12 )
-
-[node name="Shoot" parent="Sounds" index="0"]
-stream = null
-
-[node name="Shoot" parent="Sounds" index="3"]
-stream = null

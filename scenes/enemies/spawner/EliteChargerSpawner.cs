@@ -10,7 +10,7 @@ public class EliteChargerSpawner : BaseChargerSpawner
     public override void _Ready()
     {
         base._Ready();
-        polyUpper = (Polygon2D)GetNode("Sprite/Upper");
+        polyUpper = (Polygon2D)GetNode("Sprite/Lower/Upper");
         polyLower = (Polygon2D)GetNode("Sprite/Lower");
     }
 

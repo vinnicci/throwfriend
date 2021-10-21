@@ -162,9 +162,9 @@ public class Settings : Control
     }
 
 
-    public override void _PhysicsProcess(float delta)
+    public override void _Process(float delta)
     {
-        base._PhysicsProcess(delta);
+        base._Process(delta);
         if(Input.IsActionJustPressed("in_game_ui") && Visible && IsInstanceValid(InGameUIAnim) &&
         InGameUIAnim.IsPlaying() == false) {
             InGameUIAnim.Play("settings_exit");

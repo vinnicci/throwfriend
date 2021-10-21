@@ -174,7 +174,9 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable, ISoundEmitter
             else if((float)stuckCondArr[1] <= 0) {
                 stuckCondArr[0] = false;
                 stuckCondArr[1] = 0;
-                Teleport(PlayerNode.LevelNode, PlayerNode.GlobalPosition);
+                if(IsInstanceValid(PlayerNode)) {
+                    Teleport(PlayerNode.LevelNode, PlayerNode.GlobalPosition);
+                }
             }
         }
     }

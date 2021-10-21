@@ -8,6 +8,7 @@ public class Laser : EnemyWeapon
 
     public override void Shoot() {
         base.Shoot();
+        PlaySoundEffect("Shoot");
     }
 
 

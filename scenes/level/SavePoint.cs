@@ -65,6 +65,7 @@ public class SavePoint : Area2D
         }
         sound.Play();
         mainNode.SavePlayerData(true);
+        saving = false;
         SetProcess(false);
     }
 

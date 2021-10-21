@@ -48,6 +48,3 @@ position = Vector2( 34.5, 0 )
 autoplay = "idle"
 anims/idle = ExtResource( 7 )
 anims/shoot_back = ExtResource( 4 )
-
-[node name="Shoot" parent="Sounds" index="3"]
-stream = null

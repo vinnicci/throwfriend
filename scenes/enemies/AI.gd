@@ -152,18 +152,15 @@ var turret_types: Array = [
 func _on_Tick_timeout():
 	var e = bb["enemy"]
 	if is_ent_valid(e) == false && is_ent_valid(player_node):
-		ray.look_at(player_node.global_position)
-		ray.force_raycast_update()
-		if ray.get_collider() == player_node:
-			engage_enemy(player_node)
+		GlobalGD.get_ray_update(self, ray, player_node)
 	elif is_ent_valid(e):
 		#range distance - used by turrets
-		bb["enemy_range_sq"] = parent_node.global_position.distance_squared_to(e.global_position)
+		level_node.call("GetDist", e.global_position, parent_node.global_position, self, "enemy_range_sq", false)
 		ray.look_at(e.global_position)
 		if turret_types.has(filename):
 			return
 		#path distance
-		level_node.call("GetDist", e.global_position, parent_node.global_position, self, "enemy_dist")
+		level_node.call("GetDist", e.global_position, parent_node.global_position, self, "enemy_dist", true)
 
 
 func update_dist(key: String, dist: int):
@@ -266,7 +263,7 @@ func get_patrol_point():
 #param 1: distance required
 func task_is_target_close(task):
 	var dist: int = get_target_dist(task.get_param(0))
-	if dist == -1:
+	if dist <= 0:
 		task.failed()
 	elif dist <= bb[task.get_param(1)]:
 		task.succeed()
@@ -283,11 +280,9 @@ func get_target_dist(target_bb_name: String) -> int:
 #param 0: target
 #param 1: distance required
 func task_is_target_in_range(task):
-	var dist = task.get_param(1)
-	var dist_sq = dist + "_sq"
-	if bb.has(dist_sq) == false:
-		bb[dist_sq] = bb[dist] * bb[dist]
-	if bb[task.get_param(0) + "_range_sq"] <= bb[dist_sq]:
+	if(bb[task.get_param(0) + "_range_sq"] <= 0):
+		task.failed()
+	elif bb[task.get_param(0) + "_range_sq"] <= bb[task.get_param(1) + "_sq"]:
 		task.succeed()
 	else:
 		task.failed()
@@ -370,9 +365,8 @@ func _try_interrupt_patrol(_task) -> bool:
 
 #param 0: target
 func task_aim_weapon(task):
-	var t = bb[task.get_param(0)]
-	if ray.get_collider() == t:
-		weapon_node.look_at(t.global_position)
+	if ray.get_collider() == bb[task.get_param(0)]:
+		weapon_node.look_at(bb[task.get_param(0)].global_position)
 		parent_node.Velocity = Vector2(1,0).rotated(weapon_node.global_rotation)
 		parent_node.call("AdjustSprites")
 		task.succeed()

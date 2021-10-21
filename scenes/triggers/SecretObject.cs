@@ -19,16 +19,7 @@ public class SecretObject : Trigger
         if(base.OnSwitchedOn() == false) {
             return false;
         }
-        staticBody.CollisionLayer = 0;
-        return true;
-    }
-
-
-    public override bool OnSwitchedOff() {
-        if(base.OnSwitchedOff() == false) {
-            return false;
-        }
-        staticBody.CollisionLayer = staticBodyDefaultCollisionLayer;
+        QueueFree();
         return true;
     }
 
