@@ -6,6 +6,7 @@ public class WorldLayout : Node2D
     TileMap worldTileMap1;
     TileMap worldTileMap2;
     TileMap worldTileMap3;
+    TileMap worldTileMap4;
     Main mainNode;
 
 
@@ -16,6 +17,7 @@ public class WorldLayout : Node2D
         worldTileMap1 = (TileMap)GetNode("WorldTileMap1");
         worldTileMap2 = (TileMap)GetNode("WorldTileMap2");
         worldTileMap3 = (TileMap)GetNode("WorldTileMap3");
+        worldTileMap4 = (TileMap)GetNode("WorldTileMap4");
     }
 
 
@@ -30,6 +32,7 @@ public class WorldLayout : Node2D
         InitTileMap(worldTileMap1, 1, marks, cells);
         InitTileMap(worldTileMap2, 2, marks, cells);
         InitTileMap(worldTileMap3, 3, marks, cells);
+        InitTileMap(worldTileMap4, 4, marks, cells);
         mainNode.WorldSaveFile.Set("WorldCells", cells);
     }
     
@@ -91,6 +94,8 @@ public class WorldLayout : Node2D
     const float SPEED_2 = 1.15f;
     const float HP_3 = 6f;
     const float SPEED_3 = 1.3f;
+    const float HP_4 = 9f;
+    const float SPEED_4 = 1.45f;
 
 
     float SetDifficulty(int setNum, int type) {
@@ -99,6 +104,7 @@ public class WorldLayout : Node2D
             case 1: return 1f;
             case 2: rOut = type == 0 ? HP_2 : SPEED_2; break;
             case 3: rOut = type == 0 ? HP_3 : SPEED_3; break;
+            case 4: rOut = type == 0 ? HP_4 : SPEED_4; break;
         }
         return rOut;
     }

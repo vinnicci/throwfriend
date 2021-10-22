@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scenes/triggers/SecretNPC4.cs" type="Script" id=1]
 [ext_resource path="res://assets/player/tex_player_torso.png" type="Texture" id=2]
 [ext_resource path="res://assets/player/tex_run_1.png" type="Texture" id=3]
 [ext_resource path="res://assets/player/tex_player_arms.png" type="Texture" id=4]
@@ -47,23 +46,9 @@ tracks/2/keys = {
 "values": [ Vector2( -1, -11 ), Vector2( -1, -9 ) ]
 }
 
-[node name="SecretNPC4" instance=ExtResource( 5 )]
-script = ExtResource( 1 )
+[node name="GenericNPC" instance=ExtResource( 5 )]
 portrait = ExtResource( 6 )
-name = "Treasure Hunter"
-stringArr = [ 
-    "Hello, guardian.",
-    "So you're interested in those buttons?",
-    "Same for me.",
-    "I already found seven of them.",
-    "Not that I can do anything about it. It seems like I need incredible strength to actually press it.",
-    "But I was able to remove the covers and take a look underneath.",
-    "No special electronics or anything. Instead each of them has some random words.",
-    "Here take a look at this: ",
-    "EXEC_FUNC",
-    "Does it make sense to you?",
-    "No? I see. I'll ask for help once I get back to town.",
-    "Alright. See you later." ]
+name = "Citizen"
 portraitScale = 4.0
 
 [node name="Sprite" type="Sprite" parent="." index="1"]

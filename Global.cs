@@ -33,7 +33,6 @@ public static class Global
         "res://scenes/enemies/all rounder/MeleeRanged.tscn",
     };
     public static readonly String[] EASY_CHARGERS = {
-        "res://scenes/enemies/blob/NeutralBlob.tscn",
         "res://scenes/enemies/blob/HostileBlob.tscn",
         "res://scenes/enemies/charger/Charger.tscn",
         "res://scenes/enemies/blob/TeleportingBlob.tscn",
@@ -71,7 +70,6 @@ public static class Global
         "res://scenes/enemies/blob/HostileBlob.tscn",
         "res://scenes/enemies/charger/Charger.tscn",
         "res://scenes/enemies/blob/TeleportingBlob.tscn",
-        "res://scenes/enemies/blob/NeutralBlob.tscn",
         "res://scenes/enemies/shooter/Shooter.tscn",
         "res://scenes/enemies/shooter/SprayerSticky.tscn",
     };
@@ -116,7 +114,6 @@ public static class Global
         "res://scenes/enemies/all rounder/MeleeRanged.tscn",
     };
     public static readonly String[] CHARGERS_RANDOM = {
-        "res://scenes/enemies/blob/NeutralBlob.tscn",
         "res://scenes/enemies/blob/HostileBlob.tscn",
         "res://scenes/enemies/charger/Charger.tscn",
         "res://scenes/enemies/blob/TeleportingBlob.tscn",

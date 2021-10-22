@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/level/Walls.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/level/LabLight.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/collectables/HealthUpgrade.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/collectables/SnarkDmgUpgrade.tscn" type="PackedScene" id=7]
 
 [node name="00_3Checkpoint1" instance=ExtResource( 2 )]
 
@@ -68,8 +67,5 @@ position = Vector2( -96, -354 )
 [node name="LabLight2" parent="Objects" index="14" instance=ExtResource( 5 )]
 position = Vector2( 97, -355 )
 
-[node name="SnarkDmgUpgrade" parent="Objects" index="15" instance=ExtResource( 7 )]
-position = Vector2( 35, -269 )
-
-[node name="HealthUpgrade" parent="Objects" index="16" instance=ExtResource( 6 )]
-position = Vector2( -35, -271 )
+[node name="HealthUpgrade" parent="Objects" index="15" instance=ExtResource( 6 )]
+position = Vector2( 0, -269 )

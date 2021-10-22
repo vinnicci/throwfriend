@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/triggers/NPC4.cs" type="Script" id=1]
+[ext_resource path="res://assets/player/tex_player_torso.png" type="Texture" id=2]
+[ext_resource path="res://assets/player/tex_run_1.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/tex_player_arms.png" type="Texture" id=4]
+[ext_resource path="res://scenes/triggers/DialogueTrigger.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/npcs/tex_npc_head.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Arm2:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 7, 5 ), Vector2( 7, 7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Arm1:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -7, 5 ), Vector2( -7, 7 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Head:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1, -11 ), Vector2( -1, -9 ) ]
+}
+
+[node name="NPC4" instance=ExtResource( 5 )]
+script = ExtResource( 1 )
+portrait = ExtResource( 6 )
+name = "Researcher"
+stringArr = [ "Hello, guardian.", "So you're also interested in those buttons?", "I already found seven of them.", "Not that I can do anything about it. It seems like I need incredible strength to actually press it.", "But I was able to remove the covers and take a look underneath.", "No special electronics or anything. Instead each of them has some random words.", "Here take a look at this: ", "", "Does it make sense to you?", "No? I see. I'll ask for help once I get back to town.", "Alright. See you later." ]
+portraitScale = 4.0
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+position = Vector2( 0, -20 )
+texture = ExtResource( 2 )
+
+[node name="Head" type="Sprite" parent="Sprite" index="0"]
+position = Vector2( -1, -11 )
+texture = ExtResource( 6 )
+offset = Vector2( 0.5, 0 )
+
+[node name="Legs" type="Sprite" parent="Sprite" index="1"]
+position = Vector2( -0.5, 14 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0 )
+
+[node name="Arm2" type="Sprite" parent="Sprite" index="2"]
+show_behind_parent = true
+position = Vector2( 7, 5 )
+rotation = 0.774084
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 15, 4, 15, 9 )
+
+[node name="Arm1" type="Sprite" parent="Sprite" index="3"]
+show_behind_parent = true
+position = Vector2( -7, 5 )
+rotation = -0.808032
+texture = ExtResource( 4 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 15, 4, 15, 9 )
+
+[node name="Anim" type="AnimationPlayer" parent="." index="2"]
+autoplay = "idle"
+anims/idle = SubResource( 1 )

@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/triggers/DialogueTrigger.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://levels/misc/Ending1.cs" type="Script" id=4]
+[ext_resource path="res://scenes/base/anim/credits.tres" type="Animation" id=5]
+[ext_resource path="res://assets/misc/end2.png" type="Texture" id=6]
+[ext_resource path="res://assets/misc/end1.png" type="Texture" id=7]
+[ext_resource path="res://assets/misc/black_screen.png" type="Texture" id=8]
+
+[node name="Ending1" instance=ExtResource( 2 )]
+script = ExtResource( 4 )
+cgs = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
+
+[node name="Walls" parent="Objects" index="0"]
+tile_data = PoolIntArray( 262150, 0, 196609, 262151, 0, 3, 262152, 0, 3, 262153, 0, 3, 262154, 0, 3, 262155, 0, 3, 262156, 0, 3, 262157, 0, 0, 327686, 0, 1, 327687, 0, 65539, 327688, 0, 131073, 327689, 0, 131074, 327690, 0, 65539, 327691, 0, 131073, 327692, 0, 131074, 327693, 0, 131075, 393222, 0, 1, 393223, 0, 131075, 393225, 0, 1, 393226, 0, 131075, 393228, 0, 1, 393229, 0, 131075, 458758, 0, 1, 458759, 0, 2, 458760, 0, 3, 458761, 0, 65537, 458762, 0, 2, 458763, 0, 3, 458764, 0, 65537, 458765, 0, 131075, 524294, 0, 131072, 524295, 0, 131073, 524296, 0, 131073, 524297, 0, 131073, 524298, 0, 131073, 524299, 0, 131073, 524300, 0, 131073, 524301, 0, 196611 )
+
+[node name="W" parent="Objects" index="7" instance=ExtResource( 3 )]
+position = Vector2( 510, 372 )
+
+[node name="DialogueTrigger" parent="Objects" index="8" instance=ExtResource( 1 )]
+position = Vector2( 701, 374 )
+stringArr = [ "Ending1 placeholder text", "Ending1 placeholder text 2", "Ending1 placeholder text 3", "Ending1 placeholder text 4", "" ]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" index="1"]
+margin_right = 1280.0
+margin_bottom = 720.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Label" parent="CanvasLayer" index="2"]
+margin_top = 730.0
+margin_right = 343.0
+margin_bottom = 965.001
+rect_scale = Vector2( 3, 3 )
+text = "A game by:
+Zeth B. aka Vic Ben
+
+Plugins:
+Visual Behavior Tree by fian46
+TwistedIK2 by TwistedTwigLeg
+
+Made with:
+Godot Game Engine
+JFXR, bfxr, Chiptone, LabChirp and Audacity for sounds
+Krita for sprites
+
+
+Thank you for playing!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim" parent="." index="6"]
+anims/credits = ExtResource( 5 )
+
+[connection signal="animation_finished" from="Anim" to="." method="OnAnimFinished"]

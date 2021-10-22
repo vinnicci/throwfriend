@@ -1,6 +1,11 @@
 using Godot;
 using System;
 
-public class ParaPrin : Enemy
+public class ParaPrin : BossEnemy
 {
+    public new void PlaySoundEffect(String soundName) {
+        base.PlaySoundEffect(soundName);
+    }
+
+
 }

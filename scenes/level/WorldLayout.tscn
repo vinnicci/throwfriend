@@ -13,7 +13,7 @@ tile_data = PoolIntArray( -65541, 7, 0, -6, 11, 0, -5, 8, 0, -4, 1, 0, -3, 9, 0,
 
 [node name="TownEntrance" parent="." instance=ExtResource( 3 )]
 position = Vector2( 74.6917, 75.8644 )
-levelFiles = [ "res://levels/misc/Tutorial.tscn" ]
+levelFiles = [ "res://levels/misc/TownEntrance.tscn" ]
 levelName = "Town Entrance"
 
 [node name="01_1SecretS" parent="." instance=ExtResource( 3 )]
@@ -238,3 +238,17 @@ levelName = "Secret Area"
 position = Vector2( 225, -125 )
 levelFiles = [ "res://levels/misc/ThirdBossArena.tscn" ]
 levelName = "Lab Final"
+
+[node name="WorldTileMap4" parent="." instance=ExtResource( 2 )]
+modulate = Color( 0.866667, 0.396078, 0.878431, 1 )
+tile_data = PoolIntArray( 65538, 1, 0, 65539, 13, 0 )
+
+[node name="Town" parent="." instance=ExtResource( 3 )]
+position = Vector2( 126, 76 )
+levelFiles = [ "res://levels/misc/TownHall.tscn" ]
+levelName = "Town Hall"
+
+[node name="Ending1" parent="." instance=ExtResource( 3 )]
+position = Vector2( 175, 76 )
+levelFiles = [ "res://levels/misc/Ending1.tscn" ]
+levelName = "The End"

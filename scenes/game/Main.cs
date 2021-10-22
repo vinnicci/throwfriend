@@ -25,7 +25,7 @@ public class Main : Node
     }
 
 
-    const String STARTING_SCENE = "res://levels/misc/Tutorial.tscn";
+    const String STARTING_SCENE = "res://levels/misc/TownEntrance.tscn";
 
 
     public void NewGame() {

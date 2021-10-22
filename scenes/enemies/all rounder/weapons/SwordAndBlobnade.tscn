@@ -53,10 +53,7 @@ anims/idle = ExtResource( 4 )
 anims/melee_attack = ExtResource( 8 )
 anims/throw_blob = ExtResource( 9 )
 
-[node name="Shoot" parent="Sounds" index="0"]
-stream = null
-
-[node name="Shoot" parent="Sounds" index="3"]
+[node name="Shoot" parent="Sounds" index="2"]
 stream = null
 
 [connection signal="body_entered" from="Sprites/Hand/Sword/Hitbox" to="." method="OnHitboxBodyEntered"]

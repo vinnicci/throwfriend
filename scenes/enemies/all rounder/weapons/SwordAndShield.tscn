@@ -65,7 +65,7 @@ autoplay = "idle"
 anims/idle = ExtResource( 4 )
 anims/melee_attack_back = ExtResource( 6 )
 
-[node name="Shoot" parent="Sounds" index="3"]
+[node name="Shoot" parent="Sounds" index="2"]
 stream = null
 
 [connection signal="body_entered" from="Sprites/Hand/Sword/Hitbox" to="." method="OnHitboxBodyEntered"]

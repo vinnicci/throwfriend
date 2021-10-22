@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-class TutorialNextLevelE : NextLevel, IQuest
+class TownEntranceNextLevelE : NextLevel, IQuest
 {
     [Export] public string QuestID {get; set;}
     [Export] public String QuestKey {get; set;}
@@ -18,7 +18,7 @@ class TutorialNextLevelE : NextLevel, IQuest
     public void CheckQuest() {
         Godot.Collections.Array qArr =
         (Godot.Collections.Array)((Godot.Collections.Dictionary)MainNode.WorldSaveFile.Get("Quests"))[QuestID];
-        if(qArr.Count == 7) {
+        if(qArr.Count == 4) {
             SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
             dialogueNode.QueueFree();
         }

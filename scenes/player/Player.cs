@@ -273,7 +273,6 @@ public class Player : Entity
                 throwAnim.PlayBackwards("throw");
             }
             snarkPointer.Visible = true;
-            Speed = speed;
         }
         if(IsInstanceValid(Item1) && Input.IsActionJustPressed("hotkey_1")) {
             Item1.ApplyEffect();
@@ -315,7 +314,6 @@ public class Player : Entity
         weapPos.AddChild(WeaponNode);
         float rot = Center.GlobalRotation;
         WeaponNode.GlobalRotation = rot;
-        Speed = (int)(speed - (speed*SnarkCarrySpeedReduction));
         snarkPointer.Visible = false;
     }
 

@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/level/SavePoint.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/triggers/DialogueTrigger.tscn" type="PackedScene" id=4]
-[ext_resource path="res://levels/misc/TutorialNextLevelE.cs" type="Script" id=5]
+[ext_resource path="res://levels/misc/TownEntranceNextLevelE.cs" type="Script" id=5]
 [ext_resource path="res://assets/npcs/tex_npc_head.png" type="Texture" id=6]
 [ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/blob/NeutralBlob.tscn" type="PackedScene" id=8]
@@ -114,7 +114,7 @@ name = "Tutorial"
 stringArr = [ "That's all for the basics.", "Good luck." ]
 portraitScale = 4.0
 
-[node name="InvisibleWalls" parent="Objects" index="11"]
+[node name="InvisibleWalls" parent="Objects" index="12"]
 visible = false
 tile_data = PoolIntArray( 393226, 1, 65538, 458762, 1, 65538, 655341, 1, 65538, 720877, 1, 65538 )
 

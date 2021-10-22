@@ -16,7 +16,7 @@ public class Swap : PlayerItem
 
     public override void ApplyEffect()
     {
-        if(WeaponNode.CurrentState == Weapon.States.HELD || Cooldown.IsStopped() == false ||
+        if(WeaponNode.Mode != RigidBody2D.ModeEnum.Rigid || Cooldown.IsStopped() == false ||
         PlayerNode.TeleportAnim.IsPlaying() || WeaponNode.TeleportAnim.IsPlaying()) {
             return;
         }

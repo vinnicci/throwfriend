@@ -71,16 +71,17 @@ public class HotkeyHUD : Control
             currentDialogueSlot = 0;
         }
         dialogueText.PercentVisible = 0;
-        if((String)dialogueArr[currentDialogueSlot] == "EXEC_FUNC") {
-            dialogueText.Text = dialogueInst.ExecFunc(currentDialogueSlot);
-        }
-        else {
-            dialogueText.Text = (String)dialogueArr[currentDialogueSlot];
-        }
+        // if((String)dialogueArr[currentDialogueSlot] == "EXEC_FUNC") {
+        //     dialogueText.Text = dialogueInst.ExecFunc(currentDialogueSlot);
+        // }
+        // else {
+        dialogueText.Text = (String)dialogueArr[currentDialogueSlot];
+        // }
         tween.StopAll();
         tween.InterpolateProperty(dialogueText, "percent_visible",
             0, 1f, dialogueText.Text.Length/TEXT_SPEED, Tween.TransitionType.Linear);
         tween.Start();
+        dialogueInst.EmitSignal(nameof(DialogueTrigger.NextDialogue), currentDialogueSlot, dialogueText);
         currentDialogueSlot += 1;
     }
 

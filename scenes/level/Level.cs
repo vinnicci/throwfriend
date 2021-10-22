@@ -25,8 +25,8 @@ public abstract class Level : YSort
     Navigation2D nav;
     YSort enemies;
     YSort lvlObjects;
-    Main mainNode;
-    AnimationPlayer anim;
+    protected Main mainNode;
+    protected AnimationPlayer anim;
     Label levelName;
 
 
@@ -195,14 +195,19 @@ public abstract class Level : YSort
     }
 
 
+    const int DIST_TO_PROCESS = 3;
+
+
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
         //processing distance calculations one frame at a time to reduce frame time?? who knows
-        if(distCalcQueue.Count > 0) {
-            Godot.Collections.Array arrQ = distCalcQueue.Dequeue();
-            if(IsInstanceValid((Node2D)arrQ[0])) {
-                ((Node2D)arrQ[0]).Call("update_dist", arrQ[1], CalcDist((Vector2)arrQ[2], (Vector2)arrQ[3], (bool)arrQ[4]));
+        for(int i = 0; i <= DIST_TO_PROCESS - 1; i++) {
+            if(distCalcQueue.Count > 0) {
+                Godot.Collections.Array arrQ = distCalcQueue.Dequeue();
+                if(IsInstanceValid((Node2D)arrQ[0])) {
+                    ((Node2D)arrQ[0]).Call("update_dist", arrQ[1], CalcDist((Vector2)arrQ[2], (Vector2)arrQ[3], (bool)arrQ[4]));
+                }
             }
         }
     }

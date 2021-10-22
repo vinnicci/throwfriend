@@ -58,11 +58,11 @@ Persist = true
 BoundTriggers = [ NodePath("../PlayerPressurePlate2") ]
 
 [node name="PlayerPressurePlate" parent="Objects" index="9" instance=ExtResource( 5 )]
-position = Vector2( 32.4093, -222.903 )
+position = Vector2( -217.622, -1112.48 )
 Persist = true
 
 [node name="PlayerPressurePlate2" parent="Objects" index="10" instance=ExtResource( 5 )]
-position = Vector2( 32.6047, 96.0655 )
+position = Vector2( -206.66, 908.566 )
 Persist = true
 
 [node name="SeeThroughWalls" parent="Objects" index="11"]
@@ -80,71 +80,68 @@ position = Vector2( 2009.74, -705.08 )
 rotation = -3.14159
 
 [node name="HealthPickup" parent="Objects" index="15" instance=ExtResource( 7 )]
-position = Vector2( -217.2, -1115.24 )
+position = Vector2( 27.536, -70.6096 )
 
-[node name="HealthPickup2" parent="Objects" index="16" instance=ExtResource( 7 )]
-position = Vector2( -212.635, 918.544 )
-
-[node name="RandomEnemySpawner" parent="Objects" index="17" instance=ExtResource( 8 )]
+[node name="RandomEnemySpawner" parent="Objects" index="16" instance=ExtResource( 8 )]
 position = Vector2( -247.522, 844.524 )
 maxSpawnCount = 2
 
-[node name="RandomEnemySpawner2" parent="Objects" index="18" instance=ExtResource( 8 )]
+[node name="RandomEnemySpawner2" parent="Objects" index="17" instance=ExtResource( 8 )]
 position = Vector2( -173.449, 845.042 )
 maxSpawnCount = 1
 enemySet = 8
 
-[node name="RandomEnemySpawner3" parent="Objects" index="19" instance=ExtResource( 8 )]
+[node name="RandomEnemySpawner3" parent="Objects" index="18" instance=ExtResource( 8 )]
 position = Vector2( -255.079, -1045.94 )
 maxSpawnCount = 2
 
-[node name="RandomEnemySpawner4" parent="Objects" index="20" instance=ExtResource( 8 )]
+[node name="RandomEnemySpawner4" parent="Objects" index="19" instance=ExtResource( 8 )]
 position = Vector2( -181.006, -1045.42 )
 maxSpawnCount = 1
 enemySet = 8
 
-[node name="RandomEnemySpawner5" parent="Objects" index="21" instance=ExtResource( 8 )]
+[node name="RandomEnemySpawner5" parent="Objects" index="20" instance=ExtResource( 8 )]
 position = Vector2( 404.999, -69.4476 )
 maxSpawnCount = 2
 enemySet = 8
 
-[node name="RandomEnemySpawner10" parent="Objects" index="22" instance=ExtResource( 8 )]
+[node name="RandomEnemySpawner10" parent="Objects" index="21" instance=ExtResource( 8 )]
 position = Vector2( 1090.16, -65.2891 )
 maxSpawnCount = 2
 enemySet = 8
 
-[node name="RandomEnemySpawner6" parent="Objects" index="23" instance=ExtResource( 8 )]
+[node name="RandomEnemySpawner6" parent="Objects" index="22" instance=ExtResource( 8 )]
 position = Vector2( 1379.66, 279.185 )
 maxSpawnCount = 1
 enemySet = 8
 
-[node name="RandomEnemySpawner7" parent="Objects" index="24" instance=ExtResource( 8 )]
+[node name="RandomEnemySpawner7" parent="Objects" index="23" instance=ExtResource( 8 )]
 position = Vector2( 1629.26, 278.539 )
 maxSpawnCount = 2
 
-[node name="RandomEnemySpawner8" parent="Objects" index="25" instance=ExtResource( 8 )]
+[node name="RandomEnemySpawner8" parent="Objects" index="24" instance=ExtResource( 8 )]
 position = Vector2( 1371.72, -359.014 )
 maxSpawnCount = 1
 enemySet = 8
 
-[node name="RandomEnemySpawner9" parent="Objects" index="26" instance=ExtResource( 8 )]
+[node name="RandomEnemySpawner9" parent="Objects" index="25" instance=ExtResource( 8 )]
 position = Vector2( 1636.09, -358.705 )
 maxSpawnCount = 2
 
-[node name="InvisibleWalls" parent="Objects" index="27"]
+[node name="InvisibleWalls" parent="Objects" index="26"]
 visible = false
 tile_data = PoolIntArray( -786400, 1, 65538, -720864, 1, 65538, -65553, 1, 65538, -17, 1, 65538 )
 
-[node name="LabLight" parent="Objects" index="28" instance=ExtResource( 9 )]
+[node name="LabLight" parent="Objects" index="27" instance=ExtResource( 9 )]
 position = Vector2( 32.7579, -1118.81 )
 
-[node name="LabLight2" parent="Objects" index="29" instance=ExtResource( 9 )]
+[node name="LabLight2" parent="Objects" index="28" instance=ExtResource( 9 )]
 position = Vector2( 34.5834, -284.185 )
 
-[node name="LabLight3" parent="Objects" index="30" instance=ExtResource( 9 )]
+[node name="LabLight3" parent="Objects" index="29" instance=ExtResource( 9 )]
 position = Vector2( 33.0797, 159.384 )
 
-[node name="LabLight4" parent="Objects" index="31" instance=ExtResource( 9 )]
+[node name="LabLight4" parent="Objects" index="30" instance=ExtResource( 9 )]
 position = Vector2( 32.1938, 928.8 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer" index="0"]

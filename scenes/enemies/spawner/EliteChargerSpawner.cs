@@ -15,14 +15,35 @@ public class EliteChargerSpawner : BaseChargerSpawner
     }
 
 
-    public override void SpawnInstance(String packedSceneKey, int count = 1) {
-        base.SpawnInstance(packedSceneKey);
-    }
-
-
     String[] arr = {
         "charger01", "charger01", "charger02", "charger02", "charger03", "charger03", "charger04"
     };
+
+
+    public override void SpawnInstance(String packedSceneKey, int count = 1) {
+        if(packedSceneKey == "charger") {
+            for(int i = 0; i <= count-1; i++) {
+                Godot.Collections.Array<String> arrStr = new Godot.Collections.Array<String>(arr);
+                arrStr.Shuffle();
+                packedSceneKey = arrStr[0];
+                SpawnChargerInstance(packedSceneKey);
+            }
+        }
+    }
+
+
+    public override void SpawnChargerInstance(String packedSceneKey) {
+        Godot.Collections.Array<String> arrStr = new Godot.Collections.Array<String>(arr);
+        arrStr.Shuffle();
+        packedSceneKey = arrStr[0];
+        int count = 1;
+        if(packedSceneKey == "charger01") {
+            count = 2;
+        }
+        for(int i = 0; i <= count - 1; i++) {
+            base.SpawnChargerInstance(packedSceneKey);
+        }
+    }
 
 
     [Export] Godot.Collections.Array texSetArr;
@@ -37,27 +58,6 @@ public class EliteChargerSpawner : BaseChargerSpawner
             currentTexSet = 0;
         }
     }
-
-
-    public override void SpawnChargerInstance(String packedSceneKey) {
-        Godot.Collections.Array<String> arrStr = new Godot.Collections.Array<String>(arr);
-        arrStr.Shuffle();
-        packedSceneKey = arrStr[0];
-        int count = 1;
-        if(packedSceneKey == "charger01") {
-            count = 2;
-        }
-        for(int i = 0; i <= count - 1; i++) {
-            ISpawnable bInstance = (ISpawnable)spawnScenes[packedSceneKey].Instance();
-            bInstance.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
-            ((RigidBody2D)bInstance).ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) *
-            (float)GD.RandRange(500, 1000));
-            ((RigidBody2D)bInstance).ContinuousCd = RigidBody2D.CCDMode.CastRay;
-        }
-    }
-    
-
-
 
 
 }

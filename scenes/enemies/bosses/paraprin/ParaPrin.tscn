@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://toolscripts/PolyMeshTool.cs" type="Script" id=1]
 [ext_resource path="res://assets/enemies/bosses/paraprin/tex_en_paraprin_torso.png" type="Texture" id=2]
@@ -15,13 +15,42 @@
 [ext_resource path="res://toolscripts/AnimTool.cs" type="Script" id=13]
 [ext_resource path="res://addons/TwistedIK2/IK_2D/Twisted_ModifierVelvet2D.cs" type="Script" id=14]
 [ext_resource path="res://scenes/enemies/bosses/paraprin/ParaPrin.cs" type="Script" id=15]
+[ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=16]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 36.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "damaged"
+
+[sub_resource type="Animation" id=3]
+resource_name = "die"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
 
 [node name="ParaPrin" instance=ExtResource( 3 )]
 script = ExtResource( 15 )
-health = 1
-spawnScenes = null
+spawnScenes = {
+"hp_drop": ExtResource( 16 )
+}
+Persist = true
 acts = {
 }
+QuestID = "MAIN"
+QuestKey = "1"
 
 [node name="Hair" type="Polygon2D" parent="Sprite" index="0"]
 position = Vector2( -33.5303, -127 )
@@ -126,6 +155,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Lower" type="Bone2D" parent="Sprite/Skeleton2D/Root" index="0"]
 position = Vector2( 5, 0 )
+rotation = -0.100062
 rest = Transform2D( 1, 0, 0, 1, 5, 0 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -140,7 +170,9 @@ gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
 gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Lower2" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower" index="0"]
-position = Vector2( 0, -33 )
+position = Vector2( 3.8147e-06, -33 )
+rotation = -0.0313647
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, 0, -33 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -155,7 +187,9 @@ gizmo/gizmo_bone_normal_color = Color( 0.6, 1, 1, 0.5 )
 gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Torso" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2" index="0"]
-position = Vector2( 1, -32 )
+position = Vector2( 0.999999, -32 )
+rotation = 0.187307
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, 1, -32 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -171,6 +205,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Head" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso" index="0"]
 position = Vector2( -2, -28 )
+rotation = 0.0480764
 rest = Transform2D( 1, 0, 0, 1, -2, -28 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -201,6 +236,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Hair11" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head" index="1"]
 position = Vector2( -13, -23 )
+rotation = -0.0510342
 rest = Transform2D( 1, 0, 0, 1, -13, -23 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -216,6 +252,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Hair12" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair11" index="0"]
 position = Vector2( -5, 16 )
+rotation = 0.00632203
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, -5, 16 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -231,6 +269,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Hair13" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair11/Hair12" index="0"]
 position = Vector2( -5, 22 )
+rotation = -0.330713
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, -5, 22 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -246,6 +286,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Hair14" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair11/Hair12/Hair13" index="0"]
 position = Vector2( -4, 21 )
+rotation = -0.88645
 rest = Transform2D( 1, 0, 0, 1, -4, 21 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -261,6 +302,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Hair21" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head" index="2"]
 position = Vector2( 12, -22 )
+rotation = -0.345
 rest = Transform2D( 1, 0, 0, 1, 12, -22 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -276,6 +318,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Hair22" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair21" index="0"]
 position = Vector2( 3, 20 )
+rotation = 0.0754445
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, 3, 20 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -291,6 +335,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Hair23" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair21/Hair22" index="0"]
 position = Vector2( 3, 21 )
+rotation = 0.425753
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, 3, 21 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -306,6 +352,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Hair24" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Head/Hair21/Hair22/Hair23" index="0"]
 position = Vector2( 3, 16 )
+rotation = -2.20785
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, 3, 16 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -321,6 +369,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm11" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso" index="1"]
 position = Vector2( -9, -25 )
+rotation = -0.618426
 rest = Transform2D( 1, 0, 0, 1, -9, -25 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -336,6 +385,8 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm12" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Arm11" index="0"]
 position = Vector2( -18, 14 )
+rotation = 0.232111
+scale = Vector2( 1, 1 )
 rest = Transform2D( 1, 0, 0, 1, -18, 14 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -366,6 +417,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm21" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso" index="2"]
 position = Vector2( 5, -23 )
+rotation = 0.501097
 rest = Transform2D( 1, 0, 0, 1, 5, -23 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -381,6 +433,7 @@ gizmo/gizmo_bone_ik_color = Color( 1, 1, 0.6, 0.5 )
 
 [node name="Arm22" type="Bone2D" parent="Sprite/Skeleton2D/Root/Lower/Lower2/Torso/Arm21" index="0"]
 position = Vector2( 17, 13 )
+rotation = -0.368505
 rest = Transform2D( 1, 0, 0, 1, 17, 13 )
 script = ExtResource( 7 )
 settings/auto_get_skeleton = true
@@ -434,7 +487,7 @@ position = Vector2( 27, -46 )
 position = Vector2( -15, -199 )
 
 [node name="TorsoTarget" type="Position2D" parent="Sprite" index="11"]
-position = Vector2( -26, -180 )
+position = Vector2( -3, -162 )
 
 [node name="HeadTarget" type="Position2D" parent="Sprite" index="12"]
 position = Vector2( 90, -81 )
@@ -458,7 +511,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 stack/skeleton = NodePath("../Skeleton2D")
-stack/execution_enabled = false
+stack/execution_enabled = true
 
 [node name="Lower" type="Node2D" parent="Sprite/Twisted_ModifierStack2D" index="0"]
 script = ExtResource( 11 )
@@ -631,10 +684,18 @@ CCDIK/joint_count = 1
 CCDIK/joint/0/twisted_bone = NodePath("../../Skeleton2D/Root/Lower/Lower2/Torso/Arm21/Arm22")
 CCDIK/joint/0/constraint_angle_enabled = false
 
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( -1, -23 )
+shape = SubResource( 1 )
+
 [node name="HUD" parent="." index="3"]
 visible = false
 
+[node name="DamageAnim" parent="Anims" index="1"]
+anims/damaged = SubResource( 2 )
+
 [node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
+anims/die = SubResource( 3 )
 script = ExtResource( 13 )
 animName = "test_idle"
 InterpolationMode = 2

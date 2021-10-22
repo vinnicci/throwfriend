@@ -87,9 +87,6 @@ public abstract class Trigger : Area2D, ILevelObject
 
 
     public virtual void OnTriggerBodyEntered(Godot.Object body) {
-        if(body is Weapon && (((Weapon)body).IsClone || ((Weapon)body).CurrentState == Weapon.States.HELD)) {
-            return;
-        }
         OnSwitchedOn();
     }
 
@@ -107,7 +104,7 @@ public abstract class Trigger : Area2D, ILevelObject
             return false;
         }
         triggered = true;
-        TriggerAnim.Queue("trigger");
+        TriggerAnim.Play("trigger");
         if(IsInstanceValid(LevelNode.PlayerNode)) {
             LevelNode.PlayerNode.WarnPlayer(warningText);
             if(warningText != "") {
@@ -124,7 +121,7 @@ public abstract class Trigger : Area2D, ILevelObject
             return false;
         }
         triggered = false;
-        TriggerAnim.Queue("trigger_back");
+        TriggerAnim.Play("trigger_back");
         EmitSignal(SwitchedOffSignal);
         return true;
     }

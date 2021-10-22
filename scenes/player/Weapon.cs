@@ -184,6 +184,9 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable, ISoundEmitter
 
     public void Throw(int throwStrength, Vector2 globalPos, Vector2 destination, float globalRot) {
         CurrentState = States.ACTIVE;
+        if(IsInstanceValid(PlayerNode)) {
+            PlayerNode.Speed = PlayerNode.speed;
+        }
         if(Anim.IsPlaying() == false) {
             inactiveSprite.Visible = false;
             activeSprite.Visible = true;
@@ -282,6 +285,9 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable, ISoundEmitter
 
     public void OnPickedUp() {
         CurrentState = States.HELD;
+        if(IsInstanceValid(PlayerNode)) {
+            PlayerNode.Speed = (int)(PlayerNode.speed - (PlayerNode.speed*PlayerNode.SnarkCarrySpeedReduction));
+        }
         SetCollisionMaskBit(Global.BIT_MASK_WALL, false);
         SetCollisionMaskBit(Global.BIT_MASK_SEETHROUGH_WALL, false);
         SetCollisionMaskBit(Global.BIT_MASK_PLAYER, false);

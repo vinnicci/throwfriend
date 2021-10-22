@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/level/Walls.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=2]
@@ -6,8 +6,18 @@
 [ext_resource path="res://scenes/collectables/SnarkDmgUpgrade.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/collectables/AbilityItem.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/collectables/HealthUpgrade.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/bosses/ranger/Ranger.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/collectables/HealthPickup.tscn" type="PackedScene" id=8]
 
 [node name="ThirdBossArena" instance=ExtResource( 2 )]
+
+[node name="Ranger" parent="Enemies" index="0" instance=ExtResource( 7 )]
+position = Vector2( -32, 105 )
+spawnScenes = {
+"hp_drop": ExtResource( 8 )
+}
+acts = {
+}
 
 [node name="LowerWalls" parent="Objects" index="0" instance=ExtResource( 1 )]
 modulate = Color( 0.211765, 0.203922, 0.388235, 1 )
@@ -49,10 +59,10 @@ position = Vector2( -895, 1055 )
 rotation = -1.5708
 
 [node name="SnarkDmgUpgrade" parent="Objects" index="10" instance=ExtResource( 4 )]
-position = Vector2( -621, 681 )
+position = Vector2( -53, -55 )
 
 [node name="AbilityItem" parent="Objects" index="11" instance=ExtResource( 5 )]
-position = Vector2( -544, 682 )
+position = Vector2( 24, -54 )
 
 [node name="HealthUpgrade" parent="Objects" index="12" instance=ExtResource( 6 )]
-position = Vector2( -475, 684 )
+position = Vector2( 93, -52 )

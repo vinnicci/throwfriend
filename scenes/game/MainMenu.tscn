@@ -117,7 +117,7 @@ __meta__ = {
 
 [node name="Plugins" type="Label" parent="Credits"]
 margin_top = 120.0
-margin_right = 239.0
+margin_right = 208.0
 margin_bottom = 185.0
 rect_scale = Vector2( 3, 3 )
 text = "Plugins:
@@ -135,6 +135,7 @@ margin_bottom = 368.0
 rect_scale = Vector2( 3, 3 )
 text = "Tools:
     Godot Engine
+    JFXR, BFXR, LabChirp, Audacity
     Krita"
 __meta__ = {
 "_edit_use_anchors_": false

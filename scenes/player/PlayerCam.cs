@@ -31,15 +31,18 @@ public class PlayerCam : Camera2D
     }
 
 
-    const float LERP_RETURN = 0.03f;
+    const float LERP_RETURN = 0.04f;
     const float VDIST = 0.5f;
+    const float HDIST = 0.12f;
 
 
     void ShiftToCenter() {
-        float mousePos = (GetGlobalMousePosition().y - GlobalPosition.y) * VDIST;
+        float mousePosY = (GetGlobalMousePosition().y - GlobalPosition.y) * VDIST;
+        float mousePosX = (GetGlobalMousePosition().x - GlobalPosition.x) * HDIST;
         Vector2 newOffset = new Vector2();
-        newOffset.x = Mathf.Lerp(Offset.x, 0, LERP_RETURN);
-        newOffset.y = Mathf.Lerp(Offset.y, mousePos, LERP_RETURN);
+        newOffset.x = Mathf.Lerp(Offset.x, mousePosX, LERP_RETURN);
+        newOffset.x = Mathf.Clamp(newOffset.x, -500, 500);
+        newOffset.y = Mathf.Lerp(Offset.y, mousePosY, LERP_RETURN);
         newOffset.y = Mathf.Clamp(newOffset.y, -500, 500);
         Offset = newOffset;
     }
@@ -69,10 +72,10 @@ public class PlayerCam : Camera2D
     void Shake() {
         Vector2 dirShake = Vector2.Zero;
         if(rand) {
-            dirShake = new Vector2((float)GD.RandRange(-amp.x, amp.x), (float)GD.RandRange(-amp.y, amp.y) + Offset.y);
+            dirShake = new Vector2((float)GD.RandRange(-amp.x, amp.x) + Offset.x, (float)GD.RandRange(-amp.y, amp.y) + Offset.y);
         }
         else {
-            dirShake = new Vector2(amp.x, amp.y + Offset.y);
+            dirShake = new Vector2(amp.x + Offset.x, amp.y + Offset.y);
         }
         shakeTween.InterpolateProperty(this, "offset", Offset, dirShake, freqTimer.WaitTime,
         Tween.TransitionType.Sine, Tween.EaseType.InOut);

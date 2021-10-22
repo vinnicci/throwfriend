@@ -36,9 +36,6 @@ spawnScenes = {
 "proj": ExtResource( 10 )
 }
 
-[node name="Arms" parent="Sprite/Torso" index="0"]
-visible = false
-
 [node name="Head" parent="Sprite/Torso" index="1"]
 texture = ExtResource( 2 )
 

@@ -174,9 +174,9 @@ public abstract class Explosion : Area2D
         if(calcDict.Contains(pName) == false) {
             calcDict.Add(pName, val);
         }
-        // else {
-        //      calcDict[pName] = val;   
-        // }
+        else {
+            calcDict[pName] = val;   
+        }
     }
 
 
