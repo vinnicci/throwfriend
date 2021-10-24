@@ -16,7 +16,10 @@ public class EliteChargerSpawner : BaseChargerSpawner
 
 
     String[] arr = {
-        "charger01", "charger01", "charger02", "charger02", "charger03", "charger03", "charger04"
+        "charger01", "charger01", "charger01",
+        "charger02", "charger02", "charger02",
+        "charger03", "charger03", "charger03",
+        "charger04"
     };
 
 

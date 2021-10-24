@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class TownHallSecretWall : LevelTiles, IQuest
+public class GuardiansHallSecretWall : LevelTiles, IQuest
 {
     [Export] public string QuestID {get; set;}
     [Export] public String QuestKey {get; set;}

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Ending1 : EndingTemplate
+public class Ending2 : EndingTemplate
 {
     public async override void NextCG(int currentDialogueSlot, Label text) {
         base.NextCG(currentDialogueSlot, text);

@@ -94,7 +94,7 @@ public class WorldLayout : Node2D
     const float SPEED_2 = 1.15f;
     const float HP_3 = 6f;
     const float SPEED_3 = 1.3f;
-    const float HP_4 = 9f;
+    const float HP_4 = 12f;
     const float SPEED_4 = 1.45f;
 
 

@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/base/anim/credits.tres" type="Animation" id=1]
+[ext_resource path="res://levels/misc/EndingTemplate.cs" type="Script" id=2]
+[ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/triggers/DialogueTrigger.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Ending" instance=ExtResource( 3 )]
+script = ExtResource( 2 )
+cgs = [  ]
+
+[node name="Walls" parent="Objects" index="0"]
+tile_data = PoolIntArray( 262150, 0, 196609, 262151, 0, 3, 262152, 0, 3, 262153, 0, 3, 262154, 0, 3, 262155, 0, 3, 262156, 0, 3, 262157, 0, 0, 327686, 0, 1, 327687, 0, 65539, 327688, 0, 131073, 327689, 0, 131074, 327690, 0, 65539, 327691, 0, 131073, 327692, 0, 131074, 327693, 0, 131075, 393222, 0, 1, 393223, 0, 131075, 393225, 0, 1, 393226, 0, 131075, 393228, 0, 1, 393229, 0, 131075, 458758, 0, 1, 458759, 0, 2, 458760, 0, 3, 458761, 0, 65537, 458762, 0, 2, 458763, 0, 3, 458764, 0, 65537, 458765, 0, 131075, 524294, 0, 131072, 524295, 0, 131073, 524296, 0, 131073, 524297, 0, 131073, 524298, 0, 131073, 524299, 0, 131073, 524300, 0, 131073, 524301, 0, 196611 )
+
+[node name="DialogueTrigger" parent="Objects" index="7" instance=ExtResource( 4 )]
+position = Vector2( 701, 374 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" index="1"]
+margin_right = 1280.0
+margin_bottom = 720.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" index="2"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0.0705882, 0.105882, 0.105882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Label" parent="CanvasLayer" index="3"]
+margin_left = 10.0
+margin_top = 730.0
+margin_right = 353.0
+margin_bottom = 965.001
+rect_scale = Vector2( 3, 3 )
+text = "A game by:
+Zeth B. aka Vic Ben
+
+Plugins:
+Visual Behavior Tree by fian46
+TwistedIK2 by TwistedTwigLeg
+
+Made with:
+Godot Game Engine
+JFXR, bfxr, Chiptone, LabChirp and Audacity for sounds
+Krita for sprites
+
+
+Thank you for playing!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim" parent="." index="6"]
+anims/credits = ExtResource( 1 )
+anims/fade = SubResource( 1 )
+
+[connection signal="animation_finished" from="Anim" to="." method="OnAnimFinished"]

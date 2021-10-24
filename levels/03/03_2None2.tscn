@@ -47,7 +47,7 @@ maxSpawnCount = 3
 enemySet = 4
 
 [node name="RandomEnemySpawner4" parent="Objects" index="11" instance=ExtResource( 3 )]
-position = Vector2( 825, 602 )
+position = Vector2( 471, 278 )
 maxSpawnCount = 3
 enemySet = 4
 
@@ -57,12 +57,12 @@ maxSpawnCount = 3
 enemySet = 4
 
 [node name="RandomEnemySpawner6" parent="Objects" index="13" instance=ExtResource( 3 )]
-position = Vector2( 83, -11 )
+position = Vector2( 415, -315 )
 maxSpawnCount = 3
 enemySet = 4
 
 [node name="RandomEnemySpawner7" parent="Objects" index="14" instance=ExtResource( 3 )]
-position = Vector2( 81, -60 )
+position = Vector2( 413, -364 )
 maxSpawnCount = 1
 enemySet = 7
 
@@ -77,7 +77,7 @@ maxSpawnCount = 1
 enemySet = 7
 
 [node name="RandomEnemySpawner10" parent="Objects" index="17" instance=ExtResource( 3 )]
-position = Vector2( 827, 543 )
+position = Vector2( 473, 219 )
 maxSpawnCount = 1
 enemySet = 7
 

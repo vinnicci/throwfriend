@@ -112,8 +112,8 @@ public class StatsDesc : Control
     }
 
 
-    const int BASE_SPEED = 340;
-    const int SPEED_INCREMENT = 125;
+    const int BASE_SPEED = 350;
+    const int SPEED_INCREMENT = 100;
     const int BASE_THROW = 100;
     const int THROW_INCREMENT = 50;
 

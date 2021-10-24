@@ -182,7 +182,9 @@ public abstract class Enemy : Entity, ISpawner, ILevelObject
 
 
     public void Engage() {
-        aINode.Call("engage_enemy", LevelNode.PlayerNode);
+        if(IsInstanceValid(aINode)) {
+            aINode.Call("engage_enemy", LevelNode.PlayerNode);
+        }
     }
 
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://assets/misc/secret_end1.png" type="Texture" id=1]
+[ext_resource path="res://assets/misc/secret_end2.png" type="Texture" id=2]
 [ext_resource path="res://levels/misc/EndingTemplate.tscn" type="PackedScene" id=3]
-[ext_resource path="res://levels/misc/Ending1.cs" type="Script" id=4]
+[ext_resource path="res://levels/misc/Ending2.cs" type="Script" id=4]
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/misc/end2.png" type="Texture" id=6]
-[ext_resource path="res://assets/misc/end1.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade"
@@ -22,15 +22,15 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="Ending1" instance=ExtResource( 3 )]
+[node name="Ending2" instance=ExtResource( 3 )]
 script = ExtResource( 4 )
-cgs = [ ExtResource( 7 ), ExtResource( 6 ) ]
+cgs = [ ExtResource( 1 ), ExtResource( 2 ) ]
 
 [node name="DialogueTrigger" parent="Objects" index="7"]
-stringArr = [ "Ending placeholder text", "Ending placeholder text 2", "Ending placeholder text 3", "THE END", "" ]
+stringArr = [ "Secret ending placeholder text", "Secret ending placeholder text 2", "Secret ending placeholder text 3", "THE END SECRET ENDING", "" ]
 
-[node name="W" parent="Objects" index="8" instance=ExtResource( 5 )]
-position = Vector2( 529, 376 )
+[node name="E" parent="Objects" index="8" instance=ExtResource( 5 )]
+position = Vector2( 532, 378 )
 
 [node name="Anim" parent="." index="6"]
 anims/fade = SubResource( 1 )

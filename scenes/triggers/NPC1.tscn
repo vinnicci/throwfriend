@@ -25,7 +25,18 @@ tracks/0/keys = {
 [node name="NPC1" instance=ExtResource( 5 )]
 portrait = ExtResource( 3 )
 name = "Drunk Man"
-stringArr = [ "Hmm...", "Ohh... It's you.", "How is it? Serving the elites?", "Do you even... what they've been doing?", "Well... you're nothin' but a dog.", "You... don't..", "...know...", "mmhhh.. mmmm.... ...", "...", "zzz...", "zzzzzzzzzzz..." ]
+stringArr = [ 
+    "Hmm...",
+    "Ohh... It's you.",
+    "Looking for something?",
+    "Like infinite knowledge, wealth or power?",
+    "Well, you just have to press those yellow things...",
+    "That's the first step.",
+    "Yeah... mmmm...",
+    "...",
+    "Pff... Like those even exists...",
+    "Hehehehe... hehe... heh...",
+    "zzzzzzzzzzz..." ]
 portraitScale = 4.0
 
 [node name="Sprite" type="Sprite" parent="." index="1"]

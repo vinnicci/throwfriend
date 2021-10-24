@@ -79,7 +79,7 @@ public abstract class EnemyProj : Area2D, ISpawnable
         LevelNode = lvl;
         if(HasNode("Explosion")) {
             explosionNode = (Explosion)GetNode("Explosion");
-            explosionNode.Damage = Damage;
+            explosionNode.Damage = (int)lvl.enemyHealthMult;
             explosionNode.LevelNode = LevelNode;
         }
         currentRange = Range;

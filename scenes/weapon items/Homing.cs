@@ -19,6 +19,8 @@ public class Homing : WeaponItem
         range = (Area2D)GetNode("DetectionRange");
         ray = (RayCast2D)GetNode("DetectionRay");
         tick = (Timer)GetNode("Tick");
+        turretAIs.Add("res://scenes/enemies/all rounder/ais/TurretAllRounderAI.tscn");
+        turretAIs.Add("res://scenes/enemies/shooter/ais/TurretShooterAI.tscn");
     }
 
 
@@ -58,10 +60,15 @@ public class Homing : WeaponItem
     }
 
 
+    Godot.Collections.Array turretAIs = new Godot.Collections.Array();
+
+
     void OnDetectionRangeBodyEntered(Godot.Object body) {
         if(body is Enemy) {
             Enemy enemy = (Enemy)body;
-            if(enemies.Contains(enemy) == false && enemy.HasNode("AI")) {
+            //won't home to turret enemies
+            if(enemies.Contains(enemy) == false && enemy.HasNode("AI") &&
+            turretAIs.Contains(enemy.GetNode("AI").Filename) == false) {
                 enemies.Enqueue(enemy);
                 if(tick.IsStopped()) {
                     tick.Start();

@@ -16,11 +16,28 @@ public class RigidCharger : BaseCharger
     }
 
 
+    Vector2 toCharge;
+
+
+    void SetChargeDest() {
+        toCharge = LevelNode.GetPlayerPos();
+    }
+
+
     public override void Charge() {
+        //rigid mode
         Mode = ModeEnum.Rigid;
         AngularVelocity = CHARGE_ROTATION;
         LinearDamp = MODIFIED_DAMP;
-        base.Charge();
+        //base exec
+        Vector2 vec = toCharge;
+        if(vec == Vector2.Zero) {
+            return;
+        }
+        ApplyCentralImpulse((vec - GlobalPosition).Clamped(1) * CHARGE_STRENGTH);
+        ContinuousCd = RigidBody2D.CCDMode.CastRay;
+        charging = true;
+        SetCollisionMaskBit(Global.BIT_MASK_PLAYER, true);
     }
 
 

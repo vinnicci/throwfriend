@@ -112,6 +112,9 @@ public class Main : Node
 
 
     public void SavePlayerData(bool newCell = false) {
+        if(IsInstanceValid(PlayerSaveFile) == false) {
+            return;
+        }
         Player player = (Player)currentLevel.GetNode("Player");
         //current level
         if(newCell) {

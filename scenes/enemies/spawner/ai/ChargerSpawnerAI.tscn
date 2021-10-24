@@ -193,15 +193,20 @@ tree = {
 }, {
 "from": "sequence",
 "from_port": 2,
+"to": "task",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 3,
 "to": "task8",
 "to_port": 0
 } ],
 "nodes": [ {
 "child": [  ],
 "data": {
-"count": 3,
-"offset": Vector2( -200, -580 ),
-"size": Vector2( 103, 109.75 )
+"count": 4,
+"offset": Vector2( 200, -400 ),
+"size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
 "type": 2
@@ -209,7 +214,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 0, -700 ),
+"offset": Vector2( 400, -600 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_charger" ]
@@ -220,7 +225,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 0, -580 ),
+"offset": Vector2( 400, -480 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -230,8 +235,19 @@ tree = {
 }, {
 "child": [  ],
 "data": {
+"fn": "task_is_enemy_count_less_than_or_eq",
+"offset": Vector2( 400, -340 ),
+"params": [ [ "15", 1 ] ],
+"size": Vector2( 357, 87.75 ),
+"values": [ "15" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
 "fn": "task_act",
-"offset": Vector2( 0, -440 ),
+"offset": Vector2( 400, -220 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_charger" ]
@@ -244,7 +260,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 0, -700 ),
+"offset": Vector2( 400, -600 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_charger" ]
@@ -255,7 +271,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 0, -580 ),
+"offset": Vector2( 400, -480 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -265,8 +281,19 @@ tree = {
 }, {
 "child": [  ],
 "data": {
+"fn": "task_is_enemy_count_less_than_or_eq",
+"offset": Vector2( 400, -340 ),
+"params": [ [ "15", 1 ] ],
+"size": Vector2( 357, 87.75 ),
+"values": [ "15" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
 "fn": "task_act",
-"offset": Vector2( 0, -440 ),
+"offset": Vector2( 400, -220 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_charger" ]
@@ -275,9 +302,9 @@ tree = {
 "type": 1
 } ],
 "data": {
-"count": 3,
-"offset": Vector2( -200, -580 ),
-"size": Vector2( 103, 109.75 )
+"count": 4,
+"offset": Vector2( 200, -400 ),
+"size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
 "type": 2
@@ -676,15 +703,20 @@ tree = {
 }, {
 "from": "sequence",
 "from_port": 2,
+"to": "task",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 3,
 "to": "task8",
 "to_port": 0
 } ],
 "nodes": [ {
 "child": [  ],
 "data": {
-"count": 3,
-"offset": Vector2( -200, -580 ),
-"size": Vector2( 103, 109.75 )
+"count": 4,
+"offset": Vector2( 200, -400 ),
+"size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
 "type": 2
@@ -692,7 +724,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 0, -700 ),
+"offset": Vector2( 400, -600 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_charger" ]
@@ -703,7 +735,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 0, -580 ),
+"offset": Vector2( 400, -480 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -713,8 +745,19 @@ tree = {
 }, {
 "child": [  ],
 "data": {
+"fn": "task_is_enemy_count_less_than_or_eq",
+"offset": Vector2( 400, -340 ),
+"params": [ [ "15", 1 ] ],
+"size": Vector2( 357, 87.75 ),
+"values": [ "15" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
 "fn": "task_act",
-"offset": Vector2( 0, -440 ),
+"offset": Vector2( 400, -220 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_charger" ]
@@ -727,7 +770,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 0, -700 ),
+"offset": Vector2( 400, -600 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_charger" ]
@@ -738,7 +781,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 0, -580 ),
+"offset": Vector2( 400, -480 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -748,8 +791,19 @@ tree = {
 }, {
 "child": [  ],
 "data": {
+"fn": "task_is_enemy_count_less_than_or_eq",
+"offset": Vector2( 400, -340 ),
+"params": [ [ "15", 1 ] ],
+"size": Vector2( 357, 87.75 ),
+"values": [ "15" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
 "fn": "task_act",
-"offset": Vector2( 0, -440 ),
+"offset": Vector2( 400, -220 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_charger" ]
@@ -758,9 +812,9 @@ tree = {
 "type": 1
 } ],
 "data": {
-"count": 3,
-"offset": Vector2( -200, -580 ),
-"size": Vector2( 103, 109.75 )
+"count": 4,
+"offset": Vector2( 200, -400 ),
+"size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
 "type": 2
@@ -1371,15 +1425,20 @@ tree = {
 }, {
 "from": "sequence",
 "from_port": 2,
+"to": "task",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 3,
 "to": "task8",
 "to_port": 0
 } ],
 "nodes": [ {
 "child": [  ],
 "data": {
-"count": 3,
-"offset": Vector2( -200, -580 ),
-"size": Vector2( 103, 109.75 )
+"count": 4,
+"offset": Vector2( 200, -400 ),
+"size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
 "type": 2
@@ -1387,7 +1446,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 0, -700 ),
+"offset": Vector2( 400, -600 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_charger" ]
@@ -1398,7 +1457,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 0, -580 ),
+"offset": Vector2( 400, -480 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -1408,8 +1467,19 @@ tree = {
 }, {
 "child": [  ],
 "data": {
+"fn": "task_is_enemy_count_less_than_or_eq",
+"offset": Vector2( 400, -340 ),
+"params": [ [ "15", 1 ] ],
+"size": Vector2( 357, 87.75 ),
+"values": [ "15" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
 "fn": "task_act",
-"offset": Vector2( 0, -440 ),
+"offset": Vector2( 400, -220 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_charger" ]
@@ -1422,7 +1492,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 0, -700 ),
+"offset": Vector2( 400, -600 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_charger" ]
@@ -1433,7 +1503,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 0, -580 ),
+"offset": Vector2( 400, -480 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -1443,8 +1513,19 @@ tree = {
 }, {
 "child": [  ],
 "data": {
+"fn": "task_is_enemy_count_less_than_or_eq",
+"offset": Vector2( 400, -340 ),
+"params": [ [ "15", 1 ] ],
+"size": Vector2( 357, 87.75 ),
+"values": [ "15" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
 "fn": "task_act",
-"offset": Vector2( 0, -440 ),
+"offset": Vector2( 400, -220 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_charger" ]
@@ -1453,9 +1534,9 @@ tree = {
 "type": 1
 } ],
 "data": {
-"count": 3,
-"offset": Vector2( -200, -580 ),
-"size": Vector2( 103, 109.75 )
+"count": 4,
+"offset": Vector2( 200, -400 ),
+"size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
 "type": 2
@@ -1621,15 +1702,20 @@ tree = {
 }, {
 "from": "sequence",
 "from_port": 2,
+"to": "task",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 3,
 "to": "task8",
 "to_port": 0
 } ],
 "nodes": [ {
 "child": [  ],
 "data": {
-"count": 3,
-"offset": Vector2( -200, -580 ),
-"size": Vector2( 103, 109.75 )
+"count": 4,
+"offset": Vector2( 200, -400 ),
+"size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
 "type": 2
@@ -1637,7 +1723,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 0, -700 ),
+"offset": Vector2( 400, -600 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_charger" ]
@@ -1648,7 +1734,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 0, -580 ),
+"offset": Vector2( 400, -480 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -1658,8 +1744,19 @@ tree = {
 }, {
 "child": [  ],
 "data": {
+"fn": "task_is_enemy_count_less_than_or_eq",
+"offset": Vector2( 400, -340 ),
+"params": [ [ "15", 1 ] ],
+"size": Vector2( 357, 87.75 ),
+"values": [ "15" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
 "fn": "task_act",
-"offset": Vector2( 0, -440 ),
+"offset": Vector2( 400, -220 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_charger" ]
@@ -1672,7 +1769,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 0, -700 ),
+"offset": Vector2( 400, -600 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_charger" ]
@@ -1683,7 +1780,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 0, -580 ),
+"offset": Vector2( 400, -480 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -1693,8 +1790,19 @@ tree = {
 }, {
 "child": [  ],
 "data": {
+"fn": "task_is_enemy_count_less_than_or_eq",
+"offset": Vector2( 400, -340 ),
+"params": [ [ "15", 1 ] ],
+"size": Vector2( 357, 87.75 ),
+"values": [ "15" ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
 "fn": "task_act",
-"offset": Vector2( 0, -440 ),
+"offset": Vector2( 400, -220 ),
 "params": [ [ "spawn_charger", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_charger" ]
@@ -1703,9 +1811,9 @@ tree = {
 "type": 1
 } ],
 "data": {
-"count": 3,
-"offset": Vector2( -200, -580 ),
-"size": Vector2( 103, 109.75 )
+"count": 4,
+"offset": Vector2( 200, -400 ),
+"size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
 "type": 2

@@ -44,9 +44,11 @@ func _ready() -> void:
 	bb["enemy_range_sq"] = -1 #straight line distance, disregarding walls, always a squared value
 	bb["enemy"] = null
 	bb["patrol_point"] = null
+	bb["target"] = null
 
 
 var level_node: Node2D
+var enemies_node: Node2D
 var parent_node: RigidBody2D
 var weapon_node: Node2D
 var player_node: RigidBody2D
@@ -54,6 +56,7 @@ var player_node: RigidBody2D
 
 func init_properties(new_lvl: Node2D, new_parent: RigidBody2D, patrol_pts: Array = []):
 	level_node = new_lvl
+	enemies_node = level_node.get_node("Enemies")
 	if is_ent_valid(level_node.get("PlayerNode")):
 		player_node = level_node.get("PlayerNode")
 	parent_node = new_parent
@@ -208,7 +211,10 @@ func task_is_ent_valid(task):
 #param 0: target
 func task_get_seek_point(task):
 	get_seek_point(bb[task.get_param(0)])
-	task.succeed()
+	if(bb["target"] != null):
+		task.succeed()
+	else:
+		task.failed()
 
 
 func get_seek_point(target):
@@ -217,7 +223,8 @@ func get_seek_point(target):
 	path_points.pop_back()
 	if path_points.size() == 0:
 		get_new_path(target)
-	bb["target"] = path_points.back()
+	else:
+		bb["target"] = path_points.back()
 
 
 func task_get_flee_point(task):
@@ -303,7 +310,7 @@ func task_seek(task):
 	var t = bb[task.get_param(0)]
 	if parent_node.global_position.distance_squared_to(bb["target"]) <= target_dist_margin_sq:
 		get_seek_point(t)
-	if t.global_position.distance_squared_to(path_points.front()) > ORIGIN_DIST:
+	if path_points.size() == 0 || t.global_position.distance_squared_to(path_points.front()) > ORIGIN_DIST:
 		get_new_path(t)
 	if _try_interrupt_seek(task):
 		is_moving = false
@@ -361,6 +368,14 @@ func _try_interrupt_patrol(_task) -> bool:
 
 
 #ai actions
+
+
+#param 0: enemy count provided
+func task_is_enemy_count_less_than_or_eq(task):
+	if enemies_node.get_children().size() <= task.get_param(0) as int:
+		task.succeed()
+	else:
+		task.failed()
 
 
 #param 0: target
