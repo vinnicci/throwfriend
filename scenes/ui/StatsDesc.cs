@@ -33,7 +33,7 @@ public class StatsDesc : Control
         speedStat = (Label)GetNode("StatsPanel/StatsDisp/Speed");
         throwStrengthStat = (Label)GetNode("StatsPanel/StatsDisp/ThrowStrength");
         snarkDmgStat = (Label)GetNode("StatsPanel/StatsDisp/SnarkDmg");
-        snarkCarrySpeedReduction = (Label)GetNode("StatsPanel/StatsDisp/SnarkCarrySpeedReduction");
+        snarkCarrySpeedReduction = (Label)GetNode("StatsPanel/StatsDisp/SnarkCarrySpeed");
         knockbackResist = (Label)GetNode("StatsPanel/StatsDisp/KnockbackResist");
         helpDisp = (Control)GetNode("StatsPanel/HelpDisp");
         tipLabel = (Label)GetNode("StatsPanel/HelpDisp/Tip");
@@ -106,7 +106,7 @@ public class StatsDesc : Control
         throwStrengthStat.Text = "Throw Strength: " + GetDescriptive(PlayerNode.ThrowStrength, 1);
         snarkDmgStat.Text = "Snark Damage: " + (int)(PlayerNode.SnarkDmg * PlayerNode.SnarkDmgMult);
         snarkCarrySpeedReduction.Text =
-        "Snark Carry Speed Reduction: " + (int)(PlayerNode.speed * PlayerNode.SnarkCarrySpeedReduction);
+        "Snark Carry Speed: " + (int)(PlayerNode.Speed);
         knockbackResist.Text = "Knockback Resistance: " + (float)(-(PlayerNode.knockbackMult - 1)*100) + ("%");
 
     }

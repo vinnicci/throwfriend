@@ -54,6 +54,9 @@ amount = 25
 local_coords = false
 process_material = ExtResource( 14 )
 
+[node name="Head" parent="Sprite/Torso" index="1"]
+self_modulate = Color( 1, 0.372549, 0.372549, 1 )
+
 [node name="CollisionShape2D" parent="." index="3"]
 shape = SubResource( 2 )
 

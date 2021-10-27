@@ -41,7 +41,7 @@ range = 300
 speed = 5
 
 [node name="Sprite" parent="." index="0"]
-modulate = Color( 0.290196, 1, 0, 1 )
+modulate = Color( 0.290196, 1, 0, 0 )
 material = SubResource( 1 )
 texture = ExtResource( 2 )
 

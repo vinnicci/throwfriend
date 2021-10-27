@@ -21,9 +21,8 @@ public class TeleportingBlob : Blob
     }
 
 
-    public override void ReturnToPool()
-    {
-        base.ReturnToPool();
+    public new void FreeObj() {
+        base.FreeObj();
     }
 
 

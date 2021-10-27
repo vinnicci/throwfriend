@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Blob : Enemy
+public class Blob : Enemy, IPooled
 {
     public virtual void Explode() {
         if(Health <= 0) {
@@ -11,6 +11,7 @@ public class Blob : Enemy
         EmitSignal(nameof(Died));
         Health = 0;
         ExplosionNode.Explode();
+        FreeObj();
     }
 
 
@@ -19,8 +20,8 @@ public class Blob : Enemy
     }
 
 
-    public virtual void ReturnToPool() {
-        QueueFree();
+    public void FreeObj() {
+        LevelNode.QueueFreeObject(this);
     }
 
 

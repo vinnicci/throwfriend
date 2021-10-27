@@ -20,7 +20,8 @@ acts = {
 }
 
 [node name="Blob" parent="Sprite" index="0"]
-modulate = Color( 1, 0.995051, 0.995051, 1 )
+modulate = Color( 1, 0.998323, 0.998323, 1 )
+scale = Vector2( 1.05, 1.05 )
 texture = ExtResource( 2 )
 
 [node name="Explosion" parent="." index="4"]

@@ -39,7 +39,8 @@ public abstract class AllRounderWeapon: EnemyWeapon
         if(packedSceneKey == "blob") {
             PlaySoundEffect("ThrowBlob");
             for(int i = 0; i <= count; i++) {
-                Blob blobInstance = (Blob)spawnScenes["blob"].Instance();
+                //Blob blobInstance = (Blob)spawnScenes["blob"].Instance();
+                Blob blobInstance = (Blob)ParentNode.LevelNode.GetPooledObj(spawnScenes[packedSceneKey]);
                 blobInstance.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition, Vector2.Zero);
                 blobInstance.ApplyCentralImpulse(new Vector2((float)GD.RandRange(500, 1000), 0).Rotated(spawnPoint.GlobalRotation));
                 blobInstance.ContinuousCd = RigidBody2D.CCDMode.CastRay;

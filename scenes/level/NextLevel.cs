@@ -49,7 +49,7 @@ public class NextLevel : Area2D
             SetProcess(false);
         }
         else if(player.WeaponNode.CurrentState == Weapon.States.HELD && LevelNode.PlayerEngaging.Count == 0) {
-            MainNode.GoToLevel(GetLevel(), GetEntrance(), (Player)player, false);
+            MainNode.GoToLevel(GetLevel(), GetEntrance(), player, false);
             proceeding = false;
             SetProcess(false);
         }

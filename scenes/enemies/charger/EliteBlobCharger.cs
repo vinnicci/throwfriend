@@ -53,7 +53,8 @@ public class EliteBlobCharger : BaseCharger
 
 
     void SpawnBlobInstance(String packedSceneKey) {
-        Blob blobInstance = (Blob)spawnScenes[packedSceneKey].Instance();
+        //Blob blobInstance = (Blob)spawnScenes[packedSceneKey].Instance();
+        Blob blobInstance = (Blob)LevelNode.GetPooledObj(spawnScenes[packedSceneKey]);
         blobInstance.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
         blobInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) *
         (float)GD.RandRange(500, 1000));

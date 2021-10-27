@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract class EnemyProj : Area2D, ISpawnable
+public abstract class EnemyProj : Area2D, ISpawnable, IPooled
 {
     [Export] protected int range = 500;
     [Export] protected int speed = 20;
@@ -137,8 +137,8 @@ public abstract class EnemyProj : Area2D, ISpawnable
     }
 
 
-    public virtual void ReturnToPool() {
-        QueueFree();
+    public void FreeObj() {
+        LevelNode.QueueFreeObject(this);
     }
 
 

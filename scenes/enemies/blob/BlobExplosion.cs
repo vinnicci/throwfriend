@@ -3,8 +3,8 @@ using System;
 
 public class BlobExplosion : Explosion
 {
-    public override bool Explode(bool detachSoundNode = true) {
-        if(base.Explode(detachSoundNode) == false) {
+    public override bool Explode(bool detach = true) {
+        if(base.Explode(detach) == false) {
             return false;
         }
         Godot.Collections.Array areas = GetOverlappingAreas();

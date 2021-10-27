@@ -19,7 +19,8 @@ public class EliteSwordAndShield : AllRounderWeapon
             PlaySoundEffect("ThrowBlob");
             Godot.Collections.Array arr = new Godot.Collections.Array(flyBlobs);
             arr.Shuffle();
-            EnemyProj flyblob = (EnemyProj)spawnScenes[(String)arr[0]].Instance();
+            //EnemyProj flyblob = (EnemyProj)spawnScenes[(String)arr[0]].Instance();
+            EnemyProj flyblob = (EnemyProj)ParentNode.LevelNode.GetPooledObj(spawnScenes[(String)arr[0]]);
             flyblob.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition, Vector2.Zero);
         }
     }

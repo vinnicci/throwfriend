@@ -19,7 +19,7 @@ speed = 5
 damage = 0
 
 [node name="Sprite" parent="." index="0"]
-modulate = Color( 0.8, 0.74902, 0.501961, 1 )
+modulate = Color( 0.8, 0.74902, 0.501961, 0 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="1"]
@@ -28,11 +28,9 @@ shape = SubResource( 1 )
 [node name="Anim" type="AnimationPlayer" parent="." index="2"]
 anims/hit = ExtResource( 4 )
 
-[node name="Particles2D" type="Particles2D" parent="." index="3"]
-emitting = false
-amount = 30
-
-[node name="Sound" parent="." index="4"]
+[node name="Sound" parent="." index="3"]
 stream = ExtResource( 5 )
+
+[node name="Particles2D" type="Particles2D" parent="." index="4"]
 
 [connection signal="body_exited" from="." to="." method="OnSprayerAcidProjBodyExited"]

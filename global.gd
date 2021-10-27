@@ -5,6 +5,8 @@ const DIST_TO_PROCESS: int = 3
 
 
 func _physics_process(_delta: float) -> void:
+	if ray_queue.size() <= 0:
+		return
 	for i in DIST_TO_PROCESS:
 		if ray_queue.size() > 0:
 			var arr: Array = ray_queue.pop_back()

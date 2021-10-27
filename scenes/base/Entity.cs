@@ -165,7 +165,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         anim.Play("die");
         //remove sounds as child and move to level
         SoundsNode.GetParent().RemoveChild(SoundsNode);
-        LeaveObj(SoundsNode, 1f);
+        LeaveObj(SoundsNode, spriteNode.GlobalPosition, 1f);
         PlaySoundEffect("Died");
         SetCollisionLayerBit(Global.BIT_MASK_ENEMY, false);
         SetCollisionLayerBit(Global.BIT_MASK_PLAYER, false);
@@ -234,15 +234,15 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
             return;
         }
         Node2D trailSprite = (Node2D)spriteNode.Duplicate();
-        LeaveObj(trailSprite, 0.25f);
+        LeaveObj(trailSprite, spriteNode.GlobalPosition, 0.25f);
     }
 
 
-    void LeaveObj(Node2D obj, float duration) {
+    void LeaveObj(Node2D obj, Vector2 gPos, float duration) {
         LevelNode.AddChild(obj);
         Tween tween = new Tween();
         obj.AddChild(tween);
-        obj.GlobalPosition = spriteNode.GlobalPosition;
+        obj.GlobalPosition = gPos;
         obj.GlobalRotation = GlobalRotation;
         Godot.Collections.Array arr = new Godot.Collections.Array();
         arr.Add(obj);

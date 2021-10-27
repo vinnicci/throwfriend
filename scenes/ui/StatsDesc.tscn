@@ -48,45 +48,48 @@ margin_left = 10.0
 margin_top = 40.0
 margin_right = 113.0
 margin_bottom = 130.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Health" type="Label" parent="StatsPanel/StatsDisp"]
-margin_right = 185.0
+margin_right = 144.0
 margin_bottom = 14.0
 text = "Current HP: "
 
 [node name="MaxHealth" type="Label" parent="StatsPanel/StatsDisp"]
 margin_top = 18.0
-margin_right = 185.0
+margin_right = 144.0
 margin_bottom = 32.0
 text = "Max HP:"
 
 [node name="Speed" type="Label" parent="StatsPanel/StatsDisp"]
 margin_top = 36.0
-margin_right = 185.0
+margin_right = 144.0
 margin_bottom = 50.0
 text = "Speed:"
 
 [node name="ThrowStrength" type="Label" parent="StatsPanel/StatsDisp"]
 margin_top = 54.0
-margin_right = 185.0
+margin_right = 144.0
 margin_bottom = 68.0
 text = "Throw Strength: "
 
 [node name="SnarkDmg" type="Label" parent="StatsPanel/StatsDisp"]
 margin_top = 72.0
-margin_right = 185.0
+margin_right = 144.0
 margin_bottom = 86.0
 text = "Snark Damage:"
 
-[node name="SnarkCarrySpeedReduction" type="Label" parent="StatsPanel/StatsDisp"]
+[node name="SnarkCarrySpeed" type="Label" parent="StatsPanel/StatsDisp"]
 margin_top = 90.0
-margin_right = 185.0
+margin_right = 144.0
 margin_bottom = 104.0
-text = "Snark Carry Speed Reduction:"
+text = "Snark Carry Speed:"
 
 [node name="KnockbackResist" type="Label" parent="StatsPanel/StatsDisp"]
 margin_top = 108.0
-margin_right = 185.0
+margin_right = 144.0
 margin_bottom = 122.0
 text = "Knockback Resistance:"
 __meta__ = {

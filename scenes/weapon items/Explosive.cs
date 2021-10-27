@@ -27,30 +27,8 @@ public class Explosive : WeaponItem
     }
 
 
-    public override void ApplyEffect()
-    {
-        base.ApplyEffect();
-        Switch(true, Active == false);
-    }
-
-
-    public override void Switch(bool thisInst, bool active) {
-        base.Switch(thisInst, active);
-        if(thisInst == false) {
-            return;
-        }
-        else if(this == WeaponNode.Item1 && WeaponNode.Item2 is Explosive) {
-            ((Explosive)WeaponNode.Item2).Switch(false, active);
-        }
-        else if(this == WeaponNode.Item2 && WeaponNode.Item1 is Explosive) {
-            ((Explosive)WeaponNode.Item1).Switch(false, active);
-        }
-    }
-
-
     public void Explode(Godot.Object body) {
-        if(Active == false ||
-        IsInstanceValid(body) && (body is Player || WeaponNode.CurrentState != Weapon.States.ACTIVE) ||
+        if(IsInstanceValid(body) && (body is Player || WeaponNode.CurrentState != Weapon.States.ACTIVE) ||
         (this == WeaponNode.Item2 && WeaponNode.Item1 is Explosive)) {
             return;
         }

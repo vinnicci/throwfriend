@@ -17,7 +17,8 @@ acts = {
 }
 
 [node name="Blob" parent="Sprite" index="0"]
-modulate = Color( 1, 0.992717, 0.992717, 1 )
+modulate = Color( 1, 1, 1, 1 )
+scale = Vector2( 1.05, 1.05 )
 
 [node name="Anim" type="AnimationPlayer" parent="Anims" index="2"]
 autoplay = "idle"

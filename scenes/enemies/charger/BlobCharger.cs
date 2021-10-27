@@ -18,7 +18,8 @@ public class BlobCharger : BaseCharger
         if(packedSceneKey == "blob") {
             PlaySoundEffect("Spawn");
             for(int i = 0; i <= count - 1; i++) {
-                Blob blobInstance = (Blob)spawnScenes[packedSceneKey].Instance();
+                //Blob blobInstance = (Blob)spawnScenes[packedSceneKey].Instance();
+                Blob blobInstance = (Blob)LevelNode.GetPooledObj(spawnScenes[packedSceneKey]);
                 blobInstance.Spawn(LevelNode, GlobalPosition, Vector2.Zero);
                 blobInstance.ApplyCentralImpulse((LevelNode.GetPlayerPos() - GlobalPosition).Clamped(1) *
                 (float)GD.RandRange(500, 1000));

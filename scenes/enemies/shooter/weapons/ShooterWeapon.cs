@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class ShooterWeapon : EnemyWeapon
+public abstract class ShooterWeapon : EnemyWeapon
 {
     public override void Shoot()
     {

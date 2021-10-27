@@ -57,32 +57,10 @@ public abstract class Explosion : Area2D
     static protected Godot.Collections.Dictionary calcDict = new Godot.Collections.Dictionary();
 
 
-    public virtual bool Explode(bool detachSoundNode = true) {
+    public virtual bool Explode(bool detach = true) {
         if(anim.IsPlaying()) {
             return false;
         }
-        poly.Scale = new Vector2(1,1);
-        String pAmountTop = STR_PARTICLES_AMOUNT_TOP + Filename;
-        String pAmountBase = STR_PARTICLES_AMOUNT_BASE + Filename;
-        String pCamDist = STR_CAM_DIST + Filename;
-        //shake camera
-        if(IsInstanceValid(LevelNode.PlayerNode) &&
-        GlobalPosition.DistanceSquaredTo(LevelNode.PlayerNode.GlobalPosition) <= (int)calcDict[pCamDist]) {
-            LevelNode.PlayerNode.Camera.ShakeCamera(new Vector2(cameraShakeIntensity, cameraShakeIntensity),
-            cameraShakeFrequency, cameraShakeDuration, cameraShakePriority);
-        }
-        //reapply particles amount to avoid particle remnants
-        particlesTop.Amount = (int)calcDict[pAmountTop];
-        particlesBase.Amount = (int)calcDict[pAmountBase];
-        particlesTop.ProcessMaterial.Set("emission_sphere_radius", ExplosionRadius);
-        particlesBase.ProcessMaterial.Set("emission_sphere_radius", ExplosionRadius);
-        particlesTop.Emitting = true;
-        particlesBase.Emitting = true;
-        //poly anim
-        anim.Play("explode");
-        tween.InterpolateProperty(poly, "scale", poly.Scale, poly.Scale*2, 0.75f, Tween.TransitionType.Linear,
-        Tween.EaseType.InOut);
-        tween.Start();
         //hit entities
         Godot.Collections.Array bodies = GetOverlappingBodies();
         foreach(Godot.Object body in bodies) {
@@ -106,34 +84,55 @@ public abstract class Explosion : Area2D
                 ((Trigger)area).OnSwitchedOn();
             }
         }
-        //play sounds
-        Node2D soundC = default;
-        if(detachSoundNode) {
-            soundC = (Node2D)sound.Duplicate();
-            LeaveObj(soundC, 2f);
+        poly.Scale = new Vector2(1,1);
+        String pAmountTop = STR_PARTICLES_AMOUNT_TOP + Filename;
+        String pAmountBase = STR_PARTICLES_AMOUNT_BASE + Filename;
+        String pCamDist = STR_CAM_DIST + Filename;
+        //shake camera
+        if(IsInstanceValid(LevelNode.PlayerNode) &&
+        GlobalPosition.DistanceSquaredTo(LevelNode.PlayerNode.GlobalPosition) <= (int)calcDict[pCamDist]) {
+            LevelNode.PlayerNode.Camera.ShakeCamera(new Vector2(cameraShakeIntensity, cameraShakeIntensity),
+            cameraShakeFrequency, cameraShakeDuration, cameraShakePriority);
         }
-        else {
-            soundC = sound;
+        //reapply particles amount to avoid particle remnants
+        particlesTop.Amount = (int)calcDict[pAmountTop];
+        particlesBase.Amount = (int)calcDict[pAmountBase];
+        particlesTop.ProcessMaterial.Set("emission_sphere_radius", ExplosionRadius);
+        particlesBase.ProcessMaterial.Set("emission_sphere_radius", ExplosionRadius);
+        particlesTop.Emitting = true;
+        particlesBase.Emitting = true;
+        //poly anim
+        anim.Play("explode");
+        tween.InterpolateProperty(poly, "scale", poly.Scale, poly.Scale*2, 0.75f, Tween.TransitionType.Linear,
+        Tween.EaseType.InOut);
+        tween.Start();
+        if(detach) {
+            CallDeferred(nameof(DetachDef));
         }
-        ((AudioStreamPlayer2D)soundC).Play();
+        sound.Play();
         return true;
     }
 
 
-    void LeaveObj(Node2D obj, float duration) {
+    void DetachDef() {
+        Vector2 pos = GlobalPosition;
+        GetParent().RemoveChild(this);
+        LeaveObj(this, pos, 1f);
+    }
+
+
+    void LeaveObj(Node2D obj, Vector2 gPos, float duration) {
         LevelNode.AddChild(obj);
-        Tween tween = new Tween();
-        obj.AddChild(tween);
-        obj.GlobalPosition = GlobalPosition;
+        Timer timer = new Timer();
+        obj.AddChild(timer);
+        obj.GlobalPosition = gPos;
         obj.GlobalRotation = GlobalRotation;
         Godot.Collections.Array arr = new Godot.Collections.Array();
         arr.Add(obj);
-        if(tween.IsConnected("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject)) == false) {
-            tween.Connect("tween_all_completed", LevelNode, nameof(Level.QueueFreeObject), arr);
+        if(timer.IsConnected("timeout", LevelNode, nameof(Level.QueueFreeObject)) == false) {
+            timer.Connect("timeout", LevelNode, nameof(Level.QueueFreeObject), arr);
         }
-        tween.InterpolateProperty(obj, "modulate", obj.Modulate, new Color(1,1,1,0), duration,
-        Tween.TransitionType.Linear, Tween.EaseType.InOut);
-        tween.Start();
+        timer.Start(duration);
     }
 
 

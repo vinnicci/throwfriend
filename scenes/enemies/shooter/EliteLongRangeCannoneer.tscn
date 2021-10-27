@@ -32,6 +32,9 @@ acts = {
 "shoot_2": [ 1.0, 0.5 ]
 }
 
+[node name="Sprite" parent="." index="0"]
+modulate = Color( 0.580392, 1, 0.615686, 1 )
+
 [node name="Body" parent="Sprite" index="0"]
 texture = ExtResource( 3 )
 
@@ -39,7 +42,10 @@ texture = ExtResource( 3 )
 modulate = Color( 0.0588235, 0.101961, 0.0627451, 1 )
 
 [node name="EnemyWeapon" parent="." index="1" instance=ExtResource( 5 )]
+modulate = Color( 0.580392, 1, 0.615686, 1 )
 position = Vector2( 0, -45 )
+spawnScenes = {
+}
 
 [node name="Particles2D" type="Particles2D" parent="." index="2"]
 material = SubResource( 1 )

@@ -266,7 +266,7 @@ levelName = "The Final Trial 4-2"
 [node name="12_4None" parent="." instance=ExtResource( 3 )]
 position = Vector2( 175, 174 )
 levelFiles = [ "res://levels/12/12_4None1.tscn" ]
-levelName = "The Final Trial 4-2"
+levelName = "The Final Trial 4-3"
 
 [node name="Ending2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 126, 176 )

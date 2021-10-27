@@ -283,6 +283,7 @@ public class Main : Node
     public async void GoToMainMenu() {
         FadeAnim.Play("fade_in");
         SavePlayerData();
+        currentLevel.CleanUp();
         await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
         currentLevel.QueueFree();
         MainMenuNode.Show();
@@ -324,7 +325,6 @@ public class Main : Node
             LoadPlayerData(player);
         }
         InitLevelData();
-        player.IsStopped = false;
         Saver.Call("save_level_data");
         Saver.Call("save_world_data");
     }

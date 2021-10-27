@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class EndingTemplate : Level
+public abstract class EndingTemplate : Level
 {
     protected TextureRect cg;
     [Export] protected Godot.Collections.Array<Texture> cgs;
@@ -12,6 +12,7 @@ public class EndingTemplate : Level
     public override void _Ready()
     {
         base._Ready();
+        PlayerNode.IsStopped = true;
         cg = (TextureRect)GetNode("CanvasLayer/TextureRect");
         dialogue = (DialogueTrigger)GetNode("Objects/DialogueTrigger");
         if(dialogue.IsConnected(nameof(DialogueTrigger.NextDialogue), this, nameof(NextCG)) == false) {

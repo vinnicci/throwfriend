@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.0
 
-[node name="ShooterProj" instance=ExtResource( 2 )]
+[node name="BlasterProj" instance=ExtResource( 2 )]
 range = 2000
 speed = 5
 

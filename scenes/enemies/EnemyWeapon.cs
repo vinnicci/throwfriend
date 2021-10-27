@@ -54,7 +54,8 @@ public abstract class EnemyWeapon : Node2D, ISpawner, ISoundEmitter
 
     //used by range attack anim to create projectiles
     public virtual void SpawnProj() {
-        EnemyProj proj = (EnemyProj)spawnScenes["proj"].Instance();
+        //EnemyProj proj = (EnemyProj)spawnScenes["proj"].Instance();
+        EnemyProj proj = (EnemyProj)ParentNode.LevelNode.GetPooledObj(spawnScenes["proj"]);
         proj.AddHitException(ParentNode);
         proj.Spawn(ParentNode.LevelNode, spawnPoint.GlobalPosition, Vector2.Zero, spawnPoint.GlobalRotationDegrees);
     }

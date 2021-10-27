@@ -60,7 +60,7 @@ scale_random = 1.0
 scale_curve = SubResource( 7 )
 
 [node name="Explosion" instance=ExtResource( 1 )]
-collision_mask = 23
+collision_mask = 19
 explosionRadius = 100
 
 [node name="ParticlesBase" parent="." index="3"]

@@ -76,6 +76,7 @@ public abstract class Level : YSort
                 }
             }
         }
+        PlayerNode.IsStopped = false;
         if(IsInstanceValid((Resource)mainNode.Saver.Get("player_save_file")) == false) {
             return;
         }
@@ -104,39 +105,43 @@ public abstract class Level : YSort
     }
 
 
-    //pooling
-    // Godot.Collections.Dictionary poolDict = new Godot.Collections.Dictionary();
+    // pooling
+    const int POOL_SIZE = 100;
+    public static Godot.Collections.Dictionary<PackedScene, Godot.Collections.Array> poolDict =
+    new Godot.Collections.Dictionary<PackedScene, Godot.Collections.Array>();
 
 
-    // public Node2D GetPooledObj(PackedScene scn) {
-    //     Godot.Collections.Array poolArr;
-    //     if(poolDict.Contains(scn) == false) {
-    //         poolArr = new Godot.Collections.Array();
-    //         poolDict.Add(scn, poolArr);
-    //     }
-    //     else {
-    //         poolArr = (Godot.Collections.Array)poolDict[scn];
-    //     }
-    //     Node2D obj;
-    //     if(poolArr.Count > 0) {
-    //         obj = (Node2D)poolArr[poolArr.Count - 1];
-    //         poolArr.RemoveAt(poolArr.Count - 1);
-    //     }
-    //     else {
-    //         obj = (Node2D)((PackedScene)scn).Instance();
-    //     }
-    //     GD.Print("pool ya: " + poolArr.Count);
-    //     return obj;
-    // }
+    public Node2D GetPooledObj(PackedScene scn) {
+        Godot.Collections.Array poolArr;
+        if(poolDict.ContainsKey(scn) == false) {
+            poolArr = new Godot.Collections.Array();
+            poolDict.Add(scn, poolArr);
+        }
+        else {
+            poolArr = (Godot.Collections.Array)poolDict[scn];
+        }
+        Node2D obj;
+        if(poolArr.Count > 0) {
+            obj = (Node2D)poolArr[poolArr.Count - 1];
+            poolArr.RemoveAt(poolArr.Count - 1);
+        }
+        else {
+            obj = (Node2D)((PackedScene)scn).Instance();
+        }
+        return obj;
+    }
 
 
-    // public void ReturnObjToPool(Node2D obj) {
-    //     PackedScene scn = (PackedScene)ResourceLoader.Load(obj.Filename);
-    //     Godot.Collections.Array poolArr = (Godot.Collections.Array)poolDict[scn];
-    //     poolArr.Insert(0, obj);
-    //     obj.GetParent().RemoveChild(obj);
-    //     GD.Print("success return, pool size: " + poolArr.Count);
-    // }
+    public void CleanUp() {
+        SetProcess(false);
+        SetPhysicsProcess(false);
+        foreach(PackedScene scn in poolDict.Keys) {
+            Godot.Collections.Array arr = poolDict[scn];
+            foreach(Node2D node in arr) {
+                node.QueueFree();
+            }
+        }
+    }
 
 
     public Godot.Collections.Array PlayerEngaging {get; set;}
@@ -195,49 +200,42 @@ public abstract class Level : YSort
     }
 
 
-    const int DIST_TO_PROCESS = 3;
+    const int DIST_TO_PROCESS = 3; // process 3 at a time
+    const int POOL_SCN_TO_PROCESS = 3; 
 
 
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
         //processing distance calculations one frame at a time to reduce frame time?? who knows
-        for(int i = 0; i <= DIST_TO_PROCESS - 1; i++) {
-            if(distCalcQueue.Count > 0) {
-                Godot.Collections.Array arrQ = distCalcQueue.Dequeue();
-                if(IsInstanceValid((Node2D)arrQ[0])) {
-                    ((Node2D)arrQ[0]).Call("update_dist", arrQ[1], CalcDist((Vector2)arrQ[2], (Vector2)arrQ[3], (bool)arrQ[4]));
+        for(int i = 0; distCalcQueue.Count > 0 && i <= DIST_TO_PROCESS - 1; i++) {
+            Godot.Collections.Array arrQ = distCalcQueue.Dequeue();
+            if(IsInstanceValid((Node2D)arrQ[0])) {
+                ((Node2D)arrQ[0]).Call("update_dist", arrQ[1], CalcDist((Vector2)arrQ[2], (Vector2)arrQ[3], (bool)arrQ[4]));
+            }
+        }
+        //processing pool
+        foreach(PackedScene scn in poolDict.Keys) {
+            Godot.Collections.Array arr = poolDict[scn];
+            //add 3 instances at a time
+            if(arr.Count < POOL_SIZE) {
+                for(int i = 0; i <= POOL_SCN_TO_PROCESS - 1; i++) {
+                    arr.Add(scn.Instance());
                 }
             }
+        }
+        //processing queue free obj
+        if(toBeFreedObj.Count > 0) {
+            ((Node2D)toBeFreedObj.Dequeue()).QueueFree();
         }
     }
 
 
-    //for debugging: show ai path
-    // void ShowLine(Vector2[] vec) {
-    //     Line2D line = new Line2D();
-    //     Tween tween = new Tween();
-    //     line.Points = vec;
-    //     AddChild(line);
-    //     Godot.Collections.Array arr = new Godot.Collections.Array();
-    //     arr.Add(line);
-    //     tween.InterpolateProperty(line, "modulate", line.Modulate, new Color(1,1,1,0), 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-    //     if(tween.IsConnected("tween_all_completed", this, nameof(OnTweenCompleted)) == false) {
-    //         tween.Connect("tween_all_completed", this, nameof(OnTweenCompleted));
-    //     }
-    //     line.AddChild(tween);
-    //     lines.Enqueue(line);
-    //     tween.Start();
-    // }
-
-
-    void OnTweenCompleted() {
-        lines.Dequeue().QueueFree();
-    }
+    Queue<Node2D> toBeFreedObj = new Queue<Node2D>();
 
 
     public void QueueFreeObject(Godot.Object obj) {
-        ((Node)obj).QueueFree();
+        toBeFreedObj.Enqueue((Node2D)obj);
     }
 
 

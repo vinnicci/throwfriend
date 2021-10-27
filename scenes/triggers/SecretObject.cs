@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class SecretObject : Trigger
+public abstract class SecretObject : Trigger
 {
     StaticBody2D staticBody;
     uint staticBodyDefaultCollisionLayer;

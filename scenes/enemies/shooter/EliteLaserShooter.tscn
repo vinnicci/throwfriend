@@ -32,6 +32,9 @@ acts = {
 "shoot_2": [ 1.0, 0.5 ]
 }
 
+[node name="Sprite" parent="." index="0"]
+modulate = Color( 0.580392, 1, 0.615686, 1 )
+
 [node name="Body" parent="Sprite" index="0"]
 scale = Vector2( 1, 1 )
 texture = ExtResource( 3 )
@@ -40,6 +43,7 @@ texture = ExtResource( 3 )
 modulate = Color( 0.0117647, 0.0156863, 0.0117647, 1 )
 
 [node name="EnemyWeapon" parent="." index="1" instance=ExtResource( 7 )]
+modulate = Color( 0.580392, 1, 0.615686, 1 )
 position = Vector2( 0, -45 )
 spawnScenes = {
 }
