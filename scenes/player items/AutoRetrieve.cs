@@ -3,18 +3,17 @@ using System;
 
 public class AutoRetrieve : PlayerItem
 {
-    bool weapIsReturning = false;
-    const int RETRIEVE_SPEED = 125;
-    
-
     public override void _Ready()
     {
         base._Ready();
         incompatibilityList.Add("AutoRetrieve");
-        incompatibilityList.Add("Guided");
-        incompatibilityList.Add("Homing");
-        incompatibilityList.Add("Boost");
+        //incompatibilityList.Add("Guided");
+        //incompatibilityList.Add("Homing");
+        //incompatibilityList.Add("Boost");
     }
+
+
+    bool weapIsReturning = false;
 
 
     public override void _PhysicsProcess(float delta)
@@ -49,8 +48,19 @@ public class AutoRetrieve : PlayerItem
     }
 
 
+    const int NEAR_DIST = 10000;
+    const int FAR_RETRIEVE_SPEED = 250;
+    const int NEAR_RETRIEVE_SPEED = 125;
+
+
     Vector2 CalcReturnVec(Vector2 gPos) {
-        return (PlayerNode.GlobalPosition - gPos).Normalized() * RETRIEVE_SPEED;
+        if(IsInstanceValid(PlayerNode) == false) {
+            return Vector2.Zero;
+        }
+        else if(gPos.DistanceSquaredTo(PlayerNode.GlobalPosition) <= NEAR_DIST) {
+            return (PlayerNode.GlobalPosition - gPos).Normalized() * NEAR_RETRIEVE_SPEED;
+        }
+        return (PlayerNode.GlobalPosition - gPos).Normalized() * FAR_RETRIEVE_SPEED;
     }
 
 

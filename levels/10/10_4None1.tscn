@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/level/NextLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/triggers/SecretBrazier.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/level/tex_final_trial_entrance.png" type="Texture" id=4]
 [ext_resource path="res://scenes/enemies/shooter/LongRangeCannoneer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/shooter/ais/TurretShooterAI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/enemies/RandomEnemySpawner.tscn" type="PackedScene" id=7]
@@ -131,3 +132,10 @@ enemySet = 15
 position = Vector2( 514, 1351 )
 maxSpawnCount = 1
 enemySet = 15
+
+[node name="Ladder" type="Sprite" parent="Objects" index="21"]
+position = Vector2( -288, -319 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, -40 )
+region_enabled = true
+region_rect = Rect2( 1, 52, 30, 134 )

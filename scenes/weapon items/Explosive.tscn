@@ -7,7 +7,7 @@
 
 [node name="Explosive" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-itemDescription = "Switch on: Snark explodes on impact."
+itemDescription = "Snark explodes on impact."
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource( 4 )

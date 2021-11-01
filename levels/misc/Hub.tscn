@@ -51,7 +51,11 @@ position = Vector2( 0, -249 )
 position = Vector2( 0, -211 )
 portrait = ExtResource( 5 )
 name = "Save Point"
-stringArr = [ "This is the Statue of the Legendary Great Gnash.", "He is Snark's great grandfather.", "Their family has been your greatest ally over the years.", "You'll find Great Gnash's statue everywhere and will serve as your save point.", "Just approach it while carrying Snark to save." ]
+stringArr = [
+    "This is the Statue of the Legendary Great Gnash.",
+    "The sharks have been your greatest allies over the years.",
+    "You'll find Great Gnash's statue everywhere and will serve as your save point.",
+    "Just approach it while carrying Snark to save." ]
 
 [node name="Lvl2Entrance" type="Sprite" parent="Objects" index="12"]
 position = Vector2( -64, -1009 )

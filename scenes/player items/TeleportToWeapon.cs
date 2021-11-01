@@ -78,13 +78,13 @@ public class TeleportToWeapon : PlayerItem
             holdCountdown -= delta;
         }
         if(Input.IsActionJustReleased(currentSlot) && holdCountdown > 0) {
-            //not held long enough, teleport to cursor
+            //quick press, teleport to cursor
             TeleportToCursor();
             holdCountdown = 0;
             SetProcess(false);
         }
         else if(holdCountdown <= 0) {
-            //held long enough, teleport to snark
+            //hold key long enough, teleport to snark
             TeleportToSnark();
             holdCountdown = 0;
             SetProcess(false);

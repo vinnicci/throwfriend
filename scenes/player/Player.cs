@@ -331,6 +331,7 @@ public class Player : Entity
         if(base.Hit(knockback, damage)) {
             if(Health > 0 && damage > 0) {
                 HitCooldown.Start(1f);
+                SlowEffect(PLAYER_SLOW_SCALE, PLAYER_SLOW_DURATION*0.75f);
                 Camera.ShakeCamera(PLAYER_HIT_SHAKE_INTENSITY, PLAYER_HIT_SHAKE_FREQ, PLAYER_HIT_SHAKE_DURATION, 0);
             }
             else if(Health <= 0) {
@@ -343,21 +344,21 @@ public class Player : Entity
     }
 
 
-    const float PLAYER_DIE_SLOW_SCALE = 0.1f;
-    const float PLAYER_DIE_SLOW_DURATION = 0.075f;
+    const float PLAYER_SLOW_SCALE = 0.1f;
+    const float PLAYER_SLOW_DURATION = 0.075f;
 
 
     public override void Die()
     {
         base.Die();
-        SlowEffect(PLAYER_DIE_SLOW_SCALE, PLAYER_DIE_SLOW_DURATION);
+        SlowEffect(PLAYER_SLOW_SCALE, PLAYER_SLOW_DURATION);
     }
 
 
     void TransferCamera() {
+        Camera.ParentNode = LevelNode;
         Camera.GetParent().RemoveChild(Camera);
         LevelNode.AddChild(Camera);
-        Camera.ParentNode = LevelNode;
         Camera.GlobalPosition = GlobalPosition;
         Camera.ShowRestart();
     }

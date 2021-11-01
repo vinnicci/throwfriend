@@ -8,25 +8,25 @@ public class Homing : WeaponItem
     RayCast2D ray;
     Timer tick;
     Enemy target;
+    Sprite currentTargetIndicator;
 
 
     public override void _Ready()
     {
         base._Ready();
         incompatibilityList.Add("Homing");
-        incompatibilityList.Add("Guided");
-        incompatibilityList.Add("AutoRetrieve");
         range = (Area2D)GetNode("DetectionRange");
         ray = (RayCast2D)GetNode("DetectionRay");
         tick = (Timer)GetNode("Tick");
+        currentTargetIndicator = (Sprite)GetNode("TargetIndicator");
         turretAIs.Add("res://scenes/enemies/all rounder/ais/TurretAllRounderAI.tscn");
         turretAIs.Add("res://scenes/enemies/shooter/ais/TurretShooterAI.tscn");
     }
 
 
-    const int HOME_MAGNITUDE = 250;
-    const int HOME_MAGNITUDE_CLOSE = 750;
-    const int DIST_HOME_ACCEL = 2500;
+    const int HOME_MAGNITUDE = 125;
+    const int HOME_MAGNITUDE_CLOSE = 625;
+    const int ENEMY_CLOSE_DIST = 5625;
     Queue<Enemy> enemies = new Queue<Enemy>();
 
 
@@ -47,7 +47,7 @@ public class Homing : WeaponItem
         else if(WeaponNode.CurrentState == Weapon.States.ACTIVE) {
             if(IsInstanceValid(target) && target.Health > 0) {
                 int mag;
-                if(WeaponNode.GlobalPosition.DistanceSquaredTo(target.GlobalPosition) <= DIST_HOME_ACCEL) {
+                if(WeaponNode.GlobalPosition.DistanceSquaredTo(target.GlobalPosition) <= ENEMY_CLOSE_DIST) {
                     mag = HOME_MAGNITUDE_CLOSE;
                 }
                 else {
@@ -55,6 +55,33 @@ public class Homing : WeaponItem
                 }
                 Vector2 vec = (target.Position - WeaponNode.Position).Normalized() * mag;
                 WeaponNode.Velocity += vec;
+            }
+        }
+    }
+
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+        if(IsInstanceValid(WeaponNode) == false) {
+            return;
+        }
+        if(IsInstanceValid(target) == false) {
+            if(currentTargetIndicator.Visible) {
+                currentTargetIndicator.Visible = false;
+            }
+            return;
+        }
+        else if(IsInstanceValid(target)) {
+            if(WeaponNode.CurrentState == Weapon.States.ACTIVE) {
+                if(currentTargetIndicator.Visible == false) {
+                    currentTargetIndicator.Visible = true;
+                }
+                currentTargetIndicator.GlobalPosition = target.GlobalPosition;
+                currentTargetIndicator.GlobalRotation = 0;
+            }
+            else {
+                currentTargetIndicator.Visible = false;
             }
         }
     }
@@ -91,6 +118,7 @@ public class Homing : WeaponItem
         ray.ForceRaycastUpdate();
         if(ray.GetCollider() == enemy) {
             target = enemy;
+            currentTargetIndicator.GlobalPosition = target.GlobalPosition;
         }
         else {
             enemies.Enqueue(enemy);

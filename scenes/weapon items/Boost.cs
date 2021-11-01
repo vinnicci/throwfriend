@@ -3,14 +3,6 @@ using System;
 
 public class Boost : WeaponItem
 {
-    public override void _Ready()
-    {
-        base._Ready();
-        incompatibilityList.Add("Guided");
-        incompatibilityList.Add("AutoRetrieve");
-    }
-
-
     public override void ApplyEffect()
     {
         if(WeaponNode.CurrentState != Weapon.States.INACTIVE || Cooldown.IsStopped() == false) {

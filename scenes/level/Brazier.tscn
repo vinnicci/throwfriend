@@ -66,4 +66,4 @@ region_rect = Rect2( 50, 0, 49, 37 )
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
 autoplay = true
-max_distance = 200.0
+max_distance = 300.0

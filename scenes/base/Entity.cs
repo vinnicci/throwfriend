@@ -163,7 +163,7 @@ public abstract class Entity : RigidBody2D, IHealthModifiable, ITeleportable, IS
         healthHUD.Visible = false;
         anim.Stop();
         anim.Play("die");
-        //remove sounds as child and move to level
+        //change sound node parent to level node
         SoundsNode.GetParent().RemoveChild(SoundsNode);
         LeaveObj(SoundsNode, spriteNode.GlobalPosition, 1f);
         PlaySoundEffect("Died");

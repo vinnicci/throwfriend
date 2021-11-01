@@ -77,7 +77,9 @@ position = Vector2( -1279, -97 )
 position = Vector2( -1279, -96 )
 portrait = ExtResource( 10 )
 name = "Ability"
-stringArr = [ "Press TAB to open the in-game menu.", "Some abilities require activation. You can change its keybinding by pressing the hotkey button in the corresponding ability slot." ]
+stringArr = [
+    "Press TAB to open the in-game menu.",
+    "Some abilities require activation. You can change its keybinding by pressing the hotkey button in the corresponding ability slot." ]
 portraitScale = 4.0
 
 [node name="InvisibleWalls" parent="Objects" index="14"]

@@ -49,7 +49,14 @@ tracks/2/keys = {
 [node name="NPC3" instance=ExtResource( 5 )]
 portrait = ExtResource( 4 )
 name = "Adventurer"
-stringArr = [ "Wow! You can actually press those buttons without even trying.", "I tried, but it doesn't seem to budge.", "The sharks and the guardians really are strong.", "You've seen them everywhere? That might lead you to something.", "Anyway thanks for taking out those monsters, I guess I can finally get out of here now.", "Good luck to both you." ]
+stringArr = [
+    "Wow! Those buttons.",
+    "You can press them without even trying.",
+    "I did, but it doesn't seem to budge.",
+    "It's like they're built for you.",
+    "You've seen them everywhere? That might lead you to something.",
+    "Anyway I guess I can finally get out of here now.",
+    "Thanks and good luck to both you." ]
 portraitScale = 4.0
 
 [node name="Sprite" type="Sprite" parent="." index="1"]

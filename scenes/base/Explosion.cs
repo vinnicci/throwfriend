@@ -84,6 +84,7 @@ public abstract class Explosion : Area2D
                 ((Trigger)area).OnSwitchedOn();
             }
         }
+        //reset particles and poly scale
         poly.Scale = new Vector2(1,1);
         String pAmountTop = STR_PARTICLES_AMOUNT_TOP + Filename;
         String pAmountBase = STR_PARTICLES_AMOUNT_BASE + Filename;
@@ -94,7 +95,7 @@ public abstract class Explosion : Area2D
             LevelNode.PlayerNode.Camera.ShakeCamera(new Vector2(cameraShakeIntensity, cameraShakeIntensity),
             cameraShakeFrequency, cameraShakeDuration, cameraShakePriority);
         }
-        //reapply particles amount to avoid particle remnants
+        //reapply particles amount to avoid reusing old particles
         particlesTop.Amount = (int)calcDict[pAmountTop];
         particlesBase.Amount = (int)calcDict[pAmountBase];
         particlesTop.ProcessMaterial.Set("emission_sphere_radius", ExplosionRadius);
@@ -103,11 +104,11 @@ public abstract class Explosion : Area2D
         particlesBase.Emitting = true;
         //poly anim
         anim.Play("explode");
-        tween.InterpolateProperty(poly, "scale", poly.Scale, poly.Scale*2, 0.75f, Tween.TransitionType.Linear,
-        Tween.EaseType.InOut);
-        tween.Start();
         if(detach) {
             CallDeferred(nameof(DetachDef));
+        }
+        else {
+            PlayPolyTween(0.75f);
         }
         sound.Play();
         return true;
@@ -132,7 +133,15 @@ public abstract class Explosion : Area2D
         if(timer.IsConnected("timeout", LevelNode, nameof(Level.QueueFreeObject)) == false) {
             timer.Connect("timeout", LevelNode, nameof(Level.QueueFreeObject), arr);
         }
+        PlayPolyTween(duration);
         timer.Start(duration);
+    }
+
+
+    void PlayPolyTween(float duration) {
+        tween.InterpolateProperty(poly, "scale", poly.Scale, poly.Scale * 2, duration,
+        Tween.TransitionType.Cubic, Tween.EaseType.Out);
+        tween.Start();
     }
 
 

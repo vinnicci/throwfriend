@@ -37,7 +37,15 @@ tracks/1/keys = {
 [node name="NPC2" instance=ExtResource( 5 )]
 portrait = ExtResource( 4 )
 name = "Survivor"
-stringArr = [ "Wait! Please don't kill me. I'm not one of them!", "This thing in my head was controlling me but now it's weakening.", "For some reason while being possessed I was able to comprehend what those monsters were saying.", "They're trying to take something back. They were pretty vague about what exactly is it.", "They know the chief is the key in finding it and now they're looking for him.", "That's all I heard.", "Don't worry about me. I can get rid of this myself.", "Good luck to you." ]
+stringArr = [ 
+    "Wait! Please don't kill me. I'm not one of them!",
+    "This thing on my head, it's already weak and slowly losing control of me.",
+    "For some reason while being possessed I was able to comprehend what those monsters were saying.",
+    "They're trying to take something back.",
+    "The key to getting it is the chief guardian, and right now they are looking for him.",
+    "That's all I heard.",
+    "Don't worry about me. I can get rid of this myself.",
+    "Good luck to you." ]
 portraitScale = 4.0
 
 [node name="Sprite" type="Sprite" parent="." index="1"]

@@ -6,10 +6,7 @@ public class Guided : WeaponItem
     public override void _Ready()
     {
         base._Ready();
-        incompatibilityList.Add("Homing");
         incompatibilityList.Add("Guided");
-        incompatibilityList.Add("AutoRetrieve");
-        incompatibilityList.Add("Boost");
     }
 
 

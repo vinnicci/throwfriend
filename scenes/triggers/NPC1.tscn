@@ -28,13 +28,13 @@ name = "Drunk Man"
 stringArr = [ 
     "Hmm...",
     "Ohh... It's you.",
-    "Looking for something?",
-    "Like infinite knowledge, wealth or power?",
-    "Well, you just have to press those yellow things...",
-    "That's the first step.",
+    "Those yellow things?",
+    "Heard something about letting you in once you found all of them.",
     "Yeah... mmmm...",
+    "We're already pretty much isolated in here to have one of those secret occult stuff...",
     "...",
-    "Pff... Like those even exists...",
+    "Looking for those makes for a good adventure though.",
+    "Well, good luck finding all of them.",
     "Hehehehe... hehe... heh...",
     "zzzzzzzzzzz..." ]
 portraitScale = 4.0

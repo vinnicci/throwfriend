@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/triggers/anim/npc_weap_idle2.tres" type="Animation" id=1]
+[ext_resource path="res://assets/player/tex_player_torso.png" type="Texture" id=2]
+[ext_resource path="res://assets/player/tex_run_1.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/tex_player_arms.png" type="Texture" id=4]
+[ext_resource path="res://scenes/triggers/DialogueTrigger.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/npcs/tex_npc_head.png" type="Texture" id=6]
+[ext_resource path="res://assets/npcs/tex_npc_weapon1.png" type="Texture" id=7]
+
+[node name="NPCGuardian" instance=ExtResource( 5 )]
+portrait = ExtResource( 6 )
+name = "Guardian"
+portraitScale = 4.0
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+position = Vector2( 0, -20 )
+texture = ExtResource( 2 )
+
+[node name="Head" type="Sprite" parent="Sprite" index="0"]
+position = Vector2( -1, -10.7147 )
+texture = ExtResource( 6 )
+offset = Vector2( 0.5, 0 )
+
+[node name="Legs" type="Sprite" parent="Sprite" index="1"]
+position = Vector2( -0.5, 14 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0 )
+
+[node name="Arm2" type="Sprite" parent="Sprite" index="2"]
+show_behind_parent = true
+position = Vector2( 8, -8.71467 )
+rotation = -0.698132
+texture = ExtResource( 4 )
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 15, 4, 15, 9 )
+
+[node name="Weap" type="Sprite" parent="Sprite/Arm2" index="0"]
+position = Vector2( 2.4479, -4.47301 )
+rotation = 0.562927
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Arm1" type="Sprite" parent="Sprite" index="3"]
+show_behind_parent = true
+position = Vector2( -7, 5.28533 )
+rotation = -0.808032
+texture = ExtResource( 4 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 15, 4, 15, 9 )
+
+[node name="Anim" type="AnimationPlayer" parent="." index="2"]
+autoplay = "idle"
+anims/idle = ExtResource( 1 )

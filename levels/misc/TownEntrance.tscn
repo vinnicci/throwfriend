@@ -104,7 +104,11 @@ portraitScale = 2.0
 position = Vector2( 33, 444 )
 portrait = ExtResource( 11 )
 name = "Tutorial: Throwing"
-stringArr = [ "As the guardian, you will be joined by an ally to help you out in this mission.", "Snark will chomp the enemies. All you have to do is throw him to the enemies' direction.", "Let's try it.", "Aim with mouse, and then press LMB to throw Snark." ]
+stringArr = [
+    "As the guardian, you will be joined by an ally to help you out in this mission.",
+    "Snark will chomp the enemies. All you have to do is throw him to the enemies' direction.",
+    "Let's try it.",
+    "Aim with mouse, and then press LMB to throw Snark." ]
 portraitScale = 1.5
 
 [node name="DialogueTrigger3" parent="Objects" index="9" instance=ExtResource( 4 )]

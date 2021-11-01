@@ -51,14 +51,16 @@ public class SplitToThree : WeaponItem
         PlayerNode.AddChild(Weaps[0]);
         PlayerNode.AddChild(Weaps[1]);
         if(IsInstanceValid(WeaponNode.Item1) && WeaponNode.Item1 is SplitToThree == false) {
-            Weaps[0].ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
-            Weaps[1].ItemSlot1Node.AddChild(WeaponNode.Item1.Duplicate());
+            PackedScene scn = (PackedScene)ResourceLoader.Load(WeaponNode.Item1.Filename);
+            Weaps[0].ItemSlot1Node.AddChild(scn.Instance());
+            Weaps[1].ItemSlot1Node.AddChild(scn.Instance());
             Weaps[0].ActivateItem(1);
             Weaps[1].ActivateItem(1);
         }
         if(IsInstanceValid(WeaponNode.Item2) && WeaponNode.Item2 is SplitToThree == false) {
-            Weaps[0].ItemSlot2Node.AddChild(WeaponNode.Item2.Duplicate());
-            Weaps[1].ItemSlot2Node.AddChild(WeaponNode.Item2.Duplicate());
+            PackedScene scn = (PackedScene)ResourceLoader.Load(WeaponNode.Item2.Filename);
+            Weaps[0].ItemSlot2Node.AddChild(scn.Instance());
+            Weaps[1].ItemSlot2Node.AddChild(scn.Instance());
             Weaps[0].ActivateItem(2);
             Weaps[1].ActivateItem(2);
         }
