@@ -351,4 +351,14 @@ public class Weapon : RigidBody2D, ITeleportable, ISpawnable, ISoundEmitter
     }
 
 
+    public void CleanUp() {
+        if(Item1 is SplitToThree) {
+            ((SplitToThree)Item1).CleanUp();
+        }
+        if(Item2 is SplitToThree) {
+            ((SplitToThree)Item2).CleanUp();
+        }
+    }
+
+
 }

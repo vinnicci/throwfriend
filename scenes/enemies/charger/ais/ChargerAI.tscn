@@ -207,7 +207,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -216,7 +216,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -720 ),
+"offset": Vector2( 0, -700 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_blob" ]
@@ -227,7 +227,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -238,10 +238,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_enemy_count_less_than_or_eq",
-"offset": Vector2( 400, -460 ),
-"params": [ [ "15", 1 ] ],
+"offset": Vector2( 0, -440 ),
+"params": [ [ "30", 1 ] ],
 "size": Vector2( 357, 87.75 ),
-"values": [ "15" ]
+"values": [ "30" ]
 },
 "name": "task",
 "type": 1
@@ -249,7 +249,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -340 ),
+"offset": Vector2( 0, -320 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_blob" ]
@@ -262,7 +262,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -720 ),
+"offset": Vector2( 0, -700 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_blob" ]
@@ -273,7 +273,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -284,10 +284,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_enemy_count_less_than_or_eq",
-"offset": Vector2( 400, -460 ),
-"params": [ [ "15", 1 ] ],
+"offset": Vector2( 0, -440 ),
+"params": [ [ "30", 1 ] ],
 "size": Vector2( 357, 87.75 ),
-"values": [ "15" ]
+"values": [ "30" ]
 },
 "name": "task",
 "type": 1
@@ -295,7 +295,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -340 ),
+"offset": Vector2( 0, -320 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_blob" ]
@@ -305,7 +305,7 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -809,7 +809,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -818,7 +818,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -720 ),
+"offset": Vector2( 0, -700 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_blob" ]
@@ -829,7 +829,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -840,10 +840,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_enemy_count_less_than_or_eq",
-"offset": Vector2( 400, -460 ),
-"params": [ [ "15", 1 ] ],
+"offset": Vector2( 0, -440 ),
+"params": [ [ "30", 1 ] ],
 "size": Vector2( 357, 87.75 ),
-"values": [ "15" ]
+"values": [ "30" ]
 },
 "name": "task",
 "type": 1
@@ -851,7 +851,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -340 ),
+"offset": Vector2( 0, -320 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_blob" ]
@@ -864,7 +864,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -720 ),
+"offset": Vector2( 0, -700 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_blob" ]
@@ -875,7 +875,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -886,10 +886,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_enemy_count_less_than_or_eq",
-"offset": Vector2( 400, -460 ),
-"params": [ [ "15", 1 ] ],
+"offset": Vector2( 0, -440 ),
+"params": [ [ "30", 1 ] ],
 "size": Vector2( 357, 87.75 ),
-"values": [ "15" ]
+"values": [ "30" ]
 },
 "name": "task",
 "type": 1
@@ -897,7 +897,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -340 ),
+"offset": Vector2( 0, -320 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_blob" ]
@@ -907,7 +907,7 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -1715,7 +1715,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -1724,7 +1724,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -720 ),
+"offset": Vector2( 0, -700 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_blob" ]
@@ -1735,7 +1735,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -1746,10 +1746,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_enemy_count_less_than_or_eq",
-"offset": Vector2( 400, -460 ),
-"params": [ [ "15", 1 ] ],
+"offset": Vector2( 0, -440 ),
+"params": [ [ "30", 1 ] ],
 "size": Vector2( 357, 87.75 ),
-"values": [ "15" ]
+"values": [ "30" ]
 },
 "name": "task",
 "type": 1
@@ -1757,7 +1757,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -340 ),
+"offset": Vector2( 0, -320 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_blob" ]
@@ -1770,7 +1770,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -720 ),
+"offset": Vector2( 0, -700 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_blob" ]
@@ -1781,7 +1781,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -1792,10 +1792,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_enemy_count_less_than_or_eq",
-"offset": Vector2( 400, -460 ),
-"params": [ [ "15", 1 ] ],
+"offset": Vector2( 0, -440 ),
+"params": [ [ "30", 1 ] ],
 "size": Vector2( 357, 87.75 ),
-"values": [ "15" ]
+"values": [ "30" ]
 },
 "name": "task",
 "type": 1
@@ -1803,7 +1803,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -340 ),
+"offset": Vector2( 0, -320 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_blob" ]
@@ -1813,7 +1813,7 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -1992,7 +1992,7 @@ tree = {
 "child": [  ],
 "data": {
 "count": 4,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",
@@ -2001,7 +2001,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -720 ),
+"offset": Vector2( 0, -700 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_blob" ]
@@ -2012,7 +2012,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -2023,10 +2023,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_enemy_count_less_than_or_eq",
-"offset": Vector2( 400, -460 ),
-"params": [ [ "15", 1 ] ],
+"offset": Vector2( 0, -440 ),
+"params": [ [ "30", 1 ] ],
 "size": Vector2( 357, 87.75 ),
-"values": [ "15" ]
+"values": [ "30" ]
 },
 "name": "task",
 "type": 1
@@ -2034,7 +2034,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -340 ),
+"offset": Vector2( 0, -320 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_blob" ]
@@ -2047,7 +2047,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_act_ready",
-"offset": Vector2( 400, -720 ),
+"offset": Vector2( 0, -700 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 249, 87.75 ),
 "values": [ "spawn_blob" ]
@@ -2058,7 +2058,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_target_close",
-"offset": Vector2( 400, -600 ),
+"offset": Vector2( 0, -580 ),
 "params": [ [ "enemy", 1 ], [ "seek_dist", 1 ] ],
 "size": Vector2( 262, 112.75 ),
 "values": [ "enemy", "seek_dist" ]
@@ -2069,10 +2069,10 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_is_enemy_count_less_than_or_eq",
-"offset": Vector2( 400, -460 ),
-"params": [ [ "15", 1 ] ],
+"offset": Vector2( 0, -440 ),
+"params": [ [ "30", 1 ] ],
 "size": Vector2( 357, 87.75 ),
-"values": [ "15" ]
+"values": [ "30" ]
 },
 "name": "task",
 "type": 1
@@ -2080,7 +2080,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_act",
-"offset": Vector2( 400, -340 ),
+"offset": Vector2( 0, -320 ),
 "params": [ [ "spawn_blob", 1 ] ],
 "size": Vector2( 240, 100 ),
 "values": [ "spawn_blob" ]
@@ -2090,7 +2090,7 @@ tree = {
 } ],
 "data": {
 "count": 4,
-"offset": Vector2( 200, -600 ),
+"offset": Vector2( -200, -580 ),
 "size": Vector2( 103, 131.75 )
 },
 "name": "sequence",

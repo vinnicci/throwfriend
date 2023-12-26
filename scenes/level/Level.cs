@@ -135,6 +135,7 @@ public abstract class Level : YSort
     public void CleanUp() {
         SetProcess(false);
         SetPhysicsProcess(false);
+        PlayerNode.WeaponNode.CleanUp();
         foreach(PackedScene scn in poolDict.Keys) {
             Godot.Collections.Array arr = poolDict[scn];
             foreach(Node2D node in arr) {

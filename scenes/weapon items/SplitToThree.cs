@@ -94,4 +94,10 @@ public class SplitToThree : WeaponItem
     }
 
 
+    public void CleanUp() {
+        Weaps[0].QueueFree();
+        Weaps[1].QueueFree();
+    }
+
+
 }

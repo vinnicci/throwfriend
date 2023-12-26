@@ -38,7 +38,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 1.6, 2, 2.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.392157, 0.392157, 0.392157, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0.482353, 1, 0.964706, 1 ), Color( 0.392157, 0.392157, 0.392157, 1 ), Color( 0.482353, 1, 0.964706, 1 ) ]
 }
 tracks/3/type = "method"
 tracks/3/path = NodePath("..")

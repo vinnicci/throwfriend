@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://levels/misc/GuardiansHallSecretWall.cs" type="Script" id=1]
 [ext_resource path="res://scenes/level/Walls.tscn" type="PackedScene" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://assets/npcs/tex_npc_weapon2.png" type="Texture" id=12]
 [ext_resource path="res://scenes/triggers/NPCGuardian2.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/triggers/NPCGuardian1.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -155,12 +154,18 @@ QuestID = "SECRET"
 
 [node name="GenericNPC" parent="Objects/SecretWall" index="1" instance=ExtResource( 6 )]
 position = Vector2( 242, -313 )
-stringArr = [ "My usual shortcut is blocked off now...", "*sigh...*" ]
+stringArr = [ "I don't remember this wall existing at all...", "Hmmm..." ]
 
 [node name="GenericNPC" parent="Objects" index="11" instance=ExtResource( 6 )]
 position = Vector2( 1559, -140 )
 scale = Vector2( -1, 1 )
-stringArr = [ "Hello.", "I see. I can feel that you're stronger now.", "The entrance is right there.", "What lies ahead is yet another trial.", "This will make for a good test for your newfound abilities.", "Good luck." ]
+stringArr = [
+    "Hello. Hmm... I see.",
+    "I can feel that you're stronger now.",
+    "The entrance is right there.",
+    "What lies ahead is yet another trial.",
+    "This will make for a good test for your newfound abilities.",
+    "Good luck." ]
 
 [node name="DialogueTrigger" parent="Objects" index="12" instance=ExtResource( 4 )]
 position = Vector2( 1503, 795 )
@@ -181,13 +186,24 @@ region_rect = Rect2( 1, 1, 74, 50 )
 [node name="NPCGuardian" parent="Objects" index="15" instance=ExtResource( 14 )]
 position = Vector2( 129, 23 )
 scale = Vector2( -1, 1 )
-stringArr = [ "Oh! You're finally back.", "You eliminated the threat?", "Good job! Chief will be pleased to hear it." ]
+stringArr = [
+    "Oh! You're finally back.",
+    "You've carried out your mission.",
+    "The chief will be pleased to hear it." ]
 
 [node name="NPCGuardian2" parent="Objects" index="16" instance=ExtResource( 14 )]
 position = Vector2( 1570, 596 )
 scale = Vector2( -1, 1 )
 portrait = ExtResource( 11 )
-stringArr = [ "So how's you're mission?", "The invasion wasn't as bad as I thought.", "You know what? Let's have a drink later.", "Let's celebrate your successful mission and keeping the peace.", "All right, that's the plan.", "See ya later." ]
+stringArr = [
+    "So how was it?",
+    "I found it strange.",
+    "Chief would usually send three guardians to carry out such missions.",
+    "I guess the invasion wasn't as bad as I thought. So no point in thinking about it.",
+    "You know what let's get a drink later.",
+    "To celebrate your success today and keeping the peace.",
+    "All right, that's a plan.",
+    "See ya later." ]
 
 [node name="Head" parent="Objects/NPCGuardian2/Sprite" index="0"]
 texture = ExtResource( 11 )
@@ -206,16 +222,17 @@ stringArr = [ "Hello.", "Good work out there." ]
 [node name="NPCGuardian4" parent="Objects" index="18" instance=ExtResource( 13 )]
 position = Vector2( -194, -367 )
 scale = Vector2( -1, 1 )
-stringArr = [ "Hi.", "Wish I could've joined you.", "But chief told me to stay put." ]
+stringArr = [
+    "Hi.",
+    "Wish I could've joined you.",
+    "But chief told me to stay put.",
+    "I guess the invasion wasn't really that bad because you came back unscathed." ]
 
 [node name="Weap" parent="Objects/NPCGuardian4/Sprite/Arm2" index="0"]
 texture = ExtResource( 12 )
 
 [node name="Anim" parent="Objects/NPCGuardian4" index="2"]
 anims/idle = SubResource( 2 )
-
-[node name="Player" parent="." index="8" instance=ExtResource( 15 )]
-position = Vector2( 399, -323 )
 
 [editable path="Objects/NPCGuardian2"]
 [editable path="Objects/NPCGuardian4"]

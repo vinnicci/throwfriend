@@ -6,7 +6,7 @@ public class NPC4 : DialogueTrigger
 {
     public override void NextDialogueEvent(int currentDialogueSlot, Label text) {
         //triggers on dialogue slot 7
-        if(currentDialogueSlot != 7) {
+        if(currentDialogueSlot != 8) {
             return;
         }
         Main mainNode = (Main)GetNode("/root/Main");
